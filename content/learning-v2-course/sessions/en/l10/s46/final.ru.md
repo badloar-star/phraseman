@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 46 — Запуск нового продукта
+# Английский · Урок 10 · Занятие 46 — Готовим ужин
 
-**Ситуация.** Обсудить выпуск нового продукта и подготовку демонстрационного зала.
+**Ситуация.** Рассказать, что вы обычно покупаете и что готовите сейчас.
 
-**Что вы освоите:** The launch is tomorrow; We review the rollout every week; We are preparing the showroom
-**Новые слова:** launch, rollout, flagship, showroom
+**Что вы освоите:** I usually buy cabbage; I am chopping garlic; We are cooking lentils
+**Новые слова:** cabbage, cauliflower, garlic, lentils
 
 ## Интро 1
 
-### Выпуск продукта
+### Обычная покупка
 
-Launch здесь — «запуск продукта», его официальное представление и выход на рынок. Он назначен на завтра: The launch is tomorrow — «Запуск завтра». Is сообщает время события. Указание tomorrow не требует формы Continuous во всяком предложении.
+Cabbage — «капуста». Вы обычно покупаете её для супа: I usually buy cabbage — «Я обычно покупаю капусту». Это привычка: Present Simple. Usually ставим перед buy. Здесь cabbage означает продукт, поэтому a не нужен.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The launch is tomorrow.**
-- ❌ The launch are tomorrow. — *Одно событие: is.*
-- ❌ The launch tomorrow. — *Нужна связка is.*
+- ✅ **I usually buy cabbage.**
+- ❌ I usually buys cabbage. — *С I нужна buy без s.*
+- ❌ I usually buying cabbage. — *Здесь нужна buy.*
 
 ---
 
 ## Интро 2
 
-### Постепенное внедрение
+### Режу сейчас
 
-Rollout — «поэтапное внедрение»: продукт становится доступен постепенно, например в разных городах. Команда обсуждает ход внедрения каждую неделю: We review the rollout every week — «Мы анализируем поэтапное внедрение каждую неделю». Это регулярное действие: Present Simple.
+Garlic — «чеснок». Вы сейчас режете его: I am chopping garlic — «Я режу чеснок». Действие идёт сейчас: am + chopping. У chop перед ing удваиваем p.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We review the rollout every week.**
-- ❌ We reviews the rollout every week. — *С we нужна review без s.*
-- ❌ We reviewing the rollout every week. — *Для регулярного действия здесь нужна review.*
+- ✅ **I am chopping garlic.**
+- ❌ I am choping garlic. — *Правильно chopping, с двумя p.*
+- ❌ I chopping garlic. — *Перед chopping нужна am.*
 
 ---
 
 ## Интро 3
 
-### Готовим зал
+### Что варится на ужин
 
-Showroom — «демонстрационный зал»: место, где покупателям показывают товары. Вы сейчас расставляете новые модели: We are preparing the showroom — «Мы готовим демонстрационный зал». Действие происходит сейчас: are + preparing. У prepare перед ing убираем e.
+Lentils — «чечевица». Вы с другом сейчас готовите её на ужин: We are cooking lentils — «Мы готовим чечевицу». Текущее действие: are + cooking. В английском lentils — множественное число, хотя по-русски «чечевица» — единственное.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are preparing the showroom.**
-- ❌ We are prepareing the showroom. — *Правильно preparing, без e.*
-- ❌ We preparing the showroom. — *Перед preparing нужна are.*
+- ✅ **We are cooking lentils.**
+- ❌ We is cooking lentils. — *С we нужна are.*
+- ❌ We cooking lentils. — *Перед cooking нужна are.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — launch**
-<!-- interaction_id: en:lesson-10:session-46:word:launch; family: word_card -->
-> **launch** — «запуск продукта». The launch is tomorrow. — «Запуск завтра». Здесь официальное представление продукта и его выход на рынок.
+**1 · Карточка слова — cabbage**
+<!-- interaction_id: en:lesson-10:session-46:word:cabbage; family: word_card -->
+> **cabbage** — «капуста». I usually buy cabbage. — «Я обычно покупаю капусту».
 
-**2 · Новый продукт официально представят завтра. Сообщите: «Запуск завтра»**
+**2 · Вы обычно берёте капусту для супа. Скажите: «Я обычно покупаю капусту». Поставьте usually перед buy**
 <!-- interaction_id: en:lesson-10:session-46:i01; family: phrase_builder -->
-Плитки: `tomorrow` `is` `launch` `The` → **The launch is tomorrow.**
+Плитки: `cabbage` `buy` `usually` `I` → **I usually buy cabbage.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-46:i02; family: listen_choose -->
-🔊 *The launch is in June.* → **The launch is in June.** · The launch is in July. · The conference is in June.
-- The launch is in July. — *В записи звучит The launch is in June.*
-- The conference is in June. — *В записи звучит The launch is in June.*
+🔊 *The cabbage is in the fridge.* → **The cabbage is in the fridge.** · The cabbage is on the table. · The cheese is in the fridge.
+- The cabbage is on the table. — *В записи звучит The cabbage is in the fridge.*
+- The cheese is in the fridge. — *В записи звучит The cabbage is in the fridge.*
 
-**4 · Речь об одном событии. Выберите связку**
+**4 · Это привычка. Выберите форму buy**
 <!-- interaction_id: en:lesson-10:session-46:i03; family: context_gap_grammar -->
-The launch ___ tomorrow. → **is** · are · am
-- are — *Одно событие: is.*
-- am — *Am используется с I; здесь нужна is.*
+I usually ___ cabbage. → **buy** · buys · buying
+- buys — *С I нужна buy без s.*
+- buying — *Здесь нужна buy.*
 
-**5 · Карточка слова — rollout**
-<!-- interaction_id: en:lesson-10:session-46:word:rollout; family: word_card -->
-> **rollout** — «поэтапное внедрение». We review the rollout every week. — «Мы анализируем поэтапное внедрение каждую неделю». Здесь постепенное расширение доступности продукта.
+**5 · Карточка слова — cauliflower**
+<!-- interaction_id: en:lesson-10:session-46:word:cauliflower; family: word_card -->
+> **cauliflower** — «цветная капуста». The cauliflower is fresh. — «Цветная капуста свежая».
 
-**6 · Команда еженедельно обсуждает внедрение продукта в новых городах. Скажите: «Мы анализируем поэтапное внедрение каждую неделю». Поставьте every week в конце**
+**6 · Вы выбираете овощи для ужина. Скажите: «Цветная капуста свежая»**
 <!-- interaction_id: en:lesson-10:session-46:i04; family: phrase_builder -->
-Плитки: `week` `every` `rollout` `the` `review` `We` → **We review the rollout every week.**
+Плитки: `fresh` `is` `cauliflower` `The` → **The cauliflower is fresh.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-46:i05; family: listen_choose -->
-🔊 *The rollout is going well.* → **The rollout is going well.** · The rollout is going slowly. · The project is going well.
-- The rollout is going slowly. — *В записи звучит The rollout is going well.*
-- The project is going well. — *В записи звучит The rollout is going well.*
+🔊 *I am washing the cauliflower.* → **I am washing the cauliflower.** · I am cutting the cauliflower. · I am washing the cabbage.
+- I am cutting the cauliflower. — *В записи звучит I am washing the cauliflower.*
+- I am washing the cabbage. — *В записи звучит I am washing the cauliflower.*
 
-**8 · Это еженедельный анализ. Выберите форму review**
+**8 · Опишите овощ. Выберите связку**
 <!-- interaction_id: en:lesson-10:session-46:i06; family: context_gap_grammar -->
-We ___ the rollout every week. → **review** · reviews · reviewing
-- reviews — *С we нужна review без s.*
-- reviewing — *Для регулярного действия нужна review.*
+The cauliflower ___ fresh. → **is** · are · am
+- are — *С cauliflower здесь нужна is.*
+- am — *Am используется с I.*
 
-**9 · Карточка слова — flagship**
-<!-- interaction_id: en:lesson-10:session-46:word:flagship; family: word_card -->
-> **flagship** — «флагманский продукт». This model is our flagship. — «Эта модель — наш флагманский продукт». Здесь главная, наиболее представительная модель компании, не корабль.
+**9 · Карточка слова — garlic**
+<!-- interaction_id: en:lesson-10:session-46:word:garlic; family: word_card -->
+> **garlic** — «чеснок». I am chopping garlic. — «Я режу чеснок».
 
-**10 · Вы показываете главную модель новой линейки. Скажите: «Эта модель — наш флагманский продукт»**
+**10 · Вы сейчас режете чеснок для супа. Скажите: «Я режу чеснок»**
 <!-- interaction_id: en:lesson-10:session-46:i07; family: phrase_builder -->
-Плитки: `flagship` `our` `is` `model` `This` → **This model is our flagship.**
+Плитки: `garlic` `chopping` `am` `I` → **I am chopping garlic.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-46:i08; family: listen_choose -->
-🔊 *Our flagship is on display.* → **Our flagship is on display.** · Our flagship is in storage. · Our prototype is on display.
-- Our flagship is in storage. — *В записи звучит Our flagship is on display.*
-- Our prototype is on display. — *В записи звучит Our flagship is on display.*
+🔊 *There is garlic in the soup.* → **There is garlic in the soup.** · There is garlic in the sauce. · There is salt in the soup.
+- There is garlic in the sauce. — *В записи звучит There is garlic in the soup.*
+- There is salt in the soup. — *В записи звучит There is garlic in the soup.*
 
-**12 · Речь об одной модели. Выберите связку**
+**12 · Выберите написание формы chop**
 <!-- interaction_id: en:lesson-10:session-46:i09; family: context_gap_grammar -->
-This model ___ our flagship. → **is** · are · am
-- are — *Одна модель: is.*
-- am — *Am используется с I; здесь нужна is.*
+I am ___ garlic. → **chopping** · choping · chop
+- choping — *Удваиваем p: chopping.*
+- chop — *После am для текущего действия нужна chopping.*
 
-**13 · Карточка слова — showroom**
-<!-- interaction_id: en:lesson-10:session-46:word:showroom; family: word_card -->
-> **showroom** — «демонстрационный зал». We are preparing the showroom. — «Мы готовим демонстрационный зал». Место, где покупателям показывают товары.
+**13 · Карточка слова — lentils**
+<!-- interaction_id: en:lesson-10:session-46:word:lentils; family: word_card -->
+> **lentils** — «чечевица». We are cooking lentils. — «Мы готовим чечевицу».
 
-**14 · Вы сейчас расставляете модели перед приходом покупателей. Скажите: «Мы готовим демонстрационный зал»**
+**14 · Вы с другом сейчас готовите ужин. Скажите: «Мы готовим чечевицу»**
 <!-- interaction_id: en:lesson-10:session-46:i10; family: phrase_builder -->
-Плитки: `showroom` `the` `preparing` `are` `We` → **We are preparing the showroom.**
+Плитки: `lentils` `cooking` `are` `We` → **We are cooking lentils.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-46:i11; family: listen_choose -->
-🔊 *The showroom is on the ground floor.* → **The showroom is on the ground floor.** · The showroom is on the first floor. · The office is on the ground floor.
-- The showroom is on the first floor. — *В записи звучит The showroom is on the ground floor.*
-- The office is on the ground floor. — *В записи звучит The showroom is on the ground floor.*
+🔊 *The lentils are ready.* → **The lentils are ready.** · The lentils are cold. · The potatoes are ready.
+- The lentils are cold. — *В записи звучит The lentils are ready.*
+- The potatoes are ready. — *В записи звучит The lentils are ready.*
 
-**16 · Выберите правильное написание формы prepare**
+**16 · Выберите связку с множественным lentils**
 <!-- interaction_id: en:lesson-10:session-46:i12; family: context_gap_grammar -->
-We are ___ the showroom. → **preparing** · prepareing · prepare
-- prepareing — *Перед ing убираем e: preparing.*
-- prepare — *После are для текущего действия нужна preparing.*
+The lentils ___ ready. → **are** · is · am
+- is — *Lentils — множественное число: are.*
+- am — *Am используется с I.*
 
 **17 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-10:session-46:i13; family: speed_match -->
-launch — запуск продукта · rollout — поэтапное внедрение · flagship — флагманский продукт · showroom — демонстрационный зал
+cabbage — капуста · cauliflower — цветная капуста · garlic — чеснок · lentils — чечевица
 
 **18 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-10:session-46:i14; family: listen_build_dictation -->
-🔊 *We are preparing the showroom.* Плитки: `showroom` `the` `preparing` `are` `We` → **We are preparing the showroom.**
+🔊 *I am chopping garlic.* Плитки: `garlic` `chopping` `am` `I` → **I am chopping garlic.**
 
-**19 · Коллега спрашивает, как часто команда анализирует внедрение продукта. Скажите: «Мы анализируем поэтапное внедрение каждую неделю»**
+**19 · Друг спрашивает, какой овощ вы обычно покупаете. Скажите: «Я обычно покупаю капусту»**
 <!-- interaction_id: en:lesson-10:session-46:i15; family: scripted_repeat_compare -->
-🎙 **We review the rollout every week.**
+🎙 **I usually buy cabbage.**
 
-**20 · Покупатель спрашивает о главной модели компании. Скажите: «Эта модель — наш флагманский продукт»**
+**20 · Вы показываете другу свежий овощ. Скажите: «Цветная капуста свежая»**
 <!-- interaction_id: en:lesson-10:session-46:i16; family: phrase_builder -->
-Плитки: `flagship` `our` `is` `model` `This` → **This model is our flagship.**
+Плитки: `fresh` `is` `cauliflower` `The` → **The cauliflower is fresh.**
 
-**21 · Вы с коллегами расставляете товары в зале перед запуском. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы готовим демонстрационный зал»**
+**21 · Вы с другом стоите у плиты и варите чечевицу. Сосед спрашивает, что вы готовите. Скажите: «Мы готовим чечевицу»**
 <!-- interaction_id: en:lesson-10:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are preparing the showroom.**
+🎙 **We are cooking lentils.**
 

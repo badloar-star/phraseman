@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-47:word:release",
-    "correctText": "release",
+    "interactionId": "en:lesson-10:session-47:word:beetroot",
+    "correctText": "beetroot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i01",
-    "correctText": "The release is ready.",
+    "correctText": "I usually buy beetroot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i02",
-    "correctText": "The release is tomorrow.",
+    "correctText": "The beetroot is in the fridge.",
     "correctResponseId": "en:lesson-10:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-47:i03",
-    "correctText": "is",
+    "correctText": "buy",
     "correctResponseId": "en:lesson-10:session-47:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-47:word:changelog",
-    "correctText": "changelog",
+    "interactionId": "en:lesson-10:session-47:word:leek",
+    "correctText": "leek",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i04",
-    "correctText": "We always read the changelog.",
+    "correctText": "The leek is fresh.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i05",
-    "correctText": "The changelog is on the website.",
+    "correctText": "I am washing the leek.",
     "correctResponseId": "en:lesson-10:session-47:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-47:i06",
-    "correctText": "read",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-47:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-47:word:hotfix",
-    "correctText": "hotfix",
+    "interactionId": "en:lesson-10:session-47:word:parsley",
+    "correctText": "parsley",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i07",
-    "correctText": "We are testing a hotfix.",
+    "correctText": "I am chopping parsley.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i08",
-    "correctText": "The hotfix is ready.",
+    "correctText": "There is parsley in the soup.",
     "correctResponseId": "en:lesson-10:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-47:i09",
-    "correctText": "are",
+    "correctText": "chopping",
     "correctResponseId": "en:lesson-10:session-47:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-47:word:firmware",
-    "correctText": "firmware",
+    "interactionId": "en:lesson-10:session-47:word:radishes",
+    "correctText": "radishes",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i10",
-    "correctText": "We are updating the firmware.",
+    "correctText": "We are washing radishes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i11",
-    "correctText": "The firmware is up to date.",
+    "correctText": "The radishes are clean.",
     "correctResponseId": "en:lesson-10:session-47:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-47:i12",
-    "correctText": "updating",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-47:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-47:i13",
-    "correctText": "en:lesson-10:session-47:i13:p1=release\nen:lesson-10:session-47:i13:p2=changelog\nen:lesson-10:session-47:i13:p3=hotfix\nen:lesson-10:session-47:i13:p4=firmware",
+    "correctText": "en:lesson-10:session-47:i13:p1=beetroot\nen:lesson-10:session-47:i13:p2=leek\nen:lesson-10:session-47:i13:p3=parsley\nen:lesson-10:session-47:i13:p4=radishes",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i14",
-    "correctText": "We are testing a hotfix.",
+    "correctText": "I am chopping parsley.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i15",
-    "correctText": "We always read the changelog.",
+    "correctText": "I usually buy beetroot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i16",
-    "correctText": "The release is ready.",
+    "correctText": "The leek is fresh.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-47:i17",
-    "correctText": "We are updating the firmware.",
+    "correctText": "We are washing radishes.",
     "correctResponseId": null
   }
 ]

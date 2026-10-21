@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 48 — Обслуживание системы
+# Английский · Урок 10 · Занятие 48 — Завтрак почти готов
 
-**Ситуация.** Рассказать о сохранении данных и текущем обслуживании системы.
+**Ситуация.** Подготовить фрукты к завтраку и сказать, хватает ли еды.
 
-**Что вы освоите:** We make a backup every day; The server is working; We are doing maintenance
-**Новые слова:** backup, server, downtime, maintenance
+**Что вы освоите:** I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready
+**Новые слова:** apricot, grapefruit, enough, nearly
 
 ## Интро 1
 
-### Сохраняем копию
+### Готовлю фрукт сейчас
 
-Backup — «резервная копия» данных. Команда делает её ежедневно: We make a backup every day — «Мы делаем резервную копию каждый день». Это регулярное действие: Present Simple. Every day здесь стоит в конце.
+Grapefruit — «грейпфрут». Вы сейчас снимаете с него кожуру: I am peeling a grapefruit — «Я чищу грейпфрут». Действие происходит сейчас: am + peeling. Перед одним фруктом здесь нужен a.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We make a backup every day.**
-- ❌ We makes a backup every day. — *С we нужна make без s.*
-- ❌ We making a backup every day. — *Здесь нужна личная форма make.*
+- ✅ **I am peeling a grapefruit.**
+- ❌ I peeling a grapefruit. — *Перед peeling нужна am.*
+- ❌ I am peel a grapefruit. — *После am нужна peeling.*
 
 ---
 
 ## Интро 2
 
-### Система сейчас работает
+### Хлеба хватает
 
-Server — «сервер», компьютер или программа, предоставляющие данные другим устройствам. Коллега просит проверить его прямо сейчас. Проверка успешна: The server is working — «Сервер работает». Is working описывает работу в данный момент.
+Enough — «достаточно». Вы проверили хлеб: его хватает всем. We have enough bread — «У нас достаточно хлеба». Enough стоит перед bread. Have здесь означает наличие; используем Present Simple, хотя проверяем продукты сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The server is working.**
-- ❌ The server are working. — *Один сервер: is.*
-- ❌ The server is work. — *После is для текущего действия нужна working.*
+- ✅ **We have enough bread.**
+- ❌ We has enough bread. — *С we нужна have.*
+- ❌ We are having enough bread. — *Для наличия здесь нужна have, не are having.*
 
 ---
 
 ## Интро 3
 
-### Обслуживание идёт
+### Осталось немного
 
-Maintenance — «техническое обслуживание». Команда сейчас проверяет систему: We are doing maintenance — «Мы проводим техническое обслуживание». Are doing обозначает текущую работу. Maintenance здесь неисчисляемое: артикль a не нужен.
+Nearly — «почти». Завтрак ещё не полностью готов, но осталось немного: Breakfast is nearly ready — «Завтрак почти готов». Nearly стоит перед ready. Is описывает состояние, здесь нет формы Continuous.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are doing maintenance.**
-- ❌ We doing maintenance. — *Перед doing нужна are.*
-- ❌ We are do maintenance. — *После are нужна doing.*
+- ✅ **Breakfast is nearly ready.**
+- ❌ Breakfast are nearly ready. — *С breakfast нужна is.*
+- ❌ Breakfast nearly ready. — *Нужна связка is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — backup**
-<!-- interaction_id: en:lesson-10:session-48:word:backup; family: word_card -->
-> **backup** — «резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.
+**1 · Карточка слова — apricot**
+<!-- interaction_id: en:lesson-10:session-48:word:apricot; family: word_card -->
+> **apricot** — «абрикос». This apricot is sweet. — «Этот абрикос сладкий».
 
-**2 · Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце**
+**2 · Вы пробуете спелый фрукт. Скажите: «Этот абрикос сладкий»**
 <!-- interaction_id: en:lesson-10:session-48:i01; family: phrase_builder -->
-Плитки: `day` `every` `backup` `a` `make` `We` → **We make a backup every day.**
+Плитки: `sweet` `is` `apricot` `This` → **This apricot is sweet.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-48:i02; family: listen_choose -->
-🔊 *The backup is ready.* → **The backup is ready.** · The backup is missing. · The release is ready.
-- The backup is missing. — *В записи звучит The backup is ready.*
-- The release is ready. — *В записи звучит The backup is ready.*
+🔊 *The apricot is ripe.* → **The apricot is ripe.** · The apricot is small. · The peach is ripe.
+- The apricot is small. — *В записи звучит The apricot is ripe.*
+- The peach is ripe. — *В записи звучит The apricot is ripe.*
 
-**4 · Это ежедневная работа. Выберите форму make**
+**4 · Один фрукт. Выберите связку**
 <!-- interaction_id: en:lesson-10:session-48:i03; family: context_gap_grammar -->
-We ___ a backup every day. → **make** · makes · making
-- makes — *С we нужна make без s.*
-- making — *Здесь нужна make.*
+This apricot ___ sweet. → **is** · are · am
+- are — *Один абрикос: is.*
+- am — *Am используется с I.*
 
-**5 · Карточка слова — server**
-<!-- interaction_id: en:lesson-10:session-48:word:server; family: word_card -->
-> **server** — «сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.
+**5 · Карточка слова — grapefruit**
+<!-- interaction_id: en:lesson-10:session-48:word:grapefruit; family: word_card -->
+> **grapefruit** — «грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут».
 
-**6 · Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working**
+**6 · Вы сейчас снимаете кожуру с фрукта. Скажите: «Я чищу грейпфрут»**
 <!-- interaction_id: en:lesson-10:session-48:i04; family: phrase_builder -->
-Плитки: `working` `is` `server` `The` → **The server is working.**
+Плитки: `grapefruit` `a` `peeling` `am` `I` → **I am peeling a grapefruit.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-48:i05; family: listen_choose -->
-🔊 *The server is in the office.* → **The server is in the office.** · The server is in the basement. · The printer is in the office.
-- The server is in the basement. — *В записи звучит The server is in the office.*
-- The printer is in the office. — *В записи звучит The server is in the office.*
+🔊 *The grapefruit is on the plate.* → **The grapefruit is on the plate.** · The grapefruit is in the bag. · The apricot is on the plate.
+- The grapefruit is in the bag. — *В записи звучит The grapefruit is on the plate.*
+- The apricot is on the plate. — *В записи звучит The grapefruit is on the plate.*
 
-**8 · Сервер работает сейчас. Выберите вспомогательный глагол**
+**8 · Вы чистите фрукт сейчас. Выберите вспомогательный глагол**
 <!-- interaction_id: en:lesson-10:session-48:i06; family: context_gap_grammar -->
-The server ___ working. → **is** · are · am
-- are — *Один сервер: is.*
-- am — *Am используется с I.*
+I ___ peeling a grapefruit. → **am** · is · are
+- is — *С I нужна am.*
+- are — *Здесь нужна am, не are.*
 
-**9 · Карточка слова — downtime**
-<!-- interaction_id: en:lesson-10:session-48:word:downtime; family: word_card -->
-> **downtime** — «время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.
+**9 · Карточка слова — enough**
+<!-- interaction_id: en:lesson-10:session-48:word:enough; family: word_card -->
+> **enough** — «достаточно». We have enough bread. — «У нас достаточно хлеба». Хлеба хватает всем.
 
-**10 · Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце**
+**10 · Хлеба хватает всем за столом. Скажите: «У нас достаточно хлеба»**
 <!-- interaction_id: en:lesson-10:session-48:i07; family: phrase_builder -->
-Плитки: `week` `every` `downtime` `track` `We` → **We track downtime every week.**
+Плитки: `bread` `enough` `have` `We` → **We have enough bread.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-48:i08; family: listen_choose -->
-🔊 *The downtime is planned.* → **The downtime is planned.** · The downtime is unexpected. · The launch is planned.
-- The downtime is unexpected. — *В записи звучит The downtime is planned.*
-- The launch is planned. — *В записи звучит The downtime is planned.*
+🔊 *We have enough milk.* → **We have enough milk.** · We have enough bread. · We need more milk.
+- We have enough bread. — *В записи звучит We have enough milk.*
+- We need more milk. — *В записи звучит We have enough milk.*
 
-**12 · Это еженедельная работа. Выберите форму track**
+**12 · Речь о наличии хлеба. Выберите форму have**
 <!-- interaction_id: en:lesson-10:session-48:i09; family: context_gap_grammar -->
-We ___ downtime every week. → **track** · tracks · tracking
-- tracks — *С we нужна track без s.*
-- tracking — *Здесь нужна track.*
+We ___ enough bread. → **have** · has · having
+- has — *С we нужна have.*
+- having — *Здесь нужна have.*
 
-**13 · Карточка слова — maintenance**
-<!-- interaction_id: en:lesson-10:session-48:word:maintenance; family: word_card -->
-> **maintenance** — «техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.
+**13 · Карточка слова — nearly**
+<!-- interaction_id: en:lesson-10:session-48:word:nearly; family: word_card -->
+> **nearly** — «почти». Breakfast is nearly ready. — «Завтрак почти готов». Осталось немного.
 
-**14 · Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»**
+**14 · Завтрак будет готов совсем скоро. Скажите: «Завтрак почти готов»**
 <!-- interaction_id: en:lesson-10:session-48:i10; family: phrase_builder -->
-Плитки: `maintenance` `doing` `are` `We` → **We are doing maintenance.**
+Плитки: `ready` `nearly` `is` `Breakfast` → **Breakfast is nearly ready.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-48:i11; family: listen_choose -->
-🔊 *The maintenance is complete.* → **The maintenance is complete.** · The maintenance is delayed. · The rollout is complete.
-- The maintenance is delayed. — *В записи звучит The maintenance is complete.*
-- The rollout is complete. — *В записи звучит The maintenance is complete.*
+🔊 *It is nearly eight.* → **It is nearly eight.** · It is nearly nine. · It is exactly eight.
+- It is nearly nine. — *В записи звучит It is nearly eight.*
+- It is exactly eight. — *В записи звучит It is nearly eight.*
 
-**16 · Работа идёт сейчас. Выберите форму do**
+**16 · Опишите готовность завтрака. Выберите связку**
 <!-- interaction_id: en:lesson-10:session-48:i12; family: context_gap_grammar -->
-We are ___ maintenance. → **doing** · do · does
-- do — *После are для текущей работы нужна doing.*
-- does — *Does не подходит после are; нужна doing.*
+Breakfast ___ nearly ready. → **is** · are · am
+- are — *С breakfast нужна is.*
+- am — *Am используется с I.*
 
 **17 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-10:session-48:i13; family: speed_match -->
-backup — резервная копия · server — сервер · downtime — время простоя · maintenance — техническое обслуживание
+apricot — абрикос · grapefruit — грейпфрут · enough — достаточно · nearly — почти
 
 **18 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-10:session-48:i14; family: listen_build_dictation -->
-🔊 *We are doing maintenance.* Плитки: `maintenance` `doing` `are` `We` → **We are doing maintenance.**
+🔊 *I am peeling a grapefruit.* Плитки: `grapefruit` `a` `peeling` `am` `I` → **I am peeling a grapefruit.**
 
-**19 · Коллега спрашивает, как часто вы сохраняете копию данных. Скажите: «Мы делаем резервную копию каждый день»**
+**19 · Друг предлагает купить ещё хлеба, но его хватает. Скажите: «У нас достаточно хлеба»**
 <!-- interaction_id: en:lesson-10:session-48:i15; family: scripted_repeat_compare -->
-🎙 **We make a backup every day.**
+🎙 **We have enough bread.**
 
-**20 · Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working**
+**20 · Друг спрашивает, можно ли садиться за стол. Осталось немного. Скажите: «Завтрак почти готов»**
 <!-- interaction_id: en:lesson-10:session-48:i16; family: phrase_builder -->
-Плитки: `working` `is` `server` `The` → **The server is working.**
+Плитки: `ready` `nearly` `is` `Breakfast` → **Breakfast is nearly ready.**
 
-**21 · Вы с коллегами проверяете систему в назначенное время обслуживания. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы проводим техническое обслуживание»**
+**21 · Вы на кухне снимаете кожуру с грейпфрута. Друг звонит и спрашивает, чем вы заняты. Скажите: «Я чищу грейпфрут»**
 <!-- interaction_id: en:lesson-10:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are doing maintenance.**
+🎙 **I am peeling a grapefruit.**
 

@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-47:word:release",
+        "interactionId": "en:lesson-10:session-47:word:beetroot",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — release",
+        "prompt": "Карточка слова — beetroot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:release:audio"
+          "en:lesson-10:session-47:word:beetroot:audio"
         ],
-        "accessibilityLabel": "Карточка слова — release",
+        "accessibilityLabel": "Карточка слова — beetroot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:release:audio",
-            "transcript": "release"
+            "audioTargetId": "en:lesson-10:session-47:word:beetroot:audio",
+            "transcript": "beetroot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:release:r1",
-              "targetText": "release",
+              "responseId": "en:lesson-10:session-47:word:beetroot:r1",
+              "targetText": "beetroot",
               "meaningByLocale": {
-                "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
-                "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+                "ru": "«свёкла». I usually buy beetroot. — «Я обычно покупаю свёклу».",
+                "uk": "«буряк». I usually buy beetroot. — «Я зазвичай купую буряк»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "release",
+            "word": "beetroot",
             "definitionByLocale": {
-              "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
-              "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+              "ru": "«свёкла». I usually buy beetroot. — «Я обычно покупаю свёклу».",
+              "uk": "«буряк». I usually buy beetroot. — «Я зазвичай купую буряк»."
             }
           }
         },
@@ -52,23 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
+        "prompt": "Вы обычно берёте свёклу для супа. Скажите: «Я обычно покупаю свёклу». Поставьте usually перед buy",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
+        "accessibilityLabel": "Вы обычно берёте свёклу для супа. Скажите: «Я обычно покупаю свёклу». Поставьте usually перед buy",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The release is ready.",
+          "targetPhrase": "I usually buy beetroot.",
           "localizedMeaning": {
-            "ru": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
-            "uk": "Команда завершила підготовку нової версії. Скажіть: «Випуск готовий»"
+            "ru": "Вы обычно берёте свёклу для супа. Скажите: «Я обычно покупаю свёклу». Поставьте usually перед buy",
+            "uk": "Ви зазвичай берете буряк для супу. Скажіть: «Я зазвичай купую буряк». Поставте usually перед buy"
           },
           "orderedTokens": [
-            "The",
-            "release",
-            "is",
-            "ready"
+            "I",
+            "usually",
+            "buy",
+            "beetroot"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i02:r1",
-            "text": "The release is tomorrow."
+            "text": "The beetroot is in the fridge."
           },
           {
             "responseId": "en:lesson-10:session-47:i02:r2",
-            "text": "The release is today."
+            "text": "The beetroot is on the table."
           },
           {
             "responseId": "en:lesson-10:session-47:i02:r3",
-            "text": "The launch is tomorrow."
+            "text": "The cheese is in the fridge."
           }
         ],
         "mediaIds": [],
@@ -109,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i02:audio",
-            "transcript": "The release is tomorrow."
+            "transcript": "The beetroot is in the fridge."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i02:r1",
-              "targetText": "The release is tomorrow.",
+              "targetText": "The beetroot is in the fridge.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i02:r2",
-              "targetText": "The release is today.",
+              "targetText": "The beetroot is on the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i02:r3",
-              "targetText": "The launch is tomorrow.",
+              "targetText": "The cheese is in the fridge.",
               "meaningByLocale": null
             }
           ],
@@ -136,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The release is tomorrow.",
-                "uk": "У записі звучить The release is tomorrow."
+                "ru": "В записи звучит The beetroot is in the fridge.",
+                "uk": "У записі звучить The beetroot is in the fridge."
               }
             },
             {
@@ -145,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The release is tomorrow.",
-                "uk": "У записі звучить The release is tomorrow."
+                "ru": "В записи звучит The beetroot is in the fridge.",
+                "uk": "У записі звучить The beetroot is in the fridge."
               }
             }
           ],
@@ -161,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Речь об одном выпуске. Выберите связку",
+        "prompt": "Это привычка. Выберите форму buy",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i03:r1",
-            "text": "is"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-47:i03:r2",
-            "text": "are"
+            "text": "buys"
           },
           {
             "responseId": "en:lesson-10:session-47:i03:r3",
-            "text": "am"
+            "text": "buying"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Речь об одном выпуске. Выберите связку",
+        "accessibilityLabel": "Это привычка. Выберите форму buy",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одном выпуске. Выберите связку",
-            "uk": "Ідеться про один випуск. Виберіть зв’язку"
+            "ru": "Это привычка. Выберите форму buy",
+            "uk": "Це звичка. Виберіть форму buy"
           },
-          "gappedTargetPhrase": "The release ___ ready.",
+          "gappedTargetPhrase": "I usually ___ beetroot.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i03:r1",
-              "text": "is"
+              "text": "buy"
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r2",
-              "text": "are"
+              "text": "buys"
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r3",
-              "text": "am"
+              "text": "buying"
             }
           ],
-          "testedDimension": "Речь об одном выпуске. Выберите связку",
+          "testedDimension": "Это привычка. Выберите форму buy",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i03:r2",
               "correct": false,
-              "testedDimension": "Речь об одном выпуске. Выберите связку",
+              "testedDimension": "Это привычка. Выберите форму buy",
               "feedbackByLocale": {
-                "ru": "Один выпуск: is.",
-                "uk": "Один випуск: is."
+                "ru": "С I нужна buy без s.",
+                "uk": "З I потрібна buy без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r3",
               "correct": false,
-              "testedDimension": "Речь об одном выпуске. Выберите связку",
+              "testedDimension": "Это привычка. Выберите форму buy",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Здесь нужна buy.",
+                "uk": "Тут потрібна buy."
               }
             }
           ]
@@ -225,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:changelog",
+        "interactionId": "en:lesson-10:session-47:word:leek",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — changelog",
+        "prompt": "Карточка слова — leek",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:changelog:audio"
+          "en:lesson-10:session-47:word:leek:audio"
         ],
-        "accessibilityLabel": "Карточка слова — changelog",
+        "accessibilityLabel": "Карточка слова — leek",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:changelog:audio",
-            "transcript": "changelog"
+            "audioTargetId": "en:lesson-10:session-47:word:leek:audio",
+            "transcript": "leek"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:changelog:r1",
-              "targetText": "changelog",
+              "responseId": "en:lesson-10:session-47:word:leek:r1",
+              "targetText": "leek",
               "meaningByLocale": {
-                "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
-                "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+                "ru": "«лук-порей». The leek is fresh. — «Лук-порей свежий».",
+                "uk": "«цибуля-порей». The leek is fresh. — «Цибуля-порей свіжа»."
               }
             }
           ],
@@ -258,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "changelog",
+            "word": "leek",
             "definitionByLocale": {
-              "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
-              "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+              "ru": "«лук-порей». The leek is fresh. — «Лук-порей свежий».",
+              "uk": "«цибуля-порей». The leek is fresh. — «Цибуля-порей свіжа»."
             }
           }
         },
@@ -273,24 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
+        "prompt": "Вы выбираете овощи для обеда. Скажите: «Лук-порей свежий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
+        "accessibilityLabel": "Вы выбираете овощи для обеда. Скажите: «Лук-порей свежий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We always read the changelog.",
+          "targetPhrase": "The leek is fresh.",
           "localizedMeaning": {
-            "ru": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
-            "uk": "Перед установленням команда завжди читає, що змінилося. Скажіть: «Ми завжди читаємо список змін». Поставте always перед read"
+            "ru": "Вы выбираете овощи для обеда. Скажите: «Лук-порей свежий»",
+            "uk": "Ви вибираєте овочі для обіду. Скажіть: «Цибуля-порей свіжа»"
           },
           "orderedTokens": [
-            "We",
-            "always",
-            "read",
-            "the",
-            "changelog"
+            "The",
+            "leek",
+            "is",
+            "fresh"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -311,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i05:r1",
-            "text": "The changelog is on the website."
+            "text": "I am washing the leek."
           },
           {
             "responseId": "en:lesson-10:session-47:i05:r2",
-            "text": "The changelog is in the email."
+            "text": "I am cutting the leek."
           },
           {
             "responseId": "en:lesson-10:session-47:i05:r3",
-            "text": "The tutorial is on the website."
+            "text": "I am washing the beetroot."
           }
         ],
         "mediaIds": [],
@@ -331,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i05:audio",
-            "transcript": "The changelog is on the website."
+            "transcript": "I am washing the leek."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i05:r1",
-              "targetText": "The changelog is on the website.",
+              "targetText": "I am washing the leek.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i05:r2",
-              "targetText": "The changelog is in the email.",
+              "targetText": "I am cutting the leek.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i05:r3",
-              "targetText": "The tutorial is on the website.",
+              "targetText": "I am washing the beetroot.",
               "meaningByLocale": null
             }
           ],
@@ -358,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The changelog is on the website.",
-                "uk": "У записі звучить The changelog is on the website."
+                "ru": "В записи звучит I am washing the leek.",
+                "uk": "У записі звучить I am washing the leek."
               }
             },
             {
@@ -367,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The changelog is on the website.",
-                "uk": "У записі звучить The changelog is on the website."
+                "ru": "В записи звучит I am washing the leek.",
+                "uk": "У записі звучить I am washing the leek."
               }
             }
           ],
@@ -383,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это привычка команды. Выберите форму read",
+        "prompt": "Опишите овощ. Выберите связку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i06:r1",
-            "text": "read"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-47:i06:r2",
-            "text": "reads"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-47:i06:r3",
-            "text": "reading"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это привычка команды. Выберите форму read",
+        "accessibilityLabel": "Опишите овощ. Выберите связку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это привычка команды. Выберите форму read",
-            "uk": "Це звичка команди. Виберіть форму read"
+            "ru": "Опишите овощ. Выберите связку",
+            "uk": "Опишіть овоч. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We always ___ the changelog.",
+          "gappedTargetPhrase": "The leek ___ fresh.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i06:r1",
-              "text": "read"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r2",
-              "text": "reads"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r3",
-              "text": "reading"
+              "text": "am"
             }
           ],
-          "testedDimension": "Это привычка команды. Выберите форму read",
+          "testedDimension": "Опишите овощ. Выберите связку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i06:r2",
               "correct": false,
-              "testedDimension": "Это привычка команды. Выберите форму read",
+              "testedDimension": "Опишите овощ. Выберите связку",
               "feedbackByLocale": {
-                "ru": "С we нужна read без s.",
-                "uk": "З we потрібна read без s."
+                "ru": "С leek здесь нужна is.",
+                "uk": "З leek тут потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r3",
               "correct": false,
-              "testedDimension": "Это привычка команды. Выберите форму read",
+              "testedDimension": "Опишите овощ. Выберите связку",
               "feedbackByLocale": {
-                "ru": "Здесь нужна read, не причастие reading.",
-                "uk": "Тут потрібна read, не дієприкметник reading."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -447,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:hotfix",
+        "interactionId": "en:lesson-10:session-47:word:parsley",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — hotfix",
+        "prompt": "Карточка слова — parsley",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:hotfix:audio"
+          "en:lesson-10:session-47:word:parsley:audio"
         ],
-        "accessibilityLabel": "Карточка слова — hotfix",
+        "accessibilityLabel": "Карточка слова — parsley",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:hotfix:audio",
-            "transcript": "hotfix"
+            "audioTargetId": "en:lesson-10:session-47:word:parsley:audio",
+            "transcript": "parsley"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:hotfix:r1",
-              "targetText": "hotfix",
+              "responseId": "en:lesson-10:session-47:word:parsley:r1",
+              "targetText": "parsley",
               "meaningByLocale": {
-                "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
-                "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+                "ru": "«петрушка». I am chopping parsley. — «Я режу петрушку».",
+                "uk": "«петрушка». I am chopping parsley. — «Я ріжу петрушку»."
               }
             }
           ],
@@ -480,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "hotfix",
+            "word": "parsley",
             "definitionByLocale": {
-              "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
-              "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+              "ru": "«петрушка». I am chopping parsley. — «Я режу петрушку».",
+              "uk": "«петрушка». I am chopping parsley. — «Я ріжу петрушку»."
             }
           }
         },
@@ -495,24 +494,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
+        "prompt": "Вы сейчас режете петрушку для супа. Скажите: «Я режу петрушку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
+        "accessibilityLabel": "Вы сейчас режете петрушку для супа. Скажите: «Я режу петрушку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are testing a hotfix.",
+          "targetPhrase": "I am chopping parsley.",
           "localizedMeaning": {
-            "ru": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
-            "uk": "Зараз ви перевіряєте термінове виправлення помилки. Скажіть: «Ми тестуємо термінове виправлення»"
+            "ru": "Вы сейчас режете петрушку для супа. Скажите: «Я режу петрушку»",
+            "uk": "Ви зараз ріжете петрушку для супу. Скажіть: «Я ріжу петрушку»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "testing",
-            "a",
-            "hotfix"
+            "I",
+            "am",
+            "chopping",
+            "parsley"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -533,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i08:r1",
-            "text": "The hotfix is ready."
+            "text": "There is parsley in the soup."
           },
           {
             "responseId": "en:lesson-10:session-47:i08:r2",
-            "text": "The hotfix is late."
+            "text": "There is parsley in the sauce."
           },
           {
             "responseId": "en:lesson-10:session-47:i08:r3",
-            "text": "The release is ready."
+            "text": "There is salt in the soup."
           }
         ],
         "mediaIds": [],
@@ -553,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i08:audio",
-            "transcript": "The hotfix is ready."
+            "transcript": "There is parsley in the soup."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i08:r1",
-              "targetText": "The hotfix is ready.",
+              "targetText": "There is parsley in the soup.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i08:r2",
-              "targetText": "The hotfix is late.",
+              "targetText": "There is parsley in the sauce.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i08:r3",
-              "targetText": "The release is ready.",
+              "targetText": "There is salt in the soup.",
               "meaningByLocale": null
             }
           ],
@@ -580,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The hotfix is ready.",
-                "uk": "У записі звучить The hotfix is ready."
+                "ru": "В записи звучит There is parsley in the soup.",
+                "uk": "У записі звучить There is parsley in the soup."
               }
             },
             {
@@ -589,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The hotfix is ready.",
-                "uk": "У записі звучить The hotfix is ready."
+                "ru": "В записи звучит There is parsley in the soup.",
+                "uk": "У записі звучить There is parsley in the soup."
               }
             }
           ],
@@ -605,63 +603,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+        "prompt": "Выберите написание формы chop",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i09:r1",
-            "text": "are"
+            "text": "chopping"
           },
           {
             "responseId": "en:lesson-10:session-47:i09:r2",
-            "text": "is"
+            "text": "choping"
           },
           {
             "responseId": "en:lesson-10:session-47:i09:r3",
-            "text": "am"
+            "text": "chop"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+        "accessibilityLabel": "Выберите написание формы chop",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Проверка идёт сейчас. Выберите вспомогательный глагол",
-            "uk": "Перевірка триває зараз. Виберіть допоміжне дієслово"
+            "ru": "Выберите написание формы chop",
+            "uk": "Виберіть написання форми chop"
           },
-          "gappedTargetPhrase": "We ___ testing a hotfix.",
+          "gappedTargetPhrase": "I am ___ parsley.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i09:r1",
-              "text": "are"
+              "text": "chopping"
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r2",
-              "text": "is"
+              "text": "choping"
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r3",
-              "text": "am"
+              "text": "chop"
             }
           ],
-          "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+          "testedDimension": "Выберите написание формы chop",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i09:r2",
               "correct": false,
-              "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Выберите написание формы chop",
               "feedbackByLocale": {
-                "ru": "С we нужна are.",
-                "uk": "З we потрібна are."
+                "ru": "Удваиваем p: chopping.",
+                "uk": "Подвоюємо p: chopping."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r3",
               "correct": false,
-              "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Выберите написание формы chop",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После am для текущего действия нужна chopping.",
+                "uk": "Після am для поточної дії потрібна chopping."
               }
             }
           ]
@@ -669,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:firmware",
+        "interactionId": "en:lesson-10:session-47:word:radishes",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — firmware",
+        "prompt": "Карточка слова — radishes",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:firmware:audio"
+          "en:lesson-10:session-47:word:radishes:audio"
         ],
-        "accessibilityLabel": "Карточка слова — firmware",
+        "accessibilityLabel": "Карточка слова — radishes",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:firmware:audio",
-            "transcript": "firmware"
+            "audioTargetId": "en:lesson-10:session-47:word:radishes:audio",
+            "transcript": "radishes"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:firmware:r1",
-              "targetText": "firmware",
+              "responseId": "en:lesson-10:session-47:word:radishes:r1",
+              "targetText": "radishes",
               "meaningByLocale": {
-                "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
-                "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+                "ru": "«редис». We are washing radishes. — «Мы моем редис».",
+                "uk": "«редиска». We are washing radishes. — «Ми миємо редиску»."
               }
             }
           ],
@@ -702,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "firmware",
+            "word": "radishes",
             "definitionByLocale": {
-              "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
-              "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+              "ru": "«редис». We are washing radishes. — «Мы моем редис».",
+              "uk": "«редиска». We are washing radishes. — «Ми миємо редиску»."
             }
           }
         },
@@ -717,24 +715,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
+        "prompt": "Вы с другом сейчас готовите обед. Скажите: «Мы моем редис»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
+        "accessibilityLabel": "Вы с другом сейчас готовите обед. Скажите: «Мы моем редис»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are updating the firmware.",
+          "targetPhrase": "We are washing radishes.",
           "localizedMeaning": {
-            "ru": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
-            "uk": "Зараз ви встановлюєте нову прошивку пристрою. Скажіть: «Ми оновлюємо прошивку»"
+            "ru": "Вы с другом сейчас готовите обед. Скажите: «Мы моем редис»",
+            "uk": "Ви з другом зараз готуєте обід. Скажіть: «Ми миємо редиску»"
           },
           "orderedTokens": [
             "We",
             "are",
-            "updating",
-            "the",
-            "firmware"
+            "washing",
+            "radishes"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +752,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i11:r1",
-            "text": "The firmware is up to date."
+            "text": "The radishes are clean."
           },
           {
             "responseId": "en:lesson-10:session-47:i11:r2",
-            "text": "The firmware is out of date."
+            "text": "The radishes are dirty."
           },
           {
             "responseId": "en:lesson-10:session-47:i11:r3",
-            "text": "The website is up to date."
+            "text": "The potatoes are clean."
           }
         ],
         "mediaIds": [],
@@ -775,23 +772,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i11:audio",
-            "transcript": "The firmware is up to date."
+            "transcript": "The radishes are clean."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i11:r1",
-              "targetText": "The firmware is up to date.",
+              "targetText": "The radishes are clean.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i11:r2",
-              "targetText": "The firmware is out of date.",
+              "targetText": "The radishes are dirty.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i11:r3",
-              "targetText": "The website is up to date.",
+              "targetText": "The potatoes are clean.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +799,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The firmware is up to date.",
-                "uk": "У записі звучить The firmware is up to date."
+                "ru": "В записи звучит The radishes are clean.",
+                "uk": "У записі звучить The radishes are clean."
               }
             },
             {
@@ -811,8 +808,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The firmware is up to date.",
-                "uk": "У записі звучить The firmware is up to date."
+                "ru": "В записи звучит The radishes are clean.",
+                "uk": "У записі звучить The radishes are clean."
               }
             }
           ],
@@ -827,63 +824,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите правильное написание формы update",
+        "prompt": "Выберите связку с множественным radishes",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i12:r1",
-            "text": "updating"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-47:i12:r2",
-            "text": "updateing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-47:i12:r3",
-            "text": "update"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите правильное написание формы update",
+        "accessibilityLabel": "Выберите связку с множественным radishes",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы update",
-            "uk": "Виберіть правильне написання форми update"
+            "ru": "Выберите связку с множественным radishes",
+            "uk": "Виберіть зв’язку з множиною radishes"
           },
-          "gappedTargetPhrase": "We are ___ the firmware.",
+          "gappedTargetPhrase": "The radishes ___ clean.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i12:r1",
-              "text": "updating"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r2",
-              "text": "updateing"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r3",
-              "text": "update"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите правильное написание формы update",
+          "testedDimension": "Выберите связку с множественным radishes",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы update",
+              "testedDimension": "Выберите связку с множественным radishes",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: updating.",
-                "uk": "Перед ing прибираємо e: updating."
+                "ru": "Radishes — множественное число: are.",
+                "uk": "Radishes — множина: are."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы update",
+              "testedDimension": "Выберите связку с множественным radishes",
               "feedbackByLocale": {
-                "ru": "После are для текущего действия нужна updating.",
-                "uk": "Після are для поточної дії потрібна updating."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -906,48 +903,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-47:i13:p1",
-              "target": "release",
+              "target": "beetroot",
               "meaningByLocale": {
-                "ru": "выпуск программы",
-                "uk": "випуск програми"
+                "ru": "свёкла",
+                "uk": "буряк"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p2",
-              "target": "changelog",
+              "target": "leek",
               "meaningByLocale": {
-                "ru": "список изменений",
-                "uk": "список змін"
+                "ru": "лук-порей",
+                "uk": "цибуля-порей"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p3",
-              "target": "hotfix",
+              "target": "parsley",
               "meaningByLocale": {
-                "ru": "срочное исправление",
-                "uk": "термінове виправлення"
+                "ru": "петрушка",
+                "uk": "петрушка"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p4",
-              "target": "firmware",
+              "target": "radishes",
               "meaningByLocale": {
-                "ru": "прошивка",
-                "uk": "прошивка"
+                "ru": "редис",
+                "uk": "редиска"
               }
             }
           ],
           "leftColumn": [
-            "release",
-            "changelog",
-            "hotfix",
-            "firmware"
+            "beetroot",
+            "leek",
+            "parsley",
+            "radishes"
           ],
           "rightColumn": [
-            "выпуск программы",
-            "список изменений",
-            "срочное исправление",
-            "прошивка"
+            "свёкла",
+            "лук-порей",
+            "петрушка",
+            "редис"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -980,16 +977,15 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i14:audio",
-            "transcript": "We are testing a hotfix."
+            "transcript": "I am chopping parsley."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are testing a hotfix.",
+          "hiddenTargetPhrase": "I am chopping parsley.",
           "orderedTokens": [
-            "We",
-            "are",
-            "testing",
-            "a",
-            "hotfix"
+            "I",
+            "am",
+            "chopping",
+            "parsley"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1006,21 +1002,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, читаете ли вы список изменений перед установкой. Скажите: «Мы всегда читаем список изменений»",
+        "prompt": "Друг спрашивает, какой овощ вы обычно покупаете. Скажите: «Я обычно покупаю свёклу»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-47:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, читаете ли вы список изменений перед установкой. Скажите: «Мы всегда читаем список изменений»",
+        "accessibilityLabel": "Друг спрашивает, какой овощ вы обычно покупаете. Скажите: «Я обычно покупаю свёклу»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i15:audio",
-            "transcript": "We always read the changelog."
+            "transcript": "I usually buy beetroot."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We always read the changelog.",
+          "targetPhrase": "I usually buy beetroot.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1039,23 +1035,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
+        "prompt": "Вы показываете другу свежий овощ. Скажите: «Лук-порей свежий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
+        "accessibilityLabel": "Вы показываете другу свежий овощ. Скажите: «Лук-порей свежий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The release is ready.",
+          "targetPhrase": "The leek is fresh.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
-            "uk": "Колега запитує, чи готова нова версія. Скажіть: «Випуск готовий»"
+            "ru": "Вы показываете другу свежий овощ. Скажите: «Лук-порей свежий»",
+            "uk": "Ви показуєте другу свіжий овоч. Скажіть: «Цибуля-порей свіжа»"
           },
           "orderedTokens": [
             "The",
-            "release",
+            "leek",
             "is",
-            "ready"
+            "fresh"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1072,21 +1068,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы с коллегой устанавливаете прошивку устройства. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы обновляем прошивку»",
+        "prompt": "Вы с другом стоите у раковины и моете редис. Сосед спрашивает, что вы готовите. Скажите: «Мы моем редис»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-47:i17:audio"
         ],
-        "accessibilityLabel": "Вы с коллегой устанавливаете прошивку устройства. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы обновляем прошивку»",
+        "accessibilityLabel": "Вы с другом стоите у раковины и моете редис. Сосед спрашивает, что вы готовите. Скажите: «Мы моем редис»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i17:audio",
-            "transcript": "We are updating the firmware."
+            "transcript": "We are washing radishes."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are updating the firmware.",
+          "targetPhrase": "We are washing radishes.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1110,32 +1106,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-47:word:release",
+        "interactionId": "en:lesson-10:session-47:word:beetroot",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — release",
+        "prompt": "Картка слова — beetroot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:release:audio"
+          "en:lesson-10:session-47:word:beetroot:audio"
         ],
-        "accessibilityLabel": "Картка слова — release",
+        "accessibilityLabel": "Картка слова — beetroot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:release:audio",
-            "transcript": "release"
+            "audioTargetId": "en:lesson-10:session-47:word:beetroot:audio",
+            "transcript": "beetroot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:release:r1",
-              "targetText": "release",
+              "responseId": "en:lesson-10:session-47:word:beetroot:r1",
+              "targetText": "beetroot",
               "meaningByLocale": {
-                "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
-                "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+                "ru": "«свёкла». I usually buy beetroot. — «Я обычно покупаю свёклу».",
+                "uk": "«буряк». I usually buy beetroot. — «Я зазвичай купую буряк»."
               }
             }
           ],
@@ -1143,10 +1139,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "release",
+            "word": "beetroot",
             "definitionByLocale": {
-              "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
-              "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+              "ru": "«свёкла». I usually buy beetroot. — «Я обычно покупаю свёклу».",
+              "uk": "«буряк». I usually buy beetroot. — «Я зазвичай купую буряк»."
             }
           }
         },
@@ -1158,23 +1154,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда завершила підготовку нової версії. Скажіть: «Випуск готовий»",
+        "prompt": "Ви зазвичай берете буряк для супу. Скажіть: «Я зазвичай купую буряк». Поставте usually перед buy",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда завершила підготовку нової версії. Скажіть: «Випуск готовий»",
+        "accessibilityLabel": "Ви зазвичай берете буряк для супу. Скажіть: «Я зазвичай купую буряк». Поставте usually перед buy",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The release is ready.",
+          "targetPhrase": "I usually buy beetroot.",
           "localizedMeaning": {
-            "ru": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
-            "uk": "Команда завершила підготовку нової версії. Скажіть: «Випуск готовий»"
+            "ru": "Вы обычно берёте свёклу для супа. Скажите: «Я обычно покупаю свёклу». Поставьте usually перед buy",
+            "uk": "Ви зазвичай берете буряк для супу. Скажіть: «Я зазвичай купую буряк». Поставте usually перед buy"
           },
           "orderedTokens": [
-            "The",
-            "release",
-            "is",
-            "ready"
+            "I",
+            "usually",
+            "buy",
+            "beetroot"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1195,15 +1191,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i02:r1",
-            "text": "The release is tomorrow."
+            "text": "The beetroot is in the fridge."
           },
           {
             "responseId": "en:lesson-10:session-47:i02:r2",
-            "text": "The release is today."
+            "text": "The beetroot is on the table."
           },
           {
             "responseId": "en:lesson-10:session-47:i02:r3",
-            "text": "The launch is tomorrow."
+            "text": "The cheese is in the fridge."
           }
         ],
         "mediaIds": [],
@@ -1215,23 +1211,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i02:audio",
-            "transcript": "The release is tomorrow."
+            "transcript": "The beetroot is in the fridge."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i02:r1",
-              "targetText": "The release is tomorrow.",
+              "targetText": "The beetroot is in the fridge.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i02:r2",
-              "targetText": "The release is today.",
+              "targetText": "The beetroot is on the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i02:r3",
-              "targetText": "The launch is tomorrow.",
+              "targetText": "The cheese is in the fridge.",
               "meaningByLocale": null
             }
           ],
@@ -1242,8 +1238,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The release is tomorrow.",
-                "uk": "У записі звучить The release is tomorrow."
+                "ru": "В записи звучит The beetroot is in the fridge.",
+                "uk": "У записі звучить The beetroot is in the fridge."
               }
             },
             {
@@ -1251,8 +1247,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The release is tomorrow.",
-                "uk": "У записі звучить The release is tomorrow."
+                "ru": "В записи звучит The beetroot is in the fridge.",
+                "uk": "У записі звучить The beetroot is in the fridge."
               }
             }
           ],
@@ -1267,63 +1263,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ідеться про один випуск. Виберіть зв’язку",
+        "prompt": "Це звичка. Виберіть форму buy",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i03:r1",
-            "text": "is"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-47:i03:r2",
-            "text": "are"
+            "text": "buys"
           },
           {
             "responseId": "en:lesson-10:session-47:i03:r3",
-            "text": "am"
+            "text": "buying"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ідеться про один випуск. Виберіть зв’язку",
+        "accessibilityLabel": "Це звичка. Виберіть форму buy",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одном выпуске. Выберите связку",
-            "uk": "Ідеться про один випуск. Виберіть зв’язку"
+            "ru": "Это привычка. Выберите форму buy",
+            "uk": "Це звичка. Виберіть форму buy"
           },
-          "gappedTargetPhrase": "The release ___ ready.",
+          "gappedTargetPhrase": "I usually ___ beetroot.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i03:r1",
-              "text": "is"
+              "text": "buy"
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r2",
-              "text": "are"
+              "text": "buys"
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r3",
-              "text": "am"
+              "text": "buying"
             }
           ],
-          "testedDimension": "Ідеться про один випуск. Виберіть зв’язку",
+          "testedDimension": "Це звичка. Виберіть форму buy",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i03:r2",
               "correct": false,
-              "testedDimension": "Ідеться про один випуск. Виберіть зв’язку",
+              "testedDimension": "Це звичка. Виберіть форму buy",
               "feedbackByLocale": {
-                "ru": "Один выпуск: is.",
-                "uk": "Один випуск: is."
+                "ru": "С I нужна buy без s.",
+                "uk": "З I потрібна buy без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i03:r3",
               "correct": false,
-              "testedDimension": "Ідеться про один випуск. Виберіть зв’язку",
+              "testedDimension": "Це звичка. Виберіть форму buy",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Здесь нужна buy.",
+                "uk": "Тут потрібна buy."
               }
             }
           ]
@@ -1331,32 +1327,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:changelog",
+        "interactionId": "en:lesson-10:session-47:word:leek",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — changelog",
+        "prompt": "Картка слова — leek",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:changelog:audio"
+          "en:lesson-10:session-47:word:leek:audio"
         ],
-        "accessibilityLabel": "Картка слова — changelog",
+        "accessibilityLabel": "Картка слова — leek",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:changelog:audio",
-            "transcript": "changelog"
+            "audioTargetId": "en:lesson-10:session-47:word:leek:audio",
+            "transcript": "leek"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:changelog:r1",
-              "targetText": "changelog",
+              "responseId": "en:lesson-10:session-47:word:leek:r1",
+              "targetText": "leek",
               "meaningByLocale": {
-                "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
-                "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+                "ru": "«лук-порей». The leek is fresh. — «Лук-порей свежий».",
+                "uk": "«цибуля-порей». The leek is fresh. — «Цибуля-порей свіжа»."
               }
             }
           ],
@@ -1364,10 +1360,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "changelog",
+            "word": "leek",
             "definitionByLocale": {
-              "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
-              "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+              "ru": "«лук-порей». The leek is fresh. — «Лук-порей свежий».",
+              "uk": "«цибуля-порей». The leek is fresh. — «Цибуля-порей свіжа»."
             }
           }
         },
@@ -1379,24 +1375,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Перед установленням команда завжди читає, що змінилося. Скажіть: «Ми завжди читаємо список змін». Поставте always перед read",
+        "prompt": "Ви вибираєте овочі для обіду. Скажіть: «Цибуля-порей свіжа»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Перед установленням команда завжди читає, що змінилося. Скажіть: «Ми завжди читаємо список змін». Поставте always перед read",
+        "accessibilityLabel": "Ви вибираєте овочі для обіду. Скажіть: «Цибуля-порей свіжа»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We always read the changelog.",
+          "targetPhrase": "The leek is fresh.",
           "localizedMeaning": {
-            "ru": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
-            "uk": "Перед установленням команда завжди читає, що змінилося. Скажіть: «Ми завжди читаємо список змін». Поставте always перед read"
+            "ru": "Вы выбираете овощи для обеда. Скажите: «Лук-порей свежий»",
+            "uk": "Ви вибираєте овочі для обіду. Скажіть: «Цибуля-порей свіжа»"
           },
           "orderedTokens": [
-            "We",
-            "always",
-            "read",
-            "the",
-            "changelog"
+            "The",
+            "leek",
+            "is",
+            "fresh"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1417,15 +1412,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i05:r1",
-            "text": "The changelog is on the website."
+            "text": "I am washing the leek."
           },
           {
             "responseId": "en:lesson-10:session-47:i05:r2",
-            "text": "The changelog is in the email."
+            "text": "I am cutting the leek."
           },
           {
             "responseId": "en:lesson-10:session-47:i05:r3",
-            "text": "The tutorial is on the website."
+            "text": "I am washing the beetroot."
           }
         ],
         "mediaIds": [],
@@ -1437,23 +1432,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i05:audio",
-            "transcript": "The changelog is on the website."
+            "transcript": "I am washing the leek."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i05:r1",
-              "targetText": "The changelog is on the website.",
+              "targetText": "I am washing the leek.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i05:r2",
-              "targetText": "The changelog is in the email.",
+              "targetText": "I am cutting the leek.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i05:r3",
-              "targetText": "The tutorial is on the website.",
+              "targetText": "I am washing the beetroot.",
               "meaningByLocale": null
             }
           ],
@@ -1464,8 +1459,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The changelog is on the website.",
-                "uk": "У записі звучить The changelog is on the website."
+                "ru": "В записи звучит I am washing the leek.",
+                "uk": "У записі звучить I am washing the leek."
               }
             },
             {
@@ -1473,8 +1468,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The changelog is on the website.",
-                "uk": "У записі звучить The changelog is on the website."
+                "ru": "В записи звучит I am washing the leek.",
+                "uk": "У записі звучить I am washing the leek."
               }
             }
           ],
@@ -1489,63 +1484,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це звичка команди. Виберіть форму read",
+        "prompt": "Опишіть овоч. Виберіть зв’язку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i06:r1",
-            "text": "read"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-47:i06:r2",
-            "text": "reads"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-47:i06:r3",
-            "text": "reading"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це звичка команди. Виберіть форму read",
+        "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это привычка команды. Выберите форму read",
-            "uk": "Це звичка команди. Виберіть форму read"
+            "ru": "Опишите овощ. Выберите связку",
+            "uk": "Опишіть овоч. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We always ___ the changelog.",
+          "gappedTargetPhrase": "The leek ___ fresh.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i06:r1",
-              "text": "read"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r2",
-              "text": "reads"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r3",
-              "text": "reading"
+              "text": "am"
             }
           ],
-          "testedDimension": "Це звичка команди. Виберіть форму read",
+          "testedDimension": "Опишіть овоч. Виберіть зв’язку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i06:r2",
               "correct": false,
-              "testedDimension": "Це звичка команди. Виберіть форму read",
+              "testedDimension": "Опишіть овоч. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "С we нужна read без s.",
-                "uk": "З we потрібна read без s."
+                "ru": "С leek здесь нужна is.",
+                "uk": "З leek тут потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i06:r3",
               "correct": false,
-              "testedDimension": "Це звичка команди. Виберіть форму read",
+              "testedDimension": "Опишіть овоч. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "Здесь нужна read, не причастие reading.",
-                "uk": "Тут потрібна read, не дієприкметник reading."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1553,32 +1548,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:hotfix",
+        "interactionId": "en:lesson-10:session-47:word:parsley",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — hotfix",
+        "prompt": "Картка слова — parsley",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:hotfix:audio"
+          "en:lesson-10:session-47:word:parsley:audio"
         ],
-        "accessibilityLabel": "Картка слова — hotfix",
+        "accessibilityLabel": "Картка слова — parsley",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:hotfix:audio",
-            "transcript": "hotfix"
+            "audioTargetId": "en:lesson-10:session-47:word:parsley:audio",
+            "transcript": "parsley"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:hotfix:r1",
-              "targetText": "hotfix",
+              "responseId": "en:lesson-10:session-47:word:parsley:r1",
+              "targetText": "parsley",
               "meaningByLocale": {
-                "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
-                "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+                "ru": "«петрушка». I am chopping parsley. — «Я режу петрушку».",
+                "uk": "«петрушка». I am chopping parsley. — «Я ріжу петрушку»."
               }
             }
           ],
@@ -1586,10 +1581,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "hotfix",
+            "word": "parsley",
             "definitionByLocale": {
-              "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
-              "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+              "ru": "«петрушка». I am chopping parsley. — «Я режу петрушку».",
+              "uk": "«петрушка». I am chopping parsley. — «Я ріжу петрушку»."
             }
           }
         },
@@ -1601,24 +1596,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Зараз ви перевіряєте термінове виправлення помилки. Скажіть: «Ми тестуємо термінове виправлення»",
+        "prompt": "Ви зараз ріжете петрушку для супу. Скажіть: «Я ріжу петрушку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Зараз ви перевіряєте термінове виправлення помилки. Скажіть: «Ми тестуємо термінове виправлення»",
+        "accessibilityLabel": "Ви зараз ріжете петрушку для супу. Скажіть: «Я ріжу петрушку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are testing a hotfix.",
+          "targetPhrase": "I am chopping parsley.",
           "localizedMeaning": {
-            "ru": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
-            "uk": "Зараз ви перевіряєте термінове виправлення помилки. Скажіть: «Ми тестуємо термінове виправлення»"
+            "ru": "Вы сейчас режете петрушку для супа. Скажите: «Я режу петрушку»",
+            "uk": "Ви зараз ріжете петрушку для супу. Скажіть: «Я ріжу петрушку»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "testing",
-            "a",
-            "hotfix"
+            "I",
+            "am",
+            "chopping",
+            "parsley"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1639,15 +1633,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i08:r1",
-            "text": "The hotfix is ready."
+            "text": "There is parsley in the soup."
           },
           {
             "responseId": "en:lesson-10:session-47:i08:r2",
-            "text": "The hotfix is late."
+            "text": "There is parsley in the sauce."
           },
           {
             "responseId": "en:lesson-10:session-47:i08:r3",
-            "text": "The release is ready."
+            "text": "There is salt in the soup."
           }
         ],
         "mediaIds": [],
@@ -1659,23 +1653,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i08:audio",
-            "transcript": "The hotfix is ready."
+            "transcript": "There is parsley in the soup."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i08:r1",
-              "targetText": "The hotfix is ready.",
+              "targetText": "There is parsley in the soup.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i08:r2",
-              "targetText": "The hotfix is late.",
+              "targetText": "There is parsley in the sauce.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i08:r3",
-              "targetText": "The release is ready.",
+              "targetText": "There is salt in the soup.",
               "meaningByLocale": null
             }
           ],
@@ -1686,8 +1680,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The hotfix is ready.",
-                "uk": "У записі звучить The hotfix is ready."
+                "ru": "В записи звучит There is parsley in the soup.",
+                "uk": "У записі звучить There is parsley in the soup."
               }
             },
             {
@@ -1695,8 +1689,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The hotfix is ready.",
-                "uk": "У записі звучить The hotfix is ready."
+                "ru": "В записи звучит There is parsley in the soup.",
+                "uk": "У записі звучить There is parsley in the soup."
               }
             }
           ],
@@ -1711,63 +1705,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+        "prompt": "Виберіть написання форми chop",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i09:r1",
-            "text": "are"
+            "text": "chopping"
           },
           {
             "responseId": "en:lesson-10:session-47:i09:r2",
-            "text": "is"
+            "text": "choping"
           },
           {
             "responseId": "en:lesson-10:session-47:i09:r3",
-            "text": "am"
+            "text": "chop"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+        "accessibilityLabel": "Виберіть написання форми chop",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Проверка идёт сейчас. Выберите вспомогательный глагол",
-            "uk": "Перевірка триває зараз. Виберіть допоміжне дієслово"
+            "ru": "Выберите написание формы chop",
+            "uk": "Виберіть написання форми chop"
           },
-          "gappedTargetPhrase": "We ___ testing a hotfix.",
+          "gappedTargetPhrase": "I am ___ parsley.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i09:r1",
-              "text": "are"
+              "text": "chopping"
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r2",
-              "text": "is"
+              "text": "choping"
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r3",
-              "text": "am"
+              "text": "chop"
             }
           ],
-          "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+          "testedDimension": "Виберіть написання форми chop",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i09:r2",
               "correct": false,
-              "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Виберіть написання форми chop",
               "feedbackByLocale": {
-                "ru": "С we нужна are.",
-                "uk": "З we потрібна are."
+                "ru": "Удваиваем p: chopping.",
+                "uk": "Подвоюємо p: chopping."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i09:r3",
               "correct": false,
-              "testedDimension": "Перевірка триває зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Виберіть написання форми chop",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После am для текущего действия нужна chopping.",
+                "uk": "Після am для поточної дії потрібна chopping."
               }
             }
           ]
@@ -1775,32 +1769,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-47:word:firmware",
+        "interactionId": "en:lesson-10:session-47:word:radishes",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — firmware",
+        "prompt": "Картка слова — radishes",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-47:word:firmware:audio"
+          "en:lesson-10:session-47:word:radishes:audio"
         ],
-        "accessibilityLabel": "Картка слова — firmware",
+        "accessibilityLabel": "Картка слова — radishes",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-47:word:firmware:audio",
-            "transcript": "firmware"
+            "audioTargetId": "en:lesson-10:session-47:word:radishes:audio",
+            "transcript": "radishes"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-47:word:firmware:r1",
-              "targetText": "firmware",
+              "responseId": "en:lesson-10:session-47:word:radishes:r1",
+              "targetText": "radishes",
               "meaningByLocale": {
-                "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
-                "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+                "ru": "«редис». We are washing radishes. — «Мы моем редис».",
+                "uk": "«редиска». We are washing radishes. — «Ми миємо редиску»."
               }
             }
           ],
@@ -1808,10 +1802,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "firmware",
+            "word": "radishes",
             "definitionByLocale": {
-              "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
-              "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+              "ru": "«редис». We are washing radishes. — «Мы моем редис».",
+              "uk": "«редиска». We are washing radishes. — «Ми миємо редиску»."
             }
           }
         },
@@ -1823,24 +1817,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Зараз ви встановлюєте нову прошивку пристрою. Скажіть: «Ми оновлюємо прошивку»",
+        "prompt": "Ви з другом зараз готуєте обід. Скажіть: «Ми миємо редиску»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Зараз ви встановлюєте нову прошивку пристрою. Скажіть: «Ми оновлюємо прошивку»",
+        "accessibilityLabel": "Ви з другом зараз готуєте обід. Скажіть: «Ми миємо редиску»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are updating the firmware.",
+          "targetPhrase": "We are washing radishes.",
           "localizedMeaning": {
-            "ru": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
-            "uk": "Зараз ви встановлюєте нову прошивку пристрою. Скажіть: «Ми оновлюємо прошивку»"
+            "ru": "Вы с другом сейчас готовите обед. Скажите: «Мы моем редис»",
+            "uk": "Ви з другом зараз готуєте обід. Скажіть: «Ми миємо редиску»"
           },
           "orderedTokens": [
             "We",
             "are",
-            "updating",
-            "the",
-            "firmware"
+            "washing",
+            "radishes"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1861,15 +1854,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i11:r1",
-            "text": "The firmware is up to date."
+            "text": "The radishes are clean."
           },
           {
             "responseId": "en:lesson-10:session-47:i11:r2",
-            "text": "The firmware is out of date."
+            "text": "The radishes are dirty."
           },
           {
             "responseId": "en:lesson-10:session-47:i11:r3",
-            "text": "The website is up to date."
+            "text": "The potatoes are clean."
           }
         ],
         "mediaIds": [],
@@ -1881,23 +1874,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i11:audio",
-            "transcript": "The firmware is up to date."
+            "transcript": "The radishes are clean."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-47:i11:r1",
-              "targetText": "The firmware is up to date.",
+              "targetText": "The radishes are clean.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i11:r2",
-              "targetText": "The firmware is out of date.",
+              "targetText": "The radishes are dirty.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-47:i11:r3",
-              "targetText": "The website is up to date.",
+              "targetText": "The potatoes are clean.",
               "meaningByLocale": null
             }
           ],
@@ -1908,8 +1901,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The firmware is up to date.",
-                "uk": "У записі звучить The firmware is up to date."
+                "ru": "В записи звучит The radishes are clean.",
+                "uk": "У записі звучить The radishes are clean."
               }
             },
             {
@@ -1917,8 +1910,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The firmware is up to date.",
-                "uk": "У записі звучить The firmware is up to date."
+                "ru": "В записи звучит The radishes are clean.",
+                "uk": "У записі звучить The radishes are clean."
               }
             }
           ],
@@ -1933,63 +1926,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть правильне написання форми update",
+        "prompt": "Виберіть зв’язку з множиною radishes",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i12:r1",
-            "text": "updating"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-47:i12:r2",
-            "text": "updateing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-47:i12:r3",
-            "text": "update"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть правильне написання форми update",
+        "accessibilityLabel": "Виберіть зв’язку з множиною radishes",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы update",
-            "uk": "Виберіть правильне написання форми update"
+            "ru": "Выберите связку с множественным radishes",
+            "uk": "Виберіть зв’язку з множиною radishes"
           },
-          "gappedTargetPhrase": "We are ___ the firmware.",
+          "gappedTargetPhrase": "The radishes ___ clean.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-47:i12:r1",
-              "text": "updating"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r2",
-              "text": "updateing"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r3",
-              "text": "update"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть правильне написання форми update",
+          "testedDimension": "Виберіть зв’язку з множиною radishes",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-47:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми update",
+              "testedDimension": "Виберіть зв’язку з множиною radishes",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: updating.",
-                "uk": "Перед ing прибираємо e: updating."
+                "ru": "Radishes — множественное число: are.",
+                "uk": "Radishes — множина: are."
               }
             },
             {
               "responseId": "en:lesson-10:session-47:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми update",
+              "testedDimension": "Виберіть зв’язку з множиною radishes",
               "feedbackByLocale": {
-                "ru": "После are для текущего действия нужна updating.",
-                "uk": "Після are для поточної дії потрібна updating."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -2012,48 +2005,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-47:i13:p1",
-              "target": "release",
+              "target": "beetroot",
               "meaningByLocale": {
-                "ru": "выпуск программы",
-                "uk": "випуск програми"
+                "ru": "свёкла",
+                "uk": "буряк"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p2",
-              "target": "changelog",
+              "target": "leek",
               "meaningByLocale": {
-                "ru": "список изменений",
-                "uk": "список змін"
+                "ru": "лук-порей",
+                "uk": "цибуля-порей"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p3",
-              "target": "hotfix",
+              "target": "parsley",
               "meaningByLocale": {
-                "ru": "срочное исправление",
-                "uk": "термінове виправлення"
+                "ru": "петрушка",
+                "uk": "петрушка"
               }
             },
             {
               "pairId": "en:lesson-10:session-47:i13:p4",
-              "target": "firmware",
+              "target": "radishes",
               "meaningByLocale": {
-                "ru": "прошивка",
-                "uk": "прошивка"
+                "ru": "редис",
+                "uk": "редиска"
               }
             }
           ],
           "leftColumn": [
-            "release",
-            "changelog",
-            "hotfix",
-            "firmware"
+            "beetroot",
+            "leek",
+            "parsley",
+            "radishes"
           ],
           "rightColumn": [
-            "випуск програми",
-            "список змін",
-            "термінове виправлення",
-            "прошивка"
+            "буряк",
+            "цибуля-порей",
+            "петрушка",
+            "редиска"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2086,16 +2079,15 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i14:audio",
-            "transcript": "We are testing a hotfix."
+            "transcript": "I am chopping parsley."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are testing a hotfix.",
+          "hiddenTargetPhrase": "I am chopping parsley.",
           "orderedTokens": [
-            "We",
-            "are",
-            "testing",
-            "a",
-            "hotfix"
+            "I",
+            "am",
+            "chopping",
+            "parsley"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2112,21 +2104,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, чи читаєте ви список змін перед установленням. Скажіть: «Ми завжди читаємо список змін»",
+        "prompt": "Друг запитує, який овоч ви зазвичай купуєте. Скажіть: «Я зазвичай купую буряк»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-47:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, чи читаєте ви список змін перед установленням. Скажіть: «Ми завжди читаємо список змін»",
+        "accessibilityLabel": "Друг запитує, який овоч ви зазвичай купуєте. Скажіть: «Я зазвичай купую буряк»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i15:audio",
-            "transcript": "We always read the changelog."
+            "transcript": "I usually buy beetroot."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We always read the changelog.",
+          "targetPhrase": "I usually buy beetroot.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2145,23 +2137,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, чи готова нова версія. Скажіть: «Випуск готовий»",
+        "prompt": "Ви показуєте другу свіжий овоч. Скажіть: «Цибуля-порей свіжа»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, чи готова нова версія. Скажіть: «Випуск готовий»",
+        "accessibilityLabel": "Ви показуєте другу свіжий овоч. Скажіть: «Цибуля-порей свіжа»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The release is ready.",
+          "targetPhrase": "The leek is fresh.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
-            "uk": "Колега запитує, чи готова нова версія. Скажіть: «Випуск готовий»"
+            "ru": "Вы показываете другу свежий овощ. Скажите: «Лук-порей свежий»",
+            "uk": "Ви показуєте другу свіжий овоч. Скажіть: «Цибуля-порей свіжа»"
           },
           "orderedTokens": [
             "The",
-            "release",
+            "leek",
             "is",
-            "ready"
+            "fresh"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2178,21 +2170,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви з колегою встановлюєте прошивку пристрою. Керівник запитує, чим ви зараз зайняті. Скажіть: «Ми оновлюємо прошивку»",
+        "prompt": "Ви з другом стоїте біля раковини й миєте редиску. Сусід запитує, що ви готуєте. Скажіть: «Ми миємо редиску»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-47:i17:audio"
         ],
-        "accessibilityLabel": "Ви з колегою встановлюєте прошивку пристрою. Керівник запитує, чим ви зараз зайняті. Скажіть: «Ми оновлюємо прошивку»",
+        "accessibilityLabel": "Ви з другом стоїте біля раковини й миєте редиску. Сусід запитує, що ви готуєте. Скажіть: «Ми миємо редиску»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-47:i17:audio",
-            "transcript": "We are updating the firmware."
+            "transcript": "We are washing radishes."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are updating the firmware.",
+          "targetPhrase": "We are washing radishes.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2217,83 +2209,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-47:word:release",
-      "correctText": "release",
+      "interactionId": "en:lesson-10:session-47:word:beetroot",
+      "correctText": "beetroot",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i01",
-      "correctText": "The release is ready.",
+      "correctText": "I usually buy beetroot.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i02",
-      "correctText": "The release is tomorrow.",
+      "correctText": "The beetroot is in the fridge.",
       "correctResponseId": "en:lesson-10:session-47:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-47:i03",
-      "correctText": "is",
+      "correctText": "buy",
       "correctResponseId": "en:lesson-10:session-47:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-47:word:changelog",
-      "correctText": "changelog",
+      "interactionId": "en:lesson-10:session-47:word:leek",
+      "correctText": "leek",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i04",
-      "correctText": "We always read the changelog.",
+      "correctText": "The leek is fresh.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i05",
-      "correctText": "The changelog is on the website.",
+      "correctText": "I am washing the leek.",
       "correctResponseId": "en:lesson-10:session-47:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-47:i06",
-      "correctText": "read",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-47:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-47:word:hotfix",
-      "correctText": "hotfix",
+      "interactionId": "en:lesson-10:session-47:word:parsley",
+      "correctText": "parsley",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i07",
-      "correctText": "We are testing a hotfix.",
+      "correctText": "I am chopping parsley.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i08",
-      "correctText": "The hotfix is ready.",
+      "correctText": "There is parsley in the soup.",
       "correctResponseId": "en:lesson-10:session-47:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-47:i09",
-      "correctText": "are",
+      "correctText": "chopping",
       "correctResponseId": "en:lesson-10:session-47:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-47:word:firmware",
-      "correctText": "firmware",
+      "interactionId": "en:lesson-10:session-47:word:radishes",
+      "correctText": "radishes",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i10",
-      "correctText": "We are updating the firmware.",
+      "correctText": "We are washing radishes.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i11",
-      "correctText": "The firmware is up to date.",
+      "correctText": "The radishes are clean.",
       "correctResponseId": "en:lesson-10:session-47:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-47:i12",
-      "correctText": "updating",
+      "correctText": "are",
       "correctResponseId": "en:lesson-10:session-47:i12:r1"
     },
     {
@@ -2303,22 +2295,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-47:i14",
-      "correctText": "We are testing a hotfix.",
+      "correctText": "I am chopping parsley.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i15",
-      "correctText": "We always read the changelog.",
+      "correctText": "I usually buy beetroot.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i16",
-      "correctText": "The release is ready.",
+      "correctText": "The leek is fresh.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-47:i17",
-      "correctText": "We are updating the firmware.",
+      "correctText": "We are washing radishes.",
       "correctResponseId": null
     }
   ]

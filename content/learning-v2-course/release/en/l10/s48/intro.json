@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-48",
   "learningOutcomeByLocale": {
-    "ru": "We make a backup every day; The server is working; We are doing maintenance",
-    "uk": "We make a backup every day; The server is working; We are doing maintenance"
+    "ru": "I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready",
+    "uk": "I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сохраняем копию",
-        "uk": "Зберігаємо копію"
+        "ru": "Готовлю фрукт сейчас",
+        "uk": "Готую фрукт зараз"
       },
       "bodyByLocale": {
-        "ru": "Backup — «резервная копия» данных. Команда делает её ежедневно: We make a backup every day — «Мы делаем резервную копию каждый день». Это регулярное действие: Present Simple. Every day здесь стоит в конце.",
-        "uk": "Backup — «резервна копія» даних. Команда робить її щодня: We make a backup every day — «Ми робимо резервну копію щодня». Це регулярна дія: Present Simple. Every day тут стоїть у кінці."
+        "ru": "Grapefruit — «грейпфрут». Вы сейчас снимаете с него кожуру: I am peeling a grapefruit — «Я чищу грейпфрут». Действие происходит сейчас: am + peeling. Перед одним фруктом здесь нужен a.",
+        "uk": "Grapefruit — «грейпфрут». Ви зараз знімаєте з нього шкірку: I am peeling a grapefruit — «Я чищу грейпфрут». Дія відбувається зараз: am + peeling. Перед одним фруктом тут потрібен a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-48:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-48:intro1:r1",
-              "text": "We make a backup every day."
+              "text": "I am peeling a grapefruit."
             },
             {
               "responseId": "en:lesson-10:session-48:intro1:r2",
-              "text": "We makes a backup every day."
+              "text": "I peeling a grapefruit."
             },
             {
               "responseId": "en:lesson-10:session-48:intro1:r3",
-              "text": "We making a backup every day."
+              "text": "I am peel a grapefruit."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-48:intro1:r1",
-              "text": "We make a backup every day."
+              "text": "I am peeling a grapefruit."
             },
             {
               "responseId": "en:lesson-10:session-48:intro1:r2",
-              "text": "We makes a backup every day."
+              "text": "I peeling a grapefruit."
             },
             {
               "responseId": "en:lesson-10:session-48:intro1:r3",
-              "text": "We making a backup every day."
+              "text": "I am peel a grapefruit."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Система сейчас работает",
-        "uk": "Система зараз працює"
+        "ru": "Хлеба хватает",
+        "uk": "Хліба вистачає"
       },
       "bodyByLocale": {
-        "ru": "Server — «сервер», компьютер или программа, предоставляющие данные другим устройствам. Коллега просит проверить его прямо сейчас. Проверка успешна: The server is working — «Сервер работает». Is working описывает работу в данный момент.",
-        "uk": "Server — «сервер», комп’ютер або програма, що надають дані іншим пристроям. Колега просить перевірити його саме зараз. Перевірка успішна: The server is working — «Сервер працює». Is working описує роботу в цю мить."
+        "ru": "Enough — «достаточно». Вы проверили хлеб: его хватает всем. We have enough bread — «У нас достаточно хлеба». Enough стоит перед bread. Have здесь означает наличие; используем Present Simple, хотя проверяем продукты сейчас.",
+        "uk": "Enough — «достатньо». Ви перевірили хліб: його вистачає всім. We have enough bread — «У нас достатньо хліба». Enough стоїть перед bread. Have тут означає наявність; використовуємо Present Simple, хоча перевіряємо продукти зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-48:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-48:intro2:r1",
-              "text": "The server is working."
+              "text": "We have enough bread."
             },
             {
               "responseId": "en:lesson-10:session-48:intro2:r2",
-              "text": "The server are working."
+              "text": "We has enough bread."
             },
             {
               "responseId": "en:lesson-10:session-48:intro2:r3",
-              "text": "The server is work."
+              "text": "We are having enough bread."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-48:intro2:r1",
-              "text": "The server is working."
+              "text": "We have enough bread."
             },
             {
               "responseId": "en:lesson-10:session-48:intro2:r2",
-              "text": "The server are working."
+              "text": "We has enough bread."
             },
             {
               "responseId": "en:lesson-10:session-48:intro2:r3",
-              "text": "The server is work."
+              "text": "We are having enough bread."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обслуживание идёт",
-        "uk": "Обслуговування триває"
+        "ru": "Осталось немного",
+        "uk": "Залишилося небагато"
       },
       "bodyByLocale": {
-        "ru": "Maintenance — «техническое обслуживание». Команда сейчас проверяет систему: We are doing maintenance — «Мы проводим техническое обслуживание». Are doing обозначает текущую работу. Maintenance здесь неисчисляемое: артикль a не нужен.",
-        "uk": "Maintenance — «технічне обслуговування». Команда зараз перевіряє систему: We are doing maintenance — «Ми проводимо технічне обслуговування». Are doing позначає поточну роботу. Maintenance тут незлічуване: артикль a не потрібен."
+        "ru": "Nearly — «почти». Завтрак ещё не полностью готов, но осталось немного: Breakfast is nearly ready — «Завтрак почти готов». Nearly стоит перед ready. Is описывает состояние, здесь нет формы Continuous.",
+        "uk": "Nearly — «майже». Сніданок ще не повністю готовий, але залишилося небагато: Breakfast is nearly ready — «Сніданок майже готовий». Nearly стоїть перед ready. Is описує стан, тут немає форми Continuous."
       },
       "question": {
         "interactionId": "en:lesson-10:session-48:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-48:intro3:r1",
-              "text": "We are doing maintenance."
+              "text": "Breakfast is nearly ready."
             },
             {
               "responseId": "en:lesson-10:session-48:intro3:r2",
-              "text": "We doing maintenance."
+              "text": "Breakfast are nearly ready."
             },
             {
               "responseId": "en:lesson-10:session-48:intro3:r3",
-              "text": "We are do maintenance."
+              "text": "Breakfast nearly ready."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-48:intro3:r1",
-              "text": "We are doing maintenance."
+              "text": "Breakfast is nearly ready."
             },
             {
               "responseId": "en:lesson-10:session-48:intro3:r2",
-              "text": "We doing maintenance."
+              "text": "Breakfast are nearly ready."
             },
             {
               "responseId": "en:lesson-10:session-48:intro3:r3",
-              "text": "We are do maintenance."
+              "text": "Breakfast nearly ready."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7cd9699ce3a918cbfe4c20def2d98511368fe10e36caa30af8fa1d413b1e5263"
+  "introFingerprint": "be391fb9902f9fdc99186fd312db2ed99aa66a4ef316a7e14d1bac153cf13735"
 }

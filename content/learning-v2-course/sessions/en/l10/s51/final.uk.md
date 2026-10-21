@@ -119,9 +119,9 @@ The tuition ___ expensive. → **is** · are · am
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-51:i11; family: listen_choose -->
-🔊 *The enrolment is complete.* → **The enrolment is complete.** · The enrolment is delayed. · The maintenance is complete.
+🔊 *The enrolment is complete.* → **The enrolment is complete.** · The enrolment is delayed. · The form is complete.
 - The enrolment is delayed. — *У записі звучить The enrolment is complete.*
-- The maintenance is complete. — *У записі звучить The enrolment is complete.*
+- The form is complete. — *У записі звучить The enrolment is complete.*
 
 **16 · Виберіть правильне написання форми complete**
 <!-- interaction_id: en:lesson-10:session-51:i12; family: context_gap_grammar -->

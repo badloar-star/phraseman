@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-48:word:backup",
+        "interactionId": "en:lesson-10:session-48:word:apricot",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — backup",
+        "prompt": "Карточка слова — apricot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:backup:audio"
+          "en:lesson-10:session-48:word:apricot:audio"
         ],
-        "accessibilityLabel": "Карточка слова — backup",
+        "accessibilityLabel": "Карточка слова — apricot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:backup:audio",
-            "transcript": "backup"
+            "audioTargetId": "en:lesson-10:session-48:word:apricot:audio",
+            "transcript": "apricot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:backup:r1",
-              "targetText": "backup",
+              "responseId": "en:lesson-10:session-48:word:apricot:r1",
+              "targetText": "apricot",
               "meaningByLocale": {
-                "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
-                "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+                "ru": "«абрикос». This apricot is sweet. — «Этот абрикос сладкий».",
+                "uk": "«абрикос». This apricot is sweet. — «Цей абрикос солодкий»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "backup",
+            "word": "apricot",
             "definitionByLocale": {
-              "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
-              "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+              "ru": "«абрикос». This apricot is sweet. — «Этот абрикос сладкий».",
+              "uk": "«абрикос». This apricot is sweet. — «Цей абрикос солодкий»."
             }
           }
         },
@@ -52,25 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+        "prompt": "Вы пробуете спелый фрукт. Скажите: «Этот абрикос сладкий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+        "accessibilityLabel": "Вы пробуете спелый фрукт. Скажите: «Этот абрикос сладкий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We make a backup every day.",
+          "targetPhrase": "This apricot is sweet.",
           "localizedMeaning": {
-            "ru": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
-            "uk": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці"
+            "ru": "Вы пробуете спелый фрукт. Скажите: «Этот абрикос сладкий»",
+            "uk": "Ви куштуєте стиглий фрукт. Скажіть: «Цей абрикос солодкий»"
           },
           "orderedTokens": [
-            "We",
-            "make",
-            "a",
-            "backup",
-            "every",
-            "day"
+            "This",
+            "apricot",
+            "is",
+            "sweet"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -91,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i02:r1",
-            "text": "The backup is ready."
+            "text": "The apricot is ripe."
           },
           {
             "responseId": "en:lesson-10:session-48:i02:r2",
-            "text": "The backup is missing."
+            "text": "The apricot is small."
           },
           {
             "responseId": "en:lesson-10:session-48:i02:r3",
-            "text": "The release is ready."
+            "text": "The peach is ripe."
           }
         ],
         "mediaIds": [],
@@ -111,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i02:audio",
-            "transcript": "The backup is ready."
+            "transcript": "The apricot is ripe."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i02:r1",
-              "targetText": "The backup is ready.",
+              "targetText": "The apricot is ripe.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i02:r2",
-              "targetText": "The backup is missing.",
+              "targetText": "The apricot is small.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i02:r3",
-              "targetText": "The release is ready.",
+              "targetText": "The peach is ripe.",
               "meaningByLocale": null
             }
           ],
@@ -138,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The backup is ready.",
-                "uk": "У записі звучить The backup is ready."
+                "ru": "В записи звучит The apricot is ripe.",
+                "uk": "У записі звучить The apricot is ripe."
               }
             },
             {
@@ -147,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The backup is ready.",
-                "uk": "У записі звучить The backup is ready."
+                "ru": "В записи звучит The apricot is ripe.",
+                "uk": "У записі звучить The apricot is ripe."
               }
             }
           ],
@@ -163,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это ежедневная работа. Выберите форму make",
+        "prompt": "Один фрукт. Выберите связку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i03:r1",
-            "text": "make"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i03:r2",
-            "text": "makes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-48:i03:r3",
-            "text": "making"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это ежедневная работа. Выберите форму make",
+        "accessibilityLabel": "Один фрукт. Выберите связку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежедневная работа. Выберите форму make",
-            "uk": "Це щоденна робота. Виберіть форму make"
+            "ru": "Один фрукт. Выберите связку",
+            "uk": "Один фрукт. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We ___ a backup every day.",
+          "gappedTargetPhrase": "This apricot ___ sweet.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i03:r1",
-              "text": "make"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r2",
-              "text": "makes"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r3",
-              "text": "making"
+              "text": "am"
             }
           ],
-          "testedDimension": "Это ежедневная работа. Выберите форму make",
+          "testedDimension": "Один фрукт. Выберите связку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i03:r2",
               "correct": false,
-              "testedDimension": "Это ежедневная работа. Выберите форму make",
+              "testedDimension": "Один фрукт. Выберите связку",
               "feedbackByLocale": {
-                "ru": "С we нужна make без s.",
-                "uk": "З we потрібна make без s."
+                "ru": "Один абрикос: is.",
+                "uk": "Один абрикос: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r3",
               "correct": false,
-              "testedDimension": "Это ежедневная работа. Выберите форму make",
+              "testedDimension": "Один фрукт. Выберите связку",
               "feedbackByLocale": {
-                "ru": "Здесь нужна make.",
-                "uk": "Тут потрібна make."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -227,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:server",
+        "interactionId": "en:lesson-10:session-48:word:grapefruit",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — server",
+        "prompt": "Карточка слова — grapefruit",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:server:audio"
+          "en:lesson-10:session-48:word:grapefruit:audio"
         ],
-        "accessibilityLabel": "Карточка слова — server",
+        "accessibilityLabel": "Карточка слова — grapefruit",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:server:audio",
-            "transcript": "server"
+            "audioTargetId": "en:lesson-10:session-48:word:grapefruit:audio",
+            "transcript": "grapefruit"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:server:r1",
-              "targetText": "server",
+              "responseId": "en:lesson-10:session-48:word:grapefruit:r1",
+              "targetText": "grapefruit",
               "meaningByLocale": {
-                "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
-                "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+                "ru": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут».",
+                "uk": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут»."
               }
             }
           ],
@@ -260,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "server",
+            "word": "grapefruit",
             "definitionByLocale": {
-              "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
-              "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+              "ru": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут».",
+              "uk": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут»."
             }
           }
         },
@@ -275,23 +273,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+        "prompt": "Вы сейчас снимаете кожуру с фрукта. Скажите: «Я чищу грейпфрут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+        "accessibilityLabel": "Вы сейчас снимаете кожуру с фрукта. Скажите: «Я чищу грейпфрут»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The server is working.",
+          "targetPhrase": "I am peeling a grapefruit.",
           "localizedMeaning": {
-            "ru": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
-            "uk": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working"
+            "ru": "Вы сейчас снимаете кожуру с фрукта. Скажите: «Я чищу грейпфрут»",
+            "uk": "Ви зараз знімаєте шкірку з фрукта. Скажіть: «Я чищу грейпфрут»"
           },
           "orderedTokens": [
-            "The",
-            "server",
-            "is",
-            "working"
+            "I",
+            "am",
+            "peeling",
+            "a",
+            "grapefruit"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -312,15 +311,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i05:r1",
-            "text": "The server is in the office."
+            "text": "The grapefruit is on the plate."
           },
           {
             "responseId": "en:lesson-10:session-48:i05:r2",
-            "text": "The server is in the basement."
+            "text": "The grapefruit is in the bag."
           },
           {
             "responseId": "en:lesson-10:session-48:i05:r3",
-            "text": "The printer is in the office."
+            "text": "The apricot is on the plate."
           }
         ],
         "mediaIds": [],
@@ -332,23 +331,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i05:audio",
-            "transcript": "The server is in the office."
+            "transcript": "The grapefruit is on the plate."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i05:r1",
-              "targetText": "The server is in the office.",
+              "targetText": "The grapefruit is on the plate.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i05:r2",
-              "targetText": "The server is in the basement.",
+              "targetText": "The grapefruit is in the bag.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i05:r3",
-              "targetText": "The printer is in the office.",
+              "targetText": "The apricot is on the plate.",
               "meaningByLocale": null
             }
           ],
@@ -359,8 +358,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The server is in the office.",
-                "uk": "У записі звучить The server is in the office."
+                "ru": "В записи звучит The grapefruit is on the plate.",
+                "uk": "У записі звучить The grapefruit is on the plate."
               }
             },
             {
@@ -368,8 +367,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The server is in the office.",
-                "uk": "У записі звучить The server is in the office."
+                "ru": "В записи звучит The grapefruit is on the plate.",
+                "uk": "У записі звучить The grapefruit is on the plate."
               }
             }
           ],
@@ -384,63 +383,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сервер работает сейчас. Выберите вспомогательный глагол",
+        "prompt": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i06:r1",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-10:session-48:i06:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i06:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сервер работает сейчас. Выберите вспомогательный глагол",
+        "accessibilityLabel": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сервер работает сейчас. Выберите вспомогательный глагол",
-            "uk": "Сервер працює зараз. Виберіть допоміжне дієслово"
+            "ru": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
+            "uk": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "The server ___ working.",
+          "gappedTargetPhrase": "I ___ peeling a grapefruit.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i06:r1",
-              "text": "is"
+              "text": "am"
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r2",
-              "text": "are"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r3",
-              "text": "am"
+              "text": "are"
             }
           ],
-          "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+          "testedDimension": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i06:r2",
               "correct": false,
-              "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "Один сервер: is.",
-                "uk": "Один сервер: is."
+                "ru": "С I нужна am.",
+                "uk": "З I потрібна am."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r3",
               "correct": false,
-              "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Здесь нужна am, не are.",
+                "uk": "Тут потрібна am, не are."
               }
             }
           ]
@@ -448,32 +447,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:downtime",
+        "interactionId": "en:lesson-10:session-48:word:enough",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — downtime",
+        "prompt": "Карточка слова — enough",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:downtime:audio"
+          "en:lesson-10:session-48:word:enough:audio"
         ],
-        "accessibilityLabel": "Карточка слова — downtime",
+        "accessibilityLabel": "Карточка слова — enough",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:downtime:audio",
-            "transcript": "downtime"
+            "audioTargetId": "en:lesson-10:session-48:word:enough:audio",
+            "transcript": "enough"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:downtime:r1",
-              "targetText": "downtime",
+              "responseId": "en:lesson-10:session-48:word:enough:r1",
+              "targetText": "enough",
               "meaningByLocale": {
-                "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
-                "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+                "ru": "«достаточно». We have enough bread. — «У нас достаточно хлеба». Хлеба хватает всем.",
+                "uk": "«достатньо». We have enough bread. — «У нас достатньо хліба». Хліба вистачає всім."
               }
             }
           ],
@@ -481,10 +480,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "downtime",
+            "word": "enough",
             "definitionByLocale": {
-              "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
-              "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+              "ru": "«достаточно». We have enough bread. — «У нас достаточно хлеба». Хлеба хватает всем.",
+              "uk": "«достатньо». We have enough bread. — «У нас достатньо хліба». Хліба вистачає всім."
             }
           }
         },
@@ -496,24 +495,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+        "prompt": "Хлеба хватает всем за столом. Скажите: «У нас достаточно хлеба»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+        "accessibilityLabel": "Хлеба хватает всем за столом. Скажите: «У нас достаточно хлеба»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We track downtime every week.",
+          "targetPhrase": "We have enough bread.",
           "localizedMeaning": {
-            "ru": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
-            "uk": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці"
+            "ru": "Хлеба хватает всем за столом. Скажите: «У нас достаточно хлеба»",
+            "uk": "Хліба вистачає всім за столом. Скажіть: «У нас достатньо хліба»"
           },
           "orderedTokens": [
             "We",
-            "track",
-            "downtime",
-            "every",
-            "week"
+            "have",
+            "enough",
+            "bread"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +532,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i08:r1",
-            "text": "The downtime is planned."
+            "text": "We have enough milk."
           },
           {
             "responseId": "en:lesson-10:session-48:i08:r2",
-            "text": "The downtime is unexpected."
+            "text": "We have enough bread."
           },
           {
             "responseId": "en:lesson-10:session-48:i08:r3",
-            "text": "The launch is planned."
+            "text": "We need more milk."
           }
         ],
         "mediaIds": [],
@@ -554,23 +552,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i08:audio",
-            "transcript": "The downtime is planned."
+            "transcript": "We have enough milk."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i08:r1",
-              "targetText": "The downtime is planned.",
+              "targetText": "We have enough milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i08:r2",
-              "targetText": "The downtime is unexpected.",
+              "targetText": "We have enough bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i08:r3",
-              "targetText": "The launch is planned.",
+              "targetText": "We need more milk.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +579,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The downtime is planned.",
-                "uk": "У записі звучить The downtime is planned."
+                "ru": "В записи звучит We have enough milk.",
+                "uk": "У записі звучить We have enough milk."
               }
             },
             {
@@ -590,8 +588,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The downtime is planned.",
-                "uk": "У записі звучить The downtime is planned."
+                "ru": "В записи звучит We have enough milk.",
+                "uk": "У записі звучить We have enough milk."
               }
             }
           ],
@@ -606,63 +604,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это еженедельная работа. Выберите форму track",
+        "prompt": "Речь о наличии хлеба. Выберите форму have",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i09:r1",
-            "text": "track"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-48:i09:r2",
-            "text": "tracks"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-48:i09:r3",
-            "text": "tracking"
+            "text": "having"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это еженедельная работа. Выберите форму track",
+        "accessibilityLabel": "Речь о наличии хлеба. Выберите форму have",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это еженедельная работа. Выберите форму track",
-            "uk": "Це щотижнева робота. Виберіть форму track"
+            "ru": "Речь о наличии хлеба. Выберите форму have",
+            "uk": "Ідеться про наявність хліба. Виберіть форму have"
           },
-          "gappedTargetPhrase": "We ___ downtime every week.",
+          "gappedTargetPhrase": "We ___ enough bread.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i09:r1",
-              "text": "track"
+              "text": "have"
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r2",
-              "text": "tracks"
+              "text": "has"
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r3",
-              "text": "tracking"
+              "text": "having"
             }
           ],
-          "testedDimension": "Это еженедельная работа. Выберите форму track",
+          "testedDimension": "Речь о наличии хлеба. Выберите форму have",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i09:r2",
               "correct": false,
-              "testedDimension": "Это еженедельная работа. Выберите форму track",
+              "testedDimension": "Речь о наличии хлеба. Выберите форму have",
               "feedbackByLocale": {
-                "ru": "С we нужна track без s.",
-                "uk": "З we потрібна track без s."
+                "ru": "С we нужна have.",
+                "uk": "З we потрібна have."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r3",
               "correct": false,
-              "testedDimension": "Это еженедельная работа. Выберите форму track",
+              "testedDimension": "Речь о наличии хлеба. Выберите форму have",
               "feedbackByLocale": {
-                "ru": "Здесь нужна track.",
-                "uk": "Тут потрібна track."
+                "ru": "Здесь нужна have.",
+                "uk": "Тут потрібна have."
               }
             }
           ]
@@ -670,32 +668,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:maintenance",
+        "interactionId": "en:lesson-10:session-48:word:nearly",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — maintenance",
+        "prompt": "Карточка слова — nearly",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:maintenance:audio"
+          "en:lesson-10:session-48:word:nearly:audio"
         ],
-        "accessibilityLabel": "Карточка слова — maintenance",
+        "accessibilityLabel": "Карточка слова — nearly",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:maintenance:audio",
-            "transcript": "maintenance"
+            "audioTargetId": "en:lesson-10:session-48:word:nearly:audio",
+            "transcript": "nearly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:maintenance:r1",
-              "targetText": "maintenance",
+              "responseId": "en:lesson-10:session-48:word:nearly:r1",
+              "targetText": "nearly",
               "meaningByLocale": {
-                "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
-                "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+                "ru": "«почти». Breakfast is nearly ready. — «Завтрак почти готов». Осталось немного.",
+                "uk": "«майже». Breakfast is nearly ready. — «Сніданок майже готовий». Залишилося небагато."
               }
             }
           ],
@@ -703,10 +701,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "maintenance",
+            "word": "nearly",
             "definitionByLocale": {
-              "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
-              "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+              "ru": "«почти». Breakfast is nearly ready. — «Завтрак почти готов». Осталось немного.",
+              "uk": "«майже». Breakfast is nearly ready. — «Сніданок майже готовий». Залишилося небагато."
             }
           }
         },
@@ -718,23 +716,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+        "prompt": "Завтрак будет готов совсем скоро. Скажите: «Завтрак почти готов»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+        "accessibilityLabel": "Завтрак будет готов совсем скоро. Скажите: «Завтрак почти готов»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are doing maintenance.",
+          "targetPhrase": "Breakfast is nearly ready.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
-            "uk": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»"
+            "ru": "Завтрак будет готов совсем скоро. Скажите: «Завтрак почти готов»",
+            "uk": "Сніданок буде готовий зовсім скоро. Скажіть: «Сніданок майже готовий»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "doing",
-            "maintenance"
+            "Breakfast",
+            "is",
+            "nearly",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +753,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i11:r1",
-            "text": "The maintenance is complete."
+            "text": "It is nearly eight."
           },
           {
             "responseId": "en:lesson-10:session-48:i11:r2",
-            "text": "The maintenance is delayed."
+            "text": "It is nearly nine."
           },
           {
             "responseId": "en:lesson-10:session-48:i11:r3",
-            "text": "The rollout is complete."
+            "text": "It is exactly eight."
           }
         ],
         "mediaIds": [],
@@ -775,23 +773,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i11:audio",
-            "transcript": "The maintenance is complete."
+            "transcript": "It is nearly eight."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i11:r1",
-              "targetText": "The maintenance is complete.",
+              "targetText": "It is nearly eight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i11:r2",
-              "targetText": "The maintenance is delayed.",
+              "targetText": "It is nearly nine.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i11:r3",
-              "targetText": "The rollout is complete.",
+              "targetText": "It is exactly eight.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +800,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The maintenance is complete.",
-                "uk": "У записі звучить The maintenance is complete."
+                "ru": "В записи звучит It is nearly eight.",
+                "uk": "У записі звучить It is nearly eight."
               }
             },
             {
@@ -811,8 +809,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The maintenance is complete.",
-                "uk": "У записі звучить The maintenance is complete."
+                "ru": "В записи звучит It is nearly eight.",
+                "uk": "У записі звучить It is nearly eight."
               }
             }
           ],
@@ -827,63 +825,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Работа идёт сейчас. Выберите форму do",
+        "prompt": "Опишите готовность завтрака. Выберите связку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i12:r1",
-            "text": "doing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i12:r2",
-            "text": "do"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-48:i12:r3",
-            "text": "does"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Работа идёт сейчас. Выберите форму do",
+        "accessibilityLabel": "Опишите готовность завтрака. Выберите связку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Работа идёт сейчас. Выберите форму do",
-            "uk": "Робота триває зараз. Виберіть форму do"
+            "ru": "Опишите готовность завтрака. Выберите связку",
+            "uk": "Опишіть готовність сніданку. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We are ___ maintenance.",
+          "gappedTargetPhrase": "Breakfast ___ nearly ready.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i12:r1",
-              "text": "doing"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r2",
-              "text": "do"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r3",
-              "text": "does"
+              "text": "am"
             }
           ],
-          "testedDimension": "Работа идёт сейчас. Выберите форму do",
+          "testedDimension": "Опишите готовность завтрака. Выберите связку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i12:r2",
               "correct": false,
-              "testedDimension": "Работа идёт сейчас. Выберите форму do",
+              "testedDimension": "Опишите готовность завтрака. Выберите связку",
               "feedbackByLocale": {
-                "ru": "После are для текущей работы нужна doing.",
-                "uk": "Після are для поточної роботи потрібна doing."
+                "ru": "С breakfast нужна is.",
+                "uk": "З breakfast потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r3",
               "correct": false,
-              "testedDimension": "Работа идёт сейчас. Выберите форму do",
+              "testedDimension": "Опишите готовность завтрака. Выберите связку",
               "feedbackByLocale": {
-                "ru": "Does не подходит после are; нужна doing.",
-                "uk": "Does не підходить після are; потрібна doing."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -906,48 +904,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-48:i13:p1",
-              "target": "backup",
+              "target": "apricot",
               "meaningByLocale": {
-                "ru": "резервная копия",
-                "uk": "резервна копія"
+                "ru": "абрикос",
+                "uk": "абрикос"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p2",
-              "target": "server",
+              "target": "grapefruit",
               "meaningByLocale": {
-                "ru": "сервер",
-                "uk": "сервер"
+                "ru": "грейпфрут",
+                "uk": "грейпфрут"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p3",
-              "target": "downtime",
+              "target": "enough",
               "meaningByLocale": {
-                "ru": "время простоя",
-                "uk": "час простою"
+                "ru": "достаточно",
+                "uk": "достатньо"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p4",
-              "target": "maintenance",
+              "target": "nearly",
               "meaningByLocale": {
-                "ru": "техническое обслуживание",
-                "uk": "технічне обслуговування"
+                "ru": "почти",
+                "uk": "майже"
               }
             }
           ],
           "leftColumn": [
-            "backup",
-            "server",
-            "downtime",
-            "maintenance"
+            "apricot",
+            "grapefruit",
+            "enough",
+            "nearly"
           ],
           "rightColumn": [
-            "резервная копия",
-            "сервер",
-            "время простоя",
-            "техническое обслуживание"
+            "абрикос",
+            "грейпфрут",
+            "достаточно",
+            "почти"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -980,15 +978,16 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i14:audio",
-            "transcript": "We are doing maintenance."
+            "transcript": "I am peeling a grapefruit."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are doing maintenance.",
+          "hiddenTargetPhrase": "I am peeling a grapefruit.",
           "orderedTokens": [
-            "We",
-            "are",
-            "doing",
-            "maintenance"
+            "I",
+            "am",
+            "peeling",
+            "a",
+            "grapefruit"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1005,21 +1004,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, как часто вы сохраняете копию данных. Скажите: «Мы делаем резервную копию каждый день»",
+        "prompt": "Друг предлагает купить ещё хлеба, но его хватает. Скажите: «У нас достаточно хлеба»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-48:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, как часто вы сохраняете копию данных. Скажите: «Мы делаем резервную копию каждый день»",
+        "accessibilityLabel": "Друг предлагает купить ещё хлеба, но его хватает. Скажите: «У нас достаточно хлеба»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i15:audio",
-            "transcript": "We make a backup every day."
+            "transcript": "We have enough bread."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We make a backup every day.",
+          "targetPhrase": "We have enough bread.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1038,23 +1037,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+        "prompt": "Друг спрашивает, можно ли садиться за стол. Осталось немного. Скажите: «Завтрак почти готов»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+        "accessibilityLabel": "Друг спрашивает, можно ли садиться за стол. Осталось немного. Скажите: «Завтрак почти готов»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The server is working.",
+          "targetPhrase": "Breakfast is nearly ready.",
           "localizedMeaning": {
-            "ru": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
-            "uk": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working"
+            "ru": "Друг спрашивает, можно ли садиться за стол. Осталось немного. Скажите: «Завтрак почти готов»",
+            "uk": "Друг запитує, чи можна сідати за стіл. Залишилося небагато. Скажіть: «Сніданок майже готовий»"
           },
           "orderedTokens": [
-            "The",
-            "server",
+            "Breakfast",
             "is",
-            "working"
+            "nearly",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1071,21 +1070,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы с коллегами проверяете систему в назначенное время обслуживания. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы проводим техническое обслуживание»",
+        "prompt": "Вы на кухне снимаете кожуру с грейпфрута. Друг звонит и спрашивает, чем вы заняты. Скажите: «Я чищу грейпфрут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-48:i17:audio"
         ],
-        "accessibilityLabel": "Вы с коллегами проверяете систему в назначенное время обслуживания. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы проводим техническое обслуживание»",
+        "accessibilityLabel": "Вы на кухне снимаете кожуру с грейпфрута. Друг звонит и спрашивает, чем вы заняты. Скажите: «Я чищу грейпфрут»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i17:audio",
-            "transcript": "We are doing maintenance."
+            "transcript": "I am peeling a grapefruit."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are doing maintenance.",
+          "targetPhrase": "I am peeling a grapefruit.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1109,32 +1108,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-48:word:backup",
+        "interactionId": "en:lesson-10:session-48:word:apricot",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — backup",
+        "prompt": "Картка слова — apricot",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:backup:audio"
+          "en:lesson-10:session-48:word:apricot:audio"
         ],
-        "accessibilityLabel": "Картка слова — backup",
+        "accessibilityLabel": "Картка слова — apricot",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:backup:audio",
-            "transcript": "backup"
+            "audioTargetId": "en:lesson-10:session-48:word:apricot:audio",
+            "transcript": "apricot"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:backup:r1",
-              "targetText": "backup",
+              "responseId": "en:lesson-10:session-48:word:apricot:r1",
+              "targetText": "apricot",
               "meaningByLocale": {
-                "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
-                "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+                "ru": "«абрикос». This apricot is sweet. — «Этот абрикос сладкий».",
+                "uk": "«абрикос». This apricot is sweet. — «Цей абрикос солодкий»."
               }
             }
           ],
@@ -1142,10 +1141,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "backup",
+            "word": "apricot",
             "definitionByLocale": {
-              "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
-              "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+              "ru": "«абрикос». This apricot is sweet. — «Этот абрикос сладкий».",
+              "uk": "«абрикос». This apricot is sweet. — «Цей абрикос солодкий»."
             }
           }
         },
@@ -1157,25 +1156,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці",
+        "prompt": "Ви куштуєте стиглий фрукт. Скажіть: «Цей абрикос солодкий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці",
+        "accessibilityLabel": "Ви куштуєте стиглий фрукт. Скажіть: «Цей абрикос солодкий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We make a backup every day.",
+          "targetPhrase": "This apricot is sweet.",
           "localizedMeaning": {
-            "ru": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
-            "uk": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці"
+            "ru": "Вы пробуете спелый фрукт. Скажите: «Этот абрикос сладкий»",
+            "uk": "Ви куштуєте стиглий фрукт. Скажіть: «Цей абрикос солодкий»"
           },
           "orderedTokens": [
-            "We",
-            "make",
-            "a",
-            "backup",
-            "every",
-            "day"
+            "This",
+            "apricot",
+            "is",
+            "sweet"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1196,15 +1193,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i02:r1",
-            "text": "The backup is ready."
+            "text": "The apricot is ripe."
           },
           {
             "responseId": "en:lesson-10:session-48:i02:r2",
-            "text": "The backup is missing."
+            "text": "The apricot is small."
           },
           {
             "responseId": "en:lesson-10:session-48:i02:r3",
-            "text": "The release is ready."
+            "text": "The peach is ripe."
           }
         ],
         "mediaIds": [],
@@ -1216,23 +1213,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i02:audio",
-            "transcript": "The backup is ready."
+            "transcript": "The apricot is ripe."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i02:r1",
-              "targetText": "The backup is ready.",
+              "targetText": "The apricot is ripe.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i02:r2",
-              "targetText": "The backup is missing.",
+              "targetText": "The apricot is small.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i02:r3",
-              "targetText": "The release is ready.",
+              "targetText": "The peach is ripe.",
               "meaningByLocale": null
             }
           ],
@@ -1243,8 +1240,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The backup is ready.",
-                "uk": "У записі звучить The backup is ready."
+                "ru": "В записи звучит The apricot is ripe.",
+                "uk": "У записі звучить The apricot is ripe."
               }
             },
             {
@@ -1252,8 +1249,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The backup is ready.",
-                "uk": "У записі звучить The backup is ready."
+                "ru": "В записи звучит The apricot is ripe.",
+                "uk": "У записі звучить The apricot is ripe."
               }
             }
           ],
@@ -1268,63 +1265,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це щоденна робота. Виберіть форму make",
+        "prompt": "Один фрукт. Виберіть зв’язку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i03:r1",
-            "text": "make"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i03:r2",
-            "text": "makes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-48:i03:r3",
-            "text": "making"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це щоденна робота. Виберіть форму make",
+        "accessibilityLabel": "Один фрукт. Виберіть зв’язку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежедневная работа. Выберите форму make",
-            "uk": "Це щоденна робота. Виберіть форму make"
+            "ru": "Один фрукт. Выберите связку",
+            "uk": "Один фрукт. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We ___ a backup every day.",
+          "gappedTargetPhrase": "This apricot ___ sweet.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i03:r1",
-              "text": "make"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r2",
-              "text": "makes"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r3",
-              "text": "making"
+              "text": "am"
             }
           ],
-          "testedDimension": "Це щоденна робота. Виберіть форму make",
+          "testedDimension": "Один фрукт. Виберіть зв’язку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i03:r2",
               "correct": false,
-              "testedDimension": "Це щоденна робота. Виберіть форму make",
+              "testedDimension": "Один фрукт. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "С we нужна make без s.",
-                "uk": "З we потрібна make без s."
+                "ru": "Один абрикос: is.",
+                "uk": "Один абрикос: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i03:r3",
               "correct": false,
-              "testedDimension": "Це щоденна робота. Виберіть форму make",
+              "testedDimension": "Один фрукт. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "Здесь нужна make.",
-                "uk": "Тут потрібна make."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1332,32 +1329,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:server",
+        "interactionId": "en:lesson-10:session-48:word:grapefruit",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — server",
+        "prompt": "Картка слова — grapefruit",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:server:audio"
+          "en:lesson-10:session-48:word:grapefruit:audio"
         ],
-        "accessibilityLabel": "Картка слова — server",
+        "accessibilityLabel": "Картка слова — grapefruit",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:server:audio",
-            "transcript": "server"
+            "audioTargetId": "en:lesson-10:session-48:word:grapefruit:audio",
+            "transcript": "grapefruit"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:server:r1",
-              "targetText": "server",
+              "responseId": "en:lesson-10:session-48:word:grapefruit:r1",
+              "targetText": "grapefruit",
               "meaningByLocale": {
-                "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
-                "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+                "ru": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут».",
+                "uk": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут»."
               }
             }
           ],
@@ -1365,10 +1362,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "server",
+            "word": "grapefruit",
             "definitionByLocale": {
-              "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
-              "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+              "ru": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут».",
+              "uk": "«грейпфрут». I am peeling a grapefruit. — «Я чищу грейпфрут»."
             }
           }
         },
@@ -1380,23 +1377,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working",
+        "prompt": "Ви зараз знімаєте шкірку з фрукта. Скажіть: «Я чищу грейпфрут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working",
+        "accessibilityLabel": "Ви зараз знімаєте шкірку з фрукта. Скажіть: «Я чищу грейпфрут»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The server is working.",
+          "targetPhrase": "I am peeling a grapefruit.",
           "localizedMeaning": {
-            "ru": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
-            "uk": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working"
+            "ru": "Вы сейчас снимаете кожуру с фрукта. Скажите: «Я чищу грейпфрут»",
+            "uk": "Ви зараз знімаєте шкірку з фрукта. Скажіть: «Я чищу грейпфрут»"
           },
           "orderedTokens": [
-            "The",
-            "server",
-            "is",
-            "working"
+            "I",
+            "am",
+            "peeling",
+            "a",
+            "grapefruit"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1417,15 +1415,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i05:r1",
-            "text": "The server is in the office."
+            "text": "The grapefruit is on the plate."
           },
           {
             "responseId": "en:lesson-10:session-48:i05:r2",
-            "text": "The server is in the basement."
+            "text": "The grapefruit is in the bag."
           },
           {
             "responseId": "en:lesson-10:session-48:i05:r3",
-            "text": "The printer is in the office."
+            "text": "The apricot is on the plate."
           }
         ],
         "mediaIds": [],
@@ -1437,23 +1435,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i05:audio",
-            "transcript": "The server is in the office."
+            "transcript": "The grapefruit is on the plate."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i05:r1",
-              "targetText": "The server is in the office.",
+              "targetText": "The grapefruit is on the plate.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i05:r2",
-              "targetText": "The server is in the basement.",
+              "targetText": "The grapefruit is in the bag.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i05:r3",
-              "targetText": "The printer is in the office.",
+              "targetText": "The apricot is on the plate.",
               "meaningByLocale": null
             }
           ],
@@ -1464,8 +1462,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The server is in the office.",
-                "uk": "У записі звучить The server is in the office."
+                "ru": "В записи звучит The grapefruit is on the plate.",
+                "uk": "У записі звучить The grapefruit is on the plate."
               }
             },
             {
@@ -1473,8 +1471,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The server is in the office.",
-                "uk": "У записі звучить The server is in the office."
+                "ru": "В записи звучит The grapefruit is on the plate.",
+                "uk": "У записі звучить The grapefruit is on the plate."
               }
             }
           ],
@@ -1489,63 +1487,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сервер працює зараз. Виберіть допоміжне дієслово",
+        "prompt": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i06:r1",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-10:session-48:i06:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i06:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сервер працює зараз. Виберіть допоміжне дієслово",
+        "accessibilityLabel": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сервер работает сейчас. Выберите вспомогательный глагол",
-            "uk": "Сервер працює зараз. Виберіть допоміжне дієслово"
+            "ru": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
+            "uk": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "The server ___ working.",
+          "gappedTargetPhrase": "I ___ peeling a grapefruit.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i06:r1",
-              "text": "is"
+              "text": "am"
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r2",
-              "text": "are"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r3",
-              "text": "am"
+              "text": "are"
             }
           ],
-          "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+          "testedDimension": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i06:r2",
               "correct": false,
-              "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "Один сервер: is.",
-                "uk": "Один сервер: is."
+                "ru": "С I нужна am.",
+                "uk": "З I потрібна am."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i06:r3",
               "correct": false,
-              "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "Am используется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Здесь нужна am, не are.",
+                "uk": "Тут потрібна am, не are."
               }
             }
           ]
@@ -1553,32 +1551,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:downtime",
+        "interactionId": "en:lesson-10:session-48:word:enough",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — downtime",
+        "prompt": "Картка слова — enough",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:downtime:audio"
+          "en:lesson-10:session-48:word:enough:audio"
         ],
-        "accessibilityLabel": "Картка слова — downtime",
+        "accessibilityLabel": "Картка слова — enough",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:downtime:audio",
-            "transcript": "downtime"
+            "audioTargetId": "en:lesson-10:session-48:word:enough:audio",
+            "transcript": "enough"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:downtime:r1",
-              "targetText": "downtime",
+              "responseId": "en:lesson-10:session-48:word:enough:r1",
+              "targetText": "enough",
               "meaningByLocale": {
-                "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
-                "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+                "ru": "«достаточно». We have enough bread. — «У нас достаточно хлеба». Хлеба хватает всем.",
+                "uk": "«достатньо». We have enough bread. — «У нас достатньо хліба». Хліба вистачає всім."
               }
             }
           ],
@@ -1586,10 +1584,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "downtime",
+            "word": "enough",
             "definitionByLocale": {
-              "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
-              "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+              "ru": "«достаточно». We have enough bread. — «У нас достаточно хлеба». Хлеба хватает всем.",
+              "uk": "«достатньо». We have enough bread. — «У нас достатньо хліба». Хліба вистачає всім."
             }
           }
         },
@@ -1601,24 +1599,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці",
+        "prompt": "Хліба вистачає всім за столом. Скажіть: «У нас достатньо хліба»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці",
+        "accessibilityLabel": "Хліба вистачає всім за столом. Скажіть: «У нас достатньо хліба»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We track downtime every week.",
+          "targetPhrase": "We have enough bread.",
           "localizedMeaning": {
-            "ru": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
-            "uk": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці"
+            "ru": "Хлеба хватает всем за столом. Скажите: «У нас достаточно хлеба»",
+            "uk": "Хліба вистачає всім за столом. Скажіть: «У нас достатньо хліба»"
           },
           "orderedTokens": [
             "We",
-            "track",
-            "downtime",
-            "every",
-            "week"
+            "have",
+            "enough",
+            "bread"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1639,15 +1636,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i08:r1",
-            "text": "The downtime is planned."
+            "text": "We have enough milk."
           },
           {
             "responseId": "en:lesson-10:session-48:i08:r2",
-            "text": "The downtime is unexpected."
+            "text": "We have enough bread."
           },
           {
             "responseId": "en:lesson-10:session-48:i08:r3",
-            "text": "The launch is planned."
+            "text": "We need more milk."
           }
         ],
         "mediaIds": [],
@@ -1659,23 +1656,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i08:audio",
-            "transcript": "The downtime is planned."
+            "transcript": "We have enough milk."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i08:r1",
-              "targetText": "The downtime is planned.",
+              "targetText": "We have enough milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i08:r2",
-              "targetText": "The downtime is unexpected.",
+              "targetText": "We have enough bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i08:r3",
-              "targetText": "The launch is planned.",
+              "targetText": "We need more milk.",
               "meaningByLocale": null
             }
           ],
@@ -1686,8 +1683,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The downtime is planned.",
-                "uk": "У записі звучить The downtime is planned."
+                "ru": "В записи звучит We have enough milk.",
+                "uk": "У записі звучить We have enough milk."
               }
             },
             {
@@ -1695,8 +1692,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The downtime is planned.",
-                "uk": "У записі звучить The downtime is planned."
+                "ru": "В записи звучит We have enough milk.",
+                "uk": "У записі звучить We have enough milk."
               }
             }
           ],
@@ -1711,63 +1708,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це щотижнева робота. Виберіть форму track",
+        "prompt": "Ідеться про наявність хліба. Виберіть форму have",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i09:r1",
-            "text": "track"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-48:i09:r2",
-            "text": "tracks"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-48:i09:r3",
-            "text": "tracking"
+            "text": "having"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це щотижнева робота. Виберіть форму track",
+        "accessibilityLabel": "Ідеться про наявність хліба. Виберіть форму have",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это еженедельная работа. Выберите форму track",
-            "uk": "Це щотижнева робота. Виберіть форму track"
+            "ru": "Речь о наличии хлеба. Выберите форму have",
+            "uk": "Ідеться про наявність хліба. Виберіть форму have"
           },
-          "gappedTargetPhrase": "We ___ downtime every week.",
+          "gappedTargetPhrase": "We ___ enough bread.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i09:r1",
-              "text": "track"
+              "text": "have"
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r2",
-              "text": "tracks"
+              "text": "has"
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r3",
-              "text": "tracking"
+              "text": "having"
             }
           ],
-          "testedDimension": "Це щотижнева робота. Виберіть форму track",
+          "testedDimension": "Ідеться про наявність хліба. Виберіть форму have",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i09:r2",
               "correct": false,
-              "testedDimension": "Це щотижнева робота. Виберіть форму track",
+              "testedDimension": "Ідеться про наявність хліба. Виберіть форму have",
               "feedbackByLocale": {
-                "ru": "С we нужна track без s.",
-                "uk": "З we потрібна track без s."
+                "ru": "С we нужна have.",
+                "uk": "З we потрібна have."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i09:r3",
               "correct": false,
-              "testedDimension": "Це щотижнева робота. Виберіть форму track",
+              "testedDimension": "Ідеться про наявність хліба. Виберіть форму have",
               "feedbackByLocale": {
-                "ru": "Здесь нужна track.",
-                "uk": "Тут потрібна track."
+                "ru": "Здесь нужна have.",
+                "uk": "Тут потрібна have."
               }
             }
           ]
@@ -1775,32 +1772,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-48:word:maintenance",
+        "interactionId": "en:lesson-10:session-48:word:nearly",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — maintenance",
+        "prompt": "Картка слова — nearly",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-48:word:maintenance:audio"
+          "en:lesson-10:session-48:word:nearly:audio"
         ],
-        "accessibilityLabel": "Картка слова — maintenance",
+        "accessibilityLabel": "Картка слова — nearly",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-48:word:maintenance:audio",
-            "transcript": "maintenance"
+            "audioTargetId": "en:lesson-10:session-48:word:nearly:audio",
+            "transcript": "nearly"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-48:word:maintenance:r1",
-              "targetText": "maintenance",
+              "responseId": "en:lesson-10:session-48:word:nearly:r1",
+              "targetText": "nearly",
               "meaningByLocale": {
-                "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
-                "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+                "ru": "«почти». Breakfast is nearly ready. — «Завтрак почти готов». Осталось немного.",
+                "uk": "«майже». Breakfast is nearly ready. — «Сніданок майже готовий». Залишилося небагато."
               }
             }
           ],
@@ -1808,10 +1805,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "maintenance",
+            "word": "nearly",
             "definitionByLocale": {
-              "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
-              "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+              "ru": "«почти». Breakfast is nearly ready. — «Завтрак почти готов». Осталось немного.",
+              "uk": "«майже». Breakfast is nearly ready. — «Сніданок майже готовий». Залишилося небагато."
             }
           }
         },
@@ -1823,23 +1820,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»",
+        "prompt": "Сніданок буде готовий зовсім скоро. Скажіть: «Сніданок майже готовий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»",
+        "accessibilityLabel": "Сніданок буде готовий зовсім скоро. Скажіть: «Сніданок майже готовий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are doing maintenance.",
+          "targetPhrase": "Breakfast is nearly ready.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
-            "uk": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»"
+            "ru": "Завтрак будет готов совсем скоро. Скажите: «Завтрак почти готов»",
+            "uk": "Сніданок буде готовий зовсім скоро. Скажіть: «Сніданок майже готовий»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "doing",
-            "maintenance"
+            "Breakfast",
+            "is",
+            "nearly",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1860,15 +1857,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i11:r1",
-            "text": "The maintenance is complete."
+            "text": "It is nearly eight."
           },
           {
             "responseId": "en:lesson-10:session-48:i11:r2",
-            "text": "The maintenance is delayed."
+            "text": "It is nearly nine."
           },
           {
             "responseId": "en:lesson-10:session-48:i11:r3",
-            "text": "The rollout is complete."
+            "text": "It is exactly eight."
           }
         ],
         "mediaIds": [],
@@ -1880,23 +1877,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i11:audio",
-            "transcript": "The maintenance is complete."
+            "transcript": "It is nearly eight."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-48:i11:r1",
-              "targetText": "The maintenance is complete.",
+              "targetText": "It is nearly eight.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i11:r2",
-              "targetText": "The maintenance is delayed.",
+              "targetText": "It is nearly nine.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-48:i11:r3",
-              "targetText": "The rollout is complete.",
+              "targetText": "It is exactly eight.",
               "meaningByLocale": null
             }
           ],
@@ -1907,8 +1904,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The maintenance is complete.",
-                "uk": "У записі звучить The maintenance is complete."
+                "ru": "В записи звучит It is nearly eight.",
+                "uk": "У записі звучить It is nearly eight."
               }
             },
             {
@@ -1916,8 +1913,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The maintenance is complete.",
-                "uk": "У записі звучить The maintenance is complete."
+                "ru": "В записи звучит It is nearly eight.",
+                "uk": "У записі звучить It is nearly eight."
               }
             }
           ],
@@ -1932,63 +1929,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Робота триває зараз. Виберіть форму do",
+        "prompt": "Опишіть готовність сніданку. Виберіть зв’язку",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-48:i12:r1",
-            "text": "doing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-48:i12:r2",
-            "text": "do"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-48:i12:r3",
-            "text": "does"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Робота триває зараз. Виберіть форму do",
+        "accessibilityLabel": "Опишіть готовність сніданку. Виберіть зв’язку",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Работа идёт сейчас. Выберите форму do",
-            "uk": "Робота триває зараз. Виберіть форму do"
+            "ru": "Опишите готовность завтрака. Выберите связку",
+            "uk": "Опишіть готовність сніданку. Виберіть зв’язку"
           },
-          "gappedTargetPhrase": "We are ___ maintenance.",
+          "gappedTargetPhrase": "Breakfast ___ nearly ready.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-48:i12:r1",
-              "text": "doing"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r2",
-              "text": "do"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r3",
-              "text": "does"
+              "text": "am"
             }
           ],
-          "testedDimension": "Робота триває зараз. Виберіть форму do",
+          "testedDimension": "Опишіть готовність сніданку. Виберіть зв’язку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-48:i12:r2",
               "correct": false,
-              "testedDimension": "Робота триває зараз. Виберіть форму do",
+              "testedDimension": "Опишіть готовність сніданку. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "После are для текущей работы нужна doing.",
-                "uk": "Після are для поточної роботи потрібна doing."
+                "ru": "С breakfast нужна is.",
+                "uk": "З breakfast потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-48:i12:r3",
               "correct": false,
-              "testedDimension": "Робота триває зараз. Виберіть форму do",
+              "testedDimension": "Опишіть готовність сніданку. Виберіть зв’язку",
               "feedbackByLocale": {
-                "ru": "Does не подходит после are; нужна doing.",
-                "uk": "Does не підходить після are; потрібна doing."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -2011,48 +2008,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-48:i13:p1",
-              "target": "backup",
+              "target": "apricot",
               "meaningByLocale": {
-                "ru": "резервная копия",
-                "uk": "резервна копія"
+                "ru": "абрикос",
+                "uk": "абрикос"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p2",
-              "target": "server",
+              "target": "grapefruit",
               "meaningByLocale": {
-                "ru": "сервер",
-                "uk": "сервер"
+                "ru": "грейпфрут",
+                "uk": "грейпфрут"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p3",
-              "target": "downtime",
+              "target": "enough",
               "meaningByLocale": {
-                "ru": "время простоя",
-                "uk": "час простою"
+                "ru": "достаточно",
+                "uk": "достатньо"
               }
             },
             {
               "pairId": "en:lesson-10:session-48:i13:p4",
-              "target": "maintenance",
+              "target": "nearly",
               "meaningByLocale": {
-                "ru": "техническое обслуживание",
-                "uk": "технічне обслуговування"
+                "ru": "почти",
+                "uk": "майже"
               }
             }
           ],
           "leftColumn": [
-            "backup",
-            "server",
-            "downtime",
-            "maintenance"
+            "apricot",
+            "grapefruit",
+            "enough",
+            "nearly"
           ],
           "rightColumn": [
-            "резервна копія",
-            "сервер",
-            "час простою",
-            "технічне обслуговування"
+            "абрикос",
+            "грейпфрут",
+            "достатньо",
+            "майже"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2085,15 +2082,16 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i14:audio",
-            "transcript": "We are doing maintenance."
+            "transcript": "I am peeling a grapefruit."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are doing maintenance.",
+          "hiddenTargetPhrase": "I am peeling a grapefruit.",
           "orderedTokens": [
-            "We",
-            "are",
-            "doing",
-            "maintenance"
+            "I",
+            "am",
+            "peeling",
+            "a",
+            "grapefruit"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2110,21 +2108,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, як часто ви зберігаєте копію даних. Скажіть: «Ми робимо резервну копію щодня»",
+        "prompt": "Друг пропонує купити ще хліба, але його вистачає. Скажіть: «У нас достатньо хліба»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-48:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, як часто ви зберігаєте копію даних. Скажіть: «Ми робимо резервну копію щодня»",
+        "accessibilityLabel": "Друг пропонує купити ще хліба, але його вистачає. Скажіть: «У нас достатньо хліба»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i15:audio",
-            "transcript": "We make a backup every day."
+            "transcript": "We have enough bread."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We make a backup every day.",
+          "targetPhrase": "We have enough bread.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2143,23 +2141,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working",
+        "prompt": "Друг запитує, чи можна сідати за стіл. Залишилося небагато. Скажіть: «Сніданок майже готовий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working",
+        "accessibilityLabel": "Друг запитує, чи можна сідати за стіл. Залишилося небагато. Скажіть: «Сніданок майже готовий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The server is working.",
+          "targetPhrase": "Breakfast is nearly ready.",
           "localizedMeaning": {
-            "ru": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
-            "uk": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working"
+            "ru": "Друг спрашивает, можно ли садиться за стол. Осталось немного. Скажите: «Завтрак почти готов»",
+            "uk": "Друг запитує, чи можна сідати за стіл. Залишилося небагато. Скажіть: «Сніданок майже готовий»"
           },
           "orderedTokens": [
-            "The",
-            "server",
+            "Breakfast",
             "is",
-            "working"
+            "nearly",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2176,21 +2174,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви з колегами перевіряєте систему в призначений час обслуговування. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми проводимо технічне обслуговування»",
+        "prompt": "Ви на кухні знімаєте шкірку з грейпфрута. Друг телефонує й запитує, чим ви зайняті. Скажіть: «Я чищу грейпфрут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-48:i17:audio"
         ],
-        "accessibilityLabel": "Ви з колегами перевіряєте систему в призначений час обслуговування. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми проводимо технічне обслуговування»",
+        "accessibilityLabel": "Ви на кухні знімаєте шкірку з грейпфрута. Друг телефонує й запитує, чим ви зайняті. Скажіть: «Я чищу грейпфрут»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-48:i17:audio",
-            "transcript": "We are doing maintenance."
+            "transcript": "I am peeling a grapefruit."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are doing maintenance.",
+          "targetPhrase": "I am peeling a grapefruit.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2215,83 +2213,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-48:word:backup",
-      "correctText": "backup",
+      "interactionId": "en:lesson-10:session-48:word:apricot",
+      "correctText": "apricot",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i01",
-      "correctText": "We make a backup every day.",
+      "correctText": "This apricot is sweet.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i02",
-      "correctText": "The backup is ready.",
+      "correctText": "The apricot is ripe.",
       "correctResponseId": "en:lesson-10:session-48:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-48:i03",
-      "correctText": "make",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-48:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-48:word:server",
-      "correctText": "server",
+      "interactionId": "en:lesson-10:session-48:word:grapefruit",
+      "correctText": "grapefruit",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i04",
-      "correctText": "The server is working.",
+      "correctText": "I am peeling a grapefruit.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i05",
-      "correctText": "The server is in the office.",
+      "correctText": "The grapefruit is on the plate.",
       "correctResponseId": "en:lesson-10:session-48:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-48:i06",
-      "correctText": "is",
+      "correctText": "am",
       "correctResponseId": "en:lesson-10:session-48:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-48:word:downtime",
-      "correctText": "downtime",
+      "interactionId": "en:lesson-10:session-48:word:enough",
+      "correctText": "enough",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i07",
-      "correctText": "We track downtime every week.",
+      "correctText": "We have enough bread.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i08",
-      "correctText": "The downtime is planned.",
+      "correctText": "We have enough milk.",
       "correctResponseId": "en:lesson-10:session-48:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-48:i09",
-      "correctText": "track",
+      "correctText": "have",
       "correctResponseId": "en:lesson-10:session-48:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-48:word:maintenance",
-      "correctText": "maintenance",
+      "interactionId": "en:lesson-10:session-48:word:nearly",
+      "correctText": "nearly",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i10",
-      "correctText": "We are doing maintenance.",
+      "correctText": "Breakfast is nearly ready.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i11",
-      "correctText": "The maintenance is complete.",
+      "correctText": "It is nearly eight.",
       "correctResponseId": "en:lesson-10:session-48:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-48:i12",
-      "correctText": "doing",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-48:i12:r1"
     },
     {
@@ -2301,22 +2299,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-48:i14",
-      "correctText": "We are doing maintenance.",
+      "correctText": "I am peeling a grapefruit.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i15",
-      "correctText": "We make a backup every day.",
+      "correctText": "We have enough bread.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i16",
-      "correctText": "The server is working.",
+      "correctText": "Breakfast is nearly ready.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-48:i17",
-      "correctText": "We are doing maintenance.",
+      "correctText": "I am peeling a grapefruit.",
       "correctResponseId": null
     }
   ]

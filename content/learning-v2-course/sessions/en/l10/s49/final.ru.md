@@ -59,9 +59,9 @@ Barometer — «барометр», прибор для измерения ат�
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-49:i02; family: listen_choose -->
-🔊 *The forecast is on the website.* → **The forecast is on the website.** · The forecast is in the email. · The changelog is on the website.
+🔊 *The forecast is on the website.* → **The forecast is on the website.** · The forecast is in the email. · The menu is on the website.
 - The forecast is in the email. — *В записи звучит The forecast is on the website.*
-- The changelog is on the website. — *В записи звучит The forecast is on the website.*
+- The menu is on the website. — *В записи звучит The forecast is on the website.*
 
 **4 · Это утренняя привычка. Выберите форму check**
 <!-- interaction_id: en:lesson-10:session-49:i03; family: context_gap_grammar -->

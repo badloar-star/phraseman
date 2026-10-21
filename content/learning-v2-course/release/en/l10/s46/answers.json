@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-46:word:launch",
-    "correctText": "launch",
+    "interactionId": "en:lesson-10:session-46:word:cabbage",
+    "correctText": "cabbage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i01",
-    "correctText": "The launch is tomorrow.",
+    "correctText": "I usually buy cabbage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i02",
-    "correctText": "The launch is in June.",
+    "correctText": "The cabbage is in the fridge.",
     "correctResponseId": "en:lesson-10:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-46:i03",
-    "correctText": "is",
+    "correctText": "buy",
     "correctResponseId": "en:lesson-10:session-46:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-46:word:rollout",
-    "correctText": "rollout",
+    "interactionId": "en:lesson-10:session-46:word:cauliflower",
+    "correctText": "cauliflower",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i04",
-    "correctText": "We review the rollout every week.",
+    "correctText": "The cauliflower is fresh.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i05",
-    "correctText": "The rollout is going well.",
+    "correctText": "I am washing the cauliflower.",
     "correctResponseId": "en:lesson-10:session-46:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-46:i06",
-    "correctText": "review",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-46:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-46:word:flagship",
-    "correctText": "flagship",
+    "interactionId": "en:lesson-10:session-46:word:garlic",
+    "correctText": "garlic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i07",
-    "correctText": "This model is our flagship.",
+    "correctText": "I am chopping garlic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i08",
-    "correctText": "Our flagship is on display.",
+    "correctText": "There is garlic in the soup.",
     "correctResponseId": "en:lesson-10:session-46:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-46:i09",
-    "correctText": "is",
+    "correctText": "chopping",
     "correctResponseId": "en:lesson-10:session-46:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-46:word:showroom",
-    "correctText": "showroom",
+    "interactionId": "en:lesson-10:session-46:word:lentils",
+    "correctText": "lentils",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i10",
-    "correctText": "We are preparing the showroom.",
+    "correctText": "We are cooking lentils.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i11",
-    "correctText": "The showroom is on the ground floor.",
+    "correctText": "The lentils are ready.",
     "correctResponseId": "en:lesson-10:session-46:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-46:i12",
-    "correctText": "preparing",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-46:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-46:i13",
-    "correctText": "en:lesson-10:session-46:i13:p1=launch\nen:lesson-10:session-46:i13:p2=rollout\nen:lesson-10:session-46:i13:p3=flagship\nen:lesson-10:session-46:i13:p4=showroom",
+    "correctText": "en:lesson-10:session-46:i13:p1=cabbage\nen:lesson-10:session-46:i13:p2=cauliflower\nen:lesson-10:session-46:i13:p3=garlic\nen:lesson-10:session-46:i13:p4=lentils",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i14",
-    "correctText": "We are preparing the showroom.",
+    "correctText": "I am chopping garlic.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i15",
-    "correctText": "We review the rollout every week.",
+    "correctText": "I usually buy cabbage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i16",
-    "correctText": "This model is our flagship.",
+    "correctText": "The cauliflower is fresh.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-46:i17",
-    "correctText": "We are preparing the showroom.",
+    "correctText": "We are cooking lentils.",
     "correctResponseId": null
   }
 ]

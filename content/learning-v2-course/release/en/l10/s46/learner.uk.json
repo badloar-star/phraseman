@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-46:word:launch",
+      "interactionId": "en:lesson-10:session-46:word:cabbage",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — launch",
+      "prompt": "Картка слова — cabbage",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-46:word:launch:audio"
+        "en:lesson-10:session-46:word:cabbage:audio"
       ],
-      "accessibilityLabel": "Картка слова — launch",
+      "accessibilityLabel": "Картка слова — cabbage",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-46:word:launch:audio",
-          "transcript": "launch"
+          "audioTargetId": "en:lesson-10:session-46:word:cabbage:audio",
+          "transcript": "cabbage"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-46:word:launch:r1",
-            "targetText": "launch",
+            "responseId": "en:lesson-10:session-46:word:cabbage:r1",
+            "targetText": "cabbage",
             "meaningByLocale": {
-              "ru": "«запуск продукта». The launch is tomorrow. — «Запуск завтра». Здесь официальное представление продукта и его выход на рынок.",
-              "uk": "«запуск продукту». The launch is tomorrow. — «Запуск завтра». Тут офіційне представлення продукту та його вихід на ринок."
+              "ru": "«капуста». I usually buy cabbage. — «Я обычно покупаю капусту».",
+              "uk": "«капуста». I usually buy cabbage. — «Я зазвичай купую капусту»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "launch",
+          "word": "cabbage",
           "definitionByLocale": {
-            "ru": "«запуск продукта». The launch is tomorrow. — «Запуск завтра». Здесь официальное представление продукта и его выход на рынок.",
-            "uk": "«запуск продукту». The launch is tomorrow. — «Запуск завтра». Тут офіційне представлення продукту та його вихід на ринок."
+            "ru": "«капуста». I usually buy cabbage. — «Я обычно покупаю капусту».",
+            "uk": "«капуста». I usually buy cabbage. — «Я зазвичай купую капусту»."
           }
         }
       },
@@ -52,23 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Новий продукт офіційно представлять завтра. Повідомте: «Запуск завтра»",
+      "prompt": "Ви зазвичай берете капусту для супу. Скажіть: «Я зазвичай купую капусту». Поставте usually перед buy",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новий продукт офіційно представлять завтра. Повідомте: «Запуск завтра»",
+      "accessibilityLabel": "Ви зазвичай берете капусту для супу. Скажіть: «Я зазвичай купую капусту». Поставте usually перед buy",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The launch is tomorrow.",
+        "targetPhrase": "I usually buy cabbage.",
         "localizedMeaning": {
-          "ru": "Новый продукт официально представят завтра. Сообщите: «Запуск завтра»",
-          "uk": "Новий продукт офіційно представлять завтра. Повідомте: «Запуск завтра»"
+          "ru": "Вы обычно берёте капусту для супа. Скажите: «Я обычно покупаю капусту». Поставьте usually перед buy",
+          "uk": "Ви зазвичай берете капусту для супу. Скажіть: «Я зазвичай купую капусту». Поставте usually перед buy"
         },
         "orderedTokens": [
-          "The",
-          "launch",
-          "is",
-          "tomorrow"
+          "I",
+          "usually",
+          "buy",
+          "cabbage"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i02:r1",
-          "text": "The launch is in June."
+          "text": "The cabbage is in the fridge."
         },
         {
           "responseId": "en:lesson-10:session-46:i02:r2",
-          "text": "The launch is in July."
+          "text": "The cabbage is on the table."
         },
         {
           "responseId": "en:lesson-10:session-46:i02:r3",
-          "text": "The conference is in June."
+          "text": "The cheese is in the fridge."
         }
       ],
       "mediaIds": [],
@@ -109,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i02:audio",
-          "transcript": "The launch is in June."
+          "transcript": "The cabbage is in the fridge."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-46:i02:r1",
-            "targetText": "The launch is in June.",
+            "targetText": "The cabbage is in the fridge.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i02:r2",
-            "targetText": "The launch is in July.",
+            "targetText": "The cabbage is on the table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i02:r3",
-            "targetText": "The conference is in June.",
+            "targetText": "The cheese is in the fridge.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The launch is in June.",
-              "uk": "У записі звучить The launch is in June."
+              "ru": "В записи звучит The cabbage is in the fridge.",
+              "uk": "У записі звучить The cabbage is in the fridge."
             }
           },
           {
@@ -145,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The launch is in June.",
-              "uk": "У записі звучить The launch is in June."
+              "ru": "В записи звучит The cabbage is in the fridge.",
+              "uk": "У записі звучить The cabbage is in the fridge."
             }
           }
         ],
@@ -161,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ідеться про одну подію. Виберіть зв’язку",
+      "prompt": "Це звичка. Виберіть форму buy",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i03:r1",
-          "text": "is"
+          "text": "buy"
         },
         {
           "responseId": "en:lesson-10:session-46:i03:r2",
-          "text": "are"
+          "text": "buys"
         },
         {
           "responseId": "en:lesson-10:session-46:i03:r3",
-          "text": "am"
+          "text": "buying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ідеться про одну подію. Виберіть зв’язку",
+      "accessibilityLabel": "Це звичка. Виберіть форму buy",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном событии. Выберите связку",
-          "uk": "Ідеться про одну подію. Виберіть зв’язку"
+          "ru": "Это привычка. Выберите форму buy",
+          "uk": "Це звичка. Виберіть форму buy"
         },
-        "gappedTargetPhrase": "The launch ___ tomorrow.",
+        "gappedTargetPhrase": "I usually ___ cabbage.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-46:i03:r1",
-            "text": "is"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-46:i03:r2",
-            "text": "are"
+            "text": "buys"
           },
           {
             "responseId": "en:lesson-10:session-46:i03:r3",
-            "text": "am"
+            "text": "buying"
           }
         ],
-        "testedDimension": "Ідеться про одну подію. Виберіть зв’язку",
+        "testedDimension": "Це звичка. Виберіть форму buy",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Ідеться про одну подію. Виберіть зв’язку",
+            "testedDimension": "Це звичка. Виберіть форму buy",
             "feedbackByLocale": {
-              "ru": "Одно событие: is.",
-              "uk": "Одна подія: is."
+              "ru": "С I нужна buy без s.",
+              "uk": "З I потрібна buy без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Ідеться про одну подію. Виберіть зв’язку",
+            "testedDimension": "Це звичка. Виберіть форму buy",
             "feedbackByLocale": {
-              "ru": "Am используется с I; здесь нужна is.",
-              "uk": "Am уживається з I; тут потрібна is."
+              "ru": "Здесь нужна buy.",
+              "uk": "Тут потрібна buy."
             }
           }
         ]
@@ -225,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-46:word:rollout",
+      "interactionId": "en:lesson-10:session-46:word:cauliflower",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — rollout",
+      "prompt": "Картка слова — cauliflower",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-46:word:rollout:audio"
+        "en:lesson-10:session-46:word:cauliflower:audio"
       ],
-      "accessibilityLabel": "Картка слова — rollout",
+      "accessibilityLabel": "Картка слова — cauliflower",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-46:word:rollout:audio",
-          "transcript": "rollout"
+          "audioTargetId": "en:lesson-10:session-46:word:cauliflower:audio",
+          "transcript": "cauliflower"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-46:word:rollout:r1",
-            "targetText": "rollout",
+            "responseId": "en:lesson-10:session-46:word:cauliflower:r1",
+            "targetText": "cauliflower",
             "meaningByLocale": {
-              "ru": "«поэтапное внедрение». We review the rollout every week. — «Мы анализируем поэтапное внедрение каждую неделю». Здесь постепенное расширение доступности продукта.",
-              "uk": "«поетапне впровадження». We review the rollout every week. — «Ми аналізуємо поетапне впровадження щотижня». Тут поступове розширення доступності продукту."
+              "ru": "«цветная капуста». The cauliflower is fresh. — «Цветная капуста свежая».",
+              "uk": "«цвітна капуста». The cauliflower is fresh. — «Цвітна капуста свіжа»."
             }
           }
         ],
@@ -258,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "rollout",
+          "word": "cauliflower",
           "definitionByLocale": {
-            "ru": "«поэтапное внедрение». We review the rollout every week. — «Мы анализируем поэтапное внедрение каждую неделю». Здесь постепенное расширение доступности продукта.",
-            "uk": "«поетапне впровадження». We review the rollout every week. — «Ми аналізуємо поетапне впровадження щотижня». Тут поступове розширення доступності продукту."
+            "ru": "«цветная капуста». The cauliflower is fresh. — «Цветная капуста свежая».",
+            "uk": "«цвітна капуста». The cauliflower is fresh. — «Цвітна капуста свіжа»."
           }
         }
       },
@@ -273,25 +273,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Команда щотижня обговорює впровадження продукту в нових містах. Скажіть: «Ми аналізуємо поетапне впровадження щотижня». Поставте every week у кінці",
+      "prompt": "Ви вибираєте овочі для вечері. Скажіть: «Цвітна капуста свіжа»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Команда щотижня обговорює впровадження продукту в нових містах. Скажіть: «Ми аналізуємо поетапне впровадження щотижня». Поставте every week у кінці",
+      "accessibilityLabel": "Ви вибираєте овочі для вечері. Скажіть: «Цвітна капуста свіжа»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We review the rollout every week.",
+        "targetPhrase": "The cauliflower is fresh.",
         "localizedMeaning": {
-          "ru": "Команда еженедельно обсуждает внедрение продукта в новых городах. Скажите: «Мы анализируем поэтапное внедрение каждую неделю». Поставьте every week в конце",
-          "uk": "Команда щотижня обговорює впровадження продукту в нових містах. Скажіть: «Ми аналізуємо поетапне впровадження щотижня». Поставте every week у кінці"
+          "ru": "Вы выбираете овощи для ужина. Скажите: «Цветная капуста свежая»",
+          "uk": "Ви вибираєте овочі для вечері. Скажіть: «Цвітна капуста свіжа»"
         },
         "orderedTokens": [
-          "We",
-          "review",
-          "the",
-          "rollout",
-          "every",
-          "week"
+          "The",
+          "cauliflower",
+          "is",
+          "fresh"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i05:r1",
-          "text": "The rollout is going well."
+          "text": "I am washing the cauliflower."
         },
         {
           "responseId": "en:lesson-10:session-46:i05:r2",
-          "text": "The rollout is going slowly."
+          "text": "I am cutting the cauliflower."
         },
         {
           "responseId": "en:lesson-10:session-46:i05:r3",
-          "text": "The project is going well."
+          "text": "I am washing the cabbage."
         }
       ],
       "mediaIds": [],
@@ -332,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i05:audio",
-          "transcript": "The rollout is going well."
+          "transcript": "I am washing the cauliflower."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-46:i05:r1",
-            "targetText": "The rollout is going well.",
+            "targetText": "I am washing the cauliflower.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i05:r2",
-            "targetText": "The rollout is going slowly.",
+            "targetText": "I am cutting the cauliflower.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i05:r3",
-            "targetText": "The project is going well.",
+            "targetText": "I am washing the cabbage.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rollout is going well.",
-              "uk": "У записі звучить The rollout is going well."
+              "ru": "В записи звучит I am washing the cauliflower.",
+              "uk": "У записі звучить I am washing the cauliflower."
             }
           },
           {
@@ -368,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rollout is going well.",
-              "uk": "У записі звучить The rollout is going well."
+              "ru": "В записи звучит I am washing the cauliflower.",
+              "uk": "У записі звучить I am washing the cauliflower."
             }
           }
         ],
@@ -384,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Це щотижневий аналіз. Виберіть форму review",
+      "prompt": "Опишіть овоч. Виберіть зв’язку",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i06:r1",
-          "text": "review"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-46:i06:r2",
-          "text": "reviews"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-46:i06:r3",
-          "text": "reviewing"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Це щотижневий аналіз. Виберіть форму review",
+      "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это еженедельный анализ. Выберите форму review",
-          "uk": "Це щотижневий аналіз. Виберіть форму review"
+          "ru": "Опишите овощ. Выберите связку",
+          "uk": "Опишіть овоч. Виберіть зв’язку"
         },
-        "gappedTargetPhrase": "We ___ the rollout every week.",
+        "gappedTargetPhrase": "The cauliflower ___ fresh.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-46:i06:r1",
-            "text": "review"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-46:i06:r2",
-            "text": "reviews"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-46:i06:r3",
-            "text": "reviewing"
+            "text": "am"
           }
         ],
-        "testedDimension": "Це щотижневий аналіз. Виберіть форму review",
+        "testedDimension": "Опишіть овоч. Виберіть зв’язку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-46:i06:r2",
             "correct": false,
-            "testedDimension": "Це щотижневий аналіз. Виберіть форму review",
+            "testedDimension": "Опишіть овоч. Виберіть зв’язку",
             "feedbackByLocale": {
-              "ru": "С we нужна review без s.",
-              "uk": "З we потрібна review без s."
+              "ru": "С cauliflower здесь нужна is.",
+              "uk": "З cauliflower тут потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-46:i06:r3",
             "correct": false,
-            "testedDimension": "Це щотижневий аналіз. Виберіть форму review",
+            "testedDimension": "Опишіть овоч. Виберіть зв’язку",
             "feedbackByLocale": {
-              "ru": "Для регулярного действия нужна review.",
-              "uk": "Для регулярної дії потрібна review."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -448,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-46:word:flagship",
+      "interactionId": "en:lesson-10:session-46:word:garlic",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — flagship",
+      "prompt": "Картка слова — garlic",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-46:word:flagship:audio"
+        "en:lesson-10:session-46:word:garlic:audio"
       ],
-      "accessibilityLabel": "Картка слова — flagship",
+      "accessibilityLabel": "Картка слова — garlic",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-46:word:flagship:audio",
-          "transcript": "flagship"
+          "audioTargetId": "en:lesson-10:session-46:word:garlic:audio",
+          "transcript": "garlic"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-46:word:flagship:r1",
-            "targetText": "flagship",
+            "responseId": "en:lesson-10:session-46:word:garlic:r1",
+            "targetText": "garlic",
             "meaningByLocale": {
-              "ru": "«флагманский продукт». This model is our flagship. — «Эта модель — наш флагманский продукт». Здесь главная, наиболее представительная модель компании, не корабль.",
-              "uk": "«флагманський продукт». This model is our flagship. — «Ця модель — наш флагманський продукт». Тут головна, найпоказовіша модель компанії, не корабель."
+              "ru": "«чеснок». I am chopping garlic. — «Я режу чеснок».",
+              "uk": "«часник». I am chopping garlic. — «Я ріжу часник»."
             }
           }
         ],
@@ -481,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "flagship",
+          "word": "garlic",
           "definitionByLocale": {
-            "ru": "«флагманский продукт». This model is our flagship. — «Эта модель — наш флагманский продукт». Здесь главная, наиболее представительная модель компании, не корабль.",
-            "uk": "«флагманський продукт». This model is our flagship. — «Ця модель — наш флагманський продукт». Тут головна, найпоказовіша модель компанії, не корабель."
+            "ru": "«чеснок». I am chopping garlic. — «Я режу чеснок».",
+            "uk": "«часник». I am chopping garlic. — «Я ріжу часник»."
           }
         }
       },
@@ -496,24 +494,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте головну модель нової лінійки. Скажіть: «Ця модель — наш флагманський продукт»",
+      "prompt": "Ви зараз ріжете часник для супу. Скажіть: «Я ріжу часник»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте головну модель нової лінійки. Скажіть: «Ця модель — наш флагманський продукт»",
+      "accessibilityLabel": "Ви зараз ріжете часник для супу. Скажіть: «Я ріжу часник»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This model is our flagship.",
+        "targetPhrase": "I am chopping garlic.",
         "localizedMeaning": {
-          "ru": "Вы показываете главную модель новой линейки. Скажите: «Эта модель — наш флагманский продукт»",
-          "uk": "Ви показуєте головну модель нової лінійки. Скажіть: «Ця модель — наш флагманський продукт»"
+          "ru": "Вы сейчас режете чеснок для супа. Скажите: «Я режу чеснок»",
+          "uk": "Ви зараз ріжете часник для супу. Скажіть: «Я ріжу часник»"
         },
         "orderedTokens": [
-          "This",
-          "model",
-          "is",
-          "our",
-          "flagship"
+          "I",
+          "am",
+          "chopping",
+          "garlic"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +531,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i08:r1",
-          "text": "Our flagship is on display."
+          "text": "There is garlic in the soup."
         },
         {
           "responseId": "en:lesson-10:session-46:i08:r2",
-          "text": "Our flagship is in storage."
+          "text": "There is garlic in the sauce."
         },
         {
           "responseId": "en:lesson-10:session-46:i08:r3",
-          "text": "Our prototype is on display."
+          "text": "There is salt in the soup."
         }
       ],
       "mediaIds": [],
@@ -554,23 +551,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i08:audio",
-          "transcript": "Our flagship is on display."
+          "transcript": "There is garlic in the soup."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-46:i08:r1",
-            "targetText": "Our flagship is on display.",
+            "targetText": "There is garlic in the soup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i08:r2",
-            "targetText": "Our flagship is in storage.",
+            "targetText": "There is garlic in the sauce.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i08:r3",
-            "targetText": "Our prototype is on display.",
+            "targetText": "There is salt in the soup.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +578,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our flagship is on display.",
-              "uk": "У записі звучить Our flagship is on display."
+              "ru": "В записи звучит There is garlic in the soup.",
+              "uk": "У записі звучить There is garlic in the soup."
             }
           },
           {
@@ -590,8 +587,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our flagship is on display.",
-              "uk": "У записі звучить Our flagship is on display."
+              "ru": "В записи звучит There is garlic in the soup.",
+              "uk": "У записі звучить There is garlic in the soup."
             }
           }
         ],
@@ -606,63 +603,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ідеться про одну модель. Виберіть зв’язку",
+      "prompt": "Виберіть написання форми chop",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i09:r1",
-          "text": "is"
+          "text": "chopping"
         },
         {
           "responseId": "en:lesson-10:session-46:i09:r2",
-          "text": "are"
+          "text": "choping"
         },
         {
           "responseId": "en:lesson-10:session-46:i09:r3",
-          "text": "am"
+          "text": "chop"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ідеться про одну модель. Виберіть зв’язку",
+      "accessibilityLabel": "Виберіть написання форми chop",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одной модели. Выберите связку",
-          "uk": "Ідеться про одну модель. Виберіть зв’язку"
+          "ru": "Выберите написание формы chop",
+          "uk": "Виберіть написання форми chop"
         },
-        "gappedTargetPhrase": "This model ___ our flagship.",
+        "gappedTargetPhrase": "I am ___ garlic.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-46:i09:r1",
-            "text": "is"
+            "text": "chopping"
           },
           {
             "responseId": "en:lesson-10:session-46:i09:r2",
-            "text": "are"
+            "text": "choping"
           },
           {
             "responseId": "en:lesson-10:session-46:i09:r3",
-            "text": "am"
+            "text": "chop"
           }
         ],
-        "testedDimension": "Ідеться про одну модель. Виберіть зв’язку",
+        "testedDimension": "Виберіть написання форми chop",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Ідеться про одну модель. Виберіть зв’язку",
+            "testedDimension": "Виберіть написання форми chop",
             "feedbackByLocale": {
-              "ru": "Одна модель: is.",
-              "uk": "Одна модель: is."
+              "ru": "Удваиваем p: chopping.",
+              "uk": "Подвоюємо p: chopping."
             }
           },
           {
             "responseId": "en:lesson-10:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Ідеться про одну модель. Виберіть зв’язку",
+            "testedDimension": "Виберіть написання форми chop",
             "feedbackByLocale": {
-              "ru": "Am используется с I; здесь нужна is.",
-              "uk": "Am уживається з I; тут потрібна is."
+              "ru": "После am для текущего действия нужна chopping.",
+              "uk": "Після am для поточної дії потрібна chopping."
             }
           }
         ]
@@ -670,32 +667,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-46:word:showroom",
+      "interactionId": "en:lesson-10:session-46:word:lentils",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — showroom",
+      "prompt": "Картка слова — lentils",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-46:word:showroom:audio"
+        "en:lesson-10:session-46:word:lentils:audio"
       ],
-      "accessibilityLabel": "Картка слова — showroom",
+      "accessibilityLabel": "Картка слова — lentils",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-46:word:showroom:audio",
-          "transcript": "showroom"
+          "audioTargetId": "en:lesson-10:session-46:word:lentils:audio",
+          "transcript": "lentils"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-46:word:showroom:r1",
-            "targetText": "showroom",
+            "responseId": "en:lesson-10:session-46:word:lentils:r1",
+            "targetText": "lentils",
             "meaningByLocale": {
-              "ru": "«демонстрационный зал». We are preparing the showroom. — «Мы готовим демонстрационный зал». Место, где покупателям показывают товары.",
-              "uk": "«демонстраційний зал». We are preparing the showroom. — «Ми готуємо демонстраційний зал». Місце, де покупцям показують товари."
+              "ru": "«чечевица». We are cooking lentils. — «Мы готовим чечевицу».",
+              "uk": "«сочевиця». We are cooking lentils. — «Ми готуємо сочевицю»."
             }
           }
         ],
@@ -703,10 +700,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "showroom",
+          "word": "lentils",
           "definitionByLocale": {
-            "ru": "«демонстрационный зал». We are preparing the showroom. — «Мы готовим демонстрационный зал». Место, где покупателям показывают товары.",
-            "uk": "«демонстраційний зал». We are preparing the showroom. — «Ми готуємо демонстраційний зал». Місце, де покупцям показують товари."
+            "ru": "«чечевица». We are cooking lentils. — «Мы готовим чечевицу».",
+            "uk": "«сочевиця». We are cooking lentils. — «Ми готуємо сочевицю»."
           }
         }
       },
@@ -718,24 +715,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви зараз розставляєте моделі перед приходом покупців. Скажіть: «Ми готуємо демонстраційний зал»",
+      "prompt": "Ви з другом зараз готуєте вечерю. Скажіть: «Ми готуємо сочевицю»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви зараз розставляєте моделі перед приходом покупців. Скажіть: «Ми готуємо демонстраційний зал»",
+      "accessibilityLabel": "Ви з другом зараз готуєте вечерю. Скажіть: «Ми готуємо сочевицю»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are preparing the showroom.",
+        "targetPhrase": "We are cooking lentils.",
         "localizedMeaning": {
-          "ru": "Вы сейчас расставляете модели перед приходом покупателей. Скажите: «Мы готовим демонстрационный зал»",
-          "uk": "Ви зараз розставляєте моделі перед приходом покупців. Скажіть: «Ми готуємо демонстраційний зал»"
+          "ru": "Вы с другом сейчас готовите ужин. Скажите: «Мы готовим чечевицу»",
+          "uk": "Ви з другом зараз готуєте вечерю. Скажіть: «Ми готуємо сочевицю»"
         },
         "orderedTokens": [
           "We",
           "are",
-          "preparing",
-          "the",
-          "showroom"
+          "cooking",
+          "lentils"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -756,15 +752,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i11:r1",
-          "text": "The showroom is on the ground floor."
+          "text": "The lentils are ready."
         },
         {
           "responseId": "en:lesson-10:session-46:i11:r2",
-          "text": "The showroom is on the first floor."
+          "text": "The lentils are cold."
         },
         {
           "responseId": "en:lesson-10:session-46:i11:r3",
-          "text": "The office is on the ground floor."
+          "text": "The potatoes are ready."
         }
       ],
       "mediaIds": [],
@@ -776,23 +772,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i11:audio",
-          "transcript": "The showroom is on the ground floor."
+          "transcript": "The lentils are ready."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-46:i11:r1",
-            "targetText": "The showroom is on the ground floor.",
+            "targetText": "The lentils are ready.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i11:r2",
-            "targetText": "The showroom is on the first floor.",
+            "targetText": "The lentils are cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-46:i11:r3",
-            "targetText": "The office is on the ground floor.",
+            "targetText": "The potatoes are ready.",
             "meaningByLocale": null
           }
         ],
@@ -803,8 +799,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The showroom is on the ground floor.",
-              "uk": "У записі звучить The showroom is on the ground floor."
+              "ru": "В записи звучит The lentils are ready.",
+              "uk": "У записі звучить The lentils are ready."
             }
           },
           {
@@ -812,8 +808,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The showroom is on the ground floor.",
-              "uk": "У записі звучить The showroom is on the ground floor."
+              "ru": "В записи звучит The lentils are ready.",
+              "uk": "У записі звучить The lentils are ready."
             }
           }
         ],
@@ -828,63 +824,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть правильне написання форми prepare",
+      "prompt": "Виберіть зв’язку з множиною lentils",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i12:r1",
-          "text": "preparing"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-46:i12:r2",
-          "text": "prepareing"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-46:i12:r3",
-          "text": "prepare"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть правильне написання форми prepare",
+      "accessibilityLabel": "Виберіть зв’язку з множиною lentils",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы prepare",
-          "uk": "Виберіть правильне написання форми prepare"
+          "ru": "Выберите связку с множественным lentils",
+          "uk": "Виберіть зв’язку з множиною lentils"
         },
-        "gappedTargetPhrase": "We are ___ the showroom.",
+        "gappedTargetPhrase": "The lentils ___ ready.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-46:i12:r1",
-            "text": "preparing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-46:i12:r2",
-            "text": "prepareing"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-46:i12:r3",
-            "text": "prepare"
+            "text": "am"
           }
         ],
-        "testedDimension": "Виберіть правильне написання форми prepare",
+        "testedDimension": "Виберіть зв’язку з множиною lentils",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-46:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми prepare",
+            "testedDimension": "Виберіть зв’язку з множиною lentils",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем e: preparing.",
-              "uk": "Перед ing прибираємо e: preparing."
+              "ru": "Lentils — множественное число: are.",
+              "uk": "Lentils — множина: are."
             }
           },
           {
             "responseId": "en:lesson-10:session-46:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми prepare",
+            "testedDimension": "Виберіть зв’язку з множиною lentils",
             "feedbackByLocale": {
-              "ru": "После are для текущего действия нужна preparing.",
-              "uk": "Після are для поточної дії потрібна preparing."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -907,48 +903,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-46:i13:p1",
-            "target": "launch",
+            "target": "cabbage",
             "meaningByLocale": {
-              "ru": "запуск продукта",
-              "uk": "запуск продукту"
+              "ru": "капуста",
+              "uk": "капуста"
             }
           },
           {
             "pairId": "en:lesson-10:session-46:i13:p2",
-            "target": "rollout",
+            "target": "cauliflower",
             "meaningByLocale": {
-              "ru": "поэтапное внедрение",
-              "uk": "поетапне впровадження"
+              "ru": "цветная капуста",
+              "uk": "цвітна капуста"
             }
           },
           {
             "pairId": "en:lesson-10:session-46:i13:p3",
-            "target": "flagship",
+            "target": "garlic",
             "meaningByLocale": {
-              "ru": "флагманский продукт",
-              "uk": "флагманський продукт"
+              "ru": "чеснок",
+              "uk": "часник"
             }
           },
           {
             "pairId": "en:lesson-10:session-46:i13:p4",
-            "target": "showroom",
+            "target": "lentils",
             "meaningByLocale": {
-              "ru": "демонстрационный зал",
-              "uk": "демонстраційний зал"
+              "ru": "чечевица",
+              "uk": "сочевиця"
             }
           }
         ],
         "leftColumn": [
-          "launch",
-          "rollout",
-          "flagship",
-          "showroom"
+          "cabbage",
+          "cauliflower",
+          "garlic",
+          "lentils"
         ],
         "rightColumn": [
-          "запуск продукту",
-          "поетапне впровадження",
-          "флагманський продукт",
-          "демонстраційний зал"
+          "капуста",
+          "цвітна капуста",
+          "часник",
+          "сочевиця"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -981,16 +977,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i14:audio",
-          "transcript": "We are preparing the showroom."
+          "transcript": "I am chopping garlic."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are preparing the showroom.",
+        "hiddenTargetPhrase": "I am chopping garlic.",
         "orderedTokens": [
-          "We",
-          "are",
-          "preparing",
-          "the",
-          "showroom"
+          "I",
+          "am",
+          "chopping",
+          "garlic"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1007,21 +1002,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує, як часто команда аналізує впровадження продукту. Скажіть: «Ми аналізуємо поетапне впровадження щотижня»",
+      "prompt": "Друг запитує, який овоч ви зазвичай купуєте. Скажіть: «Я зазвичай купую капусту»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Колега запитує, як часто команда аналізує впровадження продукту. Скажіть: «Ми аналізуємо поетапне впровадження щотижня»",
+      "accessibilityLabel": "Друг запитує, який овоч ви зазвичай купуєте. Скажіть: «Я зазвичай купую капусту»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i15:audio",
-          "transcript": "We review the rollout every week."
+          "transcript": "I usually buy cabbage."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We review the rollout every week.",
+        "targetPhrase": "I usually buy cabbage.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1040,24 +1035,23 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покупець запитує про головну модель компанії. Скажіть: «Ця модель — наш флагманський продукт»",
+      "prompt": "Ви показуєте другу свіжий овоч. Скажіть: «Цвітна капуста свіжа»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покупець запитує про головну модель компанії. Скажіть: «Ця модель — наш флагманський продукт»",
+      "accessibilityLabel": "Ви показуєте другу свіжий овоч. Скажіть: «Цвітна капуста свіжа»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This model is our flagship.",
+        "targetPhrase": "The cauliflower is fresh.",
         "localizedMeaning": {
-          "ru": "Покупатель спрашивает о главной модели компании. Скажите: «Эта модель — наш флагманский продукт»",
-          "uk": "Покупець запитує про головну модель компанії. Скажіть: «Ця модель — наш флагманський продукт»"
+          "ru": "Вы показываете другу свежий овощ. Скажите: «Цветная капуста свежая»",
+          "uk": "Ви показуєте другу свіжий овоч. Скажіть: «Цвітна капуста свіжа»"
         },
         "orderedTokens": [
-          "This",
-          "model",
+          "The",
+          "cauliflower",
           "is",
-          "our",
-          "flagship"
+          "fresh"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1074,21 +1068,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з колегами розставляєте товари в залі перед запуском. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми готуємо демонстраційний зал»",
+      "prompt": "Ви з другом стоїте біля плити й варите сочевицю. Сусід запитує, що ви готуєте. Скажіть: «Ми готуємо сочевицю»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-46:i17:audio"
       ],
-      "accessibilityLabel": "Ви з колегами розставляєте товари в залі перед запуском. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми готуємо демонстраційний зал»",
+      "accessibilityLabel": "Ви з другом стоїте біля плити й варите сочевицю. Сусід запитує, що ви готуєте. Скажіть: «Ми готуємо сочевицю»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-46:i17:audio",
-          "transcript": "We are preparing the showroom."
+          "transcript": "We are cooking lentils."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are preparing the showroom.",
+        "targetPhrase": "We are cooking lentils.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1116,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01c5e00786dc1eb44af856ea994403370478157893a5df9f9fcf6e15c0ff0f0a"
+  "learnerFingerprint": "b3e278c362fae535102d4ff8f7c4cc0238fcb1e8771b96d667c9f102da0741bf"
 }

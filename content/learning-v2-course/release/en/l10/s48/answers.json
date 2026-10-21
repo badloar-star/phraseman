@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-48:word:backup",
-    "correctText": "backup",
+    "interactionId": "en:lesson-10:session-48:word:apricot",
+    "correctText": "apricot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i01",
-    "correctText": "We make a backup every day.",
+    "correctText": "This apricot is sweet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i02",
-    "correctText": "The backup is ready.",
+    "correctText": "The apricot is ripe.",
     "correctResponseId": "en:lesson-10:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-48:i03",
-    "correctText": "make",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-48:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-48:word:server",
-    "correctText": "server",
+    "interactionId": "en:lesson-10:session-48:word:grapefruit",
+    "correctText": "grapefruit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i04",
-    "correctText": "The server is working.",
+    "correctText": "I am peeling a grapefruit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i05",
-    "correctText": "The server is in the office.",
+    "correctText": "The grapefruit is on the plate.",
     "correctResponseId": "en:lesson-10:session-48:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-48:i06",
-    "correctText": "is",
+    "correctText": "am",
     "correctResponseId": "en:lesson-10:session-48:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-48:word:downtime",
-    "correctText": "downtime",
+    "interactionId": "en:lesson-10:session-48:word:enough",
+    "correctText": "enough",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i07",
-    "correctText": "We track downtime every week.",
+    "correctText": "We have enough bread.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i08",
-    "correctText": "The downtime is planned.",
+    "correctText": "We have enough milk.",
     "correctResponseId": "en:lesson-10:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-48:i09",
-    "correctText": "track",
+    "correctText": "have",
     "correctResponseId": "en:lesson-10:session-48:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-48:word:maintenance",
-    "correctText": "maintenance",
+    "interactionId": "en:lesson-10:session-48:word:nearly",
+    "correctText": "nearly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i10",
-    "correctText": "We are doing maintenance.",
+    "correctText": "Breakfast is nearly ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i11",
-    "correctText": "The maintenance is complete.",
+    "correctText": "It is nearly eight.",
     "correctResponseId": "en:lesson-10:session-48:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-48:i12",
-    "correctText": "doing",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-48:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-48:i13",
-    "correctText": "en:lesson-10:session-48:i13:p1=backup\nen:lesson-10:session-48:i13:p2=server\nen:lesson-10:session-48:i13:p3=downtime\nen:lesson-10:session-48:i13:p4=maintenance",
+    "correctText": "en:lesson-10:session-48:i13:p1=apricot\nen:lesson-10:session-48:i13:p2=grapefruit\nen:lesson-10:session-48:i13:p3=enough\nen:lesson-10:session-48:i13:p4=nearly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i14",
-    "correctText": "We are doing maintenance.",
+    "correctText": "I am peeling a grapefruit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i15",
-    "correctText": "We make a backup every day.",
+    "correctText": "We have enough bread.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i16",
-    "correctText": "The server is working.",
+    "correctText": "Breakfast is nearly ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-48:i17",
-    "correctText": "We are doing maintenance.",
+    "correctText": "I am peeling a grapefruit.",
     "correctResponseId": null
   }
 ]

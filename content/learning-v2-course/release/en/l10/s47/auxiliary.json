@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-47:intro1:r2": {
-          "ru": "Один выпуск: is.",
-          "uk": "Один випуск: is."
+          "ru": "Для предпочтения здесь нужна like.",
+          "uk": "Для вподобання тут потрібна like."
         },
         "en:lesson-10:session-47:intro1:r3": {
-          "ru": "Нужна связка is.",
-          "uk": "Потрібна зв’язка is."
+          "ru": "С I нужна like без s.",
+          "uk": "З I потрібна like без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-47:intro2:r2": {
-          "ru": "С we нужна read без s.",
-          "uk": "З we потрібна read без s."
+          "ru": "С parsley здесь нужна is.",
+          "uk": "З parsley тут потрібна is."
         },
         "en:lesson-10:session-47:intro2:r3": {
-          "ru": "Здесь нужна личная форма read.",
-          "uk": "Тут потрібна особова форма read."
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-47:intro3:r2": {
-          "ru": "Перед testing нужна are.",
-          "uk": "Перед testing потрібна are."
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
         },
         "en:lesson-10:session-47:intro3:r3": {
-          "ru": "После are нужна testing.",
-          "uk": "Після are потрібна testing."
+          "ru": "Перед washing нужна are.",
+          "uk": "Перед washing потрібна are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "471a9259a24372f08f678f5bba6e83a22fc3cdd2f1a70829da77d2c81c13ca64"
+  "auxiliaryFingerprint": "11b6903da61e11894af9a2e49dce643788c98424a6c37320e601f051433686a4"
 }

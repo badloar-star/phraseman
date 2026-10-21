@@ -763,7 +763,7 @@
           },
           {
             "responseId": "en:lesson-10:session-51:i11:r3",
-            "text": "The maintenance is complete."
+            "text": "The form is complete."
           }
         ],
         "mediaIds": [],
@@ -791,7 +791,7 @@
             },
             {
               "responseId": "en:lesson-10:session-51:i11:r3",
-              "targetText": "The maintenance is complete.",
+              "targetText": "The form is complete.",
               "meaningByLocale": null
             }
           ],
@@ -1870,7 +1870,7 @@
           },
           {
             "responseId": "en:lesson-10:session-51:i11:r3",
-            "text": "The maintenance is complete."
+            "text": "The form is complete."
           }
         ],
         "mediaIds": [],
@@ -1898,7 +1898,7 @@
             },
             {
               "responseId": "en:lesson-10:session-51:i11:r3",
-              "targetText": "The maintenance is complete.",
+              "targetText": "The form is complete.",
               "meaningByLocale": null
             }
           ],

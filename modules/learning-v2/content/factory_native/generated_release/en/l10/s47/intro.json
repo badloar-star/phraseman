@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-47",
   "learningOutcomeByLocale": {
-    "ru": "The release is ready; We always read the changelog; We are testing a hotfix",
-    "uk": "The release is ready; We always read the changelog; We are testing a hotfix"
+    "ru": "I like beetroot; The parsley is fresh; We are washing radishes",
+    "uk": "I like beetroot; The parsley is fresh; We are washing radishes"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Готовая версия",
-        "uk": "Готова версія"
+        "ru": "Выбираю салат",
+        "uk": "Вибираю салат"
       },
       "bodyByLocale": {
-        "ru": "Release здесь — «выпуск программы», новая опубликованная или готовящаяся версия. Команда закончила подготовку: The release is ready — «Выпуск готов». Ready описывает состояние; связка is соединяет подлежащее с этим описанием.",
-        "uk": "Release тут — «випуск програми», нова опублікована версія або версія, яку готують. Команда завершила підготовку: The release is ready — «Випуск готовий». Ready описує стан; зв’язка is поєднує підмет із цим описом."
+        "ru": "В кафе друг предлагает салат со свёклой. Beetroot — «свёкла». Она вам нравится: I like beetroot — «Мне нравится свёкла». Like описывает предпочтение; здесь используем Present Simple, даже если выбираем блюдо сейчас.",
+        "uk": "У кафе друг пропонує салат із буряком. Beetroot — «буряк». Він вам подобається: I like beetroot — «Мені подобається буряк». Like описує вподобання; тут використовуємо Present Simple, навіть якщо вибираємо страву зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-47:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-47:intro1:r1",
-              "text": "The release is ready."
+              "text": "I like beetroot."
             },
             {
               "responseId": "en:lesson-10:session-47:intro1:r2",
-              "text": "The release are ready."
+              "text": "I am liking beetroot."
             },
             {
               "responseId": "en:lesson-10:session-47:intro1:r3",
-              "text": "The release ready."
+              "text": "I likes beetroot."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-47:intro1:r1",
-              "text": "The release is ready."
+              "text": "I like beetroot."
             },
             {
               "responseId": "en:lesson-10:session-47:intro1:r2",
-              "text": "The release are ready."
+              "text": "I am liking beetroot."
             },
             {
               "responseId": "en:lesson-10:session-47:intro1:r3",
-              "text": "The release ready."
+              "text": "I likes beetroot."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Читаем об изменениях",
-        "uk": "Читаємо про зміни"
+        "ru": "Зелень для гостей",
+        "uk": "Зелень для гостей"
       },
       "bodyByLocale": {
-        "ru": "Changelog — «список изменений» в программе. Перед установкой вы всегда его читаете: We always read the changelog — «Мы всегда читаем список изменений». Это привычка: Present Simple. Always ставим перед смысловым глаголом read.",
-        "uk": "Changelog — «список змін» у програмі. Перед установленням ви завжди його читаєте: We always read the changelog — «Ми завжди читаємо список змін». Це звичка: Present Simple. Always ставимо перед смисловим дієсловом read."
+        "ru": "Друг приносит зелень для салата и спрашивает, не завяла ли она. Parsley — «петрушка». Вы смотрите на листья: The parsley is fresh — «Петрушка свежая». Fresh описывает состояние продукта, поэтому используем связку is.",
+        "uk": "Друг приносить зелень для салату й запитує, чи не зів’яла вона. Parsley — «петрушка». Ви дивитеся на листя: The parsley is fresh — «Петрушка свіжа». Fresh описує стан продукту, тому використовуємо зв’язку is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-47:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-47:intro2:r1",
-              "text": "We always read the changelog."
+              "text": "The parsley is fresh."
             },
             {
               "responseId": "en:lesson-10:session-47:intro2:r2",
-              "text": "We always reads the changelog."
+              "text": "The parsley are fresh."
             },
             {
               "responseId": "en:lesson-10:session-47:intro2:r3",
-              "text": "We always reading the changelog."
+              "text": "The parsley fresh."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-47:intro2:r1",
-              "text": "We always read the changelog."
+              "text": "The parsley is fresh."
             },
             {
               "responseId": "en:lesson-10:session-47:intro2:r2",
-              "text": "We always reads the changelog."
+              "text": "The parsley are fresh."
             },
             {
               "responseId": "en:lesson-10:session-47:intro2:r3",
-              "text": "We always reading the changelog."
+              "text": "The parsley fresh."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Срочное исправление",
-        "uk": "Термінове виправлення"
+        "ru": "Моем овощи",
+        "uk": "Миємо овочі"
       },
       "bodyByLocale": {
-        "ru": "Hotfix — «срочное исправление» ошибки в программе, выпускаемое отдельно от обычного обновления. Проверка идёт сейчас: We are testing a hotfix — «Мы тестируем срочное исправление». Для текущего действия: are + testing.",
-        "uk": "Hotfix — «термінове виправлення» помилки в програмі, яке випускають окремо від звичайного оновлення. Перевірка триває зараз: We are testing a hotfix — «Ми тестуємо термінове виправлення». Для поточної дії: are + testing."
+        "ru": "Radishes — «редис». Вы с другом сейчас моете его для салата: We are washing radishes — «Мы моем редис». Текущее действие: are + washing. В английском radishes — множественное число, хотя по-русски «редис» — единственное.",
+        "uk": "Radishes — «редиска». Ви з другом зараз миєте її для салату: We are washing radishes — «Ми миємо редиску». Поточна дія: are + washing. В англійській radishes — множина, хоча українською «редиска» — однина."
       },
       "question": {
         "interactionId": "en:lesson-10:session-47:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-47:intro3:r1",
-              "text": "We are testing a hotfix."
+              "text": "We are washing radishes."
             },
             {
               "responseId": "en:lesson-10:session-47:intro3:r2",
-              "text": "We testing a hotfix."
+              "text": "We is washing radishes."
             },
             {
               "responseId": "en:lesson-10:session-47:intro3:r3",
-              "text": "We are test a hotfix."
+              "text": "We washing radishes."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-47:intro3:r1",
-              "text": "We are testing a hotfix."
+              "text": "We are washing radishes."
             },
             {
               "responseId": "en:lesson-10:session-47:intro3:r2",
-              "text": "We testing a hotfix."
+              "text": "We is washing radishes."
             },
             {
               "responseId": "en:lesson-10:session-47:intro3:r3",
-              "text": "We are test a hotfix."
+              "text": "We washing radishes."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "034a43d0687f3a43f549f0478af9db0430889cd678ac6202f17b62fd6d7fd2ec"
+  "introFingerprint": "fd80fda1e4f92ec2ccc93dbe56657e4b1eece7fdfbb17887290abd8d3705974f"
 }

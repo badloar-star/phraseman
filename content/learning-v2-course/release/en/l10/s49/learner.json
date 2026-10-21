@@ -99,7 +99,7 @@
         },
         {
           "responseId": "en:lesson-10:session-49:i02:r3",
-          "text": "The changelog is on the website."
+          "text": "The menu is on the website."
         }
       ],
       "mediaIds": [],
@@ -127,7 +127,7 @@
           },
           {
             "responseId": "en:lesson-10:session-49:i02:r3",
-            "targetText": "The changelog is on the website.",
+            "targetText": "The menu is on the website.",
             "meaningByLocale": null
           }
         ],
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "099e8a36af8377855178bd836f2cffef921b560acec927e25f9f7967b3c57810"
+  "learnerFingerprint": "d3c2f4d614064cc23514d030811e9fee8184e0b3e10b71dd9d4bbeb964c3674a"
 }

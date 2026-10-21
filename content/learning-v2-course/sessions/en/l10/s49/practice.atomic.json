@@ -99,7 +99,7 @@
           },
           {
             "responseId": "en:lesson-10:session-49:i02:r3",
-            "text": "The changelog is on the website."
+            "text": "The menu is on the website."
           }
         ],
         "mediaIds": [],
@@ -127,7 +127,7 @@
             },
             {
               "responseId": "en:lesson-10:session-49:i02:r3",
-              "targetText": "The changelog is on the website.",
+              "targetText": "The menu is on the website.",
               "meaningByLocale": null
             }
           ],
@@ -1205,7 +1205,7 @@
           },
           {
             "responseId": "en:lesson-10:session-49:i02:r3",
-            "text": "The changelog is on the website."
+            "text": "The menu is on the website."
           }
         ],
         "mediaIds": [],
@@ -1233,7 +1233,7 @@
             },
             {
               "responseId": "en:lesson-10:session-49:i02:r3",
-              "targetText": "The changelog is on the website.",
+              "targetText": "The menu is on the website.",
               "meaningByLocale": null
             }
           ],

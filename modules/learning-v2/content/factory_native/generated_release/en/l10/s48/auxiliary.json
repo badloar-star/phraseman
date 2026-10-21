@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-48:intro1:r2": {
-          "ru": "С we нужна make без s.",
-          "uk": "З we потрібна make без s."
+          "ru": "Перед peeling нужна am.",
+          "uk": "Перед peeling потрібна am."
         },
         "en:lesson-10:session-48:intro1:r3": {
-          "ru": "Здесь нужна личная форма make.",
-          "uk": "Тут потрібна особова форма make."
+          "ru": "После am нужна peeling.",
+          "uk": "Після am потрібна peeling."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-48:intro2:r2": {
-          "ru": "Один сервер: is.",
-          "uk": "Один сервер: is."
+          "ru": "С we нужна have.",
+          "uk": "З we потрібна have."
         },
         "en:lesson-10:session-48:intro2:r3": {
-          "ru": "После is для текущего действия нужна working.",
-          "uk": "Після is для поточної дії потрібна working."
+          "ru": "Для наличия здесь нужна have, не are having.",
+          "uk": "Для наявності тут потрібна have, не are having."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-48:intro3:r2": {
-          "ru": "Перед doing нужна are.",
-          "uk": "Перед doing потрібна are."
+          "ru": "С breakfast нужна is.",
+          "uk": "З breakfast потрібна is."
         },
         "en:lesson-10:session-48:intro3:r3": {
-          "ru": "После are нужна doing.",
-          "uk": "Після are потрібна doing."
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "154f50257069ebbd4cb197926c8867ffa2071b0258e34b7f59dc5d5f078e6d76"
+  "auxiliaryFingerprint": "85c3c5f4337fd56ecee1f1a9da10ad2f7c1fdf384c73faa6c997d4a9bc033b55"
 }

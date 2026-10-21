@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 47 — Выпуск обновления
+# Английский · Урок 10 · Занятие 47 — Овощи для обеда
 
-**Ситуация.** Обсудить выпуск программы и исправление ошибки.
+**Ситуация.** Рассказать, что вы обычно покупаете и что готовите сейчас.
 
-**Что вы освоите:** The release is ready; We always read the changelog; We are testing a hotfix
-**Новые слова:** release, changelog, hotfix, firmware
+**Что вы освоите:** I like beetroot; The parsley is fresh; We are washing radishes
+**Новые слова:** beetroot, leek, parsley, radishes
 
 ## Интро 1
 
-### Готовая версия
+### Выбираю салат
 
-Release здесь — «выпуск программы», новая опубликованная или готовящаяся версия. Команда закончила подготовку: The release is ready — «Выпуск готов». Ready описывает состояние; связка is соединяет подлежащее с этим описанием.
+В кафе друг предлагает салат со свёклой. Beetroot — «свёкла». Она вам нравится: I like beetroot — «Мне нравится свёкла». Like описывает предпочтение; здесь используем Present Simple, даже если выбираем блюдо сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The release is ready.**
-- ❌ The release are ready. — *Один выпуск: is.*
-- ❌ The release ready. — *Нужна связка is.*
+- ✅ **I like beetroot.**
+- ❌ I am liking beetroot. — *Для предпочтения здесь нужна like.*
+- ❌ I likes beetroot. — *С I нужна like без s.*
 
 ---
 
 ## Интро 2
 
-### Читаем об изменениях
+### Зелень для гостей
 
-Changelog — «список изменений» в программе. Перед установкой вы всегда его читаете: We always read the changelog — «Мы всегда читаем список изменений». Это привычка: Present Simple. Always ставим перед смысловым глаголом read.
+Друг приносит зелень для салата и спрашивает, не завяла ли она. Parsley — «петрушка». Вы смотрите на листья: The parsley is fresh — «Петрушка свежая». Fresh описывает состояние продукта, поэтому используем связку is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We always read the changelog.**
-- ❌ We always reads the changelog. — *С we нужна read без s.*
-- ❌ We always reading the changelog. — *Здесь нужна личная форма read.*
+- ✅ **The parsley is fresh.**
+- ❌ The parsley are fresh. — *С parsley здесь нужна is.*
+- ❌ The parsley fresh. — *Нужна связка is.*
 
 ---
 
 ## Интро 3
 
-### Срочное исправление
+### Моем овощи
 
-Hotfix — «срочное исправление» ошибки в программе, выпускаемое отдельно от обычного обновления. Проверка идёт сейчас: We are testing a hotfix — «Мы тестируем срочное исправление». Для текущего действия: are + testing.
+Radishes — «редис». Вы с другом сейчас моете его для салата: We are washing radishes — «Мы моем редис». Текущее действие: are + washing. В английском radishes — множественное число, хотя по-русски «редис» — единственное.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are testing a hotfix.**
-- ❌ We testing a hotfix. — *Перед testing нужна are.*
-- ❌ We are test a hotfix. — *После are нужна testing.*
+- ✅ **We are washing radishes.**
+- ❌ We is washing radishes. — *С we нужна are.*
+- ❌ We washing radishes. — *Перед washing нужна are.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — release**
-<!-- interaction_id: en:lesson-10:session-47:word:release; family: word_card -->
-> **release** — «выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.
+**1 · Карточка слова — beetroot**
+<!-- interaction_id: en:lesson-10:session-47:word:beetroot; family: word_card -->
+> **beetroot** — «свёкла». I usually buy beetroot. — «Я обычно покупаю свёклу».
 
-**2 · Команда закончила подготовку новой версии. Скажите: «Выпуск готов»**
+**2 · Вы обычно берёте свёклу для супа. Скажите: «Я обычно покупаю свёклу». Поставьте usually перед buy**
 <!-- interaction_id: en:lesson-10:session-47:i01; family: phrase_builder -->
-Плитки: `ready` `is` `release` `The` → **The release is ready.**
+Плитки: `beetroot` `buy` `usually` `I` → **I usually buy beetroot.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-47:i02; family: listen_choose -->
-🔊 *The release is tomorrow.* → **The release is tomorrow.** · The release is today. · The launch is tomorrow.
-- The release is today. — *В записи звучит The release is tomorrow.*
-- The launch is tomorrow. — *В записи звучит The release is tomorrow.*
+🔊 *The beetroot is in the fridge.* → **The beetroot is in the fridge.** · The beetroot is on the table. · The cheese is in the fridge.
+- The beetroot is on the table. — *В записи звучит The beetroot is in the fridge.*
+- The cheese is in the fridge. — *В записи звучит The beetroot is in the fridge.*
 
-**4 · Речь об одном выпуске. Выберите связку**
+**4 · Это привычка. Выберите форму buy**
 <!-- interaction_id: en:lesson-10:session-47:i03; family: context_gap_grammar -->
-The release ___ ready. → **is** · are · am
-- are — *Один выпуск: is.*
-- am — *Am используется с I.*
+I usually ___ beetroot. → **buy** · buys · buying
+- buys — *С I нужна buy без s.*
+- buying — *Здесь нужна buy.*
 
-**5 · Карточка слова — changelog**
-<!-- interaction_id: en:lesson-10:session-47:word:changelog; family: word_card -->
-> **changelog** — «список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.
+**5 · Карточка слова — leek**
+<!-- interaction_id: en:lesson-10:session-47:word:leek; family: word_card -->
+> **leek** — «лук-порей». The leek is fresh. — «Лук-порей свежий».
 
-**6 · Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read**
+**6 · Вы выбираете овощи для обеда. Скажите: «Лук-порей свежий»**
 <!-- interaction_id: en:lesson-10:session-47:i04; family: phrase_builder -->
-Плитки: `changelog` `the` `read` `always` `We` → **We always read the changelog.**
+Плитки: `fresh` `is` `leek` `The` → **The leek is fresh.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-47:i05; family: listen_choose -->
-🔊 *The changelog is on the website.* → **The changelog is on the website.** · The changelog is in the email. · The tutorial is on the website.
-- The changelog is in the email. — *В записи звучит The changelog is on the website.*
-- The tutorial is on the website. — *В записи звучит The changelog is on the website.*
+🔊 *I am washing the leek.* → **I am washing the leek.** · I am cutting the leek. · I am washing the beetroot.
+- I am cutting the leek. — *В записи звучит I am washing the leek.*
+- I am washing the beetroot. — *В записи звучит I am washing the leek.*
 
-**8 · Это привычка команды. Выберите форму read**
+**8 · Опишите овощ. Выберите связку**
 <!-- interaction_id: en:lesson-10:session-47:i06; family: context_gap_grammar -->
-We always ___ the changelog. → **read** · reads · reading
-- reads — *С we нужна read без s.*
-- reading — *Здесь нужна read, не причастие reading.*
+The leek ___ fresh. → **is** · are · am
+- are — *С leek здесь нужна is.*
+- am — *Am используется с I.*
 
-**9 · Карточка слова — hotfix**
-<!-- interaction_id: en:lesson-10:session-47:word:hotfix; family: word_card -->
-> **hotfix** — «срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.
+**9 · Карточка слова — parsley**
+<!-- interaction_id: en:lesson-10:session-47:word:parsley; family: word_card -->
+> **parsley** — «петрушка». I am chopping parsley. — «Я режу петрушку».
 
-**10 · Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»**
+**10 · Вы сейчас режете петрушку для супа. Скажите: «Я режу петрушку»**
 <!-- interaction_id: en:lesson-10:session-47:i07; family: phrase_builder -->
-Плитки: `hotfix` `a` `testing` `are` `We` → **We are testing a hotfix.**
+Плитки: `parsley` `chopping` `am` `I` → **I am chopping parsley.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-47:i08; family: listen_choose -->
-🔊 *The hotfix is ready.* → **The hotfix is ready.** · The hotfix is late. · The release is ready.
-- The hotfix is late. — *В записи звучит The hotfix is ready.*
-- The release is ready. — *В записи звучит The hotfix is ready.*
+🔊 *There is parsley in the soup.* → **There is parsley in the soup.** · There is parsley in the sauce. · There is salt in the soup.
+- There is parsley in the sauce. — *В записи звучит There is parsley in the soup.*
+- There is salt in the soup. — *В записи звучит There is parsley in the soup.*
 
-**12 · Проверка идёт сейчас. Выберите вспомогательный глагол**
+**12 · Выберите написание формы chop**
 <!-- interaction_id: en:lesson-10:session-47:i09; family: context_gap_grammar -->
-We ___ testing a hotfix. → **are** · is · am
-- is — *С we нужна are.*
-- am — *Am используется с I.*
+I am ___ parsley. → **chopping** · choping · chop
+- choping — *Удваиваем p: chopping.*
+- chop — *После am для текущего действия нужна chopping.*
 
-**13 · Карточка слова — firmware**
-<!-- interaction_id: en:lesson-10:session-47:word:firmware; family: word_card -->
-> **firmware** — «прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.
+**13 · Карточка слова — radishes**
+<!-- interaction_id: en:lesson-10:session-47:word:radishes; family: word_card -->
+> **radishes** — «редис». We are washing radishes. — «Мы моем редис».
 
-**14 · Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»**
+**14 · Вы с другом сейчас готовите обед. Скажите: «Мы моем редис»**
 <!-- interaction_id: en:lesson-10:session-47:i10; family: phrase_builder -->
-Плитки: `firmware` `the` `updating` `are` `We` → **We are updating the firmware.**
+Плитки: `radishes` `washing` `are` `We` → **We are washing radishes.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-47:i11; family: listen_choose -->
-🔊 *The firmware is up to date.* → **The firmware is up to date.** · The firmware is out of date. · The website is up to date.
-- The firmware is out of date. — *В записи звучит The firmware is up to date.*
-- The website is up to date. — *В записи звучит The firmware is up to date.*
+🔊 *The radishes are clean.* → **The radishes are clean.** · The radishes are dirty. · The potatoes are clean.
+- The radishes are dirty. — *В записи звучит The radishes are clean.*
+- The potatoes are clean. — *В записи звучит The radishes are clean.*
 
-**16 · Выберите правильное написание формы update**
+**16 · Выберите связку с множественным radishes**
 <!-- interaction_id: en:lesson-10:session-47:i12; family: context_gap_grammar -->
-We are ___ the firmware. → **updating** · updateing · update
-- updateing — *Перед ing убираем e: updating.*
-- update — *После are для текущего действия нужна updating.*
+The radishes ___ clean. → **are** · is · am
+- is — *Radishes — множественное число: are.*
+- am — *Am используется с I.*
 
 **17 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-10:session-47:i13; family: speed_match -->
-release — выпуск программы · changelog — список изменений · hotfix — срочное исправление · firmware — прошивка
+beetroot — свёкла · leek — лук-порей · parsley — петрушка · radishes — редис
 
 **18 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-10:session-47:i14; family: listen_build_dictation -->
-🔊 *We are testing a hotfix.* Плитки: `hotfix` `a` `testing` `are` `We` → **We are testing a hotfix.**
+🔊 *I am chopping parsley.* Плитки: `parsley` `chopping` `am` `I` → **I am chopping parsley.**
 
-**19 · Коллега спрашивает, читаете ли вы список изменений перед установкой. Скажите: «Мы всегда читаем список изменений»**
+**19 · Друг спрашивает, какой овощ вы обычно покупаете. Скажите: «Я обычно покупаю свёклу»**
 <!-- interaction_id: en:lesson-10:session-47:i15; family: scripted_repeat_compare -->
-🎙 **We always read the changelog.**
+🎙 **I usually buy beetroot.**
 
-**20 · Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»**
+**20 · Вы показываете другу свежий овощ. Скажите: «Лук-порей свежий»**
 <!-- interaction_id: en:lesson-10:session-47:i16; family: phrase_builder -->
-Плитки: `ready` `is` `release` `The` → **The release is ready.**
+Плитки: `fresh` `is` `leek` `The` → **The leek is fresh.**
 
-**21 · Вы с коллегой устанавливаете прошивку устройства. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы обновляем прошивку»**
+**21 · Вы с другом стоите у раковины и моете редис. Сосед спрашивает, что вы готовите. Скажите: «Мы моем редис»**
 <!-- interaction_id: en:lesson-10:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are updating the firmware.**
+🎙 **We are washing radishes.**
 

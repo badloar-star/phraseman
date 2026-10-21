@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-25:intro1:r2": {
+          "ru": "Ought не получает окончания -s.",
+          "uk": "Ought не отримує закінчення -s."
+        },
+        "en:lesson-20:session-25:intro1:r3": {
+          "ru": "После ought нужно to.",
+          "uk": "Після ought потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-25:intro2:r2": {
+          "ru": "Ought не получает окончания -s.",
+          "uk": "Ought не отримує закінчення -s."
+        },
+        "en:lesson-20:session-25:intro2:r3": {
+          "ru": "После ought нужно to.",
+          "uk": "Після ought потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-25:intro3:r2": {
+          "ru": "Ought не получает окончания -s.",
+          "uk": "Ought не отримує закінчення -s."
+        },
+        "en:lesson-20:session-25:intro3:r3": {
+          "ru": "После ought нужно to.",
+          "uk": "Після ought потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "debd3eecbd81efbc0ee4eeb7dff47a19d8a4cd9e4f8c8d552cb37844561ac2d3"
+}

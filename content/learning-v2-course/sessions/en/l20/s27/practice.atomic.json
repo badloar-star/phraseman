@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-27",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-27:word:budget",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — budget",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:budget:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — budget",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:budget:audio",
+            "transcript": "budget"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:budget:r1",
+              "targetText": "budget",
+              "meaningByLocale": {
+                "ru": "бюджет, запланированная сумма расходов.",
+                "uk": "бюджет, запланована сума витрат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "budget",
+            "definitionByLocale": {
+              "ru": "бюджет, запланированная сумма расходов.",
+              "uk": "бюджет, запланована сума витрат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Тебе стоит определить бюджет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Тебе стоит определить бюджет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to set a budget.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит определить бюджет».",
+            "uk": "Дайте пораду з ought to: «Тобі варто визначити бюджет»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "set",
+            "a",
+            "budget"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i02:r1",
+            "text": "You ought to set a budget."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i02:r2",
+            "text": "You can set a budget."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i02:r3",
+            "text": "You could set a budget."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i02:audio",
+            "transcript": "You ought to set a budget."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i02:r1",
+              "targetText": "You ought to set a budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r2",
+              "targetText": "You can set a budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r3",
+              "targetText": "You could set a budget.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to set a budget.",
+                "uk": "У записі звучить You ought to set a budget."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to set a budget.",
+                "uk": "У записі звучить You ought to set a budget."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ set a budget.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:value",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — value",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:value:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — value",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:value:audio",
+            "transcript": "value"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:value:r1",
+              "targetText": "value",
+              "meaningByLocale": {
+                "ru": "ценность, стоимость.",
+                "uk": "цінність, вартість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "value",
+            "definitionByLocale": {
+              "ru": "ценность, стоимость.",
+              "uk": "цінність, вартість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ей стоит выяснить стоимость».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ей стоит выяснить стоимость».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to check the value.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит выяснить стоимость».",
+            "uk": "Дайте пораду з ought to: «Їй варто зʼясувати вартість»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "check",
+            "the",
+            "value"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i05:r1",
+            "text": "She ought to check the value."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i05:r2",
+            "text": "She can check the value."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i05:r3",
+            "text": "She could check the value."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i05:audio",
+            "transcript": "She ought to check the value."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i05:r1",
+              "targetText": "She ought to check the value.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r2",
+              "targetText": "She can check the value.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r3",
+              "targetText": "She could check the value.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to check the value.",
+                "uk": "У записі звучить She ought to check the value."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to check the value.",
+                "uk": "У записі звучить She ought to check the value."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ check the value.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:factor",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — factor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:factor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — factor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:factor:audio",
+            "transcript": "factor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:factor:r1",
+              "targetText": "factor",
+              "meaningByLocale": {
+                "ru": "фактор, важное обстоятельство.",
+                "uk": "чинник, важлива обставина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "factor",
+            "definitionByLocale": {
+              "ru": "фактор, важное обстоятельство.",
+              "uk": "чинник, важлива обставина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Нам стоит учесть этот фактор».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Нам стоит учесть этот фактор».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to consider this factor.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит учесть этот фактор».",
+            "uk": "Дайте пораду з ought to: «Нам варто врахувати цей чинник»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "consider",
+            "this",
+            "factor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i08:r1",
+            "text": "We ought to consider this factor."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i08:r2",
+            "text": "We can consider this factor."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i08:r3",
+            "text": "We could consider this factor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i08:audio",
+            "transcript": "We ought to consider this factor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i08:r1",
+              "targetText": "We ought to consider this factor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r2",
+              "targetText": "We can consider this factor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r3",
+              "targetText": "We could consider this factor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to consider this factor.",
+                "uk": "У записі звучить We ought to consider this factor."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to consider this factor.",
+                "uk": "У записі звучить We ought to consider this factor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ consider this factor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:feature",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — feature",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:feature:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — feature",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:feature:audio",
+            "transcript": "feature"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:feature:r1",
+              "targetText": "feature",
+              "meaningByLocale": {
+                "ru": "особенность, свойство.",
+                "uk": "особливість, властивість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feature",
+            "definitionByLocale": {
+              "ru": "особенность, свойство.",
+              "uk": "особливість, властивість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ему стоит проверить эту особенность».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ему стоит проверить эту особенность».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to check this feature.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит проверить эту особенность».",
+            "uk": "Дайте пораду з ought to: «Йому варто перевірити цю особливість»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "check",
+            "this",
+            "feature"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i11:r1",
+            "text": "He ought to check this feature."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i11:r2",
+            "text": "He can check this feature."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i11:r3",
+            "text": "He could check this feature."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i11:audio",
+            "transcript": "He ought to check this feature."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i11:r1",
+              "targetText": "He ought to check this feature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r2",
+              "targetText": "He can check this feature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r3",
+              "targetText": "He could check this feature.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to check this feature.",
+                "uk": "У записі звучить He ought to check this feature."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to check this feature.",
+                "uk": "У записі звучить He ought to check this feature."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ check this feature.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-27:i13:p1",
+              "target": "budget",
+              "meaningByLocale": {
+                "ru": "бюджет, запланированная сумма расходов",
+                "uk": "бюджет, запланована сума витрат"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p2",
+              "target": "value",
+              "meaningByLocale": {
+                "ru": "ценность, стоимость",
+                "uk": "цінність, вартість"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p3",
+              "target": "factor",
+              "meaningByLocale": {
+                "ru": "фактор, важное обстоятельство",
+                "uk": "чинник, важлива обставина"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p4",
+              "target": "feature",
+              "meaningByLocale": {
+                "ru": "особенность, свойство",
+                "uk": "особливість, властивість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "budget",
+            "value",
+            "factor",
+            "feature"
+          ],
+          "rightColumn": [
+            "бюджет, запланированная сумма расходов",
+            "ценность, стоимость",
+            "фактор, важное обстоятельство",
+            "особенность, свойство"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте определить бюджет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте определить бюджет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i16:audio",
+            "transcript": "You ought to set a budget."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You ought to set a budget.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите учесть важное обстоятельство",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Предложите учесть важное обстоятельство",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i17:audio",
+            "transcript": "We ought to consider this factor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to consider this factor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-27:word:budget",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — budget",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:budget:audio"
+        ],
+        "accessibilityLabel": "Картка слова — budget",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:budget:audio",
+            "transcript": "budget"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:budget:r1",
+              "targetText": "budget",
+              "meaningByLocale": {
+                "ru": "бюджет, запланированная сумма расходов.",
+                "uk": "бюджет, запланована сума витрат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "budget",
+            "definitionByLocale": {
+              "ru": "бюджет, запланированная сумма расходов.",
+              "uk": "бюджет, запланована сума витрат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Тобі варто визначити бюджет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто визначити бюджет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to set a budget.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит определить бюджет».",
+            "uk": "Дайте пораду з ought to: «Тобі варто визначити бюджет»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "set",
+            "a",
+            "budget"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i02:r1",
+            "text": "You ought to set a budget."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i02:r2",
+            "text": "You can set a budget."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i02:r3",
+            "text": "You could set a budget."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i02:audio",
+            "transcript": "You ought to set a budget."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i02:r1",
+              "targetText": "You ought to set a budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r2",
+              "targetText": "You can set a budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r3",
+              "targetText": "You could set a budget.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to set a budget.",
+                "uk": "У записі звучить You ought to set a budget."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to set a budget.",
+                "uk": "У записі звучить You ought to set a budget."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ set a budget.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:value",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — value",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:value:audio"
+        ],
+        "accessibilityLabel": "Картка слова — value",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:value:audio",
+            "transcript": "value"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:value:r1",
+              "targetText": "value",
+              "meaningByLocale": {
+                "ru": "ценность, стоимость.",
+                "uk": "цінність, вартість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "value",
+            "definitionByLocale": {
+              "ru": "ценность, стоимость.",
+              "uk": "цінність, вартість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Їй варто зʼясувати вартість».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Їй варто зʼясувати вартість».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to check the value.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит выяснить стоимость».",
+            "uk": "Дайте пораду з ought to: «Їй варто зʼясувати вартість»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "check",
+            "the",
+            "value"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i05:r1",
+            "text": "She ought to check the value."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i05:r2",
+            "text": "She can check the value."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i05:r3",
+            "text": "She could check the value."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i05:audio",
+            "transcript": "She ought to check the value."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i05:r1",
+              "targetText": "She ought to check the value.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r2",
+              "targetText": "She can check the value.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r3",
+              "targetText": "She could check the value.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to check the value.",
+                "uk": "У записі звучить She ought to check the value."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to check the value.",
+                "uk": "У записі звучить She ought to check the value."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ check the value.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:factor",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — factor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:factor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — factor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:factor:audio",
+            "transcript": "factor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:factor:r1",
+              "targetText": "factor",
+              "meaningByLocale": {
+                "ru": "фактор, важное обстоятельство.",
+                "uk": "чинник, важлива обставина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "factor",
+            "definitionByLocale": {
+              "ru": "фактор, важное обстоятельство.",
+              "uk": "чинник, важлива обставина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Нам варто врахувати цей чинник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Нам варто врахувати цей чинник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to consider this factor.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит учесть этот фактор».",
+            "uk": "Дайте пораду з ought to: «Нам варто врахувати цей чинник»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "consider",
+            "this",
+            "factor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i08:r1",
+            "text": "We ought to consider this factor."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i08:r2",
+            "text": "We can consider this factor."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i08:r3",
+            "text": "We could consider this factor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i08:audio",
+            "transcript": "We ought to consider this factor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i08:r1",
+              "targetText": "We ought to consider this factor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r2",
+              "targetText": "We can consider this factor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r3",
+              "targetText": "We could consider this factor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to consider this factor.",
+                "uk": "У записі звучить We ought to consider this factor."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to consider this factor.",
+                "uk": "У записі звучить We ought to consider this factor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ consider this factor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:word:feature",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — feature",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:word:feature:audio"
+        ],
+        "accessibilityLabel": "Картка слова — feature",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:word:feature:audio",
+            "transcript": "feature"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:word:feature:r1",
+              "targetText": "feature",
+              "meaningByLocale": {
+                "ru": "особенность, свойство.",
+                "uk": "особливість, властивість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feature",
+            "definitionByLocale": {
+              "ru": "особенность, свойство.",
+              "uk": "особливість, властивість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Йому варто перевірити цю особливість».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Йому варто перевірити цю особливість».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to check this feature.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит проверить эту особенность».",
+            "uk": "Дайте пораду з ought to: «Йому варто перевірити цю особливість»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "check",
+            "this",
+            "feature"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i11:r1",
+            "text": "He ought to check this feature."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i11:r2",
+            "text": "He can check this feature."
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i11:r3",
+            "text": "He could check this feature."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i11:audio",
+            "transcript": "He ought to check this feature."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-27:i11:r1",
+              "targetText": "He ought to check this feature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r2",
+              "targetText": "He can check this feature.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r3",
+              "targetText": "He could check this feature.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to check this feature.",
+                "uk": "У записі звучить He ought to check this feature."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to check this feature.",
+                "uk": "У записі звучить He ought to check this feature."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-27:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-27:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ check this feature.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-27:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-27:i13:p1",
+              "target": "budget",
+              "meaningByLocale": {
+                "ru": "бюджет, запланированная сумма расходов",
+                "uk": "бюджет, запланована сума витрат"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p2",
+              "target": "value",
+              "meaningByLocale": {
+                "ru": "ценность, стоимость",
+                "uk": "цінність, вартість"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p3",
+              "target": "factor",
+              "meaningByLocale": {
+                "ru": "фактор, важное обстоятельство",
+                "uk": "чинник, важлива обставина"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-27:i13:p4",
+              "target": "feature",
+              "meaningByLocale": {
+                "ru": "особенность, свойство",
+                "uk": "особливість, властивість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "budget",
+            "value",
+            "factor",
+            "feature"
+          ],
+          "rightColumn": [
+            "бюджет, запланована сума витрат",
+            "цінність, вартість",
+            "чинник, важлива обставина",
+            "особливість, властивість"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте визначити бюджет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Порадьте визначити бюджет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i16:audio",
+            "transcript": "You ought to set a budget."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You ought to set a budget.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте врахувати важливу обставину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте врахувати важливу обставину",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-27:i17:audio",
+            "transcript": "We ought to consider this factor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to consider this factor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-27:word:budget",
+      "correctText": "budget",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i01",
+      "correctText": "You ought to set a budget.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i02",
+      "correctText": "You ought to set a budget.",
+      "correctResponseId": "en:lesson-20:session-27:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i03",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-27:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:word:value",
+      "correctText": "value",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i04",
+      "correctText": "She ought to check the value.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i05",
+      "correctText": "She ought to check the value.",
+      "correctResponseId": "en:lesson-20:session-27:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i06",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-27:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:word:factor",
+      "correctText": "factor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i07",
+      "correctText": "We ought to consider this factor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i08",
+      "correctText": "We ought to consider this factor.",
+      "correctResponseId": "en:lesson-20:session-27:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i09",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-27:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:word:feature",
+      "correctText": "feature",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i10",
+      "correctText": "He ought to check this feature.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i11",
+      "correctText": "He ought to check this feature.",
+      "correctResponseId": "en:lesson-20:session-27:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i12",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-27:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i16",
+      "correctText": "You ought to set a budget.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-27:i17",
+      "correctText": "We ought to consider this factor.",
+      "correctResponseId": null
+    }
+  ]
+}

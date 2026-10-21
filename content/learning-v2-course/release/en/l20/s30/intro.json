@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учесть цену",
+        "uk": "Урахувати ціну"
+      },
+      "bodyByLocale": {
+        "ru": "Take into account — принять во внимание. Друзья выбирают поездку; самый удобный вариант дороже остальных, поэтому стоит учесть цену. В выражении сохраняем into account. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Take into account — взяти до уваги. Друзі вибирають поїздку; найзручніший варіант дорожчий за інші, тому варто врахувати ціну. У виразі зберігаємо into account. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r1",
+              "text": "We ought to take into account the price."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r2",
+              "text": "We oughts to take into account the price."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r3",
+              "text": "We ought take into account the price."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r1",
+              "text": "We ought to take into account the price."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r2",
+              "text": "We oughts to take into account the price."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro1:r3",
+              "text": "We ought take into account the price."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Помнить о времени",
+        "uk": "Памʼятати про час"
+      },
+      "bodyByLocale": {
+        "ru": "Keep in mind — помнить о важном обстоятельстве. Вы выбираете рейс и планируете дорогу в аэропорт: стоит помнить о времени отправления, the departure time. Make up your mind — принять решение, когда вы ещё выбираете. Здесь your обращено к собеседнику. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Keep in mind — памʼятати про важливу обставину. Ви вибираєте рейс і плануєте дорогу до аеропорту: варто памʼятати про час відправлення, the departure time. Make up your mind — ухвалити рішення, коли ви ще вибираєте. Тут your стосується співрозмовника. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r1",
+              "text": "You ought to keep in mind the departure time."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r2",
+              "text": "You oughts to keep in mind the departure time."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r3",
+              "text": "You ought keep in mind the departure time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r1",
+              "text": "You ought to keep in mind the departure time."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r2",
+              "text": "You oughts to keep in mind the departure time."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro2:r3",
+              "text": "You ought keep in mind the departure time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отнестись серьёзно",
+        "uk": "Поставитися серйозно"
+      },
+      "bodyByLocale": {
+        "ru": "Take it seriously — отнестись к этому серьёзно. Друг шутит о сроке бронирования, а вы советуете ему учитывать это ограничение. It здесь обозначает уже обсуждённый срок. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Take it seriously — поставитися до цього серйозно. Друг жартує про строк бронювання, а ви радите йому зважати на це обмеження. It тут позначає вже обговорений строк. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r1",
+              "text": "He ought to take it seriously."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r2",
+              "text": "He oughts to take it seriously."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r3",
+              "text": "He ought take it seriously."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r1",
+              "text": "He ought to take it seriously."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r2",
+              "text": "He oughts to take it seriously."
+            },
+            {
+              "responseId": "en:lesson-20:session-30:intro3:r3",
+              "text": "He ought take it seriously."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2308858086dc5ecf55e811ce8588562e0e2510a4e26beaffda2352a6267fda09"
+}

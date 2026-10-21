@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Определить бюджет",
+        "uk": "Визначити бюджет"
+      },
+      "bodyByLocale": {
+        "ru": "Budget — сумма, которую вы планируете потратить. Перед покупкой рюкзака вы советуете другу определить бюджет. Set a budget — задать такую сумму. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Budget — сума, яку ви плануєте витратити. Перед купівлею рюкзака ви радите другові визначити бюджет. Set a budget — установити таку суму. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r1",
+              "text": "You ought to set a budget."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r2",
+              "text": "You oughts to set a budget."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r3",
+              "text": "You ought set a budget."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r1",
+              "text": "You ought to set a budget."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r2",
+              "text": "You oughts to set a budget."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro1:r3",
+              "text": "You ought set a budget."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Оценить стоимость",
+        "uk": "Оцінити вартість"
+      },
+      "bodyByLocale": {
+        "ru": "Value — ценность или стоимость. Знакомая продаёт старый велосипед и хочет понять, сколько он стоит. Factor — обстоятельство, влияющее на выбор: например вес рюкзака для долгой поездки. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Value — цінність або вартість. Знайома продає старий велосипед і хоче зрозуміти, скільки він коштує. Factor — обставина, що впливає на вибір: наприклад вага рюкзака для довгої поїздки. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r1",
+              "text": "She ought to check the value."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r2",
+              "text": "She oughts to check the value."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r3",
+              "text": "She ought check the value."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r1",
+              "text": "She ought to check the value."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r2",
+              "text": "She oughts to check the value."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro2:r3",
+              "text": "She ought check the value."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить особенность",
+        "uk": "Перевірити особливість"
+      },
+      "bodyByLocale": {
+        "ru": "Feature — особенность вещи. У куртки есть съёмный капюшон, и вы предлагаете проверить, удобно ли он крепится. This feature здесь относится к этой конкретной особенности. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Feature — особливість речі. Куртка має знімний каптур, і ви пропонуєте перевірити, чи зручно він кріпиться. This feature тут стосується цієї конкретної особливості. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r1",
+              "text": "He ought to check this feature."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r2",
+              "text": "He oughts to check this feature."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r3",
+              "text": "He ought check this feature."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r1",
+              "text": "He ought to check this feature."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r2",
+              "text": "He oughts to check this feature."
+            },
+            {
+              "responseId": "en:lesson-20:session-27:intro3:r3",
+              "text": "He ought check this feature."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4a96393c978275da5ee838db990076b74c8c7f0292ccad858b7d9b2fcea98f93"
+}

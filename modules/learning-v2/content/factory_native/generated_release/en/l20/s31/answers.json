@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-31:word:agreement",
+    "correctText": "agreement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i01",
+    "correctText": "We ought to reach an agreement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i02",
+    "correctText": "We ought to reach an agreement.",
+    "correctResponseId": "en:lesson-20:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:word:commitment",
+    "correctText": "commitment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i04",
+    "correctText": "She ought to keep her commitment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i05",
+    "correctText": "She ought to keep her commitment.",
+    "correctResponseId": "en:lesson-20:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:word:duty",
+    "correctText": "duty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i07",
+    "correctText": "He ought to do his duty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i08",
+    "correctText": "He ought to do his duty.",
+    "correctResponseId": "en:lesson-20:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:word:courtesy",
+    "correctText": "courtesy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i10",
+    "correctText": "You ought to show courtesy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i11",
+    "correctText": "You ought to show courtesy.",
+    "correctResponseId": "en:lesson-20:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i13",
+    "correctText": "en:lesson-20:session-31:i13:p1=agreement\nen:lesson-20:session-31:i13:p2=commitment\nen:lesson-20:session-31:i13:p3=duty\nen:lesson-20:session-31:i13:p4=courtesy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i16",
+    "correctText": "We ought to reach an agreement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-31:i17",
+    "correctText": "You ought to show courtesy.",
+    "correctResponseId": null
+  }
+]

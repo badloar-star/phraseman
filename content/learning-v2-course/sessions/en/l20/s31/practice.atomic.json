@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-31:word:agreement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — agreement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:agreement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — agreement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:agreement:audio",
+            "transcript": "agreement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:agreement:r1",
+              "targetText": "agreement",
+              "meaningByLocale": {
+                "ru": "соглашение, договорённость.",
+                "uk": "угода, домовленість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "agreement",
+            "definitionByLocale": {
+              "ru": "соглашение, договорённость.",
+              "uk": "угода, домовленість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Нам стоит прийти к соглашению».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Нам стоит прийти к соглашению».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to reach an agreement.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит прийти к соглашению».",
+            "uk": "Дайте пораду з ought to: «Нам варто дійти згоди»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "reach",
+            "an",
+            "agreement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i02:r1",
+            "text": "We ought to reach an agreement."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i02:r2",
+            "text": "We can reach an agreement."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i02:r3",
+            "text": "We could reach an agreement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i02:audio",
+            "transcript": "We ought to reach an agreement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i02:r1",
+              "targetText": "We ought to reach an agreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r2",
+              "targetText": "We can reach an agreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r3",
+              "targetText": "We could reach an agreement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to reach an agreement.",
+                "uk": "У записі звучить We ought to reach an agreement."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to reach an agreement.",
+                "uk": "У записі звучить We ought to reach an agreement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ reach an agreement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:commitment",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — commitment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:commitment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — commitment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:commitment:audio",
+            "transcript": "commitment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:commitment:r1",
+              "targetText": "commitment",
+              "meaningByLocale": {
+                "ru": "обязательство, обещание.",
+                "uk": "зобовʼязання, обіцянка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "commitment",
+            "definitionByLocale": {
+              "ru": "обязательство, обещание.",
+              "uk": "зобовʼязання, обіцянка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ей стоит выполнить своё обязательство».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ей стоит выполнить своё обязательство».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to keep her commitment.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит выполнить своё обязательство».",
+            "uk": "Дайте пораду з ought to: «Їй варто виконати своє зобовʼязання»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "keep",
+            "her",
+            "commitment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i05:r1",
+            "text": "She ought to keep her commitment."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i05:r2",
+            "text": "She can keep her commitment."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i05:r3",
+            "text": "She could keep her commitment."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i05:audio",
+            "transcript": "She ought to keep her commitment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i05:r1",
+              "targetText": "She ought to keep her commitment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r2",
+              "targetText": "She can keep her commitment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r3",
+              "targetText": "She could keep her commitment.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to keep her commitment.",
+                "uk": "У записі звучить She ought to keep her commitment."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to keep her commitment.",
+                "uk": "У записі звучить She ought to keep her commitment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ keep her commitment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:duty",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — duty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:duty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — duty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:duty:audio",
+            "transcript": "duty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:duty:r1",
+              "targetText": "duty",
+              "meaningByLocale": {
+                "ru": "долг, обязанность.",
+                "uk": "обовʼязок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "duty",
+            "definitionByLocale": {
+              "ru": "долг, обязанность.",
+              "uk": "обовʼязок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ему стоит выполнить свою обязанность».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ему стоит выполнить свою обязанность».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to do his duty.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит выполнить свою обязанность».",
+            "uk": "Дайте пораду з ought to: «Йому варто виконати свій обовʼязок»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "do",
+            "his",
+            "duty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i08:r1",
+            "text": "He ought to do his duty."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i08:r2",
+            "text": "He can do his duty."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i08:r3",
+            "text": "He could do his duty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i08:audio",
+            "transcript": "He ought to do his duty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i08:r1",
+              "targetText": "He ought to do his duty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r2",
+              "targetText": "He can do his duty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r3",
+              "targetText": "He could do his duty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to do his duty.",
+                "uk": "У записі звучить He ought to do his duty."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to do his duty.",
+                "uk": "У записі звучить He ought to do his duty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ do his duty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:courtesy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — courtesy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:courtesy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — courtesy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:courtesy:audio",
+            "transcript": "courtesy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:courtesy:r1",
+              "targetText": "courtesy",
+              "meaningByLocale": {
+                "ru": "вежливость.",
+                "uk": "ввічливість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courtesy",
+            "definitionByLocale": {
+              "ru": "вежливость.",
+              "uk": "ввічливість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Тебе стоит проявить вежливость».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Тебе стоит проявить вежливость».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to show courtesy.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит проявить вежливость».",
+            "uk": "Дайте пораду з ought to: «Тобі варто виявити ввічливість»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "show",
+            "courtesy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i11:r1",
+            "text": "You ought to show courtesy."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i11:r2",
+            "text": "You can show courtesy."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i11:r3",
+            "text": "You could show courtesy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i11:audio",
+            "transcript": "You ought to show courtesy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i11:r1",
+              "targetText": "You ought to show courtesy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r2",
+              "targetText": "You can show courtesy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r3",
+              "targetText": "You could show courtesy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to show courtesy.",
+                "uk": "У записі звучить You ought to show courtesy."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to show courtesy.",
+                "uk": "У записі звучить You ought to show courtesy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ show courtesy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-31:i13:p1",
+              "target": "agreement",
+              "meaningByLocale": {
+                "ru": "соглашение, договорённость",
+                "uk": "угода, домовленість"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p2",
+              "target": "commitment",
+              "meaningByLocale": {
+                "ru": "обязательство, обещание",
+                "uk": "зобовʼязання, обіцянка"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p3",
+              "target": "duty",
+              "meaningByLocale": {
+                "ru": "долг, обязанность",
+                "uk": "обовʼязок"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p4",
+              "target": "courtesy",
+              "meaningByLocale": {
+                "ru": "вежливость",
+                "uk": "ввічливість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "agreement",
+            "commitment",
+            "duty",
+            "courtesy"
+          ],
+          "rightColumn": [
+            "соглашение, договорённость",
+            "обязательство, обещание",
+            "долг, обязанность",
+            "вежливость"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите прийти к соглашению",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите прийти к соглашению",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i16:audio",
+            "transcript": "We ought to reach an agreement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to reach an agreement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте проявить вежливость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте проявить вежливость",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i17:audio",
+            "transcript": "You ought to show courtesy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You ought to show courtesy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-31:word:agreement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — agreement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:agreement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — agreement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:agreement:audio",
+            "transcript": "agreement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:agreement:r1",
+              "targetText": "agreement",
+              "meaningByLocale": {
+                "ru": "соглашение, договорённость.",
+                "uk": "угода, домовленість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "agreement",
+            "definitionByLocale": {
+              "ru": "соглашение, договорённость.",
+              "uk": "угода, домовленість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Нам варто дійти згоди».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Нам варто дійти згоди».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to reach an agreement.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит прийти к соглашению».",
+            "uk": "Дайте пораду з ought to: «Нам варто дійти згоди»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "reach",
+            "an",
+            "agreement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i02:r1",
+            "text": "We ought to reach an agreement."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i02:r2",
+            "text": "We can reach an agreement."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i02:r3",
+            "text": "We could reach an agreement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i02:audio",
+            "transcript": "We ought to reach an agreement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i02:r1",
+              "targetText": "We ought to reach an agreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r2",
+              "targetText": "We can reach an agreement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r3",
+              "targetText": "We could reach an agreement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to reach an agreement.",
+                "uk": "У записі звучить We ought to reach an agreement."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to reach an agreement.",
+                "uk": "У записі звучить We ought to reach an agreement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ reach an agreement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:commitment",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — commitment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:commitment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — commitment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:commitment:audio",
+            "transcript": "commitment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:commitment:r1",
+              "targetText": "commitment",
+              "meaningByLocale": {
+                "ru": "обязательство, обещание.",
+                "uk": "зобовʼязання, обіцянка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "commitment",
+            "definitionByLocale": {
+              "ru": "обязательство, обещание.",
+              "uk": "зобовʼязання, обіцянка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Їй варто виконати своє зобовʼязання».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Їй варто виконати своє зобовʼязання».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to keep her commitment.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит выполнить своё обязательство».",
+            "uk": "Дайте пораду з ought to: «Їй варто виконати своє зобовʼязання»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "keep",
+            "her",
+            "commitment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i05:r1",
+            "text": "She ought to keep her commitment."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i05:r2",
+            "text": "She can keep her commitment."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i05:r3",
+            "text": "She could keep her commitment."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i05:audio",
+            "transcript": "She ought to keep her commitment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i05:r1",
+              "targetText": "She ought to keep her commitment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r2",
+              "targetText": "She can keep her commitment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r3",
+              "targetText": "She could keep her commitment.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to keep her commitment.",
+                "uk": "У записі звучить She ought to keep her commitment."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to keep her commitment.",
+                "uk": "У записі звучить She ought to keep her commitment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ keep her commitment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:duty",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — duty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:duty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — duty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:duty:audio",
+            "transcript": "duty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:duty:r1",
+              "targetText": "duty",
+              "meaningByLocale": {
+                "ru": "долг, обязанность.",
+                "uk": "обовʼязок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "duty",
+            "definitionByLocale": {
+              "ru": "долг, обязанность.",
+              "uk": "обовʼязок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Йому варто виконати свій обовʼязок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Йому варто виконати свій обовʼязок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to do his duty.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит выполнить свою обязанность».",
+            "uk": "Дайте пораду з ought to: «Йому варто виконати свій обовʼязок»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "do",
+            "his",
+            "duty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i08:r1",
+            "text": "He ought to do his duty."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i08:r2",
+            "text": "He can do his duty."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i08:r3",
+            "text": "He could do his duty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i08:audio",
+            "transcript": "He ought to do his duty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i08:r1",
+              "targetText": "He ought to do his duty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r2",
+              "targetText": "He can do his duty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r3",
+              "targetText": "He could do his duty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to do his duty.",
+                "uk": "У записі звучить He ought to do his duty."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to do his duty.",
+                "uk": "У записі звучить He ought to do his duty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ do his duty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:word:courtesy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — courtesy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:word:courtesy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — courtesy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:word:courtesy:audio",
+            "transcript": "courtesy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:word:courtesy:r1",
+              "targetText": "courtesy",
+              "meaningByLocale": {
+                "ru": "вежливость.",
+                "uk": "ввічливість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courtesy",
+            "definitionByLocale": {
+              "ru": "вежливость.",
+              "uk": "ввічливість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Тобі варто виявити ввічливість».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто виявити ввічливість».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to show courtesy.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит проявить вежливость».",
+            "uk": "Дайте пораду з ought to: «Тобі варто виявити ввічливість»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "show",
+            "courtesy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i11:r1",
+            "text": "You ought to show courtesy."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i11:r2",
+            "text": "You can show courtesy."
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i11:r3",
+            "text": "You could show courtesy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i11:audio",
+            "transcript": "You ought to show courtesy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-31:i11:r1",
+              "targetText": "You ought to show courtesy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r2",
+              "targetText": "You can show courtesy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r3",
+              "targetText": "You could show courtesy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to show courtesy.",
+                "uk": "У записі звучить You ought to show courtesy."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to show courtesy.",
+                "uk": "У записі звучить You ought to show courtesy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-31:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-31:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ show courtesy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-31:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-31:i13:p1",
+              "target": "agreement",
+              "meaningByLocale": {
+                "ru": "соглашение, договорённость",
+                "uk": "угода, домовленість"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p2",
+              "target": "commitment",
+              "meaningByLocale": {
+                "ru": "обязательство, обещание",
+                "uk": "зобовʼязання, обіцянка"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p3",
+              "target": "duty",
+              "meaningByLocale": {
+                "ru": "долг, обязанность",
+                "uk": "обовʼязок"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-31:i13:p4",
+              "target": "courtesy",
+              "meaningByLocale": {
+                "ru": "вежливость",
+                "uk": "ввічливість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "agreement",
+            "commitment",
+            "duty",
+            "courtesy"
+          ],
+          "rightColumn": [
+            "угода, домовленість",
+            "зобовʼязання, обіцянка",
+            "обовʼязок",
+            "ввічливість"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте дійти згоди",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте дійти згоди",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i16:audio",
+            "transcript": "We ought to reach an agreement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to reach an agreement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте виявити ввічливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Порадьте виявити ввічливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-31:i17:audio",
+            "transcript": "You ought to show courtesy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You ought to show courtesy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-31:word:agreement",
+      "correctText": "agreement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i01",
+      "correctText": "We ought to reach an agreement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i02",
+      "correctText": "We ought to reach an agreement.",
+      "correctResponseId": "en:lesson-20:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i03",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:word:commitment",
+      "correctText": "commitment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i04",
+      "correctText": "She ought to keep her commitment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i05",
+      "correctText": "She ought to keep her commitment.",
+      "correctResponseId": "en:lesson-20:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i06",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:word:duty",
+      "correctText": "duty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i07",
+      "correctText": "He ought to do his duty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i08",
+      "correctText": "He ought to do his duty.",
+      "correctResponseId": "en:lesson-20:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i09",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:word:courtesy",
+      "correctText": "courtesy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i10",
+      "correctText": "You ought to show courtesy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i11",
+      "correctText": "You ought to show courtesy.",
+      "correctResponseId": "en:lesson-20:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i12",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i16",
+      "correctText": "We ought to reach an agreement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-31:i17",
+      "correctText": "You ought to show courtesy.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти причину",
+        "uk": "Знайти причину"
+      },
+      "bodyByLocale": {
+        "ru": "Cause здесь — существительное «причина». Группа опоздала, и вы предлагаете понять почему. Раньше causes встречалось как глагол «вызывает»; теперь говорим the cause — причина события. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Cause тут — іменник «причина». Група запізнилася, і ви пропонуєте зрозуміти чому. Раніше causes траплялося як дієслово «спричиняє»; тепер кажемо the cause — причина події. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r1",
+              "text": "We ought to find the cause."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r2",
+              "text": "We oughts to find the cause."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r3",
+              "text": "We ought find the cause."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r1",
+              "text": "We ought to find the cause."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r2",
+              "text": "We oughts to find the cause."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro1:r3",
+              "text": "We ought find the cause."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Учесть результат",
+        "uk": "Урахувати результат"
+      },
+      "bodyByLocale": {
+        "ru": "Effect — результат или влияние действия. Consequence — последствие: если отменить встречу, одному другу придётся менять билет. Здесь this consequence называет именно это конкретное последствие. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Effect — результат або вплив дії. Consequence — наслідок: якщо скасувати зустріч, одному другові доведеться міняти квиток. Тут this consequence називає саме цей конкретний наслідок. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r1",
+              "text": "You ought to consider the effect."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r2",
+              "text": "You oughts to consider the effect."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r3",
+              "text": "You ought consider the effect."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r1",
+              "text": "You ought to consider the effect."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r2",
+              "text": "You oughts to consider the effect."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro2:r3",
+              "text": "You ought consider the effect."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсудить вопрос",
+        "uk": "Обговорити питання"
+      },
+      "bodyByLocale": {
+        "ru": "Issue — вопрос для обсуждения или проблема. Знакомый недоволен новым временем встречи, и вы советуете обсудить этот вопрос с группой. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Issue — питання для обговорення або проблема. Знайомий незадоволений новим часом зустрічі, і ви радите обговорити це питання з групою. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r1",
+              "text": "He ought to discuss this issue."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r2",
+              "text": "He oughts to discuss this issue."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r3",
+              "text": "He ought discuss this issue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r1",
+              "text": "He ought to discuss this issue."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r2",
+              "text": "He oughts to discuss this issue."
+            },
+            {
+              "responseId": "en:lesson-20:session-26:intro3:r3",
+              "text": "He ought discuss this issue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6782f1f5e41d94035e34ec919061eca1ee9dbfe54546d75fea890005be90659"
+}

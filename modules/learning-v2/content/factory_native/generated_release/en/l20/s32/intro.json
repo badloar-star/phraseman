@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заплатить отдельно",
+        "uk": "Заплатити окремо"
+      },
+      "bodyByLocale": {
+        "ru": "Separately — отдельно. Вы пообедали с друзьями и спрашиваете официанта, можно ли заплатить только за свой заказ. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Separately — окремо. Ви пообідали з друзями й питаєте офіціанта, чи можна заплатити лише за своє замовлення. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r1",
+              "text": "Could I pay separately?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r2",
+              "text": "Could I to pay separately?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r3",
+              "text": "I could pay separately?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r1",
+              "text": "Could I pay separately?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r2",
+              "text": "Could I to pay separately?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro1:r3",
+              "text": "I could pay separately?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Остаться ненадолго",
+        "uk": "Залишитися ненадовго"
+      },
+      "bodyByLocale": {
+        "ru": "Temporarily — временно. У вас дома идёт ремонт, и вы просите знакомого разрешить ненадолго остановиться у него. Это не постоянный переезд. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Temporarily — тимчасово. У вас удома триває ремонт, і ви просите знайомого дозволити ненадовго зупинитися в нього. Це не постійний переїзд. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r1",
+              "text": "Could I stay here temporarily?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r2",
+              "text": "Could I to stay here temporarily?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r3",
+              "text": "I could stay here temporarily?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r1",
+              "text": "Could I stay here temporarily?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r2",
+              "text": "Could I to stay here temporarily?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro2:r3",
+              "text": "I could stay here temporarily?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оплатить часть наличными",
+        "uk": "Оплатити частину готівкою"
+      },
+      "bodyByLocale": {
+        "ru": "Mainly — в основном: вы хотите чаще работать из дома, но иногда приезжать на работу. Partly — частично: в магазине вы хотите оплатить часть покупки наличными, а остальное картой. Эти слова обозначают разную долю: mainly — большая часть, partly — некоторая часть. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Mainly — переважно: ви хочете частіше працювати з дому, але іноді приїжджати на роботу. Partly — частково: у магазині ви хочете оплатити частину покупки готівкою, а решту карткою. Ці слова позначають різну частку: mainly — більша частина, partly — певна частина. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r1",
+              "text": "Could I pay partly in cash?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r2",
+              "text": "Could I to pay partly in cash?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r3",
+              "text": "I could pay partly in cash?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r1",
+              "text": "Could I pay partly in cash?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r2",
+              "text": "Could I to pay partly in cash?"
+            },
+            {
+              "responseId": "en:lesson-20:session-32:intro3:r3",
+              "text": "I could pay partly in cash?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "22c406d3b5efe19c5b3bc6e0f552b41ef7e3e1fcc909eb2fa8b4d8451266056c"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-27:word:budget",
+    "correctText": "budget",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i01",
+    "correctText": "You ought to set a budget.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i02",
+    "correctText": "You ought to set a budget.",
+    "correctResponseId": "en:lesson-20:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:word:value",
+    "correctText": "value",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i04",
+    "correctText": "She ought to check the value.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i05",
+    "correctText": "She ought to check the value.",
+    "correctResponseId": "en:lesson-20:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:word:factor",
+    "correctText": "factor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i07",
+    "correctText": "We ought to consider this factor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i08",
+    "correctText": "We ought to consider this factor.",
+    "correctResponseId": "en:lesson-20:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:word:feature",
+    "correctText": "feature",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i10",
+    "correctText": "He ought to check this feature.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i11",
+    "correctText": "He ought to check this feature.",
+    "correctResponseId": "en:lesson-20:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i13",
+    "correctText": "en:lesson-20:session-27:i13:p1=budget\nen:lesson-20:session-27:i13:p2=value\nen:lesson-20:session-27:i13:p3=factor\nen:lesson-20:session-27:i13:p4=feature",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i16",
+    "correctText": "You ought to set a budget.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-27:i17",
+    "correctText": "We ought to consider this factor.",
+    "correctResponseId": null
+  }
+]

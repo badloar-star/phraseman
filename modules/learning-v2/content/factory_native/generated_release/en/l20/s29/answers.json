@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-29:word:attempt",
+    "correctText": "attempt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i01",
+    "correctText": "She ought to make another attempt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i02",
+    "correctText": "She ought to make another attempt.",
+    "correctResponseId": "en:lesson-20:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:word:importance",
+    "correctText": "importance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i04",
+    "correctText": "You ought to explain its importance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i05",
+    "correctText": "You ought to explain its importance.",
+    "correctResponseId": "en:lesson-20:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:word:impact",
+    "correctText": "impact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i07",
+    "correctText": "We ought to consider the impact.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i08",
+    "correctText": "We ought to consider the impact.",
+    "correctResponseId": "en:lesson-20:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:word:understanding",
+    "correctText": "understanding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i10",
+    "correctText": "He ought to show understanding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i11",
+    "correctText": "He ought to show understanding.",
+    "correctResponseId": "en:lesson-20:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i13",
+    "correctText": "en:lesson-20:session-29:i13:p1=importance\nen:lesson-20:session-29:i13:p2=impact\nen:lesson-20:session-29:i13:p3=attempt\nen:lesson-20:session-29:i13:p4=understanding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i16",
+    "correctText": "She ought to make another attempt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-29:i17",
+    "correctText": "He ought to show understanding.",
+    "correctResponseId": null
+  }
+]

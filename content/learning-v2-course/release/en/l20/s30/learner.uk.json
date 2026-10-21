@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-30:word:take-into-account",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take into account",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:word:take-into-account:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take into account",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:word:take-into-account:audio",
+          "transcript": "take into account"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:word:take-into-account:r1",
+            "targetText": "take into account",
+            "meaningByLocale": {
+              "ru": "принимать во внимание.",
+              "uk": "брати до уваги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take into account",
+          "definitionByLocale": {
+            "ru": "принимать во внимание.",
+            "uk": "брати до уваги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду з ought to: «Нам варто взяти до уваги ціну».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду з ought to: «Нам варто взяти до уваги ціну».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to take into account the price.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит принять во внимание цену».",
+          "uk": "Дайте пораду з ought to: «Нам варто взяти до уваги ціну»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "take",
+          "into",
+          "account",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i02:r1",
+          "text": "We ought to take into account the price."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i02:r2",
+          "text": "We can take into account the price."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i02:r3",
+          "text": "We could take into account the price."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i02:audio",
+          "transcript": "We ought to take into account the price."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:i02:r1",
+            "targetText": "We ought to take into account the price.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i02:r2",
+            "targetText": "We can take into account the price.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i02:r3",
+            "targetText": "We could take into account the price.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to take into account the price.",
+              "uk": "У записі звучить We ought to take into account the price."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to take into account the price.",
+              "uk": "У записі звучить We ought to take into account the price."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i03:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i03:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i03:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ take into account the price.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-30:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:word:keep-in-mind",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keep in mind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:word:keep-in-mind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keep in mind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:word:keep-in-mind:audio",
+          "transcript": "keep in mind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:word:keep-in-mind:r1",
+            "targetText": "keep in mind",
+            "meaningByLocale": {
+              "ru": "помнить, иметь в виду.",
+              "uk": "памʼятати, мати на увазі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep in mind",
+          "definitionByLocale": {
+            "ru": "помнить, иметь в виду.",
+            "uk": "памʼятати, мати на увазі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду з ought to: «Тобі варто памʼятати про час відправлення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто памʼятати про час відправлення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You ought to keep in mind the departure time.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Тебе стоит помнить о времени отправления».",
+          "uk": "Дайте пораду з ought to: «Тобі варто памʼятати про час відправлення»."
+        },
+        "orderedTokens": [
+          "You",
+          "ought",
+          "to",
+          "keep",
+          "in",
+          "mind",
+          "the",
+          "departure",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i05:r1",
+          "text": "You ought to keep in mind the departure time."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i05:r2",
+          "text": "You can keep in mind the departure time."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i05:r3",
+          "text": "You could keep in mind the departure time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i05:audio",
+          "transcript": "You ought to keep in mind the departure time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:i05:r1",
+            "targetText": "You ought to keep in mind the departure time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i05:r2",
+            "targetText": "You can keep in mind the departure time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i05:r3",
+            "targetText": "You could keep in mind the departure time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to keep in mind the departure time.",
+              "uk": "У записі звучить You ought to keep in mind the departure time."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to keep in mind the departure time.",
+              "uk": "У записі звучить You ought to keep in mind the departure time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i06:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i06:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i06:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ keep in mind the departure time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-30:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:word:make-up-your-mind",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make up your mind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:word:make-up-your-mind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make up your mind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:word:make-up-your-mind:audio",
+          "transcript": "make up your mind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:word:make-up-your-mind:r1",
+            "targetText": "make up your mind",
+            "meaningByLocale": {
+              "ru": "принять решение.",
+              "uk": "ухвалити рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make up your mind",
+          "definitionByLocale": {
+            "ru": "принять решение.",
+            "uk": "ухвалити рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду з ought to: «Тобі варто ухвалити рішення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто ухвалити рішення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You ought to make up your mind.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Тебе стоит принять решение».",
+          "uk": "Дайте пораду з ought to: «Тобі варто ухвалити рішення»."
+        },
+        "orderedTokens": [
+          "You",
+          "ought",
+          "to",
+          "make",
+          "up",
+          "your",
+          "mind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i08:r1",
+          "text": "You ought to make up your mind."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i08:r2",
+          "text": "You can make up your mind."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i08:r3",
+          "text": "You could make up your mind."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i08:audio",
+          "transcript": "You ought to make up your mind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:i08:r1",
+            "targetText": "You ought to make up your mind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i08:r2",
+            "targetText": "You can make up your mind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i08:r3",
+            "targetText": "You could make up your mind.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to make up your mind.",
+              "uk": "У записі звучить You ought to make up your mind."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to make up your mind.",
+              "uk": "У записі звучить You ought to make up your mind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i09:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i09:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i09:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ make up your mind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-30:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:word:take-it-seriously",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take it seriously",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:word:take-it-seriously:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take it seriously",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:word:take-it-seriously:audio",
+          "transcript": "take it seriously"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:word:take-it-seriously:r1",
+            "targetText": "take it seriously",
+            "meaningByLocale": {
+              "ru": "отнестись к этому серьёзно.",
+              "uk": "поставитися до цього серйозно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take it seriously",
+          "definitionByLocale": {
+            "ru": "отнестись к этому серьёзно.",
+            "uk": "поставитися до цього серйозно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду з ought to: «Йому варто поставитися до цього серйозно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду з ought to: «Йому варто поставитися до цього серйозно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He ought to take it seriously.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Ему стоит отнестись к этому серьёзно».",
+          "uk": "Дайте пораду з ought to: «Йому варто поставитися до цього серйозно»."
+        },
+        "orderedTokens": [
+          "He",
+          "ought",
+          "to",
+          "take",
+          "it",
+          "seriously"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i11:r1",
+          "text": "He ought to take it seriously."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i11:r2",
+          "text": "He can take it seriously."
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i11:r3",
+          "text": "He could take it seriously."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i11:audio",
+          "transcript": "He ought to take it seriously."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-30:i11:r1",
+            "targetText": "He ought to take it seriously.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i11:r2",
+            "targetText": "He can take it seriously.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i11:r3",
+            "targetText": "He could take it seriously.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He ought to take it seriously.",
+              "uk": "У записі звучить He ought to take it seriously."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He ought to take it seriously.",
+              "uk": "У записі звучить He ought to take it seriously."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-30:i12:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i12:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-30:i12:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ take it seriously.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-30:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-30:i13:p1",
+            "target": "take into account",
+            "meaningByLocale": {
+              "ru": "принимать во внимание",
+              "uk": "брати до уваги"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-30:i13:p2",
+            "target": "keep in mind",
+            "meaningByLocale": {
+              "ru": "помнить, иметь в виду",
+              "uk": "памʼятати, мати на увазі"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-30:i13:p3",
+            "target": "make up your mind",
+            "meaningByLocale": {
+              "ru": "принять решение",
+              "uk": "ухвалити рішення"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-30:i13:p4",
+            "target": "take it seriously",
+            "meaningByLocale": {
+              "ru": "отнестись к этому серьёзно",
+              "uk": "поставитися до цього серйозно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "take into account",
+          "keep in mind",
+          "make up your mind",
+          "take it seriously"
+        ],
+        "rightColumn": [
+          "брати до уваги",
+          "памʼятати, мати на увазі",
+          "ухвалити рішення",
+          "поставитися до цього серйозно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте ухвалити рішення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Порадьте ухвалити рішення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i16:audio",
+          "transcript": "You ought to make up your mind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You ought to make up your mind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте поставитися до строку серйозно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Порадьте поставитися до строку серйозно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-30:i17:audio",
+          "transcript": "He ought to take it seriously."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He ought to take it seriously.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4b71743839747ad293f6e4409f4cbcf81454a6924e988c1418e8d0764554b863"
+}

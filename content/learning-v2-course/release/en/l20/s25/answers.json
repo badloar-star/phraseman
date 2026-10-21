@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-25:word:national",
+    "correctText": "national",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i01",
+    "correctText": "You ought to read the national news.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i02",
+    "correctText": "You ought to read the national news.",
+    "correctResponseId": "en:lesson-20:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:word:international",
+    "correctText": "international",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i04",
+    "correctText": "We ought to compare international flights.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i05",
+    "correctText": "We ought to compare international flights.",
+    "correctResponseId": "en:lesson-20:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:word:professional",
+    "correctText": "professional",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i07",
+    "correctText": "She ought to ask for professional advice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i08",
+    "correctText": "She ought to ask for professional advice.",
+    "correctResponseId": "en:lesson-20:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:word:individual",
+    "correctText": "individual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i10",
+    "correctText": "He ought to ask for individual help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i11",
+    "correctText": "He ought to ask for individual help.",
+    "correctResponseId": "en:lesson-20:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i13",
+    "correctText": "en:lesson-20:session-25:i13:p1=national\nen:lesson-20:session-25:i13:p2=international\nen:lesson-20:session-25:i13:p3=professional\nen:lesson-20:session-25:i13:p4=individual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i16",
+    "correctText": "We ought to compare international flights.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-25:i17",
+    "correctText": "She ought to ask for professional advice.",
+    "correctResponseId": null
+  }
+]

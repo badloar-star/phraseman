@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-25:word:national",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — national",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:national:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — national",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:national:audio",
+            "transcript": "national"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:national:r1",
+              "targetText": "national",
+              "meaningByLocale": {
+                "ru": "национальный, общегосударственный.",
+                "uk": "національний, загальнодержавний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "national",
+            "definitionByLocale": {
+              "ru": "национальный, общегосударственный.",
+              "uk": "національний, загальнодержавний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Тебе стоит читать новости страны».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Тебе стоит читать новости страны».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to read the national news.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит читать новости страны».",
+            "uk": "Дайте пораду з ought to: «Тобі варто читати новини країни»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "read",
+            "the",
+            "national",
+            "news"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i02:r1",
+            "text": "You ought to read the national news."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i02:r2",
+            "text": "You can read the national news."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i02:r3",
+            "text": "You could read the national news."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i02:audio",
+            "transcript": "You ought to read the national news."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i02:r1",
+              "targetText": "You ought to read the national news.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r2",
+              "targetText": "You can read the national news.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r3",
+              "targetText": "You could read the national news.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to read the national news.",
+                "uk": "У записі звучить You ought to read the national news."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to read the national news.",
+                "uk": "У записі звучить You ought to read the national news."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ read the national news.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:international",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — international",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:international:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — international",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:international:audio",
+            "transcript": "international"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:international:r1",
+              "targetText": "international",
+              "meaningByLocale": {
+                "ru": "международный.",
+                "uk": "міжнародний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "international",
+            "definitionByLocale": {
+              "ru": "международный.",
+              "uk": "міжнародний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Нам стоит сравнить международные рейсы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Нам стоит сравнить международные рейсы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to compare international flights.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит сравнить международные рейсы».",
+            "uk": "Дайте пораду з ought to: «Нам варто порівняти міжнародні рейси»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "compare",
+            "international",
+            "flights"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i05:r1",
+            "text": "We ought to compare international flights."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i05:r2",
+            "text": "We can compare international flights."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i05:r3",
+            "text": "We could compare international flights."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i05:audio",
+            "transcript": "We ought to compare international flights."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i05:r1",
+              "targetText": "We ought to compare international flights.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r2",
+              "targetText": "We can compare international flights.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r3",
+              "targetText": "We could compare international flights.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to compare international flights.",
+                "uk": "У записі звучить We ought to compare international flights."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to compare international flights.",
+                "uk": "У записі звучить We ought to compare international flights."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ compare international flights.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:professional",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — professional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:professional:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — professional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:professional:audio",
+            "transcript": "professional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:professional:r1",
+              "targetText": "professional",
+              "meaningByLocale": {
+                "ru": "профессиональный.",
+                "uk": "професійний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "professional",
+            "definitionByLocale": {
+              "ru": "профессиональный.",
+              "uk": "професійний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ей стоит обратиться за профессиональным советом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ей стоит обратиться за профессиональным советом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to ask for professional advice.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит обратиться за профессиональным советом».",
+            "uk": "Дайте пораду з ought to: «Їй варто звернутися по професійну пораду»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "ask",
+            "for",
+            "professional",
+            "advice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i08:r1",
+            "text": "She ought to ask for professional advice."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i08:r2",
+            "text": "She can ask for professional advice."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i08:r3",
+            "text": "She could ask for professional advice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i08:audio",
+            "transcript": "She ought to ask for professional advice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i08:r1",
+              "targetText": "She ought to ask for professional advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r2",
+              "targetText": "She can ask for professional advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r3",
+              "targetText": "She could ask for professional advice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to ask for professional advice.",
+                "uk": "У записі звучить She ought to ask for professional advice."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to ask for professional advice.",
+                "uk": "У записі звучить She ought to ask for professional advice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ ask for professional advice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:individual",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — individual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:individual:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — individual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:individual:audio",
+            "transcript": "individual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:individual:r1",
+              "targetText": "individual",
+              "meaningByLocale": {
+                "ru": "индивидуальный, отдельный.",
+                "uk": "індивідуальний, окремий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "individual",
+            "definitionByLocale": {
+              "ru": "индивидуальный, отдельный.",
+              "uk": "індивідуальний, окремий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ему стоит попросить индивидуальную помощь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ему стоит попросить индивидуальную помощь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to ask for individual help.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит попросить индивидуальную помощь».",
+            "uk": "Дайте пораду з ought to: «Йому варто попросити індивідуальну допомогу»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "ask",
+            "for",
+            "individual",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i11:r1",
+            "text": "He ought to ask for individual help."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i11:r2",
+            "text": "He can ask for individual help."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i11:r3",
+            "text": "He could ask for individual help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i11:audio",
+            "transcript": "He ought to ask for individual help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i11:r1",
+              "targetText": "He ought to ask for individual help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r2",
+              "targetText": "He can ask for individual help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r3",
+              "targetText": "He could ask for individual help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to ask for individual help.",
+                "uk": "У записі звучить He ought to ask for individual help."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to ask for individual help.",
+                "uk": "У записі звучить He ought to ask for individual help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ ask for individual help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-25:i13:p1",
+              "target": "national",
+              "meaningByLocale": {
+                "ru": "национальный, общегосударственный",
+                "uk": "національний, загальнодержавний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p2",
+              "target": "international",
+              "meaningByLocale": {
+                "ru": "международный",
+                "uk": "міжнародний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p3",
+              "target": "professional",
+              "meaningByLocale": {
+                "ru": "профессиональный",
+                "uk": "професійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p4",
+              "target": "individual",
+              "meaningByLocale": {
+                "ru": "индивидуальный, отдельный",
+                "uk": "індивідуальний, окремий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "national",
+            "international",
+            "professional",
+            "individual"
+          ],
+          "rightColumn": [
+            "национальный, общегосударственный",
+            "международный",
+            "профессиональный",
+            "индивидуальный, отдельный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте сравнить международные рейсы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте сравнить международные рейсы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i16:audio",
+            "transcript": "We ought to compare international flights."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to compare international flights.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте ей обратиться к профессионалу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте ей обратиться к профессионалу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i17:audio",
+            "transcript": "She ought to ask for professional advice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She ought to ask for professional advice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-25:word:national",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — national",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:national:audio"
+        ],
+        "accessibilityLabel": "Картка слова — national",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:national:audio",
+            "transcript": "national"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:national:r1",
+              "targetText": "national",
+              "meaningByLocale": {
+                "ru": "национальный, общегосударственный.",
+                "uk": "національний, загальнодержавний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "national",
+            "definitionByLocale": {
+              "ru": "национальный, общегосударственный.",
+              "uk": "національний, загальнодержавний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Тобі варто читати новини країни».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто читати новини країни».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to read the national news.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит читать новости страны».",
+            "uk": "Дайте пораду з ought to: «Тобі варто читати новини країни»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "read",
+            "the",
+            "national",
+            "news"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i02:r1",
+            "text": "You ought to read the national news."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i02:r2",
+            "text": "You can read the national news."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i02:r3",
+            "text": "You could read the national news."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i02:audio",
+            "transcript": "You ought to read the national news."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i02:r1",
+              "targetText": "You ought to read the national news.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r2",
+              "targetText": "You can read the national news.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r3",
+              "targetText": "You could read the national news.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to read the national news.",
+                "uk": "У записі звучить You ought to read the national news."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to read the national news.",
+                "uk": "У записі звучить You ought to read the national news."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ read the national news.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:international",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — international",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:international:audio"
+        ],
+        "accessibilityLabel": "Картка слова — international",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:international:audio",
+            "transcript": "international"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:international:r1",
+              "targetText": "international",
+              "meaningByLocale": {
+                "ru": "международный.",
+                "uk": "міжнародний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "international",
+            "definitionByLocale": {
+              "ru": "международный.",
+              "uk": "міжнародний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Нам варто порівняти міжнародні рейси».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Нам варто порівняти міжнародні рейси».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to compare international flights.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит сравнить международные рейсы».",
+            "uk": "Дайте пораду з ought to: «Нам варто порівняти міжнародні рейси»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "compare",
+            "international",
+            "flights"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i05:r1",
+            "text": "We ought to compare international flights."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i05:r2",
+            "text": "We can compare international flights."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i05:r3",
+            "text": "We could compare international flights."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i05:audio",
+            "transcript": "We ought to compare international flights."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i05:r1",
+              "targetText": "We ought to compare international flights.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r2",
+              "targetText": "We can compare international flights.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r3",
+              "targetText": "We could compare international flights.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to compare international flights.",
+                "uk": "У записі звучить We ought to compare international flights."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to compare international flights.",
+                "uk": "У записі звучить We ought to compare international flights."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ compare international flights.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:professional",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — professional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:professional:audio"
+        ],
+        "accessibilityLabel": "Картка слова — professional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:professional:audio",
+            "transcript": "professional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:professional:r1",
+              "targetText": "professional",
+              "meaningByLocale": {
+                "ru": "профессиональный.",
+                "uk": "професійний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "professional",
+            "definitionByLocale": {
+              "ru": "профессиональный.",
+              "uk": "професійний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Їй варто звернутися по професійну пораду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Їй варто звернутися по професійну пораду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to ask for professional advice.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит обратиться за профессиональным советом».",
+            "uk": "Дайте пораду з ought to: «Їй варто звернутися по професійну пораду»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "ask",
+            "for",
+            "professional",
+            "advice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i08:r1",
+            "text": "She ought to ask for professional advice."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i08:r2",
+            "text": "She can ask for professional advice."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i08:r3",
+            "text": "She could ask for professional advice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i08:audio",
+            "transcript": "She ought to ask for professional advice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i08:r1",
+              "targetText": "She ought to ask for professional advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r2",
+              "targetText": "She can ask for professional advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r3",
+              "targetText": "She could ask for professional advice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to ask for professional advice.",
+                "uk": "У записі звучить She ought to ask for professional advice."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to ask for professional advice.",
+                "uk": "У записі звучить She ought to ask for professional advice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ ask for professional advice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:word:individual",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — individual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:word:individual:audio"
+        ],
+        "accessibilityLabel": "Картка слова — individual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:word:individual:audio",
+            "transcript": "individual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:word:individual:r1",
+              "targetText": "individual",
+              "meaningByLocale": {
+                "ru": "индивидуальный, отдельный.",
+                "uk": "індивідуальний, окремий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "individual",
+            "definitionByLocale": {
+              "ru": "индивидуальный, отдельный.",
+              "uk": "індивідуальний, окремий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Йому варто попросити індивідуальну допомогу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Йому варто попросити індивідуальну допомогу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to ask for individual help.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит попросить индивидуальную помощь».",
+            "uk": "Дайте пораду з ought to: «Йому варто попросити індивідуальну допомогу»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "ask",
+            "for",
+            "individual",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i11:r1",
+            "text": "He ought to ask for individual help."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i11:r2",
+            "text": "He can ask for individual help."
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i11:r3",
+            "text": "He could ask for individual help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i11:audio",
+            "transcript": "He ought to ask for individual help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-25:i11:r1",
+              "targetText": "He ought to ask for individual help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r2",
+              "targetText": "He can ask for individual help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r3",
+              "targetText": "He could ask for individual help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to ask for individual help.",
+                "uk": "У записі звучить He ought to ask for individual help."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to ask for individual help.",
+                "uk": "У записі звучить He ought to ask for individual help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-25:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-25:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ ask for individual help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-25:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-25:i13:p1",
+              "target": "national",
+              "meaningByLocale": {
+                "ru": "национальный, общегосударственный",
+                "uk": "національний, загальнодержавний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p2",
+              "target": "international",
+              "meaningByLocale": {
+                "ru": "международный",
+                "uk": "міжнародний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p3",
+              "target": "professional",
+              "meaningByLocale": {
+                "ru": "профессиональный",
+                "uk": "професійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-25:i13:p4",
+              "target": "individual",
+              "meaningByLocale": {
+                "ru": "индивидуальный, отдельный",
+                "uk": "індивідуальний, окремий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "national",
+            "international",
+            "professional",
+            "individual"
+          ],
+          "rightColumn": [
+            "національний, загальнодержавний",
+            "міжнародний",
+            "професійний",
+            "індивідуальний, окремий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте порівняти міжнародні рейси",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Порадьте порівняти міжнародні рейси",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i16:audio",
+            "transcript": "We ought to compare international flights."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to compare international flights.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте їй звернутися до професіонала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Порадьте їй звернутися до професіонала",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-25:i17:audio",
+            "transcript": "She ought to ask for professional advice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She ought to ask for professional advice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-25:word:national",
+      "correctText": "national",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i01",
+      "correctText": "You ought to read the national news.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i02",
+      "correctText": "You ought to read the national news.",
+      "correctResponseId": "en:lesson-20:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i03",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:word:international",
+      "correctText": "international",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i04",
+      "correctText": "We ought to compare international flights.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i05",
+      "correctText": "We ought to compare international flights.",
+      "correctResponseId": "en:lesson-20:session-25:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i06",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-25:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:word:professional",
+      "correctText": "professional",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i07",
+      "correctText": "She ought to ask for professional advice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i08",
+      "correctText": "She ought to ask for professional advice.",
+      "correctResponseId": "en:lesson-20:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i09",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:word:individual",
+      "correctText": "individual",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i10",
+      "correctText": "He ought to ask for individual help.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i11",
+      "correctText": "He ought to ask for individual help.",
+      "correctResponseId": "en:lesson-20:session-25:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i12",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i16",
+      "correctText": "We ought to compare international flights.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-25:i17",
+      "correctText": "She ought to ask for professional advice.",
+      "correctResponseId": null
+    }
+  ]
+}

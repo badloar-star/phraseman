@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Объяснить важность",
+        "uk": "Пояснити важливість"
+      },
+      "bodyByLocale": {
+        "ru": "Importance — важность. В плане есть пункт, который другие хотят пропустить, а вы считаете его важным. Its importance — важность этого пункта. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Importance — важливість. У плані є пункт, який інші хочуть пропустити, а ви вважаєте його важливим. Its importance — важливість цього пункту. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r1",
+              "text": "You ought to explain its importance."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r2",
+              "text": "You oughts to explain its importance."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r3",
+              "text": "You ought explain its importance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r1",
+              "text": "You ought to explain its importance."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r2",
+              "text": "You oughts to explain its importance."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro1:r3",
+              "text": "You ought explain its importance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Учесть влияние",
+        "uk": "Урахувати вплив"
+      },
+      "bodyByLocale": {
+        "ru": "Impact — влияние решения или события на людей и ситуацию. Вы собираетесь перенести встречу и думаете, как это повлияет на участников. Attempt — попытка: подруга не решила упражнение с первого раза, и вы предлагаете попробовать ещё. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Impact — вплив рішення або події на людей і ситуацію. Ви збираєтеся перенести зустріч і думаєте, як це вплине на учасників. Attempt — спроба: подруга не розвʼязала вправу з першого разу, і ви пропонуєте спробувати ще. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r1",
+              "text": "We ought to consider the impact."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r2",
+              "text": "We oughts to consider the impact."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r3",
+              "text": "We ought consider the impact."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r1",
+              "text": "We ought to consider the impact."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r2",
+              "text": "We oughts to consider the impact."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro2:r3",
+              "text": "We ought consider the impact."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проявить понимание",
+        "uk": "Виявити розуміння"
+      },
+      "bodyByLocale": {
+        "ru": "Understanding — понимание. Show understanding — проявить понимание к чужой ситуации. Участник опоздал из-за задержки автобуса; вы предлагаете знакомому выслушать его объяснение. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Understanding — розуміння. Show understanding — виявити розуміння до чужої ситуації. Учасник запізнився через затримку автобуса; ви пропонуєте знайомому вислухати його пояснення. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r1",
+              "text": "He ought to show understanding."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r2",
+              "text": "He oughts to show understanding."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r3",
+              "text": "He ought show understanding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r1",
+              "text": "He ought to show understanding."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r2",
+              "text": "He oughts to show understanding."
+            },
+            {
+              "responseId": "en:lesson-20:session-29:intro3:r3",
+              "text": "He ought show understanding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "80ba0f1864cdd07793465d9aad4c1784923f9b708b9077c82b48fc754e77e84d"
+}

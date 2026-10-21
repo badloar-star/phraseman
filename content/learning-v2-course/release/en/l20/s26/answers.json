@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-26:word:cause",
+    "correctText": "cause",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i01",
+    "correctText": "We ought to find the cause.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i02",
+    "correctText": "We ought to find the cause.",
+    "correctResponseId": "en:lesson-20:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:word:effect",
+    "correctText": "effect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i04",
+    "correctText": "You ought to consider the effect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i05",
+    "correctText": "You ought to consider the effect.",
+    "correctResponseId": "en:lesson-20:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:word:consequence",
+    "correctText": "consequence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i07",
+    "correctText": "She ought to consider this consequence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i08",
+    "correctText": "She ought to consider this consequence.",
+    "correctResponseId": "en:lesson-20:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:word:issue",
+    "correctText": "issue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i10",
+    "correctText": "He ought to discuss this issue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i11",
+    "correctText": "He ought to discuss this issue.",
+    "correctResponseId": "en:lesson-20:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i13",
+    "correctText": "en:lesson-20:session-26:i13:p1=cause\nen:lesson-20:session-26:i13:p2=effect\nen:lesson-20:session-26:i13:p3=consequence\nen:lesson-20:session-26:i13:p4=issue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i16",
+    "correctText": "We ought to find the cause.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-26:i17",
+    "correctText": "He ought to discuss this issue.",
+    "correctResponseId": null
+  }
+]

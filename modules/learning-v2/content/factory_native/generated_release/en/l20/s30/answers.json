@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-30:word:take-into-account",
+    "correctText": "take into account",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i01",
+    "correctText": "We ought to take into account the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i02",
+    "correctText": "We ought to take into account the price.",
+    "correctResponseId": "en:lesson-20:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:word:keep-in-mind",
+    "correctText": "keep in mind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i04",
+    "correctText": "You ought to keep in mind the departure time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i05",
+    "correctText": "You ought to keep in mind the departure time.",
+    "correctResponseId": "en:lesson-20:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:word:make-up-your-mind",
+    "correctText": "make up your mind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i07",
+    "correctText": "You ought to make up your mind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i08",
+    "correctText": "You ought to make up your mind.",
+    "correctResponseId": "en:lesson-20:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:word:take-it-seriously",
+    "correctText": "take it seriously",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i10",
+    "correctText": "He ought to take it seriously.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i11",
+    "correctText": "He ought to take it seriously.",
+    "correctResponseId": "en:lesson-20:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i13",
+    "correctText": "en:lesson-20:session-30:i13:p1=take into account\nen:lesson-20:session-30:i13:p2=keep in mind\nen:lesson-20:session-30:i13:p3=make up your mind\nen:lesson-20:session-30:i13:p4=take it seriously",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i16",
+    "correctText": "You ought to make up your mind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-30:i17",
+    "correctText": "He ought to take it seriously.",
+    "correctResponseId": null
+  }
+]

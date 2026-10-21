@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-28:word:accurate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — accurate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:accurate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — accurate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:accurate:audio",
+            "transcript": "accurate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:accurate:r1",
+              "targetText": "accurate",
+              "meaningByLocale": {
+                "ru": "точный, соответствующий фактам.",
+                "uk": "точний, відповідний до фактів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accurate",
+            "definitionByLocale": {
+              "ru": "точный, соответствующий фактам.",
+              "uk": "точний, відповідний до фактів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Тебе стоит использовать достоверную информацию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Тебе стоит использовать достоверную информацию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to use accurate information.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит использовать достоверную информацию».",
+            "uk": "Дайте пораду з ought to: «Тобі варто використовувати достовірну інформацію»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "use",
+            "accurate",
+            "information"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i02:r1",
+            "text": "You ought to use accurate information."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i02:r2",
+            "text": "You can use accurate information."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i02:r3",
+            "text": "You could use accurate information."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i02:audio",
+            "transcript": "You ought to use accurate information."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i02:r1",
+              "targetText": "You ought to use accurate information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r2",
+              "targetText": "You can use accurate information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r3",
+              "targetText": "You could use accurate information.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to use accurate information.",
+                "uk": "У записі звучить You ought to use accurate information."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to use accurate information.",
+                "uk": "У записі звучить You ought to use accurate information."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ use accurate information.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:inaccurate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — inaccurate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:inaccurate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — inaccurate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:inaccurate:audio",
+            "transcript": "inaccurate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:inaccurate:r1",
+              "targetText": "inaccurate",
+              "meaningByLocale": {
+                "ru": "неточный, ошибочный.",
+                "uk": "неточний, помилковий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inaccurate",
+            "definitionByLocale": {
+              "ru": "неточный, ошибочный.",
+              "uk": "неточний, помилковий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Нам стоит исправить неверную дату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Нам стоит исправить неверную дату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to correct the inaccurate date.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит исправить неверную дату».",
+            "uk": "Дайте пораду з ought to: «Нам варто виправити неправильну дату»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "correct",
+            "the",
+            "inaccurate",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i05:r1",
+            "text": "We ought to correct the inaccurate date."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i05:r2",
+            "text": "We can correct the inaccurate date."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i05:r3",
+            "text": "We could correct the inaccurate date."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i05:audio",
+            "transcript": "We ought to correct the inaccurate date."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i05:r1",
+              "targetText": "We ought to correct the inaccurate date.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r2",
+              "targetText": "We can correct the inaccurate date.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r3",
+              "targetText": "We could correct the inaccurate date.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to correct the inaccurate date.",
+                "uk": "У записі звучить We ought to correct the inaccurate date."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to correct the inaccurate date.",
+                "uk": "У записі звучить We ought to correct the inaccurate date."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ correct the inaccurate date.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:precise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — precise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:precise:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — precise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:precise:audio",
+            "transcript": "precise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:precise:r1",
+              "targetText": "precise",
+              "meaningByLocale": {
+                "ru": "точный, конкретный.",
+                "uk": "точний, конкретний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "precise",
+            "definitionByLocale": {
+              "ru": "точный, конкретный.",
+              "uk": "точний, конкретний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ей стоит дать точный ответ».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ей стоит дать точный ответ».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to give a precise answer.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит дать точный ответ».",
+            "uk": "Дайте пораду з ought to: «Їй варто дати точну відповідь»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "give",
+            "a",
+            "precise",
+            "answer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i08:r1",
+            "text": "She ought to give a precise answer."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i08:r2",
+            "text": "She can give a precise answer."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i08:r3",
+            "text": "She could give a precise answer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i08:audio",
+            "transcript": "She ought to give a precise answer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i08:r1",
+              "targetText": "She ought to give a precise answer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r2",
+              "targetText": "She can give a precise answer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r3",
+              "targetText": "She could give a precise answer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to give a precise answer.",
+                "uk": "У записі звучить She ought to give a precise answer."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to give a precise answer.",
+                "uk": "У записі звучить She ought to give a precise answer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ give a precise answer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:unclear",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unclear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:unclear:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unclear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:unclear:audio",
+            "transcript": "unclear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:unclear:r1",
+              "targetText": "unclear",
+              "meaningByLocale": {
+                "ru": "неясный, непонятный.",
+                "uk": "неясний, незрозумілий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unclear",
+            "definitionByLocale": {
+              "ru": "неясный, непонятный.",
+              "uk": "неясний, незрозумілий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с ought to: «Ему стоит объяснить непонятные указания».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с ought to: «Ему стоит объяснить непонятные указания».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to explain the unclear instructions.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит объяснить непонятные указания».",
+            "uk": "Дайте пораду з ought to: «Йому варто пояснити незрозумілі вказівки»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "explain",
+            "the",
+            "unclear",
+            "instructions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i11:r1",
+            "text": "He ought to explain the unclear instructions."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i11:r2",
+            "text": "He can explain the unclear instructions."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i11:r3",
+            "text": "He could explain the unclear instructions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i11:audio",
+            "transcript": "He ought to explain the unclear instructions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i11:r1",
+              "targetText": "He ought to explain the unclear instructions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r2",
+              "targetText": "He can explain the unclear instructions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r3",
+              "targetText": "He could explain the unclear instructions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to explain the unclear instructions.",
+                "uk": "У записі звучить He ought to explain the unclear instructions."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to explain the unclear instructions.",
+                "uk": "У записі звучить He ought to explain the unclear instructions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ explain the unclear instructions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-28:i13:p1",
+              "target": "accurate",
+              "meaningByLocale": {
+                "ru": "точный, соответствующий фактам",
+                "uk": "точний, відповідний до фактів"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p2",
+              "target": "inaccurate",
+              "meaningByLocale": {
+                "ru": "неточный, ошибочный",
+                "uk": "неточний, помилковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p3",
+              "target": "precise",
+              "meaningByLocale": {
+                "ru": "точный, конкретный",
+                "uk": "точний, конкретний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p4",
+              "target": "unclear",
+              "meaningByLocale": {
+                "ru": "неясный, непонятный",
+                "uk": "неясний, незрозумілий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "accurate",
+            "inaccurate",
+            "precise",
+            "unclear"
+          ],
+          "rightColumn": [
+            "точный, соответствующий фактам",
+            "неточный, ошибочный",
+            "точный, конкретный",
+            "неясный, непонятный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите исправить неверную дату",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите исправить неверную дату",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i16:audio",
+            "transcript": "We ought to correct the inaccurate date."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to correct the inaccurate date.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте дать конкретный ответ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте дать конкретный ответ",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i17:audio",
+            "transcript": "She ought to give a precise answer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She ought to give a precise answer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-28:word:accurate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — accurate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:accurate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — accurate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:accurate:audio",
+            "transcript": "accurate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:accurate:r1",
+              "targetText": "accurate",
+              "meaningByLocale": {
+                "ru": "точный, соответствующий фактам.",
+                "uk": "точний, відповідний до фактів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accurate",
+            "definitionByLocale": {
+              "ru": "точный, соответствующий фактам.",
+              "uk": "точний, відповідний до фактів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Тобі варто використовувати достовірну інформацію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Тобі варто використовувати достовірну інформацію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You ought to use accurate information.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Тебе стоит использовать достоверную информацию».",
+            "uk": "Дайте пораду з ought to: «Тобі варто використовувати достовірну інформацію»."
+          },
+          "orderedTokens": [
+            "You",
+            "ought",
+            "to",
+            "use",
+            "accurate",
+            "information"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i02:r1",
+            "text": "You ought to use accurate information."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i02:r2",
+            "text": "You can use accurate information."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i02:r3",
+            "text": "You could use accurate information."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i02:audio",
+            "transcript": "You ought to use accurate information."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i02:r1",
+              "targetText": "You ought to use accurate information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r2",
+              "targetText": "You can use accurate information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r3",
+              "targetText": "You could use accurate information.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to use accurate information.",
+                "uk": "У записі звучить You ought to use accurate information."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You ought to use accurate information.",
+                "uk": "У записі звучить You ought to use accurate information."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ use accurate information.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i03:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:inaccurate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — inaccurate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:inaccurate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — inaccurate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:inaccurate:audio",
+            "transcript": "inaccurate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:inaccurate:r1",
+              "targetText": "inaccurate",
+              "meaningByLocale": {
+                "ru": "неточный, ошибочный.",
+                "uk": "неточний, помилковий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inaccurate",
+            "definitionByLocale": {
+              "ru": "неточный, ошибочный.",
+              "uk": "неточний, помилковий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Нам варто виправити неправильну дату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Нам варто виправити неправильну дату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We ought to correct the inaccurate date.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Нам стоит исправить неверную дату».",
+            "uk": "Дайте пораду з ought to: «Нам варто виправити неправильну дату»."
+          },
+          "orderedTokens": [
+            "We",
+            "ought",
+            "to",
+            "correct",
+            "the",
+            "inaccurate",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i05:r1",
+            "text": "We ought to correct the inaccurate date."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i05:r2",
+            "text": "We can correct the inaccurate date."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i05:r3",
+            "text": "We could correct the inaccurate date."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i05:audio",
+            "transcript": "We ought to correct the inaccurate date."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i05:r1",
+              "targetText": "We ought to correct the inaccurate date.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r2",
+              "targetText": "We can correct the inaccurate date.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r3",
+              "targetText": "We could correct the inaccurate date.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to correct the inaccurate date.",
+                "uk": "У записі звучить We ought to correct the inaccurate date."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We ought to correct the inaccurate date.",
+                "uk": "У записі звучить We ought to correct the inaccurate date."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ correct the inaccurate date.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i06:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:precise",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — precise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:precise:audio"
+        ],
+        "accessibilityLabel": "Картка слова — precise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:precise:audio",
+            "transcript": "precise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:precise:r1",
+              "targetText": "precise",
+              "meaningByLocale": {
+                "ru": "точный, конкретный.",
+                "uk": "точний, конкретний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "precise",
+            "definitionByLocale": {
+              "ru": "точный, конкретный.",
+              "uk": "точний, конкретний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Їй варто дати точну відповідь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Їй варто дати точну відповідь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She ought to give a precise answer.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ей стоит дать точный ответ».",
+            "uk": "Дайте пораду з ought to: «Їй варто дати точну відповідь»."
+          },
+          "orderedTokens": [
+            "She",
+            "ought",
+            "to",
+            "give",
+            "a",
+            "precise",
+            "answer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i08:r1",
+            "text": "She ought to give a precise answer."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i08:r2",
+            "text": "She can give a precise answer."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i08:r3",
+            "text": "She could give a precise answer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i08:audio",
+            "transcript": "She ought to give a precise answer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i08:r1",
+              "targetText": "She ought to give a precise answer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r2",
+              "targetText": "She can give a precise answer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r3",
+              "targetText": "She could give a precise answer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to give a precise answer.",
+                "uk": "У записі звучить She ought to give a precise answer."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She ought to give a precise answer.",
+                "uk": "У записі звучить She ought to give a precise answer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ give a precise answer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i09:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:word:unclear",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unclear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:word:unclear:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unclear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:word:unclear:audio",
+            "transcript": "unclear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:word:unclear:r1",
+              "targetText": "unclear",
+              "meaningByLocale": {
+                "ru": "неясный, непонятный.",
+                "uk": "неясний, незрозумілий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unclear",
+            "definitionByLocale": {
+              "ru": "неясный, непонятный.",
+              "uk": "неясний, незрозумілий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду з ought to: «Йому варто пояснити незрозумілі вказівки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду з ought to: «Йому варто пояснити незрозумілі вказівки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He ought to explain the unclear instructions.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с ought to: «Ему стоит объяснить непонятные указания».",
+            "uk": "Дайте пораду з ought to: «Йому варто пояснити незрозумілі вказівки»."
+          },
+          "orderedTokens": [
+            "He",
+            "ought",
+            "to",
+            "explain",
+            "the",
+            "unclear",
+            "instructions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i11:r1",
+            "text": "He ought to explain the unclear instructions."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i11:r2",
+            "text": "He can explain the unclear instructions."
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i11:r3",
+            "text": "He could explain the unclear instructions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i11:audio",
+            "transcript": "He ought to explain the unclear instructions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-28:i11:r1",
+              "targetText": "He ought to explain the unclear instructions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r2",
+              "targetText": "He can explain the unclear instructions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r3",
+              "targetText": "He could explain the unclear instructions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to explain the unclear instructions.",
+                "uk": "У записі звучить He ought to explain the unclear instructions."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He ought to explain the unclear instructions.",
+                "uk": "У записі звучить He ought to explain the unclear instructions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-28:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-28:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ explain the unclear instructions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-28:i12:r1",
+              "text": "ought to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r2",
+              "text": "oughts to"
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r3",
+              "text": "ought"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Ought не получает окончания -s.",
+                "uk": "Ought не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После ought нужно to.",
+                "uk": "Після ought потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-28:i13:p1",
+              "target": "accurate",
+              "meaningByLocale": {
+                "ru": "точный, соответствующий фактам",
+                "uk": "точний, відповідний до фактів"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p2",
+              "target": "inaccurate",
+              "meaningByLocale": {
+                "ru": "неточный, ошибочный",
+                "uk": "неточний, помилковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p3",
+              "target": "precise",
+              "meaningByLocale": {
+                "ru": "точный, конкретный",
+                "uk": "точний, конкретний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-28:i13:p4",
+              "target": "unclear",
+              "meaningByLocale": {
+                "ru": "неясный, непонятный",
+                "uk": "неясний, незрозумілий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "accurate",
+            "inaccurate",
+            "precise",
+            "unclear"
+          ],
+          "rightColumn": [
+            "точний, відповідний до фактів",
+            "неточний, помилковий",
+            "точний, конкретний",
+            "неясний, незрозумілий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте виправити неправильну дату",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте виправити неправильну дату",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i16:audio",
+            "transcript": "We ought to correct the inaccurate date."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We ought to correct the inaccurate date.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте дати конкретну відповідь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Порадьте дати конкретну відповідь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-28:i17:audio",
+            "transcript": "She ought to give a precise answer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She ought to give a precise answer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-28:word:accurate",
+      "correctText": "accurate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i01",
+      "correctText": "You ought to use accurate information.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i02",
+      "correctText": "You ought to use accurate information.",
+      "correctResponseId": "en:lesson-20:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i03",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:word:inaccurate",
+      "correctText": "inaccurate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i04",
+      "correctText": "We ought to correct the inaccurate date.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i05",
+      "correctText": "We ought to correct the inaccurate date.",
+      "correctResponseId": "en:lesson-20:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i06",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:word:precise",
+      "correctText": "precise",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i07",
+      "correctText": "She ought to give a precise answer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i08",
+      "correctText": "She ought to give a precise answer.",
+      "correctResponseId": "en:lesson-20:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i09",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:word:unclear",
+      "correctText": "unclear",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i10",
+      "correctText": "He ought to explain the unclear instructions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i11",
+      "correctText": "He ought to explain the unclear instructions.",
+      "correctResponseId": "en:lesson-20:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i12",
+      "correctText": "ought to",
+      "correctResponseId": "en:lesson-20:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i16",
+      "correctText": "We ought to correct the inaccurate date.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-28:i17",
+      "correctText": "She ought to give a precise answer.",
+      "correctResponseId": null
+    }
+  ]
+}

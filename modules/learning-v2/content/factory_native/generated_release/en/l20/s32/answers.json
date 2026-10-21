@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-32:word:separately",
+    "correctText": "separately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i01",
+    "correctText": "Could I pay separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i02",
+    "correctText": "Could I pay separately?",
+    "correctResponseId": "en:lesson-20:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:word:temporarily",
+    "correctText": "temporarily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i04",
+    "correctText": "Could I stay here temporarily?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i05",
+    "correctText": "Could I stay here temporarily?",
+    "correctResponseId": "en:lesson-20:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:word:mainly",
+    "correctText": "mainly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i07",
+    "correctText": "Could I work mainly from home?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i08",
+    "correctText": "Could I work mainly from home?",
+    "correctResponseId": "en:lesson-20:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:word:partly",
+    "correctText": "partly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i10",
+    "correctText": "Could I pay partly in cash?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i11",
+    "correctText": "Could I pay partly in cash?",
+    "correctResponseId": "en:lesson-20:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i13",
+    "correctText": "en:lesson-20:session-32:i13:p1=separately\nen:lesson-20:session-32:i13:p2=temporarily\nen:lesson-20:session-32:i13:p3=mainly\nen:lesson-20:session-32:i13:p4=partly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i16",
+    "correctText": "Could I pay separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-32:i17",
+    "correctText": "Could I stay here temporarily?",
+    "correctResponseId": null
+  }
+]

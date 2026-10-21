@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новости страны",
+        "uk": "Новини країни"
+      },
+      "bodyByLocale": {
+        "ru": "National — относящийся ко всей стране. Друг хочет лучше понимать события дома, и вы советуете читать national news — новости страны. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "National — такий, що стосується всієї країни. Друг хоче краще розуміти події вдома, і ви радите читати national news — новини країни. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r1",
+              "text": "You ought to read the national news."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r2",
+              "text": "You oughts to read the national news."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r3",
+              "text": "You ought read the national news."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r1",
+              "text": "You ought to read the national news."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r2",
+              "text": "You oughts to read the national news."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro1:r3",
+              "text": "You ought read the national news."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Международные рейсы",
+        "uk": "Міжнародні рейси"
+      },
+      "bodyByLocale": {
+        "ru": "International — международный, связанный с разными странами. Вы планируете зарубежную поездку и предлагаете сравнить рейсы. Professional — профессиональный: подруга хочет переделать мебель, и вы советуете спросить мастера. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "International — міжнародний, повʼязаний із різними країнами. Ви плануєте закордонну поїздку й пропонуєте порівняти рейси. Professional — професійний: подруга хоче переробити меблі, і ви радите запитати майстра. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r1",
+              "text": "We ought to compare international flights."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r2",
+              "text": "We oughts to compare international flights."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r3",
+              "text": "We ought compare international flights."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r1",
+              "text": "We ought to compare international flights."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r2",
+              "text": "We oughts to compare international flights."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro2:r3",
+              "text": "We ought compare international flights."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Индивидуальная помощь",
+        "uk": "Індивідуальна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Individual — индивидуальный, для отдельного человека. Знакомый не понял упражнение в группе, и вы советуете попросить учителя помочь ему отдельно. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Individual — індивідуальний, для окремої людини. Знайомий не зрозумів вправу в групі, і ви радите попросити вчителя допомогти йому окремо. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r1",
+              "text": "He ought to ask for individual help."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r2",
+              "text": "He oughts to ask for individual help."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r3",
+              "text": "He ought ask for individual help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r1",
+              "text": "He ought to ask for individual help."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r2",
+              "text": "He oughts to ask for individual help."
+            },
+            {
+              "responseId": "en:lesson-20:session-25:intro3:r3",
+              "text": "He ought ask for individual help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "70975b149850deca8ec4a87ce50096985e9979db9519d32acfd3beac8bc35d17"
+}

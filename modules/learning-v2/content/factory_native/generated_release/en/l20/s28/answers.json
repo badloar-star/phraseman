@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-28:word:accurate",
+    "correctText": "accurate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i01",
+    "correctText": "You ought to use accurate information.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i02",
+    "correctText": "You ought to use accurate information.",
+    "correctResponseId": "en:lesson-20:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:word:inaccurate",
+    "correctText": "inaccurate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i04",
+    "correctText": "We ought to correct the inaccurate date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i05",
+    "correctText": "We ought to correct the inaccurate date.",
+    "correctResponseId": "en:lesson-20:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:word:precise",
+    "correctText": "precise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i07",
+    "correctText": "She ought to give a precise answer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i08",
+    "correctText": "She ought to give a precise answer.",
+    "correctResponseId": "en:lesson-20:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:word:unclear",
+    "correctText": "unclear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i10",
+    "correctText": "He ought to explain the unclear instructions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i11",
+    "correctText": "He ought to explain the unclear instructions.",
+    "correctResponseId": "en:lesson-20:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i13",
+    "correctText": "en:lesson-20:session-28:i13:p1=accurate\nen:lesson-20:session-28:i13:p2=inaccurate\nen:lesson-20:session-28:i13:p3=precise\nen:lesson-20:session-28:i13:p4=unclear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i16",
+    "correctText": "We ought to correct the inaccurate date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-28:i17",
+    "correctText": "She ought to give a precise answer.",
+    "correctResponseId": null
+  }
+]

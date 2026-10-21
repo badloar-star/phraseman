@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "The release is ready; We always read the changelog; We are testing a hotfix",
+    "uk": "The release is ready; We always read the changelog; We are testing a hotfix"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Готовая версия",
+        "uk": "Готова версія"
+      },
+      "bodyByLocale": {
+        "ru": "Release здесь — «выпуск программы», новая опубликованная или готовящаяся версия. Команда закончила подготовку: The release is ready — «Выпуск готов». Ready описывает состояние; связка is соединяет подлежащее с этим описанием.",
+        "uk": "Release тут — «випуск програми», нова опублікована версія або версія, яку готують. Команда завершила підготовку: The release is ready — «Випуск готовий». Ready описує стан; зв’язка is поєднує підмет із цим описом."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r1",
+              "text": "The release is ready."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r2",
+              "text": "The release are ready."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r3",
+              "text": "The release ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r1",
+              "text": "The release is ready."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r2",
+              "text": "The release are ready."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro1:r3",
+              "text": "The release ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Читаем об изменениях",
+        "uk": "Читаємо про зміни"
+      },
+      "bodyByLocale": {
+        "ru": "Changelog — «список изменений» в программе. Перед установкой вы всегда его читаете: We always read the changelog — «Мы всегда читаем список изменений». Это привычка: Present Simple. Always ставим перед смысловым глаголом read.",
+        "uk": "Changelog — «список змін» у програмі. Перед установленням ви завжди його читаєте: We always read the changelog — «Ми завжди читаємо список змін». Це звичка: Present Simple. Always ставимо перед смисловим дієсловом read."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r1",
+              "text": "We always read the changelog."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r2",
+              "text": "We always reads the changelog."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r3",
+              "text": "We always reading the changelog."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r1",
+              "text": "We always read the changelog."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r2",
+              "text": "We always reads the changelog."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro2:r3",
+              "text": "We always reading the changelog."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Срочное исправление",
+        "uk": "Термінове виправлення"
+      },
+      "bodyByLocale": {
+        "ru": "Hotfix — «срочное исправление» ошибки в программе, выпускаемое отдельно от обычного обновления. Проверка идёт сейчас: We are testing a hotfix — «Мы тестируем срочное исправление». Для текущего действия: are + testing.",
+        "uk": "Hotfix — «термінове виправлення» помилки в програмі, яке випускають окремо від звичайного оновлення. Перевірка триває зараз: We are testing a hotfix — «Ми тестуємо термінове виправлення». Для поточної дії: are + testing."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r1",
+              "text": "We are testing a hotfix."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r2",
+              "text": "We testing a hotfix."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r3",
+              "text": "We are test a hotfix."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r1",
+              "text": "We are testing a hotfix."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r2",
+              "text": "We testing a hotfix."
+            },
+            {
+              "responseId": "en:lesson-10:session-47:intro3:r3",
+              "text": "We are test a hotfix."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "034a43d0687f3a43f549f0478af9db0430889cd678ac6202f17b62fd6d7fd2ec"
+}

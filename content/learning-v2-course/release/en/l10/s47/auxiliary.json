@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-47:intro1:r2": {
+          "ru": "Один выпуск: is.",
+          "uk": "Один випуск: is."
+        },
+        "en:lesson-10:session-47:intro1:r3": {
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-47:intro2:r2": {
+          "ru": "С we нужна read без s.",
+          "uk": "З we потрібна read без s."
+        },
+        "en:lesson-10:session-47:intro2:r3": {
+          "ru": "Здесь нужна личная форма read.",
+          "uk": "Тут потрібна особова форма read."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-47:intro3:r2": {
+          "ru": "Перед testing нужна are.",
+          "uk": "Перед testing потрібна are."
+        },
+        "en:lesson-10:session-47:intro3:r3": {
+          "ru": "После are нужна testing.",
+          "uk": "Після are потрібна testing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "471a9259a24372f08f678f5bba6e83a22fc3cdd2f1a70829da77d2c81c13ca64"
+}

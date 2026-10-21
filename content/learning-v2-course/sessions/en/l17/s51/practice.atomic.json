@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-51:word:meter-reading",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — meter reading",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:meter-reading:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — meter reading",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:meter-reading:audio",
+            "transcript": "meter reading"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:meter-reading:r1",
+              "targetText": "meter reading",
+              "meaningByLocale": {
+                "ru": "показание счётчика.",
+                "uk": "показання лічильника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meter reading",
+            "definitionByLocale": {
+              "ru": "показание счётчика.",
+              "uk": "показання лічильника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. Скажите: «Мы записали несколько показаний счётчиков».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. Скажите: «Мы записали несколько показаний счётчиков».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We recorded a few meter readings.",
+          "localizedMeaning": {
+            "ru": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. Скажите: «Мы записали несколько показаний счётчиков».",
+            "uk": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Скажіть: «Ми записали кілька показань лічильників»."
+          },
+          "orderedTokens": [
+            "We",
+            "recorded",
+            "a",
+            "few",
+            "meter",
+            "readings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i02:r1",
+            "text": "We recorded a few meter readings."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i02:r2",
+            "text": "We recorded few meter readings."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i02:r3",
+            "text": "We recorded a little meter readings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i02:audio",
+            "transcript": "We recorded a few meter readings."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i02:r1",
+              "targetText": "We recorded a few meter readings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r2",
+              "targetText": "We recorded few meter readings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r3",
+              "targetText": "We recorded a little meter readings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We recorded a few meter readings.",
+                "uk": "У записі звучить We recorded a few meter readings."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We recorded a few meter readings.",
+                "uk": "У записі звучить We recorded a few meter readings."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+            "uk": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings."
+          },
+          "gappedTargetPhrase": "We recorded ___ meter readings.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:electricity-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electricity bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:electricity-bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electricity bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:electricity-bill:audio",
+            "transcript": "electricity bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:electricity-bill:r1",
+              "targetText": "electricity bill",
+              "meaningByLocale": {
+                "ru": "счёт за электричество.",
+                "uk": "рахунок за електроенергію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electricity bill",
+            "definitionByLocale": {
+              "ru": "счёт за электричество.",
+              "uk": "рахунок за електроенергію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills. Скажите: «У нас сохранилось мало счетов за электричество».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills. Скажите: «У нас сохранилось мало счетов за электричество».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few electricity bills.",
+          "localizedMeaning": {
+            "ru": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills. Скажите: «У нас сохранилось мало счетов за электричество».",
+            "uk": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills. Скажіть: «У нас збереглося мало рахунків за електроенергію»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "electricity",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i05:r1",
+            "text": "We have few electricity bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i05:r2",
+            "text": "We have a few electricity bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i05:r3",
+            "text": "We have a little electricity bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i05:audio",
+            "transcript": "We have few electricity bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i05:r1",
+              "targetText": "We have few electricity bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r2",
+              "targetText": "We have a few electricity bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r3",
+              "targetText": "We have a little electricity bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few electricity bills.",
+                "uk": "У записі звучить We have few electricity bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few electricity bills.",
+                "uk": "У записі звучить We have few electricity bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i06:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+            "uk": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills."
+          },
+          "gappedTargetPhrase": "We have ___ electricity bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:water-bill",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — water bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:water-bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — water bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:water-bill:audio",
+            "transcript": "water bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:water-bill:r1",
+              "targetText": "water bill",
+              "meaningByLocale": {
+                "ru": "счёт за воду.",
+                "uk": "рахунок за воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water bill",
+            "definitionByLocale": {
+              "ru": "счёт за воду.",
+              "uk": "рахунок за воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills. Скажите: «Мы нашли несколько счетов за воду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills. Скажите: «Мы нашли несколько счетов за воду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We found a few water bills.",
+          "localizedMeaning": {
+            "ru": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills. Скажите: «Мы нашли несколько счетов за воду».",
+            "uk": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills. Скажіть: «Ми знайшли кілька рахунків за воду»."
+          },
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "few",
+            "water",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i08:r1",
+            "text": "We found a few water bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i08:r2",
+            "text": "We found few water bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i08:r3",
+            "text": "We found a little water bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i08:audio",
+            "transcript": "We found a few water bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i08:r1",
+              "targetText": "We found a few water bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r2",
+              "targetText": "We found few water bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r3",
+              "targetText": "We found a little water bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a few water bills.",
+                "uk": "У записі звучить We found a few water bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a few water bills.",
+                "uk": "У записі звучить We found a few water bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i09:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i09:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i09:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+            "uk": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills."
+          },
+          "gappedTargetPhrase": "We found ___ water bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i09:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:gas-bill",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gas bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:gas-bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gas bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:gas-bill:audio",
+            "transcript": "gas bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:gas-bill:r1",
+              "targetText": "gas bill",
+              "meaningByLocale": {
+                "ru": "счёт за газ.",
+                "uk": "рахунок за газ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gas bill",
+            "definitionByLocale": {
+              "ru": "счёт за газ.",
+              "uk": "рахунок за газ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. Скажите: «У нас сохранилось мало счетов за газ».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. Скажите: «У нас сохранилось мало счетов за газ».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few gas bills.",
+          "localizedMeaning": {
+            "ru": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. Скажите: «У нас сохранилось мало счетов за газ».",
+            "uk": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Скажіть: «У нас збереглося мало рахунків за газ»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "gas",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i11:r1",
+            "text": "We have few gas bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i11:r2",
+            "text": "We have a few gas bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i11:r3",
+            "text": "We have a little gas bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i11:audio",
+            "transcript": "We have few gas bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i11:r1",
+              "targetText": "We have few gas bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r2",
+              "targetText": "We have a few gas bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r3",
+              "targetText": "We have a little gas bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few gas bills.",
+                "uk": "У записі звучить We have few gas bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few gas bills.",
+                "uk": "У записі звучить We have few gas bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i12:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i12:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i12:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+            "uk": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills."
+          },
+          "gappedTargetPhrase": "We have ___ gas bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i12:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-51:i13:p1",
+              "target": "meter reading",
+              "meaningByLocale": {
+                "ru": "показание счётчика",
+                "uk": "показання лічильника"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p2",
+              "target": "electricity bill",
+              "meaningByLocale": {
+                "ru": "счёт за электричество",
+                "uk": "рахунок за електроенергію"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p3",
+              "target": "water bill",
+              "meaningByLocale": {
+                "ru": "счёт за воду",
+                "uk": "рахунок за воду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p4",
+              "target": "gas bill",
+              "meaningByLocale": {
+                "ru": "счёт за газ",
+                "uk": "рахунок за газ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "meter reading",
+            "electricity bill",
+            "water bill",
+            "gas bill"
+          ],
+          "rightColumn": [
+            "показание счётчика",
+            "счёт за электричество",
+            "счёт за воду",
+            "счёт за газ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i14:audio",
+            "transcript": "We recorded a few meter readings."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We recorded a few meter readings.",
+          "orderedTokens": [
+            "We",
+            "recorded",
+            "a",
+            "few",
+            "meter",
+            "readings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i15:audio",
+            "transcript": "We have few gas bills."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have few gas bills.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "gas",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните наличие нескольких",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните наличие нескольких",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i16:audio",
+            "transcript": "We found a few water bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We found a few water bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i17:audio",
+            "transcript": "We have few electricity bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have few electricity bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-51:word:meter-reading",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — meter reading",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:meter-reading:audio"
+        ],
+        "accessibilityLabel": "Картка слова — meter reading",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:meter-reading:audio",
+            "transcript": "meter reading"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:meter-reading:r1",
+              "targetText": "meter reading",
+              "meaningByLocale": {
+                "ru": "показание счётчика.",
+                "uk": "показання лічильника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meter reading",
+            "definitionByLocale": {
+              "ru": "показание счётчика.",
+              "uk": "показання лічильника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Скажіть: «Ми записали кілька показань лічильників».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Скажіть: «Ми записали кілька показань лічильників».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We recorded a few meter readings.",
+          "localizedMeaning": {
+            "ru": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. Скажите: «Мы записали несколько показаний счётчиков».",
+            "uk": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Скажіть: «Ми записали кілька показань лічильників»."
+          },
+          "orderedTokens": [
+            "We",
+            "recorded",
+            "a",
+            "few",
+            "meter",
+            "readings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i02:r1",
+            "text": "We recorded a few meter readings."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i02:r2",
+            "text": "We recorded few meter readings."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i02:r3",
+            "text": "We recorded a little meter readings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i02:audio",
+            "transcript": "We recorded a few meter readings."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i02:r1",
+              "targetText": "We recorded a few meter readings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r2",
+              "targetText": "We recorded few meter readings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r3",
+              "targetText": "We recorded a little meter readings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We recorded a few meter readings.",
+                "uk": "У записі звучить We recorded a few meter readings."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We recorded a few meter readings.",
+                "uk": "У записі звучить We recorded a few meter readings."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings.",
+            "uk": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings."
+          },
+          "gappedTargetPhrase": "We recorded ___ meter readings.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:electricity-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electricity bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:electricity-bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electricity bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:electricity-bill:audio",
+            "transcript": "electricity bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:electricity-bill:r1",
+              "targetText": "electricity bill",
+              "meaningByLocale": {
+                "ru": "счёт за электричество.",
+                "uk": "рахунок за електроенергію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electricity bill",
+            "definitionByLocale": {
+              "ru": "счёт за электричество.",
+              "uk": "рахунок за електроенергію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills. Скажіть: «У нас збереглося мало рахунків за електроенергію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills. Скажіть: «У нас збереглося мало рахунків за електроенергію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few electricity bills.",
+          "localizedMeaning": {
+            "ru": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills. Скажите: «У нас сохранилось мало счетов за электричество».",
+            "uk": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills. Скажіть: «У нас збереглося мало рахунків за електроенергію»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "electricity",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i05:r1",
+            "text": "We have few electricity bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i05:r2",
+            "text": "We have a few electricity bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i05:r3",
+            "text": "We have a little electricity bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i05:audio",
+            "transcript": "We have few electricity bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i05:r1",
+              "targetText": "We have few electricity bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r2",
+              "targetText": "We have a few electricity bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r3",
+              "targetText": "We have a little electricity bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few electricity bills.",
+                "uk": "У записі звучить We have few electricity bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few electricity bills.",
+                "uk": "У записі звучить We have few electricity bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i06:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills.",
+            "uk": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills."
+          },
+          "gappedTargetPhrase": "We have ___ electricity bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:water-bill",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — water bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:water-bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — water bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:water-bill:audio",
+            "transcript": "water bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:water-bill:r1",
+              "targetText": "water bill",
+              "meaningByLocale": {
+                "ru": "счёт за воду.",
+                "uk": "рахунок за воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water bill",
+            "definitionByLocale": {
+              "ru": "счёт за воду.",
+              "uk": "рахунок за воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills. Скажіть: «Ми знайшли кілька рахунків за воду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills. Скажіть: «Ми знайшли кілька рахунків за воду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We found a few water bills.",
+          "localizedMeaning": {
+            "ru": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills. Скажите: «Мы нашли несколько счетов за воду».",
+            "uk": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills. Скажіть: «Ми знайшли кілька рахунків за воду»."
+          },
+          "orderedTokens": [
+            "We",
+            "found",
+            "a",
+            "few",
+            "water",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i08:r1",
+            "text": "We found a few water bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i08:r2",
+            "text": "We found few water bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i08:r3",
+            "text": "We found a little water bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i08:audio",
+            "transcript": "We found a few water bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i08:r1",
+              "targetText": "We found a few water bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r2",
+              "targetText": "We found few water bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r3",
+              "targetText": "We found a little water bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a few water bills.",
+                "uk": "У записі звучить We found a few water bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We found a few water bills.",
+                "uk": "У записі звучить We found a few water bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i09:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i09:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i09:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько нужных счетов удалось найти. Подчеркните, что они есть. Water bill → water bills.",
+            "uk": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills."
+          },
+          "gappedTargetPhrase": "We found ___ water bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i09:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:word:gas-bill",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gas bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:word:gas-bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gas bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:word:gas-bill:audio",
+            "transcript": "gas bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:word:gas-bill:r1",
+              "targetText": "gas bill",
+              "meaningByLocale": {
+                "ru": "счёт за газ.",
+                "uk": "рахунок за газ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gas bill",
+            "definitionByLocale": {
+              "ru": "счёт за газ.",
+              "uk": "рахунок за газ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Скажіть: «У нас збереглося мало рахунків за газ».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Скажіть: «У нас збереглося мало рахунків за газ».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few gas bills.",
+          "localizedMeaning": {
+            "ru": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. Скажите: «У нас сохранилось мало счетов за газ».",
+            "uk": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Скажіть: «У нас збереглося мало рахунків за газ»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "gas",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i11:r1",
+            "text": "We have few gas bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i11:r2",
+            "text": "We have a few gas bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i11:r3",
+            "text": "We have a little gas bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i11:audio",
+            "transcript": "We have few gas bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-51:i11:r1",
+              "targetText": "We have few gas bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r2",
+              "targetText": "We have a few gas bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r3",
+              "targetText": "We have a little gas bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few gas bills.",
+                "uk": "У записі звучить We have few gas bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few gas bills.",
+                "uk": "У записі звучить We have few gas bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-51:i12:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i12:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-51:i12:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills.",
+            "uk": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills."
+          },
+          "gappedTargetPhrase": "We have ___ gas bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-51:i12:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-51:i13:p1",
+              "target": "meter reading",
+              "meaningByLocale": {
+                "ru": "показание счётчика",
+                "uk": "показання лічильника"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p2",
+              "target": "electricity bill",
+              "meaningByLocale": {
+                "ru": "счёт за электричество",
+                "uk": "рахунок за електроенергію"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p3",
+              "target": "water bill",
+              "meaningByLocale": {
+                "ru": "счёт за воду",
+                "uk": "рахунок за воду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-51:i13:p4",
+              "target": "gas bill",
+              "meaningByLocale": {
+                "ru": "счёт за газ",
+                "uk": "рахунок за газ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "meter reading",
+            "electricity bill",
+            "water bill",
+            "gas bill"
+          ],
+          "rightColumn": [
+            "показання лічильника",
+            "рахунок за електроенергію",
+            "рахунок за воду",
+            "рахунок за газ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i14:audio",
+            "transcript": "We recorded a few meter readings."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We recorded a few meter readings.",
+          "orderedTokens": [
+            "We",
+            "recorded",
+            "a",
+            "few",
+            "meter",
+            "readings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i15:audio",
+            "transcript": "We have few gas bills."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have few gas bills.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "gas",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть наявність кількох",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть наявність кількох",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i16:audio",
+            "transcript": "We found a few water bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We found a few water bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-51:i17:audio",
+            "transcript": "We have few electricity bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have few electricity bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-51:word:meter-reading",
+      "correctText": "meter reading",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i01",
+      "correctText": "We recorded a few meter readings.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i02",
+      "correctText": "We recorded a few meter readings.",
+      "correctResponseId": "en:lesson-17:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i03",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:word:electricity-bill",
+      "correctText": "electricity bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i04",
+      "correctText": "We have few electricity bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i05",
+      "correctText": "We have few electricity bills.",
+      "correctResponseId": "en:lesson-17:session-51:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i06",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-51:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:word:water-bill",
+      "correctText": "water bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i07",
+      "correctText": "We found a few water bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i08",
+      "correctText": "We found a few water bills.",
+      "correctResponseId": "en:lesson-17:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i09",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:word:gas-bill",
+      "correctText": "gas bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i10",
+      "correctText": "We have few gas bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i11",
+      "correctText": "We have few gas bills.",
+      "correctResponseId": "en:lesson-17:session-51:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i12",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-51:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i14",
+      "correctText": "We recorded a few meter readings.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i15",
+      "correctText": "We have few gas bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i16",
+      "correctText": "We found a few water bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-51:i17",
+      "correctText": "We have few electricity bills.",
+      "correctResponseId": null
+    }
+  ]
+}

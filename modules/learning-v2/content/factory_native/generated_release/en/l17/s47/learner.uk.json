@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-47:word:entry-fee",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — entry fee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:word:entry-fee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — entry fee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:word:entry-fee:audio",
+          "transcript": "entry fee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:word:entry-fee:r1",
+            "targetText": "entry fee",
+            "meaningByLocale": {
+              "ru": "плата за вход.",
+              "uk": "плата за вхід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "entry fee",
+          "definitionByLocale": {
+            "ru": "плата за вход.",
+            "uk": "плата за вхід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees. Скажіть: «За вхід на деякі заходи потрібно платити».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees. Скажіть: «За вхід на деякі заходи потрібно платити».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are some entry fees.",
+        "localizedMeaning": {
+          "ru": "В списке мероприятий есть несколько платных входов. Подтвердите наличие платы. Entry fee → entry fees. Скажите: «За вход на некоторые мероприятия нужно платить».",
+          "uk": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees. Скажіть: «За вхід на деякі заходи потрібно платити»."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "entry",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i02:r1",
+          "text": "There are some entry fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i02:r2",
+          "text": "There are any entry fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i02:r3",
+          "text": "There are a entry fees."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i02:audio",
+          "transcript": "There are some entry fees."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:i02:r1",
+            "targetText": "There are some entry fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i02:r2",
+            "targetText": "There are any entry fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i02:r3",
+            "targetText": "There are a entry fees.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some entry fees.",
+              "uk": "У записі звучить There are some entry fees."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some entry fees.",
+              "uk": "У записі звучить There are some entry fees."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В списке мероприятий есть несколько платных входов. Подтвердите наличие платы. Entry fee → entry fees.",
+          "uk": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees."
+        },
+        "gappedTargetPhrase": "There are ___ entry fees.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-47:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:word:membership-fee",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — membership fee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:word:membership-fee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — membership fee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:word:membership-fee:audio",
+          "transcript": "membership fee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:word:membership-fee:r1",
+            "targetText": "membership fee",
+            "meaningByLocale": {
+              "ru": "членский взнос.",
+              "uk": "членський внесок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "membership fee",
+          "definitionByLocale": {
+            "ru": "членский взнос.",
+            "uk": "членський внесок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees. Скажіть: «Жодних членських внесків немає».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees. Скажіть: «Жодних членських внесків немає».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any membership fees.",
+        "localizedMeaning": {
+          "ru": "В этом клубе из учебного диалога нет членских взносов вообще. Membership fee → membership fees. Скажите: «Никаких членских взносов нет».",
+          "uk": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees. Скажіть: «Жодних членських внесків немає»."
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "membership",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i05:r1",
+          "text": "There aren't any membership fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i05:r2",
+          "text": "There aren't some membership fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i05:r3",
+          "text": "There aren't a membership fees."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i05:audio",
+          "transcript": "There aren't any membership fees."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:i05:r1",
+            "targetText": "There aren't any membership fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i05:r2",
+            "targetText": "There aren't some membership fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i05:r3",
+            "targetText": "There aren't a membership fees.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any membership fees.",
+              "uk": "У записі звучить There aren't any membership fees."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any membership fees.",
+              "uk": "У записі звучить There aren't any membership fees."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом клубе из учебного диалога нет членских взносов вообще. Membership fee → membership fees.",
+          "uk": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees."
+        },
+        "gappedTargetPhrase": "There aren't ___ membership fees.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-47:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "У цьому клубі з навчального діалогу немає членських внесків узагалі. Membership fee → membership fees.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:word:monthly-payment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — monthly payment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:word:monthly-payment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — monthly payment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:word:monthly-payment:audio",
+          "transcript": "monthly payment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:word:monthly-payment:r1",
+            "targetText": "monthly payment",
+            "meaningByLocale": {
+              "ru": "ежемесячный платёж.",
+              "uk": "щомісячний платіж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "monthly payment",
+          "definitionByLocale": {
+            "ru": "ежемесячный платёж.",
+            "uk": "щомісячний платіж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments. Скажіть: «Ми вносимо кілька щомісячних платежів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments. Скажіть: «Ми вносимо кілька щомісячних платежів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We make some monthly payments.",
+        "localizedMeaning": {
+          "ru": "У вас есть несколько регулярных ежемесячных платежей. Сообщите об этом. Monthly payment → monthly payments. Скажите: «Мы вносим несколько ежемесячных платежей».",
+          "uk": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments. Скажіть: «Ми вносимо кілька щомісячних платежів»."
+        },
+        "orderedTokens": [
+          "We",
+          "make",
+          "some",
+          "monthly",
+          "payments"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i08:r1",
+          "text": "We make some monthly payments."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i08:r2",
+          "text": "We make any monthly payments."
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i08:r3",
+          "text": "We make a monthly payments."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i08:audio",
+          "transcript": "We make some monthly payments."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:i08:r1",
+            "targetText": "We make some monthly payments.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i08:r2",
+            "targetText": "We make any monthly payments.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i08:r3",
+            "targetText": "We make a monthly payments.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We make some monthly payments.",
+              "uk": "У записі звучить We make some monthly payments."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We make some monthly payments.",
+              "uk": "У записі звучить We make some monthly payments."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У вас есть несколько регулярных ежемесячных платежей. Сообщите об этом. Monthly payment → monthly payments.",
+          "uk": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments."
+        },
+        "gappedTargetPhrase": "We make ___ monthly payments.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-47:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви маєте кілька регулярних щомісячних платежів. Повідомте про це. Monthly payment → monthly payments.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:word:cancellation-fee",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cancellation fee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:word:cancellation-fee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cancellation fee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:word:cancellation-fee:audio",
+          "transcript": "cancellation fee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:word:cancellation-fee:r1",
+            "targetText": "cancellation fee",
+            "meaningByLocale": {
+              "ru": "плата за отмену заказа или бронирования.",
+              "uk": "плата за скасування замовлення або бронювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cancellation fee",
+          "definitionByLocale": {
+            "ru": "плата за отмену заказа или бронирования.",
+            "uk": "плата за скасування замовлення або бронювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees. Скажіть: «Ви стягуєте якусь плату за скасування».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees. Скажіть: «Ви стягуєте якусь плату за скасування».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you charge any cancellation fees?",
+        "localizedMeaning": {
+          "ru": "Вы ещё не знаете условий отмены. Спросите нейтрально, не предполагая ответа «да». Cancellation fee → cancellation fees. Скажите: «Вы взимаете какую-либо плату за отмену».",
+          "uk": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees. Скажіть: «Ви стягуєте якусь плату за скасування»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "charge",
+          "any",
+          "cancellation",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i11:r1",
+          "text": "Do you charge any cancellation fees?"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i11:r2",
+          "text": "Do you charge some cancellation fees?"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i11:r3",
+          "text": "Do you charge a cancellation fees?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i11:audio",
+          "transcript": "Do you charge any cancellation fees?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-47:i11:r1",
+            "targetText": "Do you charge any cancellation fees?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i11:r2",
+            "targetText": "Do you charge some cancellation fees?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i11:r3",
+            "targetText": "Do you charge a cancellation fees?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you charge any cancellation fees?",
+              "uk": "У записі звучить Do you charge any cancellation fees?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you charge any cancellation fees?",
+              "uk": "У записі звучить Do you charge any cancellation fees?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-47:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-47:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не знаете условий отмены. Спросите нейтрально, не предполагая ответа «да». Cancellation fee → cancellation fees.",
+          "uk": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees."
+        },
+        "gappedTargetPhrase": "Do you charge ___ cancellation fees?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-47:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте умов скасування. Запитайте нейтрально, не припускаючи відповіді «так». Cancellation fee → cancellation fees.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-47:i13:p1",
+            "target": "entry fee",
+            "meaningByLocale": {
+              "ru": "плата за вход",
+              "uk": "плата за вхід"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-47:i13:p2",
+            "target": "membership fee",
+            "meaningByLocale": {
+              "ru": "членский взнос",
+              "uk": "членський внесок"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-47:i13:p3",
+            "target": "monthly payment",
+            "meaningByLocale": {
+              "ru": "ежемесячный платёж",
+              "uk": "щомісячний платіж"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-47:i13:p4",
+            "target": "cancellation fee",
+            "meaningByLocale": {
+              "ru": "плата за отмену заказа или бронирования",
+              "uk": "плата за скасування замовлення або бронювання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "entry fee",
+          "membership fee",
+          "monthly payment",
+          "cancellation fee"
+        ],
+        "rightColumn": [
+          "плата за вхід",
+          "членський внесок",
+          "щомісячний платіж",
+          "плата за скасування замовлення або бронювання"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте твердження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте твердження",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i14:audio",
+          "transcript": "There are some entry fees."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some entry fees.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "entry",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i15:audio",
+          "transcript": "Do you charge any cancellation fees?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you charge any cancellation fees?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "charge",
+          "any",
+          "cancellation",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що певна кількість є",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що певна кількість є",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i16:audio",
+          "transcript": "We make some monthly payments."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We make some monthly payments.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повністю заперечте наявність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Повністю заперечте наявність",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-47:i17:audio",
+          "transcript": "There aren't any membership fees."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There aren't any membership fees.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ac82e234609278cbde6a26e918e61cb55df65173301e5ca213d75676f77b49cd"
+}

@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-46:word:birth-certificate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — birth certificate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:birth-certificate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — birth certificate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:birth-certificate:audio",
+            "transcript": "birth certificate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:birth-certificate:r1",
+              "targetText": "birth certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о рождении.",
+                "uk": "свідоцтво про народження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birth certificate",
+            "definitionByLocale": {
+              "ru": "свидетельство о рождении.",
+              "uk": "свідоцтво про народження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Скажите: «Мы сделали копии нескольких свидетельств о рождении».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Скажите: «Мы сделали копии нескольких свидетельств о рождении».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We copied some birth certificates.",
+          "localizedMeaning": {
+            "ru": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Скажите: «Мы сделали копии нескольких свидетельств о рождении».",
+            "uk": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Скажіть: «Ми зробили копії кількох свідоцтв про народження»."
+          },
+          "orderedTokens": [
+            "We",
+            "copied",
+            "some",
+            "birth",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i02:r1",
+            "text": "We copied some birth certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i02:r2",
+            "text": "We copied any birth certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i02:r3",
+            "text": "We copied a birth certificates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i02:audio",
+            "transcript": "We copied some birth certificates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i02:r1",
+              "targetText": "We copied some birth certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r2",
+              "targetText": "We copied any birth certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r3",
+              "targetText": "We copied a birth certificates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We copied some birth certificates.",
+                "uk": "У записі звучить We copied some birth certificates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We copied some birth certificates.",
+                "uk": "У записі звучить We copied some birth certificates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+            "uk": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates."
+          },
+          "gappedTargetPhrase": "We copied ___ birth certificates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:marriage-certificate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — marriage certificate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:marriage-certificate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — marriage certificate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:marriage-certificate:audio",
+            "transcript": "marriage certificate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:marriage-certificate:r1",
+              "targetText": "marriage certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о браке.",
+                "uk": "свідоцтво про шлюб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "marriage certificate",
+            "definitionByLocale": {
+              "ru": "свидетельство о браке.",
+              "uk": "свідоцтво про шлюб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates. Скажите: «У нас нет никаких свидетельств о браке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates. Скажите: «У нас нет никаких свидетельств о браке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any marriage certificates.",
+          "localizedMeaning": {
+            "ru": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates. Скажите: «У нас нет никаких свидетельств о браке».",
+            "uk": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates. Скажіть: «У нас немає жодних свідоцтв про шлюб»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "marriage",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i05:r1",
+            "text": "We don't have any marriage certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i05:r2",
+            "text": "We don't have some marriage certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i05:r3",
+            "text": "We don't have a marriage certificates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i05:audio",
+            "transcript": "We don't have any marriage certificates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i05:r1",
+              "targetText": "We don't have any marriage certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r2",
+              "targetText": "We don't have some marriage certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r3",
+              "targetText": "We don't have a marriage certificates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any marriage certificates.",
+                "uk": "У записі звучить We don't have any marriage certificates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any marriage certificates.",
+                "uk": "У записі звучить We don't have any marriage certificates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+            "uk": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates."
+          },
+          "gappedTargetPhrase": "We don't have ___ marriage certificates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:identity-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — identity card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:identity-card:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — identity card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:identity-card:audio",
+            "transcript": "identity card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:identity-card:r1",
+              "targetText": "identity card",
+              "meaningByLocale": {
+                "ru": "удостоверение личности, идентификационная карта.",
+                "uk": "посвідчення особи, ідентифікаційна картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "identity card",
+            "definitionByLocale": {
+              "ru": "удостоверение личности, идентификационная карта.",
+              "uk": "посвідчення особи, ідентифікаційна картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards. Скажите: «Мы проверили несколько удостоверений личности».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards. Скажите: «Мы проверили несколько удостоверений личности».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked some identity cards.",
+          "localizedMeaning": {
+            "ru": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards. Скажите: «Мы проверили несколько удостоверений личности».",
+            "uk": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards. Скажіть: «Ми перевірили кілька посвідчень особи»."
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "some",
+            "identity",
+            "cards"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i08:r1",
+            "text": "We checked some identity cards."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i08:r2",
+            "text": "We checked any identity cards."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i08:r3",
+            "text": "We checked a identity cards."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i08:audio",
+            "transcript": "We checked some identity cards."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i08:r1",
+              "targetText": "We checked some identity cards.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r2",
+              "targetText": "We checked any identity cards.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r3",
+              "targetText": "We checked a identity cards.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked some identity cards.",
+                "uk": "У записі звучить We checked some identity cards."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked some identity cards.",
+                "uk": "У записі звучить We checked some identity cards."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+            "uk": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards."
+          },
+          "gappedTargetPhrase": "We checked ___ identity cards.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:registration-form",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — registration form",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:registration-form:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — registration form",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:registration-form:audio",
+            "transcript": "registration form"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:registration-form:r1",
+              "targetText": "registration form",
+              "meaningByLocale": {
+                "ru": "регистрационная форма, бланк регистрации.",
+                "uk": "реєстраційна форма, бланк реєстрації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "registration form",
+            "definitionByLocale": {
+              "ru": "регистрационная форма, бланк регистрации.",
+              "uk": "реєстраційна форма, бланк реєстрації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms. Скажите: «У вас есть какие-либо бланки регистрации».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms. Скажите: «У вас есть какие-либо бланки регистрации».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any registration forms?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms. Скажите: «У вас есть какие-либо бланки регистрации».",
+            "uk": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms. Скажіть: «У вас є якісь бланки реєстрації»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "registration",
+            "forms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i11:r1",
+            "text": "Do you have any registration forms?"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i11:r2",
+            "text": "Do you have some registration forms?"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i11:r3",
+            "text": "Do you have a registration forms?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i11:audio",
+            "transcript": "Do you have any registration forms?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i11:r1",
+              "targetText": "Do you have any registration forms?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r2",
+              "targetText": "Do you have some registration forms?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r3",
+              "targetText": "Do you have a registration forms?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any registration forms?",
+                "uk": "У записі звучить Do you have any registration forms?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any registration forms?",
+                "uk": "У записі звучить Do you have any registration forms?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+            "uk": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms."
+          },
+          "gappedTargetPhrase": "Do you have ___ registration forms?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-46:i13:p1",
+              "target": "birth certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о рождении",
+                "uk": "свідоцтво про народження"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p2",
+              "target": "marriage certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о браке",
+                "uk": "свідоцтво про шлюб"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p3",
+              "target": "identity card",
+              "meaningByLocale": {
+                "ru": "удостоверение личности, идентификационная карта",
+                "uk": "посвідчення особи, ідентифікаційна картка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p4",
+              "target": "registration form",
+              "meaningByLocale": {
+                "ru": "регистрационная форма, бланк регистрации",
+                "uk": "реєстраційна форма, бланк реєстрації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "birth certificate",
+            "marriage certificate",
+            "identity card",
+            "registration form"
+          ],
+          "rightColumn": [
+            "свидетельство о рождении",
+            "свидетельство о браке",
+            "удостоверение личности, идентификационная карта",
+            "регистрационная форма, бланк регистрации"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i14:audio",
+            "transcript": "We copied some birth certificates."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We copied some birth certificates.",
+          "orderedTokens": [
+            "We",
+            "copied",
+            "some",
+            "birth",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i15:audio",
+            "transcript": "Do you have any registration forms?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any registration forms?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "registration",
+            "forms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i16:audio",
+            "transcript": "We checked some identity cards."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We checked some identity cards.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i17:audio",
+            "transcript": "We don't have any marriage certificates."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any marriage certificates.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-46:word:birth-certificate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — birth certificate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:birth-certificate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — birth certificate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:birth-certificate:audio",
+            "transcript": "birth certificate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:birth-certificate:r1",
+              "targetText": "birth certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о рождении.",
+                "uk": "свідоцтво про народження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birth certificate",
+            "definitionByLocale": {
+              "ru": "свидетельство о рождении.",
+              "uk": "свідоцтво про народження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Скажіть: «Ми зробили копії кількох свідоцтв про народження».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Скажіть: «Ми зробили копії кількох свідоцтв про народження».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We copied some birth certificates.",
+          "localizedMeaning": {
+            "ru": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Скажите: «Мы сделали копии нескольких свидетельств о рождении».",
+            "uk": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Скажіть: «Ми зробили копії кількох свідоцтв про народження»."
+          },
+          "orderedTokens": [
+            "We",
+            "copied",
+            "some",
+            "birth",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i02:r1",
+            "text": "We copied some birth certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i02:r2",
+            "text": "We copied any birth certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i02:r3",
+            "text": "We copied a birth certificates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i02:audio",
+            "transcript": "We copied some birth certificates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i02:r1",
+              "targetText": "We copied some birth certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r2",
+              "targetText": "We copied any birth certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r3",
+              "targetText": "We copied a birth certificates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We copied some birth certificates.",
+                "uk": "У записі звучить We copied some birth certificates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We copied some birth certificates.",
+                "uk": "У записі звучить We copied some birth certificates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
+            "uk": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates."
+          },
+          "gappedTargetPhrase": "We copied ___ birth certificates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:marriage-certificate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — marriage certificate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:marriage-certificate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — marriage certificate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:marriage-certificate:audio",
+            "transcript": "marriage certificate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:marriage-certificate:r1",
+              "targetText": "marriage certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о браке.",
+                "uk": "свідоцтво про шлюб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "marriage certificate",
+            "definitionByLocale": {
+              "ru": "свидетельство о браке.",
+              "uk": "свідоцтво про шлюб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates. Скажіть: «У нас немає жодних свідоцтв про шлюб».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates. Скажіть: «У нас немає жодних свідоцтв про шлюб».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any marriage certificates.",
+          "localizedMeaning": {
+            "ru": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates. Скажите: «У нас нет никаких свидетельств о браке».",
+            "uk": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates. Скажіть: «У нас немає жодних свідоцтв про шлюб»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "marriage",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i05:r1",
+            "text": "We don't have any marriage certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i05:r2",
+            "text": "We don't have some marriage certificates."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i05:r3",
+            "text": "We don't have a marriage certificates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i05:audio",
+            "transcript": "We don't have any marriage certificates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i05:r1",
+              "targetText": "We don't have any marriage certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r2",
+              "targetText": "We don't have some marriage certificates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r3",
+              "targetText": "We don't have a marriage certificates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any marriage certificates.",
+                "uk": "У записі звучить We don't have any marriage certificates."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any marriage certificates.",
+                "uk": "У записі звучить We don't have any marriage certificates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
+            "uk": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates."
+          },
+          "gappedTargetPhrase": "We don't have ___ marriage certificates.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:identity-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — identity card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:identity-card:audio"
+        ],
+        "accessibilityLabel": "Картка слова — identity card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:identity-card:audio",
+            "transcript": "identity card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:identity-card:r1",
+              "targetText": "identity card",
+              "meaningByLocale": {
+                "ru": "удостоверение личности, идентификационная карта.",
+                "uk": "посвідчення особи, ідентифікаційна картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "identity card",
+            "definitionByLocale": {
+              "ru": "удостоверение личности, идентификационная карта.",
+              "uk": "посвідчення особи, ідентифікаційна картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards. Скажіть: «Ми перевірили кілька посвідчень особи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards. Скажіть: «Ми перевірили кілька посвідчень особи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked some identity cards.",
+          "localizedMeaning": {
+            "ru": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards. Скажите: «Мы проверили несколько удостоверений личности».",
+            "uk": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards. Скажіть: «Ми перевірили кілька посвідчень особи»."
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "some",
+            "identity",
+            "cards"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i08:r1",
+            "text": "We checked some identity cards."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i08:r2",
+            "text": "We checked any identity cards."
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i08:r3",
+            "text": "We checked a identity cards."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i08:audio",
+            "transcript": "We checked some identity cards."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i08:r1",
+              "targetText": "We checked some identity cards.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r2",
+              "targetText": "We checked any identity cards.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r3",
+              "targetText": "We checked a identity cards.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked some identity cards.",
+                "uk": "У записі звучить We checked some identity cards."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked some identity cards.",
+                "uk": "У записі звучить We checked some identity cards."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
+            "uk": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards."
+          },
+          "gappedTargetPhrase": "We checked ___ identity cards.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви повідомляєте про кілька вже перевірених документів. Identity card → identity cards.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:word:registration-form",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — registration form",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:word:registration-form:audio"
+        ],
+        "accessibilityLabel": "Картка слова — registration form",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:word:registration-form:audio",
+            "transcript": "registration form"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:word:registration-form:r1",
+              "targetText": "registration form",
+              "meaningByLocale": {
+                "ru": "регистрационная форма, бланк регистрации.",
+                "uk": "реєстраційна форма, бланк реєстрації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "registration form",
+            "definitionByLocale": {
+              "ru": "регистрационная форма, бланк регистрации.",
+              "uk": "реєстраційна форма, бланк реєстрації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms. Скажіть: «У вас є якісь бланки реєстрації».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms. Скажіть: «У вас є якісь бланки реєстрації».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any registration forms?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms. Скажите: «У вас есть какие-либо бланки регистрации».",
+            "uk": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms. Скажіть: «У вас є якісь бланки реєстрації»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "registration",
+            "forms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i11:r1",
+            "text": "Do you have any registration forms?"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i11:r2",
+            "text": "Do you have some registration forms?"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i11:r3",
+            "text": "Do you have a registration forms?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i11:audio",
+            "transcript": "Do you have any registration forms?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-46:i11:r1",
+              "targetText": "Do you have any registration forms?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r2",
+              "targetText": "Do you have some registration forms?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r3",
+              "targetText": "Do you have a registration forms?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any registration forms?",
+                "uk": "У записі звучить Do you have any registration forms?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any registration forms?",
+                "uk": "У записі звучить Do you have any registration forms?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-46:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-46:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
+            "uk": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms."
+          },
+          "gappedTargetPhrase": "Do you have ___ registration forms?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-46:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-46:i13:p1",
+              "target": "birth certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о рождении",
+                "uk": "свідоцтво про народження"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p2",
+              "target": "marriage certificate",
+              "meaningByLocale": {
+                "ru": "свидетельство о браке",
+                "uk": "свідоцтво про шлюб"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p3",
+              "target": "identity card",
+              "meaningByLocale": {
+                "ru": "удостоверение личности, идентификационная карта",
+                "uk": "посвідчення особи, ідентифікаційна картка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-46:i13:p4",
+              "target": "registration form",
+              "meaningByLocale": {
+                "ru": "регистрационная форма, бланк регистрации",
+                "uk": "реєстраційна форма, бланк реєстрації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "birth certificate",
+            "marriage certificate",
+            "identity card",
+            "registration form"
+          ],
+          "rightColumn": [
+            "свідоцтво про народження",
+            "свідоцтво про шлюб",
+            "посвідчення особи, ідентифікаційна картка",
+            "реєстраційна форма, бланк реєстрації"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i14:audio",
+            "transcript": "We copied some birth certificates."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We copied some birth certificates.",
+          "orderedTokens": [
+            "We",
+            "copied",
+            "some",
+            "birth",
+            "certificates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i15:audio",
+            "transcript": "Do you have any registration forms?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any registration forms?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "registration",
+            "forms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i16:audio",
+            "transcript": "We checked some identity cards."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We checked some identity cards.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-46:i17:audio",
+            "transcript": "We don't have any marriage certificates."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any marriage certificates.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-46:word:birth-certificate",
+      "correctText": "birth certificate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i01",
+      "correctText": "We copied some birth certificates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i02",
+      "correctText": "We copied some birth certificates.",
+      "correctResponseId": "en:lesson-17:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:word:marriage-certificate",
+      "correctText": "marriage certificate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i04",
+      "correctText": "We don't have any marriage certificates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i05",
+      "correctText": "We don't have any marriage certificates.",
+      "correctResponseId": "en:lesson-17:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:word:identity-card",
+      "correctText": "identity card",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i07",
+      "correctText": "We checked some identity cards.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i08",
+      "correctText": "We checked some identity cards.",
+      "correctResponseId": "en:lesson-17:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:word:registration-form",
+      "correctText": "registration form",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i10",
+      "correctText": "Do you have any registration forms?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i11",
+      "correctText": "Do you have any registration forms?",
+      "correctResponseId": "en:lesson-17:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i14",
+      "correctText": "We copied some birth certificates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i15",
+      "correctText": "Do you have any registration forms?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i16",
+      "correctText": "We checked some identity cards.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-46:i17",
+      "correctText": "We don't have any marriage certificates.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-43:word:delivery-address",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delivery address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:word:delivery-address:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delivery address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:word:delivery-address:audio",
+          "transcript": "delivery address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:word:delivery-address:r1",
+            "targetText": "delivery address",
+            "meaningByLocale": {
+              "ru": "адрес доставки.",
+              "uk": "адреса доставки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivery address",
+          "definitionByLocale": {
+            "ru": "адрес доставки.",
+            "uk": "адреса доставки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Скажите: «Мы сохранили несколько адресов доставки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Скажите: «Мы сохранили несколько адресов доставки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We saved some delivery addresses.",
+        "localizedMeaning": {
+          "ru": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Скажите: «Мы сохранили несколько адресов доставки».",
+          "uk": "Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Скажіть: «Ми зберегли кілька адрес доставки»."
+        },
+        "orderedTokens": [
+          "We",
+          "saved",
+          "some",
+          "delivery",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i02:r1",
+          "text": "We saved some delivery addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i02:r2",
+          "text": "We saved any delivery addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i02:r3",
+          "text": "We saved a delivery addresses."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i02:audio",
+          "transcript": "We saved some delivery addresses."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:i02:r1",
+            "targetText": "We saved some delivery addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i02:r2",
+            "targetText": "We saved any delivery addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i02:r3",
+            "targetText": "We saved a delivery addresses.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We saved some delivery addresses.",
+              "uk": "У записі звучить We saved some delivery addresses."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We saved some delivery addresses.",
+              "uk": "У записі звучить We saved some delivery addresses."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+          "uk": "Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses."
+        },
+        "gappedTargetPhrase": "We saved ___ delivery addresses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-43:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:word:billing-address",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — billing address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:word:billing-address:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — billing address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:word:billing-address:audio",
+          "transcript": "billing address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:word:billing-address:r1",
+            "targetText": "billing address",
+            "meaningByLocale": {
+              "ru": "адрес, указанный для выставления счёта.",
+              "uk": "адреса, зазначена для виставлення рахунку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "billing address",
+          "definitionByLocale": {
+            "ru": "адрес, указанный для выставления счёта.",
+            "uk": "адреса, зазначена для виставлення рахунку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В полученном списке нет таких адресов вообще. Billing address → billing addresses. Скажите: «У нас нет никаких адресов для выставления счетов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В полученном списке нет таких адресов вообще. Billing address → billing addresses. Скажите: «У нас нет никаких адресов для выставления счетов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have any billing addresses.",
+        "localizedMeaning": {
+          "ru": "В полученном списке нет таких адресов вообще. Billing address → billing addresses. Скажите: «У нас нет никаких адресов для выставления счетов».",
+          "uk": "В отриманому списку немає таких адрес узагалі. Billing address → billing addresses. Скажіть: «У нас немає жодних адрес для виставлення рахунків»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "any",
+          "billing",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i05:r1",
+          "text": "We don't have any billing addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i05:r2",
+          "text": "We don't have some billing addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i05:r3",
+          "text": "We don't have a billing addresses."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i05:audio",
+          "transcript": "We don't have any billing addresses."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:i05:r1",
+            "targetText": "We don't have any billing addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i05:r2",
+            "targetText": "We don't have some billing addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i05:r3",
+            "targetText": "We don't have a billing addresses.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any billing addresses.",
+              "uk": "У записі звучить We don't have any billing addresses."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any billing addresses.",
+              "uk": "У записі звучить We don't have any billing addresses."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+          "uk": "В отриманому списку немає таких адрес узагалі. Billing address → billing addresses."
+        },
+        "gappedTargetPhrase": "We don't have ___ billing addresses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-43:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "В полученном списке нет таких адресов вообще. Billing address → billing addresses.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:word:return-address",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — return address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:word:return-address:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — return address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:word:return-address:audio",
+          "transcript": "return address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:word:return-address:r1",
+            "targetText": "return address",
+            "meaningByLocale": {
+              "ru": "адрес отправителя для возврата письма или посылки.",
+              "uk": "адреса відправника для повернення листа або посилки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "return address",
+          "definitionByLocale": {
+            "ru": "адрес отправителя для возврата письма или посылки.",
+            "uk": "адреса відправника для повернення листа або посилки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses. Скажите: «Нам нужны несколько адресов отправителей для возврата писем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses. Скажите: «Нам нужны несколько адресов отправителей для возврата писем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need some return addresses.",
+        "localizedMeaning": {
+          "ru": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses. Скажите: «Нам нужны несколько адресов отправителей для возврата писем».",
+          "uk": "Потрібно заповнити адреси відправників на кількох конвертах. Return address → return addresses. Скажіть: «Нам потрібні кілька адрес відправників для повернення листів»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "some",
+          "return",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i08:r1",
+          "text": "We need some return addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i08:r2",
+          "text": "We need any return addresses."
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i08:r3",
+          "text": "We need a return addresses."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i08:audio",
+          "transcript": "We need some return addresses."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:i08:r1",
+            "targetText": "We need some return addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i08:r2",
+            "targetText": "We need any return addresses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i08:r3",
+            "targetText": "We need a return addresses.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some return addresses.",
+              "uk": "У записі звучить We need some return addresses."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some return addresses.",
+              "uk": "У записі звучить We need some return addresses."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+          "uk": "Потрібно заповнити адреси відправників на кількох конвертах. Return address → return addresses."
+        },
+        "gappedTargetPhrase": "We need ___ return addresses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-43:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Нужно заполнить адреса отправителей на нескольких конвертах. Return address → return addresses.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:word:forwarding-address",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — forwarding address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:word:forwarding-address:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — forwarding address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:word:forwarding-address:audio",
+          "transcript": "forwarding address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:word:forwarding-address:r1",
+            "targetText": "forwarding address",
+            "meaningByLocale": {
+              "ru": "новый адрес, на который пересылают почту после переезда.",
+              "uk": "нова адреса, на яку пересилають пошту після переїзду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "forwarding address",
+          "definitionByLocale": {
+            "ru": "новый адрес, на который пересылают почту после переезда.",
+            "uk": "нова адреса, на яку пересилають пошту після переїзду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses. Скажите: «У вас есть какие-либо новые адреса для пересылки почты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses. Скажите: «У вас есть какие-либо новые адреса для пересылки почты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have any forwarding addresses?",
+        "localizedMeaning": {
+          "ru": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses. Скажите: «У вас есть какие-либо новые адреса для пересылки почты».",
+          "uk": "Кілька мешканців переїхали. Ви не знаєте їхніх нових адрес. Запитайте нейтрально, без очікування відповіді «так». Forwarding address → forwarding addresses. Скажіть: «У вас є якісь нові адреси для пересилання пошти»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "forwarding",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i11:r1",
+          "text": "Do you have any forwarding addresses?"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i11:r2",
+          "text": "Do you have some forwarding addresses?"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i11:r3",
+          "text": "Do you have a forwarding addresses?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i11:audio",
+          "transcript": "Do you have any forwarding addresses?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-43:i11:r1",
+            "targetText": "Do you have any forwarding addresses?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i11:r2",
+            "targetText": "Do you have some forwarding addresses?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i11:r3",
+            "targetText": "Do you have a forwarding addresses?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any forwarding addresses?",
+              "uk": "У записі звучить Do you have any forwarding addresses?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any forwarding addresses?",
+              "uk": "У записі звучить Do you have any forwarding addresses?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-43:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-43:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+          "uk": "Кілька мешканців переїхали. Ви не знаєте їхніх нових адрес. Запитайте нейтрально, без очікування відповіді «так». Forwarding address → forwarding addresses."
+        },
+        "gappedTargetPhrase": "Do you have ___ forwarding addresses?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-43:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-43:i13:p1",
+            "target": "delivery address",
+            "meaningByLocale": {
+              "ru": "адрес доставки",
+              "uk": "адреса доставки"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-43:i13:p2",
+            "target": "billing address",
+            "meaningByLocale": {
+              "ru": "адрес, указанный для выставления счёта",
+              "uk": "адреса, зазначена для виставлення рахунку"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-43:i13:p3",
+            "target": "return address",
+            "meaningByLocale": {
+              "ru": "адрес отправителя для возврата письма или посылки",
+              "uk": "адреса відправника для повернення листа або посилки"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-43:i13:p4",
+            "target": "forwarding address",
+            "meaningByLocale": {
+              "ru": "новый адрес, на который пересылают почту после переезда",
+              "uk": "нова адреса, на яку пересилають пошту після переїзду"
+            }
+          }
+        ],
+        "leftColumn": [
+          "delivery address",
+          "billing address",
+          "return address",
+          "forwarding address"
+        ],
+        "rightColumn": [
+          "адрес доставки",
+          "адрес, указанный для выставления счёта",
+          "адрес отправителя для возврата письма или посылки",
+          "новый адрес, на который пересылают почту после переезда"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i14:audio",
+          "transcript": "We saved some delivery addresses."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We saved some delivery addresses.",
+        "orderedTokens": [
+          "We",
+          "saved",
+          "some",
+          "delivery",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i15:audio",
+          "transcript": "Do you have any forwarding addresses?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have any forwarding addresses?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "forwarding",
+          "addresses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i16:audio",
+          "transcript": "We need some return addresses."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need some return addresses.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-43:i17:audio",
+          "transcript": "We don't have any billing addresses."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have any billing addresses.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "989bbd287066afba48d2cf6cf5c00809d6b49fbfc17df6380ee64857cb44fd25"
+}

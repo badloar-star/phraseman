@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-49:word:permission-slip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — permission slip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:permission-slip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — permission slip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:permission-slip:audio",
+            "transcript": "permission slip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:permission-slip:r1",
+              "targetText": "permission slip",
+              "meaningByLocale": {
+                "ru": "бланк письменного разрешения родителя на участие ребёнка.",
+                "uk": "бланк письмового дозволу одного з батьків на участь дитини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "permission slip",
+            "definitionByLocale": {
+              "ru": "бланк письменного разрешения родителя на участие ребёнка.",
+              "uk": "бланк письмового дозволу одного з батьків на участь дитини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips. Скажите: «Мы подписали несколько бланков родительского разрешения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips. Скажите: «Мы подписали несколько бланков родительского разрешения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We signed some permission slips.",
+          "localizedMeaning": {
+            "ru": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips. Скажите: «Мы подписали несколько бланков родительского разрешения».",
+            "uk": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips. Скажіть: «Ми підписали кілька бланків батьківського дозволу»."
+          },
+          "orderedTokens": [
+            "We",
+            "signed",
+            "some",
+            "permission",
+            "slips"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i02:r1",
+            "text": "We signed some permission slips."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i02:r2",
+            "text": "We signed any permission slips."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i02:r3",
+            "text": "We signed a permission slips."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i02:audio",
+            "transcript": "We signed some permission slips."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i02:r1",
+              "targetText": "We signed some permission slips.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r2",
+              "targetText": "We signed any permission slips.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r3",
+              "targetText": "We signed a permission slips.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We signed some permission slips.",
+                "uk": "У записі звучить We signed some permission slips."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We signed some permission slips.",
+                "uk": "У записі звучить We signed some permission slips."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+            "uk": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips."
+          },
+          "gappedTargetPhrase": "We signed ___ permission slips.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:school-meal",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — school meal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:school-meal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — school meal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:school-meal:audio",
+            "transcript": "school meal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:school-meal:r1",
+              "targetText": "school meal",
+              "meaningByLocale": {
+                "ru": "школьный обед, питание в школе.",
+                "uk": "шкільний обід, харчування в школі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "school meal",
+            "definitionByLocale": {
+              "ru": "школьный обед, питание в школе.",
+              "uk": "шкільний обід, харчування в школі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В этом кружке не предоставляют питание вообще. School meal → school meals. Скажите: «Мы не предоставляем никакого школьного питания».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В этом кружке не предоставляют питание вообще. School meal → school meals. Скажите: «Мы не предоставляем никакого школьного питания».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't provide any school meals.",
+          "localizedMeaning": {
+            "ru": "В этом кружке не предоставляют питание вообще. School meal → school meals. Скажите: «Мы не предоставляем никакого школьного питания».",
+            "uk": "У цьому гуртку не надають харчування взагалі. School meal → school meals. Скажіть: «Ми не надаємо жодного шкільного харчування»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "provide",
+            "any",
+            "school",
+            "meals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i05:r1",
+            "text": "We don't provide any school meals."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i05:r2",
+            "text": "We don't provide some school meals."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i05:r3",
+            "text": "We don't provide a school meals."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i05:audio",
+            "transcript": "We don't provide any school meals."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i05:r1",
+              "targetText": "We don't provide any school meals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r2",
+              "targetText": "We don't provide some school meals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r3",
+              "targetText": "We don't provide a school meals.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't provide any school meals.",
+                "uk": "У записі звучить We don't provide any school meals."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't provide any school meals.",
+                "uk": "У записі звучить We don't provide any school meals."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+            "uk": "У цьому гуртку не надають харчування взагалі. School meal → school meals."
+          },
+          "gappedTargetPhrase": "We don't provide ___ school meals.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:parents'-evening",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — parents' evening",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:parents'-evening:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — parents' evening",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:parents'-evening:audio",
+            "transcript": "parents' evening"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:parents'-evening:r1",
+              "targetText": "parents' evening",
+              "meaningByLocale": {
+                "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка.",
+                "uk": "зустріч батьків з учителями для обговорення навчання дитини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parents' evening",
+            "definitionByLocale": {
+              "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка.",
+              "uk": "зустріч батьків з учителями для обговорення навчання дитини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings. Скажите: «Мы запланировали несколько встреч родителей с учителями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings. Скажите: «Мы запланировали несколько встреч родителей с учителями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We planned some parents' evenings.",
+          "localizedMeaning": {
+            "ru": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings. Скажите: «Мы запланировали несколько встреч родителей с учителями».",
+            "uk": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings. Скажіть: «Ми запланували кілька зустрічей батьків з учителями»."
+          },
+          "orderedTokens": [
+            "We",
+            "planned",
+            "some",
+            "parents'",
+            "evenings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i08:r1",
+            "text": "We planned some parents' evenings."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i08:r2",
+            "text": "We planned any parents' evenings."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i08:r3",
+            "text": "We planned a parents' evenings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i08:audio",
+            "transcript": "We planned some parents' evenings."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i08:r1",
+              "targetText": "We planned some parents' evenings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r2",
+              "targetText": "We planned any parents' evenings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r3",
+              "targetText": "We planned a parents' evenings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We planned some parents' evenings.",
+                "uk": "У записі звучить We planned some parents' evenings."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We planned some parents' evenings.",
+                "uk": "У записі звучить We planned some parents' evenings."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+            "uk": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings."
+          },
+          "gappedTargetPhrase": "We planned ___ parents' evenings.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:after-school-club",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — after-school club",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:after-school-club:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — after-school club",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:after-school-club:audio",
+            "transcript": "after-school club"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:after-school-club:r1",
+              "targetText": "after-school club",
+              "meaningByLocale": {
+                "ru": "кружок или занятие после школьных уроков.",
+                "uk": "гурток або заняття після шкільних уроків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "after-school club",
+            "definitionByLocale": {
+              "ru": "кружок или занятие после школьных уроков.",
+              "uk": "гурток або заняття після шкільних уроків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs. Скажите: «Есть какие-либо кружки после уроков».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs. Скажите: «Есть какие-либо кружки после уроков».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any after-school clubs?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs. Скажите: «Есть какие-либо кружки после уроков».",
+            "uk": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs. Скажіть: «Є якісь гуртки після уроків»."
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "after-school",
+            "clubs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i11:r1",
+            "text": "Are there any after-school clubs?"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i11:r2",
+            "text": "Are there some after-school clubs?"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i11:r3",
+            "text": "Are there a after-school clubs?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i11:audio",
+            "transcript": "Are there any after-school clubs?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i11:r1",
+              "targetText": "Are there any after-school clubs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r2",
+              "targetText": "Are there some after-school clubs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r3",
+              "targetText": "Are there a after-school clubs?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are there any after-school clubs?",
+                "uk": "У записі звучить Are there any after-school clubs?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are there any after-school clubs?",
+                "uk": "У записі звучить Are there any after-school clubs?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+            "uk": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs."
+          },
+          "gappedTargetPhrase": "Are there ___ after-school clubs?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-49:i13:p1",
+              "target": "permission slip",
+              "meaningByLocale": {
+                "ru": "бланк письменного разрешения родителя на участие ребёнка",
+                "uk": "бланк письмового дозволу одного з батьків на участь дитини"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p2",
+              "target": "school meal",
+              "meaningByLocale": {
+                "ru": "школьный обед, питание в школе",
+                "uk": "шкільний обід, харчування в школі"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p3",
+              "target": "parents' evening",
+              "meaningByLocale": {
+                "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка",
+                "uk": "зустріч батьків з учителями для обговорення навчання дитини"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p4",
+              "target": "after-school club",
+              "meaningByLocale": {
+                "ru": "кружок или занятие после школьных уроков",
+                "uk": "гурток або заняття після шкільних уроків"
+              }
+            }
+          ],
+          "leftColumn": [
+            "permission slip",
+            "school meal",
+            "parents' evening",
+            "after-school club"
+          ],
+          "rightColumn": [
+            "бланк письменного разрешения родителя на участие ребёнка",
+            "школьный обед, питание в школе",
+            "встреча родителей с учителями для обсуждения учёбы ребёнка",
+            "кружок или занятие после школьных уроков"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i14:audio",
+            "transcript": "We signed some permission slips."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We signed some permission slips.",
+          "orderedTokens": [
+            "We",
+            "signed",
+            "some",
+            "permission",
+            "slips"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i15:audio",
+            "transcript": "Are there any after-school clubs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any after-school clubs?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "after-school",
+            "clubs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i16:audio",
+            "transcript": "We planned some parents' evenings."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We planned some parents' evenings.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i17:audio",
+            "transcript": "We don't provide any school meals."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't provide any school meals.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-49:word:permission-slip",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — permission slip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:permission-slip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — permission slip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:permission-slip:audio",
+            "transcript": "permission slip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:permission-slip:r1",
+              "targetText": "permission slip",
+              "meaningByLocale": {
+                "ru": "бланк письменного разрешения родителя на участие ребёнка.",
+                "uk": "бланк письмового дозволу одного з батьків на участь дитини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "permission slip",
+            "definitionByLocale": {
+              "ru": "бланк письменного разрешения родителя на участие ребёнка.",
+              "uk": "бланк письмового дозволу одного з батьків на участь дитини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips. Скажіть: «Ми підписали кілька бланків батьківського дозволу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips. Скажіть: «Ми підписали кілька бланків батьківського дозволу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We signed some permission slips.",
+          "localizedMeaning": {
+            "ru": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips. Скажите: «Мы подписали несколько бланков родительского разрешения».",
+            "uk": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips. Скажіть: «Ми підписали кілька бланків батьківського дозволу»."
+          },
+          "orderedTokens": [
+            "We",
+            "signed",
+            "some",
+            "permission",
+            "slips"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i02:r1",
+            "text": "We signed some permission slips."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i02:r2",
+            "text": "We signed any permission slips."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i02:r3",
+            "text": "We signed a permission slips."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i02:audio",
+            "transcript": "We signed some permission slips."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i02:r1",
+              "targetText": "We signed some permission slips.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r2",
+              "targetText": "We signed any permission slips.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r3",
+              "targetText": "We signed a permission slips.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We signed some permission slips.",
+                "uk": "У записі звучить We signed some permission slips."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We signed some permission slips.",
+                "uk": "У записі звучить We signed some permission slips."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
+            "uk": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips."
+          },
+          "gappedTargetPhrase": "We signed ___ permission slips.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:school-meal",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — school meal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:school-meal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — school meal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:school-meal:audio",
+            "transcript": "school meal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:school-meal:r1",
+              "targetText": "school meal",
+              "meaningByLocale": {
+                "ru": "школьный обед, питание в школе.",
+                "uk": "шкільний обід, харчування в школі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "school meal",
+            "definitionByLocale": {
+              "ru": "школьный обед, питание в школе.",
+              "uk": "шкільний обід, харчування в школі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У цьому гуртку не надають харчування взагалі. School meal → school meals. Скажіть: «Ми не надаємо жодного шкільного харчування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У цьому гуртку не надають харчування взагалі. School meal → school meals. Скажіть: «Ми не надаємо жодного шкільного харчування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't provide any school meals.",
+          "localizedMeaning": {
+            "ru": "В этом кружке не предоставляют питание вообще. School meal → school meals. Скажите: «Мы не предоставляем никакого школьного питания».",
+            "uk": "У цьому гуртку не надають харчування взагалі. School meal → school meals. Скажіть: «Ми не надаємо жодного шкільного харчування»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "provide",
+            "any",
+            "school",
+            "meals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i05:r1",
+            "text": "We don't provide any school meals."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i05:r2",
+            "text": "We don't provide some school meals."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i05:r3",
+            "text": "We don't provide a school meals."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i05:audio",
+            "transcript": "We don't provide any school meals."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i05:r1",
+              "targetText": "We don't provide any school meals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r2",
+              "targetText": "We don't provide some school meals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r3",
+              "targetText": "We don't provide a school meals.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't provide any school meals.",
+                "uk": "У записі звучить We don't provide any school meals."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't provide any school meals.",
+                "uk": "У записі звучить We don't provide any school meals."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
+            "uk": "У цьому гуртку не надають харчування взагалі. School meal → school meals."
+          },
+          "gappedTargetPhrase": "We don't provide ___ school meals.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:parents'-evening",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — parents' evening",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:parents'-evening:audio"
+        ],
+        "accessibilityLabel": "Картка слова — parents' evening",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:parents'-evening:audio",
+            "transcript": "parents' evening"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:parents'-evening:r1",
+              "targetText": "parents' evening",
+              "meaningByLocale": {
+                "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка.",
+                "uk": "зустріч батьків з учителями для обговорення навчання дитини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parents' evening",
+            "definitionByLocale": {
+              "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка.",
+              "uk": "зустріч батьків з учителями для обговорення навчання дитини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings. Скажіть: «Ми запланували кілька зустрічей батьків з учителями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings. Скажіть: «Ми запланували кілька зустрічей батьків з учителями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We planned some parents' evenings.",
+          "localizedMeaning": {
+            "ru": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings. Скажите: «Мы запланировали несколько встреч родителей с учителями».",
+            "uk": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings. Скажіть: «Ми запланували кілька зустрічей батьків з учителями»."
+          },
+          "orderedTokens": [
+            "We",
+            "planned",
+            "some",
+            "parents'",
+            "evenings"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i08:r1",
+            "text": "We planned some parents' evenings."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i08:r2",
+            "text": "We planned any parents' evenings."
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i08:r3",
+            "text": "We planned a parents' evenings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i08:audio",
+            "transcript": "We planned some parents' evenings."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i08:r1",
+              "targetText": "We planned some parents' evenings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r2",
+              "targetText": "We planned any parents' evenings.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r3",
+              "targetText": "We planned a parents' evenings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We planned some parents' evenings.",
+                "uk": "У записі звучить We planned some parents' evenings."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We planned some parents' evenings.",
+                "uk": "У записі звучить We planned some parents' evenings."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
+            "uk": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings."
+          },
+          "gappedTargetPhrase": "We planned ___ parents' evenings.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:word:after-school-club",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — after-school club",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:word:after-school-club:audio"
+        ],
+        "accessibilityLabel": "Картка слова — after-school club",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:word:after-school-club:audio",
+            "transcript": "after-school club"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:word:after-school-club:r1",
+              "targetText": "after-school club",
+              "meaningByLocale": {
+                "ru": "кружок или занятие после школьных уроков.",
+                "uk": "гурток або заняття після шкільних уроків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "after-school club",
+            "definitionByLocale": {
+              "ru": "кружок или занятие после школьных уроков.",
+              "uk": "гурток або заняття після шкільних уроків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs. Скажіть: «Є якісь гуртки після уроків».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs. Скажіть: «Є якісь гуртки після уроків».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there any after-school clubs?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs. Скажите: «Есть какие-либо кружки после уроков».",
+            "uk": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs. Скажіть: «Є якісь гуртки після уроків»."
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "after-school",
+            "clubs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i11:r1",
+            "text": "Are there any after-school clubs?"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i11:r2",
+            "text": "Are there some after-school clubs?"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i11:r3",
+            "text": "Are there a after-school clubs?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i11:audio",
+            "transcript": "Are there any after-school clubs?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-49:i11:r1",
+              "targetText": "Are there any after-school clubs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r2",
+              "targetText": "Are there some after-school clubs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r3",
+              "targetText": "Are there a after-school clubs?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are there any after-school clubs?",
+                "uk": "У записі звучить Are there any after-school clubs?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are there any after-school clubs?",
+                "uk": "У записі звучить Are there any after-school clubs?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-49:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-49:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
+            "uk": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs."
+          },
+          "gappedTargetPhrase": "Are there ___ after-school clubs?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-49:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-49:i13:p1",
+              "target": "permission slip",
+              "meaningByLocale": {
+                "ru": "бланк письменного разрешения родителя на участие ребёнка",
+                "uk": "бланк письмового дозволу одного з батьків на участь дитини"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p2",
+              "target": "school meal",
+              "meaningByLocale": {
+                "ru": "школьный обед, питание в школе",
+                "uk": "шкільний обід, харчування в школі"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p3",
+              "target": "parents' evening",
+              "meaningByLocale": {
+                "ru": "встреча родителей с учителями для обсуждения учёбы ребёнка",
+                "uk": "зустріч батьків з учителями для обговорення навчання дитини"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-49:i13:p4",
+              "target": "after-school club",
+              "meaningByLocale": {
+                "ru": "кружок или занятие после школьных уроков",
+                "uk": "гурток або заняття після шкільних уроків"
+              }
+            }
+          ],
+          "leftColumn": [
+            "permission slip",
+            "school meal",
+            "parents' evening",
+            "after-school club"
+          ],
+          "rightColumn": [
+            "бланк письмового дозволу одного з батьків на участь дитини",
+            "шкільний обід, харчування в школі",
+            "зустріч батьків з учителями для обговорення навчання дитини",
+            "гурток або заняття після шкільних уроків"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i14:audio",
+            "transcript": "We signed some permission slips."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We signed some permission slips.",
+          "orderedTokens": [
+            "We",
+            "signed",
+            "some",
+            "permission",
+            "slips"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i15:audio",
+            "transcript": "Are there any after-school clubs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there any after-school clubs?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "any",
+            "after-school",
+            "clubs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i16:audio",
+            "transcript": "We planned some parents' evenings."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We planned some parents' evenings.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-49:i17:audio",
+            "transcript": "We don't provide any school meals."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't provide any school meals.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-49:word:permission-slip",
+      "correctText": "permission slip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i01",
+      "correctText": "We signed some permission slips.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i02",
+      "correctText": "We signed some permission slips.",
+      "correctResponseId": "en:lesson-17:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:word:school-meal",
+      "correctText": "school meal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i04",
+      "correctText": "We don't provide any school meals.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i05",
+      "correctText": "We don't provide any school meals.",
+      "correctResponseId": "en:lesson-17:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:word:parents'-evening",
+      "correctText": "parents' evening",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i07",
+      "correctText": "We planned some parents' evenings.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i08",
+      "correctText": "We planned some parents' evenings.",
+      "correctResponseId": "en:lesson-17:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:word:after-school-club",
+      "correctText": "after-school club",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i10",
+      "correctText": "Are there any after-school clubs?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i11",
+      "correctText": "Are there any after-school clubs?",
+      "correctResponseId": "en:lesson-17:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i14",
+      "correctText": "We signed some permission slips.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i15",
+      "correctText": "Are there any after-school clubs?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i16",
+      "correctText": "We planned some parents' evenings.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-49:i17",
+      "correctText": "We don't provide any school meals.",
+      "correctResponseId": null
+    }
+  ]
+}

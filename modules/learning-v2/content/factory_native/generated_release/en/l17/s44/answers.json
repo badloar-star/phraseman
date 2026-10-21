@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-44:word:opening-time",
+    "correctText": "opening time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i01",
+    "correctText": "We changed some opening times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i02",
+    "correctText": "We changed some opening times.",
+    "correctResponseId": "en:lesson-17:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:word:closing-time",
+    "correctText": "closing time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i04",
+    "correctText": "We don't know any closing times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i05",
+    "correctText": "We don't know any closing times.",
+    "correctResponseId": "en:lesson-17:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:word:weekend-work",
+    "correctText": "weekend work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i07",
+    "correctText": "I do some weekend work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i08",
+    "correctText": "I do some weekend work.",
+    "correctResponseId": "en:lesson-17:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:word:shift-work",
+    "correctText": "shift work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i10",
+    "correctText": "Do you do any shift work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i11",
+    "correctText": "Do you do any shift work?",
+    "correctResponseId": "en:lesson-17:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i13",
+    "correctText": "en:lesson-17:session-44:i13:p1=opening time\nen:lesson-17:session-44:i13:p2=closing time\nen:lesson-17:session-44:i13:p3=weekend work\nen:lesson-17:session-44:i13:p4=shift work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i14",
+    "correctText": "We changed some opening times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i15",
+    "correctText": "Do you do any shift work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i16",
+    "correctText": "I do some weekend work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-44:i17",
+    "correctText": "We don't know any closing times.",
+    "correctResponseId": null
+  }
+]

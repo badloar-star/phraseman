@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-51:word:meter-reading",
+    "correctText": "meter reading",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i01",
+    "correctText": "We recorded a few meter readings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i02",
+    "correctText": "We recorded a few meter readings.",
+    "correctResponseId": "en:lesson-17:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:word:electricity-bill",
+    "correctText": "electricity bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i04",
+    "correctText": "We have few electricity bills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i05",
+    "correctText": "We have few electricity bills.",
+    "correctResponseId": "en:lesson-17:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:word:water-bill",
+    "correctText": "water bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i07",
+    "correctText": "We found a few water bills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i08",
+    "correctText": "We found a few water bills.",
+    "correctResponseId": "en:lesson-17:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i09",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:word:gas-bill",
+    "correctText": "gas bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i10",
+    "correctText": "We have few gas bills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i11",
+    "correctText": "We have few gas bills.",
+    "correctResponseId": "en:lesson-17:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i12",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i13",
+    "correctText": "en:lesson-17:session-51:i13:p1=meter reading\nen:lesson-17:session-51:i13:p2=electricity bill\nen:lesson-17:session-51:i13:p3=water bill\nen:lesson-17:session-51:i13:p4=gas bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i14",
+    "correctText": "We recorded a few meter readings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i15",
+    "correctText": "We have few gas bills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i16",
+    "correctText": "We found a few water bills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-51:i17",
+    "correctText": "We have few electricity bills.",
+    "correctResponseId": null
+  }
+]

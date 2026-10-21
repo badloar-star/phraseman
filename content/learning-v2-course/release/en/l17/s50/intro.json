@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun",
+    "uk": "a few / few + plural count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько всё же есть",
+        "uk": "Кілька все ж є"
+      },
+      "bodyByLocale": {
+        "ru": "voice message — голосовое сообщение. Подчеркните, что несколько сообщений всё же пришли. Voice message → voice messages. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "voice message — голосове повідомлення. Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r1",
+              "text": "I received a few voice messages."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r2",
+              "text": "I received few voice messages."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r3",
+              "text": "I received a little voice messages."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r1",
+              "text": "I received a few voice messages."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r2",
+              "text": "I received few voice messages."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro1:r3",
+              "text": "I received a little voice messages."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подчеркнуть нехватку",
+        "uk": "Підкреслити брак"
+      },
+      "bodyByLocale": {
+        "ru": "contact number — телефон для связи. emergency contact — контакт человека, с которым связываются в экстренной ситуации. После потери записной книжки у вас осталось мало номеров. Подчеркните нехватку. Contact number → contact numbers. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "contact number — телефон для зв’язку. emergency contact — контакт людини, з якою зв’язуються в екстреній ситуації. Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r1",
+              "text": "I have few contact numbers."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r2",
+              "text": "I have a few contact numbers."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r3",
+              "text": "I have a little contact numbers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r1",
+              "text": "I have few contact numbers."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r2",
+              "text": "I have a few contact numbers."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro2:r3",
+              "text": "I have a little contact numbers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смысл зависит от a",
+        "uk": "Зміст залежить від a"
+      },
+      "bodyByLocale": {
+        "ru": "area code — телефонный код города или региона. Вы почти не знаете телефонных кодов других городов. Подчеркните малое количество. Area code → area codes. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "area code — телефонний код міста або регіону. Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r1",
+              "text": "I know few area codes."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r2",
+              "text": "I know a few area codes."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r3",
+              "text": "I know a little area codes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r1",
+              "text": "I know few area codes."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r2",
+              "text": "I know a few area codes."
+            },
+            {
+              "responseId": "en:lesson-17:session-50:intro3:r3",
+              "text": "I know a little area codes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a4f28370249ccb16f36ac2c66142801decd7d90bf3ea1352ef6771d95d2366c3"
+}

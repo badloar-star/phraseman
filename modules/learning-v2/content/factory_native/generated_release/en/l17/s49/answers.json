@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-49:word:permission-slip",
+    "correctText": "permission slip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i01",
+    "correctText": "We signed some permission slips.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i02",
+    "correctText": "We signed some permission slips.",
+    "correctResponseId": "en:lesson-17:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:word:school-meal",
+    "correctText": "school meal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i04",
+    "correctText": "We don't provide any school meals.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i05",
+    "correctText": "We don't provide any school meals.",
+    "correctResponseId": "en:lesson-17:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:word:parents'-evening",
+    "correctText": "parents' evening",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i07",
+    "correctText": "We planned some parents' evenings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i08",
+    "correctText": "We planned some parents' evenings.",
+    "correctResponseId": "en:lesson-17:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:word:after-school-club",
+    "correctText": "after-school club",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i10",
+    "correctText": "Are there any after-school clubs?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i11",
+    "correctText": "Are there any after-school clubs?",
+    "correctResponseId": "en:lesson-17:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i13",
+    "correctText": "en:lesson-17:session-49:i13:p1=permission slip\nen:lesson-17:session-49:i13:p2=school meal\nen:lesson-17:session-49:i13:p3=parents' evening\nen:lesson-17:session-49:i13:p4=after-school club",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i14",
+    "correctText": "We signed some permission slips.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i15",
+    "correctText": "Are there any after-school clubs?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i16",
+    "correctText": "We planned some parents' evenings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-49:i17",
+    "correctText": "We don't provide any school meals.",
+    "correctResponseId": null
+  }
+]

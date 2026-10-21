@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-45:word:work-permit",
+    "correctText": "work permit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i01",
+    "correctText": "We checked some work permits.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i02",
+    "correctText": "We checked some work permits.",
+    "correctResponseId": "en:lesson-17:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:word:residence-permit",
+    "correctText": "residence permit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i04",
+    "correctText": "We don't have any residence permits.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i05",
+    "correctText": "We don't have any residence permits.",
+    "correctResponseId": "en:lesson-17:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:word:proof-of-address",
+    "correctText": "proof of address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i07",
+    "correctText": "We need some proof of address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i08",
+    "correctText": "We need some proof of address.",
+    "correctResponseId": "en:lesson-17:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:word:photo-ID",
+    "correctText": "photo ID",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i10",
+    "correctText": "Do you have any photo ID?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i11",
+    "correctText": "Do you have any photo ID?",
+    "correctResponseId": "en:lesson-17:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i13",
+    "correctText": "en:lesson-17:session-45:i13:p1=work permit\nen:lesson-17:session-45:i13:p2=residence permit\nen:lesson-17:session-45:i13:p3=proof of address\nen:lesson-17:session-45:i13:p4=photo ID",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i14",
+    "correctText": "We checked some work permits.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i15",
+    "correctText": "Do you have any photo ID?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i16",
+    "correctText": "We need some proof of address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-45:i17",
+    "correctText": "We don't have any residence permits.",
+    "correctResponseId": null
+  }
+]

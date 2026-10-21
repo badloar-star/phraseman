@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun",
+    "uk": "a few / few + plural count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько всё же есть",
+        "uk": "Кілька все ж є"
+      },
+      "bodyByLocale": {
+        "ru": "meter reading — показание счётчика. Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "meter reading — показання лічильника. Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r1",
+              "text": "We recorded a few meter readings."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r2",
+              "text": "We recorded few meter readings."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r3",
+              "text": "We recorded a little meter readings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r1",
+              "text": "We recorded a few meter readings."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r2",
+              "text": "We recorded few meter readings."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro1:r3",
+              "text": "We recorded a little meter readings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подчеркнуть нехватку",
+        "uk": "Підкреслити брак"
+      },
+      "bodyByLocale": {
+        "ru": "electricity bill — счёт за электричество. water bill — счёт за воду. Для сверки нужны счета за весь год, но сохранилось мало. Подчеркните нехватку документов. Electricity bill → electricity bills. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "electricity bill — рахунок за електроенергію. water bill — рахунок за воду. Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r1",
+              "text": "We have few electricity bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r2",
+              "text": "We have a few electricity bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r3",
+              "text": "We have a little electricity bills."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r1",
+              "text": "We have few electricity bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r2",
+              "text": "We have a few electricity bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro2:r3",
+              "text": "We have a little electricity bills."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смысл зависит от a",
+        "uk": "Зміст залежить від a"
+      },
+      "bodyByLocale": {
+        "ru": "gas bill — счёт за газ. Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "gas bill — рахунок за газ. Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r1",
+              "text": "We have few gas bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r2",
+              "text": "We have a few gas bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r3",
+              "text": "We have a little gas bills."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r1",
+              "text": "We have few gas bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r2",
+              "text": "We have a few gas bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-51:intro3:r3",
+              "text": "We have a little gas bills."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d57bc189cbc281a4ba6e99e46ba3240e05e0990355e766990245864b7504a9cf"
+}

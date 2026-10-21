@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-48:word:refund-policy",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — refund policy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:word:refund-policy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — refund policy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:word:refund-policy:audio",
+          "transcript": "refund policy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:word:refund-policy:r1",
+            "targetText": "refund policy",
+            "meaningByLocale": {
+              "ru": "правила возврата денег.",
+              "uk": "правила повернення грошей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refund policy",
+          "definitionByLocale": {
+            "ru": "правила возврата денег.",
+            "uk": "правила повернення грошей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies. Скажите: «Мы сравнили несколько правил возврата денег у разных магазинов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies. Скажите: «Мы сравнили несколько правил возврата денег у разных магазинов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We compared some refund policies.",
+        "localizedMeaning": {
+          "ru": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies. Скажите: «Мы сравнили несколько правил возврата денег у разных магазинов».",
+          "uk": "Ви порівняли умови повернення в кількох магазинах. Refund policy → refund policies. Скажіть: «Ми порівняли кілька правил повернення грошей у різних магазинів»."
+        },
+        "orderedTokens": [
+          "We",
+          "compared",
+          "some",
+          "refund",
+          "policies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i02:r1",
+          "text": "We compared some refund policies."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i02:r2",
+          "text": "We compared any refund policies."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i02:r3",
+          "text": "We compared a refund policies."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i02:audio",
+          "transcript": "We compared some refund policies."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:i02:r1",
+            "targetText": "We compared some refund policies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i02:r2",
+            "targetText": "We compared any refund policies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i02:r3",
+            "targetText": "We compared a refund policies.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We compared some refund policies.",
+              "uk": "У записі звучить We compared some refund policies."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We compared some refund policies.",
+              "uk": "У записі звучить We compared some refund policies."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+          "uk": "Ви порівняли умови повернення в кількох магазинах. Refund policy → refund policies."
+        },
+        "gappedTargetPhrase": "We compared ___ refund policies.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-48:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:word:return-label",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — return label",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:word:return-label:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — return label",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:word:return-label:audio",
+          "transcript": "return label"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:word:return-label:r1",
+            "targetText": "return label",
+            "meaningByLocale": {
+              "ru": "почтовая этикетка для обратной отправки товара.",
+              "uk": "поштова етикетка для зворотного відправлення товару."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "return label",
+          "definitionByLocale": {
+            "ru": "почтовая этикетка для обратной отправки товара.",
+            "uk": "поштова етикетка для зворотного відправлення товару."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels. Скажите: «У нас нет никаких этикеток для обратной отправки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels. Скажите: «У нас нет никаких этикеток для обратной отправки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have any return labels.",
+        "localizedMeaning": {
+          "ru": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels. Скажите: «У нас нет никаких этикеток для обратной отправки».",
+          "uk": "Для жодної посилки етикетки немає. Повністю заперечте наявність. Return label → return labels. Скажіть: «У нас немає жодних етикеток для зворотного відправлення»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "any",
+          "return",
+          "labels"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i05:r1",
+          "text": "We don't have any return labels."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i05:r2",
+          "text": "We don't have some return labels."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i05:r3",
+          "text": "We don't have a return labels."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i05:audio",
+          "transcript": "We don't have any return labels."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:i05:r1",
+            "targetText": "We don't have any return labels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i05:r2",
+            "targetText": "We don't have some return labels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i05:r3",
+            "targetText": "We don't have a return labels.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any return labels.",
+              "uk": "У записі звучить We don't have any return labels."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any return labels.",
+              "uk": "У записі звучить We don't have any return labels."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+          "uk": "Для жодної посилки етикетки немає. Повністю заперечте наявність. Return label → return labels."
+        },
+        "gappedTargetPhrase": "We don't have ___ return labels.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-48:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:word:exchange-rate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exchange rate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:word:exchange-rate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exchange rate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:word:exchange-rate:audio",
+          "transcript": "exchange rate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:word:exchange-rate:r1",
+            "targetText": "exchange rate",
+            "meaningByLocale": {
+              "ru": "обменный курс валюты.",
+              "uk": "обмінний курс валюти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exchange rate",
+          "definitionByLocale": {
+            "ru": "обменный курс валюты.",
+            "uk": "обмінний курс валюти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates. Скажите: «Мы проверили несколько обменных курсов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates. Скажите: «Мы проверили несколько обменных курсов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We checked some exchange rates.",
+        "localizedMeaning": {
+          "ru": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates. Скажите: «Мы проверили несколько обменных курсов».",
+          "uk": "Ви переглянули курси кількох валют. Підтвердьте це. Exchange rate → exchange rates. Скажіть: «Ми перевірили кілька обмінних курсів»."
+        },
+        "orderedTokens": [
+          "We",
+          "checked",
+          "some",
+          "exchange",
+          "rates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i08:r1",
+          "text": "We checked some exchange rates."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i08:r2",
+          "text": "We checked any exchange rates."
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i08:r3",
+          "text": "We checked a exchange rates."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i08:audio",
+          "transcript": "We checked some exchange rates."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:i08:r1",
+            "targetText": "We checked some exchange rates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i08:r2",
+            "targetText": "We checked any exchange rates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i08:r3",
+            "targetText": "We checked a exchange rates.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked some exchange rates.",
+              "uk": "У записі звучить We checked some exchange rates."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked some exchange rates.",
+              "uk": "У записі звучить We checked some exchange rates."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+          "uk": "Ви переглянули курси кількох валют. Підтвердьте це. Exchange rate → exchange rates."
+        },
+        "gappedTargetPhrase": "We checked ___ exchange rates.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-48:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:word:delivery-note",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delivery note",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:word:delivery-note:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delivery note",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:word:delivery-note:audio",
+          "transcript": "delivery note"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:word:delivery-note:r1",
+            "targetText": "delivery note",
+            "meaningByLocale": {
+              "ru": "документ со списком доставленных товаров.",
+              "uk": "документ зі списком доставлених товарів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivery note",
+          "definitionByLocale": {
+            "ru": "документ со списком доставленных товаров.",
+            "uk": "документ зі списком доставлених товарів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes. Скажите: «У вас есть какие-либо документы со списком доставленных товаров».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes. Скажите: «У вас есть какие-либо документы со списком доставленных товаров».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have any delivery notes?",
+        "localizedMeaning": {
+          "ru": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes. Скажите: «У вас есть какие-либо документы со списком доставленных товаров».",
+          "uk": "Ви не знаєте, чи збереглися документи з посилок. Запитайте нейтрально. Delivery note → delivery notes. Скажіть: «У вас є якісь документи зі списком доставлених товарів»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "delivery",
+          "notes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i11:r1",
+          "text": "Do you have any delivery notes?"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i11:r2",
+          "text": "Do you have some delivery notes?"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i11:r3",
+          "text": "Do you have a delivery notes?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i11:audio",
+          "transcript": "Do you have any delivery notes?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-48:i11:r1",
+            "targetText": "Do you have any delivery notes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i11:r2",
+            "targetText": "Do you have some delivery notes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i11:r3",
+            "targetText": "Do you have a delivery notes?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any delivery notes?",
+              "uk": "У записі звучить Do you have any delivery notes?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any delivery notes?",
+              "uk": "У записі звучить Do you have any delivery notes?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-48:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-48:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+          "uk": "Ви не знаєте, чи збереглися документи з посилок. Запитайте нейтрально. Delivery note → delivery notes."
+        },
+        "gappedTargetPhrase": "Do you have ___ delivery notes?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-48:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-48:i13:p1",
+            "target": "refund policy",
+            "meaningByLocale": {
+              "ru": "правила возврата денег",
+              "uk": "правила повернення грошей"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-48:i13:p2",
+            "target": "return label",
+            "meaningByLocale": {
+              "ru": "почтовая этикетка для обратной отправки товара",
+              "uk": "поштова етикетка для зворотного відправлення товару"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-48:i13:p3",
+            "target": "exchange rate",
+            "meaningByLocale": {
+              "ru": "обменный курс валюты",
+              "uk": "обмінний курс валюти"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-48:i13:p4",
+            "target": "delivery note",
+            "meaningByLocale": {
+              "ru": "документ со списком доставленных товаров",
+              "uk": "документ зі списком доставлених товарів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "refund policy",
+          "return label",
+          "exchange rate",
+          "delivery note"
+        ],
+        "rightColumn": [
+          "правила возврата денег",
+          "почтовая этикетка для обратной отправки товара",
+          "обменный курс валюты",
+          "документ со списком доставленных товаров"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i14:audio",
+          "transcript": "We compared some refund policies."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We compared some refund policies.",
+        "orderedTokens": [
+          "We",
+          "compared",
+          "some",
+          "refund",
+          "policies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i15:audio",
+          "transcript": "Do you have any delivery notes?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have any delivery notes?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "delivery",
+          "notes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i16:audio",
+          "transcript": "We checked some exchange rates."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We checked some exchange rates.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-48:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-48:i17:audio",
+          "transcript": "We don't have any return labels."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have any return labels.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "176aaa57cc82589e1a1eb064799be2f7ab2aa91b3cddb80cf8af0e11494db308"
+}

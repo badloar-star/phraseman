@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-47:word:entry-fee",
+    "correctText": "entry fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i01",
+    "correctText": "There are some entry fees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i02",
+    "correctText": "There are some entry fees.",
+    "correctResponseId": "en:lesson-17:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:word:membership-fee",
+    "correctText": "membership fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i04",
+    "correctText": "There aren't any membership fees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i05",
+    "correctText": "There aren't any membership fees.",
+    "correctResponseId": "en:lesson-17:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:word:monthly-payment",
+    "correctText": "monthly payment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i07",
+    "correctText": "We make some monthly payments.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i08",
+    "correctText": "We make some monthly payments.",
+    "correctResponseId": "en:lesson-17:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:word:cancellation-fee",
+    "correctText": "cancellation fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i10",
+    "correctText": "Do you charge any cancellation fees?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i11",
+    "correctText": "Do you charge any cancellation fees?",
+    "correctResponseId": "en:lesson-17:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i13",
+    "correctText": "en:lesson-17:session-47:i13:p1=entry fee\nen:lesson-17:session-47:i13:p2=membership fee\nen:lesson-17:session-47:i13:p3=monthly payment\nen:lesson-17:session-47:i13:p4=cancellation fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i14",
+    "correctText": "There are some entry fees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i15",
+    "correctText": "Do you charge any cancellation fees?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i16",
+    "correctText": "We make some monthly payments.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-47:i17",
+    "correctText": "There aren't any membership fees.",
+    "correctResponseId": null
+  }
+]

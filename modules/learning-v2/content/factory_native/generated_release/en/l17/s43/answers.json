@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-43:word:delivery-address",
+    "correctText": "delivery address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i01",
+    "correctText": "We saved some delivery addresses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i02",
+    "correctText": "We saved some delivery addresses.",
+    "correctResponseId": "en:lesson-17:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:word:billing-address",
+    "correctText": "billing address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i04",
+    "correctText": "We don't have any billing addresses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i05",
+    "correctText": "We don't have any billing addresses.",
+    "correctResponseId": "en:lesson-17:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:word:return-address",
+    "correctText": "return address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i07",
+    "correctText": "We need some return addresses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i08",
+    "correctText": "We need some return addresses.",
+    "correctResponseId": "en:lesson-17:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:word:forwarding-address",
+    "correctText": "forwarding address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i10",
+    "correctText": "Do you have any forwarding addresses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i11",
+    "correctText": "Do you have any forwarding addresses?",
+    "correctResponseId": "en:lesson-17:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i13",
+    "correctText": "en:lesson-17:session-43:i13:p1=delivery address\nen:lesson-17:session-43:i13:p2=billing address\nen:lesson-17:session-43:i13:p3=return address\nen:lesson-17:session-43:i13:p4=forwarding address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i14",
+    "correctText": "We saved some delivery addresses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i15",
+    "correctText": "Do you have any forwarding addresses?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i16",
+    "correctText": "We need some return addresses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-43:i17",
+    "correctText": "We don't have any billing addresses.",
+    "correctResponseId": null
+  }
+]

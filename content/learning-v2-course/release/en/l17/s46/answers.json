@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-46:word:birth-certificate",
+    "correctText": "birth certificate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i01",
+    "correctText": "We copied some birth certificates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i02",
+    "correctText": "We copied some birth certificates.",
+    "correctResponseId": "en:lesson-17:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:word:marriage-certificate",
+    "correctText": "marriage certificate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i04",
+    "correctText": "We don't have any marriage certificates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i05",
+    "correctText": "We don't have any marriage certificates.",
+    "correctResponseId": "en:lesson-17:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:word:identity-card",
+    "correctText": "identity card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i07",
+    "correctText": "We checked some identity cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i08",
+    "correctText": "We checked some identity cards.",
+    "correctResponseId": "en:lesson-17:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:word:registration-form",
+    "correctText": "registration form",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i10",
+    "correctText": "Do you have any registration forms?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i11",
+    "correctText": "Do you have any registration forms?",
+    "correctResponseId": "en:lesson-17:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i13",
+    "correctText": "en:lesson-17:session-46:i13:p1=birth certificate\nen:lesson-17:session-46:i13:p2=marriage certificate\nen:lesson-17:session-46:i13:p3=identity card\nen:lesson-17:session-46:i13:p4=registration form",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i14",
+    "correctText": "We copied some birth certificates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i15",
+    "correctText": "Do you have any registration forms?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i16",
+    "correctText": "We checked some identity cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-46:i17",
+    "correctText": "We don't have any marriage certificates.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-50:word:voice-message",
+    "correctText": "voice message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i01",
+    "correctText": "I received a few voice messages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i02",
+    "correctText": "I received a few voice messages.",
+    "correctResponseId": "en:lesson-17:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:word:contact-number",
+    "correctText": "contact number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i04",
+    "correctText": "I have few contact numbers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i05",
+    "correctText": "I have few contact numbers.",
+    "correctResponseId": "en:lesson-17:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:word:emergency-contact",
+    "correctText": "emergency contact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i07",
+    "correctText": "We have a few emergency contacts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i08",
+    "correctText": "We have a few emergency contacts.",
+    "correctResponseId": "en:lesson-17:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i09",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:word:area-code",
+    "correctText": "area code",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i10",
+    "correctText": "I know few area codes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i11",
+    "correctText": "I know few area codes.",
+    "correctResponseId": "en:lesson-17:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i12",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i13",
+    "correctText": "en:lesson-17:session-50:i13:p1=voice message\nen:lesson-17:session-50:i13:p2=contact number\nen:lesson-17:session-50:i13:p3=emergency contact\nen:lesson-17:session-50:i13:p4=area code",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i14",
+    "correctText": "I received a few voice messages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i15",
+    "correctText": "I know few area codes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i16",
+    "correctText": "We have a few emergency contacts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-50:i17",
+    "correctText": "I have few contact numbers.",
+    "correctResponseId": null
+  }
+]

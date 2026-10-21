@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-45:word:work-permit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — work permit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:word:work-permit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — work permit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:word:work-permit:audio",
+          "transcript": "work permit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:word:work-permit:r1",
+            "targetText": "work permit",
+            "meaningByLocale": {
+              "ru": "разрешение на работу.",
+              "uk": "дозвіл на роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "work permit",
+          "definitionByLocale": {
+            "ru": "разрешение на работу.",
+            "uk": "дозвіл на роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits. Скажите: «Мы проверили несколько разрешений на работу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits. Скажите: «Мы проверили несколько разрешений на работу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We checked some work permits.",
+        "localizedMeaning": {
+          "ru": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits. Скажите: «Мы проверили несколько разрешений на работу».",
+          "uk": "Ви повідомляєте про кілька перевірених документів. Work permit → work permits. Скажіть: «Ми перевірили кілька дозволів на роботу»."
+        },
+        "orderedTokens": [
+          "We",
+          "checked",
+          "some",
+          "work",
+          "permits"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i02:r1",
+          "text": "We checked some work permits."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i02:r2",
+          "text": "We checked any work permits."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i02:r3",
+          "text": "We checked a work permits."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i02:audio",
+          "transcript": "We checked some work permits."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:i02:r1",
+            "targetText": "We checked some work permits.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i02:r2",
+            "targetText": "We checked any work permits.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i02:r3",
+            "targetText": "We checked a work permits.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked some work permits.",
+              "uk": "У записі звучить We checked some work permits."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We checked some work permits.",
+              "uk": "У записі звучить We checked some work permits."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+          "uk": "Ви повідомляєте про кілька перевірених документів. Work permit → work permits."
+        },
+        "gappedTargetPhrase": "We checked ___ work permits.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-45:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы сообщаете о нескольких проверенных документах. Work permit → work permits.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:word:residence-permit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — residence permit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:word:residence-permit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — residence permit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:word:residence-permit:audio",
+          "transcript": "residence permit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:word:residence-permit:r1",
+            "targetText": "residence permit",
+            "meaningByLocale": {
+              "ru": "разрешение на проживание, вид на жительство.",
+              "uk": "дозвіл на проживання, посвідка на проживання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "residence permit",
+          "definitionByLocale": {
+            "ru": "разрешение на проживание, вид на жительство.",
+            "uk": "дозвіл на проживання, посвідка на проживання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits. Скажите: «У нас нет никаких разрешений на проживание».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits. Скажите: «У нас нет никаких разрешений на проживание».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have any residence permits.",
+        "localizedMeaning": {
+          "ru": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits. Скажите: «У нас нет никаких разрешений на проживание».",
+          "uk": "В обговорюваній папці немає жодного документа цього типу. Residence permit → residence permits. Скажіть: «У нас немає жодних дозволів на проживання»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "any",
+          "residence",
+          "permits"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i05:r1",
+          "text": "We don't have any residence permits."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i05:r2",
+          "text": "We don't have some residence permits."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i05:r3",
+          "text": "We don't have a residence permits."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i05:audio",
+          "transcript": "We don't have any residence permits."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:i05:r1",
+            "targetText": "We don't have any residence permits.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i05:r2",
+            "targetText": "We don't have some residence permits.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i05:r3",
+            "targetText": "We don't have a residence permits.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any residence permits.",
+              "uk": "У записі звучить We don't have any residence permits."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any residence permits.",
+              "uk": "У записі звучить We don't have any residence permits."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+          "uk": "В обговорюваній папці немає жодного документа цього типу. Residence permit → residence permits."
+        },
+        "gappedTargetPhrase": "We don't have ___ residence permits.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-45:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:word:proof-of-address",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — proof of address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:word:proof-of-address:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — proof of address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:word:proof-of-address:audio",
+          "transcript": "proof of address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:word:proof-of-address:r1",
+            "targetText": "proof of address",
+            "meaningByLocale": {
+              "ru": "подтверждение адреса проживания.",
+              "uk": "підтвердження адреси проживання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "proof of address",
+          "definitionByLocale": {
+            "ru": "подтверждение адреса проживания.",
+            "uk": "підтвердження адреси проживання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы просите подтверждение адреса в целом, не называя количество документов. Скажите: «Нам нужно какое-либо подтверждение адреса проживания».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы просите подтверждение адреса в целом, не называя количество документов. Скажите: «Нам нужно какое-либо подтверждение адреса проживания».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need some proof of address.",
+        "localizedMeaning": {
+          "ru": "Вы просите подтверждение адреса в целом, не называя количество документов. Скажите: «Нам нужно какое-либо подтверждение адреса проживания».",
+          "uk": "Ви просите підтвердження адреси загалом, не називаючи кількості документів. Скажіть: «Нам потрібне якесь підтвердження адреси проживання»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "some",
+          "proof",
+          "of",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i08:r1",
+          "text": "We need some proof of address."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i08:r2",
+          "text": "We need any proof of address."
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i08:r3",
+          "text": "We need many proof of address."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i08:audio",
+          "transcript": "We need some proof of address."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:i08:r1",
+            "targetText": "We need some proof of address.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i08:r2",
+            "targetText": "We need any proof of address.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i08:r3",
+            "targetText": "We need many proof of address.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some proof of address.",
+              "uk": "У записі звучить We need some proof of address."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some proof of address.",
+              "uk": "У записі звучить We need some proof of address."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i09:r3",
+          "text": "many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+          "uk": "Ви просите підтвердження адреси загалом, не називаючи кількості документів."
+        },
+        "gappedTargetPhrase": "We need ___ proof of address.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-45:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i09:r3",
+            "text": "many"
+          }
+        ],
+        "testedDimension": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы просите подтверждение адреса в целом, не называя количество документов.",
+            "feedbackByLocale": {
+              "ru": "Many требует исчисляемого существительного во множественном числе; здесь общее название.",
+              "uk": "Many потребує злічуваного іменника у множині; тут загальна назва."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:word:photo-ID",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — photo ID",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:word:photo-ID:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — photo ID",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:word:photo-ID:audio",
+          "transcript": "photo ID"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:word:photo-ID:r1",
+            "targetText": "photo ID",
+            "meaningByLocale": {
+              "ru": "документ с фотографией, удостоверяющий личность.",
+              "uk": "документ із фотографією, що посвідчує особу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photo ID",
+          "definitionByLocale": {
+            "ru": "документ с фотографией, удостоверяющий личность.",
+            "uk": "документ із фотографією, що посвідчує особу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек. Скажите: «У вас есть какое-либо удостоверение личности с фотографией».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек. Скажите: «У вас есть какое-либо удостоверение личности с фотографией».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have any photo ID?",
+        "localizedMeaning": {
+          "ru": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек. Скажите: «У вас есть какое-либо удостоверение личности с фотографией».",
+          "uk": "Запитайте нейтрально про наявність підтвердження особи, не припускаючи відповіді «так». Тут photo ID — загальна назва, без підрахунку окремих карток. Скажіть: «У вас є якесь посвідчення особи з фотографією»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "photo",
+          "ID"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i11:r1",
+          "text": "Do you have any photo ID?"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i11:r2",
+          "text": "Do you have some photo ID?"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i11:r3",
+          "text": "Do you have many photo ID?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i11:audio",
+          "transcript": "Do you have any photo ID?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-45:i11:r1",
+            "targetText": "Do you have any photo ID?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i11:r2",
+            "targetText": "Do you have some photo ID?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i11:r3",
+            "targetText": "Do you have many photo ID?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any photo ID?",
+              "uk": "У записі звучить Do you have any photo ID?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any photo ID?",
+              "uk": "У записі звучить Do you have any photo ID?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-45:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-45:i12:r3",
+          "text": "many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+          "uk": "Запитайте нейтрально про наявність підтвердження особи, не припускаючи відповіді «так». Тут photo ID — загальна назва, без підрахунку окремих карток."
+        },
+        "gappedTargetPhrase": "Do you have ___ photo ID?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-45:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i12:r3",
+            "text": "many"
+          }
+        ],
+        "testedDimension": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек.",
+            "feedbackByLocale": {
+              "ru": "Many требует исчисляемого существительного во множественном числе; здесь общее название.",
+              "uk": "Many потребує злічуваного іменника у множині; тут загальна назва."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-45:i13:p1",
+            "target": "work permit",
+            "meaningByLocale": {
+              "ru": "разрешение на работу",
+              "uk": "дозвіл на роботу"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-45:i13:p2",
+            "target": "residence permit",
+            "meaningByLocale": {
+              "ru": "разрешение на проживание, вид на жительство",
+              "uk": "дозвіл на проживання, посвідка на проживання"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-45:i13:p3",
+            "target": "proof of address",
+            "meaningByLocale": {
+              "ru": "подтверждение адреса проживания",
+              "uk": "підтвердження адреси проживання"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-45:i13:p4",
+            "target": "photo ID",
+            "meaningByLocale": {
+              "ru": "документ с фотографией, удостоверяющий личность",
+              "uk": "документ із фотографією, що посвідчує особу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "work permit",
+          "residence permit",
+          "proof of address",
+          "photo ID"
+        ],
+        "rightColumn": [
+          "разрешение на работу",
+          "разрешение на проживание, вид на жительство",
+          "подтверждение адреса проживания",
+          "документ с фотографией, удостоверяющий личность"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i14:audio",
+          "transcript": "We checked some work permits."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We checked some work permits.",
+        "orderedTokens": [
+          "We",
+          "checked",
+          "some",
+          "work",
+          "permits"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i15:audio",
+          "transcript": "Do you have any photo ID?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have any photo ID?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "photo",
+          "ID"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i16:audio",
+          "transcript": "We need some proof of address."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need some proof of address.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-45:i17:audio",
+          "transcript": "We don't have any residence permits."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have any residence permits.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "032aa6208bd9a9279b01f88efc11480bdf803e3d8e11e46255aaa5432dfb169c"
+}

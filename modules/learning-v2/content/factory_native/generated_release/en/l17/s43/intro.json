@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "delivery address — адрес доставки. Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "delivery address — адреса доставки. Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r1",
+              "text": "We saved some delivery addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r2",
+              "text": "We saved any delivery addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r3",
+              "text": "We saved a delivery addresses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r1",
+              "text": "We saved some delivery addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r2",
+              "text": "We saved any delivery addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro1:r3",
+              "text": "We saved a delivery addresses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "billing address — адрес, указанный для выставления счёта. В полученном списке нет таких адресов вообще. Billing address → billing addresses. return address — адрес отправителя для возврата письма или посылки. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "billing address — адреса, зазначена для виставлення рахунку. В отриманому списку немає таких адрес узагалі. Billing address → billing addresses. return address — адреса відправника для повернення листа або посилки. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r1",
+              "text": "We don't have any billing addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r2",
+              "text": "We don't have some billing addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r3",
+              "text": "We don't have a billing addresses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r1",
+              "text": "We don't have any billing addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r2",
+              "text": "We don't have some billing addresses."
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro2:r3",
+              "text": "We don't have a billing addresses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "forwarding address — новый адрес, на который пересылают почту после переезда. Несколько жильцов переехали. Вы не знаете их новых адресов. Спросите нейтрально, без ожидания ответа «да». Forwarding address → forwarding addresses. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "forwarding address — нова адреса, на яку пересилають пошту після переїзду. Кілька мешканців переїхали. Ви не знаєте їхніх нових адрес. Запитайте нейтрально, без очікування відповіді «так». Forwarding address → forwarding addresses. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r1",
+              "text": "Do you have any forwarding addresses?"
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r2",
+              "text": "Do you have some forwarding addresses?"
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r3",
+              "text": "Do you have a forwarding addresses?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r1",
+              "text": "Do you have any forwarding addresses?"
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r2",
+              "text": "Do you have some forwarding addresses?"
+            },
+            {
+              "responseId": "en:lesson-17:session-43:intro3:r3",
+              "text": "Do you have a forwarding addresses?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a2e74d8f28e0854aa9330ee7dd80192b4b1d86656d678a7c6385b0cd6b019346"
+}

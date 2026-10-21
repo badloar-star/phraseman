@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "permission slip — бланк письменного разрешения родителя на участие ребёнка. Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "permission slip — бланк письмового дозволу одного з батьків на участь дитини. Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r1",
+              "text": "We signed some permission slips."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r2",
+              "text": "We signed any permission slips."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r3",
+              "text": "We signed a permission slips."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r1",
+              "text": "We signed some permission slips."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r2",
+              "text": "We signed any permission slips."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro1:r3",
+              "text": "We signed a permission slips."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "school meal — школьный обед, питание в школе. В этом кружке не предоставляют питание вообще. School meal → school meals. parents' evening — встреча родителей с учителями для обсуждения учёбы ребёнка. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "school meal — шкільний обід, харчування в школі. У цьому гуртку не надають харчування взагалі. School meal → school meals. parents' evening — зустріч батьків з учителями для обговорення навчання дитини. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r1",
+              "text": "We don't provide any school meals."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r2",
+              "text": "We don't provide some school meals."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r3",
+              "text": "We don't provide a school meals."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r1",
+              "text": "We don't provide any school meals."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r2",
+              "text": "We don't provide some school meals."
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro2:r3",
+              "text": "We don't provide a school meals."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "after-school club — кружок или занятие после школьных уроков. Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "after-school club — гурток або заняття після шкільних уроків. Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r1",
+              "text": "Are there any after-school clubs?"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r2",
+              "text": "Are there some after-school clubs?"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r3",
+              "text": "Are there a after-school clubs?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r1",
+              "text": "Are there any after-school clubs?"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r2",
+              "text": "Are there some after-school clubs?"
+            },
+            {
+              "responseId": "en:lesson-17:session-49:intro3:r3",
+              "text": "Are there a after-school clubs?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "95d6c4959d55ebd787b1d6fce19f05e7c2a52d0c3dc39abb76ab9e6c51b6473f"
+}

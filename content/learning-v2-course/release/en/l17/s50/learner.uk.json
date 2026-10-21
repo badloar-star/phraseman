@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-50:word:voice-message",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — voice message",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:word:voice-message:audio"
+      ],
+      "accessibilityLabel": "Картка слова — voice message",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:word:voice-message:audio",
+          "transcript": "voice message"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:word:voice-message:r1",
+            "targetText": "voice message",
+            "meaningByLocale": {
+              "ru": "голосовое сообщение.",
+              "uk": "голосове повідомлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "voice message",
+          "definitionByLocale": {
+            "ru": "голосовое сообщение.",
+            "uk": "голосове повідомлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Скажіть: «Я отримав кілька голосових повідомлень».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Скажіть: «Я отримав кілька голосових повідомлень».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I received a few voice messages.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что несколько сообщений всё же пришли. Voice message → voice messages. Скажите: «Я получил несколько голосовых сообщений».",
+          "uk": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Скажіть: «Я отримав кілька голосових повідомлень»."
+        },
+        "orderedTokens": [
+          "I",
+          "received",
+          "a",
+          "few",
+          "voice",
+          "messages"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i02:r1",
+          "text": "I received a few voice messages."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i02:r2",
+          "text": "I received few voice messages."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i02:r3",
+          "text": "I received a little voice messages."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i02:audio",
+          "transcript": "I received a few voice messages."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:i02:r1",
+            "targetText": "I received a few voice messages.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i02:r2",
+            "targetText": "I received few voice messages.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i02:r3",
+            "targetText": "I received a little voice messages.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I received a few voice messages.",
+              "uk": "У записі звучить I received a few voice messages."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I received a few voice messages.",
+              "uk": "У записі звучить I received a few voice messages."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i03:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i03:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i03:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что несколько сообщений всё же пришли. Voice message → voice messages.",
+          "uk": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages."
+        },
+        "gappedTargetPhrase": "I received ___ voice messages.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-50:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
+            "feedbackByLocale": {
+              "ru": "Little относится к неисчисляемому количеству.",
+              "uk": "Little стосується незлічуваної кількості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:word:contact-number",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — contact number",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:word:contact-number:audio"
+      ],
+      "accessibilityLabel": "Картка слова — contact number",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:word:contact-number:audio",
+          "transcript": "contact number"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:word:contact-number:r1",
+            "targetText": "contact number",
+            "meaningByLocale": {
+              "ru": "телефон для связи.",
+              "uk": "телефон для зв’язку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contact number",
+          "definitionByLocale": {
+            "ru": "телефон для связи.",
+            "uk": "телефон для зв’язку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers. Скажіть: «У мене мало телефонів для зв’язку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers. Скажіть: «У мене мало телефонів для зв’язку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have few contact numbers.",
+        "localizedMeaning": {
+          "ru": "После потери записной книжки у вас осталось мало номеров. Подчеркните нехватку. Contact number → contact numbers. Скажите: «У меня мало телефонов для связи».",
+          "uk": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers. Скажіть: «У мене мало телефонів для зв’язку»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "few",
+          "contact",
+          "numbers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i05:r1",
+          "text": "I have few contact numbers."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i05:r2",
+          "text": "I have a few contact numbers."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i05:r3",
+          "text": "I have a little contact numbers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i05:audio",
+          "transcript": "I have few contact numbers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:i05:r1",
+            "targetText": "I have few contact numbers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i05:r2",
+            "targetText": "I have a few contact numbers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i05:r3",
+            "targetText": "I have a little contact numbers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have few contact numbers.",
+              "uk": "У записі звучить I have few contact numbers."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have few contact numbers.",
+              "uk": "У записі звучить I have few contact numbers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i06:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i06:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i06:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После потери записной книжки у вас осталось мало номеров. Подчеркните нехватку. Contact number → contact numbers.",
+          "uk": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers."
+        },
+        "gappedTargetPhrase": "I have ___ contact numbers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-50:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i06:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
+            "feedbackByLocale": {
+              "ru": "Little относится к неисчисляемому количеству.",
+              "uk": "Little стосується незлічуваної кількості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:word:emergency-contact",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — emergency contact",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:word:emergency-contact:audio"
+      ],
+      "accessibilityLabel": "Картка слова — emergency contact",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:word:emergency-contact:audio",
+          "transcript": "emergency contact"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:word:emergency-contact:r1",
+            "targetText": "emergency contact",
+            "meaningByLocale": {
+              "ru": "контакт человека, с которым связываются в экстренной ситуации.",
+              "uk": "контакт людини, з якою зв’язуються в екстреній ситуації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "emergency contact",
+          "definitionByLocale": {
+            "ru": "контакт человека, с которым связываются в экстренной ситуации.",
+            "uk": "контакт людини, з якою зв’язуються в екстреній ситуації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts. Скажіть: «У нас є кілька контактів на екстрений випадок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts. Скажіть: «У нас є кілька контактів на екстрений випадок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a few emergency contacts.",
+        "localizedMeaning": {
+          "ru": "Несколько контактов сохранены. Подчеркните их наличие. Emergency contact → emergency contacts. Скажите: «У нас есть несколько контактов на экстренный случай».",
+          "uk": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts. Скажіть: «У нас є кілька контактів на екстрений випадок»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "few",
+          "emergency",
+          "contacts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i08:r1",
+          "text": "We have a few emergency contacts."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i08:r2",
+          "text": "We have few emergency contacts."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i08:r3",
+          "text": "We have a little emergency contacts."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i08:audio",
+          "transcript": "We have a few emergency contacts."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:i08:r1",
+            "targetText": "We have a few emergency contacts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i08:r2",
+            "targetText": "We have few emergency contacts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i08:r3",
+            "targetText": "We have a little emergency contacts.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a few emergency contacts.",
+              "uk": "У записі звучить We have a few emergency contacts."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a few emergency contacts.",
+              "uk": "У записі звучить We have a few emergency contacts."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i09:r1",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i09:r2",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i09:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Несколько контактов сохранены. Подчеркните их наличие. Emergency contact → emergency contacts.",
+          "uk": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts."
+        },
+        "gappedTargetPhrase": "We have ___ emergency contacts.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-50:i09:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i09:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i09:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
+            "feedbackByLocale": {
+              "ru": "Little относится к неисчисляемому количеству.",
+              "uk": "Little стосується незлічуваної кількості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:word:area-code",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — area code",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:word:area-code:audio"
+      ],
+      "accessibilityLabel": "Картка слова — area code",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:word:area-code:audio",
+          "transcript": "area code"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:word:area-code:r1",
+            "targetText": "area code",
+            "meaningByLocale": {
+              "ru": "телефонный код города или региона.",
+              "uk": "телефонний код міста або регіону."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "area code",
+          "definitionByLocale": {
+            "ru": "телефонный код города или региона.",
+            "uk": "телефонний код міста або регіону."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Скажіть: «Я знаю мало телефонних кодів міст».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Скажіть: «Я знаю мало телефонних кодів міст».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know few area codes.",
+        "localizedMeaning": {
+          "ru": "Вы почти не знаете телефонных кодов других городов. Подчеркните малое количество. Area code → area codes. Скажите: «Я знаю мало телефонных кодов городов».",
+          "uk": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Скажіть: «Я знаю мало телефонних кодів міст»."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "few",
+          "area",
+          "codes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i11:r1",
+          "text": "I know few area codes."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i11:r2",
+          "text": "I know a few area codes."
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i11:r3",
+          "text": "I know a little area codes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i11:audio",
+          "transcript": "I know few area codes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-50:i11:r1",
+            "targetText": "I know few area codes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i11:r2",
+            "targetText": "I know a few area codes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i11:r3",
+            "targetText": "I know a little area codes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know few area codes.",
+              "uk": "У записі звучить I know few area codes."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know few area codes.",
+              "uk": "У записі звучить I know few area codes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-50:i12:r1",
+          "text": "few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i12:r2",
+          "text": "a few"
+        },
+        {
+          "responseId": "en:lesson-17:session-50:i12:r3",
+          "text": "a little"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы почти не знаете телефонных кодов других городов. Подчеркните малое количество. Area code → area codes.",
+          "uk": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes."
+        },
+        "gappedTargetPhrase": "I know ___ area codes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-50:i12:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i12:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i12:r3",
+            "text": "a little"
+          }
+        ],
+        "testedDimension": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
+            "feedbackByLocale": {
+              "ru": "Little относится к неисчисляемому количеству.",
+              "uk": "Little стосується незлічуваної кількості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-50:i13:p1",
+            "target": "voice message",
+            "meaningByLocale": {
+              "ru": "голосовое сообщение",
+              "uk": "голосове повідомлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-50:i13:p2",
+            "target": "contact number",
+            "meaningByLocale": {
+              "ru": "телефон для связи",
+              "uk": "телефон для зв’язку"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-50:i13:p3",
+            "target": "emergency contact",
+            "meaningByLocale": {
+              "ru": "контакт человека, с которым связываются в экстренной ситуации",
+              "uk": "контакт людини, з якою зв’язуються в екстреній ситуації"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-50:i13:p4",
+            "target": "area code",
+            "meaningByLocale": {
+              "ru": "телефонный код города или региона",
+              "uk": "телефонний код міста або регіону"
+            }
+          }
+        ],
+        "leftColumn": [
+          "voice message",
+          "contact number",
+          "emergency contact",
+          "area code"
+        ],
+        "rightColumn": [
+          "голосове повідомлення",
+          "телефон для зв’язку",
+          "контакт людини, з якою зв’язуються в екстреній ситуації",
+          "телефонний код міста або регіону"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу з a few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу з a few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i14:audio",
+          "transcript": "I received a few voice messages."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I received a few voice messages.",
+        "orderedTokens": [
+          "I",
+          "received",
+          "a",
+          "few",
+          "voice",
+          "messages"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу з few",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу з few",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i15:audio",
+          "transcript": "I know few area codes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know few area codes.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "few",
+          "area",
+          "codes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підкресліть наявність кількох",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Підкресліть наявність кількох",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i16:audio",
+          "transcript": "We have a few emergency contacts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have a few emergency contacts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підкресліть малу кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Підкресліть малу кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-50:i17:audio",
+          "transcript": "I have few contact numbers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have few contact numbers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d8fde9959cd08a0d5d70ccd4429000e6f8cd1153ecd8aa3eabcd0b7cde5ee1d7"
+}

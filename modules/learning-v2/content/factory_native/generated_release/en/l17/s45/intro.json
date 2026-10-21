@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "work permit — разрешение на работу. Вы сообщаете о нескольких проверенных документах. Work permit → work permits. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "work permit — дозвіл на роботу. Ви повідомляєте про кілька перевірених документів. Work permit → work permits. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r1",
+              "text": "We checked some work permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r2",
+              "text": "We checked any work permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r3",
+              "text": "We checked a work permits."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r1",
+              "text": "We checked some work permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r2",
+              "text": "We checked any work permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro1:r3",
+              "text": "We checked a work permits."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "residence permit — разрешение на проживание, вид на жительство. В обсуждаемой папке нет ни одного документа этого типа. Residence permit → residence permits. proof of address — подтверждение адреса проживания. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "residence permit — дозвіл на проживання, посвідка на проживання. В обговорюваній папці немає жодного документа цього типу. Residence permit → residence permits. proof of address — підтвердження адреси проживання. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r1",
+              "text": "We don't have any residence permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r2",
+              "text": "We don't have some residence permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r3",
+              "text": "We don't have a residence permits."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r1",
+              "text": "We don't have any residence permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r2",
+              "text": "We don't have some residence permits."
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro2:r3",
+              "text": "We don't have a residence permits."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "photo ID — документ с фотографией, удостоверяющий личность. Спросите нейтрально о наличии подтверждения личности, не предполагая ответа «да». Здесь photo ID — общее название, без подсчёта отдельных карточек. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "photo ID — документ із фотографією, що посвідчує особу. Запитайте нейтрально про наявність підтвердження особи, не припускаючи відповіді «так». Тут photo ID — загальна назва, без підрахунку окремих карток. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r1",
+              "text": "Do you have any photo ID?"
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r2",
+              "text": "Do you have some photo ID?"
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r3",
+              "text": "Do you have many photo ID?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r1",
+              "text": "Do you have any photo ID?"
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r2",
+              "text": "Do you have some photo ID?"
+            },
+            {
+              "responseId": "en:lesson-17:session-45:intro3:r3",
+              "text": "Do you have many photo ID?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e6558327d9d73deac06065515fdd103b6c1b1bfbde8abc5ea593848d2b06c57e"
+}

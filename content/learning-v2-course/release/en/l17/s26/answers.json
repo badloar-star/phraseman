@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-26:word:delivery-charge",
+    "correctText": "delivery charge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i01",
+    "correctText": "There are some delivery charges.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i02",
+    "correctText": "There are some delivery charges.",
+    "correctResponseId": "en:lesson-17:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:word:service-charge",
+    "correctText": "service charge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i04",
+    "correctText": "There aren't any service charges.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i05",
+    "correctText": "There aren't any service charges.",
+    "correctResponseId": "en:lesson-17:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:word:cashback",
+    "correctText": "cashback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i07",
+    "correctText": "You can get some cashback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i08",
+    "correctText": "You can get some cashback.",
+    "correctResponseId": "en:lesson-17:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:word:customer-service",
+    "correctText": "customer service",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i10",
+    "correctText": "Is there any customer service here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i11",
+    "correctText": "Is there any customer service here?",
+    "correctResponseId": "en:lesson-17:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i13",
+    "correctText": "en:lesson-17:session-26:i13:p1=delivery charge\nen:lesson-17:session-26:i13:p2=service charge\nen:lesson-17:session-26:i13:p3=cashback\nen:lesson-17:session-26:i13:p4=customer service",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i14",
+    "correctText": "There are some delivery charges.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i15",
+    "correctText": "Is there any customer service here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i16",
+    "correctText": "You can get some cashback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-26:i17",
+    "correctText": "There aren't any service charges.",
+    "correctResponseId": null
+  }
+]

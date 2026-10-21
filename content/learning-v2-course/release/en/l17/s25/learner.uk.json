@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-25:word:job-application",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — job application",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:word:job-application:audio"
+      ],
+      "accessibilityLabel": "Картка слова — job application",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:word:job-application:audio",
+          "transcript": "job application"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:word:job-application:r1",
+            "targetText": "job application",
+            "meaningByLocale": {
+              "ru": "заявка на работу, отклик на вакансию.",
+              "uk": "заявка на роботу, відгук на вакансію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job application",
+          "definitionByLocale": {
+            "ru": "заявка на работу, отклик на вакансию.",
+            "uk": "заявка на роботу, відгук на вакансію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications. Скажіть: «Ми надіслали кілька заявок на роботу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications. Скажіть: «Ми надіслали кілька заявок на роботу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We sent some job applications.",
+        "localizedMeaning": {
+          "ru": "Вы сообщаете, что несколько заявок отправлены. Job application → job applications. Скажите: «Мы отправили несколько заявок на работу».",
+          "uk": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications. Скажіть: «Ми надіслали кілька заявок на роботу»."
+        },
+        "orderedTokens": [
+          "We",
+          "sent",
+          "some",
+          "job",
+          "applications"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i02:r1",
+          "text": "We sent some job applications."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i02:r2",
+          "text": "We sent any job applications."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i02:r3",
+          "text": "We sent a job applications."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i02:audio",
+          "transcript": "We sent some job applications."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:i02:r1",
+            "targetText": "We sent some job applications.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i02:r2",
+            "targetText": "We sent any job applications.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i02:r3",
+            "targetText": "We sent a job applications.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We sent some job applications.",
+              "uk": "У записі звучить We sent some job applications."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We sent some job applications.",
+              "uk": "У записі звучить We sent some job applications."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете, что несколько заявок отправлены. Job application → job applications.",
+          "uk": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications."
+        },
+        "gappedTargetPhrase": "We sent ___ job applications.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-25:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що кілька заявок надіслано. Job application → job applications.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:word:contact-details",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — contact details",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:word:contact-details:audio"
+      ],
+      "accessibilityLabel": "Картка слова — contact details",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:word:contact-details:audio",
+          "transcript": "contact details"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:word:contact-details:r1",
+            "targetText": "contact details",
+            "meaningByLocale": {
+              "ru": "контактные данные: например, телефон и электронный адрес.",
+              "uk": "контактні дані: наприклад, телефон та електронна адреса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contact details",
+          "definitionByLocale": {
+            "ru": "контактные данные: например, телефон и электронный адрес.",
+            "uk": "контактні дані: наприклад, телефон та електронна адреса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини. Скажіть: «У нас немає жодних контактних даних».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини. Скажіть: «У нас немає жодних контактних даних».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have any contact details.",
+        "localizedMeaning": {
+          "ru": "Вы отрицаете наличие вообще каких-либо контактных данных, а не только части. Скажите: «У нас нет никаких контактных данных».",
+          "uk": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини. Скажіть: «У нас немає жодних контактних даних»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "any",
+          "contact",
+          "details"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i05:r1",
+          "text": "We don't have any contact details."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i05:r2",
+          "text": "We don't have some contact details."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i05:r3",
+          "text": "We don't have a contact details."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i05:audio",
+          "transcript": "We don't have any contact details."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:i05:r1",
+            "targetText": "We don't have any contact details.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i05:r2",
+            "targetText": "We don't have some contact details.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i05:r3",
+            "targetText": "We don't have a contact details.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any contact details.",
+              "uk": "У записі звучить We don't have any contact details."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have any contact details.",
+              "uk": "У записі звучить We don't have any contact details."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы отрицаете наличие вообще каких-либо контактных данных, а не только части.",
+          "uk": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини."
+        },
+        "gappedTargetPhrase": "We don't have ___ contact details.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-25:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви заперечуєте наявність узагалі будь-яких контактних даних, а не лише частини.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:word:paid-leave",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paid leave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:word:paid-leave:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paid leave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:word:paid-leave:audio",
+          "transcript": "paid leave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:word:paid-leave:r1",
+            "targetText": "paid leave",
+            "meaningByLocale": {
+              "ru": "оплачиваемый отпуск.",
+              "uk": "оплачувана відпустка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paid leave",
+          "definitionByLocale": {
+            "ru": "оплачиваемый отпуск.",
+            "uk": "оплачувана відпустка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність. Скажіть: «Ми надаємо певний час оплачуваної відпустки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність. Скажіть: «Ми надаємо певний час оплачуваної відпустки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We offer some paid leave.",
+        "localizedMeaning": {
+          "ru": "В этой вымышленной компании предоставляют некоторое время отпуска с оплатой. Сообщите о его наличии. Скажите: «Мы предоставляем некоторое время оплачиваемого отпуска».",
+          "uk": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність. Скажіть: «Ми надаємо певний час оплачуваної відпустки»."
+        },
+        "orderedTokens": [
+          "We",
+          "offer",
+          "some",
+          "paid",
+          "leave"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i08:r1",
+          "text": "We offer some paid leave."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i08:r2",
+          "text": "We offer any paid leave."
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i08:r3",
+          "text": "We offer a paid leave."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i08:audio",
+          "transcript": "We offer some paid leave."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:i08:r1",
+            "targetText": "We offer some paid leave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i08:r2",
+            "targetText": "We offer any paid leave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i08:r3",
+            "targetText": "We offer a paid leave.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We offer some paid leave.",
+              "uk": "У записі звучить We offer some paid leave."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We offer some paid leave.",
+              "uk": "У записі звучить We offer some paid leave."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этой вымышленной компании предоставляют некоторое время отпуска с оплатой. Сообщите о его наличии.",
+          "uk": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність."
+        },
+        "gappedTargetPhrase": "We offer ___ paid leave.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-25:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "У цій вигаданій компанії надають певний час відпустки з оплатою. Повідомте про його наявність.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:word:childcare",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — childcare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:word:childcare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — childcare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:word:childcare:audio",
+          "transcript": "childcare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:word:childcare:r1",
+            "targetText": "childcare",
+            "meaningByLocale": {
+              "ru": "присмотр и уход за детьми.",
+              "uk": "догляд за дітьми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "childcare",
+          "definitionByLocale": {
+            "ru": "присмотр и уход за детьми.",
+            "uk": "догляд за дітьми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так». Скажіть: «Вам потрібен якийсь догляд за дітьми».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так». Скажіть: «Вам потрібен якийсь догляд за дітьми».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you need any childcare?",
+        "localizedMeaning": {
+          "ru": "Вы пока не знаете, нужна ли человеку помощь с детьми. Задайте нейтральный вопрос, не предполагая ответа «да». Скажите: «Вам нужен какой-либо уход за детьми».",
+          "uk": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так». Скажіть: «Вам потрібен якийсь догляд за дітьми»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "need",
+          "any",
+          "childcare"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i11:r1",
+          "text": "Do you need any childcare?"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i11:r2",
+          "text": "Do you need some childcare?"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i11:r3",
+          "text": "Do you need a childcare?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i11:audio",
+          "transcript": "Do you need any childcare?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-25:i11:r1",
+            "targetText": "Do you need any childcare?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i11:r2",
+            "targetText": "Do you need some childcare?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i11:r3",
+            "targetText": "Do you need a childcare?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you need any childcare?",
+              "uk": "У записі звучить Do you need any childcare?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you need any childcare?",
+              "uk": "У записі звучить Do you need any childcare?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-25:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-25:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пока не знаете, нужна ли человеку помощь с детьми. Задайте нейтральный вопрос, не предполагая ответа «да».",
+          "uk": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так»."
+        },
+        "gappedTargetPhrase": "Do you need ___ childcare?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-25:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так».",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте, чи потрібна людині допомога з дітьми. Поставте нейтральне запитання, не припускаючи відповіді «так».",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-25:i13:p1",
+            "target": "job application",
+            "meaningByLocale": {
+              "ru": "заявка на работу, отклик на вакансию",
+              "uk": "заявка на роботу, відгук на вакансію"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-25:i13:p2",
+            "target": "contact details",
+            "meaningByLocale": {
+              "ru": "контактные данные: например, телефон и электронный адрес",
+              "uk": "контактні дані: наприклад, телефон та електронна адреса"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-25:i13:p3",
+            "target": "paid leave",
+            "meaningByLocale": {
+              "ru": "оплачиваемый отпуск",
+              "uk": "оплачувана відпустка"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-25:i13:p4",
+            "target": "childcare",
+            "meaningByLocale": {
+              "ru": "присмотр и уход за детьми",
+              "uk": "догляд за дітьми"
+            }
+          }
+        ],
+        "leftColumn": [
+          "job application",
+          "contact details",
+          "paid leave",
+          "childcare"
+        ],
+        "rightColumn": [
+          "заявка на роботу, відгук на вакансію",
+          "контактні дані: наприклад, телефон та електронна адреса",
+          "оплачувана відпустка",
+          "догляд за дітьми"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте твердження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте твердження",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i14:audio",
+          "transcript": "We sent some job applications."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We sent some job applications.",
+        "orderedTokens": [
+          "We",
+          "sent",
+          "some",
+          "job",
+          "applications"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i15:audio",
+          "transcript": "Do you need any childcare?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you need any childcare?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "need",
+          "any",
+          "childcare"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що певна кількість є",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що певна кількість є",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i16:audio",
+          "transcript": "We offer some paid leave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We offer some paid leave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повністю заперечте наявність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Повністю заперечте наявність",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-25:i17:audio",
+          "transcript": "We don't have any contact details."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have any contact details.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e0b8201062dac6c4d172cf7ab041a65a87f995b12213eddc52ceac2628635e0b"
+}

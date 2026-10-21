@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-28:word:seat-reservation",
+    "correctText": "seat reservation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i01",
+    "correctText": "We made some seat reservations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i02",
+    "correctText": "We made some seat reservations.",
+    "correctResponseId": "en:lesson-17:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:word:booking-fee",
+    "correctText": "booking fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i04",
+    "correctText": "There aren't any booking fees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i05",
+    "correctText": "There aren't any booking fees.",
+    "correctResponseId": "en:lesson-17:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:word:foreign-currency",
+    "correctText": "foreign currency",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i07",
+    "correctText": "We need some foreign currency.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i08",
+    "correctText": "We need some foreign currency.",
+    "correctResponseId": "en:lesson-17:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:word:travel-insurance",
+    "correctText": "travel insurance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i10",
+    "correctText": "Do you have any travel insurance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i11",
+    "correctText": "Do you have any travel insurance?",
+    "correctResponseId": "en:lesson-17:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i13",
+    "correctText": "en:lesson-17:session-28:i13:p1=seat reservation\nen:lesson-17:session-28:i13:p2=booking fee\nen:lesson-17:session-28:i13:p3=foreign currency\nen:lesson-17:session-28:i13:p4=travel insurance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i14",
+    "correctText": "We made some seat reservations.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i15",
+    "correctText": "Do you have any travel insurance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i16",
+    "correctText": "We need some foreign currency.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-28:i17",
+    "correctText": "There aren't any booking fees.",
+    "correctResponseId": null
+  }
+]

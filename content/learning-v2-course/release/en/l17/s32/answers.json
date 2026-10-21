@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-32:word:parking-ticket",
+    "correctText": "parking ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i01",
+    "correctText": "We received some parking tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i02",
+    "correctText": "We received some parking tickets.",
+    "correctResponseId": "en:lesson-17:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:word:road-closure",
+    "correctText": "road closure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i04",
+    "correctText": "There aren't any road closures.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i05",
+    "correctText": "There aren't any road closures.",
+    "correctResponseId": "en:lesson-17:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:word:street-lighting",
+    "correctText": "street lighting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i07",
+    "correctText": "We need some street lighting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i08",
+    "correctText": "We need some street lighting.",
+    "correctResponseId": "en:lesson-17:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:word:public-parking",
+    "correctText": "public parking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i10",
+    "correctText": "Is there any public parking here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i11",
+    "correctText": "Is there any public parking here?",
+    "correctResponseId": "en:lesson-17:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i13",
+    "correctText": "en:lesson-17:session-32:i13:p1=parking ticket\nen:lesson-17:session-32:i13:p2=road closure\nen:lesson-17:session-32:i13:p3=street lighting\nen:lesson-17:session-32:i13:p4=public parking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i14",
+    "correctText": "We received some parking tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i15",
+    "correctText": "Is there any public parking here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i16",
+    "correctText": "We need some street lighting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-32:i17",
+    "correctText": "There aren't any road closures.",
+    "correctResponseId": null
+  }
+]

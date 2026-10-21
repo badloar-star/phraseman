@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "rent payment — платёж за аренду. Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "rent payment — платіж за оренду. Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r1",
+              "text": "We made some rent payments."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r2",
+              "text": "We made any rent payments."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r3",
+              "text": "We made a rent payments."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r1",
+              "text": "We made some rent payments."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r2",
+              "text": "We made any rent payments."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro1:r3",
+              "text": "We made a rent payments."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "repair bill — счёт за ремонт. Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills. running water — водопроводная вода, вода из крана. Это неисчисляемое выражение, с ним тоже можно использовать some. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "repair bill — рахунок за ремонт. Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills. running water — водопровідна вода, вода з крана. Це незлічуваний вираз, із ним теж можна використовувати some. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r1",
+              "text": "We don't have any repair bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r2",
+              "text": "We don't have some repair bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r3",
+              "text": "We don't have a repair bills."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r1",
+              "text": "We don't have any repair bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r2",
+              "text": "We don't have some repair bills."
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro2:r3",
+              "text": "We don't have a repair bills."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "home insurance — страхование жилья. Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да». В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "home insurance — страхування житла. Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так». У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r1",
+              "text": "Do you have any home insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r2",
+              "text": "Do you have some home insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r3",
+              "text": "Do you have a home insurance?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r1",
+              "text": "Do you have any home insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r2",
+              "text": "Do you have some home insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:intro3:r3",
+              "text": "Do you have a home insurance?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8565136f17bb69533fbf2d88abbc5b858a712e07aaaf9080e4ac0b38c93af71e"
+}

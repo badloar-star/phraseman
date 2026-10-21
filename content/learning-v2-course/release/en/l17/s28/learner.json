@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-28:word:seat-reservation",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seat reservation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:word:seat-reservation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seat reservation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:word:seat-reservation:audio",
+          "transcript": "seat reservation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:word:seat-reservation:r1",
+            "targetText": "seat reservation",
+            "meaningByLocale": {
+              "ru": "бронирование места.",
+              "uk": "бронювання місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat reservation",
+          "definitionByLocale": {
+            "ru": "бронирование места.",
+            "uk": "бронювання місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations. Скажите: «Мы забронировали несколько мест».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations. Скажите: «Мы забронировали несколько мест».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We made some seat reservations.",
+        "localizedMeaning": {
+          "ru": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations. Скажите: «Мы забронировали несколько мест».",
+          "uk": "Ви підтверджуєте, що кілька місць заброньовано. Seat reservation → seat reservations. Скажіть: «Ми забронювали кілька місць»."
+        },
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "seat",
+          "reservations"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i02:r1",
+          "text": "We made some seat reservations."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i02:r2",
+          "text": "We made any seat reservations."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i02:r3",
+          "text": "We made a seat reservations."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i02:audio",
+          "transcript": "We made some seat reservations."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:i02:r1",
+            "targetText": "We made some seat reservations.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i02:r2",
+            "targetText": "We made any seat reservations.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i02:r3",
+            "targetText": "We made a seat reservations.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some seat reservations.",
+              "uk": "У записі звучить We made some seat reservations."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some seat reservations.",
+              "uk": "У записі звучить We made some seat reservations."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+          "uk": "Ви підтверджуєте, що кілька місць заброньовано. Seat reservation → seat reservations."
+        },
+        "gappedTargetPhrase": "We made ___ seat reservations.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-28:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:word:booking-fee",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — booking fee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:word:booking-fee:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — booking fee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:word:booking-fee:audio",
+          "transcript": "booking fee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:word:booking-fee:r1",
+            "targetText": "booking fee",
+            "meaningByLocale": {
+              "ru": "плата за бронирование.",
+              "uk": "плата за бронювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "booking fee",
+          "definitionByLocale": {
+            "ru": "плата за бронирование.",
+            "uk": "плата за бронювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees. Скажите: «Никакой платы за бронирование нет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees. Скажите: «Никакой платы за бронирование нет».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any booking fees.",
+        "localizedMeaning": {
+          "ru": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees. Скажите: «Никакой платы за бронирование нет».",
+          "uk": "У цьому навчальному прикладі за бронювання не беруть жодних доплат. Booking fee → booking fees. Скажіть: «Жодної плати за бронювання немає»."
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "booking",
+          "fees"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i05:r1",
+          "text": "There aren't any booking fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i05:r2",
+          "text": "There aren't some booking fees."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i05:r3",
+          "text": "There aren't a booking fees."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i05:audio",
+          "transcript": "There aren't any booking fees."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:i05:r1",
+            "targetText": "There aren't any booking fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i05:r2",
+            "targetText": "There aren't some booking fees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i05:r3",
+            "targetText": "There aren't a booking fees.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any booking fees.",
+              "uk": "У записі звучить There aren't any booking fees."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There aren't any booking fees.",
+              "uk": "У записі звучить There aren't any booking fees."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+          "uk": "У цьому навчальному прикладі за бронювання не беруть жодних доплат. Booking fee → booking fees."
+        },
+        "gappedTargetPhrase": "There aren't ___ booking fees.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-28:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:word:foreign-currency",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — foreign currency",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:word:foreign-currency:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — foreign currency",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:word:foreign-currency:audio",
+          "transcript": "foreign currency"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:word:foreign-currency:r1",
+            "targetText": "foreign currency",
+            "meaningByLocale": {
+              "ru": "иностранная валюта.",
+              "uk": "іноземна валюта."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foreign currency",
+          "definitionByLocale": {
+            "ru": "иностранная валюта.",
+            "uk": "іноземна валюта."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности. Скажите: «Нам нужно немного иностранной валюты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности. Скажите: «Нам нужно немного иностранной валюты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need some foreign currency.",
+        "localizedMeaning": {
+          "ru": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности. Скажите: «Нам нужно немного иностранной валюты».",
+          "uk": "Для поїздки потрібна певна сума в іноземній валюті. Повідомте про потребу. Скажіть: «Нам потрібно трохи іноземної валюти»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "some",
+          "foreign",
+          "currency"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i08:r1",
+          "text": "We need some foreign currency."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i08:r2",
+          "text": "We need any foreign currency."
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i08:r3",
+          "text": "We need a foreign currency."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i08:audio",
+          "transcript": "We need some foreign currency."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:i08:r1",
+            "targetText": "We need some foreign currency.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i08:r2",
+            "targetText": "We need any foreign currency.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i08:r3",
+            "targetText": "We need a foreign currency.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some foreign currency.",
+              "uk": "У записі звучить We need some foreign currency."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some foreign currency.",
+              "uk": "У записі звучить We need some foreign currency."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+          "uk": "Для поїздки потрібна певна сума в іноземній валюті. Повідомте про потребу."
+        },
+        "gappedTargetPhrase": "We need ___ foreign currency.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-28:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Для поездки нужна некоторая сумма в иностранной валюте. Сообщите о потребности.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:word:travel-insurance",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — travel insurance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:word:travel-insurance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — travel insurance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:word:travel-insurance:audio",
+          "transcript": "travel insurance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:word:travel-insurance:r1",
+            "targetText": "travel insurance",
+            "meaningByLocale": {
+              "ru": "туристическая страховка, страхование поездки.",
+              "uk": "туристичне страхування, страхування поїздки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "travel insurance",
+          "definitionByLocale": {
+            "ru": "туристическая страховка, страхование поездки.",
+            "uk": "туристичне страхування, страхування поїздки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какая-либо туристическая страховка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какая-либо туристическая страховка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have any travel insurance?",
+        "localizedMeaning": {
+          "ru": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какая-либо туристическая страховка».",
+          "uk": "Ви не знаєте, чи оформлено поліс. Запитайте нейтрально, не припускаючи відповіді «так». Скажіть: «У вас є якесь туристичне страхування»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "travel",
+          "insurance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i11:r1",
+          "text": "Do you have any travel insurance?"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i11:r2",
+          "text": "Do you have some travel insurance?"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i11:r3",
+          "text": "Do you have a travel insurance?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i11:audio",
+          "transcript": "Do you have any travel insurance?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-28:i11:r1",
+            "targetText": "Do you have any travel insurance?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i11:r2",
+            "targetText": "Do you have some travel insurance?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i11:r3",
+            "targetText": "Do you have a travel insurance?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any travel insurance?",
+              "uk": "У записі звучить Do you have any travel insurance?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have any travel insurance?",
+              "uk": "У записі звучить Do you have any travel insurance?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-28:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-28:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+          "uk": "Ви не знаєте, чи оформлено поліс. Запитайте нейтрально, не припускаючи відповіді «так»."
+        },
+        "gappedTargetPhrase": "Do you have ___ travel insurance?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-28:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да».",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-28:i13:p1",
+            "target": "seat reservation",
+            "meaningByLocale": {
+              "ru": "бронирование места",
+              "uk": "бронювання місця"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-28:i13:p2",
+            "target": "booking fee",
+            "meaningByLocale": {
+              "ru": "плата за бронирование",
+              "uk": "плата за бронювання"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-28:i13:p3",
+            "target": "foreign currency",
+            "meaningByLocale": {
+              "ru": "иностранная валюта",
+              "uk": "іноземна валюта"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-28:i13:p4",
+            "target": "travel insurance",
+            "meaningByLocale": {
+              "ru": "туристическая страховка, страхование поездки",
+              "uk": "туристичне страхування, страхування поїздки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "seat reservation",
+          "booking fee",
+          "foreign currency",
+          "travel insurance"
+        ],
+        "rightColumn": [
+          "бронирование места",
+          "плата за бронирование",
+          "иностранная валюта",
+          "туристическая страховка, страхование поездки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i14:audio",
+          "transcript": "We made some seat reservations."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We made some seat reservations.",
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "seat",
+          "reservations"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i15:audio",
+          "transcript": "Do you have any travel insurance?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you have any travel insurance?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "travel",
+          "insurance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i16:audio",
+          "transcript": "We need some foreign currency."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need some foreign currency.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-28:i17:audio",
+          "transcript": "There aren't any booking fees."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There aren't any booking fees.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e22a4c6be66aaf56c2c4c982a3a7e8ae6e61bfb97c86a7e8372eb8d078924903"
+}

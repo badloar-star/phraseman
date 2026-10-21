@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "food allergy — пищевая аллергия. В учебном диалоге у говорящего есть аллергия на несколько продуктов. Сообщите об этом. Food allergy → food allergies. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "food allergy — харчова алергія. У навчальному діалозі мовець має алергію на кілька продуктів. Повідомте про це. Food allergy → food allergies. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r1",
+              "text": "I have some food allergies."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r2",
+              "text": "I have any food allergies."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r3",
+              "text": "I have a food allergies."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r1",
+              "text": "I have some food allergies."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r2",
+              "text": "I have any food allergies."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro1:r3",
+              "text": "I have a food allergies."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "sick note — медицинская справка об отсутствии по болезни. В папке нет ни одной такой справки. Отрицайте наличие полностью. Sick note → sick notes. pain relief — облегчение боли, обезболивание. Это неисчисляемое выражение, с ним тоже можно использовать some. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "sick note — медична довідка про відсутність через хворобу. У папці немає жодної такої довідки. Повністю заперечте наявність. Sick note → sick notes. pain relief — полегшення болю, знеболення. Це незлічуваний вираз, із ним теж можна використовувати some. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r1",
+              "text": "We don't have any sick notes."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r2",
+              "text": "We don't have some sick notes."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r3",
+              "text": "We don't have a sick notes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r1",
+              "text": "We don't have any sick notes."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r2",
+              "text": "We don't have some sick notes."
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro2:r3",
+              "text": "We don't have a sick notes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "medical advice — медицинская консультация, совет медицинского специалиста. Вы пока не знаете, нужна ли консультация. Задайте нейтральный вопрос без ожидания ответа «да». В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "medical advice — медична консультація, порада медичного фахівця. Ви ще не знаєте, чи потрібна консультація. Поставте нейтральне запитання без очікування відповіді «так». У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r1",
+              "text": "Do you need any medical advice?"
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r2",
+              "text": "Do you need some medical advice?"
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r3",
+              "text": "Do you need a medical advice?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r1",
+              "text": "Do you need any medical advice?"
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r2",
+              "text": "Do you need some medical advice?"
+            },
+            {
+              "responseId": "en:lesson-17:session-27:intro3:r3",
+              "text": "Do you need a medical advice?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0777f01b214272779911ef69fc689e6a45035e4bfc2e4aec7ae6b96972e13fc9"
+}

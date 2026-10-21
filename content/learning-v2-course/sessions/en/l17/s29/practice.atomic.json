@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-29:word:rent-payment",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rent payment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:rent-payment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rent payment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:rent-payment:audio",
+            "transcript": "rent payment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:rent-payment:r1",
+              "targetText": "rent payment",
+              "meaningByLocale": {
+                "ru": "платёж за аренду.",
+                "uk": "платіж за оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rent payment",
+            "definitionByLocale": {
+              "ru": "платёж за аренду.",
+              "uk": "платіж за оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments. Скажите: «Мы внесли несколько платежей за аренду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments. Скажите: «Мы внесли несколько платежей за аренду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We made some rent payments.",
+          "localizedMeaning": {
+            "ru": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments. Скажите: «Мы внесли несколько платежей за аренду».",
+            "uk": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments. Скажіть: «Ми внесли кілька платежів за оренду»."
+          },
+          "orderedTokens": [
+            "We",
+            "made",
+            "some",
+            "rent",
+            "payments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i02:r1",
+            "text": "We made some rent payments."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i02:r2",
+            "text": "We made any rent payments."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i02:r3",
+            "text": "We made a rent payments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i02:audio",
+            "transcript": "We made some rent payments."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i02:r1",
+              "targetText": "We made some rent payments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r2",
+              "targetText": "We made any rent payments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r3",
+              "targetText": "We made a rent payments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We made some rent payments.",
+                "uk": "У записі звучить We made some rent payments."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We made some rent payments.",
+                "uk": "У записі звучить We made some rent payments."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+            "uk": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments."
+          },
+          "gappedTargetPhrase": "We made ___ rent payments.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:repair-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — repair bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:repair-bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — repair bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:repair-bill:audio",
+            "transcript": "repair bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:repair-bill:r1",
+              "targetText": "repair bill",
+              "meaningByLocale": {
+                "ru": "счёт за ремонт.",
+                "uk": "рахунок за ремонт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repair bill",
+            "definitionByLocale": {
+              "ru": "счёт за ремонт.",
+              "uk": "рахунок за ремонт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills. Скажите: «У нас нет никаких счетов за ремонт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills. Скажите: «У нас нет никаких счетов за ремонт».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any repair bills.",
+          "localizedMeaning": {
+            "ru": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills. Скажите: «У нас нет никаких счетов за ремонт».",
+            "uk": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills. Скажіть: «У нас немає жодних рахунків за ремонт»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "repair",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i05:r1",
+            "text": "We don't have any repair bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i05:r2",
+            "text": "We don't have some repair bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i05:r3",
+            "text": "We don't have a repair bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i05:audio",
+            "transcript": "We don't have any repair bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i05:r1",
+              "targetText": "We don't have any repair bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r2",
+              "targetText": "We don't have some repair bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r3",
+              "targetText": "We don't have a repair bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any repair bills.",
+                "uk": "У записі звучить We don't have any repair bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any repair bills.",
+                "uk": "У записі звучить We don't have any repair bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+            "uk": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills."
+          },
+          "gappedTargetPhrase": "We don't have ___ repair bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:running-water",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — running water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:running-water:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — running water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:running-water:audio",
+            "transcript": "running water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:running-water:r1",
+              "targetText": "running water",
+              "meaningByLocale": {
+                "ru": "водопроводная вода, вода из крана.",
+                "uk": "водопровідна вода, вода з крана."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "running water",
+            "definitionByLocale": {
+              "ru": "водопроводная вода, вода из крана.",
+              "uk": "водопровідна вода, вода з крана."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности. Скажите: «Нам нужна вода из крана».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности. Скажите: «Нам нужна вода из крана».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some running water.",
+          "localizedMeaning": {
+            "ru": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности. Скажите: «Нам нужна вода из крана».",
+            "uk": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу. Скажіть: «Нам потрібна вода з крана»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "running",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i08:r1",
+            "text": "We need some running water."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i08:r2",
+            "text": "We need any running water."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i08:r3",
+            "text": "We need a running water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i08:audio",
+            "transcript": "We need some running water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i08:r1",
+              "targetText": "We need some running water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r2",
+              "targetText": "We need any running water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r3",
+              "targetText": "We need a running water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some running water.",
+                "uk": "У записі звучить We need some running water."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some running water.",
+                "uk": "У записі звучить We need some running water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+            "uk": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу."
+          },
+          "gappedTargetPhrase": "We need ___ running water.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:home-insurance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — home insurance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:home-insurance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — home insurance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:home-insurance:audio",
+            "transcript": "home insurance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:home-insurance:r1",
+              "targetText": "home insurance",
+              "meaningByLocale": {
+                "ru": "страхование жилья.",
+                "uk": "страхування житла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "home insurance",
+            "definitionByLocale": {
+              "ru": "страхование жилья.",
+              "uk": "страхування житла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какое-либо страхование жилья».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какое-либо страхование жилья».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any home insurance?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какое-либо страхование жилья».",
+            "uk": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так». Скажіть: «У вас є якесь страхування житла»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "home",
+            "insurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i11:r1",
+            "text": "Do you have any home insurance?"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i11:r2",
+            "text": "Do you have some home insurance?"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i11:r3",
+            "text": "Do you have a home insurance?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i11:audio",
+            "transcript": "Do you have any home insurance?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i11:r1",
+              "targetText": "Do you have any home insurance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r2",
+              "targetText": "Do you have some home insurance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r3",
+              "targetText": "Do you have a home insurance?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any home insurance?",
+                "uk": "У записі звучить Do you have any home insurance?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any home insurance?",
+                "uk": "У записі звучить Do you have any home insurance?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+            "uk": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you have ___ home insurance?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-29:i13:p1",
+              "target": "rent payment",
+              "meaningByLocale": {
+                "ru": "платёж за аренду",
+                "uk": "платіж за оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p2",
+              "target": "repair bill",
+              "meaningByLocale": {
+                "ru": "счёт за ремонт",
+                "uk": "рахунок за ремонт"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p3",
+              "target": "running water",
+              "meaningByLocale": {
+                "ru": "водопроводная вода, вода из крана",
+                "uk": "водопровідна вода, вода з крана"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p4",
+              "target": "home insurance",
+              "meaningByLocale": {
+                "ru": "страхование жилья",
+                "uk": "страхування житла"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rent payment",
+            "repair bill",
+            "running water",
+            "home insurance"
+          ],
+          "rightColumn": [
+            "платёж за аренду",
+            "счёт за ремонт",
+            "водопроводная вода, вода из крана",
+            "страхование жилья"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i14:audio",
+            "transcript": "We made some rent payments."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We made some rent payments.",
+          "orderedTokens": [
+            "We",
+            "made",
+            "some",
+            "rent",
+            "payments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i15:audio",
+            "transcript": "Do you have any home insurance?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any home insurance?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "home",
+            "insurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i16:audio",
+            "transcript": "We need some running water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need some running water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i17:audio",
+            "transcript": "We don't have any repair bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any repair bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-29:word:rent-payment",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rent payment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:rent-payment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rent payment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:rent-payment:audio",
+            "transcript": "rent payment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:rent-payment:r1",
+              "targetText": "rent payment",
+              "meaningByLocale": {
+                "ru": "платёж за аренду.",
+                "uk": "платіж за оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rent payment",
+            "definitionByLocale": {
+              "ru": "платёж за аренду.",
+              "uk": "платіж за оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments. Скажіть: «Ми внесли кілька платежів за оренду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments. Скажіть: «Ми внесли кілька платежів за оренду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We made some rent payments.",
+          "localizedMeaning": {
+            "ru": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments. Скажите: «Мы внесли несколько платежей за аренду».",
+            "uk": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments. Скажіть: «Ми внесли кілька платежів за оренду»."
+          },
+          "orderedTokens": [
+            "We",
+            "made",
+            "some",
+            "rent",
+            "payments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i02:r1",
+            "text": "We made some rent payments."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i02:r2",
+            "text": "We made any rent payments."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i02:r3",
+            "text": "We made a rent payments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i02:audio",
+            "transcript": "We made some rent payments."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i02:r1",
+              "targetText": "We made some rent payments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r2",
+              "targetText": "We made any rent payments.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r3",
+              "targetText": "We made a rent payments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We made some rent payments.",
+                "uk": "У записі звучить We made some rent payments."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We made some rent payments.",
+                "uk": "У записі звучить We made some rent payments."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы подтверждаете несколько уже внесённых платежей. Rent payment → rent payments.",
+            "uk": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments."
+          },
+          "gappedTargetPhrase": "We made ___ rent payments.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви підтверджуєте кілька вже внесених платежів. Rent payment → rent payments.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:repair-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — repair bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:repair-bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — repair bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:repair-bill:audio",
+            "transcript": "repair bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:repair-bill:r1",
+              "targetText": "repair bill",
+              "meaningByLocale": {
+                "ru": "счёт за ремонт.",
+                "uk": "рахунок за ремонт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repair bill",
+            "definitionByLocale": {
+              "ru": "счёт за ремонт.",
+              "uk": "рахунок за ремонт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills. Скажіть: «У нас немає жодних рахунків за ремонт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills. Скажіть: «У нас немає жодних рахунків за ремонт».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any repair bills.",
+          "localizedMeaning": {
+            "ru": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills. Скажите: «У нас нет никаких счетов за ремонт».",
+            "uk": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills. Скажіть: «У нас немає жодних рахунків за ремонт»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "repair",
+            "bills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i05:r1",
+            "text": "We don't have any repair bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i05:r2",
+            "text": "We don't have some repair bills."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i05:r3",
+            "text": "We don't have a repair bills."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i05:audio",
+            "transcript": "We don't have any repair bills."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i05:r1",
+              "targetText": "We don't have any repair bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r2",
+              "targetText": "We don't have some repair bills.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r3",
+              "targetText": "We don't have a repair bills.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any repair bills.",
+                "uk": "У записі звучить We don't have any repair bills."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any repair bills.",
+                "uk": "У записі звучить We don't have any repair bills."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Счетов за ремонт нет вообще. Отрицайте наличие полностью. Repair bill → repair bills.",
+            "uk": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills."
+          },
+          "gappedTargetPhrase": "We don't have ___ repair bills.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Рахунків за ремонт немає взагалі. Повністю заперечте наявність. Repair bill → repair bills.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:running-water",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — running water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:running-water:audio"
+        ],
+        "accessibilityLabel": "Картка слова — running water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:running-water:audio",
+            "transcript": "running water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:running-water:r1",
+              "targetText": "running water",
+              "meaningByLocale": {
+                "ru": "водопроводная вода, вода из крана.",
+                "uk": "водопровідна вода, вода з крана."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "running water",
+            "definitionByLocale": {
+              "ru": "водопроводная вода, вода из крана.",
+              "uk": "водопровідна вода, вода з крана."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу. Скажіть: «Нам потрібна вода з крана».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу. Скажіть: «Нам потрібна вода з крана».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some running water.",
+          "localizedMeaning": {
+            "ru": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности. Скажите: «Нам нужна вода из крана».",
+            "uk": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу. Скажіть: «Нам потрібна вода з крана»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "running",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i08:r1",
+            "text": "We need some running water."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i08:r2",
+            "text": "We need any running water."
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i08:r3",
+            "text": "We need a running water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i08:audio",
+            "transcript": "We need some running water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i08:r1",
+              "targetText": "We need some running water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r2",
+              "targetText": "We need any running water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r3",
+              "targetText": "We need a running water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some running water.",
+                "uk": "У записі звучить We need some running water."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some running water.",
+                "uk": "У записі звучить We need some running water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чтобы помыть руки, вам нужна вода из крана. Сообщите о потребности.",
+            "uk": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу."
+          },
+          "gappedTargetPhrase": "We need ___ running water.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Щоб помити руки, вам потрібна вода з крана. Повідомте про потребу.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:word:home-insurance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — home insurance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:word:home-insurance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — home insurance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:word:home-insurance:audio",
+            "transcript": "home insurance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:word:home-insurance:r1",
+              "targetText": "home insurance",
+              "meaningByLocale": {
+                "ru": "страхование жилья.",
+                "uk": "страхування житла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "home insurance",
+            "definitionByLocale": {
+              "ru": "страхование жилья.",
+              "uk": "страхування житла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так». Скажіть: «У вас є якесь страхування житла».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так». Скажіть: «У вас є якесь страхування житла».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any home insurance?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да». Скажите: «У вас есть какое-либо страхование жилья».",
+            "uk": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так». Скажіть: «У вас є якесь страхування житла»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "home",
+            "insurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i11:r1",
+            "text": "Do you have any home insurance?"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i11:r2",
+            "text": "Do you have some home insurance?"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i11:r3",
+            "text": "Do you have a home insurance?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i11:audio",
+            "transcript": "Do you have any home insurance?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-29:i11:r1",
+              "targetText": "Do you have any home insurance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r2",
+              "targetText": "Do you have some home insurance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r3",
+              "targetText": "Do you have a home insurance?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any home insurance?",
+                "uk": "У записі звучить Do you have any home insurance?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any home insurance?",
+                "uk": "У записі звучить Do you have any home insurance?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-29:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-29:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, застраховано ли жильё. Спросите нейтрально, не предполагая ответа «да».",
+            "uk": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you have ___ home insurance?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-29:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи застраховане житло. Запитайте нейтрально, не припускаючи відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-29:i13:p1",
+              "target": "rent payment",
+              "meaningByLocale": {
+                "ru": "платёж за аренду",
+                "uk": "платіж за оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p2",
+              "target": "repair bill",
+              "meaningByLocale": {
+                "ru": "счёт за ремонт",
+                "uk": "рахунок за ремонт"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p3",
+              "target": "running water",
+              "meaningByLocale": {
+                "ru": "водопроводная вода, вода из крана",
+                "uk": "водопровідна вода, вода з крана"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-29:i13:p4",
+              "target": "home insurance",
+              "meaningByLocale": {
+                "ru": "страхование жилья",
+                "uk": "страхування житла"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rent payment",
+            "repair bill",
+            "running water",
+            "home insurance"
+          ],
+          "rightColumn": [
+            "платіж за оренду",
+            "рахунок за ремонт",
+            "водопровідна вода, вода з крана",
+            "страхування житла"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i14:audio",
+            "transcript": "We made some rent payments."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We made some rent payments.",
+          "orderedTokens": [
+            "We",
+            "made",
+            "some",
+            "rent",
+            "payments"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i15:audio",
+            "transcript": "Do you have any home insurance?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any home insurance?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "home",
+            "insurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i16:audio",
+            "transcript": "We need some running water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need some running water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-29:i17:audio",
+            "transcript": "We don't have any repair bills."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any repair bills.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-29:word:rent-payment",
+      "correctText": "rent payment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i01",
+      "correctText": "We made some rent payments.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i02",
+      "correctText": "We made some rent payments.",
+      "correctResponseId": "en:lesson-17:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:word:repair-bill",
+      "correctText": "repair bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i04",
+      "correctText": "We don't have any repair bills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i05",
+      "correctText": "We don't have any repair bills.",
+      "correctResponseId": "en:lesson-17:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:word:running-water",
+      "correctText": "running water",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i07",
+      "correctText": "We need some running water.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i08",
+      "correctText": "We need some running water.",
+      "correctResponseId": "en:lesson-17:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:word:home-insurance",
+      "correctText": "home insurance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i10",
+      "correctText": "Do you have any home insurance?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i11",
+      "correctText": "Do you have any home insurance?",
+      "correctResponseId": "en:lesson-17:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i14",
+      "correctText": "We made some rent payments.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i15",
+      "correctText": "Do you have any home insurance?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i16",
+      "correctText": "We need some running water.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-29:i17",
+      "correctText": "We don't have any repair bills.",
+      "correctResponseId": null
+    }
+  ]
+}

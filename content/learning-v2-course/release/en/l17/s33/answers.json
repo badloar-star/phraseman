@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-33:word:tube-of-toothpaste",
+    "correctText": "tube of toothpaste",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i01",
+    "correctText": "We need two tubes of toothpaste.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i02",
+    "correctText": "We need two tubes of toothpaste.",
+    "correctResponseId": "en:lesson-17:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i03",
+    "correctText": "tubes",
+    "correctResponseId": "en:lesson-17:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:word:bar-of-soap",
+    "correctText": "bar of soap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i04",
+    "correctText": "We need two bars of soap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i05",
+    "correctText": "We need two bars of soap.",
+    "correctResponseId": "en:lesson-17:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i06",
+    "correctText": "bars",
+    "correctResponseId": "en:lesson-17:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:word:roll-of-toilet-paper",
+    "correctText": "roll of toilet paper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i07",
+    "correctText": "We need two rolls of toilet paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i08",
+    "correctText": "We need two rolls of toilet paper.",
+    "correctResponseId": "en:lesson-17:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i09",
+    "correctText": "rolls",
+    "correctResponseId": "en:lesson-17:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:word:box-of-cereal",
+    "correctText": "box of cereal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i10",
+    "correctText": "We need two boxes of cereal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i11",
+    "correctText": "We need two boxes of cereal.",
+    "correctResponseId": "en:lesson-17:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i12",
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-17:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i13",
+    "correctText": "en:lesson-17:session-33:i13:p1=tube of toothpaste\nen:lesson-17:session-33:i13:p2=bar of soap\nen:lesson-17:session-33:i13:p3=roll of toilet paper\nen:lesson-17:session-33:i13:p4=box of cereal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i14",
+    "correctText": "We need two tubes of toothpaste.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i15",
+    "correctText": "We need two boxes of cereal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i16",
+    "correctText": "We need two bars of soap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-33:i17",
+    "correctText": "We need two rolls of toilet paper.",
+    "correctResponseId": null
+  }
+]

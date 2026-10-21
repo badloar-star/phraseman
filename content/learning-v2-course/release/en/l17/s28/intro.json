@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "seat reservation — бронирование места. Вы подтверждаете, что несколько мест забронировано. Seat reservation → seat reservations. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "seat reservation — бронювання місця. Ви підтверджуєте, що кілька місць заброньовано. Seat reservation → seat reservations. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r1",
+              "text": "We made some seat reservations."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r2",
+              "text": "We made any seat reservations."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r3",
+              "text": "We made a seat reservations."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r1",
+              "text": "We made some seat reservations."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r2",
+              "text": "We made any seat reservations."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro1:r3",
+              "text": "We made a seat reservations."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "booking fee — плата за бронирование. В этом учебном примере за бронирование не берут никаких доплат. Booking fee → booking fees. foreign currency — иностранная валюта. Это неисчисляемое выражение, с ним тоже можно использовать some. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "booking fee — плата за бронювання. У цьому навчальному прикладі за бронювання не беруть жодних доплат. Booking fee → booking fees. foreign currency — іноземна валюта. Це незлічуваний вираз, із ним теж можна використовувати some. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r1",
+              "text": "There aren't any booking fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r2",
+              "text": "There aren't some booking fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r3",
+              "text": "There aren't a booking fees."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r1",
+              "text": "There aren't any booking fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r2",
+              "text": "There aren't some booking fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro2:r3",
+              "text": "There aren't a booking fees."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "travel insurance — туристическая страховка, страхование поездки. Вы не знаете, оформлен ли полис. Спросите нейтрально, не предполагая ответа «да». В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "travel insurance — туристичне страхування, страхування поїздки. Ви не знаєте, чи оформлено поліс. Запитайте нейтрально, не припускаючи відповіді «так». У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r1",
+              "text": "Do you have any travel insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r2",
+              "text": "Do you have some travel insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r3",
+              "text": "Do you have a travel insurance?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r1",
+              "text": "Do you have any travel insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r2",
+              "text": "Do you have some travel insurance?"
+            },
+            {
+              "responseId": "en:lesson-17:session-28:intro3:r3",
+              "text": "Do you have a travel insurance?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee4e893cb80276b3d7500f75ac29791946ac1f76ba45f64af7c3acb1a06c40ca"
+}

@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-32:word:parking-ticket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — parking ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:parking-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — parking ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:parking-ticket:audio",
+            "transcript": "parking ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:parking-ticket:r1",
+              "targetText": "parking ticket",
+              "meaningByLocale": {
+                "ru": "уведомление о штрафе за неправильную парковку.",
+                "uk": "повідомлення про штраф за неправильне паркування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parking ticket",
+            "definitionByLocale": {
+              "ru": "уведомление о штрафе за неправильную парковку.",
+              "uk": "повідомлення про штраф за неправильне паркування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets. Скажите: «Мы получили несколько штрафов за парковку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets. Скажите: «Мы получили несколько штрафов за парковку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received some parking tickets.",
+          "localizedMeaning": {
+            "ru": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets. Скажите: «Мы получили несколько штрафов за парковку».",
+            "uk": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets. Скажіть: «Ми отримали кілька штрафів за паркування»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "some",
+            "parking",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i02:r1",
+            "text": "We received some parking tickets."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i02:r2",
+            "text": "We received any parking tickets."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i02:r3",
+            "text": "We received a parking tickets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i02:audio",
+            "transcript": "We received some parking tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i02:r1",
+              "targetText": "We received some parking tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r2",
+              "targetText": "We received any parking tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r3",
+              "targetText": "We received a parking tickets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received some parking tickets.",
+                "uk": "У записі звучить We received some parking tickets."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received some parking tickets.",
+                "uk": "У записі звучить We received some parking tickets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+            "uk": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets."
+          },
+          "gappedTargetPhrase": "We received ___ parking tickets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:road-closure",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — road closure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:road-closure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — road closure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:road-closure:audio",
+            "transcript": "road closure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:road-closure:r1",
+              "targetText": "road closure",
+              "meaningByLocale": {
+                "ru": "перекрытие дороги.",
+                "uk": "перекриття дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "road closure",
+            "definitionByLocale": {
+              "ru": "перекрытие дороги.",
+              "uk": "перекриття дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures. Скажите: «Никаких перекрытий дорог нет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures. Скажите: «Никаких перекрытий дорог нет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any road closures.",
+          "localizedMeaning": {
+            "ru": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures. Скажите: «Никаких перекрытий дорог нет».",
+            "uk": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures. Скажіть: «Жодних перекриттів доріг немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "road",
+            "closures"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i05:r1",
+            "text": "There aren't any road closures."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i05:r2",
+            "text": "There aren't some road closures."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i05:r3",
+            "text": "There aren't a road closures."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i05:audio",
+            "transcript": "There aren't any road closures."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i05:r1",
+              "targetText": "There aren't any road closures.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r2",
+              "targetText": "There aren't some road closures.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r3",
+              "targetText": "There aren't a road closures.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any road closures.",
+                "uk": "У записі звучить There aren't any road closures."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any road closures.",
+                "uk": "У записі звучить There aren't any road closures."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+            "uk": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures."
+          },
+          "gappedTargetPhrase": "There aren't ___ road closures.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:street-lighting",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — street lighting",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:street-lighting:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — street lighting",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:street-lighting:audio",
+            "transcript": "street lighting"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:street-lighting:r1",
+              "targetText": "street lighting",
+              "meaningByLocale": {
+                "ru": "уличное освещение.",
+                "uk": "вуличне освітлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street lighting",
+            "definitionByLocale": {
+              "ru": "уличное освещение.",
+              "uk": "вуличне освітлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На улице темно. Сообщите, что здесь нужно освещение. Скажите: «Нам нужно уличное освещение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На улице темно. Сообщите, что здесь нужно освещение. Скажите: «Нам нужно уличное освещение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some street lighting.",
+          "localizedMeaning": {
+            "ru": "На улице темно. Сообщите, что здесь нужно освещение. Скажите: «Нам нужно уличное освещение».",
+            "uk": "На вулиці темно. Повідомте, що тут потрібне освітлення. Скажіть: «Нам потрібне вуличне освітлення»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "street",
+            "lighting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i08:r1",
+            "text": "We need some street lighting."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i08:r2",
+            "text": "We need any street lighting."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i08:r3",
+            "text": "We need a street lighting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i08:audio",
+            "transcript": "We need some street lighting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i08:r1",
+              "targetText": "We need some street lighting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r2",
+              "targetText": "We need any street lighting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r3",
+              "targetText": "We need a street lighting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some street lighting.",
+                "uk": "У записі звучить We need some street lighting."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some street lighting.",
+                "uk": "У записі звучить We need some street lighting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На улице темно. Сообщите, что здесь нужно освещение.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На улице темно. Сообщите, что здесь нужно освещение.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На улице темно. Сообщите, что здесь нужно освещение.",
+            "uk": "На вулиці темно. Повідомте, що тут потрібне освітлення."
+          },
+          "gappedTargetPhrase": "We need ___ street lighting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На улице темно. Сообщите, что здесь нужно освещение.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "На улице темно. Сообщите, что здесь нужно освещение.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "На улице темно. Сообщите, что здесь нужно освещение.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:public-parking",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — public parking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:public-parking:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — public parking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:public-parking:audio",
+            "transcript": "public parking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:public-parking:r1",
+              "targetText": "public parking",
+              "meaningByLocale": {
+                "ru": "парковка, доступная для общего пользования.",
+                "uk": "паркування, доступне для загального користування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "public parking",
+            "definitionByLocale": {
+              "ru": "парковка, доступная для общего пользования.",
+              "uk": "паркування, доступне для загального користування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна. Скажите: «Здесь есть какая-либо общедоступная парковка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна. Скажите: «Здесь есть какая-либо общедоступная парковка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any public parking here?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна. Скажите: «Здесь есть какая-либо общедоступная парковка».",
+            "uk": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне. Скажіть: «Тут є якесь загальнодоступне паркування»."
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "public",
+            "parking",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i11:r1",
+            "text": "Is there any public parking here?"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i11:r2",
+            "text": "Is there some public parking here?"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i11:r3",
+            "text": "Is there a public parking here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i11:audio",
+            "transcript": "Is there any public parking here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i11:r1",
+              "targetText": "Is there any public parking here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r2",
+              "targetText": "Is there some public parking here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r3",
+              "targetText": "Is there a public parking here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is there any public parking here?",
+                "uk": "У записі звучить Is there any public parking here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is there any public parking here?",
+                "uk": "У записі звучить Is there any public parking here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+            "uk": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне."
+          },
+          "gappedTargetPhrase": "Is there ___ public parking here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-32:i13:p1",
+              "target": "parking ticket",
+              "meaningByLocale": {
+                "ru": "уведомление о штрафе за неправильную парковку",
+                "uk": "повідомлення про штраф за неправильне паркування"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p2",
+              "target": "road closure",
+              "meaningByLocale": {
+                "ru": "перекрытие дороги",
+                "uk": "перекриття дороги"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p3",
+              "target": "street lighting",
+              "meaningByLocale": {
+                "ru": "уличное освещение",
+                "uk": "вуличне освітлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p4",
+              "target": "public parking",
+              "meaningByLocale": {
+                "ru": "парковка, доступная для общего пользования",
+                "uk": "паркування, доступне для загального користування"
+              }
+            }
+          ],
+          "leftColumn": [
+            "parking ticket",
+            "road closure",
+            "street lighting",
+            "public parking"
+          ],
+          "rightColumn": [
+            "уведомление о штрафе за неправильную парковку",
+            "перекрытие дороги",
+            "уличное освещение",
+            "парковка, доступная для общего пользования"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i14:audio",
+            "transcript": "We received some parking tickets."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received some parking tickets.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "some",
+            "parking",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i15:audio",
+            "transcript": "Is there any public parking here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any public parking here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "public",
+            "parking",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i16:audio",
+            "transcript": "We need some street lighting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need some street lighting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i17:audio",
+            "transcript": "There aren't any road closures."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any road closures.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-32:word:parking-ticket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — parking ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:parking-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — parking ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:parking-ticket:audio",
+            "transcript": "parking ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:parking-ticket:r1",
+              "targetText": "parking ticket",
+              "meaningByLocale": {
+                "ru": "уведомление о штрафе за неправильную парковку.",
+                "uk": "повідомлення про штраф за неправильне паркування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "parking ticket",
+            "definitionByLocale": {
+              "ru": "уведомление о штрафе за неправильную парковку.",
+              "uk": "повідомлення про штраф за неправильне паркування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets. Скажіть: «Ми отримали кілька штрафів за паркування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets. Скажіть: «Ми отримали кілька штрафів за паркування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We received some parking tickets.",
+          "localizedMeaning": {
+            "ru": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets. Скажите: «Мы получили несколько штрафов за парковку».",
+            "uk": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets. Скажіть: «Ми отримали кілька штрафів за паркування»."
+          },
+          "orderedTokens": [
+            "We",
+            "received",
+            "some",
+            "parking",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i02:r1",
+            "text": "We received some parking tickets."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i02:r2",
+            "text": "We received any parking tickets."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i02:r3",
+            "text": "We received a parking tickets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i02:audio",
+            "transcript": "We received some parking tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i02:r1",
+              "targetText": "We received some parking tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r2",
+              "targetText": "We received any parking tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r3",
+              "targetText": "We received a parking tickets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received some parking tickets.",
+                "uk": "У записі звучить We received some parking tickets."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We received some parking tickets.",
+                "uk": "У записі звучить We received some parking tickets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы подтверждаете получение нескольких уведомлений о штрафе. Parking ticket → parking tickets.",
+            "uk": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets."
+          },
+          "gappedTargetPhrase": "We received ___ parking tickets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви підтверджуєте отримання кількох повідомлень про штраф. Parking ticket → parking tickets.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:road-closure",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — road closure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:road-closure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — road closure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:road-closure:audio",
+            "transcript": "road closure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:road-closure:r1",
+              "targetText": "road closure",
+              "meaningByLocale": {
+                "ru": "перекрытие дороги.",
+                "uk": "перекриття дороги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "road closure",
+            "definitionByLocale": {
+              "ru": "перекрытие дороги.",
+              "uk": "перекриття дороги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures. Скажіть: «Жодних перекриттів доріг немає».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures. Скажіть: «Жодних перекриттів доріг немає».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any road closures.",
+          "localizedMeaning": {
+            "ru": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures. Скажите: «Никаких перекрытий дорог нет».",
+            "uk": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures. Скажіть: «Жодних перекриттів доріг немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "road",
+            "closures"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i05:r1",
+            "text": "There aren't any road closures."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i05:r2",
+            "text": "There aren't some road closures."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i05:r3",
+            "text": "There aren't a road closures."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i05:audio",
+            "transcript": "There aren't any road closures."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i05:r1",
+              "targetText": "There aren't any road closures.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r2",
+              "targetText": "There aren't some road closures.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r3",
+              "targetText": "There aren't a road closures.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any road closures.",
+                "uk": "У записі звучить There aren't any road closures."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any road closures.",
+                "uk": "У записі звучить There aren't any road closures."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На обсуждаемом маршруте дороги нигде не перекрыты. Road closure → road closures.",
+            "uk": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures."
+          },
+          "gappedTargetPhrase": "There aren't ___ road closures.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "На обговорюваному маршруті дороги ніде не перекриті. Road closure → road closures.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:street-lighting",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — street lighting",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:street-lighting:audio"
+        ],
+        "accessibilityLabel": "Картка слова — street lighting",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:street-lighting:audio",
+            "transcript": "street lighting"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:street-lighting:r1",
+              "targetText": "street lighting",
+              "meaningByLocale": {
+                "ru": "уличное освещение.",
+                "uk": "вуличне освітлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street lighting",
+            "definitionByLocale": {
+              "ru": "уличное освещение.",
+              "uk": "вуличне освітлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На вулиці темно. Повідомте, що тут потрібне освітлення. Скажіть: «Нам потрібне вуличне освітлення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На вулиці темно. Повідомте, що тут потрібне освітлення. Скажіть: «Нам потрібне вуличне освітлення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some street lighting.",
+          "localizedMeaning": {
+            "ru": "На улице темно. Сообщите, что здесь нужно освещение. Скажите: «Нам нужно уличное освещение».",
+            "uk": "На вулиці темно. Повідомте, що тут потрібне освітлення. Скажіть: «Нам потрібне вуличне освітлення»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "street",
+            "lighting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i08:r1",
+            "text": "We need some street lighting."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i08:r2",
+            "text": "We need any street lighting."
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i08:r3",
+            "text": "We need a street lighting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i08:audio",
+            "transcript": "We need some street lighting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i08:r1",
+              "targetText": "We need some street lighting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r2",
+              "targetText": "We need any street lighting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r3",
+              "targetText": "We need a street lighting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some street lighting.",
+                "uk": "У записі звучить We need some street lighting."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some street lighting.",
+                "uk": "У записі звучить We need some street lighting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На вулиці темно. Повідомте, що тут потрібне освітлення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На вулиці темно. Повідомте, що тут потрібне освітлення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На улице темно. Сообщите, что здесь нужно освещение.",
+            "uk": "На вулиці темно. Повідомте, що тут потрібне освітлення."
+          },
+          "gappedTargetPhrase": "We need ___ street lighting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "На вулиці темно. Повідомте, що тут потрібне освітлення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "На вулиці темно. Повідомте, що тут потрібне освітлення.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "На вулиці темно. Повідомте, що тут потрібне освітлення.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:word:public-parking",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — public parking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:word:public-parking:audio"
+        ],
+        "accessibilityLabel": "Картка слова — public parking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:word:public-parking:audio",
+            "transcript": "public parking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:word:public-parking:r1",
+              "targetText": "public parking",
+              "meaningByLocale": {
+                "ru": "парковка, доступная для общего пользования.",
+                "uk": "паркування, доступне для загального користування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "public parking",
+            "definitionByLocale": {
+              "ru": "парковка, доступная для общего пользования.",
+              "uk": "паркування, доступне для загального користування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне. Скажіть: «Тут є якесь загальнодоступне паркування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне. Скажіть: «Тут є якесь загальнодоступне паркування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there any public parking here?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна. Скажите: «Здесь есть какая-либо общедоступная парковка».",
+            "uk": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне. Скажіть: «Тут є якесь загальнодоступне паркування»."
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "public",
+            "parking",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i11:r1",
+            "text": "Is there any public parking here?"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i11:r2",
+            "text": "Is there some public parking here?"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i11:r3",
+            "text": "Is there a public parking here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i11:audio",
+            "transcript": "Is there any public parking here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-32:i11:r1",
+              "targetText": "Is there any public parking here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r2",
+              "targetText": "Is there some public parking here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r3",
+              "targetText": "Is there a public parking here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is there any public parking here?",
+                "uk": "У записі звучить Is there any public parking here?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is there any public parking here?",
+                "uk": "У записі звучить Is there any public parking here?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-32:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-32:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, где можно припарковаться. Задайте нейтральный вопрос без ожидания ответа «да». Общедоступная парковка не обязательно бесплатна.",
+            "uk": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне."
+          },
+          "gappedTargetPhrase": "Is there ___ public parking here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-32:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, де можна припаркуватися. Поставте нейтральне запитання без очікування відповіді «так». Загальнодоступне паркування не обов’язково безкоштовне.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-32:i13:p1",
+              "target": "parking ticket",
+              "meaningByLocale": {
+                "ru": "уведомление о штрафе за неправильную парковку",
+                "uk": "повідомлення про штраф за неправильне паркування"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p2",
+              "target": "road closure",
+              "meaningByLocale": {
+                "ru": "перекрытие дороги",
+                "uk": "перекриття дороги"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p3",
+              "target": "street lighting",
+              "meaningByLocale": {
+                "ru": "уличное освещение",
+                "uk": "вуличне освітлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-32:i13:p4",
+              "target": "public parking",
+              "meaningByLocale": {
+                "ru": "парковка, доступная для общего пользования",
+                "uk": "паркування, доступне для загального користування"
+              }
+            }
+          ],
+          "leftColumn": [
+            "parking ticket",
+            "road closure",
+            "street lighting",
+            "public parking"
+          ],
+          "rightColumn": [
+            "повідомлення про штраф за неправильне паркування",
+            "перекриття дороги",
+            "вуличне освітлення",
+            "паркування, доступне для загального користування"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i14:audio",
+            "transcript": "We received some parking tickets."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We received some parking tickets.",
+          "orderedTokens": [
+            "We",
+            "received",
+            "some",
+            "parking",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i15:audio",
+            "transcript": "Is there any public parking here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there any public parking here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "any",
+            "public",
+            "parking",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i16:audio",
+            "transcript": "We need some street lighting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need some street lighting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-32:i17:audio",
+            "transcript": "There aren't any road closures."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any road closures.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-32:word:parking-ticket",
+      "correctText": "parking ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i01",
+      "correctText": "We received some parking tickets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i02",
+      "correctText": "We received some parking tickets.",
+      "correctResponseId": "en:lesson-17:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:word:road-closure",
+      "correctText": "road closure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i04",
+      "correctText": "There aren't any road closures.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i05",
+      "correctText": "There aren't any road closures.",
+      "correctResponseId": "en:lesson-17:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-32:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:word:street-lighting",
+      "correctText": "street lighting",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i07",
+      "correctText": "We need some street lighting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i08",
+      "correctText": "We need some street lighting.",
+      "correctResponseId": "en:lesson-17:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:word:public-parking",
+      "correctText": "public parking",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i10",
+      "correctText": "Is there any public parking here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i11",
+      "correctText": "Is there any public parking here?",
+      "correctResponseId": "en:lesson-17:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i14",
+      "correctText": "We received some parking tickets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i15",
+      "correctText": "Is there any public parking here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i16",
+      "correctText": "We need some street lighting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-32:i17",
+      "correctText": "There aren't any road closures.",
+      "correctResponseId": null
+    }
+  ]
+}

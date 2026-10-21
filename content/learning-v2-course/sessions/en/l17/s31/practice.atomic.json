@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-31:word:discount-code",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — discount code",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:discount-code:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — discount code",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:discount-code:audio",
+            "transcript": "discount code"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:discount-code:r1",
+              "targetText": "discount code",
+              "meaningByLocale": {
+                "ru": "промокод на скидку.",
+                "uk": "промокод на знижку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discount code",
+            "definitionByLocale": {
+              "ru": "промокод на скидку.",
+              "uk": "промокод на знижку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Скажите: «У нас есть несколько промокодов на скидку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Скажите: «У нас есть несколько промокодов на скидку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have some discount codes.",
+          "localizedMeaning": {
+            "ru": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Скажите: «У нас есть несколько промокодов на скидку».",
+            "uk": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Скажіть: «У нас є кілька промокодів на знижку»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "some",
+            "discount",
+            "codes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i02:r1",
+            "text": "We have some discount codes."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i02:r2",
+            "text": "We have any discount codes."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i02:r3",
+            "text": "We have a discount codes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i02:audio",
+            "transcript": "We have some discount codes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i02:r1",
+              "targetText": "We have some discount codes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r2",
+              "targetText": "We have any discount codes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r3",
+              "targetText": "We have a discount codes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have some discount codes.",
+                "uk": "У записі звучить We have some discount codes."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have some discount codes.",
+                "uk": "У записі звучить We have some discount codes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+            "uk": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes."
+          },
+          "gappedTargetPhrase": "We have ___ discount codes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:price-increase",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — price increase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:price-increase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — price increase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:price-increase:audio",
+            "transcript": "price increase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:price-increase:r1",
+              "targetText": "price increase",
+              "meaningByLocale": {
+                "ru": "повышение цены.",
+                "uk": "підвищення ціни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "price increase",
+            "definitionByLocale": {
+              "ru": "повышение цены.",
+              "uk": "підвищення ціни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases. Скажите: «Никакого повышения цен нет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases. Скажите: «Никакого повышения цен нет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any price increases.",
+          "localizedMeaning": {
+            "ru": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases. Скажите: «Никакого повышения цен нет».",
+            "uk": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases. Скажіть: «Жодного підвищення цін немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "price",
+            "increases"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i05:r1",
+            "text": "There aren't any price increases."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i05:r2",
+            "text": "There aren't some price increases."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i05:r3",
+            "text": "There aren't a price increases."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i05:audio",
+            "transcript": "There aren't any price increases."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i05:r1",
+              "targetText": "There aren't any price increases.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r2",
+              "targetText": "There aren't some price increases.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r3",
+              "targetText": "There aren't a price increases.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any price increases.",
+                "uk": "У записі звучить There aren't any price increases."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any price increases.",
+                "uk": "У записі звучить There aren't any price increases."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+            "uk": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases."
+          },
+          "gappedTargetPhrase": "There aren't ___ price increases.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:store-credit",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — store credit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:store-credit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — store credit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:store-credit:audio",
+            "transcript": "store credit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:store-credit:r1",
+              "targetText": "store credit",
+              "meaningByLocale": {
+                "ru": "средства, которые можно потратить только в этом магазине.",
+                "uk": "кошти, які можна витратити лише в цьому магазині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "store credit",
+            "definitionByLocale": {
+              "ru": "средства, которые можно потратить только в этом магазине.",
+              "uk": "кошти, які можна витратити лише в цьому магазині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств. Скажите: «У меня есть средства для покупок в этом магазине».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств. Скажите: «У меня есть средства для покупок в этом магазине».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have some store credit.",
+          "localizedMeaning": {
+            "ru": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств. Скажите: «У меня есть средства для покупок в этом магазине».",
+            "uk": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів. Скажіть: «У мене є кошти для покупок у цьому магазині»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "some",
+            "store",
+            "credit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i08:r1",
+            "text": "I have some store credit."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i08:r2",
+            "text": "I have any store credit."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i08:r3",
+            "text": "I have a store credit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i08:audio",
+            "transcript": "I have some store credit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i08:r1",
+              "targetText": "I have some store credit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r2",
+              "targetText": "I have any store credit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r3",
+              "targetText": "I have a store credit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have some store credit.",
+                "uk": "У записі звучить I have some store credit."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have some store credit.",
+                "uk": "У записі звучить I have some store credit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+            "uk": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів."
+          },
+          "gappedTargetPhrase": "I have ___ store credit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:home-delivery",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — home delivery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:home-delivery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — home delivery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:home-delivery:audio",
+            "transcript": "home delivery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:home-delivery:r1",
+              "targetText": "home delivery",
+              "meaningByLocale": {
+                "ru": "доставка на дом.",
+                "uk": "доставка додому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "home delivery",
+            "definitionByLocale": {
+              "ru": "доставка на дом.",
+              "uk": "доставка додому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какую-либо доставку на дом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какую-либо доставку на дом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you offer any home delivery?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какую-либо доставку на дом».",
+            "uk": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якусь доставку додому»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "home",
+            "delivery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i11:r1",
+            "text": "Do you offer any home delivery?"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i11:r2",
+            "text": "Do you offer some home delivery?"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i11:r3",
+            "text": "Do you offer a home delivery?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i11:audio",
+            "transcript": "Do you offer any home delivery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i11:r1",
+              "targetText": "Do you offer any home delivery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r2",
+              "targetText": "Do you offer some home delivery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r3",
+              "targetText": "Do you offer a home delivery?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any home delivery?",
+                "uk": "У записі звучить Do you offer any home delivery?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any home delivery?",
+                "uk": "У записі звучить Do you offer any home delivery?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+            "uk": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you offer ___ home delivery?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-31:i13:p1",
+              "target": "discount code",
+              "meaningByLocale": {
+                "ru": "промокод на скидку",
+                "uk": "промокод на знижку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p2",
+              "target": "price increase",
+              "meaningByLocale": {
+                "ru": "повышение цены",
+                "uk": "підвищення ціни"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p3",
+              "target": "store credit",
+              "meaningByLocale": {
+                "ru": "средства, которые можно потратить только в этом магазине",
+                "uk": "кошти, які можна витратити лише в цьому магазині"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p4",
+              "target": "home delivery",
+              "meaningByLocale": {
+                "ru": "доставка на дом",
+                "uk": "доставка додому"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discount code",
+            "price increase",
+            "store credit",
+            "home delivery"
+          ],
+          "rightColumn": [
+            "промокод на скидку",
+            "повышение цены",
+            "средства, которые можно потратить только в этом магазине",
+            "доставка на дом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i14:audio",
+            "transcript": "We have some discount codes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have some discount codes.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "some",
+            "discount",
+            "codes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i15:audio",
+            "transcript": "Do you offer any home delivery?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you offer any home delivery?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "home",
+            "delivery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i16:audio",
+            "transcript": "I have some store credit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have some store credit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i17:audio",
+            "transcript": "There aren't any price increases."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any price increases.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-31:word:discount-code",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — discount code",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:discount-code:audio"
+        ],
+        "accessibilityLabel": "Картка слова — discount code",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:discount-code:audio",
+            "transcript": "discount code"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:discount-code:r1",
+              "targetText": "discount code",
+              "meaningByLocale": {
+                "ru": "промокод на скидку.",
+                "uk": "промокод на знижку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discount code",
+            "definitionByLocale": {
+              "ru": "промокод на скидку.",
+              "uk": "промокод на знижку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Скажіть: «У нас є кілька промокодів на знижку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Скажіть: «У нас є кілька промокодів на знижку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have some discount codes.",
+          "localizedMeaning": {
+            "ru": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Скажите: «У нас есть несколько промокодов на скидку».",
+            "uk": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Скажіть: «У нас є кілька промокодів на знижку»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "some",
+            "discount",
+            "codes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i02:r1",
+            "text": "We have some discount codes."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i02:r2",
+            "text": "We have any discount codes."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i02:r3",
+            "text": "We have a discount codes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i02:audio",
+            "transcript": "We have some discount codes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i02:r1",
+              "targetText": "We have some discount codes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r2",
+              "targetText": "We have any discount codes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r3",
+              "targetText": "We have a discount codes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have some discount codes.",
+                "uk": "У записі звучить We have some discount codes."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have some discount codes.",
+                "uk": "У записі звучить We have some discount codes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes.",
+            "uk": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes."
+          },
+          "gappedTargetPhrase": "We have ___ discount codes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:price-increase",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — price increase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:price-increase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — price increase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:price-increase:audio",
+            "transcript": "price increase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:price-increase:r1",
+              "targetText": "price increase",
+              "meaningByLocale": {
+                "ru": "повышение цены.",
+                "uk": "підвищення ціни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "price increase",
+            "definitionByLocale": {
+              "ru": "повышение цены.",
+              "uk": "підвищення ціни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases. Скажіть: «Жодного підвищення цін немає».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases. Скажіть: «Жодного підвищення цін немає».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any price increases.",
+          "localizedMeaning": {
+            "ru": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases. Скажите: «Никакого повышения цен нет».",
+            "uk": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases. Скажіть: «Жодного підвищення цін немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "price",
+            "increases"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i05:r1",
+            "text": "There aren't any price increases."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i05:r2",
+            "text": "There aren't some price increases."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i05:r3",
+            "text": "There aren't a price increases."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i05:audio",
+            "transcript": "There aren't any price increases."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i05:r1",
+              "targetText": "There aren't any price increases.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r2",
+              "targetText": "There aren't some price increases.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r3",
+              "targetText": "There aren't a price increases.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any price increases.",
+                "uk": "У записі звучить There aren't any price increases."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any price increases.",
+                "uk": "У записі звучить There aren't any price increases."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обсуждаемом списке ни одна цена не повышена. Price increase → price increases.",
+            "uk": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases."
+          },
+          "gappedTargetPhrase": "There aren't ___ price increases.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "В обговорюваному списку жодну ціну не підвищено. Price increase → price increases.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:store-credit",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — store credit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:store-credit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — store credit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:store-credit:audio",
+            "transcript": "store credit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:store-credit:r1",
+              "targetText": "store credit",
+              "meaningByLocale": {
+                "ru": "средства, которые можно потратить только в этом магазине.",
+                "uk": "кошти, які можна витратити лише в цьому магазині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "store credit",
+            "definitionByLocale": {
+              "ru": "средства, которые можно потратить только в этом магазине.",
+              "uk": "кошти, які можна витратити лише в цьому магазині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів. Скажіть: «У мене є кошти для покупок у цьому магазині».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів. Скажіть: «У мене є кошти для покупок у цьому магазині».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have some store credit.",
+          "localizedMeaning": {
+            "ru": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств. Скажите: «У меня есть средства для покупок в этом магазине».",
+            "uk": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів. Скажіть: «У мене є кошти для покупок у цьому магазині»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "some",
+            "store",
+            "credit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i08:r1",
+            "text": "I have some store credit."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i08:r2",
+            "text": "I have any store credit."
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i08:r3",
+            "text": "I have a store credit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i08:audio",
+            "transcript": "I have some store credit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i08:r1",
+              "targetText": "I have some store credit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r2",
+              "targetText": "I have any store credit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r3",
+              "targetText": "I have a store credit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have some store credit.",
+                "uk": "У записі звучить I have some store credit."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have some store credit.",
+                "uk": "У записі звучить I have some store credit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Магазин зачислил вам некоторую сумму для новых покупок у него. Это не заём. Сообщите о наличии средств.",
+            "uk": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів."
+          },
+          "gappedTargetPhrase": "I have ___ store credit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Магазин зарахував вам певну суму для нових покупок у ньому. Це не позика. Повідомте про наявність коштів.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:word:home-delivery",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — home delivery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:word:home-delivery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — home delivery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:word:home-delivery:audio",
+            "transcript": "home delivery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:word:home-delivery:r1",
+              "targetText": "home delivery",
+              "meaningByLocale": {
+                "ru": "доставка на дом.",
+                "uk": "доставка додому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "home delivery",
+            "definitionByLocale": {
+              "ru": "доставка на дом.",
+              "uk": "доставка додому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якусь доставку додому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якусь доставку додому».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you offer any home delivery?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какую-либо доставку на дом».",
+            "uk": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якусь доставку додому»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "home",
+            "delivery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i11:r1",
+            "text": "Do you offer any home delivery?"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i11:r2",
+            "text": "Do you offer some home delivery?"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i11:r3",
+            "text": "Do you offer a home delivery?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i11:audio",
+            "transcript": "Do you offer any home delivery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-31:i11:r1",
+              "targetText": "Do you offer any home delivery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r2",
+              "targetText": "Do you offer some home delivery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r3",
+              "targetText": "Do you offer a home delivery?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any home delivery?",
+                "uk": "У записі звучить Do you offer any home delivery?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any home delivery?",
+                "uk": "У записі звучить Do you offer any home delivery?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-31:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-31:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, есть ли доставка. Спросите нейтрально, без ожидания ответа «да».",
+            "uk": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you offer ___ home delivery?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-31:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи є доставка. Запитайте нейтрально, без очікування відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-31:i13:p1",
+              "target": "discount code",
+              "meaningByLocale": {
+                "ru": "промокод на скидку",
+                "uk": "промокод на знижку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p2",
+              "target": "price increase",
+              "meaningByLocale": {
+                "ru": "повышение цены",
+                "uk": "підвищення ціни"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p3",
+              "target": "store credit",
+              "meaningByLocale": {
+                "ru": "средства, которые можно потратить только в этом магазине",
+                "uk": "кошти, які можна витратити лише в цьому магазині"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-31:i13:p4",
+              "target": "home delivery",
+              "meaningByLocale": {
+                "ru": "доставка на дом",
+                "uk": "доставка додому"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discount code",
+            "price increase",
+            "store credit",
+            "home delivery"
+          ],
+          "rightColumn": [
+            "промокод на знижку",
+            "підвищення ціни",
+            "кошти, які можна витратити лише в цьому магазині",
+            "доставка додому"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i14:audio",
+            "transcript": "We have some discount codes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have some discount codes.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "some",
+            "discount",
+            "codes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i15:audio",
+            "transcript": "Do you offer any home delivery?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you offer any home delivery?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "home",
+            "delivery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i16:audio",
+            "transcript": "I have some store credit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have some store credit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-31:i17:audio",
+            "transcript": "There aren't any price increases."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any price increases.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-31:word:discount-code",
+      "correctText": "discount code",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i01",
+      "correctText": "We have some discount codes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i02",
+      "correctText": "We have some discount codes.",
+      "correctResponseId": "en:lesson-17:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:word:price-increase",
+      "correctText": "price increase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i04",
+      "correctText": "There aren't any price increases.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i05",
+      "correctText": "There aren't any price increases.",
+      "correctResponseId": "en:lesson-17:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:word:store-credit",
+      "correctText": "store credit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i07",
+      "correctText": "I have some store credit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i08",
+      "correctText": "I have some store credit.",
+      "correctResponseId": "en:lesson-17:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:word:home-delivery",
+      "correctText": "home delivery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i10",
+      "correctText": "Do you offer any home delivery?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i11",
+      "correctText": "Do you offer any home delivery?",
+      "correctResponseId": "en:lesson-17:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i14",
+      "correctText": "We have some discount codes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i15",
+      "correctText": "Do you offer any home delivery?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i16",
+      "correctText": "I have some store credit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-31:i17",
+      "correctText": "There aren't any price increases.",
+      "correctResponseId": null
+    }
+  ]
+}

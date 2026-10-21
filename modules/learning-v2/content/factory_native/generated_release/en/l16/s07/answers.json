@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-07:word:overcharge",
+    "correctText": "overcharge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i01",
+    "correctText": "I think they will overcharge us.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i02",
+    "correctText": "I think they will overcharge us.",
+    "correctResponseId": "en:lesson-16:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i03",
+    "correctText": "will overcharge",
+    "correctResponseId": "en:lesson-16:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:word:undercharge",
+    "correctText": "undercharge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i04",
+    "correctText": "I think he will undercharge us again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i05",
+    "correctText": "I think he will undercharge us again.",
+    "correctResponseId": "en:lesson-16:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i06",
+    "correctText": "will undercharge",
+    "correctResponseId": "en:lesson-16:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:word:instalment",
+    "correctText": "instalment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i07",
+    "correctText": "I think the last instalment will be small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i08",
+    "correctText": "I think the last instalment will be small.",
+    "correctResponseId": "en:lesson-16:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i09",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:word:surcharge",
+    "correctText": "surcharge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i10",
+    "correctText": "I think the surcharge will be ten pounds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i11",
+    "correctText": "I think the surcharge will be ten pounds.",
+    "correctResponseId": "en:lesson-16:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i12",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i13",
+    "correctText": "en:lesson-16:session-07:i13:p1=overcharge\nen:lesson-16:session-07:i13:p2=undercharge\nen:lesson-16:session-07:i13:p3=instalment\nen:lesson-16:session-07:i13:p4=surcharge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i14",
+    "correctText": "We checked the price and then paid.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i15",
+    "correctText": "I am going to buy a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i16",
+    "correctText": "We are meeting the seller tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-07:i17",
+    "correctText": "I think the surcharge will be ten pounds.",
+    "correctResponseId": null
+  }
+]

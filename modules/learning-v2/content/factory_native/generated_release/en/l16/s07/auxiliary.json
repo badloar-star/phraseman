@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-07:intro1:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-07:intro1:r3": {
+          "ru": "После will нужна начальная форма: overcharge.",
+          "uk": "Після will потрібна початкова форма: overcharge."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-07:intro2:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-07:intro2:r3": {
+          "ru": "После will нужна начальная форма: undercharge.",
+          "uk": "Після will потрібна початкова форма: undercharge."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-07:intro3:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-07:intro3:r3": {
+          "ru": "После will нужна начальная форма: be.",
+          "uk": "Після will потрібна початкова форма: be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "25cab8d4d23f3ea44ad8c3073f339831c6778f5412c7c2211b9bacebc1bb462d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "will + base verb: prediction",
+    "uk": "will + base verb: prediction"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш прогноз",
+        "uk": "Ваш прогноз"
+      },
+      "bodyByLocale": {
+        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. lukewarm — чуть тёплый. I think the tea will be lukewarm. — Думаю, чай будет чуть тёплым. Выберите прогноз с will.",
+        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. lukewarm — ледь теплий. I think the tea will be lukewarm. — Думаю, чай буде ледь теплим. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r1",
+              "text": "I think the tea will be lukewarm."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r2",
+              "text": "I think the tea will to be lukewarm."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r3",
+              "text": "I think the tea will is lukewarm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r1",
+              "text": "I think the tea will be lukewarm."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r2",
+              "text": "I think the tea will to be lukewarm."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro1:r3",
+              "text": "I think the tea will is lukewarm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После will — начальная форма",
+        "uk": "Після will — початкова форма"
+      },
+      "bodyByLocale": {
+        "ru": "scalding — обжигающе горячий. I think the soup will be scalding. — Думаю, суп будет обжигающе горячим. Выберите прогноз с will.",
+        "uk": "scalding — обпікаюче гарячий. I think the soup will be scalding. — Думаю, суп буде обпікаюче гарячим. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r1",
+              "text": "I think the soup will be scalding."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r2",
+              "text": "I think the soup will to be scalding."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r3",
+              "text": "I think the soup will is scalding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r1",
+              "text": "I think the soup will be scalding."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r2",
+              "text": "I think the soup will to be scalding."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro2:r3",
+              "text": "I think the soup will is scalding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предположение о будущем",
+        "uk": "Припущення про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "fizzy — газированный, с пузырьками. chewy — требующий долгого жевания. I think the meat will be chewy. — Думаю, мясо будет трудно прожевать. Выберите прогноз с will.",
+        "uk": "fizzy — газований, із бульбашками. chewy — такий, що потребує тривалого жування. I think the meat will be chewy. — Думаю, м’ясо буде важко прожувати. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r1",
+              "text": "I think the meat will be chewy."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r2",
+              "text": "I think the meat will to be chewy."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r3",
+              "text": "I think the meat will is chewy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r1",
+              "text": "I think the meat will be chewy."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r2",
+              "text": "I think the meat will to be chewy."
+            },
+            {
+              "responseId": "en:lesson-16:session-08:intro3:r3",
+              "text": "I think the meat will is chewy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54ccbf555fda5093759725e674eb5151d277364e404924b37b5333f37de995b4"
+}

@@ -5929,4 +5929,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 7,
+    sourceFingerprint: "41ee0052ce6ff682d1b6c64ce17378650363b7ddfe078239cb508302291a2e23",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 8,
+    sourceFingerprint: "c6cc863fc70e902791a6dcc5d3e1fd103c89f759d6d5d042654e4b5d77266dac",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
 ]);

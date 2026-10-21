@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-07:word:overcharge",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overcharge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:word:overcharge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overcharge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:word:overcharge:audio",
+          "transcript": "overcharge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:word:overcharge:r1",
+            "targetText": "overcharge",
+            "meaningByLocale": {
+              "ru": "взять с покупателя слишком много денег.",
+              "uk": "взяти з покупця забагато грошей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overcharge",
+          "definitionByLocale": {
+            "ru": "взять с покупателя слишком много денег.",
+            "uk": "взяти з покупця забагато грошей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, они возьмут с нас слишком много денег».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, они возьмут с нас слишком много денег».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think they will overcharge us.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, они возьмут с нас слишком много денег».",
+          "uk": "Передайте своє припущення: «Думаю, вони візьмуть з нас забагато грошей»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "they",
+          "will",
+          "overcharge",
+          "us"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i02:r1",
+          "text": "I think they will overcharge us."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i02:r2",
+          "text": "I think they will to overcharge us."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i02:r3",
+          "text": "I think they will overcharges us."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i02:audio",
+          "transcript": "I think they will overcharge us."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:i02:r1",
+            "targetText": "I think they will overcharge us.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i02:r2",
+            "targetText": "I think they will to overcharge us.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i02:r3",
+            "targetText": "I think they will overcharges us.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think they will overcharge us.",
+              "uk": "У записі звучить I think they will overcharge us."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think they will overcharge us.",
+              "uk": "У записі звучить I think they will overcharge us."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i03:r1",
+          "text": "will overcharge"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i03:r2",
+          "text": "will to overcharge"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i03:r3",
+          "text": "will overcharges"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think they ___ us.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-07:i03:r1",
+            "text": "will overcharge"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i03:r2",
+            "text": "will to overcharge"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i03:r3",
+            "text": "will overcharges"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:word:undercharge",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undercharge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:word:undercharge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undercharge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:word:undercharge:audio",
+          "transcript": "undercharge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:word:undercharge:r1",
+            "targetText": "undercharge",
+            "meaningByLocale": {
+              "ru": "взять с покупателя меньше положенной суммы.",
+              "uk": "взяти з покупця менше належної суми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undercharge",
+          "definitionByLocale": {
+            "ru": "взять с покупателя меньше положенной суммы.",
+            "uk": "взяти з покупця менше належної суми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, он опять возьмёт с нас меньше положенной суммы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, он опять возьмёт с нас меньше положенной суммы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think he will undercharge us again.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, он опять возьмёт с нас меньше положенной суммы».",
+          "uk": "Передайте своє припущення: «Думаю, він знову візьме з нас менше належної суми»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "he",
+          "will",
+          "undercharge",
+          "us",
+          "again"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i05:r1",
+          "text": "I think he will undercharge us again."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i05:r2",
+          "text": "I think he will to undercharge us again."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i05:r3",
+          "text": "I think he will undercharges us again."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i05:audio",
+          "transcript": "I think he will undercharge us again."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:i05:r1",
+            "targetText": "I think he will undercharge us again.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i05:r2",
+            "targetText": "I think he will to undercharge us again.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i05:r3",
+            "targetText": "I think he will undercharges us again.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will undercharge us again.",
+              "uk": "У записі звучить I think he will undercharge us again."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will undercharge us again.",
+              "uk": "У записі звучить I think he will undercharge us again."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i06:r1",
+          "text": "will undercharge"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i06:r2",
+          "text": "will to undercharge"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i06:r3",
+          "text": "will undercharges"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think he ___ us again.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-07:i06:r1",
+            "text": "will undercharge"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i06:r2",
+            "text": "will to undercharge"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i06:r3",
+            "text": "will undercharges"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:word:instalment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — instalment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:word:instalment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — instalment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:word:instalment:audio",
+          "transcript": "instalment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:word:instalment:r1",
+            "targetText": "instalment",
+            "meaningByLocale": {
+              "ru": "один платёж при оплате частями.",
+              "uk": "один платіж під час оплати частинами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "instalment",
+          "definitionByLocale": {
+            "ru": "один платёж при оплате частями.",
+            "uk": "один платіж під час оплати частинами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, последний платёж при оплате частями будет небольшим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, последний платёж при оплате частями будет небольшим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the last instalment will be small.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, последний платёж при оплате частями будет небольшим».",
+          "uk": "Передайте своє припущення: «Думаю, останній платіж під час оплати частинами буде невеликим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "last",
+          "instalment",
+          "will",
+          "be",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i08:r1",
+          "text": "I think the last instalment will be small."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i08:r2",
+          "text": "I think the last instalment will to be small."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i08:r3",
+          "text": "I think the last instalment will is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i08:audio",
+          "transcript": "I think the last instalment will be small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:i08:r1",
+            "targetText": "I think the last instalment will be small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i08:r2",
+            "targetText": "I think the last instalment will to be small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i08:r3",
+            "targetText": "I think the last instalment will is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the last instalment will be small.",
+              "uk": "У записі звучить I think the last instalment will be small."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the last instalment will be small.",
+              "uk": "У записі звучить I think the last instalment will be small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i09:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i09:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i09:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the last instalment ___ small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-07:i09:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i09:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i09:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:word:surcharge",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — surcharge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:word:surcharge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — surcharge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:word:surcharge:audio",
+          "transcript": "surcharge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:word:surcharge:r1",
+            "targetText": "surcharge",
+            "meaningByLocale": {
+              "ru": "доплата сверх обычной цены.",
+              "uk": "доплата понад звичайну ціну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surcharge",
+          "definitionByLocale": {
+            "ru": "доплата сверх обычной цены.",
+            "uk": "доплата понад звичайну ціну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, доплата составит десять фунтов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, доплата составит десять фунтов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the surcharge will be ten pounds.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, доплата составит десять фунтов».",
+          "uk": "Передайте своє припущення: «Думаю, доплата становитиме десять фунтів»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "surcharge",
+          "will",
+          "be",
+          "ten",
+          "pounds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i11:r1",
+          "text": "I think the surcharge will be ten pounds."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i11:r2",
+          "text": "I think the surcharge will to be ten pounds."
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i11:r3",
+          "text": "I think the surcharge will is ten pounds."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i11:audio",
+          "transcript": "I think the surcharge will be ten pounds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-07:i11:r1",
+            "targetText": "I think the surcharge will be ten pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i11:r2",
+            "targetText": "I think the surcharge will to be ten pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i11:r3",
+            "targetText": "I think the surcharge will is ten pounds.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the surcharge will be ten pounds.",
+              "uk": "У записі звучить I think the surcharge will be ten pounds."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the surcharge will be ten pounds.",
+              "uk": "У записі звучить I think the surcharge will be ten pounds."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-07:i12:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i12:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-07:i12:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the surcharge ___ ten pounds.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-07:i12:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i12:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i12:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-07:i13:p1",
+            "target": "overcharge",
+            "meaningByLocale": {
+              "ru": "взять с покупателя слишком много денег",
+              "uk": "взяти з покупця забагато грошей"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-07:i13:p2",
+            "target": "undercharge",
+            "meaningByLocale": {
+              "ru": "взять с покупателя меньше положенной суммы",
+              "uk": "взяти з покупця менше належної суми"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-07:i13:p3",
+            "target": "instalment",
+            "meaningByLocale": {
+              "ru": "один платёж при оплате частями",
+              "uk": "один платіж під час оплати частинами"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-07:i13:p4",
+            "target": "surcharge",
+            "meaningByLocale": {
+              "ru": "доплата сверх обычной цены",
+              "uk": "доплата понад звичайну ціну"
+            }
+          }
+        ],
+        "leftColumn": [
+          "overcharge",
+          "undercharge",
+          "instalment",
+          "surcharge"
+        ],
+        "rightColumn": [
+          "взять с покупателя слишком много денег",
+          "взять с покупателя меньше положенной суммы",
+          "один платёж при оплате частями",
+          "доплата сверх обычной цены"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную последовательность событий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную последовательность событий",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i14:audio",
+          "transcript": "We checked the price and then paid."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We checked the price and then paid.",
+        "orderedTokens": [
+          "We",
+          "checked",
+          "the",
+          "price",
+          "and",
+          "then",
+          "paid"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i15:audio",
+          "transcript": "I am going to buy a table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy a table.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Время уже согласовано. Повторите договорённость.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Время уже согласовано. Повторите договорённость.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i16:audio",
+          "transcript": "We are meeting the seller tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are meeting the seller tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите прогноз для друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Произнесите прогноз для друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-07:i17:audio",
+          "transcript": "I think the surcharge will be ten pounds."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the surcharge will be ten pounds.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "930bb0b14fd1d3839aca5b11a70fbdf744b83a33fd707c6733250832635c3fce"
+}

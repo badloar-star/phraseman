@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-08:word:lukewarm",
+    "correctText": "lukewarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i01",
+    "correctText": "I think the tea will be lukewarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i02",
+    "correctText": "I think the tea will be lukewarm.",
+    "correctResponseId": "en:lesson-16:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:word:scalding",
+    "correctText": "scalding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i04",
+    "correctText": "I think the soup will be scalding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i05",
+    "correctText": "I think the soup will be scalding.",
+    "correctResponseId": "en:lesson-16:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:word:fizzy",
+    "correctText": "fizzy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i07",
+    "correctText": "I think the lemonade will be fizzy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i08",
+    "correctText": "I think the lemonade will be fizzy.",
+    "correctResponseId": "en:lesson-16:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i09",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:word:chewy",
+    "correctText": "chewy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i10",
+    "correctText": "I think the meat will be chewy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i11",
+    "correctText": "I think the meat will be chewy.",
+    "correctResponseId": "en:lesson-16:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i12",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i13",
+    "correctText": "en:lesson-16:session-08:i13:p1=lukewarm\nen:lesson-16:session-08:i13:p2=scalding\nen:lesson-16:session-08:i13:p3=fizzy\nen:lesson-16:session-08:i13:p4=chewy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i14",
+    "correctText": "We made tea and then ate lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i15",
+    "correctText": "I am going to make soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i16",
+    "correctText": "We are having lunch together tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-08:i17",
+    "correctText": "I think the meat will be chewy.",
+    "correctResponseId": null
+  }
+]

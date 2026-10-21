@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "will + base verb: prediction",
+    "uk": "will + base verb: prediction"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш прогноз",
+        "uk": "Ваш прогноз"
+      },
+      "bodyByLocale": {
+        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. overcharge — взять с покупателя слишком много денег. I think they will overcharge us. — Думаю, они возьмут с нас слишком много денег. Выберите прогноз с will.",
+        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. overcharge — взяти з покупця забагато грошей. I think they will overcharge us. — Думаю, вони візьмуть з нас забагато грошей. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r1",
+              "text": "I think they will overcharge us."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r2",
+              "text": "I think they will to overcharge us."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r3",
+              "text": "I think they will overcharges us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r1",
+              "text": "I think they will overcharge us."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r2",
+              "text": "I think they will to overcharge us."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro1:r3",
+              "text": "I think they will overcharges us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После will — начальная форма",
+        "uk": "Після will — початкова форма"
+      },
+      "bodyByLocale": {
+        "ru": "undercharge — взять с покупателя меньше положенной суммы. I think he will undercharge us again. — Думаю, он опять возьмёт с нас меньше положенной суммы. Выберите прогноз с will.",
+        "uk": "undercharge — взяти з покупця менше належної суми. I think he will undercharge us again. — Думаю, він знову візьме з нас менше належної суми. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r1",
+              "text": "I think he will undercharge us again."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r2",
+              "text": "I think he will to undercharge us again."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r3",
+              "text": "I think he will undercharges us again."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r1",
+              "text": "I think he will undercharge us again."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r2",
+              "text": "I think he will to undercharge us again."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro2:r3",
+              "text": "I think he will undercharges us again."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предположение о будущем",
+        "uk": "Припущення про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "instalment — один платёж при оплате частями. surcharge — доплата сверх обычной цены. I think the surcharge will be ten pounds. — Думаю, доплата составит десять фунтов. Выберите прогноз с will.",
+        "uk": "instalment — один платіж під час оплати частинами. surcharge — доплата понад звичайну ціну. I think the surcharge will be ten pounds. — Думаю, доплата становитиме десять фунтів. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r1",
+              "text": "I think the surcharge will be ten pounds."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r2",
+              "text": "I think the surcharge will to be ten pounds."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r3",
+              "text": "I think the surcharge will is ten pounds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r1",
+              "text": "I think the surcharge will be ten pounds."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r2",
+              "text": "I think the surcharge will to be ten pounds."
+            },
+            {
+              "responseId": "en:lesson-16:session-07:intro3:r3",
+              "text": "I think the surcharge will is ten pounds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c553ad831330e48ee82a8c906d358128950daa7b7364dac604f4d5b8803d2cb4"
+}

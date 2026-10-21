@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-08:word:lukewarm",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lukewarm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:word:lukewarm:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lukewarm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:word:lukewarm:audio",
+          "transcript": "lukewarm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:word:lukewarm:r1",
+            "targetText": "lukewarm",
+            "meaningByLocale": {
+              "ru": "чуть тёплый.",
+              "uk": "ледь теплий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lukewarm",
+          "definitionByLocale": {
+            "ru": "чуть тёплый.",
+            "uk": "ледь теплий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє припущення: «Думаю, чай буде ледь теплим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє припущення: «Думаю, чай буде ледь теплим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the tea will be lukewarm.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, чай будет чуть тёплым».",
+          "uk": "Передайте своє припущення: «Думаю, чай буде ледь теплим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "tea",
+          "will",
+          "be",
+          "lukewarm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i02:r1",
+          "text": "I think the tea will be lukewarm."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i02:r2",
+          "text": "I think the tea will to be lukewarm."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i02:r3",
+          "text": "I think the tea will is lukewarm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i02:audio",
+          "transcript": "I think the tea will be lukewarm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:i02:r1",
+            "targetText": "I think the tea will be lukewarm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i02:r2",
+            "targetText": "I think the tea will to be lukewarm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i02:r3",
+            "targetText": "I think the tea will is lukewarm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the tea will be lukewarm.",
+              "uk": "У записі звучить I think the tea will be lukewarm."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the tea will be lukewarm.",
+              "uk": "У записі звучить I think the tea will be lukewarm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть прогноз із will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i03:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i03:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть прогноз із will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the tea ___ lukewarm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-08:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i03:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i03:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Доповніть прогноз із will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:word:scalding",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scalding",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:word:scalding:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scalding",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:word:scalding:audio",
+          "transcript": "scalding"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:word:scalding:r1",
+            "targetText": "scalding",
+            "meaningByLocale": {
+              "ru": "обжигающе горячий.",
+              "uk": "обпікаюче гарячий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scalding",
+          "definitionByLocale": {
+            "ru": "обжигающе горячий.",
+            "uk": "обпікаюче гарячий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє припущення: «Думаю, суп буде обпікаюче гарячим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє припущення: «Думаю, суп буде обпікаюче гарячим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the soup will be scalding.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, суп будет обжигающе горячим».",
+          "uk": "Передайте своє припущення: «Думаю, суп буде обпікаюче гарячим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "soup",
+          "will",
+          "be",
+          "scalding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i05:r1",
+          "text": "I think the soup will be scalding."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i05:r2",
+          "text": "I think the soup will to be scalding."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i05:r3",
+          "text": "I think the soup will is scalding."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i05:audio",
+          "transcript": "I think the soup will be scalding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:i05:r1",
+            "targetText": "I think the soup will be scalding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i05:r2",
+            "targetText": "I think the soup will to be scalding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i05:r3",
+            "targetText": "I think the soup will is scalding.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soup will be scalding.",
+              "uk": "У записі звучить I think the soup will be scalding."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soup will be scalding.",
+              "uk": "У записі звучить I think the soup will be scalding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть прогноз із will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i06:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i06:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть прогноз із will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the soup ___ scalding.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-08:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i06:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i06:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Доповніть прогноз із will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:word:fizzy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fizzy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:word:fizzy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fizzy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:word:fizzy:audio",
+          "transcript": "fizzy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:word:fizzy:r1",
+            "targetText": "fizzy",
+            "meaningByLocale": {
+              "ru": "газированный, с пузырьками.",
+              "uk": "газований, із бульбашками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fizzy",
+          "definitionByLocale": {
+            "ru": "газированный, с пузырьками.",
+            "uk": "газований, із бульбашками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє припущення: «Думаю, лимонад буде газованим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє припущення: «Думаю, лимонад буде газованим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the lemonade will be fizzy.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, лимонад будет газированным».",
+          "uk": "Передайте своє припущення: «Думаю, лимонад буде газованим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "lemonade",
+          "will",
+          "be",
+          "fizzy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i08:r1",
+          "text": "I think the lemonade will be fizzy."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i08:r2",
+          "text": "I think the lemonade will to be fizzy."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i08:r3",
+          "text": "I think the lemonade will is fizzy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i08:audio",
+          "transcript": "I think the lemonade will be fizzy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:i08:r1",
+            "targetText": "I think the lemonade will be fizzy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i08:r2",
+            "targetText": "I think the lemonade will to be fizzy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i08:r3",
+            "targetText": "I think the lemonade will is fizzy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the lemonade will be fizzy.",
+              "uk": "У записі звучить I think the lemonade will be fizzy."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the lemonade will be fizzy.",
+              "uk": "У записі звучить I think the lemonade will be fizzy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть прогноз із will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i09:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i09:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i09:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть прогноз із will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the lemonade ___ fizzy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-08:i09:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i09:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i09:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Доповніть прогноз із will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:word:chewy",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chewy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:word:chewy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chewy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:word:chewy:audio",
+          "transcript": "chewy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:word:chewy:r1",
+            "targetText": "chewy",
+            "meaningByLocale": {
+              "ru": "требующий долгого жевания.",
+              "uk": "такий, що потребує тривалого жування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chewy",
+          "definitionByLocale": {
+            "ru": "требующий долгого жевания.",
+            "uk": "такий, що потребує тривалого жування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє припущення: «Думаю, м’ясо буде важко прожувати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє припущення: «Думаю, м’ясо буде важко прожувати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the meat will be chewy.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, мясо будет трудно прожевать».",
+          "uk": "Передайте своє припущення: «Думаю, м’ясо буде важко прожувати»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "meat",
+          "will",
+          "be",
+          "chewy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i11:r1",
+          "text": "I think the meat will be chewy."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i11:r2",
+          "text": "I think the meat will to be chewy."
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i11:r3",
+          "text": "I think the meat will is chewy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i11:audio",
+          "transcript": "I think the meat will be chewy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-08:i11:r1",
+            "targetText": "I think the meat will be chewy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i11:r2",
+            "targetText": "I think the meat will to be chewy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i11:r3",
+            "targetText": "I think the meat will is chewy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the meat will be chewy.",
+              "uk": "У записі звучить I think the meat will be chewy."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the meat will be chewy.",
+              "uk": "У записі звучить I think the meat will be chewy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть прогноз із will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-08:i12:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i12:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-08:i12:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть прогноз із will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the meat ___ chewy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-08:i12:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i12:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i12:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Доповніть прогноз із will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть прогноз із will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-08:i13:p1",
+            "target": "lukewarm",
+            "meaningByLocale": {
+              "ru": "чуть тёплый",
+              "uk": "ледь теплий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-08:i13:p2",
+            "target": "scalding",
+            "meaningByLocale": {
+              "ru": "обжигающе горячий",
+              "uk": "обпікаюче гарячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-08:i13:p3",
+            "target": "fizzy",
+            "meaningByLocale": {
+              "ru": "газированный, с пузырьками",
+              "uk": "газований, із бульбашками"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-08:i13:p4",
+            "target": "chewy",
+            "meaningByLocale": {
+              "ru": "требующий долгого жевания",
+              "uk": "такий, що потребує тривалого жування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lukewarm",
+          "scalding",
+          "fizzy",
+          "chewy"
+        ],
+        "rightColumn": [
+          "ледь теплий",
+          "обпікаюче гарячий",
+          "газований, із бульбашками",
+          "такий, що потребує тривалого жування"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту послідовність подій",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту послідовність подій",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i14:audio",
+          "transcript": "We made tea and then ate lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We made tea and then ate lunch.",
+        "orderedTokens": [
+          "We",
+          "made",
+          "tea",
+          "and",
+          "then",
+          "ate",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i15:audio",
+          "transcript": "I am going to make soup."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to make soup.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "make",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Час уже узгоджено. Повторіть домовленість.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Час уже узгоджено. Повторіть домовленість.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i16:audio",
+          "transcript": "We are having lunch together tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are having lunch together tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте прогноз для друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Промовте прогноз для друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-08:i17:audio",
+          "transcript": "I think the meat will be chewy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the meat will be chewy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7699a6665e05540a29be412eff584862d5db947cef270fbec8d45390630ca5aa"
+}

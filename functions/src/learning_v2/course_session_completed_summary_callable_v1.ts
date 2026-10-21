@@ -27,7 +27,9 @@ export const LEARNING_V2_COURSE_SESSION_COMPLETED_CALLABLE_OPTIONS_V1 =
   Object.freeze({
     region: "us-central1",
     enforceAppCheck: false,
-    timeoutSeconds: 15,
+    // зачем (владелец 21.10, №47): 15 с не хватало — холодный старт (~6 с на загрузку index) + медленная сеть
+    // обрывали запись итога занятия. Повтор с клиента безопасен: запись идёт через ящик с квитанцией.
+    timeoutSeconds: 60,
     memory: "256MiB" as const,
     maxInstances: 80,
   });

@@ -35,9 +35,12 @@ describe("Learning V2 course session completed summary callable", () => {
   });
 
   test("stores only a completed answer-free summary and returns no verdict", async () => {
+    // зачем: App Check запломбирован владельцем 17.08 (callable_options.ts) — прежнее `toBe(true)` сторожило отменённое правило.
     expect(
       LEARNING_V2_COURSE_SESSION_COMPLETED_CALLABLE_OPTIONS_V1.enforceAppCheck,
-    ).toBe(true);
+    ).toBe(false);
+    // №47 (владелец 21.10): 15 с обрывали запись итога на холодном старте.
+    expect(LEARNING_V2_COURSE_SESSION_COMPLETED_CALLABLE_OPTIONS_V1.timeoutSeconds).toBe(60);
     const putIfAbsent = jest.fn(async () => "created" as const);
     const handler = createLearningV2CourseSessionCompletedHandlerV1({
       authorize: async (authUid) => {

@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-03:word:bird-feeder",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bird feeder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:word:bird-feeder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bird feeder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:word:bird-feeder:audio",
+          "transcript": "bird feeder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:word:bird-feeder:r1",
+            "targetText": "bird feeder",
+            "meaningByLocale": {
+              "ru": "кормушка для птиц.",
+              "uk": "годівниця для птахів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bird feeder",
+          "definitionByLocale": {
+            "ru": "кормушка для птиц.",
+            "uk": "годівниця для птахів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я наповнював годівницю для птахів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я наповнював годівницю для птахів",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was filling the bird feeder.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я наполнял кормушку для птиц",
+          "uk": "Скажіть: Я наповнював годівницю для птахів"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "filling",
+          "the",
+          "bird",
+          "feeder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i02:r1",
+          "text": "He was filling the bird feeder."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i02:r2",
+          "text": "I was filling the bird feeder."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i02:r3",
+          "text": "They were filling the bird feeder."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i02:audio",
+          "transcript": "He was filling the bird feeder."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:i02:r1",
+            "targetText": "He was filling the bird feeder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i02:r2",
+            "targetText": "I was filling the bird feeder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i02:r3",
+            "targetText": "They were filling the bird feeder.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was filling the bird feeder.",
+              "uk": "У записі звучить He was filling the bird feeder."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was filling the bird feeder.",
+              "uk": "У записі звучить He was filling the bird feeder."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ filling the bird feeder.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-03:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:word:garden-path",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden path",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:word:garden-path:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden path",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:word:garden-path:audio",
+          "transcript": "garden path"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:word:garden-path:r1",
+            "targetText": "garden path",
+            "meaningByLocale": {
+              "ru": "садовая дорожка.",
+              "uk": "садова доріжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden path",
+          "definitionByLocale": {
+            "ru": "садовая дорожка.",
+            "uk": "садова доріжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони прибирали садову доріжку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони прибирали садову доріжку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were cleaning the garden path.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они убирали садовую дорожку",
+          "uk": "Скажіть: Вони прибирали садову доріжку"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "cleaning",
+          "the",
+          "garden",
+          "path"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i05:r1",
+          "text": "We were cleaning the garden path."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i05:r2",
+          "text": "They were cleaning the garden path."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i05:r3",
+          "text": "She was cleaning the garden path."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i05:audio",
+          "transcript": "We were cleaning the garden path."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:i05:r1",
+            "targetText": "We were cleaning the garden path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i05:r2",
+            "targetText": "They were cleaning the garden path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i05:r3",
+            "targetText": "She was cleaning the garden path.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were cleaning the garden path.",
+              "uk": "У записі звучить We were cleaning the garden path."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were cleaning the garden path.",
+              "uk": "У записі звучить We were cleaning the garden path."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ cleaning the garden path.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-03:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:word:flower-bed",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flower bed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:word:flower-bed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flower bed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:word:flower-bed:audio",
+          "transcript": "flower bed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:word:flower-bed:r1",
+            "targetText": "flower bed",
+            "meaningByLocale": {
+              "ru": "клумба.",
+              "uk": "клумба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flower bed",
+          "definitionByLocale": {
+            "ru": "клумба.",
+            "uk": "клумба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона поливала клумбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона поливала клумбу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was watering the flower bed.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она поливала клумбу",
+          "uk": "Скажіть: Вона поливала клумбу"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "watering",
+          "the",
+          "flower",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i08:r1",
+          "text": "I was watering the flower bed."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i08:r2",
+          "text": "She was watering the flower bed."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i08:r3",
+          "text": "We were watering the flower bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i08:audio",
+          "transcript": "I was watering the flower bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:i08:r1",
+            "targetText": "I was watering the flower bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i08:r2",
+            "targetText": "She was watering the flower bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i08:r3",
+            "targetText": "We were watering the flower bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was watering the flower bed.",
+              "uk": "У записі звучить I was watering the flower bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was watering the flower bed.",
+              "uk": "У записі звучить I was watering the flower bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ watering the flower bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-03:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:word:apple-tree",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — apple tree",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:word:apple-tree:audio"
+      ],
+      "accessibilityLabel": "Картка слова — apple tree",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:word:apple-tree:audio",
+          "transcript": "apple tree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:word:apple-tree:r1",
+            "targetText": "apple tree",
+            "meaningByLocale": {
+              "ru": "яблоня.",
+              "uk": "яблуня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apple tree",
+          "definitionByLocale": {
+            "ru": "яблоня.",
+            "uk": "яблуня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми поливали яблуню",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми поливали яблуню",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were watering the apple tree.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы поливали яблоню",
+          "uk": "Скажіть: Ми поливали яблуню"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "watering",
+          "the",
+          "apple",
+          "tree"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i11:r1",
+          "text": "He was watering the apple tree."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i11:r2",
+          "text": "We were watering the apple tree."
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i11:r3",
+          "text": "They were watering the apple tree."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i11:audio",
+          "transcript": "He was watering the apple tree."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-03:i11:r1",
+            "targetText": "He was watering the apple tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i11:r2",
+            "targetText": "We were watering the apple tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i11:r3",
+            "targetText": "They were watering the apple tree.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was watering the apple tree.",
+              "uk": "У записі звучить He was watering the apple tree."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was watering the apple tree.",
+              "uk": "У записі звучить He was watering the apple tree."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-03:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-03:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ watering the apple tree.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-03:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-03:i13:p1",
+            "target": "bird feeder",
+            "meaningByLocale": {
+              "ru": "кормушка для птиц",
+              "uk": "годівниця для птахів"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-03:i13:p2",
+            "target": "garden path",
+            "meaningByLocale": {
+              "ru": "садовая дорожка",
+              "uk": "садова доріжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-03:i13:p3",
+            "target": "flower bed",
+            "meaningByLocale": {
+              "ru": "клумба",
+              "uk": "клумба"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-03:i13:p4",
+            "target": "apple tree",
+            "meaningByLocale": {
+              "ru": "яблоня",
+              "uk": "яблуня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bird feeder",
+          "garden path",
+          "flower bed",
+          "apple tree"
+        ],
+        "rightColumn": [
+          "годівниця для птахів",
+          "садова доріжка",
+          "клумба",
+          "яблуня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i14:audio",
+          "transcript": "I was working in the garden."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was working in the garden.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "working",
+          "in",
+          "the",
+          "garden"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i15:audio",
+          "transcript": "They were watering the flowers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were watering the flowers.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "watering",
+          "the",
+          "flowers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора о десятій вона наповнювала годівницю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора о десятій вона наповнювала годівницю",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i16:audio",
+          "transcript": "She was filling the bird feeder at ten yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was filling the bird feeder at ten yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора о десятій ми прибирали садову доріжку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора о десятій ми прибирали садову доріжку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-03:i17:audio",
+          "transcript": "We were cleaning the garden path at ten yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We were cleaning the garden path at ten yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3921319dc71e90d9b7d58c05518048cc0a5aa0a3dd6b6fd3e4f26f68719b801"
+}

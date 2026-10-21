@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "review: was/were + verb-ing",
+    "uk": "review: was/were + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бутылка с распылителем",
+        "uk": "Пляшка з розпилювачем"
+      },
+      "bodyByLocale": {
+        "ru": "Spray bottle — бутылка с распылителем. I was filling a spray bottle. — Я наполнял бутылку с распылителем. Выберите действие в тот момент прошлого.",
+        "uk": "Spray bottle — пляшка з розпилювачем. I was filling a spray bottle. — Я наповнював пляшку з розпилювачем. Виберіть дію в той момент минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r1",
+              "text": "I was filling a spray bottle."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r2",
+              "text": "I am filling a spray bottle."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r3",
+              "text": "I was fill a spray bottle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r1",
+              "text": "I was filling a spray bottle."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r2",
+              "text": "I am filling a spray bottle."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro1:r3",
+              "text": "I was fill a spray bottle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Щётка и мыльная вода",
+        "uk": "Щітка й мильна вода"
+      },
+      "bodyByLocale": {
+        "ru": "Scrubbing brush — жёсткая щётка для оттирания грязи; soapy water — мыльная вода. She was using a scrubbing brush. — Она пользовалась жёсткой щёткой. Выберите щётку.",
+        "uk": "Scrubbing brush — жорстка щітка для відтирання бруду; soapy water — мильна вода. She was using a scrubbing brush. — Вона користувалася жорсткою щіткою. Виберіть щітку."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r1",
+              "text": "She was using a scrubbing brush."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r2",
+              "text": "She was using soapy water."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r3",
+              "text": "She were using a scrubbing brush."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r1",
+              "text": "She was using a scrubbing brush."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r2",
+              "text": "She was using soapy water."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro2:r3",
+              "text": "She were using a scrubbing brush."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мыльные пузыри",
+        "uk": "Мильні бульбашки"
+      },
+      "bodyByLocale": {
+        "ru": "Soap bubbles — мыльные пузыри. They were watching the soap bubbles. — Они наблюдали за мыльными пузырями. После they — were. Выберите фразу о прошлом.",
+        "uk": "Soap bubbles — мильні бульбашки. They were watching the soap bubbles. — Вони спостерігали за мильними бульбашками. Після they — were. Виберіть фразу про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r1",
+              "text": "They were watching the soap bubbles."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r2",
+              "text": "They was watching the soap bubbles."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r3",
+              "text": "They are watching the soap bubbles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r1",
+              "text": "They were watching the soap bubbles."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r2",
+              "text": "They was watching the soap bubbles."
+            },
+            {
+              "responseId": "en:lesson-14:session-04:intro3:r3",
+              "text": "They are watching the soap bubbles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5d7858c882cdf7626d5512defcf6fd770d197105b1e5496c1aff9164db5fabe"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-02:word:measuring-jug",
+    "correctText": "measuring jug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i01",
+    "correctText": "I was using a measuring jug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i02",
+    "correctText": "She was using a measuring jug.",
+    "correctResponseId": "en:lesson-14:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:word:rolling-pin",
+    "correctText": "rolling pin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i04",
+    "correctText": "He was using a rolling pin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i05",
+    "correctText": "I was using a rolling pin.",
+    "correctResponseId": "en:lesson-14:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:word:cake-tin",
+    "correctText": "cake tin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i07",
+    "correctText": "She was washing a cake tin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i08",
+    "correctText": "We were washing a cake tin.",
+    "correctResponseId": "en:lesson-14:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:word:wooden-spoon",
+    "correctText": "wooden spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i10",
+    "correctText": "We were using a wooden spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i11",
+    "correctText": "They were using a wooden spoon.",
+    "correctResponseId": "en:lesson-14:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i13",
+    "correctText": "en:lesson-14:session-02:i13:p1=measuring jug\nen:lesson-14:session-02:i13:p2=rolling pin\nen:lesson-14:session-02:i13:p3=cake tin\nen:lesson-14:session-02:i13:p4=wooden spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i14",
+    "correctText": "She was cooking at four.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i15",
+    "correctText": "I was washing the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i16",
+    "correctText": "I was using a rolling pin at four yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-02:i17",
+    "correctText": "She was washing a cake tin at four yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-01:word:comic-book",
+    "correctText": "comic book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i01",
+    "correctText": "I was reading a comic book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i02",
+    "correctText": "She was reading a comic book.",
+    "correctResponseId": "en:lesson-14:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:word:jigsaw-puzzle",
+    "correctText": "jigsaw puzzle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i04",
+    "correctText": "They were doing a jigsaw puzzle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i05",
+    "correctText": "We were doing a jigsaw puzzle.",
+    "correctResponseId": "en:lesson-14:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:word:colouring-book",
+    "correctText": "colouring book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i07",
+    "correctText": "She was using a colouring book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i08",
+    "correctText": "I was using a colouring book.",
+    "correctResponseId": "en:lesson-14:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:word:picture-book",
+    "correctText": "picture book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i10",
+    "correctText": "We were reading a picture book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i11",
+    "correctText": "He was reading a picture book.",
+    "correctResponseId": "en:lesson-14:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i13",
+    "correctText": "en:lesson-14:session-01:i13:p1=comic book\nen:lesson-14:session-01:i13:p2=jigsaw puzzle\nen:lesson-14:session-01:i13:p3=colouring book\nen:lesson-14:session-01:i13:p4=picture book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i14",
+    "correctText": "I was reading at eight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i15",
+    "correctText": "They were playing at eight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i16",
+    "correctText": "I was reading a comic book at eight yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-01:i17",
+    "correctText": "We were doing a jigsaw puzzle at eight yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-01",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-01:word:comic-book",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — comic book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:comic-book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — comic book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:comic-book:audio",
+            "transcript": "comic book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:comic-book:r1",
+              "targetText": "comic book",
+              "meaningByLocale": {
+                "ru": "комикс в виде книжки.",
+                "uk": "комікс у вигляді книжки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comic book",
+            "definitionByLocale": {
+              "ru": "комикс в виде книжки.",
+              "uk": "комікс у вигляді книжки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я читал комикс в тот момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я читал комикс в тот момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was reading a comic book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я читал комикс в тот момент",
+            "uk": "Скажіть: Я читав комікс у той момент"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "a",
+            "comic",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i02:r1",
+            "text": "She was reading a comic book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i02:r2",
+            "text": "I was reading a comic book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i02:r3",
+            "text": "They were reading a comic book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i02:audio",
+            "transcript": "She was reading a comic book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i02:r1",
+              "targetText": "She was reading a comic book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r2",
+              "targetText": "I was reading a comic book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r3",
+              "targetText": "They were reading a comic book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She was reading a comic book.",
+                "uk": "У записі звучить She was reading a comic book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She was reading a comic book.",
+                "uk": "У записі звучить She was reading a comic book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ reading a comic book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:jigsaw-puzzle",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jigsaw puzzle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:jigsaw-puzzle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jigsaw puzzle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:jigsaw-puzzle:audio",
+            "transcript": "jigsaw puzzle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:jigsaw-puzzle:r1",
+              "targetText": "jigsaw puzzle",
+              "meaningByLocale": {
+                "ru": "пазл из отдельных кусочков.",
+                "uk": "пазл з окремих шматочків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jigsaw puzzle",
+            "definitionByLocale": {
+              "ru": "пазл из отдельных кусочков.",
+              "uk": "пазл з окремих шматочків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они собирали пазл в тот момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они собирали пазл в тот момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were doing a jigsaw puzzle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собирали пазл в тот момент",
+            "uk": "Скажіть: Вони складали пазл у той момент"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "doing",
+            "a",
+            "jigsaw",
+            "puzzle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i05:r1",
+            "text": "We were doing a jigsaw puzzle."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i05:r2",
+            "text": "She was doing a jigsaw puzzle."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i05:r3",
+            "text": "They were doing a jigsaw puzzle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i05:audio",
+            "transcript": "We were doing a jigsaw puzzle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i05:r1",
+              "targetText": "We were doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r2",
+              "targetText": "She was doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r3",
+              "targetText": "They were doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were doing a jigsaw puzzle.",
+                "uk": "У записі звучить We were doing a jigsaw puzzle."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were doing a jigsaw puzzle.",
+                "uk": "У записі звучить We were doing a jigsaw puzzle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ doing a jigsaw puzzle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:colouring-book",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — colouring book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:colouring-book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — colouring book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:colouring-book:audio",
+            "transcript": "colouring book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:colouring-book:r1",
+              "targetText": "colouring book",
+              "meaningByLocale": {
+                "ru": "книжка-раскраска.",
+                "uk": "книжка-розмальовка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colouring book",
+            "definitionByLocale": {
+              "ru": "книжка-раскраска.",
+              "uk": "книжка-розмальовка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она занималась с раскраской в тот момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она занималась с раскраской в тот момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was using a colouring book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она занималась с раскраской в тот момент",
+            "uk": "Скажіть: Вона займалася з розмальовкою в той момент"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "using",
+            "a",
+            "colouring",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i08:r1",
+            "text": "I was using a colouring book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i08:r2",
+            "text": "She was using a colouring book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i08:r3",
+            "text": "We were using a colouring book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i08:audio",
+            "transcript": "I was using a colouring book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i08:r1",
+              "targetText": "I was using a colouring book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r2",
+              "targetText": "She was using a colouring book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r3",
+              "targetText": "We were using a colouring book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was using a colouring book.",
+                "uk": "У записі звучить I was using a colouring book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was using a colouring book.",
+                "uk": "У записі звучить I was using a colouring book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ using a colouring book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:picture-book",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — picture book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:picture-book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — picture book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:picture-book:audio",
+            "transcript": "picture book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:picture-book:r1",
+              "targetText": "picture book",
+              "meaningByLocale": {
+                "ru": "книжка с картинками.",
+                "uk": "книжка з малюнками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "picture book",
+            "definitionByLocale": {
+              "ru": "книжка с картинками.",
+              "uk": "книжка з малюнками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы читали книжку с картинками в тот момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы читали книжку с картинками в тот момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were reading a picture book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы читали книжку с картинками в тот момент",
+            "uk": "Скажіть: Ми читали книжку з малюнками в той момент"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "reading",
+            "a",
+            "picture",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i11:r1",
+            "text": "He was reading a picture book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i11:r2",
+            "text": "We were reading a picture book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i11:r3",
+            "text": "She was reading a picture book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i11:audio",
+            "transcript": "He was reading a picture book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i11:r1",
+              "targetText": "He was reading a picture book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r2",
+              "targetText": "We were reading a picture book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r3",
+              "targetText": "She was reading a picture book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was reading a picture book.",
+                "uk": "У записі звучить He was reading a picture book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was reading a picture book.",
+                "uk": "У записі звучить He was reading a picture book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ reading a picture book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-01:i13:p1",
+              "target": "comic book",
+              "meaningByLocale": {
+                "ru": "комикс в виде книжки",
+                "uk": "комікс у вигляді книжки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p2",
+              "target": "jigsaw puzzle",
+              "meaningByLocale": {
+                "ru": "пазл из отдельных кусочков",
+                "uk": "пазл з окремих шматочків"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p3",
+              "target": "colouring book",
+              "meaningByLocale": {
+                "ru": "книжка-раскраска",
+                "uk": "книжка-розмальовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p4",
+              "target": "picture book",
+              "meaningByLocale": {
+                "ru": "книжка с картинками",
+                "uk": "книжка з малюнками"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comic book",
+            "jigsaw puzzle",
+            "colouring book",
+            "picture book"
+          ],
+          "rightColumn": [
+            "комикс в виде книжки",
+            "пазл из отдельных кусочков",
+            "книжка-раскраска",
+            "книжка с картинками"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i14:audio",
+            "transcript": "I was reading at eight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was reading at eight.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "at",
+            "eight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i15:audio",
+            "transcript": "They were playing at eight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were playing at eight.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "playing",
+            "at",
+            "eight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в восемь я читал комикс",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в восемь я читал комикс",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i16:audio",
+            "transcript": "I was reading a comic book at eight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was reading a comic book at eight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в восемь мы собирали пазл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в восемь мы собирали пазл",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i17:audio",
+            "transcript": "We were doing a jigsaw puzzle at eight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We were doing a jigsaw puzzle at eight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-01:word:comic-book",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — comic book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:comic-book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — comic book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:comic-book:audio",
+            "transcript": "comic book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:comic-book:r1",
+              "targetText": "comic book",
+              "meaningByLocale": {
+                "ru": "комикс в виде книжки.",
+                "uk": "комікс у вигляді книжки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "comic book",
+            "definitionByLocale": {
+              "ru": "комикс в виде книжки.",
+              "uk": "комікс у вигляді книжки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я читав комікс у той момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я читав комікс у той момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was reading a comic book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я читал комикс в тот момент",
+            "uk": "Скажіть: Я читав комікс у той момент"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "a",
+            "comic",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i02:r1",
+            "text": "She was reading a comic book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i02:r2",
+            "text": "I was reading a comic book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i02:r3",
+            "text": "They were reading a comic book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i02:audio",
+            "transcript": "She was reading a comic book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i02:r1",
+              "targetText": "She was reading a comic book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r2",
+              "targetText": "I was reading a comic book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r3",
+              "targetText": "They were reading a comic book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She was reading a comic book.",
+                "uk": "У записі звучить She was reading a comic book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She was reading a comic book.",
+                "uk": "У записі звучить She was reading a comic book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ reading a comic book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:jigsaw-puzzle",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jigsaw puzzle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:jigsaw-puzzle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jigsaw puzzle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:jigsaw-puzzle:audio",
+            "transcript": "jigsaw puzzle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:jigsaw-puzzle:r1",
+              "targetText": "jigsaw puzzle",
+              "meaningByLocale": {
+                "ru": "пазл из отдельных кусочков.",
+                "uk": "пазл з окремих шматочків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jigsaw puzzle",
+            "definitionByLocale": {
+              "ru": "пазл из отдельных кусочков.",
+              "uk": "пазл з окремих шматочків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони складали пазл у той момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони складали пазл у той момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were doing a jigsaw puzzle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собирали пазл в тот момент",
+            "uk": "Скажіть: Вони складали пазл у той момент"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "doing",
+            "a",
+            "jigsaw",
+            "puzzle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i05:r1",
+            "text": "We were doing a jigsaw puzzle."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i05:r2",
+            "text": "She was doing a jigsaw puzzle."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i05:r3",
+            "text": "They were doing a jigsaw puzzle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i05:audio",
+            "transcript": "We were doing a jigsaw puzzle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i05:r1",
+              "targetText": "We were doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r2",
+              "targetText": "She was doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r3",
+              "targetText": "They were doing a jigsaw puzzle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were doing a jigsaw puzzle.",
+                "uk": "У записі звучить We were doing a jigsaw puzzle."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We were doing a jigsaw puzzle.",
+                "uk": "У записі звучить We were doing a jigsaw puzzle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ doing a jigsaw puzzle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:colouring-book",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — colouring book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:colouring-book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — colouring book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:colouring-book:audio",
+            "transcript": "colouring book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:colouring-book:r1",
+              "targetText": "colouring book",
+              "meaningByLocale": {
+                "ru": "книжка-раскраска.",
+                "uk": "книжка-розмальовка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "colouring book",
+            "definitionByLocale": {
+              "ru": "книжка-раскраска.",
+              "uk": "книжка-розмальовка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона займалася з розмальовкою в той момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона займалася з розмальовкою в той момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was using a colouring book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она занималась с раскраской в тот момент",
+            "uk": "Скажіть: Вона займалася з розмальовкою в той момент"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "using",
+            "a",
+            "colouring",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i08:r1",
+            "text": "I was using a colouring book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i08:r2",
+            "text": "She was using a colouring book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i08:r3",
+            "text": "We were using a colouring book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i08:audio",
+            "transcript": "I was using a colouring book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i08:r1",
+              "targetText": "I was using a colouring book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r2",
+              "targetText": "She was using a colouring book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r3",
+              "targetText": "We were using a colouring book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was using a colouring book.",
+                "uk": "У записі звучить I was using a colouring book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was using a colouring book.",
+                "uk": "У записі звучить I was using a colouring book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ using a colouring book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:word:picture-book",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — picture book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:word:picture-book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — picture book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:word:picture-book:audio",
+            "transcript": "picture book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:word:picture-book:r1",
+              "targetText": "picture book",
+              "meaningByLocale": {
+                "ru": "книжка с картинками.",
+                "uk": "книжка з малюнками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "picture book",
+            "definitionByLocale": {
+              "ru": "книжка с картинками.",
+              "uk": "книжка з малюнками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми читали книжку з малюнками в той момент",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми читали книжку з малюнками в той момент",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were reading a picture book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы читали книжку с картинками в тот момент",
+            "uk": "Скажіть: Ми читали книжку з малюнками в той момент"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "reading",
+            "a",
+            "picture",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i11:r1",
+            "text": "He was reading a picture book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i11:r2",
+            "text": "We were reading a picture book."
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i11:r3",
+            "text": "She was reading a picture book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i11:audio",
+            "transcript": "He was reading a picture book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-01:i11:r1",
+              "targetText": "He was reading a picture book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r2",
+              "targetText": "We were reading a picture book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r3",
+              "targetText": "She was reading a picture book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was reading a picture book.",
+                "uk": "У записі звучить He was reading a picture book."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He was reading a picture book.",
+                "uk": "У записі звучить He was reading a picture book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-01:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-01:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ reading a picture book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-01:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-01:i13:p1",
+              "target": "comic book",
+              "meaningByLocale": {
+                "ru": "комикс в виде книжки",
+                "uk": "комікс у вигляді книжки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p2",
+              "target": "jigsaw puzzle",
+              "meaningByLocale": {
+                "ru": "пазл из отдельных кусочков",
+                "uk": "пазл з окремих шматочків"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p3",
+              "target": "colouring book",
+              "meaningByLocale": {
+                "ru": "книжка-раскраска",
+                "uk": "книжка-розмальовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-01:i13:p4",
+              "target": "picture book",
+              "meaningByLocale": {
+                "ru": "книжка с картинками",
+                "uk": "книжка з малюнками"
+              }
+            }
+          ],
+          "leftColumn": [
+            "comic book",
+            "jigsaw puzzle",
+            "colouring book",
+            "picture book"
+          ],
+          "rightColumn": [
+            "комікс у вигляді книжки",
+            "пазл з окремих шматочків",
+            "книжка-розмальовка",
+            "книжка з малюнками"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i14:audio",
+            "transcript": "I was reading at eight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was reading at eight.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "at",
+            "eight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i15:audio",
+            "transcript": "They were playing at eight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were playing at eight.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "playing",
+            "at",
+            "eight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о восьмій я читав комікс",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о восьмій я читав комікс",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i16:audio",
+            "transcript": "I was reading a comic book at eight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was reading a comic book at eight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о восьмій ми складали пазл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о восьмій ми складали пазл",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-01:i17:audio",
+            "transcript": "We were doing a jigsaw puzzle at eight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We were doing a jigsaw puzzle at eight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-01:word:comic-book",
+      "correctText": "comic book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i01",
+      "correctText": "I was reading a comic book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i02",
+      "correctText": "She was reading a comic book.",
+      "correctResponseId": "en:lesson-14:session-01:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-01:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:word:jigsaw-puzzle",
+      "correctText": "jigsaw puzzle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i04",
+      "correctText": "They were doing a jigsaw puzzle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i05",
+      "correctText": "We were doing a jigsaw puzzle.",
+      "correctResponseId": "en:lesson-14:session-01:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-01:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:word:colouring-book",
+      "correctText": "colouring book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i07",
+      "correctText": "She was using a colouring book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i08",
+      "correctText": "I was using a colouring book.",
+      "correctResponseId": "en:lesson-14:session-01:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-01:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:word:picture-book",
+      "correctText": "picture book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i10",
+      "correctText": "We were reading a picture book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i11",
+      "correctText": "He was reading a picture book.",
+      "correctResponseId": "en:lesson-14:session-01:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-01:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i14",
+      "correctText": "I was reading at eight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i15",
+      "correctText": "They were playing at eight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i16",
+      "correctText": "I was reading a comic book at eight yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:i17",
+      "correctText": "We were doing a jigsaw puzzle at eight yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

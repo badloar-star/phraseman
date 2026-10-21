@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-02:word:measuring-jug",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — measuring jug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:word:measuring-jug:audio"
+      ],
+      "accessibilityLabel": "Картка слова — measuring jug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:word:measuring-jug:audio",
+          "transcript": "measuring jug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:word:measuring-jug:r1",
+            "targetText": "measuring jug",
+            "meaningByLocale": {
+              "ru": "мерный кувшин для жидкости.",
+              "uk": "мірний глечик для рідини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "measuring jug",
+          "definitionByLocale": {
+            "ru": "мерный кувшин для жидкости.",
+            "uk": "мірний глечик для рідини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я користувався мірним глечиком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я користувався мірним глечиком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was using a measuring jug.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался мерным кувшином",
+          "uk": "Скажіть: Я користувався мірним глечиком"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "using",
+          "a",
+          "measuring",
+          "jug"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i02:r1",
+          "text": "She was using a measuring jug."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i02:r2",
+          "text": "We were using a measuring jug."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i02:r3",
+          "text": "I was using a measuring jug."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i02:audio",
+          "transcript": "She was using a measuring jug."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:i02:r1",
+            "targetText": "She was using a measuring jug.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i02:r2",
+            "targetText": "We were using a measuring jug.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i02:r3",
+            "targetText": "I was using a measuring jug.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was using a measuring jug.",
+              "uk": "У записі звучить She was using a measuring jug."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was using a measuring jug.",
+              "uk": "У записі звучить She was using a measuring jug."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ using a measuring jug.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-02:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:word:rolling-pin",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rolling pin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:word:rolling-pin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rolling pin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:word:rolling-pin:audio",
+          "transcript": "rolling pin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:word:rolling-pin:r1",
+            "targetText": "rolling pin",
+            "meaningByLocale": {
+              "ru": "скалка.",
+              "uk": "качалка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rolling pin",
+          "definitionByLocale": {
+            "ru": "скалка.",
+            "uk": "качалка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Він користувався качалкою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Він користувався качалкою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He was using a rolling pin.",
+        "localizedMeaning": {
+          "ru": "Скажите: Он пользовался скалкой",
+          "uk": "Скажіть: Він користувався качалкою"
+        },
+        "orderedTokens": [
+          "He",
+          "was",
+          "using",
+          "a",
+          "rolling",
+          "pin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i05:r1",
+          "text": "I was using a rolling pin."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i05:r2",
+          "text": "He was using a rolling pin."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i05:r3",
+          "text": "They were using a rolling pin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i05:audio",
+          "transcript": "I was using a rolling pin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:i05:r1",
+            "targetText": "I was using a rolling pin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i05:r2",
+            "targetText": "He was using a rolling pin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i05:r3",
+            "targetText": "They were using a rolling pin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was using a rolling pin.",
+              "uk": "У записі звучить I was using a rolling pin."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was using a rolling pin.",
+              "uk": "У записі звучить I was using a rolling pin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "He ___ using a rolling pin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-02:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:word:cake-tin",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cake tin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:word:cake-tin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cake tin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:word:cake-tin:audio",
+          "transcript": "cake tin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:word:cake-tin:r1",
+            "targetText": "cake tin",
+            "meaningByLocale": {
+              "ru": "форма для выпечки пирога или торта.",
+              "uk": "форма для випікання пирога або торта."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake tin",
+          "definitionByLocale": {
+            "ru": "форма для выпечки пирога или торта.",
+            "uk": "форма для випікання пирога або торта."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона мила форму для випікання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона мила форму для випікання",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was washing a cake tin.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она мыла форму для выпечки",
+          "uk": "Скажіть: Вона мила форму для випікання"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "washing",
+          "a",
+          "cake",
+          "tin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i08:r1",
+          "text": "We were washing a cake tin."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i08:r2",
+          "text": "She was washing a cake tin."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i08:r3",
+          "text": "I was washing a cake tin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i08:audio",
+          "transcript": "We were washing a cake tin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:i08:r1",
+            "targetText": "We were washing a cake tin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i08:r2",
+            "targetText": "She was washing a cake tin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i08:r3",
+            "targetText": "I was washing a cake tin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were washing a cake tin.",
+              "uk": "У записі звучить We were washing a cake tin."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were washing a cake tin.",
+              "uk": "У записі звучить We were washing a cake tin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ washing a cake tin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-02:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:word:wooden-spoon",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wooden spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:word:wooden-spoon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wooden spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:word:wooden-spoon:audio",
+          "transcript": "wooden spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:word:wooden-spoon:r1",
+            "targetText": "wooden spoon",
+            "meaningByLocale": {
+              "ru": "деревянная ложка.",
+              "uk": "дерев’яна ложка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wooden spoon",
+          "definitionByLocale": {
+            "ru": "деревянная ложка.",
+            "uk": "дерев’яна ложка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми користувалися дерев’яною ложкою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми користувалися дерев’яною ложкою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were using a wooden spoon.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы пользовались деревянной ложкой",
+          "uk": "Скажіть: Ми користувалися дерев’яною ложкою"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "using",
+          "a",
+          "wooden",
+          "spoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i11:r1",
+          "text": "They were using a wooden spoon."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i11:r2",
+          "text": "We were using a wooden spoon."
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i11:r3",
+          "text": "He was using a wooden spoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i11:audio",
+          "transcript": "They were using a wooden spoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-02:i11:r1",
+            "targetText": "They were using a wooden spoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i11:r2",
+            "targetText": "We were using a wooden spoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i11:r3",
+            "targetText": "He was using a wooden spoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were using a wooden spoon.",
+              "uk": "У записі звучить They were using a wooden spoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were using a wooden spoon.",
+              "uk": "У записі звучить They were using a wooden spoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-02:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-02:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ using a wooden spoon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-02:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-02:i13:p1",
+            "target": "measuring jug",
+            "meaningByLocale": {
+              "ru": "мерный кувшин для жидкости",
+              "uk": "мірний глечик для рідини"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-02:i13:p2",
+            "target": "rolling pin",
+            "meaningByLocale": {
+              "ru": "скалка",
+              "uk": "качалка"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-02:i13:p3",
+            "target": "cake tin",
+            "meaningByLocale": {
+              "ru": "форма для выпечки пирога или торта",
+              "uk": "форма для випікання пирога або торта"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-02:i13:p4",
+            "target": "wooden spoon",
+            "meaningByLocale": {
+              "ru": "деревянная ложка",
+              "uk": "дерев’яна ложка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "measuring jug",
+          "rolling pin",
+          "cake tin",
+          "wooden spoon"
+        ],
+        "rightColumn": [
+          "мірний глечик для рідини",
+          "качалка",
+          "форма для випікання пирога або торта",
+          "дерев’яна ложка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i14:audio",
+          "transcript": "She was cooking at four."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She was cooking at four.",
+        "orderedTokens": [
+          "She",
+          "was",
+          "cooking",
+          "at",
+          "four"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i15:audio",
+          "transcript": "I was washing the dishes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was washing the dishes.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "washing",
+          "the",
+          "dishes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора о четвертій я користувався качалкою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора о четвертій я користувався качалкою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i16:audio",
+          "transcript": "I was using a rolling pin at four yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was using a rolling pin at four yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора о четвертій вона мила форму для випікання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора о четвертій вона мила форму для випікання",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-02:i17:audio",
+          "transcript": "She was washing a cake tin at four yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was washing a cake tin at four yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "239cab68749c13257bea6cae7b03fc510feb84024efc11859f2802ced5f7da97"
+}

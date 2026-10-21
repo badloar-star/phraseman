@@ -5103,4 +5103,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past questions and event sequence","uk":"review: past questions and event sequence"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 1,
+    sourceFingerprint: "422fe4e3a23d9d87e385d6279a71d90e4999936092aac2493e1f102d473497eb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Continuous: subject + was/were + verb-ing","uk":"Past Continuous: subject + was/were + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 2,
+    sourceFingerprint: "02a34410af23645e72ee5e9969b299bf789924ee4f852d11f4a603694cf85afb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: was/were + verb-ing","uk":"review: was/were + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 3,
+    sourceFingerprint: "ec5e03928c703ae69b7d7f38ebc3be0f82b478696a938027507d70ce8976d860",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: was/were + verb-ing","uk":"review: was/were + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 14, sessionOrdinal: 4,
+    sourceFingerprint: "7518e98d38c09e23023b5867cd9b0174b17b9280c729f28052a8a4a078619f7d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: was/were + verb-ing","uk":"review: was/were + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
+  }),
 ]);

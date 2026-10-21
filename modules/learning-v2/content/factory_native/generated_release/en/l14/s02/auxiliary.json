@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-02:intro1:r2": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        },
+        "en:lesson-14:session-02:intro1:r3": {
+          "ru": "Для действия нужна using.",
+          "uk": "Для дії потрібна using."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-02:intro2:r2": {
+          "ru": "Это скалка.",
+          "uk": "Це качалка."
+        },
+        "en:lesson-14:session-02:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-02:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-02:intro3:r3": {
+          "ru": "Are using — настоящее.",
+          "uk": "Are using — теперішній час."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "84d214508237884779ee1d040474e8a2c71361076afe4bc1a3aa85123e4dced5"
+}

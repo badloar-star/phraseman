@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "review: was/were + verb-ing",
+    "uk": "review: was/were + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мерный кувшин",
+        "uk": "Мірний глечик"
+      },
+      "bodyByLocale": {
+        "ru": "Measuring jug — мерный кувшин с делениями для жидкости. I was using a measuring jug. — Я пользовался мерным кувшином в тот момент. После was — using; в use перед -ing конечная e исчезает.",
+        "uk": "Measuring jug — мірний глечик із поділками для рідини. I was using a measuring jug. — Я користувався мірним глечиком у той момент. Після was — using; у use перед -ing кінцева e зникає."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r1",
+              "text": "I was using a measuring jug."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r2",
+              "text": "I were using a measuring jug."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r3",
+              "text": "I was use a measuring jug."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r1",
+              "text": "I was using a measuring jug."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r2",
+              "text": "I were using a measuring jug."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro1:r3",
+              "text": "I was use a measuring jug."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Скалка и форма",
+        "uk": "Качалка й форма"
+      },
+      "bodyByLocale": {
+        "ru": "Rolling pin — скалка; cake tin — форма для выпечки пирога или торта. She was washing a cake tin. — Она мыла форму для выпечки. Выберите форму, а не скалку.",
+        "uk": "Rolling pin — качалка; cake tin — форма для випікання пирога або торта. She was washing a cake tin. — Вона мила форму для випікання. Виберіть форму, а не качалку."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r1",
+              "text": "She was washing a cake tin."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r2",
+              "text": "She was washing a rolling pin."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r3",
+              "text": "She were washing a cake tin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r1",
+              "text": "She was washing a cake tin."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r2",
+              "text": "She was washing a rolling pin."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro2:r3",
+              "text": "She were washing a cake tin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Деревянная ложка",
+        "uk": "Дерев’яна ложка"
+      },
+      "bodyByLocale": {
+        "ru": "Wooden spoon — деревянная ложка. We were using a wooden spoon. — Мы пользовались деревянной ложкой. С we нужна were. Выберите сообщение о вчерашнем действии.",
+        "uk": "Wooden spoon — дерев’яна ложка. We were using a wooden spoon. — Ми користувалися дерев’яною ложкою. З we потрібна were. Виберіть повідомлення про вчорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r1",
+              "text": "We were using a wooden spoon."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r2",
+              "text": "We was using a wooden spoon."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r3",
+              "text": "We are using a wooden spoon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r1",
+              "text": "We were using a wooden spoon."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r2",
+              "text": "We was using a wooden spoon."
+            },
+            {
+              "responseId": "en:lesson-14:session-02:intro3:r3",
+              "text": "We are using a wooden spoon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2acaf1e210d6cb5bca89de3c2eb0d2457e5ec11084004464868edb5837b0b162"
+}

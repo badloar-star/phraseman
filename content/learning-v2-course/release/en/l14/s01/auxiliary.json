@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-01:intro1:r2": {
+          "ru": "Am reading — сейчас, а здесь вчера.",
+          "uk": "Am reading — зараз, а тут учора."
+        },
+        "en:lesson-14:session-01:intro1:r3": {
+          "ru": "После was для действия нужна форма reading.",
+          "uk": "Після was для дії потрібна форма reading."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-01:intro2:r2": {
+          "ru": "С they нужна were.",
+          "uk": "З they потрібна were."
+        },
+        "en:lesson-14:session-01:intro2:r3": {
+          "ru": "Are doing — сейчас; в прошлом were doing.",
+          "uk": "Are doing — зараз; у минулому were doing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-01:intro3:r2": {
+          "ru": "Это чтение книжки с картинками.",
+          "uk": "Це читання книжки з малюнками."
+        },
+        "en:lesson-14:session-01:intro3:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5faa11170038afd2c249aac246d01c89c1b8f039f24b06442823615e49a51c35"
+}

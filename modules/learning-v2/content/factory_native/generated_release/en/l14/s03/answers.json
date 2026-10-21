@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-03:word:bird-feeder",
+    "correctText": "bird feeder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i01",
+    "correctText": "I was filling the bird feeder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i02",
+    "correctText": "He was filling the bird feeder.",
+    "correctResponseId": "en:lesson-14:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:word:garden-path",
+    "correctText": "garden path",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i04",
+    "correctText": "They were cleaning the garden path.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i05",
+    "correctText": "We were cleaning the garden path.",
+    "correctResponseId": "en:lesson-14:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:word:flower-bed",
+    "correctText": "flower bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i07",
+    "correctText": "She was watering the flower bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i08",
+    "correctText": "I was watering the flower bed.",
+    "correctResponseId": "en:lesson-14:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:word:apple-tree",
+    "correctText": "apple tree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i10",
+    "correctText": "We were watering the apple tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i11",
+    "correctText": "He was watering the apple tree.",
+    "correctResponseId": "en:lesson-14:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i13",
+    "correctText": "en:lesson-14:session-03:i13:p1=bird feeder\nen:lesson-14:session-03:i13:p2=garden path\nen:lesson-14:session-03:i13:p3=flower bed\nen:lesson-14:session-03:i13:p4=apple tree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i14",
+    "correctText": "I was working in the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i15",
+    "correctText": "They were watering the flowers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i16",
+    "correctText": "She was filling the bird feeder at ten yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-03:i17",
+    "correctText": "We were cleaning the garden path at ten yesterday.",
+    "correctResponseId": null
+  }
+]

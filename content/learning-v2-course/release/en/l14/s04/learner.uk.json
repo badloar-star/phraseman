@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-04:word:spray-bottle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spray bottle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:word:spray-bottle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spray bottle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:word:spray-bottle:audio",
+          "transcript": "spray bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:word:spray-bottle:r1",
+            "targetText": "spray bottle",
+            "meaningByLocale": {
+              "ru": "бутылка с распылителем.",
+              "uk": "пляшка з розпилювачем."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spray bottle",
+          "definitionByLocale": {
+            "ru": "бутылка с распылителем.",
+            "uk": "пляшка з розпилювачем."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я наповнював пляшку з розпилювачем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я наповнював пляшку з розпилювачем",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was filling a spray bottle.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я наполнял бутылку с распылителем",
+          "uk": "Скажіть: Я наповнював пляшку з розпилювачем"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "filling",
+          "a",
+          "spray",
+          "bottle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i02:r1",
+          "text": "She was filling a spray bottle."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i02:r2",
+          "text": "I was filling a spray bottle."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i02:r3",
+          "text": "They were filling a spray bottle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i02:audio",
+          "transcript": "She was filling a spray bottle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:i02:r1",
+            "targetText": "She was filling a spray bottle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i02:r2",
+            "targetText": "I was filling a spray bottle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i02:r3",
+            "targetText": "They were filling a spray bottle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was filling a spray bottle.",
+              "uk": "У записі звучить She was filling a spray bottle."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was filling a spray bottle.",
+              "uk": "У записі звучить She was filling a spray bottle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ filling a spray bottle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-04:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:word:scrubbing-brush",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scrubbing brush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:word:scrubbing-brush:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scrubbing brush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:word:scrubbing-brush:audio",
+          "transcript": "scrubbing brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:word:scrubbing-brush:r1",
+            "targetText": "scrubbing brush",
+            "meaningByLocale": {
+              "ru": "жёсткая щётка для оттирания грязи.",
+              "uk": "жорстка щітка для відтирання бруду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scrubbing brush",
+          "definitionByLocale": {
+            "ru": "жёсткая щётка для оттирания грязи.",
+            "uk": "жорстка щітка для відтирання бруду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона користувалася жорсткою щіткою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона користувалася жорсткою щіткою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was using a scrubbing brush.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она пользовалась жёсткой щёткой",
+          "uk": "Скажіть: Вона користувалася жорсткою щіткою"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "using",
+          "a",
+          "scrubbing",
+          "brush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i05:r1",
+          "text": "I was using a scrubbing brush."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i05:r2",
+          "text": "She was using a scrubbing brush."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i05:r3",
+          "text": "We were using a scrubbing brush."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i05:audio",
+          "transcript": "I was using a scrubbing brush."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:i05:r1",
+            "targetText": "I was using a scrubbing brush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i05:r2",
+            "targetText": "She was using a scrubbing brush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i05:r3",
+            "targetText": "We were using a scrubbing brush.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was using a scrubbing brush.",
+              "uk": "У записі звучить I was using a scrubbing brush."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was using a scrubbing brush.",
+              "uk": "У записі звучить I was using a scrubbing brush."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ using a scrubbing brush.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-04:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:word:soapy-water",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soapy water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:word:soapy-water:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soapy water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:word:soapy-water:audio",
+          "transcript": "soapy water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:word:soapy-water:r1",
+            "targetText": "soapy water",
+            "meaningByLocale": {
+              "ru": "мыльная вода.",
+              "uk": "мильна вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soapy water",
+          "definitionByLocale": {
+            "ru": "мыльная вода.",
+            "uk": "мильна вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми користувалися мильною водою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми користувалися мильною водою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were using soapy water.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы пользовались мыльной водой",
+          "uk": "Скажіть: Ми користувалися мильною водою"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "using",
+          "soapy",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i08:r1",
+          "text": "They were using soapy water."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i08:r2",
+          "text": "We were using soapy water."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i08:r3",
+          "text": "He was using soapy water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i08:audio",
+          "transcript": "They were using soapy water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:i08:r1",
+            "targetText": "They were using soapy water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i08:r2",
+            "targetText": "We were using soapy water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i08:r3",
+            "targetText": "He was using soapy water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were using soapy water.",
+              "uk": "У записі звучить They were using soapy water."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were using soapy water.",
+              "uk": "У записі звучить They were using soapy water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ using soapy water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-04:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:word:soap-bubbles",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soap bubbles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:word:soap-bubbles:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soap bubbles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:word:soap-bubbles:audio",
+          "transcript": "soap bubbles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:word:soap-bubbles:r1",
+            "targetText": "soap bubbles",
+            "meaningByLocale": {
+              "ru": "мыльные пузыри.",
+              "uk": "мильні бульбашки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soap bubbles",
+          "definitionByLocale": {
+            "ru": "мыльные пузыри.",
+            "uk": "мильні бульбашки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони спостерігали за мильними бульбашками",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони спостерігали за мильними бульбашками",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were watching the soap bubbles.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они наблюдали за мыльными пузырями",
+          "uk": "Скажіть: Вони спостерігали за мильними бульбашками"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "watching",
+          "the",
+          "soap",
+          "bubbles"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i11:r1",
+          "text": "She was watching the soap bubbles."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i11:r2",
+          "text": "They were watching the soap bubbles."
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i11:r3",
+          "text": "I was watching the soap bubbles."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i11:audio",
+          "transcript": "She was watching the soap bubbles."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-04:i11:r1",
+            "targetText": "She was watching the soap bubbles.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i11:r2",
+            "targetText": "They were watching the soap bubbles.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i11:r3",
+            "targetText": "I was watching the soap bubbles.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was watching the soap bubbles.",
+              "uk": "У записі звучить She was watching the soap bubbles."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was watching the soap bubbles.",
+              "uk": "У записі звучить She was watching the soap bubbles."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-04:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-04:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ watching the soap bubbles.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-04:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-04:i13:p1",
+            "target": "spray bottle",
+            "meaningByLocale": {
+              "ru": "бутылка с распылителем",
+              "uk": "пляшка з розпилювачем"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-04:i13:p2",
+            "target": "scrubbing brush",
+            "meaningByLocale": {
+              "ru": "жёсткая щётка для оттирания грязи",
+              "uk": "жорстка щітка для відтирання бруду"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-04:i13:p3",
+            "target": "soapy water",
+            "meaningByLocale": {
+              "ru": "мыльная вода",
+              "uk": "мильна вода"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-04:i13:p4",
+            "target": "soap bubbles",
+            "meaningByLocale": {
+              "ru": "мыльные пузыри",
+              "uk": "мильні бульбашки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "spray bottle",
+          "scrubbing brush",
+          "soapy water",
+          "soap bubbles"
+        ],
+        "rightColumn": [
+          "пляшка з розпилювачем",
+          "жорстка щітка для відтирання бруду",
+          "мильна вода",
+          "мильні бульбашки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i14:audio",
+          "transcript": "We were cleaning at noon."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We were cleaning at noon.",
+        "orderedTokens": [
+          "We",
+          "were",
+          "cleaning",
+          "at",
+          "noon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i15:audio",
+          "transcript": "She was washing the floor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She was washing the floor.",
+        "orderedTokens": [
+          "She",
+          "was",
+          "washing",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора опівдні я користувався жорсткою щіткою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора опівдні я користувався жорсткою щіткою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i16:audio",
+          "transcript": "I was using a scrubbing brush at noon yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was using a scrubbing brush at noon yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора опівдні діти спостерігали за мильними бульбашками",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора опівдні діти спостерігали за мильними бульбашками",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-04:i17:audio",
+          "transcript": "The children were watching the soap bubbles at noon yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The children were watching the soap bubbles at noon yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8d74165beee9b00689728af1829c30a7d8ffeca2292c496adf26728971c9eae3"
+}

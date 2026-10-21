@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "review: was/were + verb-ing",
+    "uk": "review: was/were + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кормушка",
+        "uk": "Годівниця"
+      },
+      "bodyByLocale": {
+        "ru": "Bird feeder — кормушка для птиц. I was filling the bird feeder. — Я наполнял кормушку. Это действие шло в тот момент, вчера в десять. Выберите фразу.",
+        "uk": "Bird feeder — годівниця для птахів. I was filling the bird feeder. — Я наповнював годівницю. Ця дія тривала в той момент, учора о десятій. Виберіть фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r1",
+              "text": "I was filling the bird feeder."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r2",
+              "text": "I were filling the bird feeder."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r3",
+              "text": "I was fill the bird feeder."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r1",
+              "text": "I was filling the bird feeder."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r2",
+              "text": "I were filling the bird feeder."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro1:r3",
+              "text": "I was fill the bird feeder."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дорожка и клумба",
+        "uk": "Доріжка й клумба"
+      },
+      "bodyByLocale": {
+        "ru": "Garden path — садовая дорожка; flower bed — клумба. She was watering the flower bed. — Она поливала клумбу. Выберите клумбу, а не дорожку.",
+        "uk": "Garden path — садова доріжка; flower bed — клумба. She was watering the flower bed. — Вона поливала клумбу. Виберіть клумбу, а не доріжку."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r1",
+              "text": "She was watering the flower bed."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r2",
+              "text": "She was cleaning the garden path."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r3",
+              "text": "She were watering the flower bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r1",
+              "text": "She was watering the flower bed."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r2",
+              "text": "She was cleaning the garden path."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro2:r3",
+              "text": "She were watering the flower bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Яблоня",
+        "uk": "Яблуня"
+      },
+      "bodyByLocale": {
+        "ru": "Apple tree — яблоня. We were watering the apple tree. — Мы поливали яблоню. С we нужна were, затем watering. Выберите фразу о прошлом моменте.",
+        "uk": "Apple tree — яблуня. We were watering the apple tree. — Ми поливали яблуню. З we потрібна were, потім watering. Виберіть фразу про минулий момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r1",
+              "text": "We were watering the apple tree."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r2",
+              "text": "We was watering the apple tree."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r3",
+              "text": "We are watering the apple tree."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r1",
+              "text": "We were watering the apple tree."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r2",
+              "text": "We was watering the apple tree."
+            },
+            {
+              "responseId": "en:lesson-14:session-03:intro3:r3",
+              "text": "We are watering the apple tree."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "45f7b1fa06c9de068e7b2771f9579af6bd84af438a117a5734f3a7b2eb55281e"
+}

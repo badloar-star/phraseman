@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-21:word:make-time-for",
+    "correctText": "make time for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i01",
+    "correctText": "I'll make time for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i02",
+    "correctText": "I'll make time for you.",
+    "correctResponseId": "en:lesson-16:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i03",
+    "correctText": "I'll make time for",
+    "correctResponseId": "en:lesson-16:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:word:lend-a-hand",
+    "correctText": "lend a hand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i04",
+    "correctText": "I'll lend a hand tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i05",
+    "correctText": "I'll lend a hand tomorrow.",
+    "correctResponseId": "en:lesson-16:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i06",
+    "correctText": "I'll lend a hand",
+    "correctResponseId": "en:lesson-16:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:word:do-a-favour",
+    "correctText": "do a favour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i07",
+    "correctText": "I'll do a favour for your brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i08",
+    "correctText": "I'll do a favour for your brother.",
+    "correctResponseId": "en:lesson-16:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i09",
+    "correctText": "I'll do a favour",
+    "correctResponseId": "en:lesson-16:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:word:give-a-lift",
+    "correctText": "give a lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i10",
+    "correctText": "I'll give a lift to your mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i11",
+    "correctText": "I'll give a lift to your mother.",
+    "correctResponseId": "en:lesson-16:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i12",
+    "correctText": "I'll give a lift",
+    "correctResponseId": "en:lesson-16:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i13",
+    "correctText": "en:lesson-16:session-21:i13:p1=make time for\nen:lesson-16:session-21:i13:p2=lend a hand\nen:lesson-16:session-21:i13:p3=do a favour\nen:lesson-16:session-21:i13:p4=give a lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i14",
+    "correctText": "I'll make time for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i15",
+    "correctText": "I'll do a favour for your brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i16",
+    "correctText": "I'll lend a hand tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-21:i17",
+    "correctText": "I'll give a lift to your mother.",
+    "correctResponseId": null
+  }
+]

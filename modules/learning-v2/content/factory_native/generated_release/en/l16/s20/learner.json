@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-20:word:keep-a-secret",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep a secret",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:word:keep-a-secret:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep a secret",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:word:keep-a-secret:audio",
+          "transcript": "keep a secret"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:word:keep-a-secret:r1",
+            "targetText": "keep a secret",
+            "meaningByLocale": {
+              "ru": "хранить секрет.",
+              "uk": "зберігати таємницю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep a secret",
+          "definitionByLocale": {
+            "ru": "хранить секрет.",
+            "uk": "зберігати таємницю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Скажите: «Я сохраню ваш секрет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Скажите: «Я сохраню ваш секрет».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll keep a secret for you.",
+        "localizedMeaning": {
+          "ru": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Скажите: «Я сохраню ваш секрет».",
+          "uk": "Друг готує сюрприз на день народження сестри. Ви обіцяєте нікому про нього не розповідати. Скажіть: «Я збережу вашу таємницю»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "keep",
+          "a",
+          "secret",
+          "for",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i02:r1",
+          "text": "I'll keep a secret for you."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i02:r2",
+          "text": "We'll keep a secret for you."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i02:r3",
+          "text": "They'll keep a secret for you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i02:audio",
+          "transcript": "I'll keep a secret for you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:i02:r1",
+            "targetText": "I'll keep a secret for you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i02:r2",
+            "targetText": "We'll keep a secret for you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i02:r3",
+            "targetText": "They'll keep a secret for you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll keep a secret for you.",
+              "uk": "У записі звучить I'll keep a secret for you."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll keep a secret for you.",
+              "uk": "У записі звучить I'll keep a secret for you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i03:r1",
+          "text": "I'll keep a secret"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i03:r2",
+          "text": "I'll to keep a secret"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i03:r3",
+          "text": "I keep a secret"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+          "uk": "Друг готує сюрприз на день народження сестри. Ви обіцяєте нікому про нього не розповідати. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ for you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-20:i03:r1",
+            "text": "I'll keep a secret"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i03:r2",
+            "text": "I'll to keep a secret"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i03:r3",
+            "text": "I keep a secret"
+          }
+        ],
+        "testedDimension": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:word:keep-a-promise",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep a promise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:word:keep-a-promise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep a promise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:word:keep-a-promise:audio",
+          "transcript": "keep a promise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:word:keep-a-promise:r1",
+            "targetText": "keep a promise",
+            "meaningByLocale": {
+              "ru": "сдержать обещание.",
+              "uk": "дотримати обіцянки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep a promise",
+          "definitionByLocale": {
+            "ru": "сдержать обещание.",
+            "uk": "дотримати обіцянки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Скажите: «Я сдержу обещание, данное сестре».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Скажите: «Я сдержу обещание, данное сестре».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll keep a promise to my sister.",
+        "localizedMeaning": {
+          "ru": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Скажите: «Я сдержу обещание, данное сестре».",
+          "uk": "Мама нагадує про обіцянку допомогти сестрі. Ви запевняєте маму, що виконаєте її. Скажіть: «Я дотримаю обіцянки, даної сестрі»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "keep",
+          "a",
+          "promise",
+          "to",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i05:r1",
+          "text": "I'll keep a promise to my sister."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i05:r2",
+          "text": "We'll keep a promise to my sister."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i05:r3",
+          "text": "They'll keep a promise to my sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i05:audio",
+          "transcript": "I'll keep a promise to my sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:i05:r1",
+            "targetText": "I'll keep a promise to my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i05:r2",
+            "targetText": "We'll keep a promise to my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i05:r3",
+            "targetText": "They'll keep a promise to my sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll keep a promise to my sister.",
+              "uk": "У записі звучить I'll keep a promise to my sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll keep a promise to my sister.",
+              "uk": "У записі звучить I'll keep a promise to my sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i06:r1",
+          "text": "I'll keep a promise"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i06:r2",
+          "text": "I'll to keep a promise"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i06:r3",
+          "text": "I keep a promise"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+          "uk": "Мама нагадує про обіцянку допомогти сестрі. Ви запевняєте маму, що виконаєте її. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ to my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-20:i06:r1",
+            "text": "I'll keep a promise"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i06:r2",
+            "text": "I'll to keep a promise"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i06:r3",
+            "text": "I keep a promise"
+          }
+        ],
+        "testedDimension": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:word:make-up-for",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — make up for",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:word:make-up-for:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — make up for",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:word:make-up-for:audio",
+          "transcript": "make up for"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:word:make-up-for:r1",
+            "targetText": "make up for",
+            "meaningByLocale": {
+              "ru": "компенсировать неприятность или упущение.",
+              "uk": "компенсувати неприємність або недогляд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make up for",
+          "definitionByLocale": {
+            "ru": "компенсировать неприятность или упущение.",
+            "uk": "компенсувати неприємність або недогляд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Скажите: «Я компенсирую задержку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Скажите: «Я компенсирую задержку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll make up for the delay.",
+        "localizedMeaning": {
+          "ru": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Скажите: «Я компенсирую задержку».",
+          "uk": "Ви затримали виконання спільної справи. Друг засмучений, і ви обіцяєте компенсувати затримку додатковою допомогою. Скажіть: «Я компенсую затримку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "make",
+          "up",
+          "for",
+          "the",
+          "delay"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i08:r1",
+          "text": "I'll make up for the delay."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i08:r2",
+          "text": "We'll make up for the delay."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i08:r3",
+          "text": "They'll make up for the delay."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i08:audio",
+          "transcript": "I'll make up for the delay."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:i08:r1",
+            "targetText": "I'll make up for the delay.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i08:r2",
+            "targetText": "We'll make up for the delay.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i08:r3",
+            "targetText": "They'll make up for the delay.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll make up for the delay.",
+              "uk": "У записі звучить I'll make up for the delay."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll make up for the delay.",
+              "uk": "У записі звучить I'll make up for the delay."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i09:r1",
+          "text": "I'll make up for"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i09:r2",
+          "text": "I'll to make up for"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i09:r3",
+          "text": "I make up for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+          "uk": "Ви затримали виконання спільної справи. Друг засмучений, і ви обіцяєте компенсувати затримку додатковою допомогою. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the delay.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-20:i09:r1",
+            "text": "I'll make up for"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i09:r2",
+            "text": "I'll to make up for"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i09:r3",
+            "text": "I make up for"
+          }
+        ],
+        "testedDimension": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы задержали выполнение общего дела. Друг расстроен, и вы обещаете компенсировать задержку дополнительной помощью. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:word:put-off",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — put off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:word:put-off:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — put off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:word:put-off:audio",
+          "transcript": "put off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:word:put-off:r1",
+            "targetText": "put off",
+            "meaningByLocale": {
+              "ru": "отложить на более позднее время.",
+              "uk": "відкласти на пізніший час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put off",
+          "definitionByLocale": {
+            "ru": "отложить на более позднее время.",
+            "uk": "відкласти на пізніший час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Скажите: «Я отложу визит».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Скажите: «Я отложу визит».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll put off the visit.",
+        "localizedMeaning": {
+          "ru": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Скажите: «Я отложу визит».",
+          "uk": "Друг захворів і просить прийти пізніше. Ви обіцяєте відкласти візит. Скажіть: «Я відкладу візит»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "put",
+          "off",
+          "the",
+          "visit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i11:r1",
+          "text": "I'll put off the visit."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i11:r2",
+          "text": "We'll put off the visit."
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i11:r3",
+          "text": "They'll put off the visit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i11:audio",
+          "transcript": "I'll put off the visit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-20:i11:r1",
+            "targetText": "I'll put off the visit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i11:r2",
+            "targetText": "We'll put off the visit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i11:r3",
+            "targetText": "They'll put off the visit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll put off the visit.",
+              "uk": "У записі звучить I'll put off the visit."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll put off the visit.",
+              "uk": "У записі звучить I'll put off the visit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-20:i12:r1",
+          "text": "I'll put off"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i12:r2",
+          "text": "I'll to put off"
+        },
+        {
+          "responseId": "en:lesson-16:session-20:i12:r3",
+          "text": "I put off"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+          "uk": "Друг захворів і просить прийти пізніше. Ви обіцяєте відкласти візит. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the visit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-20:i12:r1",
+            "text": "I'll put off"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i12:r2",
+            "text": "I'll to put off"
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i12:r3",
+            "text": "I put off"
+          }
+        ],
+        "testedDimension": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Используйте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-20:i13:p1",
+            "target": "keep a secret",
+            "meaningByLocale": {
+              "ru": "хранить секрет",
+              "uk": "зберігати таємницю"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-20:i13:p2",
+            "target": "keep a promise",
+            "meaningByLocale": {
+              "ru": "сдержать обещание",
+              "uk": "дотримати обіцянки"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-20:i13:p3",
+            "target": "make up for",
+            "meaningByLocale": {
+              "ru": "компенсировать неприятность или упущение",
+              "uk": "компенсувати неприємність або недогляд"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-20:i13:p4",
+            "target": "put off",
+            "meaningByLocale": {
+              "ru": "отложить на более позднее время",
+              "uk": "відкласти на пізніший час"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keep a secret",
+          "keep a promise",
+          "make up for",
+          "put off"
+        ],
+        "rightColumn": [
+          "хранить секрет",
+          "сдержать обещание",
+          "компенсировать неприятность или упущение",
+          "отложить на более позднее время"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное обещание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное обещание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i14:audio",
+          "transcript": "I'll keep a secret for you."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll keep a secret for you.",
+        "orderedTokens": [
+          "I'll",
+          "keep",
+          "a",
+          "secret",
+          "for",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное обещание",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное обещание",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i15:audio",
+          "transcript": "I'll make up for the delay."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll make up for the delay.",
+        "orderedTokens": [
+          "I'll",
+          "make",
+          "up",
+          "for",
+          "the",
+          "delay"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Произнесите своё обещание.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. Произнесите своё обещание.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i16:audio",
+          "transcript": "I'll keep a promise to my sister."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll keep a promise to my sister.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Произнесите своё обещание.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Друг заболел и просит прийти позже. Вы обещаете отложить визит. Произнесите своё обещание.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-20:i17:audio",
+          "transcript": "I'll put off the visit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll put off the visit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4df82b340b94ab00236c3034c61fe890c014c64a9b39834fd26872e83cb93ca9"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. take turns — делать что-либо по очереди. Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. I'll take turns with you. — Я буду делать это с вами по очереди.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. take turns — робити щось по черзі. Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. I'll take turns with you. — Я робитиму це з вами по черзі."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r1",
+              "text": "I'll take turns with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r2",
+              "text": "I'll to take turns with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r3",
+              "text": "I take turns with you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r1",
+              "text": "I'll take turns with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r2",
+              "text": "I'll to take turns with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro1:r3",
+              "text": "I take turns with you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "keep an eye on — присматривать, следить за сохранностью или состоянием. Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. I'll keep an eye on your bag. — Я присмотрю за вашей сумкой.",
+        "uk": "keep an eye on — приглядати, стежити за збереженням або станом. Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. I'll keep an eye on your bag. — Я пригляну за вашою сумкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r1",
+              "text": "I'll keep an eye on your bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r2",
+              "text": "I'll to keep an eye on your bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r3",
+              "text": "I keep an eye on your bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r1",
+              "text": "I'll keep an eye on your bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r2",
+              "text": "I'll to keep an eye on your bag."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro2:r3",
+              "text": "I keep an eye on your bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "make room for — освободить место для кого-либо или чего-либо. tag along — пойти вместе с другими, присоединившись к ним. Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. I'll tag along with you. — Я пойду вместе с вами.",
+        "uk": "make room for — звільнити місце для когось або чогось. tag along — піти разом з іншими, приєднавшись до них. Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. I'll tag along with you. — Я піду разом із вами."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r1",
+              "text": "I'll tag along with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r2",
+              "text": "I'll to tag along with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r3",
+              "text": "I tag along with you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r1",
+              "text": "I'll tag along with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r2",
+              "text": "I'll to tag along with you."
+            },
+            {
+              "responseId": "en:lesson-16:session-22:intro3:r3",
+              "text": "I tag along with you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5929593bf911c2b821a8a6175aef3440f8c6ddd91e2466a4c4909bd349a1cf25"
+}

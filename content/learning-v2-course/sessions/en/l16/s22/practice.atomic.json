@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-22:word:take-turns",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take turns",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:take-turns:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take turns",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:take-turns:audio",
+            "transcript": "take turns"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:take-turns:r1",
+              "targetText": "take turns",
+              "meaningByLocale": {
+                "ru": "делать что-либо по очереди.",
+                "uk": "робити щось по черзі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take turns",
+            "definitionByLocale": {
+              "ru": "делать что-либо по очереди.",
+              "uk": "робити щось по черзі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Скажите: «Я буду делать это с вами по очереди».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Скажите: «Я буду делать это с вами по очереди».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll take turns with you.",
+          "localizedMeaning": {
+            "ru": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Скажите: «Я буду делать это с вами по очереди».",
+            "uk": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Скажіть: «Я робитиму це з вами по черзі»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "turns",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i02:r1",
+            "text": "I'll take turns with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i02:r2",
+            "text": "We'll take turns with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i02:r3",
+            "text": "They'll take turns with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i02:audio",
+            "transcript": "I'll take turns with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i02:r1",
+              "targetText": "I'll take turns with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r2",
+              "targetText": "We'll take turns with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r3",
+              "targetText": "They'll take turns with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take turns with you.",
+                "uk": "У записі звучить I'll take turns with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take turns with you.",
+                "uk": "У записі звучить I'll take turns with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i03:r1",
+            "text": "I'll take turns"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i03:r2",
+            "text": "I'll to take turns"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i03:r3",
+            "text": "I take turns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+            "uk": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i03:r1",
+              "text": "I'll take turns"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r2",
+              "text": "I'll to take turns"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r3",
+              "text": "I take turns"
+            }
+          ],
+          "testedDimension": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:keep-an-eye-on",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keep an eye on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:keep-an-eye-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keep an eye on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:keep-an-eye-on:audio",
+            "transcript": "keep an eye on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:keep-an-eye-on:r1",
+              "targetText": "keep an eye on",
+              "meaningByLocale": {
+                "ru": "присматривать, следить за сохранностью или состоянием.",
+                "uk": "приглядати, стежити за збереженням або станом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep an eye on",
+            "definitionByLocale": {
+              "ru": "присматривать, следить за сохранностью или состоянием.",
+              "uk": "приглядати, стежити за збереженням або станом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Скажите: «Я присмотрю за вашей сумкой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Скажите: «Я присмотрю за вашей сумкой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll keep an eye on your bag.",
+          "localizedMeaning": {
+            "ru": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Скажите: «Я присмотрю за вашей сумкой».",
+            "uk": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Скажіть: «Я пригляну за вашою сумкою»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "keep",
+            "an",
+            "eye",
+            "on",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i05:r1",
+            "text": "I'll keep an eye on your bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i05:r2",
+            "text": "We'll keep an eye on your bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i05:r3",
+            "text": "They'll keep an eye on your bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i05:audio",
+            "transcript": "I'll keep an eye on your bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i05:r1",
+              "targetText": "I'll keep an eye on your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r2",
+              "targetText": "We'll keep an eye on your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r3",
+              "targetText": "They'll keep an eye on your bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep an eye on your bag.",
+                "uk": "У записі звучить I'll keep an eye on your bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep an eye on your bag.",
+                "uk": "У записі звучить I'll keep an eye on your bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i06:r1",
+            "text": "I'll keep an eye on"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i06:r2",
+            "text": "I'll to keep an eye on"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i06:r3",
+            "text": "I keep an eye on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+            "uk": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i06:r1",
+              "text": "I'll keep an eye on"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r2",
+              "text": "I'll to keep an eye on"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r3",
+              "text": "I keep an eye on"
+            }
+          ],
+          "testedDimension": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:make-room-for",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make room for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:make-room-for:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make room for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:make-room-for:audio",
+            "transcript": "make room for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:make-room-for:r1",
+              "targetText": "make room for",
+              "meaningByLocale": {
+                "ru": "освободить место для кого-либо или чего-либо.",
+                "uk": "звільнити місце для когось або чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make room for",
+            "definitionByLocale": {
+              "ru": "освободить место для кого-либо или чего-либо.",
+              "uk": "звільнити місце для когось або чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Скажите: «Я освобожу место для вашего чемодана».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Скажите: «Я освобожу место для вашего чемодана».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll make room for your suitcase.",
+          "localizedMeaning": {
+            "ru": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Скажите: «Я освобожу место для вашего чемодана».",
+            "uk": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Скажіть: «Я звільню місце для вашої валізи»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "room",
+            "for",
+            "your",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i08:r1",
+            "text": "I'll make room for your suitcase."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i08:r2",
+            "text": "We'll make room for your suitcase."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i08:r3",
+            "text": "They'll make room for your suitcase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i08:audio",
+            "transcript": "I'll make room for your suitcase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i08:r1",
+              "targetText": "I'll make room for your suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r2",
+              "targetText": "We'll make room for your suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r3",
+              "targetText": "They'll make room for your suitcase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make room for your suitcase.",
+                "uk": "У записі звучить I'll make room for your suitcase."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make room for your suitcase.",
+                "uk": "У записі звучить I'll make room for your suitcase."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i09:r1",
+            "text": "I'll make room for"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i09:r2",
+            "text": "I'll to make room for"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i09:r3",
+            "text": "I make room for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+            "uk": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your suitcase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i09:r1",
+              "text": "I'll make room for"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r2",
+              "text": "I'll to make room for"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r3",
+              "text": "I make room for"
+            }
+          ],
+          "testedDimension": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:tag-along",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tag along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:tag-along:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tag along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:tag-along:audio",
+            "transcript": "tag along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:tag-along:r1",
+              "targetText": "tag along",
+              "meaningByLocale": {
+                "ru": "пойти вместе с другими, присоединившись к ним.",
+                "uk": "піти разом з іншими, приєднавшись до них."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tag along",
+            "definitionByLocale": {
+              "ru": "пойти вместе с другими, присоединившись к ним.",
+              "uk": "піти разом з іншими, приєднавшись до них."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Скажите: «Я пойду вместе с вами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Скажите: «Я пойду вместе с вами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tag along with you.",
+          "localizedMeaning": {
+            "ru": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Скажите: «Я пойду вместе с вами».",
+            "uk": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Скажіть: «Я піду разом із вами»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tag",
+            "along",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i11:r1",
+            "text": "I'll tag along with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i11:r2",
+            "text": "We'll tag along with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i11:r3",
+            "text": "They'll tag along with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i11:audio",
+            "transcript": "I'll tag along with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i11:r1",
+              "targetText": "I'll tag along with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r2",
+              "targetText": "We'll tag along with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r3",
+              "targetText": "They'll tag along with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tag along with you.",
+                "uk": "У записі звучить I'll tag along with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tag along with you.",
+                "uk": "У записі звучить I'll tag along with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i12:r1",
+            "text": "I'll tag along"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i12:r2",
+            "text": "I'll to tag along"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i12:r3",
+            "text": "I tag along"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+            "uk": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i12:r1",
+              "text": "I'll tag along"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r2",
+              "text": "I'll to tag along"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r3",
+              "text": "I tag along"
+            }
+          ],
+          "testedDimension": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-22:i13:p1",
+              "target": "take turns",
+              "meaningByLocale": {
+                "ru": "делать что-либо по очереди",
+                "uk": "робити щось по черзі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p2",
+              "target": "keep an eye on",
+              "meaningByLocale": {
+                "ru": "присматривать, следить за сохранностью или состоянием",
+                "uk": "приглядати, стежити за збереженням або станом"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p3",
+              "target": "make room for",
+              "meaningByLocale": {
+                "ru": "освободить место для кого-либо или чего-либо",
+                "uk": "звільнити місце для когось або чогось"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p4",
+              "target": "tag along",
+              "meaningByLocale": {
+                "ru": "пойти вместе с другими, присоединившись к ним",
+                "uk": "піти разом з іншими, приєднавшись до них"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take turns",
+            "keep an eye on",
+            "make room for",
+            "tag along"
+          ],
+          "rightColumn": [
+            "делать что-либо по очереди",
+            "присматривать, следить за сохранностью или состоянием",
+            "освободить место для кого-либо или чего-либо",
+            "пойти вместе с другими, присоединившись к ним"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i14:audio",
+            "transcript": "I'll take turns with you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll take turns with you.",
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "turns",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i15:audio",
+            "transcript": "I'll make room for your suitcase."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll make room for your suitcase.",
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "room",
+            "for",
+            "your",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i16:audio",
+            "transcript": "I'll keep an eye on your bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll keep an eye on your bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i17:audio",
+            "transcript": "I'll tag along with you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll tag along with you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-22:word:take-turns",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take turns",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:take-turns:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take turns",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:take-turns:audio",
+            "transcript": "take turns"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:take-turns:r1",
+              "targetText": "take turns",
+              "meaningByLocale": {
+                "ru": "делать что-либо по очереди.",
+                "uk": "робити щось по черзі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take turns",
+            "definitionByLocale": {
+              "ru": "делать что-либо по очереди.",
+              "uk": "робити щось по черзі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Скажіть: «Я робитиму це з вами по черзі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Скажіть: «Я робитиму це з вами по черзі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll take turns with you.",
+          "localizedMeaning": {
+            "ru": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Скажите: «Я буду делать это с вами по очереди».",
+            "uk": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Скажіть: «Я робитиму це з вами по черзі»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "turns",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i02:r1",
+            "text": "I'll take turns with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i02:r2",
+            "text": "We'll take turns with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i02:r3",
+            "text": "They'll take turns with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i02:audio",
+            "transcript": "I'll take turns with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i02:r1",
+              "targetText": "I'll take turns with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r2",
+              "targetText": "We'll take turns with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r3",
+              "targetText": "They'll take turns with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take turns with you.",
+                "uk": "У записі звучить I'll take turns with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take turns with you.",
+                "uk": "У записі звучить I'll take turns with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i03:r1",
+            "text": "I'll take turns"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i03:r2",
+            "text": "I'll to take turns"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i03:r3",
+            "text": "I take turns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг боится, что всю тяжёлую сумку придётся нести ему. Вы обещаете нести её по очереди. Используйте I'll.",
+            "uk": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i03:r1",
+              "text": "I'll take turns"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r2",
+              "text": "I'll to take turns"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r3",
+              "text": "I take turns"
+            }
+          ],
+          "testedDimension": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг боїться, що всю важку сумку доведеться нести йому. Ви обіцяєте нести її по черзі. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:keep-an-eye-on",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keep an eye on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:keep-an-eye-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keep an eye on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:keep-an-eye-on:audio",
+            "transcript": "keep an eye on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:keep-an-eye-on:r1",
+              "targetText": "keep an eye on",
+              "meaningByLocale": {
+                "ru": "присматривать, следить за сохранностью или состоянием.",
+                "uk": "приглядати, стежити за збереженням або станом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep an eye on",
+            "definitionByLocale": {
+              "ru": "присматривать, следить за сохранностью или состоянием.",
+              "uk": "приглядати, стежити за збереженням або станом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Скажіть: «Я пригляну за вашою сумкою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Скажіть: «Я пригляну за вашою сумкою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll keep an eye on your bag.",
+          "localizedMeaning": {
+            "ru": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Скажите: «Я присмотрю за вашей сумкой».",
+            "uk": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Скажіть: «Я пригляну за вашою сумкою»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "keep",
+            "an",
+            "eye",
+            "on",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i05:r1",
+            "text": "I'll keep an eye on your bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i05:r2",
+            "text": "We'll keep an eye on your bag."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i05:r3",
+            "text": "They'll keep an eye on your bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i05:audio",
+            "transcript": "I'll keep an eye on your bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i05:r1",
+              "targetText": "I'll keep an eye on your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r2",
+              "targetText": "We'll keep an eye on your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r3",
+              "targetText": "They'll keep an eye on your bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep an eye on your bag.",
+                "uk": "У записі звучить I'll keep an eye on your bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll keep an eye on your bag.",
+                "uk": "У записі звучить I'll keep an eye on your bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i06:r1",
+            "text": "I'll keep an eye on"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i06:r2",
+            "text": "I'll to keep an eye on"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i06:r3",
+            "text": "I keep an eye on"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг ненадолго отходит от столика и просит присмотреть за сумкой. Вы обещаете это сделать. Используйте I'll.",
+            "uk": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i06:r1",
+              "text": "I'll keep an eye on"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r2",
+              "text": "I'll to keep an eye on"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r3",
+              "text": "I keep an eye on"
+            }
+          ],
+          "testedDimension": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:make-room-for",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make room for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:make-room-for:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make room for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:make-room-for:audio",
+            "transcript": "make room for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:make-room-for:r1",
+              "targetText": "make room for",
+              "meaningByLocale": {
+                "ru": "освободить место для кого-либо или чего-либо.",
+                "uk": "звільнити місце для когось або чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make room for",
+            "definitionByLocale": {
+              "ru": "освободить место для кого-либо или чего-либо.",
+              "uk": "звільнити місце для когось або чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Скажіть: «Я звільню місце для вашої валізи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Скажіть: «Я звільню місце для вашої валізи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll make room for your suitcase.",
+          "localizedMeaning": {
+            "ru": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Скажите: «Я освобожу место для вашего чемодана».",
+            "uk": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Скажіть: «Я звільню місце для вашої валізи»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "room",
+            "for",
+            "your",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i08:r1",
+            "text": "I'll make room for your suitcase."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i08:r2",
+            "text": "We'll make room for your suitcase."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i08:r3",
+            "text": "They'll make room for your suitcase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i08:audio",
+            "transcript": "I'll make room for your suitcase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i08:r1",
+              "targetText": "I'll make room for your suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r2",
+              "targetText": "We'll make room for your suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r3",
+              "targetText": "They'll make room for your suitcase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make room for your suitcase.",
+                "uk": "У записі звучить I'll make room for your suitcase."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make room for your suitcase.",
+                "uk": "У записі звучить I'll make room for your suitcase."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i09:r1",
+            "text": "I'll make room for"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i09:r2",
+            "text": "I'll to make room for"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i09:r3",
+            "text": "I make room for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг переживает, что его чемодан не поместится в машине. Вы обещаете освободить место. Используйте I'll.",
+            "uk": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ your suitcase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i09:r1",
+              "text": "I'll make room for"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r2",
+              "text": "I'll to make room for"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r3",
+              "text": "I make room for"
+            }
+          ],
+          "testedDimension": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг переживає, що його валіза не вміститься в машині. Ви обіцяєте звільнити місце. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:word:tag-along",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tag along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:word:tag-along:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tag along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:word:tag-along:audio",
+            "transcript": "tag along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:word:tag-along:r1",
+              "targetText": "tag along",
+              "meaningByLocale": {
+                "ru": "пойти вместе с другими, присоединившись к ним.",
+                "uk": "піти разом з іншими, приєднавшись до них."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tag along",
+            "definitionByLocale": {
+              "ru": "пойти вместе с другими, присоединившись к ним.",
+              "uk": "піти разом з іншими, приєднавшись до них."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Скажіть: «Я піду разом із вами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Скажіть: «Я піду разом із вами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll tag along with you.",
+          "localizedMeaning": {
+            "ru": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Скажите: «Я пойду вместе с вами».",
+            "uk": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Скажіть: «Я піду разом із вами»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "tag",
+            "along",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i11:r1",
+            "text": "I'll tag along with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i11:r2",
+            "text": "We'll tag along with you."
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i11:r3",
+            "text": "They'll tag along with you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i11:audio",
+            "transcript": "I'll tag along with you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-22:i11:r1",
+              "targetText": "I'll tag along with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r2",
+              "targetText": "We'll tag along with you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r3",
+              "targetText": "They'll tag along with you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tag along with you.",
+                "uk": "У записі звучить I'll tag along with you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll tag along with you.",
+                "uk": "У записі звучить I'll tag along with you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-22:i12:r1",
+            "text": "I'll tag along"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i12:r2",
+            "text": "I'll to tag along"
+          },
+          {
+            "responseId": "en:lesson-16:session-22:i12:r3",
+            "text": "I tag along"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друзья идут на прогулку и просят составить им компанию. Вы обещаете присоединиться. Используйте I'll.",
+            "uk": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ with you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-22:i12:r1",
+              "text": "I'll tag along"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r2",
+              "text": "I'll to tag along"
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r3",
+              "text": "I tag along"
+            }
+          ],
+          "testedDimension": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-22:i13:p1",
+              "target": "take turns",
+              "meaningByLocale": {
+                "ru": "делать что-либо по очереди",
+                "uk": "робити щось по черзі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p2",
+              "target": "keep an eye on",
+              "meaningByLocale": {
+                "ru": "присматривать, следить за сохранностью или состоянием",
+                "uk": "приглядати, стежити за збереженням або станом"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p3",
+              "target": "make room for",
+              "meaningByLocale": {
+                "ru": "освободить место для кого-либо или чего-либо",
+                "uk": "звільнити місце для когось або чогось"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-22:i13:p4",
+              "target": "tag along",
+              "meaningByLocale": {
+                "ru": "пойти вместе с другими, присоединившись к ним",
+                "uk": "піти разом з іншими, приєднавшись до них"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take turns",
+            "keep an eye on",
+            "make room for",
+            "tag along"
+          ],
+          "rightColumn": [
+            "робити щось по черзі",
+            "приглядати, стежити за збереженням або станом",
+            "звільнити місце для когось або чогось",
+            "піти разом з іншими, приєднавшись до них"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i14:audio",
+            "transcript": "I'll take turns with you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll take turns with you.",
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "turns",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i15:audio",
+            "transcript": "I'll make room for your suitcase."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll make room for your suitcase.",
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "room",
+            "for",
+            "your",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Друг ненадовго відходить від столика й просить приглянути за сумкою. Ви обіцяєте це зробити. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i16:audio",
+            "transcript": "I'll keep an eye on your bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll keep an eye on your bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Друзі йдуть на прогулянку й просять скласти їм компанію. Ви обіцяєте приєднатися. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-22:i17:audio",
+            "transcript": "I'll tag along with you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll tag along with you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-22:word:take-turns",
+      "correctText": "take turns",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i01",
+      "correctText": "I'll take turns with you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i02",
+      "correctText": "I'll take turns with you.",
+      "correctResponseId": "en:lesson-16:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i03",
+      "correctText": "I'll take turns",
+      "correctResponseId": "en:lesson-16:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:word:keep-an-eye-on",
+      "correctText": "keep an eye on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i04",
+      "correctText": "I'll keep an eye on your bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i05",
+      "correctText": "I'll keep an eye on your bag.",
+      "correctResponseId": "en:lesson-16:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i06",
+      "correctText": "I'll keep an eye on",
+      "correctResponseId": "en:lesson-16:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:word:make-room-for",
+      "correctText": "make room for",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i07",
+      "correctText": "I'll make room for your suitcase.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i08",
+      "correctText": "I'll make room for your suitcase.",
+      "correctResponseId": "en:lesson-16:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i09",
+      "correctText": "I'll make room for",
+      "correctResponseId": "en:lesson-16:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:word:tag-along",
+      "correctText": "tag along",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i10",
+      "correctText": "I'll tag along with you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i11",
+      "correctText": "I'll tag along with you.",
+      "correctResponseId": "en:lesson-16:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i12",
+      "correctText": "I'll tag along",
+      "correctResponseId": "en:lesson-16:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i14",
+      "correctText": "I'll take turns with you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i15",
+      "correctText": "I'll make room for your suitcase.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i16",
+      "correctText": "I'll keep an eye on your bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-22:i17",
+      "correctText": "I'll tag along with you.",
+      "correctResponseId": null
+    }
+  ]
+}

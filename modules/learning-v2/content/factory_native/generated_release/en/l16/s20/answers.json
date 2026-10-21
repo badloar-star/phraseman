@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-20:word:keep-a-secret",
+    "correctText": "keep a secret",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i01",
+    "correctText": "I'll keep a secret for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i02",
+    "correctText": "I'll keep a secret for you.",
+    "correctResponseId": "en:lesson-16:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i03",
+    "correctText": "I'll keep a secret",
+    "correctResponseId": "en:lesson-16:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:word:keep-a-promise",
+    "correctText": "keep a promise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i04",
+    "correctText": "I'll keep a promise to my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i05",
+    "correctText": "I'll keep a promise to my sister.",
+    "correctResponseId": "en:lesson-16:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i06",
+    "correctText": "I'll keep a promise",
+    "correctResponseId": "en:lesson-16:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:word:make-up-for",
+    "correctText": "make up for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i07",
+    "correctText": "I'll make up for the delay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i08",
+    "correctText": "I'll make up for the delay.",
+    "correctResponseId": "en:lesson-16:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i09",
+    "correctText": "I'll make up for",
+    "correctResponseId": "en:lesson-16:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:word:put-off",
+    "correctText": "put off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i10",
+    "correctText": "I'll put off the visit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i11",
+    "correctText": "I'll put off the visit.",
+    "correctResponseId": "en:lesson-16:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i12",
+    "correctText": "I'll put off",
+    "correctResponseId": "en:lesson-16:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i13",
+    "correctText": "en:lesson-16:session-20:i13:p1=keep a secret\nen:lesson-16:session-20:i13:p2=keep a promise\nen:lesson-16:session-20:i13:p3=make up for\nen:lesson-16:session-20:i13:p4=put off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i14",
+    "correctText": "I'll keep a secret for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i15",
+    "correctText": "I'll make up for the delay.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i16",
+    "correctText": "I'll keep a promise to my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-20:i17",
+    "correctText": "I'll put off the visit.",
+    "correctResponseId": null
+  }
+]

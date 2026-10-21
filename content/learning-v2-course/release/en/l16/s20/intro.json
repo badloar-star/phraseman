@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. keep a secret — хранить секрет. Друг готовит сюрприз на день рождения сестры. Вы обещаете никому о нём не рассказывать. I'll keep a secret for you. — Я сохраню ваш секрет.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. keep a secret — зберігати таємницю. Друг готує сюрприз на день народження сестри. Ви обіцяєте нікому про нього не розповідати. I'll keep a secret for you. — Я збережу вашу таємницю."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r1",
+              "text": "I'll keep a secret for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r2",
+              "text": "I'll to keep a secret for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r3",
+              "text": "I keep a secret for you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r1",
+              "text": "I'll keep a secret for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r2",
+              "text": "I'll to keep a secret for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro1:r3",
+              "text": "I keep a secret for you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "keep a promise — сдержать обещание. Мама напоминает об обещании помочь сестре. Вы заверяете маму, что выполните его. I'll keep a promise to my sister. — Я сдержу обещание, данное сестре.",
+        "uk": "keep a promise — дотримати обіцянки. Мама нагадує про обіцянку допомогти сестрі. Ви запевняєте маму, що виконаєте її. I'll keep a promise to my sister. — Я дотримаю обіцянки, даної сестрі."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r1",
+              "text": "I'll keep a promise to my sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r2",
+              "text": "I'll to keep a promise to my sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r3",
+              "text": "I keep a promise to my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r1",
+              "text": "I'll keep a promise to my sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r2",
+              "text": "I'll to keep a promise to my sister."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro2:r3",
+              "text": "I keep a promise to my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "make up for — компенсировать неприятность или упущение. put off — отложить на более позднее время. Друг заболел и просит прийти позже. Вы обещаете отложить визит. I'll put off the visit. — Я отложу визит.",
+        "uk": "make up for — компенсувати неприємність або недогляд. put off — відкласти на пізніший час. Друг захворів і просить прийти пізніше. Ви обіцяєте відкласти візит. I'll put off the visit. — Я відкладу візит."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r1",
+              "text": "I'll put off the visit."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r2",
+              "text": "I'll to put off the visit."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r3",
+              "text": "I put off the visit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r1",
+              "text": "I'll put off the visit."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r2",
+              "text": "I'll to put off the visit."
+            },
+            {
+              "responseId": "en:lesson-16:session-20:intro3:r3",
+              "text": "I put off the visit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6e4549935252859d38d9e8dc405e1cbd88c15583fc9d3e007ad88561e8dfece"
+}

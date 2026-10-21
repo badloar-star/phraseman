@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-23:word:sort-out",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sort out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:word:sort-out:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sort out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:word:sort-out:audio",
+          "transcript": "sort out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:word:sort-out:r1",
+            "targetText": "sort out",
+            "meaningByLocale": {
+              "ru": "разобраться и решить проблему.",
+              "uk": "розібратися й розв’язати проблему."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sort out",
+          "definitionByLocale": {
+            "ru": "разобраться и решить проблему.",
+            "uk": "розібратися й розв’язати проблему."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Скажіть: «Я розберуся з квитками».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Скажіть: «Я розберуся з квитками».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll sort out the tickets.",
+        "localizedMeaning": {
+          "ru": "В билетах перепутаны даты. Друг волнуется, и вы обещаете разобраться и исправить проблему. Скажите: «Я разберусь с билетами».",
+          "uk": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Скажіть: «Я розберуся з квитками»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "sort",
+          "out",
+          "the",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i02:r1",
+          "text": "I'll sort out the tickets."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i02:r2",
+          "text": "We'll sort out the tickets."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i02:r3",
+          "text": "They'll sort out the tickets."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i02:audio",
+          "transcript": "I'll sort out the tickets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:i02:r1",
+            "targetText": "I'll sort out the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i02:r2",
+            "targetText": "We'll sort out the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i02:r3",
+            "targetText": "They'll sort out the tickets.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll sort out the tickets.",
+              "uk": "У записі звучить I'll sort out the tickets."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll sort out the tickets.",
+              "uk": "У записі звучить I'll sort out the tickets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i03:r1",
+          "text": "I'll sort out"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i03:r2",
+          "text": "I'll to sort out"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i03:r3",
+          "text": "I sort out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В билетах перепутаны даты. Друг волнуется, и вы обещаете разобраться и исправить проблему. Используйте I'll.",
+          "uk": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the tickets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-23:i03:r1",
+            "text": "I'll sort out"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i03:r2",
+            "text": "I'll to sort out"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i03:r3",
+            "text": "I sort out"
+          }
+        ],
+        "testedDimension": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:word:deal-with",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deal with",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:word:deal-with:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deal with",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:word:deal-with:audio",
+          "transcript": "deal with"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:word:deal-with:r1",
+            "targetText": "deal with",
+            "meaningByLocale": {
+              "ru": "заняться вопросом и предпринять необходимые действия.",
+              "uk": "зайнятися питанням і вжити необхідних заходів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deal with",
+          "definitionByLocale": {
+            "ru": "заняться вопросом и предпринять необходимые действия.",
+            "uk": "зайнятися питанням і вжити необхідних заходів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Скажіть: «Я займуся скаргою».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Скажіть: «Я займуся скаргою».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll deal with the complaint.",
+        "localizedMeaning": {
+          "ru": "Сосед пожаловался на шум после вашего праздника. Вы обещаете семье заняться этой жалобой. Скажите: «Я займусь жалобой».",
+          "uk": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Скажіть: «Я займуся скаргою»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "deal",
+          "with",
+          "the",
+          "complaint"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i05:r1",
+          "text": "I'll deal with the complaint."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i05:r2",
+          "text": "We'll deal with the complaint."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i05:r3",
+          "text": "They'll deal with the complaint."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i05:audio",
+          "transcript": "I'll deal with the complaint."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:i05:r1",
+            "targetText": "I'll deal with the complaint.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i05:r2",
+            "targetText": "We'll deal with the complaint.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i05:r3",
+            "targetText": "They'll deal with the complaint.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll deal with the complaint.",
+              "uk": "У записі звучить I'll deal with the complaint."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll deal with the complaint.",
+              "uk": "У записі звучить I'll deal with the complaint."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i06:r1",
+          "text": "I'll deal with"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i06:r2",
+          "text": "I'll to deal with"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i06:r3",
+          "text": "I deal with"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сосед пожаловался на шум после вашего праздника. Вы обещаете семье заняться этой жалобой. Используйте I'll.",
+          "uk": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the complaint.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-23:i06:r1",
+            "text": "I'll deal with"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i06:r2",
+            "text": "I'll to deal with"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i06:r3",
+            "text": "I deal with"
+          }
+        ],
+        "testedDimension": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:word:take-care-of",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take care of",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:word:take-care-of:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take care of",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:word:take-care-of:audio",
+          "transcript": "take care of"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:word:take-care-of:r1",
+            "targetText": "take care of",
+            "meaningByLocale": {
+              "ru": "взять на себя выполнение дела.",
+              "uk": "взяти на себе виконання справи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take care of",
+          "definitionByLocale": {
+            "ru": "взять на себя выполнение дела.",
+            "uk": "взяти на себе виконання справи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Скажіть: «Я візьму прання на себе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Скажіть: «Я візьму прання на себе».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll take care of the washing.",
+        "localizedMeaning": {
+          "ru": "Ваш близкий устал и переживает из-за накопившейся стирки. Вы обещаете взять стирку на себя. Скажите: «Я возьму стирку на себя».",
+          "uk": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Скажіть: «Я візьму прання на себе»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "take",
+          "care",
+          "of",
+          "the",
+          "washing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i08:r1",
+          "text": "I'll take care of the washing."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i08:r2",
+          "text": "We'll take care of the washing."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i08:r3",
+          "text": "They'll take care of the washing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i08:audio",
+          "transcript": "I'll take care of the washing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:i08:r1",
+            "targetText": "I'll take care of the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i08:r2",
+            "targetText": "We'll take care of the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i08:r3",
+            "targetText": "They'll take care of the washing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll take care of the washing.",
+              "uk": "У записі звучить I'll take care of the washing."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll take care of the washing.",
+              "uk": "У записі звучить I'll take care of the washing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i09:r1",
+          "text": "I'll take care of"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i09:r2",
+          "text": "I'll to take care of"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i09:r3",
+          "text": "I take care of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваш близкий устал и переживает из-за накопившейся стирки. Вы обещаете взять стирку на себя. Используйте I'll.",
+          "uk": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the washing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-23:i09:r1",
+            "text": "I'll take care of"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i09:r2",
+            "text": "I'll to take care of"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i09:r3",
+            "text": "I take care of"
+          }
+        ],
+        "testedDimension": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Ваша близька людина втомилася й переживає через прання, що накопичилося. Ви обіцяєте взяти прання на себе. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:word:follow-through",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — follow through",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:word:follow-through:audio"
+      ],
+      "accessibilityLabel": "Картка слова — follow through",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:word:follow-through:audio",
+          "transcript": "follow through"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:word:follow-through:r1",
+            "targetText": "follow through",
+            "meaningByLocale": {
+              "ru": "довести начатое или обещанное до результата.",
+              "uk": "довести розпочате або обіцяне до результату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "follow through",
+          "definitionByLocale": {
+            "ru": "довести начатое или обещанное до результата.",
+            "uk": "довести розпочате або обіцяне до результату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Скажіть: «Я доведу цей план до результату».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Скажіть: «Я доведу цей план до результату».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll follow through with the plan.",
+        "localizedMeaning": {
+          "ru": "Вы договорились починить старую скамейку. Друг боится, что дело будет брошено на полпути. Вы обещаете довести план до конца. Скажите: «Я доведу этот план до результата».",
+          "uk": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Скажіть: «Я доведу цей план до результату»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "follow",
+          "through",
+          "with",
+          "the",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i11:r1",
+          "text": "I'll follow through with the plan."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i11:r2",
+          "text": "We'll follow through with the plan."
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i11:r3",
+          "text": "They'll follow through with the plan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i11:audio",
+          "transcript": "I'll follow through with the plan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-23:i11:r1",
+            "targetText": "I'll follow through with the plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i11:r2",
+            "targetText": "We'll follow through with the plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i11:r3",
+            "targetText": "They'll follow through with the plan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll follow through with the plan.",
+              "uk": "У записі звучить I'll follow through with the plan."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll follow through with the plan.",
+              "uk": "У записі звучить I'll follow through with the plan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-23:i12:r1",
+          "text": "I'll follow through"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i12:r2",
+          "text": "I'll to follow through"
+        },
+        {
+          "responseId": "en:lesson-16:session-23:i12:r3",
+          "text": "I follow through"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились починить старую скамейку. Друг боится, что дело будет брошено на полпути. Вы обещаете довести план до конца. Используйте I'll.",
+          "uk": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ with the plan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-23:i12:r1",
+            "text": "I'll follow through"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i12:r2",
+            "text": "I'll to follow through"
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i12:r3",
+            "text": "I follow through"
+          }
+        ],
+        "testedDimension": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-23:i13:p1",
+            "target": "sort out",
+            "meaningByLocale": {
+              "ru": "разобраться и решить проблему",
+              "uk": "розібратися й розв’язати проблему"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-23:i13:p2",
+            "target": "deal with",
+            "meaningByLocale": {
+              "ru": "заняться вопросом и предпринять необходимые действия",
+              "uk": "зайнятися питанням і вжити необхідних заходів"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-23:i13:p3",
+            "target": "take care of",
+            "meaningByLocale": {
+              "ru": "взять на себя выполнение дела",
+              "uk": "взяти на себе виконання справи"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-23:i13:p4",
+            "target": "follow through",
+            "meaningByLocale": {
+              "ru": "довести начатое или обещанное до результата",
+              "uk": "довести розпочате або обіцяне до результату"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sort out",
+          "deal with",
+          "take care of",
+          "follow through"
+        ],
+        "rightColumn": [
+          "розібратися й розв’язати проблему",
+          "зайнятися питанням і вжити необхідних заходів",
+          "взяти на себе виконання справи",
+          "довести розпочате або обіцяне до результату"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту обіцянку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту обіцянку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i14:audio",
+          "transcript": "I'll sort out the tickets."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll sort out the tickets.",
+        "orderedTokens": [
+          "I'll",
+          "sort",
+          "out",
+          "the",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту обіцянку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту обіцянку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i15:audio",
+          "transcript": "I'll take care of the washing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll take care of the washing.",
+        "orderedTokens": [
+          "I'll",
+          "take",
+          "care",
+          "of",
+          "the",
+          "washing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Промовте свою обіцянку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. Промовте свою обіцянку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i16:audio",
+          "transcript": "I'll deal with the complaint."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll deal with the complaint.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Промовте свою обіцянку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. Промовте свою обіцянку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-23:i17:audio",
+          "transcript": "I'll follow through with the plan."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll follow through with the plan.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aeacf396e47af972f0c3e8fd02bf9e6cd23061dd7d531d2b199a74bbef69ecd6"
+}

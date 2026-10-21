@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-24:word:stick-to",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stick to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:word:stick-to:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stick to",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:word:stick-to:audio",
+          "transcript": "stick to"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:word:stick-to:r1",
+            "targetText": "stick to",
+            "meaningByLocale": {
+              "ru": "придерживаться выбранного плана или правила.",
+              "uk": "дотримуватися обраного плану або правила."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stick to",
+          "definitionByLocale": {
+            "ru": "придерживаться выбранного плана или правила.",
+            "uk": "дотримуватися обраного плану або правила."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Скажіть: «Я дотримуватимуся плану».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Скажіть: «Я дотримуватимуся плану».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll stick to the plan.",
+        "localizedMeaning": {
+          "ru": "Вы с другом составили план поездки. Он просит не менять всё в последний момент; вы обещаете придерживаться плана. Скажите: «Я буду придерживаться плана».",
+          "uk": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Скажіть: «Я дотримуватимуся плану»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "stick",
+          "to",
+          "the",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i02:r1",
+          "text": "I'll stick to the plan."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i02:r2",
+          "text": "We'll stick to the plan."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i02:r3",
+          "text": "They'll stick to the plan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i02:audio",
+          "transcript": "I'll stick to the plan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:i02:r1",
+            "targetText": "I'll stick to the plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i02:r2",
+            "targetText": "We'll stick to the plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i02:r3",
+            "targetText": "They'll stick to the plan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll stick to the plan.",
+              "uk": "У записі звучить I'll stick to the plan."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll stick to the plan.",
+              "uk": "У записі звучить I'll stick to the plan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i03:r1",
+          "text": "I'll stick to"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i03:r2",
+          "text": "I'll to stick to"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i03:r3",
+          "text": "I stick to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом составили план поездки. Он просит не менять всё в последний момент; вы обещаете придерживаться плана. Используйте I'll.",
+          "uk": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ the plan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-24:i03:r1",
+            "text": "I'll stick to"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i03:r2",
+            "text": "I'll to stick to"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i03:r3",
+            "text": "I stick to"
+          }
+        ],
+        "testedDimension": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:word:carry-on",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carry on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:word:carry-on:audio"
+      ],
+      "accessibilityLabel": "Картка слова — carry on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:word:carry-on:audio",
+          "transcript": "carry on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:word:carry-on:r1",
+            "targetText": "carry on",
+            "meaningByLocale": {
+              "ru": "продолжать начатое дело.",
+              "uk": "продовжувати розпочату справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carry on",
+          "definitionByLocale": {
+            "ru": "продолжать начатое дело.",
+            "uk": "продовжувати розпочату справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Скажіть: «Я продовжу прибирання».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Скажіть: «Я продовжу прибирання».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll carry on with the cleaning.",
+        "localizedMeaning": {
+          "ru": "Близкому нужно уйти до конца уборки. Вы обещаете продолжить начатую уборку. Скажите: «Я продолжу уборку».",
+          "uk": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Скажіть: «Я продовжу прибирання»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "carry",
+          "on",
+          "with",
+          "the",
+          "cleaning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i05:r1",
+          "text": "I'll carry on with the cleaning."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i05:r2",
+          "text": "We'll carry on with the cleaning."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i05:r3",
+          "text": "They'll carry on with the cleaning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i05:audio",
+          "transcript": "I'll carry on with the cleaning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:i05:r1",
+            "targetText": "I'll carry on with the cleaning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i05:r2",
+            "targetText": "We'll carry on with the cleaning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i05:r3",
+            "targetText": "They'll carry on with the cleaning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll carry on with the cleaning.",
+              "uk": "У записі звучить I'll carry on with the cleaning."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll carry on with the cleaning.",
+              "uk": "У записі звучить I'll carry on with the cleaning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i06:r1",
+          "text": "I'll carry on"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i06:r2",
+          "text": "I'll to carry on"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i06:r3",
+          "text": "I carry on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Близкому нужно уйти до конца уборки. Вы обещаете продолжить начатую уборку. Используйте I'll.",
+          "uk": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ with the cleaning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-24:i06:r1",
+            "text": "I'll carry on"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i06:r2",
+            "text": "I'll to carry on"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i06:r3",
+            "text": "I carry on"
+          }
+        ],
+        "testedDimension": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:word:stay-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stay up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:word:stay-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stay up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:word:stay-up:audio",
+          "transcript": "stay up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:word:stay-up:r1",
+            "targetText": "stay up",
+            "meaningByLocale": {
+              "ru": "не ложиться спать дольше обычного.",
+              "uk": "не лягати спати довше, ніж зазвичай."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stay up",
+          "definitionByLocale": {
+            "ru": "не ложиться спать дольше обычного.",
+            "uk": "не лягати спати довше, ніж зазвичай."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Скажіть: «Я не ляжу спати, доки не закінчу справу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Скажіть: «Я не ляжу спати, доки не закінчу справу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll stay up to finish the job.",
+        "localizedMeaning": {
+          "ru": "Подарок для друга ещё не упакован, а вручать его утром. Вы обещаете не ложиться, пока не закончите. Скажите: «Я не лягу спать, пока не закончу дело».",
+          "uk": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Скажіть: «Я не ляжу спати, доки не закінчу справу»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "stay",
+          "up",
+          "to",
+          "finish",
+          "the",
+          "job"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i08:r1",
+          "text": "I'll stay up to finish the job."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i08:r2",
+          "text": "We'll stay up to finish the job."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i08:r3",
+          "text": "They'll stay up to finish the job."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i08:audio",
+          "transcript": "I'll stay up to finish the job."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:i08:r1",
+            "targetText": "I'll stay up to finish the job.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i08:r2",
+            "targetText": "We'll stay up to finish the job.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i08:r3",
+            "targetText": "They'll stay up to finish the job.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll stay up to finish the job.",
+              "uk": "У записі звучить I'll stay up to finish the job."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll stay up to finish the job.",
+              "uk": "У записі звучить I'll stay up to finish the job."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i09:r1",
+          "text": "I'll stay up"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i09:r2",
+          "text": "I'll to stay up"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i09:r3",
+          "text": "I stay up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подарок для друга ещё не упакован, а вручать его утром. Вы обещаете не ложиться, пока не закончите. Используйте I'll.",
+          "uk": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ to finish the job.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-24:i09:r1",
+            "text": "I'll stay up"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i09:r2",
+            "text": "I'll to stay up"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i09:r3",
+            "text": "I stay up"
+          }
+        ],
+        "testedDimension": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Подарунок для друга ще не запакований, а вручати його вранці. Ви обіцяєте не лягати, доки не закінчите. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:word:wait-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wait up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:word:wait-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wait up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:word:wait-up:audio",
+          "transcript": "wait up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:word:wait-up:r1",
+            "targetText": "wait up",
+            "meaningByLocale": {
+              "ru": "не ложиться спать, ожидая возвращения человека.",
+              "uk": "не лягати спати, очікуючи повернення людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wait up",
+          "definitionByLocale": {
+            "ru": "не ложиться спать, ожидая возвращения человека.",
+            "uk": "не лягати спати, очікуючи повернення людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Скажіть: «Я дочекаюся вас і не ляжу спати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Скажіть: «Я дочекаюся вас і не ляжу спати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll wait up for you.",
+        "localizedMeaning": {
+          "ru": "Ваш брат возвращается поздно и просит встретить его дома. Вы обещаете дождаться его и не ложиться спать. Скажите: «Я дождусь вас и не лягу спать».",
+          "uk": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Скажіть: «Я дочекаюся вас і не ляжу спати»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "wait",
+          "up",
+          "for",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i11:r1",
+          "text": "I'll wait up for you."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i11:r2",
+          "text": "We'll wait up for you."
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i11:r3",
+          "text": "They'll wait up for you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i11:audio",
+          "transcript": "I'll wait up for you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-24:i11:r1",
+            "targetText": "I'll wait up for you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i11:r2",
+            "targetText": "We'll wait up for you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i11:r3",
+            "targetText": "They'll wait up for you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wait up for you.",
+              "uk": "У записі звучить I'll wait up for you."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wait up for you.",
+              "uk": "У записі звучить I'll wait up for you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-24:i12:r1",
+          "text": "I'll wait up"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i12:r2",
+          "text": "I'll to wait up"
+        },
+        {
+          "responseId": "en:lesson-16:session-24:i12:r3",
+          "text": "I wait up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваш брат возвращается поздно и просит встретить его дома. Вы обещаете дождаться его и не ложиться спать. Используйте I'll.",
+          "uk": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll."
+        },
+        "gappedTargetPhrase": "___ for you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-24:i12:r1",
+            "text": "I'll wait up"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i12:r2",
+            "text": "I'll to wait up"
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i12:r3",
+            "text": "I wait up"
+          }
+        ],
+        "testedDimension": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "После I'll не нужно to.",
+              "uk": "Після I'll не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Використайте I'll.",
+            "feedbackByLocale": {
+              "ru": "Передайте обещание: I'll + глагол.",
+              "uk": "Передайте обіцянку: I'll + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-24:i13:p1",
+            "target": "stick to",
+            "meaningByLocale": {
+              "ru": "придерживаться выбранного плана или правила",
+              "uk": "дотримуватися обраного плану або правила"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-24:i13:p2",
+            "target": "carry on",
+            "meaningByLocale": {
+              "ru": "продолжать начатое дело",
+              "uk": "продовжувати розпочату справу"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-24:i13:p3",
+            "target": "stay up",
+            "meaningByLocale": {
+              "ru": "не ложиться спать дольше обычного",
+              "uk": "не лягати спати довше, ніж зазвичай"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-24:i13:p4",
+            "target": "wait up",
+            "meaningByLocale": {
+              "ru": "не ложиться спать, ожидая возвращения человека",
+              "uk": "не лягати спати, очікуючи повернення людини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stick to",
+          "carry on",
+          "stay up",
+          "wait up"
+        ],
+        "rightColumn": [
+          "дотримуватися обраного плану або правила",
+          "продовжувати розпочату справу",
+          "не лягати спати довше, ніж зазвичай",
+          "не лягати спати, очікуючи повернення людини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту обіцянку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту обіцянку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i14:audio",
+          "transcript": "I'll stick to the plan."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll stick to the plan.",
+        "orderedTokens": [
+          "I'll",
+          "stick",
+          "to",
+          "the",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту обіцянку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту обіцянку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i15:audio",
+          "transcript": "I'll stay up to finish the job."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll stay up to finish the job.",
+        "orderedTokens": [
+          "I'll",
+          "stay",
+          "up",
+          "to",
+          "finish",
+          "the",
+          "job"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Промовте свою обіцянку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. Промовте свою обіцянку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i16:audio",
+          "transcript": "I'll carry on with the cleaning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll carry on with the cleaning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Промовте свою обіцянку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. Промовте свою обіцянку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-24:i17:audio",
+          "transcript": "I'll wait up for you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll wait up for you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8209b317d3d859c2d9abfab8de2afa72e789f1ea9df9f46816bdbd70e3dc8ac7"
+}

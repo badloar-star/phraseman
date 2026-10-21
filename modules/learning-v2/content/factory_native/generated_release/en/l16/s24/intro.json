@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. stick to — придерживаться выбранного плана или правила. Вы с другом составили план поездки. Он просит не менять всё в последний момент; вы обещаете придерживаться плана. I'll stick to the plan. — Я буду придерживаться плана.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. stick to — дотримуватися обраного плану або правила. Ви з другом склали план поїздки. Він просить не змінювати все в останню мить; ви обіцяєте дотримуватися плану. I'll stick to the plan. — Я дотримуватимуся плану."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r1",
+              "text": "I'll stick to the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r2",
+              "text": "I'll to stick to the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r3",
+              "text": "I stick to the plan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r1",
+              "text": "I'll stick to the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r2",
+              "text": "I'll to stick to the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro1:r3",
+              "text": "I stick to the plan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "carry on — продолжать начатое дело. Близкому нужно уйти до конца уборки. Вы обещаете продолжить начатую уборку. I'll carry on with the cleaning. — Я продолжу уборку.",
+        "uk": "carry on — продовжувати розпочату справу. Близькій людині потрібно піти до завершення прибирання. Ви обіцяєте продовжити розпочате прибирання. I'll carry on with the cleaning. — Я продовжу прибирання."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r1",
+              "text": "I'll carry on with the cleaning."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r2",
+              "text": "I'll to carry on with the cleaning."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r3",
+              "text": "I carry on with the cleaning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r1",
+              "text": "I'll carry on with the cleaning."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r2",
+              "text": "I'll to carry on with the cleaning."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro2:r3",
+              "text": "I carry on with the cleaning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "stay up — не ложиться спать дольше обычного. wait up — не ложиться спать, ожидая возвращения человека. Ваш брат возвращается поздно и просит встретить его дома. Вы обещаете дождаться его и не ложиться спать. I'll wait up for you. — Я дождусь вас и не лягу спать.",
+        "uk": "stay up — не лягати спати довше, ніж зазвичай. wait up — не лягати спати, очікуючи повернення людини. Ваш брат повертається пізно й просить зустріти його вдома. Ви обіцяєте дочекатися його й не лягати спати. I'll wait up for you. — Я дочекаюся вас і не ляжу спати."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r1",
+              "text": "I'll wait up for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r2",
+              "text": "I'll to wait up for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r3",
+              "text": "I wait up for you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r1",
+              "text": "I'll wait up for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r2",
+              "text": "I'll to wait up for you."
+            },
+            {
+              "responseId": "en:lesson-16:session-24:intro3:r3",
+              "text": "I wait up for you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5a63cd93dfe0512f7db9aced7ac1dd81f79d08bda1e634eebf691445e5fb2c85"
+}

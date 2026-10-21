@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + base verb: promise",
+    "uk": "I'll + base verb: promise"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обещание близкому",
+        "uk": "Обіцянка близькій людині"
+      },
+      "bodyByLocale": {
+        "ru": "I'll — сокращение I will. Обещание тоже можно передать через I'll + глагол в начальной форме. Здесь вы не просто предполагаете будущее: вы заверяете человека, что сделаете обещанное. Смысл обещания понятен из ситуации. После I'll не нужно to. sort out — разобраться и решить проблему. В билетах перепутаны даты. Друг волнуется, и вы обещаете разобраться и исправить проблему. I'll sort out the tickets. — Я разберусь с билетами.",
+        "uk": "I'll — скорочення I will. Обіцянку теж можна передати через I'll + дієслово в початковій формі. Тут ви не просто припускаєте майбутнє: ви запевняєте людину, що зробите обіцяне. Значення обіцянки зрозуміле із ситуації. Після I'll не потрібне to. sort out — розібратися й розв’язати проблему. У квитках переплутані дати. Друг хвилюється, і ви обіцяєте розібратися й виправити проблему. I'll sort out the tickets. — Я розберуся з квитками."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r1",
+              "text": "I'll sort out the tickets."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r2",
+              "text": "I'll to sort out the tickets."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r3",
+              "text": "I sort out the tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r1",
+              "text": "I'll sort out the tickets."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r2",
+              "text": "I'll to sort out the tickets."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro1:r3",
+              "text": "I sort out the tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заверяем в поддержке",
+        "uk": "Запевняємо в підтримці"
+      },
+      "bodyByLocale": {
+        "ru": "deal with — заняться вопросом и предпринять необходимые действия. Сосед пожаловался на шум после вашего праздника. Вы обещаете семье заняться этой жалобой. I'll deal with the complaint. — Я займусь жалобой.",
+        "uk": "deal with — зайнятися питанням і вжити необхідних заходів. Сусід поскаржився на шум після вашого свята. Ви обіцяєте родині зайнятися цією скаргою. I'll deal with the complaint. — Я займуся скаргою."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r1",
+              "text": "I'll deal with the complaint."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r2",
+              "text": "I'll to deal with the complaint."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r3",
+              "text": "I deal with the complaint."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r1",
+              "text": "I'll deal with the complaint."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r2",
+              "text": "I'll to deal with the complaint."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro2:r3",
+              "text": "I deal with the complaint."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Держим слово",
+        "uk": "Дотримуємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "take care of — взять на себя выполнение дела. follow through — довести начатое или обещанное до результата. Вы договорились починить старую скамейку. Друг боится, что дело будет брошено на полпути. Вы обещаете довести план до конца. I'll follow through with the plan. — Я доведу этот план до результата.",
+        "uk": "take care of — взяти на себе виконання справи. follow through — довести розпочате або обіцяне до результату. Ви домовилися полагодити стару лавку. Друг боїться, що справу буде покинуто на півдорозі. Ви обіцяєте довести план до кінця. I'll follow through with the plan. — Я доведу цей план до результату."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r1",
+              "text": "I'll follow through with the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r2",
+              "text": "I'll to follow through with the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r3",
+              "text": "I follow through with the plan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r1",
+              "text": "I'll follow through with the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r2",
+              "text": "I'll to follow through with the plan."
+            },
+            {
+              "responseId": "en:lesson-16:session-23:intro3:r3",
+              "text": "I follow through with the plan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f0c98bde69d9681a3b7bdefe4fa1d9c2c75511b64b8e1c045d8dd336a330bf9"
+}

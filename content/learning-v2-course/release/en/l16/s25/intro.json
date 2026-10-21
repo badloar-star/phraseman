@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. top up — долить в частично наполненную ёмкость. В стакане гостя осталось мало воды. Предложите долить. I'll top up your glass. — Я долью вам в стакан",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. top up — долити в частково наповнену місткість. У склянці гостя залишилося мало води. Запропонуйте долити. I'll top up your glass. — Я доллю вам у склянку"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r1",
+              "text": "I'll top up your glass."
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r2",
+              "text": "I'll to top up your glass."
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r3",
+              "text": "I will will top up your glass."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r1",
+              "text": "I'll top up your glass."
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r2",
+              "text": "I'll to top up your glass."
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro1:r3",
+              "text": "I will will top up your glass."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. heat up — разогреть еду. cool down — остудить, сделать менее горячим. Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить. Shall I cool down the soup? — Мне остудить суп?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. heat up — розігріти їжу. cool down — остудити, зробити менш гарячим. Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити. Shall I cool down the soup? — Мені остудити суп?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r1",
+              "text": "Shall I cool down the soup?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r2",
+              "text": "Shall I to cool down the soup?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r3",
+              "text": "Shall I will cool down the soup?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r1",
+              "text": "Shall I cool down the soup?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r2",
+              "text": "Shall I to cool down the soup?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro2:r3",
+              "text": "Shall I will cool down the soup?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "slice up — нарезать целый продукт ломтиками. На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб. Shall I slice up the bread? — Мне нарезать хлеб ломтиками?",
+        "uk": "slice up — нарізати цілий продукт скибками. На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб. Shall I slice up the bread? — Мені нарізати хліб скибками?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r1",
+              "text": "Shall I slice up the bread?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r2",
+              "text": "Shall I to slice up the bread?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r3",
+              "text": "Shall I will slice up the bread?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r1",
+              "text": "Shall I slice up the bread?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r2",
+              "text": "Shall I to slice up the bread?"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:intro3:r3",
+              "text": "Shall I will slice up the bread?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "24fe3eeae1dc5a65815d4855f2e34a6e090942025cd2e17d3362c8c6c863ece2"
+}

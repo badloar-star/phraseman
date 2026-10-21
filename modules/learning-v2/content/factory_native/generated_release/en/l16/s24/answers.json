@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-24:word:stick-to",
+    "correctText": "stick to",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i01",
+    "correctText": "I'll stick to the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i02",
+    "correctText": "I'll stick to the plan.",
+    "correctResponseId": "en:lesson-16:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i03",
+    "correctText": "I'll stick to",
+    "correctResponseId": "en:lesson-16:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:word:carry-on",
+    "correctText": "carry on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i04",
+    "correctText": "I'll carry on with the cleaning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i05",
+    "correctText": "I'll carry on with the cleaning.",
+    "correctResponseId": "en:lesson-16:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i06",
+    "correctText": "I'll carry on",
+    "correctResponseId": "en:lesson-16:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:word:stay-up",
+    "correctText": "stay up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i07",
+    "correctText": "I'll stay up to finish the job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i08",
+    "correctText": "I'll stay up to finish the job.",
+    "correctResponseId": "en:lesson-16:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i09",
+    "correctText": "I'll stay up",
+    "correctResponseId": "en:lesson-16:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:word:wait-up",
+    "correctText": "wait up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i10",
+    "correctText": "I'll wait up for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i11",
+    "correctText": "I'll wait up for you.",
+    "correctResponseId": "en:lesson-16:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i12",
+    "correctText": "I'll wait up",
+    "correctResponseId": "en:lesson-16:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i13",
+    "correctText": "en:lesson-16:session-24:i13:p1=stick to\nen:lesson-16:session-24:i13:p2=carry on\nen:lesson-16:session-24:i13:p3=stay up\nen:lesson-16:session-24:i13:p4=wait up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i14",
+    "correctText": "I'll stick to the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i15",
+    "correctText": "I'll stay up to finish the job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i16",
+    "correctText": "I'll carry on with the cleaning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-24:i17",
+    "correctText": "I'll wait up for you.",
+    "correctResponseId": null
+  }
+]

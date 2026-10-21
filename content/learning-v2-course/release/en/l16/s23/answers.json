@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-23:word:sort-out",
+    "correctText": "sort out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i01",
+    "correctText": "I'll sort out the tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i02",
+    "correctText": "I'll sort out the tickets.",
+    "correctResponseId": "en:lesson-16:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i03",
+    "correctText": "I'll sort out",
+    "correctResponseId": "en:lesson-16:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:word:deal-with",
+    "correctText": "deal with",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i04",
+    "correctText": "I'll deal with the complaint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i05",
+    "correctText": "I'll deal with the complaint.",
+    "correctResponseId": "en:lesson-16:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i06",
+    "correctText": "I'll deal with",
+    "correctResponseId": "en:lesson-16:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:word:take-care-of",
+    "correctText": "take care of",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i07",
+    "correctText": "I'll take care of the washing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i08",
+    "correctText": "I'll take care of the washing.",
+    "correctResponseId": "en:lesson-16:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i09",
+    "correctText": "I'll take care of",
+    "correctResponseId": "en:lesson-16:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:word:follow-through",
+    "correctText": "follow through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i10",
+    "correctText": "I'll follow through with the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i11",
+    "correctText": "I'll follow through with the plan.",
+    "correctResponseId": "en:lesson-16:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i12",
+    "correctText": "I'll follow through",
+    "correctResponseId": "en:lesson-16:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i13",
+    "correctText": "en:lesson-16:session-23:i13:p1=sort out\nen:lesson-16:session-23:i13:p2=deal with\nen:lesson-16:session-23:i13:p3=take care of\nen:lesson-16:session-23:i13:p4=follow through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i14",
+    "correctText": "I'll sort out the tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i15",
+    "correctText": "I'll take care of the washing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i16",
+    "correctText": "I'll deal with the complaint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-23:i17",
+    "correctText": "I'll follow through with the plan.",
+    "correctResponseId": null
+  }
+]

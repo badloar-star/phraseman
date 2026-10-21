@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-25:word:top-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — top up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:top-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — top up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:top-up:audio",
+            "transcript": "top up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:top-up:r1",
+              "targetText": "top up",
+              "meaningByLocale": {
+                "ru": "долить в частично наполненную ёмкость.",
+                "uk": "долити в частково наповнену місткість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "top up",
+            "definitionByLocale": {
+              "ru": "долить в частично наполненную ёмкость.",
+              "uk": "долити в частково наповнену місткість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В стакане гостя осталось мало воды. Предложите долить. Скажите: «Я долью вам в стакан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В стакане гостя осталось мало воды. Предложите долить. Скажите: «Я долью вам в стакан».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll top up your glass.",
+          "localizedMeaning": {
+            "ru": "В стакане гостя осталось мало воды. Предложите долить. Скажите: «Я долью вам в стакан».",
+            "uk": "У склянці гостя залишилося мало води. Запропонуйте долити. Скажіть: «Я доллю вам у склянку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "top",
+            "up",
+            "your",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i02:r1",
+            "text": "I'll top up your glass."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i02:r2",
+            "text": "I'll to top up your glass."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i02:r3",
+            "text": "I will will top up your glass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i02:audio",
+            "transcript": "I'll top up your glass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i02:r1",
+              "targetText": "I'll top up your glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r2",
+              "targetText": "I'll to top up your glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r3",
+              "targetText": "I will will top up your glass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll top up your glass.",
+                "uk": "У записі звучить I'll top up your glass."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll top up your glass.",
+                "uk": "У записі звучить I'll top up your glass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В стакане гостя осталось мало воды. Предложите долить.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i03:r1",
+            "text": "I'll top up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i03:r2",
+            "text": "I'll to top up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i03:r3",
+            "text": "I will will top up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В стакане гостя осталось мало воды. Предложите долить.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В стакане гостя осталось мало воды. Предложите долить.",
+            "uk": "У склянці гостя залишилося мало води. Запропонуйте долити."
+          },
+          "gappedTargetPhrase": "___ your glass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i03:r1",
+              "text": "I'll top up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r2",
+              "text": "I'll to top up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r3",
+              "text": "I will will top up"
+            }
+          ],
+          "testedDimension": "В стакане гостя осталось мало воды. Предложите долить.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "В стакане гостя осталось мало воды. Предложите долить.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "В стакане гостя осталось мало воды. Предложите долить.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:heat-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — heat up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:heat-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — heat up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:heat-up:audio",
+            "transcript": "heat up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:heat-up:r1",
+              "targetText": "heat up",
+              "meaningByLocale": {
+                "ru": "разогреть еду.",
+                "uk": "розігріти їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heat up",
+            "definitionByLocale": {
+              "ru": "разогреть еду.",
+              "uk": "розігріти їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его. Скажите: «Я разогрею вам ужин».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его. Скажите: «Я разогрею вам ужин».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll heat up your dinner.",
+          "localizedMeaning": {
+            "ru": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его. Скажите: «Я разогрею вам ужин».",
+            "uk": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її. Скажіть: «Я розігрію вам вечерю»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "heat",
+            "up",
+            "your",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i05:r1",
+            "text": "I'll heat up your dinner."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i05:r2",
+            "text": "I'll to heat up your dinner."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i05:r3",
+            "text": "I will will heat up your dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i05:audio",
+            "transcript": "I'll heat up your dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i05:r1",
+              "targetText": "I'll heat up your dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r2",
+              "targetText": "I'll to heat up your dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r3",
+              "targetText": "I will will heat up your dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll heat up your dinner.",
+                "uk": "У записі звучить I'll heat up your dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll heat up your dinner.",
+                "uk": "У записі звучить I'll heat up your dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i06:r1",
+            "text": "I'll heat up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i06:r2",
+            "text": "I'll to heat up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i06:r3",
+            "text": "I will will heat up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+            "uk": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її."
+          },
+          "gappedTargetPhrase": "___ your dinner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i06:r1",
+              "text": "I'll heat up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r2",
+              "text": "I'll to heat up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r3",
+              "text": "I will will heat up"
+            }
+          ],
+          "testedDimension": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:cool-down",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cool down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:cool-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cool down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:cool-down:audio",
+            "transcript": "cool down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:cool-down:r1",
+              "targetText": "cool down",
+              "meaningByLocale": {
+                "ru": "остудить, сделать менее горячим.",
+                "uk": "остудити, зробити менш гарячим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cool down",
+            "definitionByLocale": {
+              "ru": "остудить, сделать менее горячим.",
+              "uk": "остудити, зробити менш гарячим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить. Скажите: «Мне остудить суп?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить. Скажите: «Мне остудить суп?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I cool down the soup?",
+          "localizedMeaning": {
+            "ru": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить. Скажите: «Мне остудить суп?».",
+            "uk": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити. Скажіть: «Мені остудити суп?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "cool",
+            "down",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i08:r1",
+            "text": "Shall I cool down the soup?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i08:r2",
+            "text": "Shall I to cool down the soup?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i08:r3",
+            "text": "Shall I will cool down the soup?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i08:audio",
+            "transcript": "Shall I cool down the soup?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i08:r1",
+              "targetText": "Shall I cool down the soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r2",
+              "targetText": "Shall I to cool down the soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r3",
+              "targetText": "Shall I will cool down the soup?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I cool down the soup?",
+                "uk": "У записі звучить Shall I cool down the soup?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I cool down the soup?",
+                "uk": "У записі звучить Shall I cool down the soup?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i09:r1",
+            "text": "Shall I cool down"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i09:r2",
+            "text": "Shall I to cool down"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i09:r3",
+            "text": "Shall I will cool down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+            "uk": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити."
+          },
+          "gappedTargetPhrase": "___ the soup?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i09:r1",
+              "text": "Shall I cool down"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r2",
+              "text": "Shall I to cool down"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r3",
+              "text": "Shall I will cool down"
+            }
+          ],
+          "testedDimension": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:slice-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slice up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:slice-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slice up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:slice-up:audio",
+            "transcript": "slice up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:slice-up:r1",
+              "targetText": "slice up",
+              "meaningByLocale": {
+                "ru": "нарезать целый продукт ломтиками.",
+                "uk": "нарізати цілий продукт скибками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice up",
+            "definitionByLocale": {
+              "ru": "нарезать целый продукт ломтиками.",
+              "uk": "нарізати цілий продукт скибками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб. Скажите: «Мне нарезать хлеб ломтиками?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб. Скажите: «Мне нарезать хлеб ломтиками?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I slice up the bread?",
+          "localizedMeaning": {
+            "ru": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб. Скажите: «Мне нарезать хлеб ломтиками?».",
+            "uk": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб. Скажіть: «Мені нарізати хліб скибками?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "slice",
+            "up",
+            "the",
+            "bread"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i11:r1",
+            "text": "Shall I slice up the bread?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i11:r2",
+            "text": "Shall I to slice up the bread?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i11:r3",
+            "text": "Shall I will slice up the bread?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i11:audio",
+            "transcript": "Shall I slice up the bread?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i11:r1",
+              "targetText": "Shall I slice up the bread?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r2",
+              "targetText": "Shall I to slice up the bread?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r3",
+              "targetText": "Shall I will slice up the bread?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I slice up the bread?",
+                "uk": "У записі звучить Shall I slice up the bread?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I slice up the bread?",
+                "uk": "У записі звучить Shall I slice up the bread?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i12:r1",
+            "text": "Shall I slice up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i12:r2",
+            "text": "Shall I to slice up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i12:r3",
+            "text": "Shall I will slice up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+            "uk": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб."
+          },
+          "gappedTargetPhrase": "___ the bread?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i12:r1",
+              "text": "Shall I slice up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r2",
+              "text": "Shall I to slice up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r3",
+              "text": "Shall I will slice up"
+            }
+          ],
+          "testedDimension": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-25:i13:p1",
+              "target": "top up",
+              "meaningByLocale": {
+                "ru": "долить в частично наполненную ёмкость",
+                "uk": "долити в частково наповнену місткість"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p2",
+              "target": "heat up",
+              "meaningByLocale": {
+                "ru": "разогреть еду",
+                "uk": "розігріти їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p3",
+              "target": "cool down",
+              "meaningByLocale": {
+                "ru": "остудить, сделать менее горячим",
+                "uk": "остудити, зробити менш гарячим"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p4",
+              "target": "slice up",
+              "meaningByLocale": {
+                "ru": "нарезать целый продукт ломтиками",
+                "uk": "нарізати цілий продукт скибками"
+              }
+            }
+          ],
+          "leftColumn": [
+            "top up",
+            "heat up",
+            "cool down",
+            "slice up"
+          ],
+          "rightColumn": [
+            "долить в частично наполненную ёмкость",
+            "разогреть еду",
+            "остудить, сделать менее горячим",
+            "нарезать целый продукт ломтиками"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное предложение помощи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное предложение помощи",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i14:audio",
+            "transcript": "I'll top up your glass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll top up your glass.",
+          "orderedTokens": [
+            "I'll",
+            "top",
+            "up",
+            "your",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i15:audio",
+            "transcript": "Shall I cool down the soup?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I cool down the soup?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "cool",
+            "down",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите разогреть ужин.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите разогреть ужин.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i16:audio",
+            "transcript": "I'll heat up your dinner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll heat up your dinner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, нужно ли нарезать хлеб.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, нужно ли нарезать хлеб.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i17:audio",
+            "transcript": "Shall I slice up the bread?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I slice up the bread?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-25:word:top-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — top up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:top-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — top up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:top-up:audio",
+            "transcript": "top up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:top-up:r1",
+              "targetText": "top up",
+              "meaningByLocale": {
+                "ru": "долить в частично наполненную ёмкость.",
+                "uk": "долити в частково наповнену місткість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "top up",
+            "definitionByLocale": {
+              "ru": "долить в частично наполненную ёмкость.",
+              "uk": "долити в частково наповнену місткість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У склянці гостя залишилося мало води. Запропонуйте долити. Скажіть: «Я доллю вам у склянку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У склянці гостя залишилося мало води. Запропонуйте долити. Скажіть: «Я доллю вам у склянку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll top up your glass.",
+          "localizedMeaning": {
+            "ru": "В стакане гостя осталось мало воды. Предложите долить. Скажите: «Я долью вам в стакан».",
+            "uk": "У склянці гостя залишилося мало води. Запропонуйте долити. Скажіть: «Я доллю вам у склянку»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "top",
+            "up",
+            "your",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i02:r1",
+            "text": "I'll top up your glass."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i02:r2",
+            "text": "I'll to top up your glass."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i02:r3",
+            "text": "I will will top up your glass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i02:audio",
+            "transcript": "I'll top up your glass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i02:r1",
+              "targetText": "I'll top up your glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r2",
+              "targetText": "I'll to top up your glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r3",
+              "targetText": "I will will top up your glass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll top up your glass.",
+                "uk": "У записі звучить I'll top up your glass."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll top up your glass.",
+                "uk": "У записі звучить I'll top up your glass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У склянці гостя залишилося мало води. Запропонуйте долити.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i03:r1",
+            "text": "I'll top up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i03:r2",
+            "text": "I'll to top up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i03:r3",
+            "text": "I will will top up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У склянці гостя залишилося мало води. Запропонуйте долити.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В стакане гостя осталось мало воды. Предложите долить.",
+            "uk": "У склянці гостя залишилося мало води. Запропонуйте долити."
+          },
+          "gappedTargetPhrase": "___ your glass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i03:r1",
+              "text": "I'll top up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r2",
+              "text": "I'll to top up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r3",
+              "text": "I will will top up"
+            }
+          ],
+          "testedDimension": "У склянці гостя залишилося мало води. Запропонуйте долити.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "У склянці гостя залишилося мало води. Запропонуйте долити.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "У склянці гостя залишилося мало води. Запропонуйте долити.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:heat-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — heat up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:heat-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — heat up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:heat-up:audio",
+            "transcript": "heat up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:heat-up:r1",
+              "targetText": "heat up",
+              "meaningByLocale": {
+                "ru": "разогреть еду.",
+                "uk": "розігріти їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heat up",
+            "definitionByLocale": {
+              "ru": "разогреть еду.",
+              "uk": "розігріти їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її. Скажіть: «Я розігрію вам вечерю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її. Скажіть: «Я розігрію вам вечерю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll heat up your dinner.",
+          "localizedMeaning": {
+            "ru": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его. Скажите: «Я разогрею вам ужин».",
+            "uk": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її. Скажіть: «Я розігрію вам вечерю»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "heat",
+            "up",
+            "your",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i05:r1",
+            "text": "I'll heat up your dinner."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i05:r2",
+            "text": "I'll to heat up your dinner."
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i05:r3",
+            "text": "I will will heat up your dinner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i05:audio",
+            "transcript": "I'll heat up your dinner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i05:r1",
+              "targetText": "I'll heat up your dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r2",
+              "targetText": "I'll to heat up your dinner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r3",
+              "targetText": "I will will heat up your dinner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll heat up your dinner.",
+                "uk": "У записі звучить I'll heat up your dinner."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll heat up your dinner.",
+                "uk": "У записі звучить I'll heat up your dinner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i06:r1",
+            "text": "I'll heat up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i06:r2",
+            "text": "I'll to heat up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i06:r3",
+            "text": "I will will heat up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Близкий вернулся поздно, ужин остыл. Предложите разогреть его.",
+            "uk": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її."
+          },
+          "gappedTargetPhrase": "___ your dinner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i06:r1",
+              "text": "I'll heat up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r2",
+              "text": "I'll to heat up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r3",
+              "text": "I will will heat up"
+            }
+          ],
+          "testedDimension": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Близька людина повернулася пізно, вечеря охолола. Запропонуйте розігріти її.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:cool-down",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cool down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:cool-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cool down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:cool-down:audio",
+            "transcript": "cool down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:cool-down:r1",
+              "targetText": "cool down",
+              "meaningByLocale": {
+                "ru": "остудить, сделать менее горячим.",
+                "uk": "остудити, зробити менш гарячим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cool down",
+            "definitionByLocale": {
+              "ru": "остудить, сделать менее горячим.",
+              "uk": "остудити, зробити менш гарячим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити. Скажіть: «Мені остудити суп?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити. Скажіть: «Мені остудити суп?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I cool down the soup?",
+          "localizedMeaning": {
+            "ru": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить. Скажите: «Мне остудить суп?».",
+            "uk": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити. Скажіть: «Мені остудити суп?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "cool",
+            "down",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i08:r1",
+            "text": "Shall I cool down the soup?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i08:r2",
+            "text": "Shall I to cool down the soup?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i08:r3",
+            "text": "Shall I will cool down the soup?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i08:audio",
+            "transcript": "Shall I cool down the soup?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i08:r1",
+              "targetText": "Shall I cool down the soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r2",
+              "targetText": "Shall I to cool down the soup?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r3",
+              "targetText": "Shall I will cool down the soup?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I cool down the soup?",
+                "uk": "У записі звучить Shall I cool down the soup?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I cool down the soup?",
+                "uk": "У записі звучить Shall I cool down the soup?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i09:r1",
+            "text": "Shall I cool down"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i09:r2",
+            "text": "Shall I to cool down"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i09:r3",
+            "text": "Shall I will cool down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Суп слишком горячий для ребёнка. Спросите родителя, нужно ли вам его остудить.",
+            "uk": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити."
+          },
+          "gappedTargetPhrase": "___ the soup?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i09:r1",
+              "text": "Shall I cool down"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r2",
+              "text": "Shall I to cool down"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r3",
+              "text": "Shall I will cool down"
+            }
+          ],
+          "testedDimension": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Суп надто гарячий для дитини. Запитайте когось із батьків, чи потрібно вам його остудити.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:word:slice-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slice up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:word:slice-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slice up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:word:slice-up:audio",
+            "transcript": "slice up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:word:slice-up:r1",
+              "targetText": "slice up",
+              "meaningByLocale": {
+                "ru": "нарезать целый продукт ломтиками.",
+                "uk": "нарізати цілий продукт скибками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice up",
+            "definitionByLocale": {
+              "ru": "нарезать целый продукт ломтиками.",
+              "uk": "нарізати цілий продукт скибками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб. Скажіть: «Мені нарізати хліб скибками?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб. Скажіть: «Мені нарізати хліб скибками?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I slice up the bread?",
+          "localizedMeaning": {
+            "ru": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб. Скажите: «Мне нарезать хлеб ломтиками?».",
+            "uk": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб. Скажіть: «Мені нарізати хліб скибками?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "slice",
+            "up",
+            "the",
+            "bread"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i11:r1",
+            "text": "Shall I slice up the bread?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i11:r2",
+            "text": "Shall I to slice up the bread?"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i11:r3",
+            "text": "Shall I will slice up the bread?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i11:audio",
+            "transcript": "Shall I slice up the bread?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-25:i11:r1",
+              "targetText": "Shall I slice up the bread?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r2",
+              "targetText": "Shall I to slice up the bread?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r3",
+              "targetText": "Shall I will slice up the bread?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I slice up the bread?",
+                "uk": "У записі звучить Shall I slice up the bread?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I slice up the bread?",
+                "uk": "У записі звучить Shall I slice up the bread?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-25:i12:r1",
+            "text": "Shall I slice up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i12:r2",
+            "text": "Shall I to slice up"
+          },
+          {
+            "responseId": "en:lesson-16:session-25:i12:r3",
+            "text": "Shall I will slice up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе целая буханка. Спросите хозяина, нужно ли вам нарезать хлеб.",
+            "uk": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб."
+          },
+          "gappedTargetPhrase": "___ the bread?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-25:i12:r1",
+              "text": "Shall I slice up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r2",
+              "text": "Shall I to slice up"
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r3",
+              "text": "Shall I will slice up"
+            }
+          ],
+          "testedDimension": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "На столі ціла хлібина. Запитайте господаря, чи потрібно вам нарізати хліб.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-25:i13:p1",
+              "target": "top up",
+              "meaningByLocale": {
+                "ru": "долить в частично наполненную ёмкость",
+                "uk": "долити в частково наповнену місткість"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p2",
+              "target": "heat up",
+              "meaningByLocale": {
+                "ru": "разогреть еду",
+                "uk": "розігріти їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p3",
+              "target": "cool down",
+              "meaningByLocale": {
+                "ru": "остудить, сделать менее горячим",
+                "uk": "остудити, зробити менш гарячим"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-25:i13:p4",
+              "target": "slice up",
+              "meaningByLocale": {
+                "ru": "нарезать целый продукт ломтиками",
+                "uk": "нарізати цілий продукт скибками"
+              }
+            }
+          ],
+          "leftColumn": [
+            "top up",
+            "heat up",
+            "cool down",
+            "slice up"
+          ],
+          "rightColumn": [
+            "долити в частково наповнену місткість",
+            "розігріти їжу",
+            "остудити, зробити менш гарячим",
+            "нарізати цілий продукт скибками"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту пропозицію допомоги",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i14:audio",
+            "transcript": "I'll top up your glass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll top up your glass.",
+          "orderedTokens": [
+            "I'll",
+            "top",
+            "up",
+            "your",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i15:audio",
+            "transcript": "Shall I cool down the soup?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I cool down the soup?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "cool",
+            "down",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте розігріти вечерю.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте розігріти вечерю.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i16:audio",
+            "transcript": "I'll heat up your dinner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll heat up your dinner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи потрібно нарізати хліб.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи потрібно нарізати хліб.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-25:i17:audio",
+            "transcript": "Shall I slice up the bread?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I slice up the bread?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-25:word:top-up",
+      "correctText": "top up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i01",
+      "correctText": "I'll top up your glass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i02",
+      "correctText": "I'll top up your glass.",
+      "correctResponseId": "en:lesson-16:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i03",
+      "correctText": "I'll top up",
+      "correctResponseId": "en:lesson-16:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:word:heat-up",
+      "correctText": "heat up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i04",
+      "correctText": "I'll heat up your dinner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i05",
+      "correctText": "I'll heat up your dinner.",
+      "correctResponseId": "en:lesson-16:session-25:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i06",
+      "correctText": "I'll heat up",
+      "correctResponseId": "en:lesson-16:session-25:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:word:cool-down",
+      "correctText": "cool down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i07",
+      "correctText": "Shall I cool down the soup?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i08",
+      "correctText": "Shall I cool down the soup?",
+      "correctResponseId": "en:lesson-16:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i09",
+      "correctText": "Shall I cool down",
+      "correctResponseId": "en:lesson-16:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:word:slice-up",
+      "correctText": "slice up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i10",
+      "correctText": "Shall I slice up the bread?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i11",
+      "correctText": "Shall I slice up the bread?",
+      "correctResponseId": "en:lesson-16:session-25:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i12",
+      "correctText": "Shall I slice up",
+      "correctResponseId": "en:lesson-16:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i14",
+      "correctText": "I'll top up your glass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i15",
+      "correctText": "Shall I cool down the soup?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i16",
+      "correctText": "I'll heat up your dinner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-25:i17",
+      "correctText": "Shall I slice up the bread?",
+      "correctResponseId": null
+    }
+  ]
+}

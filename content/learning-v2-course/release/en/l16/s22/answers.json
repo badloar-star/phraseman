@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-22:word:take-turns",
+    "correctText": "take turns",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i01",
+    "correctText": "I'll take turns with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i02",
+    "correctText": "I'll take turns with you.",
+    "correctResponseId": "en:lesson-16:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i03",
+    "correctText": "I'll take turns",
+    "correctResponseId": "en:lesson-16:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:word:keep-an-eye-on",
+    "correctText": "keep an eye on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i04",
+    "correctText": "I'll keep an eye on your bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i05",
+    "correctText": "I'll keep an eye on your bag.",
+    "correctResponseId": "en:lesson-16:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i06",
+    "correctText": "I'll keep an eye on",
+    "correctResponseId": "en:lesson-16:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:word:make-room-for",
+    "correctText": "make room for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i07",
+    "correctText": "I'll make room for your suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i08",
+    "correctText": "I'll make room for your suitcase.",
+    "correctResponseId": "en:lesson-16:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i09",
+    "correctText": "I'll make room for",
+    "correctResponseId": "en:lesson-16:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:word:tag-along",
+    "correctText": "tag along",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i10",
+    "correctText": "I'll tag along with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i11",
+    "correctText": "I'll tag along with you.",
+    "correctResponseId": "en:lesson-16:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i12",
+    "correctText": "I'll tag along",
+    "correctResponseId": "en:lesson-16:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i13",
+    "correctText": "en:lesson-16:session-22:i13:p1=take turns\nen:lesson-16:session-22:i13:p2=keep an eye on\nen:lesson-16:session-22:i13:p3=make room for\nen:lesson-16:session-22:i13:p4=tag along",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i14",
+    "correctText": "I'll take turns with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i15",
+    "correctText": "I'll make room for your suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i16",
+    "correctText": "I'll keep an eye on your bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-22:i17",
+    "correctText": "I'll tag along with you.",
+    "correctResponseId": null
+  }
+]

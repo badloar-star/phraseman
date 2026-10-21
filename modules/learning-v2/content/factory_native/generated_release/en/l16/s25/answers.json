@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-25:word:top-up",
+    "correctText": "top up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i01",
+    "correctText": "I'll top up your glass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i02",
+    "correctText": "I'll top up your glass.",
+    "correctResponseId": "en:lesson-16:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i03",
+    "correctText": "I'll top up",
+    "correctResponseId": "en:lesson-16:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:word:heat-up",
+    "correctText": "heat up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i04",
+    "correctText": "I'll heat up your dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i05",
+    "correctText": "I'll heat up your dinner.",
+    "correctResponseId": "en:lesson-16:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i06",
+    "correctText": "I'll heat up",
+    "correctResponseId": "en:lesson-16:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:word:cool-down",
+    "correctText": "cool down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i07",
+    "correctText": "Shall I cool down the soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i08",
+    "correctText": "Shall I cool down the soup?",
+    "correctResponseId": "en:lesson-16:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i09",
+    "correctText": "Shall I cool down",
+    "correctResponseId": "en:lesson-16:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:word:slice-up",
+    "correctText": "slice up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i10",
+    "correctText": "Shall I slice up the bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i11",
+    "correctText": "Shall I slice up the bread?",
+    "correctResponseId": "en:lesson-16:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i12",
+    "correctText": "Shall I slice up",
+    "correctResponseId": "en:lesson-16:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i13",
+    "correctText": "en:lesson-16:session-25:i13:p1=top up\nen:lesson-16:session-25:i13:p2=heat up\nen:lesson-16:session-25:i13:p3=cool down\nen:lesson-16:session-25:i13:p4=slice up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i14",
+    "correctText": "I'll top up your glass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i15",
+    "correctText": "Shall I cool down the soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i16",
+    "correctText": "I'll heat up your dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-25:i17",
+    "correctText": "Shall I slice up the bread?",
+    "correctResponseId": null
+  }
+]

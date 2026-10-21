@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-21:word:make-time-for",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make time for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:make-time-for:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make time for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:make-time-for:audio",
+            "transcript": "make time for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:make-time-for:r1",
+              "targetText": "make time for",
+              "meaningByLocale": {
+                "ru": "выделить время для человека или дела.",
+                "uk": "виділити час для людини або справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make time for",
+            "definitionByLocale": {
+              "ru": "выделить время для человека или дела.",
+              "uk": "виділити час для людини або справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Скажите: «Я выделю время для вас».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Скажите: «Я выделю время для вас».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll make time for you.",
+          "localizedMeaning": {
+            "ru": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Скажите: «Я выделю время для вас».",
+            "uk": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Скажіть: «Я виділю час для вас»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "time",
+            "for",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i02:r1",
+            "text": "I'll make time for you."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i02:r2",
+            "text": "We'll make time for you."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i02:r3",
+            "text": "They'll make time for you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i02:audio",
+            "transcript": "I'll make time for you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i02:r1",
+              "targetText": "I'll make time for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r2",
+              "targetText": "We'll make time for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r3",
+              "targetText": "They'll make time for you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make time for you.",
+                "uk": "У записі звучить I'll make time for you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make time for you.",
+                "uk": "У записі звучить I'll make time for you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i03:r1",
+            "text": "I'll make time for"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i03:r2",
+            "text": "I'll to make time for"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i03:r3",
+            "text": "I make time for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+            "uk": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i03:r1",
+              "text": "I'll make time for"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r2",
+              "text": "I'll to make time for"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r3",
+              "text": "I make time for"
+            }
+          ],
+          "testedDimension": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:lend-a-hand",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lend a hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:lend-a-hand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lend a hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:lend-a-hand:audio",
+            "transcript": "lend a hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:lend-a-hand:r1",
+              "targetText": "lend a hand",
+              "meaningByLocale": {
+                "ru": "помочь с делом.",
+                "uk": "допомогти зі справою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lend a hand",
+            "definitionByLocale": {
+              "ru": "помочь с делом.",
+              "uk": "допомогти зі справою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Скажите: «Я помогу завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Скажите: «Я помогу завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll lend a hand tomorrow.",
+          "localizedMeaning": {
+            "ru": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Скажите: «Я помогу завтра».",
+            "uk": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Скажіть: «Я допоможу завтра»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "lend",
+            "a",
+            "hand",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i05:r1",
+            "text": "I'll lend a hand tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i05:r2",
+            "text": "We'll lend a hand tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i05:r3",
+            "text": "They'll lend a hand tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i05:audio",
+            "transcript": "I'll lend a hand tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i05:r1",
+              "targetText": "I'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r2",
+              "targetText": "We'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r3",
+              "targetText": "They'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll lend a hand tomorrow.",
+                "uk": "У записі звучить I'll lend a hand tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll lend a hand tomorrow.",
+                "uk": "У записі звучить I'll lend a hand tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i06:r1",
+            "text": "I'll lend a hand"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i06:r2",
+            "text": "I'll to lend a hand"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i06:r3",
+            "text": "I lend a hand"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+            "uk": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i06:r1",
+              "text": "I'll lend a hand"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r2",
+              "text": "I'll to lend a hand"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r3",
+              "text": "I lend a hand"
+            }
+          ],
+          "testedDimension": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:do-a-favour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — do a favour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:do-a-favour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — do a favour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:do-a-favour:audio",
+            "transcript": "do a favour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:do-a-favour:r1",
+              "targetText": "do a favour",
+              "meaningByLocale": {
+                "ru": "оказать услугу.",
+                "uk": "зробити послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "do a favour",
+            "definitionByLocale": {
+              "ru": "оказать услугу.",
+              "uk": "зробити послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Скажите: «Я окажу услугу вашему брату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Скажите: «Я окажу услугу вашему брату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll do a favour for your brother.",
+          "localizedMeaning": {
+            "ru": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Скажите: «Я окажу услугу вашему брату».",
+            "uk": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Скажіть: «Я зроблю послугу вашому братові»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "do",
+            "a",
+            "favour",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i08:r1",
+            "text": "I'll do a favour for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i08:r2",
+            "text": "We'll do a favour for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i08:r3",
+            "text": "They'll do a favour for your brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i08:audio",
+            "transcript": "I'll do a favour for your brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i08:r1",
+              "targetText": "I'll do a favour for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r2",
+              "targetText": "We'll do a favour for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r3",
+              "targetText": "They'll do a favour for your brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll do a favour for your brother.",
+                "uk": "У записі звучить I'll do a favour for your brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll do a favour for your brother.",
+                "uk": "У записі звучить I'll do a favour for your brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i09:r1",
+            "text": "I'll do a favour"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i09:r2",
+            "text": "I'll to do a favour"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i09:r3",
+            "text": "I do a favour"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+            "uk": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ for your brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i09:r1",
+              "text": "I'll do a favour"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r2",
+              "text": "I'll to do a favour"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r3",
+              "text": "I do a favour"
+            }
+          ],
+          "testedDimension": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:give-a-lift",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — give a lift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:give-a-lift:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — give a lift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:give-a-lift:audio",
+            "transcript": "give a lift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:give-a-lift:r1",
+              "targetText": "give a lift",
+              "meaningByLocale": {
+                "ru": "подвезти на машине.",
+                "uk": "підвезти машиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give a lift",
+            "definitionByLocale": {
+              "ru": "подвезти на машине.",
+              "uk": "підвезти машиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Скажите: «Я подвезу вашу маму».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Скажите: «Я подвезу вашу маму».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll give a lift to your mother.",
+          "localizedMeaning": {
+            "ru": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Скажите: «Я подвезу вашу маму».",
+            "uk": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Скажіть: «Я підвезу вашу маму»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "give",
+            "a",
+            "lift",
+            "to",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i11:r1",
+            "text": "I'll give a lift to your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i11:r2",
+            "text": "We'll give a lift to your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i11:r3",
+            "text": "They'll give a lift to your mother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i11:audio",
+            "transcript": "I'll give a lift to your mother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i11:r1",
+              "targetText": "I'll give a lift to your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r2",
+              "targetText": "We'll give a lift to your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r3",
+              "targetText": "They'll give a lift to your mother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll give a lift to your mother.",
+                "uk": "У записі звучить I'll give a lift to your mother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll give a lift to your mother.",
+                "uk": "У записі звучить I'll give a lift to your mother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i12:r1",
+            "text": "I'll give a lift"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i12:r2",
+            "text": "I'll to give a lift"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i12:r3",
+            "text": "I give a lift"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+            "uk": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ to your mother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i12:r1",
+              "text": "I'll give a lift"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r2",
+              "text": "I'll to give a lift"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r3",
+              "text": "I give a lift"
+            }
+          ],
+          "testedDimension": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-21:i13:p1",
+              "target": "make time for",
+              "meaningByLocale": {
+                "ru": "выделить время для человека или дела",
+                "uk": "виділити час для людини або справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p2",
+              "target": "lend a hand",
+              "meaningByLocale": {
+                "ru": "помочь с делом",
+                "uk": "допомогти зі справою"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p3",
+              "target": "do a favour",
+              "meaningByLocale": {
+                "ru": "оказать услугу",
+                "uk": "зробити послугу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p4",
+              "target": "give a lift",
+              "meaningByLocale": {
+                "ru": "подвезти на машине",
+                "uk": "підвезти машиною"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make time for",
+            "lend a hand",
+            "do a favour",
+            "give a lift"
+          ],
+          "rightColumn": [
+            "выделить время для человека или дела",
+            "помочь с делом",
+            "оказать услугу",
+            "подвезти на машине"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i14:audio",
+            "transcript": "I'll make time for you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll make time for you.",
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "time",
+            "for",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное обещание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное обещание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i15:audio",
+            "transcript": "I'll do a favour for your brother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll do a favour for your brother.",
+          "orderedTokens": [
+            "I'll",
+            "do",
+            "a",
+            "favour",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i16:audio",
+            "transcript": "I'll lend a hand tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll lend a hand tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Произнесите своё обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Произнесите своё обещание.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i17:audio",
+            "transcript": "I'll give a lift to your mother."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll give a lift to your mother.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-21:word:make-time-for",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make time for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:make-time-for:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make time for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:make-time-for:audio",
+            "transcript": "make time for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:make-time-for:r1",
+              "targetText": "make time for",
+              "meaningByLocale": {
+                "ru": "выделить время для человека или дела.",
+                "uk": "виділити час для людини або справи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make time for",
+            "definitionByLocale": {
+              "ru": "выделить время для человека или дела.",
+              "uk": "виділити час для людини або справи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Скажіть: «Я виділю час для вас».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Скажіть: «Я виділю час для вас».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll make time for you.",
+          "localizedMeaning": {
+            "ru": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Скажите: «Я выделю время для вас».",
+            "uk": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Скажіть: «Я виділю час для вас»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "time",
+            "for",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i02:r1",
+            "text": "I'll make time for you."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i02:r2",
+            "text": "We'll make time for you."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i02:r3",
+            "text": "They'll make time for you."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i02:audio",
+            "transcript": "I'll make time for you."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i02:r1",
+              "targetText": "I'll make time for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r2",
+              "targetText": "We'll make time for you.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r3",
+              "targetText": "They'll make time for you.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make time for you.",
+                "uk": "У записі звучить I'll make time for you."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll make time for you.",
+                "uk": "У записі звучить I'll make time for you."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i03:r1",
+            "text": "I'll make time for"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i03:r2",
+            "text": "I'll to make time for"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i03:r3",
+            "text": "I make time for"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг хочет поговорить и боится, что вы слишком заняты. Вы обещаете найти для него время. Используйте I'll.",
+            "uk": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ you.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i03:r1",
+              "text": "I'll make time for"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r2",
+              "text": "I'll to make time for"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r3",
+              "text": "I make time for"
+            }
+          ],
+          "testedDimension": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг хоче поговорити й боїться, що ви надто зайняті. Ви обіцяєте знайти для нього час. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:lend-a-hand",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lend a hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:lend-a-hand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lend a hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:lend-a-hand:audio",
+            "transcript": "lend a hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:lend-a-hand:r1",
+              "targetText": "lend a hand",
+              "meaningByLocale": {
+                "ru": "помочь с делом.",
+                "uk": "допомогти зі справою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lend a hand",
+            "definitionByLocale": {
+              "ru": "помочь с делом.",
+              "uk": "допомогти зі справою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Скажіть: «Я допоможу завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Скажіть: «Я допоможу завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll lend a hand tomorrow.",
+          "localizedMeaning": {
+            "ru": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Скажите: «Я помогу завтра».",
+            "uk": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Скажіть: «Я допоможу завтра»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "lend",
+            "a",
+            "hand",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i05:r1",
+            "text": "I'll lend a hand tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i05:r2",
+            "text": "We'll lend a hand tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i05:r3",
+            "text": "They'll lend a hand tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i05:audio",
+            "transcript": "I'll lend a hand tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i05:r1",
+              "targetText": "I'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r2",
+              "targetText": "We'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r3",
+              "targetText": "They'll lend a hand tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll lend a hand tomorrow.",
+                "uk": "У записі звучить I'll lend a hand tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll lend a hand tomorrow.",
+                "uk": "У записі звучить I'll lend a hand tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i06:r1",
+            "text": "I'll lend a hand"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i06:r2",
+            "text": "I'll to lend a hand"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i06:r3",
+            "text": "I lend a hand"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседу нужно переставить мебель. Вы обещаете прийти помочь завтра. Используйте I'll.",
+            "uk": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i06:r1",
+              "text": "I'll lend a hand"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r2",
+              "text": "I'll to lend a hand"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r3",
+              "text": "I lend a hand"
+            }
+          ],
+          "testedDimension": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:do-a-favour",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — do a favour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:do-a-favour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — do a favour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:do-a-favour:audio",
+            "transcript": "do a favour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:do-a-favour:r1",
+              "targetText": "do a favour",
+              "meaningByLocale": {
+                "ru": "оказать услугу.",
+                "uk": "зробити послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "do a favour",
+            "definitionByLocale": {
+              "ru": "оказать услугу.",
+              "uk": "зробити послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Скажіть: «Я зроблю послугу вашому братові».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Скажіть: «Я зроблю послугу вашому братові».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll do a favour for your brother.",
+          "localizedMeaning": {
+            "ru": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Скажите: «Я окажу услугу вашему брату».",
+            "uk": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Скажіть: «Я зроблю послугу вашому братові»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "do",
+            "a",
+            "favour",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i08:r1",
+            "text": "I'll do a favour for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i08:r2",
+            "text": "We'll do a favour for your brother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i08:r3",
+            "text": "They'll do a favour for your brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i08:audio",
+            "transcript": "I'll do a favour for your brother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i08:r1",
+              "targetText": "I'll do a favour for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r2",
+              "targetText": "We'll do a favour for your brother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r3",
+              "targetText": "They'll do a favour for your brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll do a favour for your brother.",
+                "uk": "У записі звучить I'll do a favour for your brother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll do a favour for your brother.",
+                "uk": "У записі звучить I'll do a favour for your brother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i09:r1",
+            "text": "I'll do a favour"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i09:r2",
+            "text": "I'll to do a favour"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i09:r3",
+            "text": "I do a favour"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг просит передать брату забытую книгу. Вы обещаете оказать брату эту услугу. Используйте I'll.",
+            "uk": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ for your brother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i09:r1",
+              "text": "I'll do a favour"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r2",
+              "text": "I'll to do a favour"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r3",
+              "text": "I do a favour"
+            }
+          ],
+          "testedDimension": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг просить передати братові забуту книжку. Ви обіцяєте зробити братові цю послугу. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:word:give-a-lift",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — give a lift",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:word:give-a-lift:audio"
+        ],
+        "accessibilityLabel": "Картка слова — give a lift",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:word:give-a-lift:audio",
+            "transcript": "give a lift"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:word:give-a-lift:r1",
+              "targetText": "give a lift",
+              "meaningByLocale": {
+                "ru": "подвезти на машине.",
+                "uk": "підвезти машиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give a lift",
+            "definitionByLocale": {
+              "ru": "подвезти на машине.",
+              "uk": "підвезти машиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Скажіть: «Я підвезу вашу маму».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Скажіть: «Я підвезу вашу маму».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll give a lift to your mother.",
+          "localizedMeaning": {
+            "ru": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Скажите: «Я подвезу вашу маму».",
+            "uk": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Скажіть: «Я підвезу вашу маму»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "give",
+            "a",
+            "lift",
+            "to",
+            "your",
+            "mother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i11:r1",
+            "text": "I'll give a lift to your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i11:r2",
+            "text": "We'll give a lift to your mother."
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i11:r3",
+            "text": "They'll give a lift to your mother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i11:audio",
+            "transcript": "I'll give a lift to your mother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-21:i11:r1",
+              "targetText": "I'll give a lift to your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r2",
+              "targetText": "We'll give a lift to your mother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r3",
+              "targetText": "They'll give a lift to your mother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll give a lift to your mother.",
+                "uk": "У записі звучить I'll give a lift to your mother."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll give a lift to your mother.",
+                "uk": "У записі звучить I'll give a lift to your mother."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-21:i12:r1",
+            "text": "I'll give a lift"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i12:r2",
+            "text": "I'll to give a lift"
+          },
+          {
+            "responseId": "en:lesson-16:session-21:i12:r3",
+            "text": "I give a lift"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Маме друга трудно добраться до вокзала. Вы обещаете подвезти её на машине. Используйте I'll.",
+            "uk": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll."
+          },
+          "gappedTargetPhrase": "___ to your mother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-21:i12:r1",
+              "text": "I'll give a lift"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r2",
+              "text": "I'll to give a lift"
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r3",
+              "text": "I give a lift"
+            }
+          ],
+          "testedDimension": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "После I'll не нужно to.",
+                "uk": "Після I'll не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Використайте I'll.",
+              "feedbackByLocale": {
+                "ru": "Передайте обещание: I'll + глагол.",
+                "uk": "Передайте обіцянку: I'll + дієслово."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-21:i13:p1",
+              "target": "make time for",
+              "meaningByLocale": {
+                "ru": "выделить время для человека или дела",
+                "uk": "виділити час для людини або справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p2",
+              "target": "lend a hand",
+              "meaningByLocale": {
+                "ru": "помочь с делом",
+                "uk": "допомогти зі справою"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p3",
+              "target": "do a favour",
+              "meaningByLocale": {
+                "ru": "оказать услугу",
+                "uk": "зробити послугу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-21:i13:p4",
+              "target": "give a lift",
+              "meaningByLocale": {
+                "ru": "подвезти на машине",
+                "uk": "підвезти машиною"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make time for",
+            "lend a hand",
+            "do a favour",
+            "give a lift"
+          ],
+          "rightColumn": [
+            "виділити час для людини або справи",
+            "допомогти зі справою",
+            "зробити послугу",
+            "підвезти машиною"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i14:audio",
+            "transcript": "I'll make time for you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll make time for you.",
+          "orderedTokens": [
+            "I'll",
+            "make",
+            "time",
+            "for",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту обіцянку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту обіцянку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i15:audio",
+            "transcript": "I'll do a favour for your brother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll do a favour for your brother.",
+          "orderedTokens": [
+            "I'll",
+            "do",
+            "a",
+            "favour",
+            "for",
+            "your",
+            "brother"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Сусідові потрібно переставити меблі. Ви обіцяєте прийти допомогти завтра. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i16:audio",
+            "transcript": "I'll lend a hand tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll lend a hand tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Промовте свою обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Мамі друга важко дістатися до вокзалу. Ви обіцяєте підвезти її машиною. Промовте свою обіцянку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-21:i17:audio",
+            "transcript": "I'll give a lift to your mother."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll give a lift to your mother.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-21:word:make-time-for",
+      "correctText": "make time for",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i01",
+      "correctText": "I'll make time for you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i02",
+      "correctText": "I'll make time for you.",
+      "correctResponseId": "en:lesson-16:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i03",
+      "correctText": "I'll make time for",
+      "correctResponseId": "en:lesson-16:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:word:lend-a-hand",
+      "correctText": "lend a hand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i04",
+      "correctText": "I'll lend a hand tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i05",
+      "correctText": "I'll lend a hand tomorrow.",
+      "correctResponseId": "en:lesson-16:session-21:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i06",
+      "correctText": "I'll lend a hand",
+      "correctResponseId": "en:lesson-16:session-21:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:word:do-a-favour",
+      "correctText": "do a favour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i07",
+      "correctText": "I'll do a favour for your brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i08",
+      "correctText": "I'll do a favour for your brother.",
+      "correctResponseId": "en:lesson-16:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i09",
+      "correctText": "I'll do a favour",
+      "correctResponseId": "en:lesson-16:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:word:give-a-lift",
+      "correctText": "give a lift",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i10",
+      "correctText": "I'll give a lift to your mother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i11",
+      "correctText": "I'll give a lift to your mother.",
+      "correctResponseId": "en:lesson-16:session-21:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i12",
+      "correctText": "I'll give a lift",
+      "correctResponseId": "en:lesson-16:session-21:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i14",
+      "correctText": "I'll make time for you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i15",
+      "correctText": "I'll do a favour for your brother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i16",
+      "correctText": "I'll lend a hand tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-21:i17",
+      "correctText": "I'll give a lift to your mother.",
+      "correctResponseId": null
+    }
+  ]
+}

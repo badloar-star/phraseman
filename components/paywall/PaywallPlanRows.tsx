@@ -159,11 +159,11 @@ export const PLAN_ROWS_BLOCK_HEIGHT = PLAN_ROW_MIN_HEIGHT * 2 + PLAN_ROW_GAP;
 const S = StyleSheet.create({
   list: { gap: PLAN_ROW_GAP, marginTop: 16 },
   row: { minHeight: PLAN_ROW_MIN_HEIGHT, borderRadius: PLAN_ROW_RADIUS, paddingVertical: 14, paddingHorizontal: 16, justifyContent: 'center' },
-  selLayer: { borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5 }, // guard-ok: тонкая кромка акцента выбранной строки по макету варианта A (`0 0 0 1.5px var(--acc)`), утверждён владельцем 18.10
+  selLayer: { borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5 }, // shadow-ok: guard-ok: тонкая кромка акцента выбранной строки по макету варианта A (`0 0 0 1.5px var(--acc)`), утверждён владельцем 18.10
   disabled: { opacity: DISABLED_OPACITY },
   inner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   radio: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  radioRing: { borderWidth: 2 }, // guard-ok: кольцо радио — индикатор выбора, не контейнер
+  radioRing: { borderWidth: 2 }, // shadow-ok: guard-ok: кольцо радио — индикатор выбора, не контейнер
   radioDot: { width: 12, height: 12, borderRadius: 6 },
   nameCol: { flex: 1, minWidth: 0 },
   name: { fontSize: 16, lineHeight: 22, fontWeight: '800' },

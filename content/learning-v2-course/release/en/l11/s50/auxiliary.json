@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-50:intro1:r2": {
+          "ru": "Last year — прошлый год: was.",
+          "uk": "Last year — минулий рік: was."
+        },
+        "en:lesson-11:session-50:intro1:r3": {
+          "ru": "Одна сестра: was.",
+          "uk": "Одна сестра: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-50:intro2:r2": {
+          "ru": "Last year требует прошлого: was.",
+          "uk": "Last year потребує минулого: was."
+        },
+        "en:lesson-11:session-50:intro2:r3": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-50:intro3:r2": {
+          "ru": "Одна тётя: is.",
+          "uk": "Одна тітка: is."
+        },
+        "en:lesson-11:session-50:intro3:r3": {
+          "ru": "Was описывает прошлое, а нужно сейчас.",
+          "uk": "Was описує минуле, а потрібно зараз."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4704a91947725caa420a52fb19a787d2ef1e71633cfea843762791675866935a"
+}

@@ -4263,4 +4263,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; there was/there were; yesterday / now","uk":"was/were; there was/there were; yesterday / now"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 49,
+    sourceFingerprint: "16173ef2d47c60c9fccea533d2586239331c02307dbff377edfa101388af1958",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present simple / continuous; was/were; yesterday / now","uk":"present simple / continuous; was/were; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 50,
+    sourceFingerprint: "06079fc12f2e938939c64a64033be7d5c9e9fd272b32c833bcbbe547a7c0f056",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; past states; now / last year","uk":"was/were; past states; now / last year"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 51,
+    sourceFingerprint: "644fa42618ab82f448f8bd9217d7e3c296ff4d58d1cc3bbd5188e1d237d72f8f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; present simple; yesterday / now","uk":"was/were; present simple; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 52,
+    sourceFingerprint: "0bb411a592d61726610889d2e96ddf839a598776598fe6a8f30446f0ed4ce7bc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; family; questions and negatives","uk":"was/were; family; questions and negatives"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

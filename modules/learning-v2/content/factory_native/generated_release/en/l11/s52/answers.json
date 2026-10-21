@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-52:word:stepfather",
+    "correctText": "stepfather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i01",
+    "correctText": "Was your stepfather at home?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i02",
+    "correctText": "My stepfather was in the kitchen.",
+    "correctResponseId": "en:lesson-11:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:word:stepmother",
+    "correctText": "stepmother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i04",
+    "correctText": "My stepmother was not at work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i05",
+    "correctText": "My stepmother was busy.",
+    "correctResponseId": "en:lesson-11:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:word:stepbrother",
+    "correctText": "stepbrother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i07",
+    "correctText": "Was your stepbrother at school?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i08",
+    "correctText": "My stepbrother was in the park.",
+    "correctResponseId": "en:lesson-11:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:word:stepsister",
+    "correctText": "stepsister",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i10",
+    "correctText": "My stepsister was not at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i11",
+    "correctText": "My stepsister was with her friends.",
+    "correctResponseId": "en:lesson-11:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i13",
+    "correctText": "en:lesson-11:session-52:i13:p1=stepfather\nen:lesson-11:session-52:i13:p2=stepmother\nen:lesson-11:session-52:i13:p3=stepbrother\nen:lesson-11:session-52:i13:p4=stepsister",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i14",
+    "correctText": "Please don't wake my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i15",
+    "correctText": "I am talking to my stepfather now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i16",
+    "correctText": "My stepbrother and my stepsister were in the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-52:i17",
+    "correctText": "Was your stepmother busy?",
+    "correctResponseId": null
+  }
+]

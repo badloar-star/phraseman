@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-52:word:stepfather",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stepfather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:word:stepfather:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stepfather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:word:stepfather:audio",
+          "transcript": "stepfather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:word:stepfather:r1",
+            "targetText": "stepfather",
+            "meaningByLocale": {
+              "ru": "отчим.",
+              "uk": "вітчим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepfather",
+          "definitionByLocale": {
+            "ru": "отчим.",
+            "uk": "вітчим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був вітчим удома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був вітчим удома",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was your stepfather at home?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли отчим дома",
+          "uk": "Запитайте, чи був вітчим удома"
+        },
+        "orderedTokens": [
+          "Was",
+          "your",
+          "stepfather",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i02:r1",
+          "text": "My stepfather was in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i02:r2",
+          "text": "My stepfather is in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i02:r3",
+          "text": "My stepfather was in the garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i02:audio",
+          "transcript": "My stepfather was in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:i02:r1",
+            "targetText": "My stepfather was in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i02:r2",
+            "targetText": "My stepfather is in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i02:r3",
+            "targetText": "My stepfather was in the garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepfather was in the kitchen.",
+              "uk": "У записі звучить My stepfather was in the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepfather was in the kitchen.",
+              "uk": "У записі звучить My stepfather was in the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора мій вітчим був удома. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора мій вітчим був удома. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мой отчим был дома. Выберите форму",
+          "uk": "Учора мій вітчим був удома. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My stepfather ___ at home yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-52:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора мій вітчим був удома. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора мій вітчим був удома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора мій вітчим був удома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один человек: was.",
+              "uk": "Одна людина: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:word:stepmother",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stepmother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:word:stepmother:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stepmother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:word:stepmother:audio",
+          "transcript": "stepmother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:word:stepmother:r1",
+            "targetText": "stepmother",
+            "meaningByLocale": {
+              "ru": "мачеха.",
+              "uk": "мачуха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepmother",
+          "definitionByLocale": {
+            "ru": "мачеха.",
+            "uk": "мачуха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: моя мачуха була не на роботі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: моя мачуха була не на роботі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My stepmother was not at work.",
+        "localizedMeaning": {
+          "ru": "Сообщите: моя мачеха была не на работе",
+          "uk": "Повідомте: моя мачуха була не на роботі"
+        },
+        "orderedTokens": [
+          "My",
+          "stepmother",
+          "was",
+          "not",
+          "at",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i05:r1",
+          "text": "My stepmother was busy."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i05:r2",
+          "text": "My stepmother is busy."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i05:r3",
+          "text": "Was your stepmother busy?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i05:audio",
+          "transcript": "My stepmother was busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:i05:r1",
+            "targetText": "My stepmother was busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i05:r2",
+            "targetText": "My stepmother is busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i05:r3",
+            "targetText": "Was your stepmother busy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepmother was busy.",
+              "uk": "У записі звучить My stepmother was busy."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepmother was busy.",
+              "uk": "У записі звучить My stepmother was busy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз моя мачуха вдома. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз моя мачуха вдома. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас моя мачеха дома. Выберите форму",
+          "uk": "Зараз моя мачуха вдома. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My stepmother ___ at home now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-52:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз моя мачуха вдома. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз моя мачуха вдома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз моя мачуха вдома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один человек: is.",
+              "uk": "Одна людина: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:word:stepbrother",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stepbrother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:word:stepbrother:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stepbrother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:word:stepbrother:audio",
+          "transcript": "stepbrother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:word:stepbrother:r1",
+            "targetText": "stepbrother",
+            "meaningByLocale": {
+              "ru": "сводный брат — сын отчима или мачехи, без общего родного родителя.",
+              "uk": "зведений брат — син вітчима чи мачухи, без спільного рідного батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepbrother",
+          "definitionByLocale": {
+            "ru": "сводный брат — сын отчима или мачехи, без общего родного родителя.",
+            "uk": "зведений брат — син вітчима чи мачухи, без спільного рідного батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був зведений брат у школі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був зведений брат у школі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was your stepbrother at school?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли сводный брат в школе",
+          "uk": "Запитайте, чи був зведений брат у школі"
+        },
+        "orderedTokens": [
+          "Was",
+          "your",
+          "stepbrother",
+          "at",
+          "school"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i08:r1",
+          "text": "My stepbrother was in the park."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i08:r2",
+          "text": "My stepbrother is in the park."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i08:r3",
+          "text": "My stepbrother was in the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i08:audio",
+          "transcript": "My stepbrother was in the park."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:i08:r1",
+            "targetText": "My stepbrother was in the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i08:r2",
+            "targetText": "My stepbrother is in the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i08:r3",
+            "targetText": "My stepbrother was in the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepbrother was in the park.",
+              "uk": "У записі звучить My stepbrother was in the park."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepbrother was in the park.",
+              "uk": "У записі звучить My stepbrother was in the park."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора мій зведений брат був у школі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора мій зведений брат був у школі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мой сводный брат был в школе. Выберите форму",
+          "uk": "Учора мій зведений брат був у школі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My stepbrother ___ at school yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-52:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора мій зведений брат був у школі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора мій зведений брат був у школі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора мій зведений брат був у школі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один человек: was.",
+              "uk": "Одна людина: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:word:stepsister",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stepsister",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:word:stepsister:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stepsister",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:word:stepsister:audio",
+          "transcript": "stepsister"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:word:stepsister:r1",
+            "targetText": "stepsister",
+            "meaningByLocale": {
+              "ru": "сводная сестра — дочь отчима или мачехи, без общего родного родителя.",
+              "uk": "зведена сестра — донька вітчима чи мачухи, без спільного рідного батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stepsister",
+          "definitionByLocale": {
+            "ru": "сводная сестра — дочь отчима или мачехи, без общего родного родителя.",
+            "uk": "зведена сестра — донька вітчима чи мачухи, без спільного рідного батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: моя зведена сестра була не вдома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: моя зведена сестра була не вдома",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My stepsister was not at home.",
+        "localizedMeaning": {
+          "ru": "Сообщите: моя сводная сестра была не дома",
+          "uk": "Повідомте: моя зведена сестра була не вдома"
+        },
+        "orderedTokens": [
+          "My",
+          "stepsister",
+          "was",
+          "not",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i11:r1",
+          "text": "My stepsister was with her friends."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i11:r2",
+          "text": "My stepsister is with her friends."
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i11:r3",
+          "text": "My stepsister was with her mum."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i11:audio",
+          "transcript": "My stepsister was with her friends."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-52:i11:r1",
+            "targetText": "My stepsister was with her friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i11:r2",
+            "targetText": "My stepsister is with her friends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i11:r3",
+            "targetText": "My stepsister was with her mum.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepsister was with her friends.",
+              "uk": "У записі звучить My stepsister was with her friends."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My stepsister was with her friends.",
+              "uk": "У записі звучить My stepsister was with her friends."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора мої зведені сестри були вдома. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-52:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-52:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора мої зведені сестри були вдома. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мои сводные сёстры были дома. Выберите форму",
+          "uk": "Учора мої зведені сестри були вдома. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My stepsisters ___ at home yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-52:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Учора мої зведені сестри були вдома. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора мої зведені сестри були вдома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько сестёр: were.",
+              "uk": "Кілька сестер: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора мої зведені сестри були вдома. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-52:i13:p1",
+            "target": "stepfather",
+            "meaningByLocale": {
+              "ru": "отчим",
+              "uk": "вітчим"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-52:i13:p2",
+            "target": "stepmother",
+            "meaningByLocale": {
+              "ru": "мачеха",
+              "uk": "мачуха"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-52:i13:p3",
+            "target": "stepbrother",
+            "meaningByLocale": {
+              "ru": "сводный брат",
+              "uk": "зведений брат"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-52:i13:p4",
+            "target": "stepsister",
+            "meaningByLocale": {
+              "ru": "сводная сестра",
+              "uk": "зведена сестра"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stepfather",
+          "stepmother",
+          "stepbrother",
+          "stepsister"
+        ],
+        "rightColumn": [
+          "вітчим",
+          "мачуха",
+          "зведений брат",
+          "зведена сестра"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i14:audio",
+          "transcript": "Please don't wake my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't wake my sister.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "wake",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i15:audio",
+          "transcript": "I am talking to my stepfather now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am talking to my stepfather now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "talking",
+          "to",
+          "my",
+          "stepfather",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що зведений брат і зведена сестра були в парку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що зведений брат і зведена сестра були в парку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i16:audio",
+          "transcript": "My stepbrother and my stepsister were in the park."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My stepbrother and my stepsister were in the park.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи була мачуха зайнята",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи була мачуха зайнята",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-52:i17:audio",
+          "transcript": "Was your stepmother busy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was your stepmother busy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70f1c325bbbaff1f1f09dbec83a34143a50b343b32ffd16c64218047bc6f6265"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-51:word:part-time",
+    "correctText": "part-time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i01",
+    "correctText": "I work part-time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i02",
+    "correctText": "My job was part-time.",
+    "correctResponseId": "en:lesson-11:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:word:full-time",
+    "correctText": "full-time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i04",
+    "correctText": "My sister works full-time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i05",
+    "correctText": "I work full-time.",
+    "correctResponseId": "en:lesson-11:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:word:day-shift",
+    "correctText": "day shift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i07",
+    "correctText": "Was the day shift long?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i08",
+    "correctText": "The day shift was short.",
+    "correctResponseId": "en:lesson-11:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:word:night-shift",
+    "correctText": "night shift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i10",
+    "correctText": "The night shift was not short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i11",
+    "correctText": "The night shift was busy.",
+    "correctResponseId": "en:lesson-11:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i13",
+    "correctText": "en:lesson-11:session-51:i13:p1=part-time\nen:lesson-11:session-51:i13:p2=full-time\nen:lesson-11:session-51:i13:p3=day shift\nen:lesson-11:session-51:i13:p4=night shift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i14",
+    "correctText": "Please don't call me now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i15",
+    "correctText": "I am working right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i16",
+    "correctText": "Do you work part-time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-51:i17",
+    "correctText": "The day shift and the night shift were long.",
+    "correctResponseId": null
+  }
+]

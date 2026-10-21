@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; present simple; yesterday / now",
+    "uk": "was/were; present simple; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неполный рабочий день",
+        "uk": "Неповний робочий день"
+      },
+      "bodyByLocale": {
+        "ru": "Part-time — «на неполный рабочий день / неполную рабочую неделю». Человек работает меньше часов, чем при полной занятости: I work part-time. О прежней работе: My job was part-time. Выберите сообщение о прежней работе.",
+        "uk": "Part-time — «на неповний робочий день / неповний робочий тиждень». Людина працює менше годин, ніж за повної зайнятості: I work part-time. Про колишню роботу: My job was part-time. Виберіть повідомлення про колишню роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r1",
+              "text": "My job was part-time."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r2",
+              "text": "My job is part-time."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r3",
+              "text": "My job were part-time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r1",
+              "text": "My job was part-time."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r2",
+              "text": "My job is part-time."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro1:r3",
+              "text": "My job were part-time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полная занятость",
+        "uk": "Повна зайнятість"
+      },
+      "bodyByLocale": {
+        "ru": "Full-time — «на полный рабочий день / полную рабочую неделю». Это о количестве рабочих часов, а не о работе без отдыха: I work full-time. В прошлом году работа была с полной занятостью: My job was full-time last year. Выберите эту фразу.",
+        "uk": "Full-time — «на повний робочий день / повний робочий тиждень». Це про кількість робочих годин, а не про роботу без відпочинку: I work full-time. Торік робота була з повною зайнятістю: My job was full-time last year. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r1",
+              "text": "My job was full-time last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r2",
+              "text": "My job is full-time last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r3",
+              "text": "My job were full-time last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r1",
+              "text": "My job was full-time last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r2",
+              "text": "My job is full-time last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro2:r3",
+              "text": "My job were full-time last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дневная и ночная смены",
+        "uk": "Денна й нічна зміни"
+      },
+      "bodyByLocale": {
+        "ru": "Day shift — «дневная смена», night shift — «ночная смена». Смена — время работы по расписанию. Вчера ночная смена была долгой: The night shift was long yesterday. Выберите сообщение именно о ночной смене.",
+        "uk": "Day shift — «денна зміна», night shift — «нічна зміна». Зміна — час роботи за розкладом. Учора нічна зміна була довга: The night shift was long yesterday. Виберіть повідомлення саме про нічну зміну."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r1",
+              "text": "The night shift was long yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r2",
+              "text": "The day shift was long yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r3",
+              "text": "The night shift were long yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r1",
+              "text": "The night shift was long yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r2",
+              "text": "The day shift was long yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-51:intro3:r3",
+              "text": "The night shift were long yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf533c771d490a174cdf8314377dea7698379ecfe08331cc22e4c00b90ba9b11"
+}

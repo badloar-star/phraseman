@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; past states; now / last year",
+    "uk": "was/were; past states; now / last year"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ожидать ребёнка",
+        "uk": "Чекати на дитину"
+      },
+      "bodyByLocale": {
+        "ru": "Pregnant — «беременна». О прошлом: My sister was pregnant last year. — «Моя сестра была беременна в прошлом году». Слово описывает состояние; перед ним нужен be. Выберите эту фразу о прошлом году.",
+        "uk": "Pregnant — «вагітна». Про минуле: My sister was pregnant last year. — «Моя сестра була вагітна торік». Слово описує стан; перед ним потрібен be. Виберіть цю фразу про минулий рік."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r1",
+              "text": "My sister was pregnant last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r2",
+              "text": "My sister is pregnant last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r3",
+              "text": "My sister were pregnant last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r1",
+              "text": "My sister was pregnant last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r2",
+              "text": "My sister is pregnant last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro1:r3",
+              "text": "My sister were pregnant last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа и пенсия",
+        "uk": "Робота й пенсія"
+      },
+      "bodyByLocale": {
+        "ru": "Retired — «на пенсии», unemployed — «безработный», когда работы сейчас нет. Это разные ситуации. Отец уже на пенсии: My father is retired. В прошлом году он тоже был на пенсии: My father was retired last year. Выберите сообщение о прошлом году.",
+        "uk": "Retired — «на пенсії», unemployed — «безробітний», коли роботи зараз немає. Це різні ситуації. Батько вже на пенсії: My father is retired. Торік він теж був на пенсії: My father was retired last year. Виберіть повідомлення про минулий рік."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r1",
+              "text": "My father was retired last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r2",
+              "text": "My father is retired last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r3",
+              "text": "My father were retired last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r1",
+              "text": "My father was retired last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r2",
+              "text": "My father is retired last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro2:r3",
+              "text": "My father were retired last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "После развода",
+        "uk": "Після розлучення"
+      },
+      "bodyByLocale": {
+        "ru": "Divorced — «разведён / разведена». Это нейтральное описание семейного положения: My aunt is divorced. — «Моя тётя разведена». Выберите описание положения тёти сейчас.",
+        "uk": "Divorced — «розлучений / розлучена». Це нейтральний опис сімейного стану: My aunt is divorced. — «Моя тітка розлучена». Виберіть опис стану тітки зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r1",
+              "text": "My aunt is divorced."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r2",
+              "text": "My aunt are divorced."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r3",
+              "text": "My aunt was divorced."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r1",
+              "text": "My aunt is divorced."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r2",
+              "text": "My aunt are divorced."
+            },
+            {
+              "responseId": "en:lesson-11:session-50:intro3:r3",
+              "text": "My aunt was divorced."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "90ecb1887cb7f6acd26a6f1ecb28907746b3de04541773bd3a7c60bd89493f0a"
+}

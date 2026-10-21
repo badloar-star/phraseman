@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; family; questions and negatives",
+    "uk": "was/were; family; questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отчим",
+        "uk": "Вітчим"
+      },
+      "bodyByLocale": {
+        "ru": "Stepfather — «отчим»: муж мамы, который не является вашим родным отцом. Слово пишется слитно. Вчера отчим был дома: My stepfather was at home yesterday. Выберите эту фразу.",
+        "uk": "Stepfather — «вітчим»: чоловік мами, який не є вашим рідним батьком. Слово пишеться разом. Учора вітчим був удома: My stepfather was at home yesterday. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r1",
+              "text": "My stepfather was at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r2",
+              "text": "My stepfather is at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r3",
+              "text": "My stepfather were at home yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r1",
+              "text": "My stepfather was at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r2",
+              "text": "My stepfather is at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro1:r3",
+              "text": "My stepfather were at home yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мачеха",
+        "uk": "Мачуха"
+      },
+      "bodyByLocale": {
+        "ru": "Stepmother — «мачеха»: жена папы, которая не является вашей родной мамой. Это название родства, без оценки человека. Вчера она была на работе: My stepmother was at work yesterday. Выберите сообщение о вчерашнем месте.",
+        "uk": "Stepmother — «мачуха»: дружина тата, яка не є вашою рідною мамою. Це назва спорідненості, без оцінки людини. Учора вона була на роботі: My stepmother was at work yesterday. Виберіть повідомлення про вчорашнє місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r1",
+              "text": "My stepmother was at work yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r2",
+              "text": "My stepmother is at work yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r3",
+              "text": "My stepmother were at work yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r1",
+              "text": "My stepmother was at work yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r2",
+              "text": "My stepmother is at work yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro2:r3",
+              "text": "My stepmother were at work yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сводные брат и сестра",
+        "uk": "Зведені брат і сестра"
+      },
+      "bodyByLocale": {
+        "ru": "Stepbrother — «сводный брат», stepsister — «сводная сестра»: сын или дочь отчима либо мачехи, с которыми у вас нет общего родного родителя. Не путайте с братом или сестрой, с которыми у вас общий отец или мать. Вчера сводные брат и сестра были дома: My stepbrother and my stepsister were at home. Два человека — were. Выберите эту фразу.",
+        "uk": "Stepbrother — «зведений брат», stepsister — «зведена сестра»: син або донька вітчима чи мачухи, з якими у вас немає спільного рідного батька чи матері. Не плутайте з братом або сестрою, з якими у вас спільний батько чи мати. Учора зведені брат і сестра були вдома: My stepbrother and my stepsister were at home. Дві людини — were. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r1",
+              "text": "My stepbrother and my stepsister were at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r2",
+              "text": "My stepbrother and my stepsister was at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r3",
+              "text": "My stepbrother and my stepsister is at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r1",
+              "text": "My stepbrother and my stepsister were at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r2",
+              "text": "My stepbrother and my stepsister was at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-52:intro3:r3",
+              "text": "My stepbrother and my stepsister is at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "33d9368e046b2d7a54c90e2cfd7f68ce7adc06c4fe17e1585d5dbc0a48e0021d"
+}

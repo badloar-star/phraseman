@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-49:intro1:r2": {
+          "ru": "Это вчерашнее состояние, а нужно действие сейчас.",
+          "uk": "Це вчорашній стан, а потрібна дія зараз."
+        },
+        "en:lesson-11:session-49:intro1:r3": {
+          "ru": "Один малыш: is.",
+          "uk": "Один малюк: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-49:intro2:r2": {
+          "ru": "Now — сейчас, а нужна привычка каждое утро.",
+          "uk": "Now — зараз, а потрібна звичка щоранку."
+        },
+        "en:lesson-11:session-49:intro2:r3": {
+          "ru": "С I используем kiss без -es.",
+          "uk": "З I використовуємо kiss без -es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-49:intro3:r2": {
+          "ru": "Это о хранении фотографий, не о доверии другу.",
+          "uk": "Це про зберігання фотографій, не про довіру другові."
+        },
+        "en:lesson-11:session-49:intro3:r3": {
+          "ru": "С I нужна believe без -s.",
+          "uk": "З I потрібна believe без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b1abeefcfd493e79ef5aad283f3d346661b989c4adf3da429971fd4516e66c65"
+}

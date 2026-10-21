@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-52:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-52:intro1:r3": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-52:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-52:intro2:r3": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-52:intro3:r2": {
+          "ru": "Два человека: were.",
+          "uk": "Дві людини: were."
+        },
+        "en:lesson-11:session-52:intro3:r3": {
+          "ru": "Два человека и прошлое: were.",
+          "uk": "Дві людини й минуле: were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b9f190ad275cdcb9fbdb5f28d6b4b8b157a138ac277a1d6c624b9379ec013214"
+}

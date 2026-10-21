@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-49:word:cry",
+    "correctText": "cry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i01",
+    "correctText": "Please don't cry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i02",
+    "correctText": "She is crying.",
+    "correctResponseId": "en:lesson-11:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:word:kiss",
+    "correctText": "kiss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i04",
+    "correctText": "I kiss my baby every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i05",
+    "correctText": "She is kissing her baby.",
+    "correctResponseId": "en:lesson-11:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:word:keep",
+    "correctText": "keep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i07",
+    "correctText": "I keep my photos in a box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i08",
+    "correctText": "We keep our keys here.",
+    "correctResponseId": "en:lesson-11:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:word:believe",
+    "correctText": "believe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i10",
+    "correctText": "I believe my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i11",
+    "correctText": "Do you believe me?",
+    "correctResponseId": "en:lesson-11:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i13",
+    "correctText": "en:lesson-11:session-49:i13:p1=cry\nen:lesson-11:session-49:i13:p2=kiss\nen:lesson-11:session-49:i13:p3=keep\nen:lesson-11:session-49:i13:p4=believe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i14",
+    "correctText": "The baby is crying now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i15",
+    "correctText": "He is kissing his baby now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i16",
+    "correctText": "I keep my photos here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-49:i17",
+    "correctText": "I believe you.",
+    "correctResponseId": null
+  }
+]

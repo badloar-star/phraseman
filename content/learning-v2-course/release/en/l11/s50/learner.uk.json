@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-50:word:pregnant",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pregnant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:word:pregnant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pregnant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:word:pregnant:audio",
+          "transcript": "pregnant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:word:pregnant:r1",
+            "targetText": "pregnant",
+            "meaningByLocale": {
+              "ru": "беременна.",
+              "uk": "вагітна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pregnant",
+          "definitionByLocale": {
+            "ru": "беременна.",
+            "uk": "вагітна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: моя сестра була вагітна торік. Почніть із My",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: моя сестра була вагітна торік. Почніть із My",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My sister was pregnant last year.",
+        "localizedMeaning": {
+          "ru": "Сообщите: моя сестра была беременна в прошлом году. Начните с My",
+          "uk": "Повідомте: моя сестра була вагітна торік. Почніть із My"
+        },
+        "orderedTokens": [
+          "My",
+          "sister",
+          "was",
+          "pregnant",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i02:r1",
+          "text": "She is pregnant."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i02:r2",
+          "text": "She was pregnant."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i02:r3",
+          "text": "Is she pregnant?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i02:audio",
+          "transcript": "She is pregnant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:i02:r1",
+            "targetText": "She is pregnant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i02:r2",
+            "targetText": "She was pregnant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i02:r3",
+            "targetText": "Is she pregnant?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is pregnant.",
+              "uk": "У записі звучить She is pregnant."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is pregnant.",
+              "uk": "У записі звучить She is pregnant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торік моя сестра була вагітна. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торік моя сестра була вагітна. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В прошлом году моя сестра была беременна. Выберите форму",
+          "uk": "Торік моя сестра була вагітна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My sister ___ pregnant last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-50:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Торік моя сестра була вагітна. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Торік моя сестра була вагітна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом году: was.",
+              "uk": "Торік: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Торік моя сестра була вагітна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна сестра: was.",
+              "uk": "Одна сестра: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:word:retired",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — retired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:word:retired:audio"
+      ],
+      "accessibilityLabel": "Картка слова — retired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:word:retired:audio",
+          "transcript": "retired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:word:retired:r1",
+            "targetText": "retired",
+            "meaningByLocale": {
+              "ru": "на пенсии.",
+              "uk": "на пенсії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "retired",
+          "definitionByLocale": {
+            "ru": "на пенсии.",
+            "uk": "на пенсії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: мої батьки на пенсії",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: мої батьки на пенсії",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My parents are retired.",
+        "localizedMeaning": {
+          "ru": "Сообщите: мои родители на пенсии",
+          "uk": "Повідомте: мої батьки на пенсії"
+        },
+        "orderedTokens": [
+          "My",
+          "parents",
+          "are",
+          "retired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i05:r1",
+          "text": "My father was retired."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i05:r2",
+          "text": "My father is retired."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i05:r3",
+          "text": "My mother was retired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i05:audio",
+          "transcript": "My father was retired."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:i05:r1",
+            "targetText": "My father was retired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i05:r2",
+            "targetText": "My father is retired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i05:r3",
+            "targetText": "My mother was retired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My father was retired.",
+              "uk": "У записі звучить My father was retired."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My father was retired.",
+              "uk": "У записі звучить My father was retired."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торік мої батьки вже були на пенсії. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торік мої батьки вже були на пенсії. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В прошлом году мои родители уже были на пенсии. Выберите форму",
+          "uk": "Торік мої батьки вже були на пенсії. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My parents ___ retired last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-50:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Торік мої батьки вже були на пенсії. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Торік мої батьки вже були на пенсії. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Parents — множественное число: were.",
+              "uk": "Parents — множина: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Торік мої батьки вже були на пенсії. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом году: were.",
+              "uk": "Торік: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:word:unemployed",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unemployed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:word:unemployed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unemployed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:word:unemployed:audio",
+          "transcript": "unemployed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:word:unemployed:r1",
+            "targetText": "unemployed",
+            "meaningByLocale": {
+              "ru": "безработный, без работы.",
+              "uk": "безробітний, без роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unemployed",
+          "definitionByLocale": {
+            "ru": "безработный, без работы.",
+            "uk": "безробітний, без роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: мій брат був безробітний торік. Почніть із My",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: мій брат був безробітний торік. Почніть із My",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My brother was unemployed last year.",
+        "localizedMeaning": {
+          "ru": "Сообщите: мой брат был безработным в прошлом году. Начните с My",
+          "uk": "Повідомте: мій брат був безробітний торік. Почніть із My"
+        },
+        "orderedTokens": [
+          "My",
+          "brother",
+          "was",
+          "unemployed",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i08:r1",
+          "text": "I am unemployed."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i08:r2",
+          "text": "I was unemployed."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i08:r3",
+          "text": "Are you unemployed?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i08:audio",
+          "transcript": "I am unemployed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:i08:r1",
+            "targetText": "I am unemployed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i08:r2",
+            "targetText": "I was unemployed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i08:r3",
+            "targetText": "Are you unemployed?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am unemployed.",
+              "uk": "У записі звучить I am unemployed."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am unemployed.",
+              "uk": "У записі звучить I am unemployed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торік він був безробітний. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торік він був безробітний. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В прошлом году он был безработным. Выберите форму",
+          "uk": "Торік він був безробітний. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ unemployed last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-50:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Торік він був безробітний. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Торік він був безробітний. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом году: was.",
+              "uk": "Торік: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Торік він був безробітний. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С he нужна was.",
+              "uk": "З he потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:word:divorced",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — divorced",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:word:divorced:audio"
+      ],
+      "accessibilityLabel": "Картка слова — divorced",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:word:divorced:audio",
+          "transcript": "divorced"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:word:divorced:r1",
+            "targetText": "divorced",
+            "meaningByLocale": {
+              "ru": "разведён, разведена. Семейное положение.",
+              "uk": "розлучений, розлучена. Сімейний стан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "divorced",
+          "definitionByLocale": {
+            "ru": "разведён, разведена. Семейное положение.",
+            "uk": "розлучений, розлучена. Сімейний стан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: моя тітка розлучена",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: моя тітка розлучена",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My aunt is divorced.",
+        "localizedMeaning": {
+          "ru": "Сообщите: моя тётя разведена",
+          "uk": "Повідомте: моя тітка розлучена"
+        },
+        "orderedTokens": [
+          "My",
+          "aunt",
+          "is",
+          "divorced"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i11:r1",
+          "text": "He is divorced."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i11:r2",
+          "text": "He was divorced."
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i11:r3",
+          "text": "Is he divorced?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i11:audio",
+          "transcript": "He is divorced."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-50:i11:r1",
+            "targetText": "He is divorced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i11:r2",
+            "targetText": "He was divorced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i11:r3",
+            "targetText": "Is he divorced?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is divorced.",
+              "uk": "У записі звучить He is divorced."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is divorced.",
+              "uk": "У записі звучить He is divorced."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз моя тітка розлучена. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-50:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-50:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз моя тітка розлучена. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас моя тётя разведена. Выберите форму",
+          "uk": "Зараз моя тітка розлучена. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My aunt ___ divorced now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-50:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз моя тітка розлучена. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Зараз моя тітка розлучена. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Зараз моя тітка розлучена. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна тётя: is.",
+              "uk": "Одна тітка: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-50:i13:p1",
+            "target": "pregnant",
+            "meaningByLocale": {
+              "ru": "беременна",
+              "uk": "вагітна"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-50:i13:p2",
+            "target": "retired",
+            "meaningByLocale": {
+              "ru": "на пенсии",
+              "uk": "на пенсії"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-50:i13:p3",
+            "target": "unemployed",
+            "meaningByLocale": {
+              "ru": "безработный",
+              "uk": "безробітний"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-50:i13:p4",
+            "target": "divorced",
+            "meaningByLocale": {
+              "ru": "разведён",
+              "uk": "розлучений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pregnant",
+          "retired",
+          "unemployed",
+          "divorced"
+        ],
+        "rightColumn": [
+          "вагітна",
+          "на пенсії",
+          "безробітний",
+          "розлучений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i14:audio",
+          "transcript": "Please don't ask her now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't ask her now.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "ask",
+          "her",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i15:audio",
+          "transcript": "I am talking to my brother now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am talking to my brother now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "talking",
+          "to",
+          "my",
+          "brother",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ви зараз не безробітний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ви зараз не безробітний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i16:audio",
+          "transcript": "I am not unemployed now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not unemployed now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був його батько на пенсії",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був його батько на пенсії",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-50:i17:audio",
+          "transcript": "Was his father retired?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was his father retired?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "373e749c9a715294cc3029a1c3e5f5a103ca3d014c94bef71d8d0c4aeac2ffbb"
+}

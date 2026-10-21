@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-51:intro1:r2": {
+          "ru": "Is описывает нынешнюю работу, а нужна прежняя.",
+          "uk": "Is описує нинішню роботу, а потрібна колишня."
+        },
+        "en:lesson-11:session-51:intro1:r3": {
+          "ru": "Одна работа: was.",
+          "uk": "Одна робота: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-51:intro2:r2": {
+          "ru": "В прошлом году: was.",
+          "uk": "Торік: was."
+        },
+        "en:lesson-11:session-51:intro2:r3": {
+          "ru": "Одна работа: was.",
+          "uk": "Одна робота: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-51:intro3:r2": {
+          "ru": "Day shift — дневная, а нужна ночная смена.",
+          "uk": "Day shift — денна, а потрібна нічна зміна."
+        },
+        "en:lesson-11:session-51:intro3:r3": {
+          "ru": "Одна смена: was.",
+          "uk": "Одна зміна: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e37a83a416706050bc507a530cb5aa4c642237b3d6cb8c31b5530c2c49fa2826"
+}

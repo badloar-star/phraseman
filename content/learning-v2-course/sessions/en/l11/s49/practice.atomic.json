@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-49:word:cry",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:cry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:cry:audio",
+            "transcript": "cry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:cry:r1",
+              "targetText": "cry",
+              "meaningByLocale": {
+                "ru": "плакать.",
+                "uk": "плакати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cry",
+            "definitionByLocale": {
+              "ru": "плакать.",
+              "uk": "плакати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите: пожалуйста, не плачь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите: пожалуйста, не плачь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't cry.",
+          "localizedMeaning": {
+            "ru": "Попросите: пожалуйста, не плачь",
+            "uk": "Попросіть: будь ласка, не плач"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "cry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i02:r1",
+            "text": "She is crying."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i02:r2",
+            "text": "She is trying."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i02:r3",
+            "text": "Is she crying?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i02:audio",
+            "transcript": "She is crying."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i02:r1",
+              "targetText": "She is crying.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r2",
+              "targetText": "She is trying.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r3",
+              "targetText": "Is she crying?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is crying.",
+                "uk": "У записі звучить She is crying."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is crying.",
+                "uk": "У записі звучить She is crying."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера малыш был спокойным. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера малыш был спокойным. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера малыш был спокойным. Выберите форму",
+            "uk": "Учора малюк був спокійний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The baby ___ quiet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера малыш был спокойным. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера малыш был спокойным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера малыш был спокойным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один малыш: was.",
+                "uk": "Один малюк: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:kiss",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kiss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:kiss:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kiss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:kiss:audio",
+            "transcript": "kiss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:kiss:r1",
+              "targetText": "kiss",
+              "meaningByLocale": {
+                "ru": "целовать.",
+                "uk": "цілувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kiss",
+            "definitionByLocale": {
+              "ru": "целовать.",
+              "uk": "цілувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я целую своего малыша каждое утро. Начните с I",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я целую своего малыша каждое утро. Начните с I",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I kiss my baby every morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: я целую своего малыша каждое утро. Начните с I",
+            "uk": "Скажіть: я цілую свого малюка щоранку. Почніть із I"
+          },
+          "orderedTokens": [
+            "I",
+            "kiss",
+            "my",
+            "baby",
+            "every",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i05:r1",
+            "text": "She is kissing her baby."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i05:r2",
+            "text": "She is kissing her mum."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i05:r3",
+            "text": "Is she kissing her baby?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i05:audio",
+            "transcript": "She is kissing her baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i05:r1",
+              "targetText": "She is kissing her baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r2",
+              "targetText": "She is kissing her mum.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r3",
+              "targetText": "Is she kissing her baby?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is kissing her baby.",
+                "uk": "У записі звучить She is kissing her baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is kissing her baby.",
+                "uk": "У записі звучить She is kissing her baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера мама была рада. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера мама была рада. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мама была рада. Выберите форму",
+            "uk": "Учора мама була рада. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Mum ___ happy yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера мама была рада. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера мама была рада. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера мама была рада. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один человек: was.",
+                "uk": "Одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:keep",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:keep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:keep:audio",
+            "transcript": "keep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:keep:r1",
+              "targetText": "keep",
+              "meaningByLocale": {
+                "ru": "хранить, держать в определённом месте.",
+                "uk": "зберігати, тримати в певному місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep",
+            "definitionByLocale": {
+              "ru": "хранить, держать в определённом месте.",
+              "uk": "зберігати, тримати в певному місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я храню фотографии в коробке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я храню фотографии в коробке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I keep my photos in a box.",
+          "localizedMeaning": {
+            "ru": "Скажите: я храню фотографии в коробке",
+            "uk": "Скажіть: я зберігаю фотографії в коробці"
+          },
+          "orderedTokens": [
+            "I",
+            "keep",
+            "my",
+            "photos",
+            "in",
+            "a",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i08:r1",
+            "text": "We keep our keys here."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i08:r2",
+            "text": "We keep our keys there."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i08:r3",
+            "text": "They keep our keys here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i08:audio",
+            "transcript": "We keep our keys here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i08:r1",
+              "targetText": "We keep our keys here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r2",
+              "targetText": "We keep our keys there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r3",
+              "targetText": "They keep our keys here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We keep our keys here.",
+                "uk": "У записі звучить We keep our keys here."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We keep our keys here.",
+                "uk": "У записі звучить We keep our keys here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера фотографии были в коробке. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера фотографии были в коробке. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фотографии были в коробке. Выберите форму",
+            "uk": "Учора фотографії були в коробці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The photos ___ in the box yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера фотографии были в коробке. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера фотографии были в коробке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Несколько фотографий: were.",
+                "uk": "Кілька фотографій: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера фотографии были в коробке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:believe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — believe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:believe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — believe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:believe:audio",
+            "transcript": "believe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:believe:r1",
+              "targetText": "believe",
+              "meaningByLocale": {
+                "ru": "верить.",
+                "uk": "вірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "believe",
+            "definitionByLocale": {
+              "ru": "верить.",
+              "uk": "вірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: я верю своему другу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: я верю своему другу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I believe my friend.",
+          "localizedMeaning": {
+            "ru": "Скажите: я верю своему другу",
+            "uk": "Скажіть: я вірю своєму другові"
+          },
+          "orderedTokens": [
+            "I",
+            "believe",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i11:r1",
+            "text": "Do you believe me?"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i11:r2",
+            "text": "Do you believe him?"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i11:r3",
+            "text": "You believe me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i11:audio",
+            "transcript": "Do you believe me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i11:r1",
+              "targetText": "Do you believe me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r2",
+              "targetText": "Do you believe him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r3",
+              "targetText": "You believe me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you believe me?",
+                "uk": "У записі звучить Do you believe me?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you believe me?",
+                "uk": "У записі звучить Do you believe me?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Его вчерашний рассказ был правдой. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Его вчерашний рассказ был правдой. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Его вчерашний рассказ был правдой. Выберите форму",
+            "uk": "Його вчорашня розповідь була правдою. Виберіть форму"
+          },
+          "gappedTargetPhrase": "His story ___ true.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Его вчерашний рассказ был правдой. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Его вчерашний рассказ был правдой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один рассказ: was.",
+                "uk": "Одна розповідь: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Его вчерашний рассказ был правдой. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В контексте прошлое и один рассказ: was.",
+                "uk": "У контексті минуле й одна розповідь: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините глаголы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините глаголы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-49:i13:p1",
+              "target": "cry",
+              "meaningByLocale": {
+                "ru": "плакать",
+                "uk": "плакати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p2",
+              "target": "kiss",
+              "meaningByLocale": {
+                "ru": "целовать",
+                "uk": "цілувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p3",
+              "target": "keep",
+              "meaningByLocale": {
+                "ru": "хранить",
+                "uk": "зберігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p4",
+              "target": "believe",
+              "meaningByLocale": {
+                "ru": "верить",
+                "uk": "вірити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cry",
+            "kiss",
+            "keep",
+            "believe"
+          ],
+          "rightColumn": [
+            "плакать",
+            "целовать",
+            "хранить",
+            "верить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i14:audio",
+            "transcript": "The baby is crying now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby is crying now.",
+          "orderedTokens": [
+            "The",
+            "baby",
+            "is",
+            "crying",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i15:audio",
+            "transcript": "He is kissing his baby now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is kissing his baby now.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "kissing",
+            "his",
+            "baby",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы храните фотографии здесь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы храните фотографии здесь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i16:audio",
+            "transcript": "I keep my photos here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I keep my photos here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг говорит правду. Ответьте: я тебе верю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Друг говорит правду. Ответьте: я тебе верю",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i17:audio",
+            "transcript": "I believe you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I believe you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-49:word:cry",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:cry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:cry:audio",
+            "transcript": "cry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:cry:r1",
+              "targetText": "cry",
+              "meaningByLocale": {
+                "ru": "плакать.",
+                "uk": "плакати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cry",
+            "definitionByLocale": {
+              "ru": "плакать.",
+              "uk": "плакати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть: будь ласка, не плач",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть: будь ласка, не плач",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't cry.",
+          "localizedMeaning": {
+            "ru": "Попросите: пожалуйста, не плачь",
+            "uk": "Попросіть: будь ласка, не плач"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "cry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i02:r1",
+            "text": "She is crying."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i02:r2",
+            "text": "She is trying."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i02:r3",
+            "text": "Is she crying?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i02:audio",
+            "transcript": "She is crying."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i02:r1",
+              "targetText": "She is crying.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r2",
+              "targetText": "She is trying.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r3",
+              "targetText": "Is she crying?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is crying.",
+                "uk": "У записі звучить She is crying."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is crying.",
+                "uk": "У записі звучить She is crying."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора малюк був спокійний. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора малюк був спокійний. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера малыш был спокойным. Выберите форму",
+            "uk": "Учора малюк був спокійний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The baby ___ quiet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора малюк був спокійний. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора малюк був спокійний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора малюк був спокійний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один малыш: was.",
+                "uk": "Один малюк: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:kiss",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kiss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:kiss:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kiss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:kiss:audio",
+            "transcript": "kiss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:kiss:r1",
+              "targetText": "kiss",
+              "meaningByLocale": {
+                "ru": "целовать.",
+                "uk": "цілувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kiss",
+            "definitionByLocale": {
+              "ru": "целовать.",
+              "uk": "цілувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я цілую свого малюка щоранку. Почніть із I",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я цілую свого малюка щоранку. Почніть із I",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I kiss my baby every morning.",
+          "localizedMeaning": {
+            "ru": "Скажите: я целую своего малыша каждое утро. Начните с I",
+            "uk": "Скажіть: я цілую свого малюка щоранку. Почніть із I"
+          },
+          "orderedTokens": [
+            "I",
+            "kiss",
+            "my",
+            "baby",
+            "every",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i05:r1",
+            "text": "She is kissing her baby."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i05:r2",
+            "text": "She is kissing her mum."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i05:r3",
+            "text": "Is she kissing her baby?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i05:audio",
+            "transcript": "She is kissing her baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i05:r1",
+              "targetText": "She is kissing her baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r2",
+              "targetText": "She is kissing her mum.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r3",
+              "targetText": "Is she kissing her baby?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is kissing her baby.",
+                "uk": "У записі звучить She is kissing her baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is kissing her baby.",
+                "uk": "У записі звучить She is kissing her baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора мама була рада. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора мама була рада. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера мама была рада. Выберите форму",
+            "uk": "Учора мама була рада. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Mum ___ happy yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора мама була рада. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора мама була рада. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора мама була рада. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один человек: was.",
+                "uk": "Одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:keep",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:keep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:keep:audio",
+            "transcript": "keep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:keep:r1",
+              "targetText": "keep",
+              "meaningByLocale": {
+                "ru": "хранить, держать в определённом месте.",
+                "uk": "зберігати, тримати в певному місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep",
+            "definitionByLocale": {
+              "ru": "хранить, держать в определённом месте.",
+              "uk": "зберігати, тримати в певному місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я зберігаю фотографії в коробці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я зберігаю фотографії в коробці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I keep my photos in a box.",
+          "localizedMeaning": {
+            "ru": "Скажите: я храню фотографии в коробке",
+            "uk": "Скажіть: я зберігаю фотографії в коробці"
+          },
+          "orderedTokens": [
+            "I",
+            "keep",
+            "my",
+            "photos",
+            "in",
+            "a",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i08:r1",
+            "text": "We keep our keys here."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i08:r2",
+            "text": "We keep our keys there."
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i08:r3",
+            "text": "They keep our keys here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i08:audio",
+            "transcript": "We keep our keys here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i08:r1",
+              "targetText": "We keep our keys here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r2",
+              "targetText": "We keep our keys there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r3",
+              "targetText": "They keep our keys here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We keep our keys here.",
+                "uk": "У записі звучить We keep our keys here."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We keep our keys here.",
+                "uk": "У записі звучить We keep our keys here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора фотографії були в коробці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора фотографії були в коробці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фотографии были в коробке. Выберите форму",
+            "uk": "Учора фотографії були в коробці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The photos ___ in the box yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора фотографії були в коробці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора фотографії були в коробці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Несколько фотографий: were.",
+                "uk": "Кілька фотографій: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора фотографії були в коробці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:word:believe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — believe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:word:believe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — believe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:word:believe:audio",
+            "transcript": "believe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:word:believe:r1",
+              "targetText": "believe",
+              "meaningByLocale": {
+                "ru": "верить.",
+                "uk": "вірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "believe",
+            "definitionByLocale": {
+              "ru": "верить.",
+              "uk": "вірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: я вірю своєму другові",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: я вірю своєму другові",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I believe my friend.",
+          "localizedMeaning": {
+            "ru": "Скажите: я верю своему другу",
+            "uk": "Скажіть: я вірю своєму другові"
+          },
+          "orderedTokens": [
+            "I",
+            "believe",
+            "my",
+            "friend"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i11:r1",
+            "text": "Do you believe me?"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i11:r2",
+            "text": "Do you believe him?"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i11:r3",
+            "text": "You believe me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i11:audio",
+            "transcript": "Do you believe me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-49:i11:r1",
+              "targetText": "Do you believe me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r2",
+              "targetText": "Do you believe him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r3",
+              "targetText": "You believe me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you believe me?",
+                "uk": "У записі звучить Do you believe me?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you believe me?",
+                "uk": "У записі звучить Do you believe me?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Його вчорашня розповідь була правдою. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-49:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-49:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Його вчорашня розповідь була правдою. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Его вчерашний рассказ был правдой. Выберите форму",
+            "uk": "Його вчорашня розповідь була правдою. Виберіть форму"
+          },
+          "gappedTargetPhrase": "His story ___ true.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-49:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Його вчорашня розповідь була правдою. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Його вчорашня розповідь була правдою. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один рассказ: was.",
+                "uk": "Одна розповідь: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Його вчорашня розповідь була правдою. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В контексте прошлое и один рассказ: was.",
+                "uk": "У контексті минуле й одна розповідь: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте дієслова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте дієслова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-49:i13:p1",
+              "target": "cry",
+              "meaningByLocale": {
+                "ru": "плакать",
+                "uk": "плакати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p2",
+              "target": "kiss",
+              "meaningByLocale": {
+                "ru": "целовать",
+                "uk": "цілувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p3",
+              "target": "keep",
+              "meaningByLocale": {
+                "ru": "хранить",
+                "uk": "зберігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-49:i13:p4",
+              "target": "believe",
+              "meaningByLocale": {
+                "ru": "верить",
+                "uk": "вірити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cry",
+            "kiss",
+            "keep",
+            "believe"
+          ],
+          "rightColumn": [
+            "плакати",
+            "цілувати",
+            "зберігати",
+            "вірити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i14:audio",
+            "transcript": "The baby is crying now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby is crying now.",
+          "orderedTokens": [
+            "The",
+            "baby",
+            "is",
+            "crying",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i15:audio",
+            "transcript": "He is kissing his baby now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is kissing his baby now.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "kissing",
+            "his",
+            "baby",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви зберігаєте фотографії тут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви зберігаєте фотографії тут",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i16:audio",
+            "transcript": "I keep my photos here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I keep my photos here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг каже правду. Дайте відповідь: я тобі вірю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Друг каже правду. Дайте відповідь: я тобі вірю",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-49:i17:audio",
+            "transcript": "I believe you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I believe you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-49:word:cry",
+      "correctText": "cry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i01",
+      "correctText": "Please don't cry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i02",
+      "correctText": "She is crying.",
+      "correctResponseId": "en:lesson-11:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:word:kiss",
+      "correctText": "kiss",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i04",
+      "correctText": "I kiss my baby every morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i05",
+      "correctText": "She is kissing her baby.",
+      "correctResponseId": "en:lesson-11:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:word:keep",
+      "correctText": "keep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i07",
+      "correctText": "I keep my photos in a box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i08",
+      "correctText": "We keep our keys here.",
+      "correctResponseId": "en:lesson-11:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:word:believe",
+      "correctText": "believe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i10",
+      "correctText": "I believe my friend.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i11",
+      "correctText": "Do you believe me?",
+      "correctResponseId": "en:lesson-11:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i14",
+      "correctText": "The baby is crying now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i15",
+      "correctText": "He is kissing his baby now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i16",
+      "correctText": "I keep my photos here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-49:i17",
+      "correctText": "I believe you.",
+      "correctResponseId": null
+    }
+  ]
+}

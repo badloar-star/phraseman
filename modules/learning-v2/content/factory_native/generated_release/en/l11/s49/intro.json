@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "present simple / continuous; was/were; yesterday / now",
+    "uk": "present simple / continuous; was/were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плакать",
+        "uk": "Плакати"
+      },
+      "bodyByLocale": {
+        "ru": "Cry — «плакать». Малыш плачет прямо сейчас: The baby is crying now. К cry добавляем -ing: crying. Вчера малыш был спокойным: The baby was quiet yesterday. Сейчас слышен плач. Выберите сообщение о том, что происходит сейчас.",
+        "uk": "Cry — «плакати». Малюк плаче просто зараз: The baby is crying now. До cry додаємо -ing: crying. Учора малюк був спокійний: The baby was quiet yesterday. Зараз чути плач. Виберіть повідомлення про те, що відбувається зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r1",
+              "text": "The baby is crying now."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r2",
+              "text": "The baby was quiet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r3",
+              "text": "The baby are crying now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r1",
+              "text": "The baby is crying now."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r2",
+              "text": "The baby was quiet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro1:r3",
+              "text": "The baby are crying now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Целовать",
+        "uk": "Цілувати"
+      },
+      "bodyByLocale": {
+        "ru": "Kiss — «целовать». Обычное действие: I kiss my baby every morning. — «Я целую своего малыша каждое утро». Действие сейчас: I am kissing my baby now. Выберите фразу о привычке, а не о текущем моменте.",
+        "uk": "Kiss — «цілувати». Звична дія: I kiss my baby every morning. — «Я цілую свого малюка щоранку». Дія зараз: I am kissing my baby now. Виберіть фразу про звичку, а не про поточну мить."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r1",
+              "text": "I kiss my baby every morning."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r2",
+              "text": "I am kissing my baby now."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r3",
+              "text": "I kisses my baby every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r1",
+              "text": "I kiss my baby every morning."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r2",
+              "text": "I am kissing my baby now."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro2:r3",
+              "text": "I kisses my baby every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хранить и верить",
+        "uk": "Зберігати й вірити"
+      },
+      "bodyByLocale": {
+        "ru": "Keep здесь значит «хранить»: I keep my photos in a box. — «Я храню фотографии в коробке». Believe — «верить»: I believe you. — «Я тебе верю». Друг говорит правду, и вы ему доверяете. Выберите ответ «Я тебе верю».",
+        "uk": "Keep тут означає «зберігати»: I keep my photos in a box. — «Я зберігаю фотографії в коробці». Believe — «вірити»: I believe you. — «Я тобі вірю». Друг каже правду, і ви йому довіряєте. Виберіть відповідь «Я тобі вірю»."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r1",
+              "text": "I believe you."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r2",
+              "text": "I keep my photos in a box."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r3",
+              "text": "I believes you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r1",
+              "text": "I believe you."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r2",
+              "text": "I keep my photos in a box."
+            },
+            {
+              "responseId": "en:lesson-11:session-49:intro3:r3",
+              "text": "I believes you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1fa8706b48163bf26c5c74bc82947909f438e72132c8a497edbd529edfdbfe6b"
+}

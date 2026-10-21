@@ -215,4 +215,15 @@
     yearly: entriesFor('yearly', texts.yearly),
     lifetime: entriesFor('lifetime', texts.lifetime),
   });
+
+  /* зачем (проверка 22.10): при смене языка без перезагрузки фраза на сертификате оставалась на языке загрузки.
+     Тот же номер фразы в обоих языках — страница перерисовывает выбранную фразу по событию pm:lang. */
+  function textFor(plan, id, lang) {
+    var items = texts[plan] || [];
+    var index = Number(String(id).split('-').pop()) - 1;
+    if (!(index >= 0 && index < items.length)) return null;
+    var english = englishTexts[plan] || [];
+    return lang === 'en' && english.length ? english[index % english.length] : items[index];
+  }
+  window.PHRASEMAN_GIFT_PHRASE_TEXT = textFor;
 })();

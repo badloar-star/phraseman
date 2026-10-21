@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка статуса Plus</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<style>
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.ph.vis { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+/* Plus — фиолетово-голубой, как в «Plus заметно» (вариант B — кольцо аватара) */
+.pav { position: relative; display: inline-flex; flex: none; border-radius: 50%; vertical-align: middle; padding: 3px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav img { display: block; border-radius: 50%; box-shadow: 0 0 0 2px #0C0D10; }
+.pv-pin { position: absolute; right: -3px; bottom: -3px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0C0D10; }
+.ptag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
+.ptag .io { font-size: 11px; }
+/* подложка главной под окнами */
+.ghost { height: 118px; border-radius: 22px; background: var(--card); margin-top: 12px; opacity: .55; }
+.dim2 { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.55); }
+/* №35 — заставка Plus */
+.pz { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; top: 54px; border-radius: 34px 34px 0 0; padding: 18px 22px 40px; display: flex; flex-direction: column;
+  background: radial-gradient(90% 50% at 50% 0%, rgba(142,124,255,.42), transparent 70%), radial-gradient(60% 40% at 100% 60%, rgba(111,168,255,.18), transparent 70%), linear-gradient(180deg, #17172A, #0E0E14 60%, #0C0C10); }
+.pz .x { align-self: flex-end; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.10); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.pz .kick { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; letter-spacing: 1.6px; color: #C9C0FF; margin-top: 6px; }
+.pz .h { font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -.6px; margin-top: 10px; text-wrap: balance; }
+.pz .s { font-size: 17px; line-height: 24px; color: #B4B4BE; margin-top: 10px; }
+.bens { display: flex; flex-direction: column; gap: 14px; margin-top: 26px; }
+.ben { display: flex; gap: 14px; align-items: center; }
+.ben .t { width: 46px; height: 46px; border-radius: 14px; background: rgba(142,124,255,.18); color: #D6CFFF; display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.ben b { display: block; font-size: 17px; line-height: 22px; } .ben span { display: block; font-size: 14px; line-height: 19px; color: #A6A6AE; margin-top: 2px; }
+.pcta { height: 56px; border-radius: 28px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF); color: #0B0B18; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; margin-top: auto; box-shadow: 0 14px 30px -12px rgba(124,140,255,.6); }
+.fine { text-align: center; font-size: 13px; line-height: 18px; color: #8E8E96; margin-top: 10px; }
+.pnot { height: 50px; border-radius: 25px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 10px; }
+.hs { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; padding: 12px 20px 40px; background: linear-gradient(180deg, #1D1C2E, #121218); }
+.hs .grab { width: 42px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); margin: 0 auto; }
+.tiles3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.tiles3 div { border-radius: 18px; background: rgba(255,255,255,.06); padding: 14px 10px; text-align: center; font-size: 14px; line-height: 18px; font-weight: 700; }
+.tiles3 .io { display: block; font-size: 26px; color: #C9C0FF; margin: 0 auto 8px; }
+.hcard { margin-top: 14px; border-radius: 22px; padding: 16px; background: linear-gradient(135deg, rgba(142,124,255,.32), rgba(111,168,255,.14) 60%, rgba(127,224,216,.10)), #17171C; position: relative; }
+.hcard .x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.10); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.hcard .k { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; color: #C9C0FF; display: flex; gap: 6px; align-items: center; }
+.hcard .t { font-size: 19px; line-height: 25px; font-weight: 800; margin-top: 8px; padding-right: 36px; }
+.hcard .row2 { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.hcard .pill2 { height: 42px; padding: 0 18px; border-radius: 21px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF); color: #0B0B18; display: inline-flex; align-items: center; font-size: 15px; font-weight: 800; }
+.hcard small { font-size: 13px; line-height: 17px; color: #A6A6AE; }
+/* №36 — статус */
+.stat { margin-top: 18px; border-radius: 22px; padding: 16px; background: linear-gradient(135deg, rgba(142,124,255,.34), rgba(111,168,255,.16) 55%, rgba(127,224,216,.10)), #18181D; }
+.stat .k { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; color: #C9C0FF; display: flex; gap: 6px; align-items: center; }
+.stat .v { font-size: 22px; line-height: 28px; font-weight: 800; margin-top: 6px; }
+.stat .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.stat .chips span { height: 32px; padding: 0 12px; border-radius: 16px; background: rgba(255,255,255,.08); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+.sw { width: 40px; height: 40px; border-radius: 12px; flex: none; }
+.icons3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.icons3 > div { border-radius: 20px; background: var(--card); padding: 16px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: var(--sec); position: relative; }
+.icons3 > div.on { color: #fff; box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+.appi { width: 72px; height: 72px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 900; color: #fff; box-shadow: 0 10px 22px -12px rgba(0,0,0,.8); }
+.lockp { position: absolute; top: 8px; right: 8px; font-size: 12px; color: #C9C0FF; }
+/* №37 — подарок */
+.gift-row { margin-top: 14px; }
+.gsheet { position: absolute; z-index: 45; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; padding: 12px 20px 40px; background: #1B1B1D; }
+.gsheet .grab { width: 42px; height: 5px; border-radius: 3px; background: #4A4A4E; margin: 0 auto; }
+.gsheet .t { font-size: 25px; line-height: 31px; font-weight: 800; margin-top: 18px; }
+.to { display: flex; align-items: center; gap: 12px; margin-top: 16px; border-radius: 18px; background: #242426; padding: 12px 14px; }
+.to b { font-size: 16px; } .to span { font-size: 14px; color: #A6A6A8; display: block; margin-top: 2px; }
+.per { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.per div { border-radius: 18px; background: #242426; padding: 14px; } .per div.on { background: linear-gradient(135deg, rgba(142,124,255,.32), rgba(36,36,38,.95) 65%); box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+.per b { display: block; font-size: 16px; } .per .pr { font-size: 22px; font-weight: 800; margin-top: 6px; }
+.msg { margin-top: 12px; border-radius: 18px; background: #242426; padding: 14px; font-size: 16px; color: #C9C9CF; }
+.gfine { font-size: 13px; line-height: 18px; color: #8E8E96; text-align: center; margin-top: 10px; }
+.reveal { position: absolute; z-index: 45; inset: 54px 0 0; border-radius: 34px 34px 0 0; padding: 26px 22px 40px; display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: radial-gradient(80% 45% at 50% 20%, rgba(142,124,255,.45), transparent 70%), linear-gradient(180deg, #17172A, #0C0C10 70%); }
+.gcard { width: 250px; height: 160px; border-radius: 26px; margin-top: 26px; background: linear-gradient(135deg, #9C8CFF, #6FA8FF 55%, #7FE0D8); color: #0B0B18; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; text-align: left; box-shadow: 0 30px 60px -24px rgba(124,140,255,.7); transform: rotate(-4deg); }
+.gcard .k { font-size: 13px; font-weight: 900; letter-spacing: 1.6px; } .gcard .v { font-size: 30px; font-weight: 900; letter-spacing: -.6px; }
+.reveal .h { font-size: 27px; line-height: 33px; font-weight: 800; margin-top: 34px; text-wrap: balance; }
+.bubble { margin-top: 16px; border-radius: 18px 18px 18px 6px; background: rgba(255,255,255,.08); padding: 12px 16px; font-size: 16px; line-height: 22px; display: flex; gap: 10px; align-items: center; text-align: left; }
+.freq { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 980px; width: 100%; color: #C9C9CF; }
+.freq td, .freq th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; } .freq th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.note { margin: 16px 0 0; max-width: 980px; font-size: 15px; line-height: 23px; color: #A6A6AE; } .note b { color: #F2F2F4; }
+</style>
+<style>
+/* зачем (№36): карточка статуса. Кольцо — по утверждённому эталону B (зазор 2, ◆ 40% размера). */
+.pav { padding: 2.5px; } .pav img { box-shadow: 0 0 0 2px #0C0D10; }
+.sc { margin-top: 18px; border-radius: 22px; padding: 16px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(142,124,255,.34), rgba(111,168,255,.16) 55%, rgba(127,224,216,.10)), #18181D; }
+.sc .k { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; color: #C9C0FF; display: flex; gap: 6px; align-items: center; }
+.sc .v { font-size: 22px; line-height: 28px; font-weight: 800; margin-top: 6px; }
+.sc .s { font-size: 14px; line-height: 19px; color: #B4B4BE; margin-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chips span { height: 32px; padding: 0 12px; border-radius: 16px; background: rgba(255,255,255,.08); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+.mrow { display: flex; align-items: center; gap: 16px; }
+.mring { width: 84px; height: 84px; flex: none; position: relative; }
+.mring svg { width: 84px; height: 84px; transform: rotate(-90deg); }
+.mring b { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 28px; line-height: 30px; font-weight: 900; }
+.mring b small { font-size: 11px; line-height: 13px; font-weight: 700; color: #C9C0FF; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.tiles div { border-radius: 16px; background: rgba(255,255,255,.07); padding: 12px 10px; }
+.tiles b { display: block; font-size: 22px; line-height: 26px; font-weight: 800; } .tiles span { display: block; font-size: 12px; line-height: 16px; color: #B4B4BE; margin-top: 2px; }
+.months { display: flex; gap: 4px; margin-top: 14px; } .months i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.10); } .months i.on { background: linear-gradient(90deg, #8E7CFF, #6FA8FF); }
+.mlab { display: flex; justify-content: space-between; font-size: 12px; color: #8E8E96; margin-top: 6px; font-weight: 600; }
+.mini { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; margin-top: 6px; }
+.src { margin-top: 26px; max-width: 1100px; border-collapse: collapse; font-size: 15px; line-height: 21px; color: #C9C9CF; }
+.src td, .src th { text-align: left; padding: 10px 16px 10px 0; vertical-align: top; box-shadow: inset 0 -1px 0 rgba(255,255,255,.08); }
+.src th { color: #8E8E96; font-size: 13px; font-weight: 700; } .src b { color: #F2F2F4; }
+/* зачем: extension.css подписывает колонки «Демо ·» — здесь это варианты, а не демо */
+.page .col-label::before, .page .col > .lbl::before { content: none !important; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Карточка статуса Plus — варианты (№36)</h1>
+  <p class="page-lead">Решение владельца 21.10: кольцо у аватара (утверждено) + карточка «Третий месяц с Plus». Четыре варианта — что внутри и где стоит. Личные цифры видит только сам человек; другим на визитке — только кольцо.</p>
+  <div id="root"></div>
+  <table class="src">
+    <tr><th>Цифра на карточке</th><th>Откуда и сколько стоит</th></tr>
+    <tr><td><b>Месяц с Plus, «с августа»</b></td><td>Дата начала подписки из магазина (RevenueCat, уже приходит в приложение) — 0 запросов к базе.</td></tr>
+    <tr><td><b>Диалоги, фразы вслух, слабые места</b></td><td>Из уже собираемой статистики на устройстве. Если счётчика нет — плашку не показываем, а не рисуем ноль.</td></tr>
+    <tr><td><b>Пробный период</b></td><td>В пробном карточка говорит «Plus · пробный период», без «месяцев».</td></tr>
+  </table>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const KK = K;
+const IC = { chats: 'f218', mic: 'f45e', refresh: 'f518', dia: 'f2a1', cal: 'f1d6', fwd: 'f23b' };
+const io = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
+const ring = (rank, size) => { const p = Math.max(14, Math.round(size * 0.4)); return `<span class="pav">${KK.coinImg(rank, size)}<span class="pv-pin" style="width:${p}px;height:${p}px"><i class="io" style="font-size:${Math.round(p * .58)}px">&#x${IC.dia};</i></span></span>`; };
+const PRF = (() => { const { icon, phone } = KK; const coinImg = (r, s) => r === 5 ? ring(r, s) : KK.coinImg(r, s);
+const chevron=`<span class="ch">${icon('fwd','s18')}</span>`;
+const back=(title,close=false)=>`<div class="topbar"><button class="rb${close?'':' bare'} t" type="button" aria-label="${close?'Закрыть':'Назад'}">${icon(close?'close':'back','s21')}</button></div><div class="screen-title" style="margin-top:10px">${title}</div>`;
+const row=(ic,title,sub='',value='',opts={})=>`<div class="card list-row t"><div class="tile">${ic.startsWith('<')?ic:icon(ic,'s20')}</div><div class="copy"><div class="title">${title}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>${opts.toggle?`<button type="button" class="switch${opts.on?' on':''}" aria-label="${title}" aria-pressed="${opts.on?'true':'false'}"></button>`:value?`<div class="value">${value}</div>${chevron}`:chevron}</div>`;
+const group=(title,rows)=>`<div class="eyebrow" style="margin:24px 4px 10px">${title}</div><div class="list">${rows.join('')}</div>`;
+function settings(){return phone(`<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:40px;line-height:46px;letter-spacing:-.6px">Настройки</div><div class="screen-sub">Профиль и приложение</div></div>${coinImg(5,48)}</div>
+  <div class="card list-row" style="margin-top:24px">${coinImg(5,48)}<div class="copy"><div class="title" style="font-size:19px;line-height:24px">Алекс</div><div class="sub">Лектор · аккаунт привязан</div></div>${chevron}</div>
+  ${groupMain('Профиль',[row('user','Аккаунт','Данные, вход и удаление','Google'),row('flag','Язык интерфейса','','Русский'),`<div class="card list-row t"><img src="assets/language_en.webp" alt="" style="width:40px;height:40px;border-radius:11px;object-fit:cover"><div class="copy"><div class="title">Язык изучения</div><div class="sub">Прогресс хранится отдельно</div></div><div class="value">English</div>${chevron}</div>`])}
+  ${groupMain('Обучение',[row('edit','Настройки обучения','Проверка, ввод и озвучка'),row('chat','Уведомления','Напоминания и итоги')])}
+  ${groupMain('Внешний вид и помощь',[row('layers','Темы','Только тёмные варианты'),row('flag','Приватность и данные'),row('chat','Написать в поддержку')])}`,{time:'13:10'});}
+function account(){return phone(`${back('Аккаунт')}<div class="center" style="margin-top:26px">${coinImg(5,102)}<div class="section-title" style="margin-top:10px">Алекс</div><button class="chipbtn t" type="button" style="margin-top:10px">Изменить имя</button></div>
+  ${group('Данные',[row('user','Имя','Показывается друзьям','Алекс'),`<div class="card list-row"><div class="tile">${icon('chat','s20')}</div><div class="copy"><div class="title">Email</div><div class="sub">alex@example.com</div></div><button class="chipbtn t" type="button" aria-label="Скопировать email">Скопировать</button></div>`,row('check','Способ входа','','Google'),row('trend','С нами с','','12.08.2025')])}
+  ${group('Аккаунт',[row('arrowR','Выйти и войти под другим аккаунтом'),`<button class="card list-row t" type="button" style="width:100%;color:#FF9A98;text-align:left"><div class="tile">${icon('trash','s20')}</div><div class="copy"><div class="title">Удалить аккаунт</div><div class="sub">Требует отдельного подтверждения</div></div>${chevron}</button>`])}`,{time:'13:11'});}
+
+const groupMain=(title,rows)=>group(title,rows).replace('class="eyebrow" style="','class="eyebrow" style="font-size:13px;line-height:16px;letter-spacing:3px;');
+  return { account, settings };
+})();
+const tag = `<span class="ptag">${io('dia')}Plus</span>`;
+const inAcc = (card) => { let h = PRF.account().replace('>Алекс</div>', `>Алекс${tag}</div>`); const at = h.indexOf('<div class="eyebrow"'); if (at < 0) throw new Error('[GEN-STATUS] нет eyebrow в account'); return h.slice(0, at) + card + h.slice(at); };
+const mring = (n) => { const R = 36, C = 2 * Math.PI * R, seg = C / 12; return `<span class="mring"><svg viewBox="0 0 84 84"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8E7CFF"/><stop offset="1" stop-color="#7FE0D8"/></linearGradient></defs>${Array.from({ length: 12 }, (_, i) => `<circle cx="42" cy="42" r="${R}" fill="none" stroke="${i < n ? 'url(#mg)' : 'rgba(255,255,255,.10)'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${seg - 6} ${C - seg + 6}" stroke-dashoffset="${-i * seg}"/>`).join('')}</svg><b>${n}<small>мес.</small></b></span>`; };
+/* A — месяцы + личные цифры плашками */
+const A = () => inAcc(`<div class="sc"><div class="k">${io('dia', 'font-size:12px')}PLUS</div><div class="v">Третий месяц с Plus</div><div class="chips"><span>${io('chats', 'font-size:15px')}128 диалогов</span><span>${io('mic', 'font-size:15px')}340 фраз вслух</span><span>${io('cal', 'font-size:15px')}с августа</span></div></div>`);
+/* B — кольцо месяцев года */
+const B = () => inAcc(`<div class="sc"><div class="mrow">${mring(3)}<div><div class="k">${io('dia', 'font-size:12px')}PLUS</div><div class="v">Третий месяц с Plus</div><div class="s">С 12 августа · 340 фраз вслух</div></div></div></div>`);
+/* C — итоги плиткой + полоса года */
+const C = () => inAcc(`<div class="sc"><div class="k">${io('dia', 'font-size:12px')}PLUS · ТРЕТИЙ МЕСЯЦ</div><div class="tiles"><div><b>128</b><span>диалогов</span></div><div><b>340</b><span>фраз вслух</span></div><div><b>42</b><span>слабых места закрыто</span></div></div><div class="months">${Array.from({ length: 12 }, (_, i) => `<i class="${i < 3 ? 'on' : ''}"></i>`).join('')}</div><div class="mlab"><span>август</span><span>год с Plus</span></div></div>`);
+/* D — компактно в профиле (Настройки, карточка под именем) */
+const D = () => { const h = PRF.settings(); const a = h.indexOf('<div class="sub">Лектор · аккаунт привязан</div>'); if (a < 0) throw new Error('[GEN-STATUS] нет строки профиля в settings');
+  return h.replace('>Алекс</div><div class="sub">Лектор · аккаунт привязан</div>', `>Алекс</div><span class="mini">${io('dia', 'font-size:11px')}Третий месяц с Plus</span>`); };
+const { block, col } = KK;
+document.getElementById('root').innerHTML =
+  block('cards', 'Что внутри и где стоит', 'A–C — в «Аккаунте» под аватаром с кольцом (место, где человек смотрит на себя). D — коротко в «Профиле» (верхняя карточка Настроек), тап ведёт в «Аккаунт».', [
+    col('A · Месяцы + цифры<span class="rec">рекомендую</span>', A()), col('B · Кольцо месяцев', B()), col('C · Итоги плиткой', C()), col('D · Коротко в Профиле', D())]);
+KK.init();
+})();
+</script>
+</body>
+</html>

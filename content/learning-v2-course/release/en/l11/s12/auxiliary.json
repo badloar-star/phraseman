@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-12:intro1:r2": {
+          "ru": "Один pancake: was.",
+          "uk": "Один pancake: was."
+        },
+        "en:lesson-11:session-12:intro1:r3": {
+          "ru": "В вопрос с was не добавляем did.",
+          "uk": "До запитання з was не додаємо did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-12:intro2:r2": {
+          "ru": "С eggs нужна were.",
+          "uk": "Із eggs потрібна were."
+        },
+        "en:lesson-11:session-12:intro2:r3": {
+          "ru": "В вопрос с were не добавляем did.",
+          "uk": "До запитання з were не додаємо did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-12:intro3:r2": {
+          "ru": "Одно яйцо: was.",
+          "uk": "Одне яйце: was."
+        },
+        "en:lesson-11:session-12:intro3:r3": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "36ef5cccb03a4b8b101ff2167be36255b513f096284e75eda1fdb3aa23bfda0b"
+}

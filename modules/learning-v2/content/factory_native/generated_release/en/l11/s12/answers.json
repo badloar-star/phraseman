@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-12:word:pancake",
+    "correctText": "pancake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i01",
+    "correctText": "Was the pancake hot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i02",
+    "correctText": "The pancake was sweet.",
+    "correctResponseId": "en:lesson-11:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-11:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:word:croissant",
+    "correctText": "croissant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i04",
+    "correctText": "The croissant was not fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i05",
+    "correctText": "Was your croissant fresh?",
+    "correctResponseId": "en:lesson-11:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:word:scrambled-eggs",
+    "correctText": "scrambled eggs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i07",
+    "correctText": "Were the scrambled eggs hot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i08",
+    "correctText": "The scrambled eggs were not cold.",
+    "correctResponseId": "en:lesson-11:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:word:fried-egg",
+    "correctText": "fried egg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i10",
+    "correctText": "Was the fried egg cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i11",
+    "correctText": "The fried egg was on the plate.",
+    "correctResponseId": "en:lesson-11:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i13",
+    "correctText": "en:lesson-11:session-12:i13:p1=pancake\nen:lesson-11:session-12:i13:p2=croissant\nen:lesson-11:session-12:i13:p3=scrambled eggs\nen:lesson-11:session-12:i13:p4=fried egg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i14",
+    "correctText": "Please don't touch my plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i15",
+    "correctText": "I am eating right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i16",
+    "correctText": "Were the croissants fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-12:i17",
+    "correctText": "The pancakes were not hot yesterday.",
+    "correctResponseId": null
+  }
+]

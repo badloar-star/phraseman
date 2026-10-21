@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-12:word:pancake",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pancake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:word:pancake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pancake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:word:pancake:audio",
+          "transcript": "pancake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:word:pancake:r1",
+            "targetText": "pancake",
+            "meaningByLocale": {
+              "ru": "блин, блинчик.",
+              "uk": "млинець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pancake",
+          "definitionByLocale": {
+            "ru": "блин, блинчик.",
+            "uk": "млинець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був млинець гарячим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був млинець гарячим",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the pancake hot?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли блинчик горячим",
+          "uk": "Запитайте, чи був млинець гарячим"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "pancake",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i02:r1",
+          "text": "The pancake was sweet."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i02:r2",
+          "text": "The pancake was cold."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i02:r3",
+          "text": "The pancake was thin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i02:audio",
+          "transcript": "The pancake was sweet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:i02:r1",
+            "targetText": "The pancake was sweet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i02:r2",
+            "targetText": "The pancake was cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i02:r3",
+            "targetText": "The pancake was thin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pancake was sweet.",
+              "uk": "У записі звучить The pancake was sweet."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pancake was sweet.",
+              "uk": "У записі звучить The pancake was sweet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про кілька млинців",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i03:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i03:r2",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про кілька млинців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о нескольких блинчиках",
+          "uk": "Запитайте про кілька млинців"
+        },
+        "gappedTargetPhrase": "___ the pancakes hot?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-12:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i03:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте про кілька млинців",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про кілька млинців",
+            "feedbackByLocale": {
+              "ru": "Pancakes — множественное число: were.",
+              "uk": "Pancakes — множина: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про кілька млинців",
+            "feedbackByLocale": {
+              "ru": "В вопросе с be нужна were, без did.",
+              "uk": "У запитанні з be потрібна were, без did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:word:croissant",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — croissant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:word:croissant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — croissant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:word:croissant:audio",
+          "transcript": "croissant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:word:croissant:r1",
+            "targetText": "croissant",
+            "meaningByLocale": {
+              "ru": "круассан.",
+              "uk": "круасан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "croissant",
+          "definitionByLocale": {
+            "ru": "круассан.",
+            "uk": "круасан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що круасан був не свіжий. Використайте was not",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що круасан був не свіжий. Використайте was not",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The croissant was not fresh.",
+        "localizedMeaning": {
+          "ru": "Скажите, что круассан был не свежим. Используйте was not",
+          "uk": "Скажіть, що круасан був не свіжий. Використайте was not"
+        },
+        "orderedTokens": [
+          "The",
+          "croissant",
+          "was",
+          "not",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i05:r1",
+          "text": "Was your croissant fresh?"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i05:r2",
+          "text": "Was her croissant fresh?"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i05:r3",
+          "text": "Was his croissant fresh?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i05:audio",
+          "transcript": "Was your croissant fresh?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:i05:r1",
+            "targetText": "Was your croissant fresh?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i05:r2",
+            "targetText": "Was her croissant fresh?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i05:r3",
+            "targetText": "Was his croissant fresh?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was your croissant fresh?",
+              "uk": "У записі звучить Was your croissant fresh?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was your croissant fresh?",
+              "uk": "У записі звучить Was your croissant fresh?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Згадайте, яким був один круасан",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Згадайте, яким був один круасан",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, каким был один круассан",
+          "uk": "Згадайте, яким був один круасан"
+        },
+        "gappedTargetPhrase": "The croissant ___ warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-12:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Згадайте, яким був один круасан",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Згадайте, яким був один круасан",
+            "feedbackByLocale": {
+              "ru": "Один croissant: was.",
+              "uk": "Один croissant: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Згадайте, яким був один круасан",
+            "feedbackByLocale": {
+              "ru": "Состояние описываем was.",
+              "uk": "Стан описуємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:word:scrambled-eggs",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scrambled eggs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:word:scrambled-eggs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scrambled eggs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:word:scrambled-eggs:audio",
+          "transcript": "scrambled eggs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:word:scrambled-eggs:r1",
+            "targetText": "scrambled eggs",
+            "meaningByLocale": {
+              "ru": "яичница-болтунья. С eggs используем were.",
+              "uk": "яєчня-бовтанка. Із eggs використовуємо were."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scrambled eggs",
+          "definitionByLocale": {
+            "ru": "яичница-болтунья. С eggs используем were.",
+            "uk": "яєчня-бовтанка. Із eggs використовуємо were."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була бовтанка гарячою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була бовтанка гарячою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were the scrambled eggs hot?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли болтунья горячей",
+          "uk": "Запитайте, чи була бовтанка гарячою"
+        },
+        "orderedTokens": [
+          "Were",
+          "the",
+          "scrambled",
+          "eggs",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i08:r1",
+          "text": "The scrambled eggs were not cold."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i08:r2",
+          "text": "The scrambled eggs were cold."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i08:r3",
+          "text": "Were the scrambled eggs cold?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i08:audio",
+          "transcript": "The scrambled eggs were not cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:i08:r1",
+            "targetText": "The scrambled eggs were not cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i08:r2",
+            "targetText": "The scrambled eggs were cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i08:r3",
+            "targetText": "Were the scrambled eggs cold?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The scrambled eggs were not cold.",
+              "uk": "У записі звучить The scrambled eggs were not cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The scrambled eggs were not cold.",
+              "uk": "У записі звучить The scrambled eggs were not cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що бовтанка була не солона",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i09:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що бовтанка була не солона",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что болтунья была не солёной",
+          "uk": "Скажіть, що бовтанка була не солона"
+        },
+        "gappedTargetPhrase": "The scrambled eggs ___ not salty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-12:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i09:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що бовтанка була не солона",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що бовтанка була не солона",
+            "feedbackByLocale": {
+              "ru": "С eggs нужна were.",
+              "uk": "Із eggs потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що бовтанка була не солона",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: were not.",
+              "uk": "Заперечення з be: were not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:word:fried-egg",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fried egg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:word:fried-egg:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fried egg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:word:fried-egg:audio",
+          "transcript": "fried egg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:word:fried-egg:r1",
+            "targetText": "fried egg",
+            "meaningByLocale": {
+              "ru": "жареное яйцо. Здесь одно яйцо.",
+              "uk": "смажене яйце. Тут одне яйце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fried egg",
+          "definitionByLocale": {
+            "ru": "жареное яйцо. Здесь одно яйцо.",
+            "uk": "смажене яйце. Тут одне яйце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи було смажене яйце холодним",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи було смажене яйце холодним",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the fried egg cold?",
+        "localizedMeaning": {
+          "ru": "Спросите, было ли жареное яйцо холодным",
+          "uk": "Запитайте, чи було смажене яйце холодним"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "fried",
+          "egg",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i11:r1",
+          "text": "The fried egg was on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i11:r2",
+          "text": "The fried egg was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i11:r3",
+          "text": "The fried egg was in the pan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i11:audio",
+          "transcript": "The fried egg was on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-12:i11:r1",
+            "targetText": "The fried egg was on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i11:r2",
+            "targetText": "The fried egg was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i11:r3",
+            "targetText": "The fried egg was in the pan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fried egg was on the plate.",
+              "uk": "У записі звучить The fried egg was on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fried egg was on the plate.",
+              "uk": "У записі звучить The fried egg was on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-12:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-12:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the fried egg cold? Оно было горячим. Ответьте отрицательно",
+          "uk": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-12:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the fried egg cold? Воно було гарячим. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "На вопрос с was отвечаем was/wasn’t.",
+              "uk": "На запитання з was відповідаємо was/wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-12:i13:p1",
+            "target": "pancake",
+            "meaningByLocale": {
+              "ru": "блинчик",
+              "uk": "млинець"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-12:i13:p2",
+            "target": "croissant",
+            "meaningByLocale": {
+              "ru": "круассан",
+              "uk": "круасан"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-12:i13:p3",
+            "target": "scrambled eggs",
+            "meaningByLocale": {
+              "ru": "яичница-болтунья",
+              "uk": "яєчня-бовтанка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-12:i13:p4",
+            "target": "fried egg",
+            "meaningByLocale": {
+              "ru": "жареное яйцо",
+              "uk": "смажене яйце"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pancake",
+          "croissant",
+          "scrambled eggs",
+          "fried egg"
+        ],
+        "rightColumn": [
+          "млинець",
+          "круасан",
+          "яєчня-бовтанка",
+          "смажене яйце"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i14:audio",
+          "transcript": "Please don't touch my plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't touch my plate.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "touch",
+          "my",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i15:audio",
+          "transcript": "I am eating right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am eating right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "eating",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи були круасани свіжими",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи були круасани свіжими",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i16:audio",
+          "transcript": "Were the croissants fresh?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the croissants fresh?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора млинці були не гарячі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора млинці були не гарячі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-12:i17:audio",
+          "transcript": "The pancakes were not hot yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pancakes were not hot yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "999f4326ceade47e2b2214abc18ef3bed3ca03445b430732d1980e192fd90abe"
+}

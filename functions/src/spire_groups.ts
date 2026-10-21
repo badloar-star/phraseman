@@ -33,6 +33,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
+import { isAdminGrantActive, isStorePremiumActive, isVipActive } from './premium_status';
 import {
   SPIRE_ROOM_SIZE,
   spireCohortDay,
@@ -66,7 +67,19 @@ type SpireMember = {
    * Итог недели берёт свежее значение из журнала, а не этот снимок.
    */
   weekCoins: number;
+  /** Plus у игрока — кольцо у монеты для соседей (владелец 21.10, «Plus виден другим»). Пишет только сервер. */
+  isPremium: boolean;
 };
+
+/**
+ * Настоящий Plus по уже прочитанному users/{uid} — 0 лишних чтений.
+ * зачем (владелец 21.10, реестр №6): кольцо Plus — только у покупки (вкл. пожизненный), выдачи админом и VIP;
+ * вводный 72-часовой доступ (isGiftAccessActive) кольца НЕ даёт — так же решает клиент (isPremium || isVip || isPro).
+ */
+export function spireIsPlusOf(userData: Record<string, unknown> | undefined, nowMs: number): boolean {
+  const progress = (userData?.progress ?? {}) as Record<string, unknown>;
+  return isStorePremiumActive(progress, nowMs) || isAdminGrantActive(progress, nowMs) || isVipActive(progress, nowMs);
+}
 
 /** D162: монеты недели игрока по уже прочитанному users/{uid} — 0 лишних чтений. */
 export function spireWeekCoinsOf(userData: Record<string, unknown> | undefined, weekId: string): number {
@@ -170,6 +183,7 @@ function buildMember(
     joinedAtMs: nowMs,
     coinRank: spireCoinRankOrNull(raw.coinRank),
     weekCoins: spireWeekCoinsOf(userData, weekId),
+    isPremium: spireIsPlusOf(userData, nowMs),
   };
 }
 
@@ -183,12 +197,13 @@ function buildMember(
  */
 export function spireMemberStepsUpdate(
   stableUid: string,
-  current: Readonly<{ steps?: unknown; coinRank?: unknown; weekCoins?: unknown }> | undefined,
+  current: Readonly<{ steps?: unknown; coinRank?: unknown; weekCoins?: unknown; isPremium?: unknown }> | undefined,
   next: Readonly<{ steps: number; reachedAtMs: number; totalMs: number }>,
   nowMs: number,
   coinRank: number | null = null,
   weekCoins: number | null = null,
-): Record<string, number> | null {
+  isPremium: boolean | null = null,
+): Record<string, number | boolean> | null {
   const prev = Math.max(0, Math.trunc(Number(current?.steps)) || 0);
   const steps = Math.max(0, Math.trunc(next.steps) || 0);
   // зачем (владелец 13.10, аватар-монета): ранг едет той же записью, что ступени; отдельная запись — только если ранг сменился
@@ -196,7 +211,9 @@ export function spireMemberStepsUpdate(
   const rank = coinRank !== null && current?.coinRank !== coinRank ? { [`members.${stableUid}.coinRank`]: coinRank } : {};
   // зачем (D162): монеты недели едут той же записью; отдельная запись без новых ступеней — только если сумма изменилась.
   const coins = weekCoins !== null && Number(current?.weekCoins) !== weekCoins ? { [`members.${stableUid}.weekCoins`]: weekCoins } : {};
-  const extra = { ...rank, ...coins };
+  // зачем (владелец 21.10, кольцо Plus у соседей): статус едет той же записью; отдельная — только если он сменился.
+  const plus = isPremium !== null && (current?.isPremium === true) !== isPremium ? { [`members.${stableUid}.isPremium`]: isPremium } : {};
+  const extra = { ...rank, ...coins, ...plus };
   if (steps <= prev) return Object.keys(extra).length > 0 ? { ...extra, updatedAt: nowMs } : null;
   return {
     [`members.${stableUid}.steps`]: steps,
@@ -281,10 +298,18 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
       // зачем (D162): соседи видят монеты недели из снимка; обновляем его при входе, только если сумма изменилась
       // (0 чтений — users уже прочитан выше; запись — лишь при изменении). Сбой записи не мешает входу — причина в журнале.
       const weekCoins = spireWeekCoinsOf(userData, weekId);
-      if (Number(saved.members[stableUid]?.weekCoins) !== weekCoins) {
+      // зачем (владелец 21.10, кольцо Plus у соседей): статус Plus обновляется той же записью, что и монеты, — только при смене.
+      const isPremium = spireIsPlusOf(userData, nowMs);
+      const coinsChanged = Number(saved.members[stableUid]?.weekCoins) !== weekCoins;
+      const plusChanged = (saved.members[stableUid]?.isPremium === true) !== isPremium;
+      if (coinsChanged || plusChanged) {
         try {
-          await savedSnap.ref.update({ [`members.${stableUid}.weekCoins`]: weekCoins, updatedAt: nowMs });
-          console.log(LOG, JSON.stringify({ event: 'week_coins_snapshot', groupId: savedId, weekCoins }));
+          await savedSnap.ref.update({
+            ...(coinsChanged ? { [`members.${stableUid}.weekCoins`]: weekCoins } : {}),
+            ...(plusChanged ? { [`members.${stableUid}.isPremium`]: isPremium } : {}),
+            updatedAt: nowMs,
+          });
+          console.log(LOG, JSON.stringify({ event: 'week_coins_snapshot', groupId: savedId, weekCoins, isPremium, coinsChanged, plusChanged }));
         } catch (error) {
           console.warn(LOG, JSON.stringify({ event: 'week_coins_snapshot_failed', groupId: savedId, reason: String((error as Error)?.message ?? error).slice(0, 160) }));
         }

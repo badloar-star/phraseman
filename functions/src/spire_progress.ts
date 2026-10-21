@@ -17,6 +17,7 @@ import {
   resolveSpireTier,
   savedSpireGroupId,
   spireCoinRankOrNull,
+  spireIsPlusOf,
   spireMemberStepsUpdate,
 } from './spire_groups';
 import {
@@ -292,13 +293,14 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     // (даже из одних duplicate) поднимет его строку. spireMemberStepsUpdate
     // вернёт null, когда поднимать нечего, — тогда записи нет.
     if (roomValid && groupRef) {
-      const current = (group?.members as Record<string, { steps?: unknown; coinRank?: unknown; weekCoins?: unknown }> | undefined)?.[stableUid];
+      const current = (group?.members as Record<string, { steps?: unknown; coinRank?: unknown; weekCoins?: unknown; isPremium?: unknown }> | undefined)?.[stableUid];
       // зачем (D162): монеты недели после этой транзакции — из состояния журнала «после» (если платили за ступени),
       // иначе из уже прочитанного users; 0 лишних чтений.
       const weekCoinsNow = coinsPrepared
         ? starsWeekEarned(coinsPrepared.after, serverWeekKey)
         : starsWeekEarned(normalizeStars(userData?.stars), serverWeekKey);
-      const roomPatch = spireMemberStepsUpdate(stableUid, current, evaluation.record, nowMs, spireCoinRankOrNull(data.coinRank), weekCoinsNow);
+      // зачем (владелец 21.10, кольцо Plus у соседей): статус Plus — из уже прочитанного users, 0 новых чтений.
+      const roomPatch = spireMemberStepsUpdate(stableUid, current, evaluation.record, nowMs, spireCoinRankOrNull(data.coinRank), weekCoinsNow, spireIsPlusOf(userData, nowMs));
       if (roomPatch) {
         // guard-ok: запись внутри runTransaction; точечный путь members.<uid> — только update.
         tx.update(groupRef, roomPatch);

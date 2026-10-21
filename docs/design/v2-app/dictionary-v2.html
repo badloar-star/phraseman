@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Словарь Learning V2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="dictionary-kit.css">
+<style>
+/* зачем (владелец 21.10 через координатора): словарь Learning V2 переработать — тренировать прямо в словаре (отметить уроки, выбрать режим
+   «как в Карточках») и сохранять любые слова в «Карточки». Основа — dictionary-options.html, вариант B «По урокам и выбор»; набор
+   dictionary-kit.css/js; режимы, экран старта и итог — как в утверждённых «Карточках» (cards-v2.html). Классы макета — с префиксом dv-,
+   чтобы не пересечься с общими (урок 21.10: класс .dim в kit.css молча прятал элементы). */
+.wrap { max-width: 1440px; }
+.screens { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 10px; }
+.rowlbl { font-size: 13px; font-weight: 600; color: var(--page-sec); margin: 22px 0 0; }
+.cap2 { font-size: 15px; line-height: 20px; font-weight: 700; max-width: 390px; text-align: center; }
+.rec2 { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(31, 138, 76, .14); color: #1F8A4C; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.dv-small { height: 40px !important; margin-top: 6px; font-size: 14px !important; }
+.chip .i { flex: none; }
+.dsec .dv-act { letter-spacing: 0; text-transform: none; font-size: 14px; font-weight: 700; color: var(--text); }
+.dv-saved { display: inline-flex; align-items: center; gap: 4px; color: var(--good); font-weight: 600; font-size: 13px; margin-left: 6px; white-space: nowrap; vertical-align: 1px; }
+.dv-saved .i { display: inline-block; }
+.dv-pend { color: var(--sec); }
+.wrow.top { align-items: flex-start; }
+.wrow.top .rb { margin-top: 2px; }
+.wrow.top .bk { margin-top: -1px; }
+.dv-toast { position: absolute; left: 14px; right: 14px; bottom: 112px; z-index: 30; min-height: 54px; border-radius: 18px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; gap: 10px; padding: 7px 7px 7px 16px; font-size: 15px; line-height: 20px; font-weight: 600; box-shadow: 0 18px 36px -14px rgba(0, 0, 0, .55); }
+.dv-toast .t { flex: 1; min-width: 0; }
+.dv-toast .u { height: 40px; padding: 0 14px; border-radius: 20px; display: flex; align-items: center; font-weight: 700; background: color-mix(in srgb, var(--cta-ink) 12%, transparent); white-space: nowrap; }
+.dv-dim { position: absolute; inset: 0; z-index: 45; background: rgba(0, 0, 0, .55); }
+.ph.lt .dv-dim { background: rgba(23, 24, 30, .36); }
+.dv-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 50; border-radius: 30px 30px 0 0; background: var(--sheet); padding: 10px 20px 34px; box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .5); }
+.dv-grab { width: 40px; height: 5px; border-radius: 3px; background: var(--grab); margin: 0 auto 16px; }
+.dv-st { font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; }
+.dv-ss { font-size: 15px; line-height: 20px; color: var(--sec); text-align: center; margin-top: 4px; }
+.dv-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.dv-mt { position: relative; border-radius: 20px; padding: 16px; min-height: 112px; display: flex; flex-direction: column; justify-content: space-between; background: var(--plate); box-shadow: var(--card-sh); }
+.dv-mt .tl { width: 46px; height: 46px; border-radius: 14px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); }
+.dv-mt .n { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 14px; }
+.dv-mt.on { background: var(--cta); color: var(--cta-ink); box-shadow: var(--cta-sh); }
+.dv-mt.on .tl { background: color-mix(in srgb, var(--cta-ink) 12%, transparent); color: inherit; }
+.dv-lrow.s { padding: 8px 2px; }
+.dv-lrow.s .ring { width: 36px; height: 36px; font-size: 13px; }
+.dv-lrow.s .ring::before { -webkit-mask: radial-gradient(circle, transparent 13px, #000 14px); mask: radial-gradient(circle, transparent 13px, #000 14px); }
+.dv-modes.row { margin-top: 12px; }
+.dv-modes.row .dv-mt { min-height: 56px; flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; padding: 10px 12px; border-radius: 18px; }
+.dv-modes.row .dv-mt .tl { width: 36px; height: 36px; border-radius: 11px; }
+.dv-modes.row .dv-mt .n { margin-top: 0; font-size: 15px; line-height: 20px; }
+.dv-badge { position: absolute; right: 12px; top: 12px; height: 24px; border-radius: 12px; background: var(--soft); color: var(--text); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 3px; padding: 0 8px; }
+.dv-modes.row .dv-badge { top: 50%; margin-top: -12px; }
+.dv-top { display: flex; align-items: center; justify-content: space-between; flex: none; margin-top: 2px; }
+.dv-chipx { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 16px; background: var(--btn2); color: var(--btn2-ink); font-size: 13px; font-weight: 700; }
+.dv-chipx img { width: 22px; height: 15px; border-radius: 3px; object-fit: cover; display: block; }
+.dv-title { display: flex; align-items: center; gap: 14px; margin-top: 16px; flex: none; }
+.dv-title .t55 { width: 55px; height: 55px; border-radius: 16px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); }
+.dv-title b { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.4px; }
+.dv-h { font-size: 17px; line-height: 22px; font-weight: 700; margin-top: 22px; flex: none; display: flex; justify-content: space-between; align-items: baseline; }
+.dv-h span { font-size: 14px; font-weight: 600; color: var(--sec); }
+.dv-pks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; flex: none; }
+.dv-pk { position: relative; border-radius: 16px; padding: 14px 14px 12px; min-height: 84px; background: var(--plate); box-shadow: var(--card-sh); }
+.dv-pk .t1 { font-size: 16px; line-height: 21px; font-weight: 700; padding-right: 28px; }
+.dv-pk .t2 { font-size: 14px; color: var(--sec); margin-top: 14px; font-variant-numeric: tabular-nums; }
+.dv-pk .ck { position: absolute; right: 12px; top: 12px; }
+.dv-pk.on { background: var(--cta); color: var(--cta-ink); box-shadow: var(--cta-sh); }
+.dv-pk.on .t2 { color: inherit; opacity: .72; }
+.dv-pk.on .ck { background: var(--cta-ink); color: var(--cta); }
+.dv-seg { flex: none; margin-top: 12px; }
+.dv-big { font-size: 72px; line-height: 76px; font-weight: 800; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+.dv-big span { font-size: 22px; letter-spacing: 0; color: var(--sec); font-weight: 600; margin-left: 8px; }
+.dv-ov { font-size: 14px; font-weight: 600; color: var(--sec); }
+.dv-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; flex: none; }
+.dv-stt { border-radius: 18px; padding: 12px 14px; background: var(--plate); box-shadow: var(--card-sh); }
+.dv-stt b { display: block; font-size: 24px; line-height: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dv-stt span { font-size: 13px; color: var(--sec); }
+.dv-pill { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--btn2); color: var(--btn2-ink); font-size: 15px; font-weight: 700; }
+.dv-pill img { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.dv-off { display: flex; align-items: center; gap: 10px; border-radius: 14px; background: var(--soft); padding: 10px 14px; font-size: 14px; line-height: 19px; margin-top: 12px; flex: none; }
+.dv-off b { font-weight: 700; }
+.dv-empty { text-align: center; padding-top: 64px; flex: none; }
+.dv-empty .ic0 { width: 72px; height: 72px; border-radius: 22px; background: var(--tile); margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--text); }
+.dv-empty h3 { font-size: 22px; line-height: 28px; margin-top: 18px; }
+.dv-empty p { font-size: 16px; line-height: 23px; color: var(--sec); margin: 8px auto 0; max-width: 300px; }
+.dv-empty .cta { margin-top: 22px; }
+.dv-lrow { display: flex; align-items: center; gap: 12px; padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.dv-lrow .tx { flex: 1; min-width: 0; }
+.dv-lrow .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.dv-lrow .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.dv-lrow .r { font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums; }
+.dv-lrow.lk .t, .dv-lrow.lk .m { color: var(--muted); }
+.dv-lrow .ring { width: 40px; height: 40px; font-size: 14px; }
+.dv-lrow .ring::before { -webkit-mask: radial-gradient(circle, transparent 15px, #000 16px); mask: radial-gradient(circle, transparent 15px, #000 16px); }
+.dv-lrow:last-child { border-bottom: 0; }
+.dv-card { border-radius: 20px; background: var(--plate); box-shadow: var(--card-sh); padding: 2px 14px; margin-top: 10px; flex: none; }
+.dv-flip { border-radius: 18px; background: var(--plate); box-shadow: var(--card-sh); padding: 12px 6px 12px 14px; display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.dv-flip .tx { flex: 1; min-width: 0; }
+.dv-flip .w { font-size: 18px; line-height: 23px; font-weight: 700; }
+.dv-flip .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.dv-flip .you { font-size: 13px; line-height: 17px; color: var(--muted); margin-top: 4px; }
+.dv-center { text-align: center; flex: none; }
+.cmp2 { margin-top: 14px; }
+.cmp2 td:first-child { font-weight: 600; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Словарь Learning V2: тренировка по урокам и сохранение в «Карточки»</h1>
+  <p class="lead">Заказ владельца 21.10: «чтоб можно было тренировать прям там, отмечать слова из каких уроков и выбирать режим (как в карточках), так и сохранять себе любые слова в карточки». Основа: вариант B «По урокам и выбор» из <code>dictionary-options.html</code>. Режимы, экран старта и итог взяты из утверждённых «Карточек». Слова настоящие, из уроков 1 и 2: урок 1 пройден, это 225 слов; в уроке 2 пройдено 11 эпизодов, открыто 44 слова из 224. Каждый экран показан в двух темах.</p>
+  <nav class="nav" aria-label="Разделы"><a href="#a-list">A · Список и уроки</a><a href="#a-train">A · Выбор и тренировка</a><a href="#a-save">A · В «Карточки»</a><a href="#a-edge">A · Крайние состояния</a><a href="#a-result">A · Итог</a><a href="#b-main">B · Тренажёр сверху</a><a href="#b-words">B · Слова</a><a href="#cmp">Сравнение</a></nav>
+  <div id="root"></div>
+</div>
+<script src="dictionary-kit.js"></script>
+<script>
+/* зачем: значки, которых нет в наборе словаря, — те же контуры 1.8, что в kit.js (режимы «Карточек» и «нет сети») */
+Object.assign(PATHS, {
+  bolt: '<path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/>',
+  mic: '<rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3"/>',
+  edit: '<path d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/><path d="M17.5 3.5l3 3L12 15l-4 1 1-4z"/>',
+  cloudOff: '<path d="M7 18.5h9.5a4 4 0 00.9-7.9 5.5 5.5 0 00-10.4-1.2A4.6 4.6 0 007 18.5z"/><path d="M3.5 3.5l17 17"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/>',
+  clock: '<circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/>',
+});
+/* ── слова уроков 1–2 (карточки слов из learner.json; перевод — начало определения) ── */
+const L1 = [['here', 'здесь, тут'], ['ready', 'готов / готова'], ['fine', 'хорошо, в порядке'], ['happy', 'рад / рада, доволен / довольна'], ['busy', 'занятый'], ['sad', 'грустный'], ['tired', 'уставший'], ['late', 'опоздавший'], ['hungry', 'голодный'], ['cold', 'холодно, замёрз']];
+const L2 = [['interested', 'заинтересован, интересно'], ['far', 'далеко'], ['keen', 'горит желанием, очень хочет'], ['included', 'входит в цену, включено'], ['confident', 'уверенный в себе, в своих силах'], ['satisfied', 'довольный результатом'], ['booked', 'забронирован, заказан'], ['planned', 'запланирован, продуман заранее']];
+const LONG = [['disappointed', 'разочарован'], ['engaged', 'помолвлен: договорились пожениться, но свадьба ещё впереди'], ['careful', 'осторожный, внимательный: человек старается не допустить ошибки или повреждения'], ['impressed', 'впечатлён: высоко оценил чьё-то мастерство или результат'], ['generous', 'щедрый: охотно делится деньгами, вещами или временем']];
+const SAVED = new Set(['ready', 'tired', 'confident']);
+const LES = [
+  { n: 1, t: 'Present be: утверждение + not', p: 100, r: '225' },
+  { n: 2, t: 'Present be: вопросы, короткие ответы, who/what/where', p: 20, r: '44' },
+  { n: 3, t: 'Откроется после урока 2', p: 0, lock: true },
+  { n: 4, t: 'Откроется после урока 3', p: 0, lock: true },
+];
+const COIN = 'assets/coin_rank_05.webp';
+
+/* ── детали ── */
+const head = (ti, cnt, right = '') => `<div class="dh nob"><div><div class="ti">${ti}</div><div class="cnt">${cnt}</div></div>${right}</div>`;
+const chip = (t, on, n) => `<span class="chip${on ? ' on' : ''}">${t}${n != null ? ` <span class="n">${n}</span>` : ''}</span>`;
+const lessonChips = (on) => `<div class="chips"><span class="chip" aria-label="Уроки" style="padding:0 12px">${ic('filter', 18)}</span>${chip('Все уроки', on === 'all')}${chip('Урок 1', on === 1 || on === 'both', 225)}${chip('Урок 2', on === 2 || on === 'both', 44)}</div>`;
+const search = () => `<div class="srch">${ic('search', 18)}Слово или перевод</div>`;
+const dsec = (title, n, act) => `<div class="dsec"><span>${title}${n != null ? ` <span class="n">· ${n}</span>` : ''}</span>${act ? `<span class="dv-act">${act}</span>` : ''}</div>`;
+const savedTag = (pending) => `<span class="dv-saved${pending ? ' dv-pend' : ''}">${ic(pending ? 'clock' : 'check', 13)}${pending ? 'отправим позже' : 'в карточках'}</span>`;
+const row = ([w, tr], o = {}) => {
+  const saved = o.saved ?? SAVED.has(w);
+  const lead = o.ck == null ? '' : `<span class="ck${o.ck ? ' on' : ''}" role="checkbox" aria-checked="${o.ck}">${o.ck ? ic('check', 15) : ''}</span>`;
+  const tail = o.ck == null ? `${vol()}${bm(saved, 22)}` : '';
+  return `<div class="wrow${o.top ? ' top' : ''}">${lead}<div class="wc"><div class="w">${w}</div><div class="m">${tr}${saved && o.ck == null ? savedTag(o.pending) : ''}</div></div>${tail}</div>`;
+};
+const dockTrain = (label) => `<div class="dock"><div class="cta">${ic('play', 18)}${label}</div></div>`;
+const dockDual = (a, b) => `<div class="dock" style="padding-top:34px"><div class="cta">${ic('play', 18)}${a}</div><div style="display:grid;grid-template-columns:1fr;margin-top:12px"><span class="btn2">${ic('bookmark', 18)}${b}</span></div></div>`;
+const toast = (t, u = 'Отменить', bottom) => `<div class="dv-toast"${bottom ? ` style="bottom:${bottom}px"` : ''}><span class="t">${t}</span><span class="u">${u}</span></div>`;
+const sheet = (inner) => `<div class="dv-dim"></div><div class="dv-sheet"><div class="dv-grab"></div>${inner}</div>`;
+const ringL = (p, n) => `<span class="ring" style="--p:${p}">${n}</span>`;
+const lrow = (l, on) => `<div class="dv-lrow${l.lock ? ' lk' : ''}">${l.lock ? `<span class="ck" style="opacity:.4"></span>` : `<span class="ck${on ? ' on' : ''}">${on ? ic('check', 15) : ''}</span>`}${ringL(l.p, l.n)}<div class="tx"><div class="t">Урок ${l.n}</div><div class="m">${l.t}</div></div><span class="r">${l.lock ? ic('lock', 16) : l.r}</span></div>`;
+const lrowS = (l, on) => `<div class="dv-lrow s">${l.lock ? '<span class="ck" style="opacity:.4"></span>' : `<span class="ck${on ? ' on' : ''}">${on ? ic('check', 15) : ''}</span>`}${ringL(l.p, l.n)}<div class="tx"><div class="t">Урок ${l.n}</div><div class="m">${l.lock ? l.t : (l.n === 1 ? '225 слов, урок пройден' : '44 слова из 224')}</div></div>${l.lock ? `<span class="r">${ic('lock', 16)}</span>` : ''}</div>`;
+const hB = (t, r = '') => `<div class="dv-h" style="margin-top:16px">${t}${r ? ` <span>${r}</span>` : ''}</div>`;
+const MODES = [['bolt', 'Блиц'], ['mic', 'Устно', 3], ['check', 'Правда / ложь'], ['edit', 'Напиши']];
+const modes = (on, cls = '') => `<div class="dv-modes${cls ? ' ' + cls : ''}">${MODES.map(([i, n, b]) => `<div class="dv-mt${on === n ? ' on' : ''}"><div class="tl">${ic(i, 22)}</div><div class="n">${n}</div>${b ? `<span class="dv-badge">${ic('mic', 13)}${b}</span>` : ''}</div>`).join('')}</div>`;
+const pk = (t1, t2, on) => `<div class="dv-pk${on ? ' on' : ''}"><div class="t1">${t1}</div><div class="t2">${t2}</div><span class="ck${on ? ' on' : ''}">${on ? ic('check', 15) : ''}</span></div>`;
+const seg = (items, on) => `<div class="seg tall dv-seg">${items.map((x) => `<span class="${x === on ? 'on' : ''}">${x}</span>`).join('')}</div>`;
+
+/* ═════ A · Список с уроками (рекомендую) ═════ */
+const A_main = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips('all')}${search()}
+  <div class="lst">${dsec('Урок 1', 225)}${L1.slice(0, 7).map((w) => row(w)).join('')}</div>`, { lt, dock: dockTrain('Тренировать · 269 слов') });
+const A_filter = (lt) => phone(`${head('Словарь', 'Урок 2 · 44 слова', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips(2)}${search()}
+  <div class="lst">${dsec('Урок 2', 44)}${L2.slice(0, 7).map((w) => row(w)).join('')}</div>`, { lt, dock: dockTrain('Тренировать · 44 слова') });
+const A_lessons = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips('all')}${search()}
+  <div class="lst">${dsec('Урок 1', 225)}${L1.slice(0, 6).map((w) => row(w)).join('')}</div>`, { lt,
+  dock: sheet(`<div class="dv-st">Уроки</div><div class="dv-ss">Можно отметить несколько</div><div style="margin-top:12px">${lrow(LES[0], true)}${lrow(LES[1], true)}${lrow(LES[2])}${lrow(LES[3])}</div><div class="cta" style="margin-top:18px">Показать 269 слов</div>`) });
+const A_select = (lt) => phone(`${head('Выбрано 6', 'Урок 1', '<span class="btn2 dv-small">Готово</span>')}${lessonChips(1)}${search()}
+  <div class="lst">${dsec('Урок 1', 225, 'Выбрать все 225')}${L1.slice(0, 8).map((w, i) => row(w, { ck: [0, 1, 3, 4, 6, 7].includes(i) })).join('')}</div>`, { lt, dock: dockDual('Тренировать · 6', 'В карточки · 6') });
+const A_modes = (lt) => phone(`${head('Выбрано 6', 'Урок 1', '<span class="btn2 dv-small">Готово</span>')}${lessonChips(1)}${search()}
+  <div class="lst">${dsec('Урок 1', 225, 'Выбрать все 225')}${L1.slice(0, 6).map((w, i) => row(w, { ck: [0, 1, 3, 4].includes(i) })).join('')}</div>`, { lt,
+  dock: sheet(`<div class="dv-st">Режим тренировки</div><div class="dv-ss">6 слов из урока 1</div>${modes()}`) });
+const A_setup = (lt) => phone(`<div class="dv-top"><span class="rb">${ic('chevL', 18)}</span><span style="display:flex;gap:8px"><span class="dv-chipx"><img src="assets/language_en.webp" alt="">EN</span><span class="dv-chipx">${ic('copy', 15)}24/30</span></span></div>
+  <div class="dv-title"><span class="t55">${ic('bolt', 26)}</span><b>Блиц</b></div>
+  <div class="dv-h">Что повторяем</div><div class="dv-pks">${pk('Выбранные слова', '6 слов', true)}${pk('Урок 1', '225 слов')}${pk('Урок 2', '44 слова')}${pk('Все слова', '269 слов')}</div>
+  <div class="dv-h">Время</div>${seg(['30 с', '60 с', '90 с'], '60 с')}`, { lt, dock: dockTrain('Начать') });
+const A_saveOne = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips('all')}${search()}
+  <div class="lst">${dsec('Урок 1', 225)}${L1.slice(0, 6).map((w) => row(w, { saved: SAVED.has(w[0]) || w[0] === 'busy' })).join('')}</div>`, { lt, dock: `${toast('busy теперь в «Карточках»')}${dockTrain('Тренировать · 269 слов')}` });
+const A_saveMany = (lt) => phone(`${head('Словарь', 'Урок 1 · 225 слов', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips(1)}${search()}
+  <div class="lst">${dsec('Урок 1', 225)}${L1.slice(0, 6).map((w, i) => row(w, { saved: [0, 1, 3, 4].includes(i) })).join('')}</div>`, { lt, dock: `${toast('6 слов теперь в «Карточках»')}${dockTrain('Тренировать · 225 слов')}` });
+const A_empty = (lt) => phone(`${head('Словарь', 'Пока нет слов')}
+  <div class="dv-empty"><div class="ic0">${ic('book', 32)}</div><h3>Здесь появятся слова</h3><p>Каждый эпизод добавляет 4–5 новых слов. Пройди первый, и их можно будет слушать, тренировать и сохранять в «Карточки».</p><div class="cta">${ic('play', 18)}К эпизоду 1</div></div>`, { lt });
+const A_long = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}${lessonChips('all')}${search()}
+  <div class="lst">${dsec('Урок 1', 225)}${LONG.map((w) => row(w, { top: true })).join('')}</div>`, { lt, dock: dockTrain('Тренировать · 269 слов') });
+const A_offline = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}
+  <div class="dv-off">${ic('cloudOff', 20)}<span><b>Нет сети.</b> Слова и тренировка работают, сохранения отправим позже.</span></div>${lessonChips('all')}
+  <div class="lst">${dsec('Урок 1', 225)}${L1.slice(0, 6).map((w) => row(w, { saved: SAVED.has(w[0]) || w[0] === 'sad', pending: w[0] === 'sad' })).join('')}</div>`, { lt, dock: `${toast('sad сохранено на телефоне')}${dockTrain('Тренировать · 269 слов')}` });
+const result = (lt, clean) => {
+  const ok = clean ? 20 : 17; const bad = 20 - ok;
+  const errs = [['late', 'опоздавший', 'твой ответ: рано'], ['hungry', 'голодный', 'твой ответ: холодно'], ['sure', 'уверен / уверена', 'твой ответ: в порядке']];
+  return phone(`<div class="dv-top"><span class="dv-pill"><img src="${COIN}" alt="">1 240</span><span class="rb">${ic('close', 18)}</span></div>
+    <div class="dv-center" style="margin-top:22px"><div class="dv-ov">Блиц · Урок 1</div><div class="dv-big" style="margin-top:10px">${ok}<span>из 20</span></div><div style="font-size:17px;color:var(--sec);margin-top:4px">${clean ? 'Без единой ошибки' : 'Почти идеально'}</div></div>
+    <div class="dv-stats"><div class="dv-stt"><b>${ok}</b><span>Верно</span></div><div class="dv-stt"><b>${bad}</b><span>Ошибки</span></div><div class="dv-stt"><b>0:58</b><span>Время</span></div></div>
+    <div class="dv-center" style="margin-top:14px"><span class="dv-pill"><img src="${COIN}" alt="">+${ok * 10}</span></div>
+    ${clean ? `<div class="btn2" style="margin-top:26px">${ic('bookmark', 18)}Все 20 слов в «Карточки»</div>`
+      : `<div class="dv-h">Ошибки <span>${bad}</span></div>${errs.map(([w, m, y], i) => `<div class="dv-flip"><div class="tx"><div class="w">${w}</div><div class="m">${m}${i === 0 ? savedTag() : ''}</div><div class="you">${y}</div></div>${vol()}${bm(i === 0, 22)}</div>`).join('')}`}`,
+    { lt, dock: `<div class="dock"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><span class="btn2" style="height:54px;border-radius:27px">Готово</span><div class="cta">Ещё раз</div></div></div>` });
+};
+const A_result = (lt) => result(lt, false);
+const A_resultClean = (lt) => result(lt, true);
+
+/* ═════ B · Тренажёр сверху ═════ */
+const tabs = (on) => seg(['Тренировка', 'Слова'], on);
+const B_train = (lt) => phone(`${head('Словарь', '269 слов · 2 урока')}${tabs('Тренировка')}
+  ${hB('Уроки', 'отмечено 2')}<div class="dv-card">${lrowS(LES[0], true)}${lrowS(LES[1], true)}${lrowS(LES[2])}</div>
+  ${hB('Режим')}${modes('Блиц', 'row')}
+  ${hB('Время')}${seg(['30 с', '60 с', '90 с'], '60 с')}`, { lt, dock: dockTrain('Тренировать · 269 слов') });
+const B_train2 = (lt) => phone(`${head('Словарь', '269 слов · 2 урока')}${tabs('Тренировка')}
+  ${hB('Уроки', 'отмечен 1')}<div class="dv-card">${lrowS(LES[0], false)}${lrowS(LES[1], true)}</div>
+  ${hB('Режим')}${modes('Напиши', 'row')}
+  ${hB('Сколько')}${seg(['10', '20', 'Все'], '20')}
+  ${hB('Показывать')}${seg(['EN → RU', 'RU → EN'], 'RU → EN')}`, { lt, dock: dockTrain('Тренировать · 20 из 44') });
+const B_words = (lt) => phone(`${head('Словарь', '269 слов · 2 урока', '<span class="btn2 dv-small">Выбрать</span>')}${tabs('Слова')}${lessonChips('all')}${search()}
+  <div class="lst">${dsec('Урок 2', 44)}${L2.slice(0, 6).map((w) => row(w, { saved: SAVED.has(w[0]) || w[0] === 'keen' })).join('')}</div>`, { lt, dock: toast('keen теперь в «Карточках»', 'Отменить', 26) });
+const B_select = (lt) => phone(`${head('Выбрано 4', 'Урок 2', '<span class="btn2 dv-small">Готово</span>')}${tabs('Слова')}${lessonChips(2)}
+  <div class="lst">${dsec('Урок 2', 44, 'Выбрать все 44')}${L2.slice(0, 7).map((w, i) => row(w, { ck: [1, 2, 5, 6].includes(i) })).join('')}</div>`, { lt, dock: dockDual('Тренировать · 4', 'В карточки · 4') });
+const B_empty = (lt) => phone(`${head('Словарь', 'Пока нет слов')}${tabs('Тренировка')}
+  <div class="dv-empty" style="padding-top:48px"><div class="ic0">${ic('bolt', 30)}</div><h3>Тренировать пока нечего</h3><p>Слова появятся после первого эпизода. Тогда здесь можно будет выбрать уроки и режим.</p><div class="cta">${ic('play', 18)}К эпизоду 1</div></div>`, { lt });
+
+/* ── страница ── */
+const blk = (id, title, lead, screens) => `<section class="sec2" id="${id}"><h2>${title}</h2>${lead ? `<p class="lead">${lead}</p>` : ''}${[false, true].map((lt) => `<div class="rowlbl">${lt ? 'Светлая («Сумерки»)' : 'Тёмная (графит)'}</div><div class="screens">${screens.map(([cap, fn]) => `<div class="col"><div class="cap2">${cap}</div>${fn(lt)}</div>`).join('')}</div>`).join('')}</section>`;
+mount(
+  blk('a-list', 'A · Список с уроками<span class="rec2">рекомендую</span> · Слова и уроки', 'Словарь остаётся списком слов, как и ждёт человек. Сверху уроки чипами: «Все уроки» или любые несколько; чип «Уроки» открывает лист со всеми 32 уроками, закрытые видны с замком. У каждого слова «Слушать» и закладка «В карточки». Внизу всегда «Тренировать» на то, что сейчас показано.',
+    [['Все слова', A_main], ['Только урок 2', A_filter], ['Лист «Уроки»: отметить несколько', A_lessons]]) +
+  blk('a-train', 'A · Выбор и тренировка', '«Выбрать» включает галочки; «Выбрать все 225» отмечает урок целиком. «Тренировать» открывает тот же лист режимов, что в «Карточках»: Блиц, Устно, Правда / ложь, Напиши. Дальше тот же экран старта: что повторяем, время или сколько, «Начать». Лимит тренировок Free общий с «Карточками» (24/30).',
+    [['Выбор слов галочками', A_select], ['Режим тренировки, как в «Карточках»', A_modes], ['Старт: Блиц по выбранным словам', A_setup]]) +
+  blk('a-save', 'A · Сохранение в «Карточки»', 'Один тап по закладке: она сразу закрашивается, рядом появляется «в карточках», внизу на 4 секунды плашка с «Отменить». Сеть догоняет фоном, при ошибке закладка возвращается и появляется понятное сообщение. Выбранные слова сохраняются пакетом так же.',
+    [['Одно слово: сразу «в карточках» и «Отменить»', A_saveOne], ['Пакетом: 6 выбранных слов', A_saveMany]]) +
+  blk('a-edge', 'A · Крайние состояния', 'Пусто: объясняем, откуда берутся слова, и ведём к эпизоду 1. Длинное слово или перевод переносится до трёх строк, кнопки остаются сверху строки. Нет сети: список и тренировка работают с телефона, сохранение помечено «отправим позже».',
+    [['Слов ещё нет', A_empty], ['Длинное слово и перевод', A_long], ['Нет сети', A_offline]]) +
+  blk('a-result', 'A · Итог тренировки', 'Итог как в «Карточках»: счёт, верно, ошибки, время, монеты. Ошибки сразу можно сохранить в «Карточки» закладкой, чтобы повторять трудные слова.',
+    [['С ошибками', A_result], ['Без ошибок', A_resultClean]]) +
+  blk('b-main', 'B · Тренажёр сверху · Вкладка «Тренировка»', 'Две вкладки: «Тренировка» и «Слова». На первой всё на одном экране: галочки уроков, режим плитками, время или сколько, одна кнопка «Тренировать». Быстрее на один шаг, но настройка тренировки живёт отдельно от «Карточек».',
+    [['Уроки 1 и 2, Блиц', B_train], ['Только урок 2, «Напиши»', B_train2], ['Слов ещё нет', B_empty]]) +
+  blk('b-words', 'B · Вкладка «Слова»', 'Список, поиск и сохранение такие же, как в A. Выбранные слова можно тренировать отдельно или сохранить пакетом.',
+    [['Список: сохранение одним тапом', B_words], ['Выбор слов для тренировки', B_select]]) +
+  `<section class="sec2" id="cmp"><h2>Сравнение и рекомендация</h2><div class="tbl cmp2"><table><thead><tr><th></th><th>A · Список с уроками</th><th>B · Тренажёр сверху</th></tr></thead><tbody>
+  <tr><td>Первый экран</td><td>Слова: поиск, слушать, сохранить</td><td>Настройка тренировки</td></tr>
+  <tr><td>Выбор уроков</td><td>Чипы и лист «Уроки», несколько сразу</td><td>Галочки уроков на первой вкладке</td></tr>
+  <tr><td>Режим</td><td>Тот же лист, что в «Карточках»</td><td>Плитки прямо на экране</td></tr>
+  <tr><td>До старта</td><td>Тренировать → режим → Начать</td><td>Одна кнопка «Тренировать»</td></tr>
+  <tr><td>В «Карточки»</td><td colspan="2">Одинаково: закладка у слова, «в карточках» сразу, «Отменить»; пакетом из выбора</td></tr>
+  <tr><td>Новое в коде</td><td>Меньше: режимы и старт берём из «Карточек»</td><td>Больше: свой экран настройки рядом с карточным</td></tr>
+  </tbody></table></div>
+  <div class="rec"><b>Рекомендация: A</b><p>Словарь открывают, чтобы найти и послушать слово, поэтому первым экраном остаётся список. Тренировка в A проходит теми же шагами, что в «Карточках»: человек учит один порядок на всё приложение, а в коде переиспользуется готовый лист режимов и экран старта. Из B стоит взять галочки уроков в листе «Уроки».</p></div></section>`
+);
+</script>
+</body>
+</html>

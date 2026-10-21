@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-08:word:airport-bus",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — airport bus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:airport-bus:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — airport bus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:airport-bus:audio",
+            "transcript": "airport bus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:airport-bus:r1",
+              "targetText": "airport bus",
+              "meaningByLocale": {
+                "ru": "автобус до аэропорта или из него.",
+                "uk": "автобус до аеропорту або з нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airport bus",
+            "definitionByLocale": {
+              "ru": "автобус до аэропорта или из него.",
+              "uk": "автобус до аеропорту або з нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Автобус из аэропорта медленнее такси».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Автобус из аэропорта медленнее такси».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The airport bus is slower than a taxi.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Автобус из аэропорта медленнее такси».",
+            "uk": "Скажіть: «Автобус з аеропорту повільніший за таксі»."
+          },
+          "orderedTokens": [
+            "The",
+            "airport",
+            "bus",
+            "is",
+            "slower",
+            "than",
+            "a",
+            "taxi"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i02:r1",
+            "text": "The airport bus is slower than a taxi."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i02:r2",
+            "text": "The airport bus is slow than a taxi."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i02:r3",
+            "text": "The airport bus is slower that a taxi."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i02:audio",
+            "transcript": "The airport bus is slower than a taxi."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i02:r1",
+              "targetText": "The airport bus is slower than a taxi.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r2",
+              "targetText": "The airport bus is slow than a taxi.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r3",
+              "targetText": "The airport bus is slower that a taxi.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport bus is slower than a taxi.",
+                "uk": "У записі звучить The airport bus is slower than a taxi."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport bus is slower than a taxi.",
+                "uk": "У записі звучить The airport bus is slower than a taxi."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i03:r1",
+            "text": "slower"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i03:r2",
+            "text": "slow"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i03:r3",
+            "text": "more slower"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The airport bus is ___ than a taxi.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i03:r1",
+              "text": "slower"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r2",
+              "text": "slow"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r3",
+              "text": "more slower"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма slower.",
+                "uk": "Для порівняння потрібна форма slower."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:airport-train",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — airport train",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:airport-train:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — airport train",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:airport-train:audio",
+            "transcript": "airport train"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:airport-train:r1",
+              "targetText": "airport train",
+              "meaningByLocale": {
+                "ru": "поезд до аэропорта или из него.",
+                "uk": "потяг до аеропорту або з нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airport train",
+            "definitionByLocale": {
+              "ru": "поезд до аэропорта или из него.",
+              "uk": "потяг до аеропорту або з нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Поезд из аэропорта быстрее автобуса».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Поезд из аэропорта быстрее автобуса».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The airport train is faster than the airport bus.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Поезд из аэропорта быстрее автобуса».",
+            "uk": "Скажіть: «Потяг з аеропорту швидший за автобус»."
+          },
+          "orderedTokens": [
+            "The",
+            "airport",
+            "train",
+            "is",
+            "faster",
+            "than",
+            "the",
+            "airport",
+            "bus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i05:r1",
+            "text": "The airport train is faster than the airport bus."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i05:r2",
+            "text": "The airport train is fast than the airport bus."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i05:r3",
+            "text": "The airport train is faster that the airport bus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i05:audio",
+            "transcript": "The airport train is faster than the airport bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i05:r1",
+              "targetText": "The airport train is faster than the airport bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r2",
+              "targetText": "The airport train is fast than the airport bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r3",
+              "targetText": "The airport train is faster that the airport bus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport train is faster than the airport bus.",
+                "uk": "У записі звучить The airport train is faster than the airport bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport train is faster than the airport bus.",
+                "uk": "У записі звучить The airport train is faster than the airport bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i06:r1",
+            "text": "faster"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i06:r2",
+            "text": "fast"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i06:r3",
+            "text": "more faster"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The airport train is ___ than the airport bus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i06:r1",
+              "text": "faster"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r2",
+              "text": "fast"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r3",
+              "text": "more faster"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма faster.",
+                "uk": "Для порівняння потрібна форма faster."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:taxi-fare",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — taxi fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:taxi-fare:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — taxi fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:taxi-fare:audio",
+            "transcript": "taxi fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:taxi-fare:r1",
+              "targetText": "taxi fare",
+              "meaningByLocale": {
+                "ru": "стоимость поездки на такси.",
+                "uk": "вартість поїздки на таксі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taxi fare",
+            "definitionByLocale": {
+              "ru": "стоимость поездки на такси.",
+              "uk": "вартість поїздки на таксі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Стоимость поездки на такси выше, чем мы ожидали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Стоимость поездки на такси выше, чем мы ожидали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The taxi fare is higher than we expected.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Стоимость поездки на такси выше, чем мы ожидали».",
+            "uk": "Скажіть: «Вартість поїздки на таксі вища, ніж ми очікували»."
+          },
+          "orderedTokens": [
+            "The",
+            "taxi",
+            "fare",
+            "is",
+            "higher",
+            "than",
+            "we",
+            "expected"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i08:r1",
+            "text": "The taxi fare is higher than we expected."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i08:r2",
+            "text": "The taxi fare is high than we expected."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i08:r3",
+            "text": "The taxi fare is higher that we expected."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i08:audio",
+            "transcript": "The taxi fare is higher than we expected."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i08:r1",
+              "targetText": "The taxi fare is higher than we expected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r2",
+              "targetText": "The taxi fare is high than we expected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r3",
+              "targetText": "The taxi fare is higher that we expected.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The taxi fare is higher than we expected.",
+                "uk": "У записі звучить The taxi fare is higher than we expected."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The taxi fare is higher than we expected.",
+                "uk": "У записі звучить The taxi fare is higher than we expected."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i09:r1",
+            "text": "higher"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i09:r2",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i09:r3",
+            "text": "more higher"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The taxi fare is ___ than we expected.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i09:r1",
+              "text": "higher"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r2",
+              "text": "high"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r3",
+              "text": "more higher"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма higher.",
+                "uk": "Для порівняння потрібна форма higher."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:travel-pass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — travel pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:travel-pass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — travel pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:travel-pass:audio",
+            "transcript": "travel pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:travel-pass:r1",
+              "targetText": "travel pass",
+              "meaningByLocale": {
+                "ru": "проездной билет.",
+                "uk": "проїзний квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel pass",
+            "definitionByLocale": {
+              "ru": "проездной билет.",
+              "uk": "проїзний квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Этот проездной дешевле тех билетов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Этот проездной дешевле тех билетов».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This travel pass is cheaper than those tickets.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот проездной дешевле тех билетов».",
+            "uk": "Скажіть: «Цей проїзний дешевший за ті квитки»."
+          },
+          "orderedTokens": [
+            "This",
+            "travel",
+            "pass",
+            "is",
+            "cheaper",
+            "than",
+            "those",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i11:r1",
+            "text": "This travel pass is cheaper than those tickets."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i11:r2",
+            "text": "This travel pass is cheap than those tickets."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i11:r3",
+            "text": "This travel pass is cheaper that those tickets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i11:audio",
+            "transcript": "This travel pass is cheaper than those tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i11:r1",
+              "targetText": "This travel pass is cheaper than those tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r2",
+              "targetText": "This travel pass is cheap than those tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r3",
+              "targetText": "This travel pass is cheaper that those tickets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This travel pass is cheaper than those tickets.",
+                "uk": "У записі звучить This travel pass is cheaper than those tickets."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This travel pass is cheaper than those tickets.",
+                "uk": "У записі звучить This travel pass is cheaper than those tickets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i12:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i12:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i12:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This travel pass is ___ than those tickets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i12:r1",
+              "text": "cheaper"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r3",
+              "text": "more cheaper"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма cheaper.",
+                "uk": "Для порівняння потрібна форма cheaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-08:i13:p1",
+              "target": "airport bus",
+              "meaningByLocale": {
+                "ru": "автобус до аэропорта или из него",
+                "uk": "автобус до аеропорту або з нього"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p2",
+              "target": "airport train",
+              "meaningByLocale": {
+                "ru": "поезд до аэропорта или из него",
+                "uk": "потяг до аеропорту або з нього"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p3",
+              "target": "taxi fare",
+              "meaningByLocale": {
+                "ru": "стоимость поездки на такси",
+                "uk": "вартість поїздки на таксі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p4",
+              "target": "travel pass",
+              "meaningByLocale": {
+                "ru": "проездной билет",
+                "uk": "проїзний квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "airport bus",
+            "airport train",
+            "taxi fare",
+            "travel pass"
+          ],
+          "rightColumn": [
+            "автобус до аэропорта или из него",
+            "поезд до аэропорта или из него",
+            "стоимость поездки на такси",
+            "проездной билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение с going to",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение с going to",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i14:audio",
+            "transcript": "We are going to buy a travel pass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to buy a travel pass.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "travel",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i15:audio",
+            "transcript": "We are taking the airport train at six."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are taking the airport train at six.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "taking",
+            "the",
+            "airport",
+            "train",
+            "at",
+            "six"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите сравнение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Повторите сравнение",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i16:audio",
+            "transcript": "The taxi fare is higher than we expected."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The taxi fare is higher than we expected.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите две бутылки воды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите две бутылки воды",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-08:word:airport-bus",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — airport bus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:airport-bus:audio"
+        ],
+        "accessibilityLabel": "Картка слова — airport bus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:airport-bus:audio",
+            "transcript": "airport bus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:airport-bus:r1",
+              "targetText": "airport bus",
+              "meaningByLocale": {
+                "ru": "автобус до аэропорта или из него.",
+                "uk": "автобус до аеропорту або з нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airport bus",
+            "definitionByLocale": {
+              "ru": "автобус до аэропорта или из него.",
+              "uk": "автобус до аеропорту або з нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Автобус з аеропорту повільніший за таксі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Автобус з аеропорту повільніший за таксі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The airport bus is slower than a taxi.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Автобус из аэропорта медленнее такси».",
+            "uk": "Скажіть: «Автобус з аеропорту повільніший за таксі»."
+          },
+          "orderedTokens": [
+            "The",
+            "airport",
+            "bus",
+            "is",
+            "slower",
+            "than",
+            "a",
+            "taxi"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i02:r1",
+            "text": "The airport bus is slower than a taxi."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i02:r2",
+            "text": "The airport bus is slow than a taxi."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i02:r3",
+            "text": "The airport bus is slower that a taxi."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i02:audio",
+            "transcript": "The airport bus is slower than a taxi."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i02:r1",
+              "targetText": "The airport bus is slower than a taxi.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r2",
+              "targetText": "The airport bus is slow than a taxi.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r3",
+              "targetText": "The airport bus is slower that a taxi.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport bus is slower than a taxi.",
+                "uk": "У записі звучить The airport bus is slower than a taxi."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport bus is slower than a taxi.",
+                "uk": "У записі звучить The airport bus is slower than a taxi."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i03:r1",
+            "text": "slower"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i03:r2",
+            "text": "slow"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i03:r3",
+            "text": "more slower"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The airport bus is ___ than a taxi.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i03:r1",
+              "text": "slower"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r2",
+              "text": "slow"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r3",
+              "text": "more slower"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма slower.",
+                "uk": "Для порівняння потрібна форма slower."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:airport-train",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — airport train",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:airport-train:audio"
+        ],
+        "accessibilityLabel": "Картка слова — airport train",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:airport-train:audio",
+            "transcript": "airport train"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:airport-train:r1",
+              "targetText": "airport train",
+              "meaningByLocale": {
+                "ru": "поезд до аэропорта или из него.",
+                "uk": "потяг до аеропорту або з нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "airport train",
+            "definitionByLocale": {
+              "ru": "поезд до аэропорта или из него.",
+              "uk": "потяг до аеропорту або з нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Потяг з аеропорту швидший за автобус».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Потяг з аеропорту швидший за автобус».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The airport train is faster than the airport bus.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Поезд из аэропорта быстрее автобуса».",
+            "uk": "Скажіть: «Потяг з аеропорту швидший за автобус»."
+          },
+          "orderedTokens": [
+            "The",
+            "airport",
+            "train",
+            "is",
+            "faster",
+            "than",
+            "the",
+            "airport",
+            "bus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i05:r1",
+            "text": "The airport train is faster than the airport bus."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i05:r2",
+            "text": "The airport train is fast than the airport bus."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i05:r3",
+            "text": "The airport train is faster that the airport bus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i05:audio",
+            "transcript": "The airport train is faster than the airport bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i05:r1",
+              "targetText": "The airport train is faster than the airport bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r2",
+              "targetText": "The airport train is fast than the airport bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r3",
+              "targetText": "The airport train is faster that the airport bus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport train is faster than the airport bus.",
+                "uk": "У записі звучить The airport train is faster than the airport bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The airport train is faster than the airport bus.",
+                "uk": "У записі звучить The airport train is faster than the airport bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i06:r1",
+            "text": "faster"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i06:r2",
+            "text": "fast"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i06:r3",
+            "text": "more faster"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The airport train is ___ than the airport bus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i06:r1",
+              "text": "faster"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r2",
+              "text": "fast"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r3",
+              "text": "more faster"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма faster.",
+                "uk": "Для порівняння потрібна форма faster."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:taxi-fare",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — taxi fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:taxi-fare:audio"
+        ],
+        "accessibilityLabel": "Картка слова — taxi fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:taxi-fare:audio",
+            "transcript": "taxi fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:taxi-fare:r1",
+              "targetText": "taxi fare",
+              "meaningByLocale": {
+                "ru": "стоимость поездки на такси.",
+                "uk": "вартість поїздки на таксі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taxi fare",
+            "definitionByLocale": {
+              "ru": "стоимость поездки на такси.",
+              "uk": "вартість поїздки на таксі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вартість поїздки на таксі вища, ніж ми очікували».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вартість поїздки на таксі вища, ніж ми очікували».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The taxi fare is higher than we expected.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Стоимость поездки на такси выше, чем мы ожидали».",
+            "uk": "Скажіть: «Вартість поїздки на таксі вища, ніж ми очікували»."
+          },
+          "orderedTokens": [
+            "The",
+            "taxi",
+            "fare",
+            "is",
+            "higher",
+            "than",
+            "we",
+            "expected"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i08:r1",
+            "text": "The taxi fare is higher than we expected."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i08:r2",
+            "text": "The taxi fare is high than we expected."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i08:r3",
+            "text": "The taxi fare is higher that we expected."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i08:audio",
+            "transcript": "The taxi fare is higher than we expected."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i08:r1",
+              "targetText": "The taxi fare is higher than we expected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r2",
+              "targetText": "The taxi fare is high than we expected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r3",
+              "targetText": "The taxi fare is higher that we expected.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The taxi fare is higher than we expected.",
+                "uk": "У записі звучить The taxi fare is higher than we expected."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The taxi fare is higher than we expected.",
+                "uk": "У записі звучить The taxi fare is higher than we expected."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i09:r1",
+            "text": "higher"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i09:r2",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i09:r3",
+            "text": "more higher"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The taxi fare is ___ than we expected.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i09:r1",
+              "text": "higher"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r2",
+              "text": "high"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r3",
+              "text": "more higher"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма higher.",
+                "uk": "Для порівняння потрібна форма higher."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:word:travel-pass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — travel pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:word:travel-pass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — travel pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:word:travel-pass:audio",
+            "transcript": "travel pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:word:travel-pass:r1",
+              "targetText": "travel pass",
+              "meaningByLocale": {
+                "ru": "проездной билет.",
+                "uk": "проїзний квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel pass",
+            "definitionByLocale": {
+              "ru": "проездной билет.",
+              "uk": "проїзний квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Цей проїзний дешевший за ті квитки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Цей проїзний дешевший за ті квитки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This travel pass is cheaper than those tickets.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот проездной дешевле тех билетов».",
+            "uk": "Скажіть: «Цей проїзний дешевший за ті квитки»."
+          },
+          "orderedTokens": [
+            "This",
+            "travel",
+            "pass",
+            "is",
+            "cheaper",
+            "than",
+            "those",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i11:r1",
+            "text": "This travel pass is cheaper than those tickets."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i11:r2",
+            "text": "This travel pass is cheap than those tickets."
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i11:r3",
+            "text": "This travel pass is cheaper that those tickets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i11:audio",
+            "transcript": "This travel pass is cheaper than those tickets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-08:i11:r1",
+              "targetText": "This travel pass is cheaper than those tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r2",
+              "targetText": "This travel pass is cheap than those tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r3",
+              "targetText": "This travel pass is cheaper that those tickets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This travel pass is cheaper than those tickets.",
+                "uk": "У записі звучить This travel pass is cheaper than those tickets."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This travel pass is cheaper than those tickets.",
+                "uk": "У записі звучить This travel pass is cheaper than those tickets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-08:i12:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i12:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-08:i12:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This travel pass is ___ than those tickets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-08:i12:r1",
+              "text": "cheaper"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r3",
+              "text": "more cheaper"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма cheaper.",
+                "uk": "Для порівняння потрібна форма cheaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-08:i13:p1",
+              "target": "airport bus",
+              "meaningByLocale": {
+                "ru": "автобус до аэропорта или из него",
+                "uk": "автобус до аеропорту або з нього"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p2",
+              "target": "airport train",
+              "meaningByLocale": {
+                "ru": "поезд до аэропорта или из него",
+                "uk": "потяг до аеропорту або з нього"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p3",
+              "target": "taxi fare",
+              "meaningByLocale": {
+                "ru": "стоимость поездки на такси",
+                "uk": "вартість поїздки на таксі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-08:i13:p4",
+              "target": "travel pass",
+              "meaningByLocale": {
+                "ru": "проездной билет",
+                "uk": "проїзний квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "airport bus",
+            "airport train",
+            "taxi fare",
+            "travel pass"
+          ],
+          "rightColumn": [
+            "автобус до аеропорту або з нього",
+            "потяг до аеропорту або з нього",
+            "вартість поїздки на таксі",
+            "проїзний квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір із going to",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір із going to",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i14:audio",
+            "transcript": "We are going to buy a travel pass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to buy a travel pass.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "travel",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i15:audio",
+            "transcript": "We are taking the airport train at six."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are taking the airport train at six.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "taking",
+            "the",
+            "airport",
+            "train",
+            "at",
+            "six"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть порівняння",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Повторіть порівняння",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i16:audio",
+            "transcript": "The taxi fare is higher than we expected."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The taxi fare is higher than we expected.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть дві пляшки води",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-08:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-08:word:airport-bus",
+      "correctText": "airport bus",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i01",
+      "correctText": "The airport bus is slower than a taxi.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i02",
+      "correctText": "The airport bus is slower than a taxi.",
+      "correctResponseId": "en:lesson-18:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i03",
+      "correctText": "slower",
+      "correctResponseId": "en:lesson-18:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:word:airport-train",
+      "correctText": "airport train",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i04",
+      "correctText": "The airport train is faster than the airport bus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i05",
+      "correctText": "The airport train is faster than the airport bus.",
+      "correctResponseId": "en:lesson-18:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i06",
+      "correctText": "faster",
+      "correctResponseId": "en:lesson-18:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:word:taxi-fare",
+      "correctText": "taxi fare",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i07",
+      "correctText": "The taxi fare is higher than we expected.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i08",
+      "correctText": "The taxi fare is higher than we expected.",
+      "correctResponseId": "en:lesson-18:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i09",
+      "correctText": "higher",
+      "correctResponseId": "en:lesson-18:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:word:travel-pass",
+      "correctText": "travel pass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i10",
+      "correctText": "This travel pass is cheaper than those tickets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i11",
+      "correctText": "This travel pass is cheaper than those tickets.",
+      "correctResponseId": "en:lesson-18:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i12",
+      "correctText": "cheaper",
+      "correctResponseId": "en:lesson-18:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i14",
+      "correctText": "We are going to buy a travel pass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i15",
+      "correctText": "We are taking the airport train at six.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i16",
+      "correctText": "The taxi fare is higher than we expected.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-08:i17",
+      "correctText": "We need two bottles of water.",
+      "correctResponseId": null
+    }
+  ]
+}

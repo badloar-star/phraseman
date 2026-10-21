@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-04:word:hot-meal",
+    "correctText": "hot meal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i01",
+    "correctText": "This hot meal is cheaper than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i02",
+    "correctText": "This hot meal is cheaper than that one.",
+    "correctResponseId": "en:lesson-18:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i03",
+    "correctText": "cheaper",
+    "correctResponseId": "en:lesson-18:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:word:cold-drink",
+    "correctText": "cold drink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i04",
+    "correctText": "Your cold drink is colder than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i05",
+    "correctText": "Your cold drink is colder than mine.",
+    "correctResponseId": "en:lesson-18:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i06",
+    "correctText": "colder",
+    "correctResponseId": "en:lesson-18:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:word:soft-drink",
+    "correctText": "soft drink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i07",
+    "correctText": "This soft drink is sweeter than the juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i08",
+    "correctText": "This soft drink is sweeter than the juice.",
+    "correctResponseId": "en:lesson-18:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i09",
+    "correctText": "sweeter",
+    "correctResponseId": "en:lesson-18:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:word:still-water",
+    "correctText": "still water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i10",
+    "correctText": "The still water is cheaper than the juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i11",
+    "correctText": "The still water is cheaper than the juice.",
+    "correctResponseId": "en:lesson-18:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i12",
+    "correctText": "cheaper",
+    "correctResponseId": "en:lesson-18:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i13",
+    "correctText": "en:lesson-18:session-04:i13:p1=hot meal\nen:lesson-18:session-04:i13:p2=cold drink\nen:lesson-18:session-04:i13:p3=soft drink\nen:lesson-18:session-04:i13:p4=still water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i14",
+    "correctText": "We are going to buy a hot meal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i15",
+    "correctText": "We are having a hot meal with friends tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i16",
+    "correctText": "This soft drink is sweeter than the juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-04:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

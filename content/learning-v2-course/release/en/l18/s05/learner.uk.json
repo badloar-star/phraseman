@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-05:word:sale-price",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sale price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:word:sale-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sale price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:word:sale-price:audio",
+          "transcript": "sale price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:word:sale-price:r1",
+            "targetText": "sale price",
+            "meaningByLocale": {
+              "ru": "цена на распродаже.",
+              "uk": "ціна на розпродажі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sale price",
+          "definitionByLocale": {
+            "ru": "цена на распродаже.",
+            "uk": "ціна на розпродажі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ціна на розпродажі нижча, ніж раніше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ціна на розпродажі нижча, ніж раніше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sale price is lower than before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Цена на распродаже ниже, чем раньше».",
+          "uk": "Скажіть: «Ціна на розпродажі нижча, ніж раніше»."
+        },
+        "orderedTokens": [
+          "The",
+          "sale",
+          "price",
+          "is",
+          "lower",
+          "than",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i02:r1",
+          "text": "The sale price is lower than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i02:r2",
+          "text": "The sale price is low than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i02:r3",
+          "text": "The sale price is lower that before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i02:audio",
+          "transcript": "The sale price is lower than before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:i02:r1",
+            "targetText": "The sale price is lower than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i02:r2",
+            "targetText": "The sale price is low than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i02:r3",
+            "targetText": "The sale price is lower that before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sale price is lower than before.",
+              "uk": "У записі звучить The sale price is lower than before."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sale price is lower than before.",
+              "uk": "У записі звучить The sale price is lower than before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i03:r1",
+          "text": "lower"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i03:r2",
+          "text": "low"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i03:r3",
+          "text": "more lower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The sale price is ___ than before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-05:i03:r1",
+            "text": "lower"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i03:r2",
+            "text": "low"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i03:r3",
+            "text": "more lower"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма lower.",
+              "uk": "Для порівняння потрібна форма lower."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:word:regular-price",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — regular price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:word:regular-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — regular price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:word:regular-price:audio",
+          "transcript": "regular price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:word:regular-price:r1",
+            "targetText": "regular price",
+            "meaningByLocale": {
+              "ru": "обычная цена без скидки.",
+              "uk": "звичайна ціна без знижки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "regular price",
+          "definitionByLocale": {
+            "ru": "обычная цена без скидки.",
+            "uk": "звичайна ціна без знижки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Звичайна ціна вища, ніж раніше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Звичайна ціна вища, ніж раніше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The regular price is higher than before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Обычная цена выше, чем раньше».",
+          "uk": "Скажіть: «Звичайна ціна вища, ніж раніше»."
+        },
+        "orderedTokens": [
+          "The",
+          "regular",
+          "price",
+          "is",
+          "higher",
+          "than",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i05:r1",
+          "text": "The regular price is higher than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i05:r2",
+          "text": "The regular price is high than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i05:r3",
+          "text": "The regular price is higher that before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i05:audio",
+          "transcript": "The regular price is higher than before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:i05:r1",
+            "targetText": "The regular price is higher than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i05:r2",
+            "targetText": "The regular price is high than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i05:r3",
+            "targetText": "The regular price is higher that before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The regular price is higher than before.",
+              "uk": "У записі звучить The regular price is higher than before."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The regular price is higher than before.",
+              "uk": "У записі звучить The regular price is higher than before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i06:r1",
+          "text": "higher"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i06:r2",
+          "text": "high"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i06:r3",
+          "text": "more higher"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The regular price is ___ than before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-05:i06:r1",
+            "text": "higher"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i06:r2",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i06:r3",
+            "text": "more higher"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма higher.",
+              "uk": "Для порівняння потрібна форма higher."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:word:total-cost",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — total cost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:word:total-cost:audio"
+      ],
+      "accessibilityLabel": "Картка слова — total cost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:word:total-cost:audio",
+          "transcript": "total cost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:word:total-cost:r1",
+            "targetText": "total cost",
+            "meaningByLocale": {
+              "ru": "общая стоимость.",
+              "uk": "загальна вартість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "total cost",
+          "definitionByLocale": {
+            "ru": "общая стоимость.",
+            "uk": "загальна вартість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Загальна вартість нижча, ніж ми очікували».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Загальна вартість нижча, ніж ми очікували».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The total cost is lower than we expected.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Общая стоимость ниже, чем мы ожидали».",
+          "uk": "Скажіть: «Загальна вартість нижча, ніж ми очікували»."
+        },
+        "orderedTokens": [
+          "The",
+          "total",
+          "cost",
+          "is",
+          "lower",
+          "than",
+          "we",
+          "expected"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i08:r1",
+          "text": "The total cost is lower than we expected."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i08:r2",
+          "text": "The total cost is low than we expected."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i08:r3",
+          "text": "The total cost is lower that we expected."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i08:audio",
+          "transcript": "The total cost is lower than we expected."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:i08:r1",
+            "targetText": "The total cost is lower than we expected.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i08:r2",
+            "targetText": "The total cost is low than we expected.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i08:r3",
+            "targetText": "The total cost is lower that we expected.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The total cost is lower than we expected.",
+              "uk": "У записі звучить The total cost is lower than we expected."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The total cost is lower than we expected.",
+              "uk": "У записі звучить The total cost is lower than we expected."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i09:r1",
+          "text": "lower"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i09:r2",
+          "text": "low"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i09:r3",
+          "text": "more lower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The total cost is ___ than we expected.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-05:i09:r1",
+            "text": "lower"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i09:r2",
+            "text": "low"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i09:r3",
+            "text": "more lower"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма lower.",
+              "uk": "Для порівняння потрібна форма lower."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:word:unit-price",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unit price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:word:unit-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unit price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:word:unit-price:audio",
+          "transcript": "unit price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:word:unit-price:r1",
+            "targetText": "unit price",
+            "meaningByLocale": {
+              "ru": "цена за единицу товара или количества.",
+              "uk": "ціна за одиницю товару або кількості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unit price",
+          "definitionByLocale": {
+            "ru": "цена за единицу товара или количества.",
+            "uk": "ціна за одиницю товару або кількості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ціна за одиницю товару в цьому магазині вища, ніж у тому».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ціна за одиницю товару в цьому магазині вища, ніж у тому».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The unit price is higher in this shop than in that shop.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Цена за единицу товара в этом магазине выше, чем в том».",
+          "uk": "Скажіть: «Ціна за одиницю товару в цьому магазині вища, ніж у тому»."
+        },
+        "orderedTokens": [
+          "The",
+          "unit",
+          "price",
+          "is",
+          "higher",
+          "in",
+          "this",
+          "shop",
+          "than",
+          "in",
+          "that",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i11:r1",
+          "text": "The unit price is higher in this shop than in that shop."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i11:r2",
+          "text": "The unit price is high in this shop than in that shop."
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i11:r3",
+          "text": "The unit price is higher in this shop that in that shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i11:audio",
+          "transcript": "The unit price is higher in this shop than in that shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-05:i11:r1",
+            "targetText": "The unit price is higher in this shop than in that shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i11:r2",
+            "targetText": "The unit price is high in this shop than in that shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i11:r3",
+            "targetText": "The unit price is higher in this shop that in that shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The unit price is higher in this shop than in that shop.",
+              "uk": "У записі звучить The unit price is higher in this shop than in that shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The unit price is higher in this shop than in that shop.",
+              "uk": "У записі звучить The unit price is higher in this shop than in that shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-05:i12:r1",
+          "text": "higher"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i12:r2",
+          "text": "high"
+        },
+        {
+          "responseId": "en:lesson-18:session-05:i12:r3",
+          "text": "more higher"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The unit price is ___ in this shop than in that shop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-05:i12:r1",
+            "text": "higher"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i12:r2",
+            "text": "high"
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i12:r3",
+            "text": "more higher"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма higher.",
+              "uk": "Для порівняння потрібна форма higher."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-05:i13:p1",
+            "target": "sale price",
+            "meaningByLocale": {
+              "ru": "цена на распродаже",
+              "uk": "ціна на розпродажі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-05:i13:p2",
+            "target": "regular price",
+            "meaningByLocale": {
+              "ru": "обычная цена без скидки",
+              "uk": "звичайна ціна без знижки"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-05:i13:p3",
+            "target": "total cost",
+            "meaningByLocale": {
+              "ru": "общая стоимость",
+              "uk": "загальна вартість"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-05:i13:p4",
+            "target": "unit price",
+            "meaningByLocale": {
+              "ru": "цена за единицу товара или количества",
+              "uk": "ціна за одиницю товару або кількості"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sale price",
+          "regular price",
+          "total cost",
+          "unit price"
+        ],
+        "rightColumn": [
+          "ціна на розпродажі",
+          "звичайна ціна без знижки",
+          "загальна вартість",
+          "ціна за одиницю товару або кількості"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір із going to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір із going to",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i14:audio",
+          "transcript": "We are going to check the total cost."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to check the total cost.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "check",
+          "the",
+          "total",
+          "cost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i15:audio",
+          "transcript": "We are meeting at the shop tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the shop tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "shop",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторіть порівняння",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Повторіть порівняння",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i16:audio",
+          "transcript": "The total cost is lower than we expected."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The total cost is lower than we expected.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-05:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4fab38bd56cf8f084dec15ed1833e4afc447ce9706876fe1ba8fce986662d50"
+}

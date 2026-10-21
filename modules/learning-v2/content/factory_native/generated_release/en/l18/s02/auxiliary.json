@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-02:intro1:r2": {
+          "ru": "Нужна сравнительная форма quieter.",
+          "uk": "Потрібна порівняльна форма quieter."
+        },
+        "en:lesson-18:session-02:intro1:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-02:intro2:r2": {
+          "ru": "Нужна сравнительная форма nicer.",
+          "uk": "Потрібна порівняльна форма nicer."
+        },
+        "en:lesson-18:session-02:intro2:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-02:intro3:r2": {
+          "ru": "Нужна сравнительная форма clearer.",
+          "uk": "Потрібна порівняльна форма clearer."
+        },
+        "en:lesson-18:session-02:intro3:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f5c3fc8d8021282394c9b0a270618f7033227ed4eae96db3b033f53b03675766"
+}

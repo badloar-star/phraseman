@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-07:word:sports-shoes",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sports shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:word:sports-shoes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sports shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:word:sports-shoes:audio",
+          "transcript": "sports shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:word:sports-shoes:r1",
+            "targetText": "sports shoes",
+            "meaningByLocale": {
+              "ru": "спортивная обувь.",
+              "uk": "спортивне взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sports shoes",
+          "definitionByLocale": {
+            "ru": "спортивная обувь.",
+            "uk": "спортивне взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Це спортивне взуття ширше за моє».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Це спортивне взуття ширше за моє».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These sports shoes are wider than mine.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта спортивная обувь шире моей».",
+          "uk": "Скажіть: «Це спортивне взуття ширше за моє»."
+        },
+        "orderedTokens": [
+          "These",
+          "sports",
+          "shoes",
+          "are",
+          "wider",
+          "than",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i02:r1",
+          "text": "These sports shoes are wider than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i02:r2",
+          "text": "These sports shoes are wide than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i02:r3",
+          "text": "These sports shoes are wider that mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i02:audio",
+          "transcript": "These sports shoes are wider than mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:i02:r1",
+            "targetText": "These sports shoes are wider than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i02:r2",
+            "targetText": "These sports shoes are wide than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i02:r3",
+            "targetText": "These sports shoes are wider that mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These sports shoes are wider than mine.",
+              "uk": "У записі звучить These sports shoes are wider than mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These sports shoes are wider than mine.",
+              "uk": "У записі звучить These sports shoes are wider than mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i03:r1",
+          "text": "wider"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i03:r2",
+          "text": "wide"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i03:r3",
+          "text": "more wider"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "These sports shoes are ___ than mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-07:i03:r1",
+            "text": "wider"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i03:r2",
+            "text": "wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i03:r3",
+            "text": "more wider"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма wider.",
+              "uk": "Для порівняння потрібна форма wider."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:word:running-shoes",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — running shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:word:running-shoes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — running shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:word:running-shoes:audio",
+          "transcript": "running shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:word:running-shoes:r1",
+            "targetText": "running shoes",
+            "meaningByLocale": {
+              "ru": "кроссовки для бега.",
+              "uk": "кросівки для бігу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "running shoes",
+          "definitionByLocale": {
+            "ru": "кроссовки для бега.",
+            "uk": "кросівки для бігу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ці кросівки для бігу легші за мої».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ці кросівки для бігу легші за мої».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These running shoes are lighter than mine.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эти кроссовки для бега легче моих».",
+          "uk": "Скажіть: «Ці кросівки для бігу легші за мої»."
+        },
+        "orderedTokens": [
+          "These",
+          "running",
+          "shoes",
+          "are",
+          "lighter",
+          "than",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i05:r1",
+          "text": "These running shoes are lighter than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i05:r2",
+          "text": "These running shoes are light than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i05:r3",
+          "text": "These running shoes are lighter that mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i05:audio",
+          "transcript": "These running shoes are lighter than mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:i05:r1",
+            "targetText": "These running shoes are lighter than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i05:r2",
+            "targetText": "These running shoes are light than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i05:r3",
+            "targetText": "These running shoes are lighter that mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These running shoes are lighter than mine.",
+              "uk": "У записі звучить These running shoes are lighter than mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These running shoes are lighter than mine.",
+              "uk": "У записі звучить These running shoes are lighter than mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i06:r1",
+          "text": "lighter"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i06:r2",
+          "text": "light"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i06:r3",
+          "text": "more lighter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "These running shoes are ___ than mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-07:i06:r1",
+            "text": "lighter"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i06:r2",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i06:r3",
+            "text": "more lighter"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма lighter.",
+              "uk": "Для порівняння потрібна форма lighter."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:word:leather-shoes",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leather shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:word:leather-shoes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leather shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:word:leather-shoes:audio",
+          "transcript": "leather shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:word:leather-shoes:r1",
+            "targetText": "leather shoes",
+            "meaningByLocale": {
+              "ru": "кожаные туфли.",
+              "uk": "шкіряні туфлі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leather shoes",
+          "definitionByLocale": {
+            "ru": "кожаные туфли.",
+            "uk": "шкіряні туфлі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ці шкіряні туфлі м’якші за ту пару».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ці шкіряні туфлі м’якші за ту пару».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These leather shoes are softer than that pair.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эти кожаные туфли мягче той пары».",
+          "uk": "Скажіть: «Ці шкіряні туфлі м’якші за ту пару»."
+        },
+        "orderedTokens": [
+          "These",
+          "leather",
+          "shoes",
+          "are",
+          "softer",
+          "than",
+          "that",
+          "pair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i08:r1",
+          "text": "These leather shoes are softer than that pair."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i08:r2",
+          "text": "These leather shoes are soft than that pair."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i08:r3",
+          "text": "These leather shoes are softer that that pair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i08:audio",
+          "transcript": "These leather shoes are softer than that pair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:i08:r1",
+            "targetText": "These leather shoes are softer than that pair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i08:r2",
+            "targetText": "These leather shoes are soft than that pair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i08:r3",
+            "targetText": "These leather shoes are softer that that pair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These leather shoes are softer than that pair.",
+              "uk": "У записі звучить These leather shoes are softer than that pair."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These leather shoes are softer than that pair.",
+              "uk": "У записі звучить These leather shoes are softer than that pair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i09:r1",
+          "text": "softer"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i09:r2",
+          "text": "soft"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i09:r3",
+          "text": "more softer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "These leather shoes are ___ than that pair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-07:i09:r1",
+            "text": "softer"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i09:r2",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i09:r3",
+            "text": "more softer"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма softer.",
+              "uk": "Для порівняння потрібна форма softer."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:word:flat-shoes",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flat shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:word:flat-shoes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flat shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:word:flat-shoes:audio",
+          "transcript": "flat shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:word:flat-shoes:r1",
+            "targetText": "flat shoes",
+            "meaningByLocale": {
+              "ru": "обувь без высокого каблука.",
+              "uk": "взуття без високих підборів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flat shoes",
+          "definitionByLocale": {
+            "ru": "обувь без высокого каблука.",
+            "uk": "взуття без високих підборів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Це взуття без високих підборів дешевше за ту пару».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Це взуття без високих підборів дешевше за ту пару».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These flat shoes are cheaper than that pair.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта обувь без высокого каблука дешевле той пары».",
+          "uk": "Скажіть: «Це взуття без високих підборів дешевше за ту пару»."
+        },
+        "orderedTokens": [
+          "These",
+          "flat",
+          "shoes",
+          "are",
+          "cheaper",
+          "than",
+          "that",
+          "pair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i11:r1",
+          "text": "These flat shoes are cheaper than that pair."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i11:r2",
+          "text": "These flat shoes are cheap than that pair."
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i11:r3",
+          "text": "These flat shoes are cheaper that that pair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i11:audio",
+          "transcript": "These flat shoes are cheaper than that pair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-07:i11:r1",
+            "targetText": "These flat shoes are cheaper than that pair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i11:r2",
+            "targetText": "These flat shoes are cheap than that pair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i11:r3",
+            "targetText": "These flat shoes are cheaper that that pair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These flat shoes are cheaper than that pair.",
+              "uk": "У записі звучить These flat shoes are cheaper than that pair."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These flat shoes are cheaper than that pair.",
+              "uk": "У записі звучить These flat shoes are cheaper than that pair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-07:i12:r1",
+          "text": "cheaper"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i12:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-18:session-07:i12:r3",
+          "text": "more cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "These flat shoes are ___ than that pair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-07:i12:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i12:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i12:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма cheaper.",
+              "uk": "Для порівняння потрібна форма cheaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-07:i13:p1",
+            "target": "sports shoes",
+            "meaningByLocale": {
+              "ru": "спортивная обувь",
+              "uk": "спортивне взуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-07:i13:p2",
+            "target": "running shoes",
+            "meaningByLocale": {
+              "ru": "кроссовки для бега",
+              "uk": "кросівки для бігу"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-07:i13:p3",
+            "target": "leather shoes",
+            "meaningByLocale": {
+              "ru": "кожаные туфли",
+              "uk": "шкіряні туфлі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-07:i13:p4",
+            "target": "flat shoes",
+            "meaningByLocale": {
+              "ru": "обувь без высокого каблука",
+              "uk": "взуття без високих підборів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sports shoes",
+          "running shoes",
+          "leather shoes",
+          "flat shoes"
+        ],
+        "rightColumn": [
+          "спортивне взуття",
+          "кросівки для бігу",
+          "шкіряні туфлі",
+          "взуття без високих підборів"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір із going to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір із going to",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i14:audio",
+          "transcript": "We are going to buy running shoes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy running shoes.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "running",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i15:audio",
+          "transcript": "We are meeting at the shoe shop tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the shoe shop tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "shoe",
+          "shop",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторіть порівняння",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Повторіть порівняння",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i16:audio",
+          "transcript": "These leather shoes are softer than that pair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These leather shoes are softer than that pair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-07:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "273795299cbfbbcec96b99f490f22f12d5dc498bd3f78d71b66d651549d5d74a"
+}

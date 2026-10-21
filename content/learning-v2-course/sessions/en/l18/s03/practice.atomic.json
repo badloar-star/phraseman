@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-03:word:train-journey",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — train journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:train-journey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — train journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:train-journey:audio",
+            "transcript": "train journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:train-journey:r1",
+              "targetText": "train journey",
+              "meaningByLocale": {
+                "ru": "поездка на поезде.",
+                "uk": "поїздка потягом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "train journey",
+            "definitionByLocale": {
+              "ru": "поездка на поезде.",
+              "uk": "поїздка потягом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Эта поездка на поезде короче нашей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Эта поездка на поезде короче нашей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The train journey is shorter than ours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта поездка на поезде короче нашей».",
+            "uk": "Скажіть: «Ця поїздка потягом коротша за нашу»."
+          },
+          "orderedTokens": [
+            "The",
+            "train",
+            "journey",
+            "is",
+            "shorter",
+            "than",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i02:r1",
+            "text": "The train journey is shorter than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i02:r2",
+            "text": "The train journey is short than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i02:r3",
+            "text": "The train journey is shorter that ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i02:audio",
+            "transcript": "The train journey is shorter than ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i02:r1",
+              "targetText": "The train journey is shorter than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r2",
+              "targetText": "The train journey is short than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r3",
+              "targetText": "The train journey is shorter that ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train journey is shorter than ours.",
+                "uk": "У записі звучить The train journey is shorter than ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train journey is shorter than ours.",
+                "uk": "У записі звучить The train journey is shorter than ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i03:r1",
+            "text": "shorter"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i03:r2",
+            "text": "short"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i03:r3",
+            "text": "more shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The train journey is ___ than ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i03:r1",
+              "text": "shorter"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r2",
+              "text": "short"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r3",
+              "text": "more shorter"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма shorter.",
+                "uk": "Для порівняння потрібна форма shorter."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:bus-journey",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:bus-journey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:bus-journey:audio",
+            "transcript": "bus journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:bus-journey:r1",
+              "targetText": "bus journey",
+              "meaningByLocale": {
+                "ru": "поездка на автобусе.",
+                "uk": "поїздка автобусом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus journey",
+            "definitionByLocale": {
+              "ru": "поездка на автобусе.",
+              "uk": "поїздка автобусом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Поездка на автобусе дешевле поездки на поезде».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Поездка на автобусе дешевле поездки на поезде».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bus journey is cheaper than the train journey.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Поездка на автобусе дешевле поездки на поезде».",
+            "uk": "Скажіть: «Поїздка автобусом дешевша за поїздку потягом»."
+          },
+          "orderedTokens": [
+            "The",
+            "bus",
+            "journey",
+            "is",
+            "cheaper",
+            "than",
+            "the",
+            "train",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i05:r1",
+            "text": "The bus journey is cheaper than the train journey."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i05:r2",
+            "text": "The bus journey is cheap than the train journey."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i05:r3",
+            "text": "The bus journey is cheaper that the train journey."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i05:audio",
+            "transcript": "The bus journey is cheaper than the train journey."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i05:r1",
+              "targetText": "The bus journey is cheaper than the train journey.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r2",
+              "targetText": "The bus journey is cheap than the train journey.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r3",
+              "targetText": "The bus journey is cheaper that the train journey.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bus journey is cheaper than the train journey.",
+                "uk": "У записі звучить The bus journey is cheaper than the train journey."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bus journey is cheaper than the train journey.",
+                "uk": "У записі звучить The bus journey is cheaper than the train journey."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i06:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i06:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i06:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The bus journey is ___ than the train journey.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i06:r1",
+              "text": "cheaper"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r3",
+              "text": "more cheaper"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма cheaper.",
+                "uk": "Для порівняння потрібна форма cheaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:car-journey",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — car journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:car-journey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — car journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:car-journey:audio",
+            "transcript": "car journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:car-journey:r1",
+              "targetText": "car journey",
+              "meaningByLocale": {
+                "ru": "поездка на машине.",
+                "uk": "поїздка машиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "car journey",
+            "definitionByLocale": {
+              "ru": "поездка на машине.",
+              "uk": "поїздка машиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Эта поездка на машине длиннее нашей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Эта поездка на машине длиннее нашей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This car journey is longer than ours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта поездка на машине длиннее нашей».",
+            "uk": "Скажіть: «Ця поїздка машиною довша за нашу»."
+          },
+          "orderedTokens": [
+            "This",
+            "car",
+            "journey",
+            "is",
+            "longer",
+            "than",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i08:r1",
+            "text": "This car journey is longer than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i08:r2",
+            "text": "This car journey is long than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i08:r3",
+            "text": "This car journey is longer that ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i08:audio",
+            "transcript": "This car journey is longer than ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i08:r1",
+              "targetText": "This car journey is longer than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r2",
+              "targetText": "This car journey is long than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r3",
+              "targetText": "This car journey is longer that ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This car journey is longer than ours.",
+                "uk": "У записі звучить This car journey is longer than ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This car journey is longer than ours.",
+                "uk": "У записі звучить This car journey is longer than ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i09:r1",
+            "text": "longer"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i09:r2",
+            "text": "long"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i09:r3",
+            "text": "more longer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This car journey is ___ than ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i09:r1",
+              "text": "longer"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r2",
+              "text": "long"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r3",
+              "text": "more longer"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма longer.",
+                "uk": "Для порівняння потрібна форма longer."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:walking-route",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — walking route",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:walking-route:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — walking route",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:walking-route:audio",
+            "transcript": "walking route"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:walking-route:r1",
+              "targetText": "walking route",
+              "meaningByLocale": {
+                "ru": "пешеходный маршрут.",
+                "uk": "пішохідний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "walking route",
+            "definitionByLocale": {
+              "ru": "пешеходный маршрут.",
+              "uk": "пішохідний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Этот пешеходный маршрут безопаснее того».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Этот пешеходный маршрут безопаснее того».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This walking route is safer than that one.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот пешеходный маршрут безопаснее того».",
+            "uk": "Скажіть: «Цей пішохідний маршрут безпечніший за той»."
+          },
+          "orderedTokens": [
+            "This",
+            "walking",
+            "route",
+            "is",
+            "safer",
+            "than",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i11:r1",
+            "text": "This walking route is safer than that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i11:r2",
+            "text": "This walking route is safe than that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i11:r3",
+            "text": "This walking route is safer that that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i11:audio",
+            "transcript": "This walking route is safer than that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i11:r1",
+              "targetText": "This walking route is safer than that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r2",
+              "targetText": "This walking route is safe than that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r3",
+              "targetText": "This walking route is safer that that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This walking route is safer than that one.",
+                "uk": "У записі звучить This walking route is safer than that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This walking route is safer than that one.",
+                "uk": "У записі звучить This walking route is safer than that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите сравнительную форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i12:r1",
+            "text": "safer"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i12:r2",
+            "text": "safe"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i12:r3",
+            "text": "more safer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите сравнительную форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This walking route is ___ than that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i12:r1",
+              "text": "safer"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r3",
+              "text": "more safer"
+            }
+          ],
+          "testedDimension": "Выберите сравнительную форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма safer.",
+                "uk": "Для порівняння потрібна форма safer."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите сравнительную форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-03:i13:p1",
+              "target": "train journey",
+              "meaningByLocale": {
+                "ru": "поездка на поезде",
+                "uk": "поїздка потягом"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p2",
+              "target": "bus journey",
+              "meaningByLocale": {
+                "ru": "поездка на автобусе",
+                "uk": "поїздка автобусом"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p3",
+              "target": "car journey",
+              "meaningByLocale": {
+                "ru": "поездка на машине",
+                "uk": "поїздка машиною"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p4",
+              "target": "walking route",
+              "meaningByLocale": {
+                "ru": "пешеходный маршрут",
+                "uk": "пішохідний маршрут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "train journey",
+            "bus journey",
+            "car journey",
+            "walking route"
+          ],
+          "rightColumn": [
+            "поездка на поезде",
+            "поездка на автобусе",
+            "поездка на машине",
+            "пешеходный маршрут"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение с going to",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение с going to",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i14:audio",
+            "transcript": "We are going to take a bus journey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to take a bus journey.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "take",
+            "a",
+            "bus",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i15:audio",
+            "transcript": "We are starting our train journey tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are starting our train journey tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "starting",
+            "our",
+            "train",
+            "journey",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите сравнение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Повторите сравнение",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i16:audio",
+            "transcript": "This car journey is longer than ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This car journey is longer than ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите две бутылки воды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите две бутылки воды",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-03:word:train-journey",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — train journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:train-journey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — train journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:train-journey:audio",
+            "transcript": "train journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:train-journey:r1",
+              "targetText": "train journey",
+              "meaningByLocale": {
+                "ru": "поездка на поезде.",
+                "uk": "поїздка потягом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "train journey",
+            "definitionByLocale": {
+              "ru": "поездка на поезде.",
+              "uk": "поїздка потягом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ця поїздка потягом коротша за нашу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ця поїздка потягом коротша за нашу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The train journey is shorter than ours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта поездка на поезде короче нашей».",
+            "uk": "Скажіть: «Ця поїздка потягом коротша за нашу»."
+          },
+          "orderedTokens": [
+            "The",
+            "train",
+            "journey",
+            "is",
+            "shorter",
+            "than",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i02:r1",
+            "text": "The train journey is shorter than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i02:r2",
+            "text": "The train journey is short than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i02:r3",
+            "text": "The train journey is shorter that ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i02:audio",
+            "transcript": "The train journey is shorter than ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i02:r1",
+              "targetText": "The train journey is shorter than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r2",
+              "targetText": "The train journey is short than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r3",
+              "targetText": "The train journey is shorter that ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train journey is shorter than ours.",
+                "uk": "У записі звучить The train journey is shorter than ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The train journey is shorter than ours.",
+                "uk": "У записі звучить The train journey is shorter than ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i03:r1",
+            "text": "shorter"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i03:r2",
+            "text": "short"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i03:r3",
+            "text": "more shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The train journey is ___ than ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i03:r1",
+              "text": "shorter"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r2",
+              "text": "short"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r3",
+              "text": "more shorter"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма shorter.",
+                "uk": "Для порівняння потрібна форма shorter."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:bus-journey",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:bus-journey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:bus-journey:audio",
+            "transcript": "bus journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:bus-journey:r1",
+              "targetText": "bus journey",
+              "meaningByLocale": {
+                "ru": "поездка на автобусе.",
+                "uk": "поїздка автобусом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus journey",
+            "definitionByLocale": {
+              "ru": "поездка на автобусе.",
+              "uk": "поїздка автобусом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Поїздка автобусом дешевша за поїздку потягом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Поїздка автобусом дешевша за поїздку потягом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bus journey is cheaper than the train journey.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Поездка на автобусе дешевле поездки на поезде».",
+            "uk": "Скажіть: «Поїздка автобусом дешевша за поїздку потягом»."
+          },
+          "orderedTokens": [
+            "The",
+            "bus",
+            "journey",
+            "is",
+            "cheaper",
+            "than",
+            "the",
+            "train",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i05:r1",
+            "text": "The bus journey is cheaper than the train journey."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i05:r2",
+            "text": "The bus journey is cheap than the train journey."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i05:r3",
+            "text": "The bus journey is cheaper that the train journey."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i05:audio",
+            "transcript": "The bus journey is cheaper than the train journey."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i05:r1",
+              "targetText": "The bus journey is cheaper than the train journey.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r2",
+              "targetText": "The bus journey is cheap than the train journey.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r3",
+              "targetText": "The bus journey is cheaper that the train journey.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bus journey is cheaper than the train journey.",
+                "uk": "У записі звучить The bus journey is cheaper than the train journey."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bus journey is cheaper than the train journey.",
+                "uk": "У записі звучить The bus journey is cheaper than the train journey."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i06:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i06:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i06:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "The bus journey is ___ than the train journey.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i06:r1",
+              "text": "cheaper"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r3",
+              "text": "more cheaper"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма cheaper.",
+                "uk": "Для порівняння потрібна форма cheaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:car-journey",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — car journey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:car-journey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — car journey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:car-journey:audio",
+            "transcript": "car journey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:car-journey:r1",
+              "targetText": "car journey",
+              "meaningByLocale": {
+                "ru": "поездка на машине.",
+                "uk": "поїздка машиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "car journey",
+            "definitionByLocale": {
+              "ru": "поездка на машине.",
+              "uk": "поїздка машиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ця поїздка машиною довша за нашу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ця поїздка машиною довша за нашу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This car journey is longer than ours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта поездка на машине длиннее нашей».",
+            "uk": "Скажіть: «Ця поїздка машиною довша за нашу»."
+          },
+          "orderedTokens": [
+            "This",
+            "car",
+            "journey",
+            "is",
+            "longer",
+            "than",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i08:r1",
+            "text": "This car journey is longer than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i08:r2",
+            "text": "This car journey is long than ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i08:r3",
+            "text": "This car journey is longer that ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i08:audio",
+            "transcript": "This car journey is longer than ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i08:r1",
+              "targetText": "This car journey is longer than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r2",
+              "targetText": "This car journey is long than ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r3",
+              "targetText": "This car journey is longer that ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This car journey is longer than ours.",
+                "uk": "У записі звучить This car journey is longer than ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This car journey is longer than ours.",
+                "uk": "У записі звучить This car journey is longer than ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i09:r1",
+            "text": "longer"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i09:r2",
+            "text": "long"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i09:r3",
+            "text": "more longer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This car journey is ___ than ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i09:r1",
+              "text": "longer"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r2",
+              "text": "long"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r3",
+              "text": "more longer"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма longer.",
+                "uk": "Для порівняння потрібна форма longer."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:word:walking-route",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — walking route",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:word:walking-route:audio"
+        ],
+        "accessibilityLabel": "Картка слова — walking route",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:word:walking-route:audio",
+            "transcript": "walking route"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:word:walking-route:r1",
+              "targetText": "walking route",
+              "meaningByLocale": {
+                "ru": "пешеходный маршрут.",
+                "uk": "пішохідний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "walking route",
+            "definitionByLocale": {
+              "ru": "пешеходный маршрут.",
+              "uk": "пішохідний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Цей пішохідний маршрут безпечніший за той».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Цей пішохідний маршрут безпечніший за той».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This walking route is safer than that one.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот пешеходный маршрут безопаснее того».",
+            "uk": "Скажіть: «Цей пішохідний маршрут безпечніший за той»."
+          },
+          "orderedTokens": [
+            "This",
+            "walking",
+            "route",
+            "is",
+            "safer",
+            "than",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i11:r1",
+            "text": "This walking route is safer than that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i11:r2",
+            "text": "This walking route is safe than that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i11:r3",
+            "text": "This walking route is safer that that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i11:audio",
+            "transcript": "This walking route is safer than that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-03:i11:r1",
+              "targetText": "This walking route is safer than that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r2",
+              "targetText": "This walking route is safe than that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r3",
+              "targetText": "This walking route is safer that that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This walking route is safer than that one.",
+                "uk": "У записі звучить This walking route is safer than that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This walking route is safer than that one.",
+                "uk": "У записі звучить This walking route is safer than that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть порівняльну форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-03:i12:r1",
+            "text": "safer"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i12:r2",
+            "text": "safe"
+          },
+          {
+            "responseId": "en:lesson-18:session-03:i12:r3",
+            "text": "more safer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите сравнительную форму.",
+            "uk": "Виберіть порівняльну форму."
+          },
+          "gappedTargetPhrase": "This walking route is ___ than that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-03:i12:r1",
+              "text": "safer"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r2",
+              "text": "safe"
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r3",
+              "text": "more safer"
+            }
+          ],
+          "testedDimension": "Виберіть порівняльну форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Для сравнения нужна форма safer.",
+                "uk": "Для порівняння потрібна форма safer."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть порівняльну форму.",
+              "feedbackByLocale": {
+                "ru": "Не соединяйте more и -er.",
+                "uk": "Не поєднуйте more та -er."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-03:i13:p1",
+              "target": "train journey",
+              "meaningByLocale": {
+                "ru": "поездка на поезде",
+                "uk": "поїздка потягом"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p2",
+              "target": "bus journey",
+              "meaningByLocale": {
+                "ru": "поездка на автобусе",
+                "uk": "поїздка автобусом"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p3",
+              "target": "car journey",
+              "meaningByLocale": {
+                "ru": "поездка на машине",
+                "uk": "поїздка машиною"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-03:i13:p4",
+              "target": "walking route",
+              "meaningByLocale": {
+                "ru": "пешеходный маршрут",
+                "uk": "пішохідний маршрут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "train journey",
+            "bus journey",
+            "car journey",
+            "walking route"
+          ],
+          "rightColumn": [
+            "поїздка потягом",
+            "поїздка автобусом",
+            "поїздка машиною",
+            "пішохідний маршрут"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір із going to",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір із going to",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i14:audio",
+            "transcript": "We are going to take a bus journey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to take a bus journey.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "take",
+            "a",
+            "bus",
+            "journey"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i15:audio",
+            "transcript": "We are starting our train journey tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are starting our train journey tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "starting",
+            "our",
+            "train",
+            "journey",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть порівняння",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Повторіть порівняння",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i16:audio",
+            "transcript": "This car journey is longer than ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This car journey is longer than ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-03:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть дві пляшки води",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-03:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-03:word:train-journey",
+      "correctText": "train journey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i01",
+      "correctText": "The train journey is shorter than ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i02",
+      "correctText": "The train journey is shorter than ours.",
+      "correctResponseId": "en:lesson-18:session-03:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i03",
+      "correctText": "shorter",
+      "correctResponseId": "en:lesson-18:session-03:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:word:bus-journey",
+      "correctText": "bus journey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i04",
+      "correctText": "The bus journey is cheaper than the train journey.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i05",
+      "correctText": "The bus journey is cheaper than the train journey.",
+      "correctResponseId": "en:lesson-18:session-03:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i06",
+      "correctText": "cheaper",
+      "correctResponseId": "en:lesson-18:session-03:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:word:car-journey",
+      "correctText": "car journey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i07",
+      "correctText": "This car journey is longer than ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i08",
+      "correctText": "This car journey is longer than ours.",
+      "correctResponseId": "en:lesson-18:session-03:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i09",
+      "correctText": "longer",
+      "correctResponseId": "en:lesson-18:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:word:walking-route",
+      "correctText": "walking route",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i10",
+      "correctText": "This walking route is safer than that one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i11",
+      "correctText": "This walking route is safer than that one.",
+      "correctResponseId": "en:lesson-18:session-03:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i12",
+      "correctText": "safer",
+      "correctResponseId": "en:lesson-18:session-03:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i14",
+      "correctText": "We are going to take a bus journey.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i15",
+      "correctText": "We are starting our train journey tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i16",
+      "correctText": "This car journey is longer than ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-03:i17",
+      "correctText": "We need two bottles of water.",
+      "correctResponseId": null
+    }
+  ]
+}

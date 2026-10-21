@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-01:word:hotel-room",
+    "correctText": "hotel room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i01",
+    "correctText": "This hotel room is cheaper than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i02",
+    "correctText": "This hotel room is cheaper than ours.",
+    "correctResponseId": "en:lesson-18:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i03",
+    "correctText": "cheaper",
+    "correctResponseId": "en:lesson-18:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:word:shared-bathroom",
+    "correctText": "shared bathroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i04",
+    "correctText": "The shared bathroom is cleaner than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i05",
+    "correctText": "The shared bathroom is cleaner than before.",
+    "correctResponseId": "en:lesson-18:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i06",
+    "correctText": "cleaner",
+    "correctResponseId": "en:lesson-18:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:word:private-bathroom",
+    "correctText": "private bathroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i07",
+    "correctText": "The private bathroom is larger than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i08",
+    "correctText": "The private bathroom is larger than ours.",
+    "correctResponseId": "en:lesson-18:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i09",
+    "correctText": "larger",
+    "correctResponseId": "en:lesson-18:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:word:living-space",
+    "correctText": "living space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i10",
+    "correctText": "This living space is brighter than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i11",
+    "correctText": "This living space is brighter than ours.",
+    "correctResponseId": "en:lesson-18:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i12",
+    "correctText": "brighter",
+    "correctResponseId": "en:lesson-18:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i13",
+    "correctText": "en:lesson-18:session-01:i13:p1=hotel room\nen:lesson-18:session-01:i13:p2=shared bathroom\nen:lesson-18:session-01:i13:p3=private bathroom\nen:lesson-18:session-01:i13:p4=living space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i14",
+    "correctText": "This hotel room is cheaper than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i15",
+    "correctText": "The private bathroom is larger than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i16",
+    "correctText": "The shared bathroom is cleaner than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-01:i17",
+    "correctText": "This living space is brighter than ours.",
+    "correctResponseId": null
+  }
+]

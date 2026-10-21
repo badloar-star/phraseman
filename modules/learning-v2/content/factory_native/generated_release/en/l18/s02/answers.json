@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-02:word:top-floor",
+    "correctText": "top floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i01",
+    "correctText": "The top floor is quieter than this floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i02",
+    "correctText": "The top floor is quieter than this floor.",
+    "correctResponseId": "en:lesson-18:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i03",
+    "correctText": "quieter",
+    "correctResponseId": "en:lesson-18:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:word:ground-floor-flat",
+    "correctText": "ground-floor flat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i04",
+    "correctText": "This ground-floor flat is warmer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i05",
+    "correctText": "This ground-floor flat is warmer than ours.",
+    "correctResponseId": "en:lesson-18:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i06",
+    "correctText": "warmer",
+    "correctResponseId": "en:lesson-18:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:word:garden-view",
+    "correctText": "garden view",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i07",
+    "correctText": "This garden view is nicer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i08",
+    "correctText": "This garden view is nicer than ours.",
+    "correctResponseId": "en:lesson-18:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i09",
+    "correctText": "nicer",
+    "correctResponseId": "en:lesson-18:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:word:city-view",
+    "correctText": "city view",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i10",
+    "correctText": "The city view is clearer than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i11",
+    "correctText": "The city view is clearer than before.",
+    "correctResponseId": "en:lesson-18:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i12",
+    "correctText": "clearer",
+    "correctResponseId": "en:lesson-18:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i13",
+    "correctText": "en:lesson-18:session-02:i13:p1=top floor\nen:lesson-18:session-02:i13:p2=ground-floor flat\nen:lesson-18:session-02:i13:p3=garden view\nen:lesson-18:session-02:i13:p4=city view",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i14",
+    "correctText": "We are going to book a ground-floor flat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i15",
+    "correctText": "We are viewing the flat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i16",
+    "correctText": "This garden view is nicer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-02:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

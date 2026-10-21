@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-05:word:sale-price",
+    "correctText": "sale price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i01",
+    "correctText": "The sale price is lower than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i02",
+    "correctText": "The sale price is lower than before.",
+    "correctResponseId": "en:lesson-18:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i03",
+    "correctText": "lower",
+    "correctResponseId": "en:lesson-18:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:word:regular-price",
+    "correctText": "regular price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i04",
+    "correctText": "The regular price is higher than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i05",
+    "correctText": "The regular price is higher than before.",
+    "correctResponseId": "en:lesson-18:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i06",
+    "correctText": "higher",
+    "correctResponseId": "en:lesson-18:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:word:total-cost",
+    "correctText": "total cost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i07",
+    "correctText": "The total cost is lower than we expected.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i08",
+    "correctText": "The total cost is lower than we expected.",
+    "correctResponseId": "en:lesson-18:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i09",
+    "correctText": "lower",
+    "correctResponseId": "en:lesson-18:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:word:unit-price",
+    "correctText": "unit price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i10",
+    "correctText": "The unit price is higher in this shop than in that shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i11",
+    "correctText": "The unit price is higher in this shop than in that shop.",
+    "correctResponseId": "en:lesson-18:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i12",
+    "correctText": "higher",
+    "correctResponseId": "en:lesson-18:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i13",
+    "correctText": "en:lesson-18:session-05:i13:p1=sale price\nen:lesson-18:session-05:i13:p2=regular price\nen:lesson-18:session-05:i13:p3=total cost\nen:lesson-18:session-05:i13:p4=unit price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i14",
+    "correctText": "We are going to check the total cost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i15",
+    "correctText": "We are meeting at the shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i16",
+    "correctText": "The total cost is lower than we expected.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-05:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

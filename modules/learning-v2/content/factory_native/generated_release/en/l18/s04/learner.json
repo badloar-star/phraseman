@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-04:word:hot-meal",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hot meal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:word:hot-meal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hot meal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:word:hot-meal:audio",
+          "transcript": "hot meal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:word:hot-meal:r1",
+            "targetText": "hot meal",
+            "meaningByLocale": {
+              "ru": "горячая еда, горячее блюдо.",
+              "uk": "гаряча їжа, гаряча страва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hot meal",
+          "definitionByLocale": {
+            "ru": "горячая еда, горячее блюдо.",
+            "uk": "гаряча їжа, гаряча страва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Это горячее блюдо дешевле того».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Это горячее блюдо дешевле того».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This hot meal is cheaper than that one.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это горячее блюдо дешевле того».",
+          "uk": "Скажіть: «Ця гаряча страва дешевша за ту»."
+        },
+        "orderedTokens": [
+          "This",
+          "hot",
+          "meal",
+          "is",
+          "cheaper",
+          "than",
+          "that",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i02:r1",
+          "text": "This hot meal is cheaper than that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i02:r2",
+          "text": "This hot meal is cheap than that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i02:r3",
+          "text": "This hot meal is cheaper that that one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i02:audio",
+          "transcript": "This hot meal is cheaper than that one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:i02:r1",
+            "targetText": "This hot meal is cheaper than that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i02:r2",
+            "targetText": "This hot meal is cheap than that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i02:r3",
+            "targetText": "This hot meal is cheaper that that one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This hot meal is cheaper than that one.",
+              "uk": "У записі звучить This hot meal is cheaper than that one."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This hot meal is cheaper than that one.",
+              "uk": "У записі звучить This hot meal is cheaper than that one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите сравнительную форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i03:r1",
+          "text": "cheaper"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i03:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i03:r3",
+          "text": "more cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите сравнительную форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This hot meal is ___ than that one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-04:i03:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i03:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i03:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "testedDimension": "Выберите сравнительную форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма cheaper.",
+              "uk": "Для порівняння потрібна форма cheaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:word:cold-drink",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cold drink",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:word:cold-drink:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cold drink",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:word:cold-drink:audio",
+          "transcript": "cold drink"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:word:cold-drink:r1",
+            "targetText": "cold drink",
+            "meaningByLocale": {
+              "ru": "холодный напиток.",
+              "uk": "холодний напій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cold drink",
+          "definitionByLocale": {
+            "ru": "холодный напиток.",
+            "uk": "холодний напій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Твой холодный напиток холоднее моего».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Твой холодный напиток холоднее моего».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your cold drink is colder than mine.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Твой холодный напиток холоднее моего».",
+          "uk": "Скажіть: «Твій холодний напій холодніший за мій»."
+        },
+        "orderedTokens": [
+          "Your",
+          "cold",
+          "drink",
+          "is",
+          "colder",
+          "than",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i05:r1",
+          "text": "Your cold drink is colder than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i05:r2",
+          "text": "Your cold drink is cold than mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i05:r3",
+          "text": "Your cold drink is colder that mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i05:audio",
+          "transcript": "Your cold drink is colder than mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:i05:r1",
+            "targetText": "Your cold drink is colder than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i05:r2",
+            "targetText": "Your cold drink is cold than mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i05:r3",
+            "targetText": "Your cold drink is colder that mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your cold drink is colder than mine.",
+              "uk": "У записі звучить Your cold drink is colder than mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your cold drink is colder than mine.",
+              "uk": "У записі звучить Your cold drink is colder than mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите сравнительную форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i06:r1",
+          "text": "colder"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i06:r2",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i06:r3",
+          "text": "more colder"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите сравнительную форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "Your cold drink is ___ than mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-04:i06:r1",
+            "text": "colder"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i06:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i06:r3",
+            "text": "more colder"
+          }
+        ],
+        "testedDimension": "Выберите сравнительную форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма colder.",
+              "uk": "Для порівняння потрібна форма colder."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:word:soft-drink",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soft drink",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:word:soft-drink:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soft drink",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:word:soft-drink:audio",
+          "transcript": "soft drink"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:word:soft-drink:r1",
+            "targetText": "soft drink",
+            "meaningByLocale": {
+              "ru": "безалкогольный напиток, например лимонад.",
+              "uk": "безалкогольний напій, наприклад лимонад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soft drink",
+          "definitionByLocale": {
+            "ru": "безалкогольный напиток, например лимонад.",
+            "uk": "безалкогольний напій, наприклад лимонад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Этот безалкогольный напиток слаще сока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Этот безалкогольный напиток слаще сока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This soft drink is sweeter than the juice.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Этот безалкогольный напиток слаще сока».",
+          "uk": "Скажіть: «Цей безалкогольний напій солодший за сік»."
+        },
+        "orderedTokens": [
+          "This",
+          "soft",
+          "drink",
+          "is",
+          "sweeter",
+          "than",
+          "the",
+          "juice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i08:r1",
+          "text": "This soft drink is sweeter than the juice."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i08:r2",
+          "text": "This soft drink is sweet than the juice."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i08:r3",
+          "text": "This soft drink is sweeter that the juice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i08:audio",
+          "transcript": "This soft drink is sweeter than the juice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:i08:r1",
+            "targetText": "This soft drink is sweeter than the juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i08:r2",
+            "targetText": "This soft drink is sweet than the juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i08:r3",
+            "targetText": "This soft drink is sweeter that the juice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This soft drink is sweeter than the juice.",
+              "uk": "У записі звучить This soft drink is sweeter than the juice."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This soft drink is sweeter than the juice.",
+              "uk": "У записі звучить This soft drink is sweeter than the juice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите сравнительную форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i09:r1",
+          "text": "sweeter"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i09:r2",
+          "text": "sweet"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i09:r3",
+          "text": "more sweeter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите сравнительную форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This soft drink is ___ than the juice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-04:i09:r1",
+            "text": "sweeter"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i09:r2",
+            "text": "sweet"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i09:r3",
+            "text": "more sweeter"
+          }
+        ],
+        "testedDimension": "Выберите сравнительную форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма sweeter.",
+              "uk": "Для порівняння потрібна форма sweeter."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:word:still-water",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — still water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:word:still-water:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — still water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:word:still-water:audio",
+          "transcript": "still water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:word:still-water:r1",
+            "targetText": "still water",
+            "meaningByLocale": {
+              "ru": "негазированная вода.",
+              "uk": "негазована вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "still water",
+          "definitionByLocale": {
+            "ru": "негазированная вода.",
+            "uk": "негазована вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Негазированная вода дешевле сока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Негазированная вода дешевле сока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The still water is cheaper than the juice.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Негазированная вода дешевле сока».",
+          "uk": "Скажіть: «Негазована вода дешевша за сік»."
+        },
+        "orderedTokens": [
+          "The",
+          "still",
+          "water",
+          "is",
+          "cheaper",
+          "than",
+          "the",
+          "juice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i11:r1",
+          "text": "The still water is cheaper than the juice."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i11:r2",
+          "text": "The still water is cheap than the juice."
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i11:r3",
+          "text": "The still water is cheaper that the juice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i11:audio",
+          "transcript": "The still water is cheaper than the juice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-04:i11:r1",
+            "targetText": "The still water is cheaper than the juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i11:r2",
+            "targetText": "The still water is cheap than the juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i11:r3",
+            "targetText": "The still water is cheaper that the juice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The still water is cheaper than the juice.",
+              "uk": "У записі звучить The still water is cheaper than the juice."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The still water is cheaper than the juice.",
+              "uk": "У записі звучить The still water is cheaper than the juice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите сравнительную форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-04:i12:r1",
+          "text": "cheaper"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i12:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-18:session-04:i12:r3",
+          "text": "more cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите сравнительную форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The still water is ___ than the juice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-04:i12:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i12:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i12:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "testedDimension": "Выберите сравнительную форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма cheaper.",
+              "uk": "Для порівняння потрібна форма cheaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите сравнительную форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-04:i13:p1",
+            "target": "hot meal",
+            "meaningByLocale": {
+              "ru": "горячая еда, горячее блюдо",
+              "uk": "гаряча їжа, гаряча страва"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-04:i13:p2",
+            "target": "cold drink",
+            "meaningByLocale": {
+              "ru": "холодный напиток",
+              "uk": "холодний напій"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-04:i13:p3",
+            "target": "soft drink",
+            "meaningByLocale": {
+              "ru": "безалкогольный напиток, например лимонад",
+              "uk": "безалкогольний напій, наприклад лимонад"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-04:i13:p4",
+            "target": "still water",
+            "meaningByLocale": {
+              "ru": "негазированная вода",
+              "uk": "негазована вода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hot meal",
+          "cold drink",
+          "soft drink",
+          "still water"
+        ],
+        "rightColumn": [
+          "горячая еда, горячее блюдо",
+          "холодный напиток",
+          "безалкогольный напиток, например лимонад",
+          "негазированная вода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение с going to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение с going to",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i14:audio",
+          "transcript": "We are going to buy a hot meal."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy a hot meal.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "hot",
+          "meal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i15:audio",
+          "transcript": "We are having a hot meal with friends tonight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are having a hot meal with friends tonight.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "having",
+          "a",
+          "hot",
+          "meal",
+          "with",
+          "friends",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторите сравнение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Повторите сравнение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i16:audio",
+          "transcript": "This soft drink is sweeter than the juice."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This soft drink is sweeter than the juice.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите две бутылки воды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите две бутылки воды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-04:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6b40880aab17007197de43cef36d6e9af083b379e52b9d01a8ceef7405448f6a"
+}

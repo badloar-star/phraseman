@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-02:word:top-floor",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — top floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:word:top-floor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — top floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:word:top-floor:audio",
+          "transcript": "top floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:word:top-floor:r1",
+            "targetText": "top floor",
+            "meaningByLocale": {
+              "ru": "верхний этаж.",
+              "uk": "верхній поверх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "top floor",
+          "definitionByLocale": {
+            "ru": "верхний этаж.",
+            "uk": "верхній поверх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Верхній поверх тихіший за цей поверх».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Верхній поверх тихіший за цей поверх».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The top floor is quieter than this floor.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Верхний этаж тише этого этажа».",
+          "uk": "Скажіть: «Верхній поверх тихіший за цей поверх»."
+        },
+        "orderedTokens": [
+          "The",
+          "top",
+          "floor",
+          "is",
+          "quieter",
+          "than",
+          "this",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i02:r1",
+          "text": "The top floor is quieter than this floor."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i02:r2",
+          "text": "The top floor is quiet than this floor."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i02:r3",
+          "text": "The top floor is quieter that this floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i02:audio",
+          "transcript": "The top floor is quieter than this floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:i02:r1",
+            "targetText": "The top floor is quieter than this floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i02:r2",
+            "targetText": "The top floor is quiet than this floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i02:r3",
+            "targetText": "The top floor is quieter that this floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The top floor is quieter than this floor.",
+              "uk": "У записі звучить The top floor is quieter than this floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The top floor is quieter than this floor.",
+              "uk": "У записі звучить The top floor is quieter than this floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i03:r1",
+          "text": "quieter"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i03:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i03:r3",
+          "text": "more quieter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The top floor is ___ than this floor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-02:i03:r1",
+            "text": "quieter"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i03:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i03:r3",
+            "text": "more quieter"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма quieter.",
+              "uk": "Для порівняння потрібна форма quieter."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:word:ground-floor-flat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ground-floor flat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:word:ground-floor-flat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ground-floor flat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:word:ground-floor-flat:audio",
+          "transcript": "ground-floor flat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:word:ground-floor-flat:r1",
+            "targetText": "ground-floor flat",
+            "meaningByLocale": {
+              "ru": "квартира на первом этаже на уровне земли.",
+              "uk": "квартира на першому поверсі на рівні землі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ground-floor flat",
+          "definitionByLocale": {
+            "ru": "квартира на первом этаже на уровне земли.",
+            "uk": "квартира на першому поверсі на рівні землі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ця квартира на першому поверсі тепліша за нашу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ця квартира на першому поверсі тепліша за нашу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This ground-floor flat is warmer than ours.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта квартира на первом этаже теплее нашей».",
+          "uk": "Скажіть: «Ця квартира на першому поверсі тепліша за нашу»."
+        },
+        "orderedTokens": [
+          "This",
+          "ground-floor",
+          "flat",
+          "is",
+          "warmer",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i05:r1",
+          "text": "This ground-floor flat is warmer than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i05:r2",
+          "text": "This ground-floor flat is warm than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i05:r3",
+          "text": "This ground-floor flat is warmer that ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i05:audio",
+          "transcript": "This ground-floor flat is warmer than ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:i05:r1",
+            "targetText": "This ground-floor flat is warmer than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i05:r2",
+            "targetText": "This ground-floor flat is warm than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i05:r3",
+            "targetText": "This ground-floor flat is warmer that ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This ground-floor flat is warmer than ours.",
+              "uk": "У записі звучить This ground-floor flat is warmer than ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This ground-floor flat is warmer than ours.",
+              "uk": "У записі звучить This ground-floor flat is warmer than ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i06:r1",
+          "text": "warmer"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i06:r2",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i06:r3",
+          "text": "more warmer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This ground-floor flat is ___ than ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-02:i06:r1",
+            "text": "warmer"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i06:r2",
+            "text": "warm"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i06:r3",
+            "text": "more warmer"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма warmer.",
+              "uk": "Для порівняння потрібна форма warmer."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:word:garden-view",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden view",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:word:garden-view:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden view",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:word:garden-view:audio",
+          "transcript": "garden view"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:word:garden-view:r1",
+            "targetText": "garden view",
+            "meaningByLocale": {
+              "ru": "вид на сад.",
+              "uk": "вид на сад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden view",
+          "definitionByLocale": {
+            "ru": "вид на сад.",
+            "uk": "вид на сад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Цей вид на сад приємніший за наш».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Цей вид на сад приємніший за наш».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This garden view is nicer than ours.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Этот вид на сад приятнее нашего».",
+          "uk": "Скажіть: «Цей вид на сад приємніший за наш»."
+        },
+        "orderedTokens": [
+          "This",
+          "garden",
+          "view",
+          "is",
+          "nicer",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i08:r1",
+          "text": "This garden view is nicer than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i08:r2",
+          "text": "This garden view is nice than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i08:r3",
+          "text": "This garden view is nicer that ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i08:audio",
+          "transcript": "This garden view is nicer than ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:i08:r1",
+            "targetText": "This garden view is nicer than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i08:r2",
+            "targetText": "This garden view is nice than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i08:r3",
+            "targetText": "This garden view is nicer that ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This garden view is nicer than ours.",
+              "uk": "У записі звучить This garden view is nicer than ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This garden view is nicer than ours.",
+              "uk": "У записі звучить This garden view is nicer than ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i09:r1",
+          "text": "nicer"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i09:r2",
+          "text": "nice"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i09:r3",
+          "text": "more nicer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This garden view is ___ than ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-02:i09:r1",
+            "text": "nicer"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i09:r2",
+            "text": "nice"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i09:r3",
+            "text": "more nicer"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма nicer.",
+              "uk": "Для порівняння потрібна форма nicer."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:word:city-view",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — city view",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:word:city-view:audio"
+      ],
+      "accessibilityLabel": "Картка слова — city view",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:word:city-view:audio",
+          "transcript": "city view"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:word:city-view:r1",
+            "targetText": "city view",
+            "meaningByLocale": {
+              "ru": "вид на город.",
+              "uk": "вид на місто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "city view",
+          "definitionByLocale": {
+            "ru": "вид на город.",
+            "uk": "вид на місто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вид на місто чіткіший, ніж раніше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вид на місто чіткіший, ніж раніше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The city view is clearer than before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вид на город чётче, чем раньше».",
+          "uk": "Скажіть: «Вид на місто чіткіший, ніж раніше»."
+        },
+        "orderedTokens": [
+          "The",
+          "city",
+          "view",
+          "is",
+          "clearer",
+          "than",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i11:r1",
+          "text": "The city view is clearer than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i11:r2",
+          "text": "The city view is clear than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i11:r3",
+          "text": "The city view is clearer that before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i11:audio",
+          "transcript": "The city view is clearer than before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-02:i11:r1",
+            "targetText": "The city view is clearer than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i11:r2",
+            "targetText": "The city view is clear than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i11:r3",
+            "targetText": "The city view is clearer that before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The city view is clearer than before.",
+              "uk": "У записі звучить The city view is clearer than before."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The city view is clearer than before.",
+              "uk": "У записі звучить The city view is clearer than before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-02:i12:r1",
+          "text": "clearer"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i12:r2",
+          "text": "clear"
+        },
+        {
+          "responseId": "en:lesson-18:session-02:i12:r3",
+          "text": "more clearer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The city view is ___ than before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-02:i12:r1",
+            "text": "clearer"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i12:r2",
+            "text": "clear"
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i12:r3",
+            "text": "more clearer"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Для сравнения нужна форма clearer.",
+              "uk": "Для порівняння потрібна форма clearer."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-02:i13:p1",
+            "target": "top floor",
+            "meaningByLocale": {
+              "ru": "верхний этаж",
+              "uk": "верхній поверх"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-02:i13:p2",
+            "target": "ground-floor flat",
+            "meaningByLocale": {
+              "ru": "квартира на первом этаже на уровне земли",
+              "uk": "квартира на першому поверсі на рівні землі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-02:i13:p3",
+            "target": "garden view",
+            "meaningByLocale": {
+              "ru": "вид на сад",
+              "uk": "вид на сад"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-02:i13:p4",
+            "target": "city view",
+            "meaningByLocale": {
+              "ru": "вид на город",
+              "uk": "вид на місто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "top floor",
+          "ground-floor flat",
+          "garden view",
+          "city view"
+        ],
+        "rightColumn": [
+          "верхній поверх",
+          "квартира на першому поверсі на рівні землі",
+          "вид на сад",
+          "вид на місто"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір із going to",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір із going to",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i14:audio",
+          "transcript": "We are going to book a ground-floor flat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to book a ground-floor flat.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "book",
+          "a",
+          "ground-floor",
+          "flat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i15:audio",
+          "transcript": "We are viewing the flat tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are viewing the flat tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "the",
+          "flat",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторіть порівняння",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Повторіть порівняння",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i16:audio",
+          "transcript": "This garden view is nicer than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This garden view is nicer than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-02:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c596519e2885e210ed3498519349f771f912c749dbf60a1c556f8a4deb52d09b"
+}

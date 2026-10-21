@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-01:intro1:r2": {
+          "ru": "Для сравнения нужно cheaper, не cheap.",
+          "uk": "Для порівняння потрібне cheaper, не cheap."
+        },
+        "en:lesson-18:session-01:intro1:r3": {
+          "ru": "Не соединяйте more и -er: здесь cheaper.",
+          "uk": "Не поєднуйте more та -er: тут cheaper."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-01:intro2:r2": {
+          "ru": "Нужна сравнительная форма cleaner.",
+          "uk": "Потрібна порівняльна форма cleaner."
+        },
+        "en:lesson-18:session-01:intro2:r3": {
+          "ru": "В сравнении пишем than, не that.",
+          "uk": "У порівнянні пишемо than, не that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-01:intro3:r2": {
+          "ru": "Large уже заканчивается на e: larger.",
+          "uk": "Large вже закінчується на e: larger."
+        },
+        "en:lesson-18:session-01:intro3:r3": {
+          "ru": "В сравнении нужно than, не that.",
+          "uk": "У порівнянні потрібне than, не that."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1177bede0e8e2ad043ae1a3bbe6e29c6f5eb4d37ae101b9f6ef5e1434ce5164a"
+}

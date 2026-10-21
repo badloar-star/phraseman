@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-04:intro1:r2": {
+          "ru": "Нужна сравнительная форма cheaper.",
+          "uk": "Потрібна порівняльна форма cheaper."
+        },
+        "en:lesson-18:session-04:intro1:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-04:intro2:r2": {
+          "ru": "Нужна сравнительная форма sweeter.",
+          "uk": "Потрібна порівняльна форма sweeter."
+        },
+        "en:lesson-18:session-04:intro2:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-04:intro3:r2": {
+          "ru": "Нужна сравнительная форма cheaper.",
+          "uk": "Потрібна порівняльна форма cheaper."
+        },
+        "en:lesson-18:session-04:intro3:r3": {
+          "ru": "В сравнении используем than, не that.",
+          "uk": "У порівнянні використовуємо than, не that."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0c0e143e21a34753e57ab48be7cf324b2fb0d86ea24d15098a74ffeb23d0e6f1"
+}

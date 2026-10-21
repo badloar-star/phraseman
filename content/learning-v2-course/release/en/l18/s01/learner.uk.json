@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-01:word:hotel-room",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hotel room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:word:hotel-room:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hotel room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:word:hotel-room:audio",
+          "transcript": "hotel room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:word:hotel-room:r1",
+            "targetText": "hotel room",
+            "meaningByLocale": {
+              "ru": "номер в гостинице.",
+              "uk": "номер у готелі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hotel room",
+          "definitionByLocale": {
+            "ru": "номер в гостинице.",
+            "uk": "номер у готелі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Цей номер у готелі дешевший за наш».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Цей номер у готелі дешевший за наш».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This hotel room is cheaper than ours.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Этот номер в гостинице дешевле нашего».",
+          "uk": "Скажіть: «Цей номер у готелі дешевший за наш»."
+        },
+        "orderedTokens": [
+          "This",
+          "hotel",
+          "room",
+          "is",
+          "cheaper",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i02:r1",
+          "text": "This hotel room is cheaper than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i02:r2",
+          "text": "This hotel room is cheap than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i02:r3",
+          "text": "This hotel room is cheaper that ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i02:audio",
+          "transcript": "This hotel room is cheaper than ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:i02:r1",
+            "targetText": "This hotel room is cheaper than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i02:r2",
+            "targetText": "This hotel room is cheap than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i02:r3",
+            "targetText": "This hotel room is cheaper that ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This hotel room is cheaper than ours.",
+              "uk": "У записі звучить This hotel room is cheaper than ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This hotel room is cheaper than ours.",
+              "uk": "У записі звучить This hotel room is cheaper than ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i03:r1",
+          "text": "cheaper"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i03:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i03:r3",
+          "text": "more cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This hotel room is ___ than ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-01:i03:r1",
+            "text": "cheaper"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i03:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i03:r3",
+            "text": "more cheaper"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Сравниваем: нужна форма cheaper.",
+              "uk": "Порівнюємо: потрібна форма cheaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:word:shared-bathroom",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shared bathroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:word:shared-bathroom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shared bathroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:word:shared-bathroom:audio",
+          "transcript": "shared bathroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:word:shared-bathroom:r1",
+            "targetText": "shared bathroom",
+            "meaningByLocale": {
+              "ru": "общая ванная комната.",
+              "uk": "спільна ванна кімната."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shared bathroom",
+          "definitionByLocale": {
+            "ru": "общая ванная комната.",
+            "uk": "спільна ванна кімната."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Спільна ванна кімната чистіша, ніж раніше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Спільна ванна кімната чистіша, ніж раніше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shared bathroom is cleaner than before.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Общая ванная комната чище, чем раньше».",
+          "uk": "Скажіть: «Спільна ванна кімната чистіша, ніж раніше»."
+        },
+        "orderedTokens": [
+          "The",
+          "shared",
+          "bathroom",
+          "is",
+          "cleaner",
+          "than",
+          "before"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i05:r1",
+          "text": "The shared bathroom is cleaner than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i05:r2",
+          "text": "The shared bathroom is clean than before."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i05:r3",
+          "text": "The shared bathroom is cleaner that before."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i05:audio",
+          "transcript": "The shared bathroom is cleaner than before."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:i05:r1",
+            "targetText": "The shared bathroom is cleaner than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i05:r2",
+            "targetText": "The shared bathroom is clean than before.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i05:r3",
+            "targetText": "The shared bathroom is cleaner that before.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shared bathroom is cleaner than before.",
+              "uk": "У записі звучить The shared bathroom is cleaner than before."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shared bathroom is cleaner than before.",
+              "uk": "У записі звучить The shared bathroom is cleaner than before."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i06:r1",
+          "text": "cleaner"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i06:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i06:r3",
+          "text": "more cleaner"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The shared bathroom is ___ than before.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-01:i06:r1",
+            "text": "cleaner"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i06:r3",
+            "text": "more cleaner"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Сравниваем: нужна форма cleaner.",
+              "uk": "Порівнюємо: потрібна форма cleaner."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:word:private-bathroom",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — private bathroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:word:private-bathroom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — private bathroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:word:private-bathroom:audio",
+          "transcript": "private bathroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:word:private-bathroom:r1",
+            "targetText": "private bathroom",
+            "meaningByLocale": {
+              "ru": "отдельная ванная комната для вашего пользования.",
+              "uk": "окрема ванна кімната для вашого користування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "private bathroom",
+          "definitionByLocale": {
+            "ru": "отдельная ванная комната для вашего пользования.",
+            "uk": "окрема ванна кімната для вашого користування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Окрема ванна кімната більша за нашу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Окрема ванна кімната більша за нашу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The private bathroom is larger than ours.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Отдельная ванная комната больше нашей».",
+          "uk": "Скажіть: «Окрема ванна кімната більша за нашу»."
+        },
+        "orderedTokens": [
+          "The",
+          "private",
+          "bathroom",
+          "is",
+          "larger",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i08:r1",
+          "text": "The private bathroom is larger than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i08:r2",
+          "text": "The private bathroom is large than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i08:r3",
+          "text": "The private bathroom is larger that ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i08:audio",
+          "transcript": "The private bathroom is larger than ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:i08:r1",
+            "targetText": "The private bathroom is larger than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i08:r2",
+            "targetText": "The private bathroom is large than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i08:r3",
+            "targetText": "The private bathroom is larger that ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The private bathroom is larger than ours.",
+              "uk": "У записі звучить The private bathroom is larger than ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The private bathroom is larger than ours.",
+              "uk": "У записі звучить The private bathroom is larger than ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i09:r1",
+          "text": "larger"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i09:r2",
+          "text": "large"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i09:r3",
+          "text": "more larger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "The private bathroom is ___ than ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-01:i09:r1",
+            "text": "larger"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i09:r2",
+            "text": "large"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i09:r3",
+            "text": "more larger"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Сравниваем: нужна форма larger.",
+              "uk": "Порівнюємо: потрібна форма larger."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:word:living-space",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — living space",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:word:living-space:audio"
+      ],
+      "accessibilityLabel": "Картка слова — living space",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:word:living-space:audio",
+          "transcript": "living space"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:word:living-space:r1",
+            "targetText": "living space",
+            "meaningByLocale": {
+              "ru": "жилое пространство.",
+              "uk": "житловий простір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "living space",
+          "definitionByLocale": {
+            "ru": "жилое пространство.",
+            "uk": "житловий простір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Цей житловий простір світліший за наш».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Цей житловий простір світліший за наш».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This living space is brighter than ours.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это жилое пространство светлее нашего».",
+          "uk": "Скажіть: «Цей житловий простір світліший за наш»."
+        },
+        "orderedTokens": [
+          "This",
+          "living",
+          "space",
+          "is",
+          "brighter",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i11:r1",
+          "text": "This living space is brighter than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i11:r2",
+          "text": "This living space is bright than ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i11:r3",
+          "text": "This living space is brighter that ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i11:audio",
+          "transcript": "This living space is brighter than ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-01:i11:r1",
+            "targetText": "This living space is brighter than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i11:r2",
+            "targetText": "This living space is bright than ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i11:r3",
+            "targetText": "This living space is brighter that ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This living space is brighter than ours.",
+              "uk": "У записі звучить This living space is brighter than ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This living space is brighter than ours.",
+              "uk": "У записі звучить This living space is brighter than ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть порівняльну форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-01:i12:r1",
+          "text": "brighter"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i12:r2",
+          "text": "bright"
+        },
+        {
+          "responseId": "en:lesson-18:session-01:i12:r3",
+          "text": "more brighter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите сравнительную форму.",
+          "uk": "Виберіть порівняльну форму."
+        },
+        "gappedTargetPhrase": "This living space is ___ than ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-01:i12:r1",
+            "text": "brighter"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i12:r2",
+            "text": "bright"
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i12:r3",
+            "text": "more brighter"
+          }
+        ],
+        "testedDimension": "Виберіть порівняльну форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Сравниваем: нужна форма brighter.",
+              "uk": "Порівнюємо: потрібна форма brighter."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть порівняльну форму.",
+            "feedbackByLocale": {
+              "ru": "Не соединяйте more и -er.",
+              "uk": "Не поєднуйте more та -er."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-01:i13:p1",
+            "target": "hotel room",
+            "meaningByLocale": {
+              "ru": "номер в гостинице",
+              "uk": "номер у готелі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-01:i13:p2",
+            "target": "shared bathroom",
+            "meaningByLocale": {
+              "ru": "общая ванная комната",
+              "uk": "спільна ванна кімната"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-01:i13:p3",
+            "target": "private bathroom",
+            "meaningByLocale": {
+              "ru": "отдельная ванная комната для вашего пользования",
+              "uk": "окрема ванна кімната для вашого користування"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-01:i13:p4",
+            "target": "living space",
+            "meaningByLocale": {
+              "ru": "жилое пространство",
+              "uk": "житловий простір"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hotel room",
+          "shared bathroom",
+          "private bathroom",
+          "living space"
+        ],
+        "rightColumn": [
+          "номер у готелі",
+          "спільна ванна кімната",
+          "окрема ванна кімната для вашого користування",
+          "житловий простір"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте порівняння ціни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте порівняння ціни",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i14:audio",
+          "transcript": "This hotel room is cheaper than ours."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This hotel room is cheaper than ours.",
+        "orderedTokens": [
+          "This",
+          "hotel",
+          "room",
+          "is",
+          "cheaper",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте порівняння розміру",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте порівняння розміру",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i15:audio",
+          "transcript": "The private bathroom is larger than ours."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The private bathroom is larger than ours.",
+        "orderedTokens": [
+          "The",
+          "private",
+          "bathroom",
+          "is",
+          "larger",
+          "than",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порівняйте ванну з тим, що було раніше",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Порівняйте ванну з тим, що було раніше",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i16:audio",
+          "transcript": "The shared bathroom is cleaner than before."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shared bathroom is cleaner than before.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порівняйте житловий простір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Порівняйте житловий простір",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-01:i17:audio",
+          "transcript": "This living space is brighter than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This living space is brighter than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "14eb6bc1943f41c348bc4f57b019efb554c405f39973f549b63efe4be159d74a"
+}

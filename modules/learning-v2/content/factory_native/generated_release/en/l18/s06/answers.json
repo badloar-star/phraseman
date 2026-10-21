@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-06:word:cotton-shirt",
+    "correctText": "cotton shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i01",
+    "correctText": "This cotton shirt is lighter than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i02",
+    "correctText": "This cotton shirt is lighter than mine.",
+    "correctResponseId": "en:lesson-18:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i03",
+    "correctText": "lighter",
+    "correctResponseId": "en:lesson-18:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:word:wool-jumper",
+    "correctText": "wool jumper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i04",
+    "correctText": "This wool jumper is warmer than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i05",
+    "correctText": "This wool jumper is warmer than mine.",
+    "correctResponseId": "en:lesson-18:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i06",
+    "correctText": "warmer",
+    "correctResponseId": "en:lesson-18:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:word:winter-coat",
+    "correctText": "winter coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i07",
+    "correctText": "Your winter coat is longer than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i08",
+    "correctText": "Your winter coat is longer than mine.",
+    "correctResponseId": "en:lesson-18:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i09",
+    "correctText": "longer",
+    "correctResponseId": "en:lesson-18:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:word:summer-dress",
+    "correctText": "summer dress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i10",
+    "correctText": "This summer dress is shorter than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i11",
+    "correctText": "This summer dress is shorter than that one.",
+    "correctResponseId": "en:lesson-18:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i12",
+    "correctText": "shorter",
+    "correctResponseId": "en:lesson-18:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i13",
+    "correctText": "en:lesson-18:session-06:i13:p1=cotton shirt\nen:lesson-18:session-06:i13:p2=wool jumper\nen:lesson-18:session-06:i13:p3=winter coat\nen:lesson-18:session-06:i13:p4=summer dress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i14",
+    "correctText": "We are going to buy a winter coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i15",
+    "correctText": "We are meeting at the clothes shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i16",
+    "correctText": "Your winter coat is longer than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-06:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

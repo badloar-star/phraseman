@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-03:word:train-journey",
+    "correctText": "train journey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i01",
+    "correctText": "The train journey is shorter than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i02",
+    "correctText": "The train journey is shorter than ours.",
+    "correctResponseId": "en:lesson-18:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i03",
+    "correctText": "shorter",
+    "correctResponseId": "en:lesson-18:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:word:bus-journey",
+    "correctText": "bus journey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i04",
+    "correctText": "The bus journey is cheaper than the train journey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i05",
+    "correctText": "The bus journey is cheaper than the train journey.",
+    "correctResponseId": "en:lesson-18:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i06",
+    "correctText": "cheaper",
+    "correctResponseId": "en:lesson-18:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:word:car-journey",
+    "correctText": "car journey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i07",
+    "correctText": "This car journey is longer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i08",
+    "correctText": "This car journey is longer than ours.",
+    "correctResponseId": "en:lesson-18:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i09",
+    "correctText": "longer",
+    "correctResponseId": "en:lesson-18:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:word:walking-route",
+    "correctText": "walking route",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i10",
+    "correctText": "This walking route is safer than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i11",
+    "correctText": "This walking route is safer than that one.",
+    "correctResponseId": "en:lesson-18:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i12",
+    "correctText": "safer",
+    "correctResponseId": "en:lesson-18:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i13",
+    "correctText": "en:lesson-18:session-03:i13:p1=train journey\nen:lesson-18:session-03:i13:p2=bus journey\nen:lesson-18:session-03:i13:p3=car journey\nen:lesson-18:session-03:i13:p4=walking route",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i14",
+    "correctText": "We are going to take a bus journey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i15",
+    "correctText": "We are starting our train journey tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i16",
+    "correctText": "This car journey is longer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-03:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

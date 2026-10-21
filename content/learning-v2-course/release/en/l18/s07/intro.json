@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "comparative adjective + than",
+    "uk": "comparative adjective + than"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сравнить варианты 1",
+        "uk": "Порівняти варіанти 1"
+      },
+      "bodyByLocale": {
+        "ru": "sports shoes — спортивная обувь. running shoes — кроссовки для бега. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. wide → wider.",
+        "uk": "sports shoes — спортивне взуття. running shoes — кросівки для бігу. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. wide → wider."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r1",
+              "text": "These sports shoes are wider than mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r2",
+              "text": "These sports shoes are wide than mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r3",
+              "text": "These sports shoes are wider that mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r1",
+              "text": "These sports shoes are wider than mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r2",
+              "text": "These sports shoes are wide than mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro1:r3",
+              "text": "These sports shoes are wider that mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сравнить варианты 2",
+        "uk": "Порівняти варіанти 2"
+      },
+      "bodyByLocale": {
+        "ru": "leather shoes — кожаные туфли. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. soft → softer.",
+        "uk": "leather shoes — шкіряні туфлі. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. soft → softer."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r1",
+              "text": "These leather shoes are softer than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r2",
+              "text": "These leather shoes are soft than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r3",
+              "text": "These leather shoes are softer that that pair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r1",
+              "text": "These leather shoes are softer than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r2",
+              "text": "These leather shoes are soft than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro2:r3",
+              "text": "These leather shoes are softer that that pair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сравнить варианты 3",
+        "uk": "Порівняти варіанти 3"
+      },
+      "bodyByLocale": {
+        "ru": "flat shoes — обувь без высокого каблука. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. cheap → cheaper.",
+        "uk": "flat shoes — взуття без високих підборів. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. cheap → cheaper."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r1",
+              "text": "These flat shoes are cheaper than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r2",
+              "text": "These flat shoes are cheap than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r3",
+              "text": "These flat shoes are cheaper that that pair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r1",
+              "text": "These flat shoes are cheaper than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r2",
+              "text": "These flat shoes are cheap than that pair."
+            },
+            {
+              "responseId": "en:lesson-18:session-07:intro3:r3",
+              "text": "These flat shoes are cheaper that that pair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7601cfc74d12e516274fb48855da0804971108670d8ce5bea901756acbd86109"
+}

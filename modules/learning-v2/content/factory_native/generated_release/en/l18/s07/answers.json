@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-07:word:sports-shoes",
+    "correctText": "sports shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i01",
+    "correctText": "These sports shoes are wider than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i02",
+    "correctText": "These sports shoes are wider than mine.",
+    "correctResponseId": "en:lesson-18:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i03",
+    "correctText": "wider",
+    "correctResponseId": "en:lesson-18:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:word:running-shoes",
+    "correctText": "running shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i04",
+    "correctText": "These running shoes are lighter than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i05",
+    "correctText": "These running shoes are lighter than mine.",
+    "correctResponseId": "en:lesson-18:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i06",
+    "correctText": "lighter",
+    "correctResponseId": "en:lesson-18:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:word:leather-shoes",
+    "correctText": "leather shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i07",
+    "correctText": "These leather shoes are softer than that pair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i08",
+    "correctText": "These leather shoes are softer than that pair.",
+    "correctResponseId": "en:lesson-18:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i09",
+    "correctText": "softer",
+    "correctResponseId": "en:lesson-18:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:word:flat-shoes",
+    "correctText": "flat shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i10",
+    "correctText": "These flat shoes are cheaper than that pair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i11",
+    "correctText": "These flat shoes are cheaper than that pair.",
+    "correctResponseId": "en:lesson-18:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i12",
+    "correctText": "cheaper",
+    "correctResponseId": "en:lesson-18:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i13",
+    "correctText": "en:lesson-18:session-07:i13:p1=sports shoes\nen:lesson-18:session-07:i13:p2=running shoes\nen:lesson-18:session-07:i13:p3=leather shoes\nen:lesson-18:session-07:i13:p4=flat shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i14",
+    "correctText": "We are going to buy running shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i15",
+    "correctText": "We are meeting at the shoe shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i16",
+    "correctText": "These leather shoes are softer than that pair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-07:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

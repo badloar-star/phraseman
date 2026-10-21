@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-05:intro1:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-05:intro1:r3": {
+          "ru": "После will нужна начальная форма: undercook.",
+          "uk": "Після will потрібна початкова форма: undercook."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-05:intro2:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-05:intro2:r3": {
+          "ru": "После will нужна начальная форма: overfill.",
+          "uk": "Після will потрібна початкова форма: overfill."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-05:intro3:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-05:intro3:r3": {
+          "ru": "После will нужна начальная форма: overeat.",
+          "uk": "Після will потрібна початкова форма: overeat."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "57c1fdf9a4f2655cc873c5d84cbc0f69e0e9c406d353b909fbac25850e58b019"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-04:intro1:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-04:intro1:r3": {
+          "ru": "После will нужна начальная форма: oversleep.",
+          "uk": "Після will потрібна початкова форма: oversleep."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-04:intro2:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-04:intro2:r3": {
+          "ru": "После will нужна начальная форма: misplace.",
+          "uk": "Після will потрібна початкова форма: misplace."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-04:intro3:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-04:intro3:r3": {
+          "ru": "После will нужна начальная форма: overcook.",
+          "uk": "Після will потрібна початкова форма: overcook."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d9ea98701263f0624ad6612e041237472376c4b28b2045aa072322f9cf5e9f33"
+}

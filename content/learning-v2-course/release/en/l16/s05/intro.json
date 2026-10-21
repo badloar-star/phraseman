@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "will + base verb: prediction",
+    "uk": "will + base verb: prediction"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш прогноз",
+        "uk": "Ваш прогноз"
+      },
+      "bodyByLocale": {
+        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. undercook — не довести еду до готовности. I think he will undercook the potatoes. — Думаю, он не доварит картофель. Выберите прогноз с will.",
+        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. undercook — не довести їжу до готовності. I think he will undercook the potatoes. — Думаю, він не доварить картоплю. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r1",
+              "text": "I think he will undercook the potatoes."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r2",
+              "text": "I think he will to undercook the potatoes."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r3",
+              "text": "I think he will undercooks the potatoes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r1",
+              "text": "I think he will undercook the potatoes."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r2",
+              "text": "I think he will to undercook the potatoes."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro1:r3",
+              "text": "I think he will undercooks the potatoes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После will — начальная форма",
+        "uk": "Після will — початкова форма"
+      },
+      "bodyByLocale": {
+        "ru": "overfill — наполнить сверх меры. I think she will overfill the cup. — Думаю, она нальёт в чашку слишком много. Выберите прогноз с will.",
+        "uk": "overfill — наповнити понад міру. I think she will overfill the cup. — Думаю, вона наллє в чашку забагато. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r1",
+              "text": "I think she will overfill the cup."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r2",
+              "text": "I think she will to overfill the cup."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r3",
+              "text": "I think she will overfills the cup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r1",
+              "text": "I think she will overfill the cup."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r2",
+              "text": "I think she will to overfill the cup."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro2:r3",
+              "text": "I think she will overfills the cup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предположение о будущем",
+        "uk": "Припущення про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "overheat — перегреться. overeat — переесть. I think we will overeat at the party. — Думаю, на празднике мы переедим. Выберите прогноз с will.",
+        "uk": "overheat — перегрітися. overeat — переїсти. I think we will overeat at the party. — Думаю, на святі ми переїмо. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r1",
+              "text": "I think we will overeat at the party."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r2",
+              "text": "I think we will to overeat at the party."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r3",
+              "text": "I think we will overeats at the party."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r1",
+              "text": "I think we will overeat at the party."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r2",
+              "text": "I think we will to overeat at the party."
+            },
+            {
+              "responseId": "en:lesson-16:session-05:intro3:r3",
+              "text": "I think we will overeats at the party."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4658d4a0edd34a7308a8fd507f4bdd53ecd616cd7259abb2dcb9fc0e07197f2f"
+}

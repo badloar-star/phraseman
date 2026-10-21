@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-04:word:oversleep",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — oversleep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:oversleep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — oversleep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:oversleep:audio",
+            "transcript": "oversleep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:oversleep:r1",
+              "targetText": "oversleep",
+              "meaningByLocale": {
+                "ru": "проспать дольше, чем собирался.",
+                "uk": "проспати довше, ніж збирався."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oversleep",
+            "definitionByLocale": {
+              "ru": "проспать дольше, чем собирался.",
+              "uk": "проспати довше, ніж збирався."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, завтра я просплю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, завтра я просплю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will oversleep tomorrow.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, завтра я просплю».",
+            "uk": "Передайте своє припущення: «Думаю, завтра я просплю»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "oversleep",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i02:r1",
+            "text": "I think I will oversleep tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i02:r2",
+            "text": "I think I will to oversleep tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i02:r3",
+            "text": "I think I will oversleeps tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i02:audio",
+            "transcript": "I think I will oversleep tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i02:r1",
+              "targetText": "I think I will oversleep tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r2",
+              "targetText": "I think I will to oversleep tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r3",
+              "targetText": "I think I will oversleeps tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will oversleep tomorrow.",
+                "uk": "У записі звучить I think I will oversleep tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will oversleep tomorrow.",
+                "uk": "У записі звучить I think I will oversleep tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i03:r1",
+            "text": "will oversleep"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i03:r2",
+            "text": "will to oversleep"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i03:r3",
+            "text": "will oversleeps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i03:r1",
+              "text": "will oversleep"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r2",
+              "text": "will to oversleep"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r3",
+              "text": "will oversleeps"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:misplace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — misplace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:misplace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — misplace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:misplace:audio",
+            "transcript": "misplace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:misplace:r1",
+              "targetText": "misplace",
+              "meaningByLocale": {
+                "ru": "положить не туда и потом не найти.",
+                "uk": "покласти не туди й потім не знайти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misplace",
+            "definitionByLocale": {
+              "ru": "положить не туда и потом не найти.",
+              "uk": "покласти не туди й потім не знайти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, я опять положу ключи не туда и не найду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, я опять положу ключи не туда и не найду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will misplace my keys again.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, я опять положу ключи не туда и не найду».",
+            "uk": "Передайте своє припущення: «Думаю, я знову покладу ключі не туди й не знайду»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "misplace",
+            "my",
+            "keys",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i05:r1",
+            "text": "I think I will misplace my keys again."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i05:r2",
+            "text": "I think I will to misplace my keys again."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i05:r3",
+            "text": "I think I will misplaces my keys again."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i05:audio",
+            "transcript": "I think I will misplace my keys again."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i05:r1",
+              "targetText": "I think I will misplace my keys again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r2",
+              "targetText": "I think I will to misplace my keys again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r3",
+              "targetText": "I think I will misplaces my keys again.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will misplace my keys again.",
+                "uk": "У записі звучить I think I will misplace my keys again."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will misplace my keys again.",
+                "uk": "У записі звучить I think I will misplace my keys again."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i06:r1",
+            "text": "will misplace"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i06:r2",
+            "text": "will to misplace"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i06:r3",
+            "text": "will misplaces"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ my keys again.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i06:r1",
+              "text": "will misplace"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r2",
+              "text": "will to misplace"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r3",
+              "text": "will misplaces"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:overspend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overspend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:overspend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overspend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:overspend:audio",
+            "transcript": "overspend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:overspend:r1",
+              "targetText": "overspend",
+              "meaningByLocale": {
+                "ru": "потратить больше, чем собирался.",
+                "uk": "витратити більше, ніж збирався."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overspend",
+            "definitionByLocale": {
+              "ru": "потратить больше, чем собирался.",
+              "uk": "витратити більше, ніж збирався."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, в отпуске мы потратим больше, чем собирались».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, в отпуске мы потратим больше, чем собирались».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will overspend on holiday.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, в отпуске мы потратим больше, чем собирались».",
+            "uk": "Передайте своє припущення: «Думаю, у відпустці ми витратимо більше, ніж збиралися»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "overspend",
+            "on",
+            "holiday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i08:r1",
+            "text": "I think we will overspend on holiday."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i08:r2",
+            "text": "I think we will to overspend on holiday."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i08:r3",
+            "text": "I think we will overspends on holiday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i08:audio",
+            "transcript": "I think we will overspend on holiday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i08:r1",
+              "targetText": "I think we will overspend on holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r2",
+              "targetText": "I think we will to overspend on holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r3",
+              "targetText": "I think we will overspends on holiday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will overspend on holiday.",
+                "uk": "У записі звучить I think we will overspend on holiday."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will overspend on holiday.",
+                "uk": "У записі звучить I think we will overspend on holiday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i09:r1",
+            "text": "will overspend"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i09:r2",
+            "text": "will to overspend"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i09:r3",
+            "text": "will overspends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ on holiday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i09:r1",
+              "text": "will overspend"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r2",
+              "text": "will to overspend"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r3",
+              "text": "will overspends"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:overcook",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overcook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:overcook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overcook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:overcook:audio",
+            "transcript": "overcook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:overcook:r1",
+              "targetText": "overcook",
+              "meaningByLocale": {
+                "ru": "слишком долго готовить и испортить еду.",
+                "uk": "надто довго готувати й зіпсувати їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overcook",
+            "definitionByLocale": {
+              "ru": "слишком долго готовить и испортить еду.",
+              "uk": "надто довго готувати й зіпсувати їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, я переварю рис».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, я переварю рис».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will overcook the rice.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, я переварю рис».",
+            "uk": "Передайте своє припущення: «Думаю, я переварю рис»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "overcook",
+            "the",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i11:r1",
+            "text": "I think I will overcook the rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i11:r2",
+            "text": "I think I will to overcook the rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i11:r3",
+            "text": "I think I will overcooks the rice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i11:audio",
+            "transcript": "I think I will overcook the rice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i11:r1",
+              "targetText": "I think I will overcook the rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r2",
+              "targetText": "I think I will to overcook the rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r3",
+              "targetText": "I think I will overcooks the rice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will overcook the rice.",
+                "uk": "У записі звучить I think I will overcook the rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will overcook the rice.",
+                "uk": "У записі звучить I think I will overcook the rice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i12:r1",
+            "text": "will overcook"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i12:r2",
+            "text": "will to overcook"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i12:r3",
+            "text": "will overcooks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ the rice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i12:r1",
+              "text": "will overcook"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r2",
+              "text": "will to overcook"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r3",
+              "text": "will overcooks"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-04:i13:p1",
+              "target": "oversleep",
+              "meaningByLocale": {
+                "ru": "проспать дольше, чем собирался",
+                "uk": "проспати довше, ніж збирався"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p2",
+              "target": "misplace",
+              "meaningByLocale": {
+                "ru": "положить не туда и потом не найти",
+                "uk": "покласти не туди й потім не знайти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p3",
+              "target": "overspend",
+              "meaningByLocale": {
+                "ru": "потратить больше, чем собирался",
+                "uk": "витратити більше, ніж збирався"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p4",
+              "target": "overcook",
+              "meaningByLocale": {
+                "ru": "слишком долго готовить и испортить еду",
+                "uk": "надто довго готувати й зіпсувати їжу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oversleep",
+            "misplace",
+            "overspend",
+            "overcook"
+          ],
+          "rightColumn": [
+            "проспать дольше, чем собирался",
+            "положить не туда и потом не найти",
+            "потратить больше, чем собирался",
+            "слишком долго готовить и испортить еду"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i14:audio",
+            "transcript": "I think I will oversleep tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think I will oversleep tomorrow.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "oversleep",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i15:audio",
+            "transcript": "I think we will overspend on holiday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will overspend on holiday.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "overspend",
+            "on",
+            "holiday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите своё предположение о будущем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Произнесите своё предположение о будущем",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i16:audio",
+            "transcript": "I think I will misplace my keys again."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think I will misplace my keys again.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Произнесите прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i17:audio",
+            "transcript": "I think I will overcook the rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think I will overcook the rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-04:word:oversleep",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — oversleep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:oversleep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — oversleep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:oversleep:audio",
+            "transcript": "oversleep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:oversleep:r1",
+              "targetText": "oversleep",
+              "meaningByLocale": {
+                "ru": "проспать дольше, чем собирался.",
+                "uk": "проспати довше, ніж збирався."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oversleep",
+            "definitionByLocale": {
+              "ru": "проспать дольше, чем собирался.",
+              "uk": "проспати довше, ніж збирався."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, завтра я просплю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, завтра я просплю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will oversleep tomorrow.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, завтра я просплю».",
+            "uk": "Передайте своє припущення: «Думаю, завтра я просплю»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "oversleep",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i02:r1",
+            "text": "I think I will oversleep tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i02:r2",
+            "text": "I think I will to oversleep tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i02:r3",
+            "text": "I think I will oversleeps tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i02:audio",
+            "transcript": "I think I will oversleep tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i02:r1",
+              "targetText": "I think I will oversleep tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r2",
+              "targetText": "I think I will to oversleep tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r3",
+              "targetText": "I think I will oversleeps tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will oversleep tomorrow.",
+                "uk": "У записі звучить I think I will oversleep tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will oversleep tomorrow.",
+                "uk": "У записі звучить I think I will oversleep tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i03:r1",
+            "text": "will oversleep"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i03:r2",
+            "text": "will to oversleep"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i03:r3",
+            "text": "will oversleeps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i03:r1",
+              "text": "will oversleep"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r2",
+              "text": "will to oversleep"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r3",
+              "text": "will oversleeps"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:misplace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — misplace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:misplace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — misplace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:misplace:audio",
+            "transcript": "misplace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:misplace:r1",
+              "targetText": "misplace",
+              "meaningByLocale": {
+                "ru": "положить не туда и потом не найти.",
+                "uk": "покласти не туди й потім не знайти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misplace",
+            "definitionByLocale": {
+              "ru": "положить не туда и потом не найти.",
+              "uk": "покласти не туди й потім не знайти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, я знову покладу ключі не туди й не знайду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, я знову покладу ключі не туди й не знайду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will misplace my keys again.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, я опять положу ключи не туда и не найду».",
+            "uk": "Передайте своє припущення: «Думаю, я знову покладу ключі не туди й не знайду»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "misplace",
+            "my",
+            "keys",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i05:r1",
+            "text": "I think I will misplace my keys again."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i05:r2",
+            "text": "I think I will to misplace my keys again."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i05:r3",
+            "text": "I think I will misplaces my keys again."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i05:audio",
+            "transcript": "I think I will misplace my keys again."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i05:r1",
+              "targetText": "I think I will misplace my keys again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r2",
+              "targetText": "I think I will to misplace my keys again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r3",
+              "targetText": "I think I will misplaces my keys again.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will misplace my keys again.",
+                "uk": "У записі звучить I think I will misplace my keys again."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will misplace my keys again.",
+                "uk": "У записі звучить I think I will misplace my keys again."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i06:r1",
+            "text": "will misplace"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i06:r2",
+            "text": "will to misplace"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i06:r3",
+            "text": "will misplaces"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ my keys again.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i06:r1",
+              "text": "will misplace"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r2",
+              "text": "will to misplace"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r3",
+              "text": "will misplaces"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:overspend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overspend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:overspend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overspend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:overspend:audio",
+            "transcript": "overspend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:overspend:r1",
+              "targetText": "overspend",
+              "meaningByLocale": {
+                "ru": "потратить больше, чем собирался.",
+                "uk": "витратити більше, ніж збирався."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overspend",
+            "definitionByLocale": {
+              "ru": "потратить больше, чем собирался.",
+              "uk": "витратити більше, ніж збирався."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, у відпустці ми витратимо більше, ніж збиралися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, у відпустці ми витратимо більше, ніж збиралися».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will overspend on holiday.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, в отпуске мы потратим больше, чем собирались».",
+            "uk": "Передайте своє припущення: «Думаю, у відпустці ми витратимо більше, ніж збиралися»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "overspend",
+            "on",
+            "holiday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i08:r1",
+            "text": "I think we will overspend on holiday."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i08:r2",
+            "text": "I think we will to overspend on holiday."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i08:r3",
+            "text": "I think we will overspends on holiday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i08:audio",
+            "transcript": "I think we will overspend on holiday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i08:r1",
+              "targetText": "I think we will overspend on holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r2",
+              "targetText": "I think we will to overspend on holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r3",
+              "targetText": "I think we will overspends on holiday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will overspend on holiday.",
+                "uk": "У записі звучить I think we will overspend on holiday."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will overspend on holiday.",
+                "uk": "У записі звучить I think we will overspend on holiday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i09:r1",
+            "text": "will overspend"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i09:r2",
+            "text": "will to overspend"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i09:r3",
+            "text": "will overspends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ on holiday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i09:r1",
+              "text": "will overspend"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r2",
+              "text": "will to overspend"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r3",
+              "text": "will overspends"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:word:overcook",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overcook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:word:overcook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overcook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:word:overcook:audio",
+            "transcript": "overcook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:word:overcook:r1",
+              "targetText": "overcook",
+              "meaningByLocale": {
+                "ru": "слишком долго готовить и испортить еду.",
+                "uk": "надто довго готувати й зіпсувати їжу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overcook",
+            "definitionByLocale": {
+              "ru": "слишком долго готовить и испортить еду.",
+              "uk": "надто довго готувати й зіпсувати їжу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, я переварю рис».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, я переварю рис».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think I will overcook the rice.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, я переварю рис».",
+            "uk": "Передайте своє припущення: «Думаю, я переварю рис»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "overcook",
+            "the",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i11:r1",
+            "text": "I think I will overcook the rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i11:r2",
+            "text": "I think I will to overcook the rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i11:r3",
+            "text": "I think I will overcooks the rice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i11:audio",
+            "transcript": "I think I will overcook the rice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-04:i11:r1",
+              "targetText": "I think I will overcook the rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r2",
+              "targetText": "I think I will to overcook the rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r3",
+              "targetText": "I think I will overcooks the rice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will overcook the rice.",
+                "uk": "У записі звучить I think I will overcook the rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think I will overcook the rice.",
+                "uk": "У записі звучить I think I will overcook the rice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-04:i12:r1",
+            "text": "will overcook"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i12:r2",
+            "text": "will to overcook"
+          },
+          {
+            "responseId": "en:lesson-16:session-04:i12:r3",
+            "text": "will overcooks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think I ___ the rice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-04:i12:r1",
+              "text": "will overcook"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r2",
+              "text": "will to overcook"
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r3",
+              "text": "will overcooks"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-04:i13:p1",
+              "target": "oversleep",
+              "meaningByLocale": {
+                "ru": "проспать дольше, чем собирался",
+                "uk": "проспати довше, ніж збирався"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p2",
+              "target": "misplace",
+              "meaningByLocale": {
+                "ru": "положить не туда и потом не найти",
+                "uk": "покласти не туди й потім не знайти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p3",
+              "target": "overspend",
+              "meaningByLocale": {
+                "ru": "потратить больше, чем собирался",
+                "uk": "витратити більше, ніж збирався"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-04:i13:p4",
+              "target": "overcook",
+              "meaningByLocale": {
+                "ru": "слишком долго готовить и испортить еду",
+                "uk": "надто довго готувати й зіпсувати їжу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oversleep",
+            "misplace",
+            "overspend",
+            "overcook"
+          ],
+          "rightColumn": [
+            "проспати довше, ніж збирався",
+            "покласти не туди й потім не знайти",
+            "витратити більше, ніж збирався",
+            "надто довго готувати й зіпсувати їжу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i14:audio",
+            "transcript": "I think I will oversleep tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think I will oversleep tomorrow.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "I",
+            "will",
+            "oversleep",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i15:audio",
+            "transcript": "I think we will overspend on holiday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will overspend on holiday.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "overspend",
+            "on",
+            "holiday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте своє припущення про майбутнє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Промовте своє припущення про майбутнє",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i16:audio",
+            "transcript": "I think I will misplace my keys again."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think I will misplace my keys again.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Промовте прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-04:i17:audio",
+            "transcript": "I think I will overcook the rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think I will overcook the rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-04:word:oversleep",
+      "correctText": "oversleep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i01",
+      "correctText": "I think I will oversleep tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i02",
+      "correctText": "I think I will oversleep tomorrow.",
+      "correctResponseId": "en:lesson-16:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i03",
+      "correctText": "will oversleep",
+      "correctResponseId": "en:lesson-16:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:word:misplace",
+      "correctText": "misplace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i04",
+      "correctText": "I think I will misplace my keys again.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i05",
+      "correctText": "I think I will misplace my keys again.",
+      "correctResponseId": "en:lesson-16:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i06",
+      "correctText": "will misplace",
+      "correctResponseId": "en:lesson-16:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:word:overspend",
+      "correctText": "overspend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i07",
+      "correctText": "I think we will overspend on holiday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i08",
+      "correctText": "I think we will overspend on holiday.",
+      "correctResponseId": "en:lesson-16:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i09",
+      "correctText": "will overspend",
+      "correctResponseId": "en:lesson-16:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:word:overcook",
+      "correctText": "overcook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i10",
+      "correctText": "I think I will overcook the rice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i11",
+      "correctText": "I think I will overcook the rice.",
+      "correctResponseId": "en:lesson-16:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i12",
+      "correctText": "will overcook",
+      "correctResponseId": "en:lesson-16:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i14",
+      "correctText": "I think I will oversleep tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i15",
+      "correctText": "I think we will overspend on holiday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i16",
+      "correctText": "I think I will misplace my keys again.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-04:i17",
+      "correctText": "I think I will overcook the rice.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-06:word:overcrowded",
+    "correctText": "overcrowded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i01",
+    "correctText": "I think the beach will be overcrowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i02",
+    "correctText": "I think the beach will be overcrowded.",
+    "correctResponseId": "en:lesson-16:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:word:understaffed",
+    "correctText": "understaffed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i04",
+    "correctText": "I think the cafe will be understaffed on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i05",
+    "correctText": "I think the cafe will be understaffed on Sunday.",
+    "correctResponseId": "en:lesson-16:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:word:fully-booked",
+    "correctText": "fully booked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i07",
+    "correctText": "I think the hotel will be fully booked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i08",
+    "correctText": "I think the hotel will be fully booked.",
+    "correctResponseId": "en:lesson-16:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i09",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:word:sold-out",
+    "correctText": "sold out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i10",
+    "correctText": "I think the tickets will be sold out by Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i11",
+    "correctText": "I think the tickets will be sold out by Friday.",
+    "correctResponseId": "en:lesson-16:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i12",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i13",
+    "correctText": "en:lesson-16:session-06:i13:p1=overcrowded\nen:lesson-16:session-06:i13:p2=understaffed\nen:lesson-16:session-06:i13:p3=fully booked\nen:lesson-16:session-06:i13:p4=sold out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i14",
+    "correctText": "I think the beach will be overcrowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i15",
+    "correctText": "I think the hotel will be fully booked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i16",
+    "correctText": "I think the cafe will be understaffed on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-06:i17",
+    "correctText": "I think the tickets will be sold out by Friday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-05:word:undercook",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undercook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:word:undercook:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undercook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:word:undercook:audio",
+          "transcript": "undercook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:word:undercook:r1",
+            "targetText": "undercook",
+            "meaningByLocale": {
+              "ru": "не довести еду до готовности.",
+              "uk": "не довести їжу до готовності."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undercook",
+          "definitionByLocale": {
+            "ru": "не довести еду до готовности.",
+            "uk": "не довести їжу до готовності."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, он не доварит картофель».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, он не доварит картофель».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think he will undercook the potatoes.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, он не доварит картофель».",
+          "uk": "Передайте своє припущення: «Думаю, він не доварить картоплю»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "he",
+          "will",
+          "undercook",
+          "the",
+          "potatoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i02:r1",
+          "text": "I think he will undercook the potatoes."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i02:r2",
+          "text": "I think he will to undercook the potatoes."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i02:r3",
+          "text": "I think he will undercooks the potatoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i02:audio",
+          "transcript": "I think he will undercook the potatoes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:i02:r1",
+            "targetText": "I think he will undercook the potatoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i02:r2",
+            "targetText": "I think he will to undercook the potatoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i02:r3",
+            "targetText": "I think he will undercooks the potatoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will undercook the potatoes.",
+              "uk": "У записі звучить I think he will undercook the potatoes."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think he will undercook the potatoes.",
+              "uk": "У записі звучить I think he will undercook the potatoes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i03:r1",
+          "text": "will undercook"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i03:r2",
+          "text": "will to undercook"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i03:r3",
+          "text": "will undercooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think he ___ the potatoes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-05:i03:r1",
+            "text": "will undercook"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i03:r2",
+            "text": "will to undercook"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i03:r3",
+            "text": "will undercooks"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:word:overfill",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overfill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:word:overfill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overfill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:word:overfill:audio",
+          "transcript": "overfill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:word:overfill:r1",
+            "targetText": "overfill",
+            "meaningByLocale": {
+              "ru": "наполнить сверх меры.",
+              "uk": "наповнити понад міру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overfill",
+          "definitionByLocale": {
+            "ru": "наполнить сверх меры.",
+            "uk": "наповнити понад міру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, она нальёт в чашку слишком много».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, она нальёт в чашку слишком много».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think she will overfill the cup.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, она нальёт в чашку слишком много».",
+          "uk": "Передайте своє припущення: «Думаю, вона наллє в чашку забагато»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "she",
+          "will",
+          "overfill",
+          "the",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i05:r1",
+          "text": "I think she will overfill the cup."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i05:r2",
+          "text": "I think she will to overfill the cup."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i05:r3",
+          "text": "I think she will overfills the cup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i05:audio",
+          "transcript": "I think she will overfill the cup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:i05:r1",
+            "targetText": "I think she will overfill the cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i05:r2",
+            "targetText": "I think she will to overfill the cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i05:r3",
+            "targetText": "I think she will overfills the cup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think she will overfill the cup.",
+              "uk": "У записі звучить I think she will overfill the cup."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think she will overfill the cup.",
+              "uk": "У записі звучить I think she will overfill the cup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i06:r1",
+          "text": "will overfill"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i06:r2",
+          "text": "will to overfill"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i06:r3",
+          "text": "will overfills"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think she ___ the cup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-05:i06:r1",
+            "text": "will overfill"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i06:r2",
+            "text": "will to overfill"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i06:r3",
+            "text": "will overfills"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:word:overheat",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overheat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:word:overheat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overheat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:word:overheat:audio",
+          "transcript": "overheat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:word:overheat:r1",
+            "targetText": "overheat",
+            "meaningByLocale": {
+              "ru": "перегреться.",
+              "uk": "перегрітися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overheat",
+          "definitionByLocale": {
+            "ru": "перегреться.",
+            "uk": "перегрітися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, духовка перегреется».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, духовка перегреется».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the oven will overheat.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, духовка перегреется».",
+          "uk": "Передайте своє припущення: «Думаю, духовка перегріється»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "oven",
+          "will",
+          "overheat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i08:r1",
+          "text": "I think the oven will overheat."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i08:r2",
+          "text": "I think the oven will to overheat."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i08:r3",
+          "text": "I think the oven will overheats."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i08:audio",
+          "transcript": "I think the oven will overheat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:i08:r1",
+            "targetText": "I think the oven will overheat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i08:r2",
+            "targetText": "I think the oven will to overheat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i08:r3",
+            "targetText": "I think the oven will overheats.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the oven will overheat.",
+              "uk": "У записі звучить I think the oven will overheat."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the oven will overheat.",
+              "uk": "У записі звучить I think the oven will overheat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i09:r1",
+          "text": "will overheat"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i09:r2",
+          "text": "will to overheat"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i09:r3",
+          "text": "will overheats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the oven ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-05:i09:r1",
+            "text": "will overheat"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i09:r2",
+            "text": "will to overheat"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i09:r3",
+            "text": "will overheats"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:word:overeat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overeat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:word:overeat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overeat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:word:overeat:audio",
+          "transcript": "overeat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:word:overeat:r1",
+            "targetText": "overeat",
+            "meaningByLocale": {
+              "ru": "переесть.",
+              "uk": "переїсти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overeat",
+          "definitionByLocale": {
+            "ru": "переесть.",
+            "uk": "переїсти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, на празднике мы переедим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, на празднике мы переедим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think we will overeat at the party.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, на празднике мы переедим».",
+          "uk": "Передайте своє припущення: «Думаю, на святі ми переїмо»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "we",
+          "will",
+          "overeat",
+          "at",
+          "the",
+          "party"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i11:r1",
+          "text": "I think we will overeat at the party."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i11:r2",
+          "text": "I think we will to overeat at the party."
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i11:r3",
+          "text": "I think we will overeats at the party."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i11:audio",
+          "transcript": "I think we will overeat at the party."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-05:i11:r1",
+            "targetText": "I think we will overeat at the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i11:r2",
+            "targetText": "I think we will to overeat at the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i11:r3",
+            "targetText": "I think we will overeats at the party.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think we will overeat at the party.",
+              "uk": "У записі звучить I think we will overeat at the party."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think we will overeat at the party.",
+              "uk": "У записі звучить I think we will overeat at the party."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-05:i12:r1",
+          "text": "will overeat"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i12:r2",
+          "text": "will to overeat"
+        },
+        {
+          "responseId": "en:lesson-16:session-05:i12:r3",
+          "text": "will overeats"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think we ___ at the party.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-05:i12:r1",
+            "text": "will overeat"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i12:r2",
+            "text": "will to overeat"
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i12:r3",
+            "text": "will overeats"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-05:i13:p1",
+            "target": "undercook",
+            "meaningByLocale": {
+              "ru": "не довести еду до готовности",
+              "uk": "не довести їжу до готовності"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-05:i13:p2",
+            "target": "overfill",
+            "meaningByLocale": {
+              "ru": "наполнить сверх меры",
+              "uk": "наповнити понад міру"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-05:i13:p3",
+            "target": "overheat",
+            "meaningByLocale": {
+              "ru": "перегреться",
+              "uk": "перегрітися"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-05:i13:p4",
+            "target": "overeat",
+            "meaningByLocale": {
+              "ru": "переесть",
+              "uk": "переїсти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "undercook",
+          "overfill",
+          "overheat",
+          "overeat"
+        ],
+        "rightColumn": [
+          "не довести еду до готовности",
+          "наполнить сверх меры",
+          "перегреться",
+          "переесть"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i14:audio",
+          "transcript": "I think he will undercook the potatoes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think he will undercook the potatoes.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "he",
+          "will",
+          "undercook",
+          "the",
+          "potatoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i15:audio",
+          "transcript": "I think the oven will overheat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the oven will overheat.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "oven",
+          "will",
+          "overheat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите своё предположение о будущем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Произнесите своё предположение о будущем",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i16:audio",
+          "transcript": "I think she will overfill the cup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think she will overfill the cup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите прогноз для друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Произнесите прогноз для друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-05:i17:audio",
+          "transcript": "I think we will overeat at the party."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think we will overeat at the party.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "df6df43d373407bab7e5692a92d248a49e56fb966324acab0e0fd5d63ab8078c"
+}

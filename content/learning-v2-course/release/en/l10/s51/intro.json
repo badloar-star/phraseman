@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "The term starts in September; I usually study on campus; I am completing my enrolment",
+    "uk": "The term starts in September; I usually study on campus; I am completing my enrolment"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда начинается учёба",
+        "uk": "Коли починається навчання"
+      },
+      "bodyByLocale": {
+        "ru": "Term здесь — «учебный период», часть учебного года между каникулами; это не обязательно половина года. По календарю он начинается в сентябре: The term starts in September — «Учебный период начинается в сентябре». Для установленного расписания подходит Present Simple. После the term нужна starts с s.",
+        "uk": "Term тут — «навчальний період», частина навчального року між канікулами; це не обов’язково половина року. За календарем він починається у вересні: The term starts in September — «Навчальний період починається у вересні». Для встановленого розкладу підходить Present Simple. Після the term потрібна starts із s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r1",
+              "text": "The term starts in September."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r2",
+              "text": "The term start in September."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r3",
+              "text": "The term starting in September."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r1",
+              "text": "The term starts in September."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r2",
+              "text": "The term start in September."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro1:r3",
+              "text": "The term starting in September."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где я обычно учусь",
+        "uk": "Де я зазвичай навчаюся"
+      },
+      "bodyByLocale": {
+        "ru": "Campus — «кампус», территория учебного заведения с его зданиями. Вы обычно занимаетесь там: I usually study on campus — «Я обычно учусь в кампусе». Привычку выражаем через Present Simple. Usually стоит перед study; в сочетании on campus артикль не нужен.",
+        "uk": "Campus — «кампус», територія навчального закладу з його будівлями. Ви зазвичай займаєтеся там: I usually study on campus — «Я зазвичай навчаюся в кампусі». Звичку виражаємо через Present Simple. Usually стоїть перед study; у сполученні on campus артикль не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r1",
+              "text": "I usually study on campus."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r2",
+              "text": "I usually studies on campus."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r3",
+              "text": "I usually studying on campus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r1",
+              "text": "I usually study on campus."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r2",
+              "text": "I usually studies on campus."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro2:r3",
+              "text": "I usually studying on campus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Завершаю запись",
+        "uk": "Завершую запис"
+      },
+      "bodyByLocale": {
+        "ru": "Enrolment — «запись на обучение». Вы сейчас заполняете последние поля формы: I am completing my enrolment — «Я завершаю запись на обучение». Текущая работа: am + completing. У complete перед ing убираем e. Enrolment — британское написание; в США пишут enrollment.",
+        "uk": "Enrolment — «запис на навчання». Ви зараз заповнюєте останні поля форми: I am completing my enrolment — «Я завершую запис на навчання». Поточна робота: am + completing. У complete перед ing прибираємо e. Enrolment — британське написання; у США пишуть enrollment."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r1",
+              "text": "I am completing my enrolment."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r2",
+              "text": "I completing my enrolment."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r3",
+              "text": "I am completeing my enrolment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r1",
+              "text": "I am completing my enrolment."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r2",
+              "text": "I completing my enrolment."
+            },
+            {
+              "responseId": "en:lesson-10:session-51:intro3:r3",
+              "text": "I am completeing my enrolment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5833335809860d045c977c1731a9dc65fd2be229af58684bb722b8d3c769436"
+}

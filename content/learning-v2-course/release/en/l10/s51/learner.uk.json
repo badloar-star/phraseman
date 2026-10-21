@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-51:word:term",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — term",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:word:term:audio"
+      ],
+      "accessibilityLabel": "Картка слова — term",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:word:term:audio",
+          "transcript": "term"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:word:term:r1",
+            "targetText": "term",
+            "meaningByLocale": {
+              "ru": "«учебный период». The term starts in September. — «Учебный период начинается в сентябре». Часть учебного года между каникулами.",
+              "uk": "«навчальний період». The term starts in September. — «Навчальний період починається у вересні». Частина навчального року між канікулами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "term",
+          "definitionByLocale": {
+            "ru": "«учебный период». The term starts in September. — «Учебный период начинается в сентябре». Часть учебного года между каникулами.",
+            "uk": "«навчальний період». The term starts in September. — «Навчальний період починається у вересні». Частина навчального року між канікулами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть дату за навчальним календарем: «Навчальний період починається у вересні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть дату за навчальним календарем: «Навчальний період починається у вересні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The term starts in September.",
+        "localizedMeaning": {
+          "ru": "Объясните дату по учебному календарю: «Учебный период начинается в сентябре»",
+          "uk": "Поясніть дату за навчальним календарем: «Навчальний період починається у вересні»"
+        },
+        "orderedTokens": [
+          "The",
+          "term",
+          "starts",
+          "in",
+          "September"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i02:r1",
+          "text": "The term ends in December."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i02:r2",
+          "text": "The term ends in January."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i02:r3",
+          "text": "The course ends in December."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i02:audio",
+          "transcript": "The term ends in December."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:i02:r1",
+            "targetText": "The term ends in December.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i02:r2",
+            "targetText": "The term ends in January.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i02:r3",
+            "targetText": "The course ends in December.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The term ends in December.",
+              "uk": "У записі звучить The term ends in December."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The term ends in December.",
+              "uk": "У записі звучить The term ends in December."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це встановлений розклад. Виберіть форму start",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i03:r1",
+          "text": "starts"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i03:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i03:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це встановлений розклад. Виберіть форму start",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это установленное расписание. Выберите форму start",
+          "uk": "Це встановлений розклад. Виберіть форму start"
+        },
+        "gappedTargetPhrase": "The term ___ in September.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-51:i03:r1",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i03:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i03:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Це встановлений розклад. Виберіть форму start",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Це встановлений розклад. Виберіть форму start",
+            "feedbackByLocale": {
+              "ru": "Один период: starts с s.",
+              "uk": "Один період: starts із s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Це встановлений розклад. Виберіть форму start",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна starts.",
+              "uk": "Тут потрібна starts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:word:campus",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — campus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:word:campus:audio"
+      ],
+      "accessibilityLabel": "Картка слова — campus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:word:campus:audio",
+          "transcript": "campus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:word:campus:r1",
+            "targetText": "campus",
+            "meaningByLocale": {
+              "ru": "«кампус». I usually study on campus. — «Я обычно учусь в кампусе». Территория учебного заведения с его зданиями.",
+              "uk": "«кампус». I usually study on campus. — «Я зазвичай навчаюся в кампусі». Територія навчального закладу з його будівлями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "campus",
+          "definitionByLocale": {
+            "ru": "«кампус». I usually study on campus. — «Я обычно учусь в кампусе». Территория учебного заведения с его зданиями.",
+            "uk": "«кампус». I usually study on campus. — «Я зазвичай навчаюся в кампусі». Територія навчального закладу з його будівлями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, де ви зазвичай займаєтеся: «Я зазвичай навчаюся в кампусі». Поставте usually перед study",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, де ви зазвичай займаєтеся: «Я зазвичай навчаюся в кампусі». Поставте usually перед study",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually study on campus.",
+        "localizedMeaning": {
+          "ru": "Скажите, где вы обычно занимаетесь: «Я обычно учусь в кампусе». Поставьте usually перед study",
+          "uk": "Скажіть, де ви зазвичай займаєтеся: «Я зазвичай навчаюся в кампусі». Поставте usually перед study"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "study",
+          "on",
+          "campus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i05:r1",
+          "text": "The campus is quiet."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i05:r2",
+          "text": "The campus is busy."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i05:r3",
+          "text": "The library is quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i05:audio",
+          "transcript": "The campus is quiet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:i05:r1",
+            "targetText": "The campus is quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i05:r2",
+            "targetText": "The campus is busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i05:r3",
+            "targetText": "The library is quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The campus is quiet.",
+              "uk": "У записі звучить The campus is quiet."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The campus is quiet.",
+              "uk": "У записі звучить The campus is quiet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це звичка. Виберіть форму study",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i06:r1",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i06:r2",
+          "text": "studies"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i06:r3",
+          "text": "studying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це звичка. Виберіть форму study",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это привычка. Выберите форму study",
+          "uk": "Це звичка. Виберіть форму study"
+        },
+        "gappedTargetPhrase": "I usually ___ on campus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-51:i06:r1",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i06:r2",
+            "text": "studies"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i06:r3",
+            "text": "studying"
+          }
+        ],
+        "testedDimension": "Це звичка. Виберіть форму study",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Це звичка. Виберіть форму study",
+            "feedbackByLocale": {
+              "ru": "С I нужна study без s.",
+              "uk": "З I потрібна study без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Це звичка. Виберіть форму study",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна study.",
+              "uk": "Тут потрібна study."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:word:tuition",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tuition",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:word:tuition:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tuition",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:word:tuition:audio",
+          "transcript": "tuition"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:word:tuition:r1",
+            "targetText": "tuition",
+            "meaningByLocale": {
+              "ru": "«плата за обучение». The tuition is expensive. — «Обучение стоит дорого». Здесь стоимость обучения, не занятия как процесс.",
+              "uk": "«плата за навчання». The tuition is expensive. — «Навчання коштує дорого». Тут вартість навчання, не заняття як процес."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tuition",
+          "definitionByLocale": {
+            "ru": "«плата за обучение». The tuition is expensive. — «Обучение стоит дорого». Здесь стоимость обучения, не занятия как процесс.",
+            "uk": "«плата за навчання». The tuition is expensive. — «Навчання коштує дорого». Тут вартість навчання, не заняття як процес."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви порівнюєте вартість навчальних програм. Скажіть із tuition: «Навчання коштує дорого»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте вартість навчальних програм. Скажіть із tuition: «Навчання коштує дорого»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tuition is expensive.",
+        "localizedMeaning": {
+          "ru": "Вы сравниваете стоимость учебных программ. Скажите с tuition: «Обучение стоит дорого»",
+          "uk": "Ви порівнюєте вартість навчальних програм. Скажіть із tuition: «Навчання коштує дорого»"
+        },
+        "orderedTokens": [
+          "The",
+          "tuition",
+          "is",
+          "expensive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i08:r1",
+          "text": "The tuition is affordable."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i08:r2",
+          "text": "The tuition is expensive."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i08:r3",
+          "text": "The accommodation is affordable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i08:audio",
+          "transcript": "The tuition is affordable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:i08:r1",
+            "targetText": "The tuition is affordable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i08:r2",
+            "targetText": "The tuition is expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i08:r3",
+            "targetText": "The accommodation is affordable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tuition is affordable.",
+              "uk": "У записі звучить The tuition is affordable."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tuition is affordable.",
+              "uk": "У записі звучить The tuition is affordable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Tuition тут незлічуване. Виберіть зв’язку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Tuition тут незлічуване. Виберіть зв’язку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Tuition здесь неисчисляемое. Выберите связку",
+          "uk": "Tuition тут незлічуване. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The tuition ___ expensive.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-51:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Tuition тут незлічуване. Виберіть зв’язку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Tuition тут незлічуване. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "С tuition нужна is.",
+              "uk": "З tuition потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Tuition тут незлічуване. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:word:enrolment",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — enrolment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:word:enrolment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — enrolment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:word:enrolment:audio",
+          "transcript": "enrolment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:word:enrolment:r1",
+            "targetText": "enrolment",
+            "meaningByLocale": {
+              "ru": "«запись на обучение». I am completing my enrolment. — «Я завершаю запись на обучение». Здесь оформление записи на курс.",
+              "uk": "«запис на навчання». I am completing my enrolment. — «Я завершую запис на навчання». Тут оформлення запису на курс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enrolment",
+          "definitionByLocale": {
+            "ru": "«запись на обучение». I am completing my enrolment. — «Я завершаю запись на обучение». Здесь оформление записи на курс.",
+            "uk": "«запис на навчання». I am completing my enrolment. — «Я завершую запис на навчання». Тут оформлення запису на курс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви зараз заповнюєте останні поля форми. Скажіть: «Я завершую запис на навчання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зараз заповнюєте останні поля форми. Скажіть: «Я завершую запис на навчання»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am completing my enrolment.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас заполняете последние поля формы. Скажите: «Я завершаю запись на обучение»",
+          "uk": "Ви зараз заповнюєте останні поля форми. Скажіть: «Я завершую запис на навчання»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "completing",
+          "my",
+          "enrolment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i11:r1",
+          "text": "The enrolment is complete."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i11:r2",
+          "text": "The enrolment is delayed."
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i11:r3",
+          "text": "The maintenance is complete."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i11:audio",
+          "transcript": "The enrolment is complete."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-51:i11:r1",
+            "targetText": "The enrolment is complete.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i11:r2",
+            "targetText": "The enrolment is delayed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i11:r3",
+            "targetText": "The maintenance is complete.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The enrolment is complete.",
+              "uk": "У записі звучить The enrolment is complete."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The enrolment is complete.",
+              "uk": "У записі звучить The enrolment is complete."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильне написання форми complete",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-51:i12:r1",
+          "text": "completing"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i12:r2",
+          "text": "completeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-51:i12:r3",
+          "text": "complete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильне написання форми complete",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы complete",
+          "uk": "Виберіть правильне написання форми complete"
+        },
+        "gappedTargetPhrase": "I am ___ my enrolment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-51:i12:r1",
+            "text": "completing"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i12:r2",
+            "text": "completeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i12:r3",
+            "text": "complete"
+          }
+        ],
+        "testedDimension": "Виберіть правильне написання форми complete",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми complete",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: completing.",
+              "uk": "Перед ing прибираємо e: completing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми complete",
+            "feedbackByLocale": {
+              "ru": "После am для текущего действия нужна completing.",
+              "uk": "Після am для поточної дії потрібна completing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-51:i13:p1",
+            "target": "term",
+            "meaningByLocale": {
+              "ru": "учебный период",
+              "uk": "навчальний період"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-51:i13:p2",
+            "target": "campus",
+            "meaningByLocale": {
+              "ru": "кампус",
+              "uk": "кампус"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-51:i13:p3",
+            "target": "tuition",
+            "meaningByLocale": {
+              "ru": "плата за обучение",
+              "uk": "плата за навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-51:i13:p4",
+            "target": "enrolment",
+            "meaningByLocale": {
+              "ru": "запись на обучение",
+              "uk": "запис на навчання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "term",
+          "campus",
+          "tuition",
+          "enrolment"
+        ],
+        "rightColumn": [
+          "навчальний період",
+          "кампус",
+          "плата за навчання",
+          "запис на навчання"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i14:audio",
+          "transcript": "I am completing my enrolment."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am completing my enrolment.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "completing",
+          "my",
+          "enrolment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в кампусі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в кампусі»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i15:audio",
+          "transcript": "I usually study on campus."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually study on campus.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує про початок навчання. Скажіть: «Навчальний період починається у вересні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує про початок навчання. Скажіть: «Навчальний період починається у вересні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The term starts in September.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о начале учёбы. Скажите: «Учебный период начинается в сентябре»",
+          "uk": "Друг запитує про початок навчання. Скажіть: «Навчальний період починається у вересні»"
+        },
+        "orderedTokens": [
+          "The",
+          "term",
+          "starts",
+          "in",
+          "September"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-51:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви заповнюєте останні поля форми запису на курс. Друг запитує, чим ви зайняті зараз. Скажіть: «Я завершую запис на навчання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Ви заповнюєте останні поля форми запису на курс. Друг запитує, чим ви зайняті зараз. Скажіть: «Я завершую запис на навчання»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-51:i17:audio",
+          "transcript": "I am completing my enrolment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am completing my enrolment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ed7b96c52e2ca88e269d2708fe23f179ae8732ef232bb3ed8e1b468d5e4f9cd1"
+}

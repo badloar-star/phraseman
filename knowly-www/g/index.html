@@ -27,7 +27,7 @@
         <p class="gift-open-sub" id="gift-sub">Секунду.</p>
         <div class="gift-open-actions" id="gift-actions" hidden>
           <a class="btn-gold gift-open-cta" id="gift-open-app" href="#">Открыть в Phraseman</a>
-          <p class="gift-open-note">Нет приложения? Установи его, войди — и открой эту ссылку ещё раз. Или введи код вручную: Настройки → Промокоды.</p>
+          <p class="gift-open-note" id="gift-note">Нет приложения? Установи его, войди — и открой эту ссылку ещё раз. Или введи код вручную: Настройки → Промокоды.</p>
           <div class="gift-open-code"><span id="gift-code">—</span><button type="button" id="gift-copy">Копировать</button></div>
         </div>
         <div class="gift-open-stores" id="gift-stores">
@@ -38,18 +38,87 @@
     </section></main><footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><p data-i18n="approved.13">Чуть больше языка.<br>Чуть больше свободы.</p></div><div class="footer-links"><div><b data-i18n="approved.14">Практиковаться</b><a href="/app/" data-i18n="approved.15">О приложении</a><a href="/download/" data-i18n="approved.16">Скачать Phraseman</a><a href="/english-level-test/" data-i18n="approved.17">Определить уровень</a></div><div><b data-i18n="approved.19">Открывать больше</b><a href="/guides/" data-i18n="approved.20">Гайды и истории</a><a href="/premium/" data-i18n="approved.21">Plus и Pro</a><a href="/gift/" data-i18n="approved.22">Подарить доступ</a><a href="/russia/" data-i18n="approved.23">Оплата в России</a></div><div><b data-i18n="approved.24">Мы рядом</b><a href="/contact/" data-i18n="approved.4">Поддержка</a><a href="/faq/" data-i18n="approved.25">Частые вопросы</a><a href="/#reviews" data-i18n="approved.26">Отзывы</a></div></div></div><div class="footer-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="/legal/privacy/" data-i18n="approved.27">Конфиденциальность</a><a href="/legal/terms/">Условия</a><a href="/legal/data-deletion/" data-i18n="approved.29">Удаление данных</a><a href="#cookie-settings" data-cookie-settings data-i18n="approved.30">Настройки cookies</a></div></div></div></footer><script>
   /* зачем (владелец 21.10, подарок «Ссылкой»): получатель видит, что за подарок и от кого,
      и открывает его в приложении одной кнопкой. Код берём из пути /g/<КОД>.
+     Тексты ru/en — от Переводчика (docs/work/tasks/gift-site-copy-2026-10-21.md): англоязычный получатель
+     ссылки не должен видеть русский. Язык — общий переключатель сайта (ds.js, событие pm:lang).
      Журнал [GIFT-PLUS] на каждом раннем выходе и в catch. */
   (function () {
     'use strict';
     var LOG = '[GIFT-PLUS]';
-    var PLAN = { monthly: 'месяц Phraseman Plus', yearly: 'год Phraseman Plus' };
+    var TEXT = {
+      ru: {
+        docTitle: 'Тебе подарок · Phraseman', kicker: 'Подарок', kickerActive: 'Подарок 🎁',
+        loadingTitle: 'Проверяем подарок…', loadingSub: 'Секунду.',
+        open: 'Открыть в Phraseman',
+        noApp: 'Нет приложения? Установи его, войди — и открой эту ссылку ещё раз. Или введи код вручную: Настройки → Промокоды.',
+        copy: 'Копировать', copied: 'Скопировано ✓',
+        plan: { monthly: 'месяц Phraseman Plus', yearly: 'год Phraseman Plus' },
+        titleNamed: '{name}, тебе подарили {plan}', title: 'Тебе подарили {plan}',
+        from: 'От: {name}. ',
+        explain: 'Открой подарок в приложении — Plus включится одной кнопкой. Если Plus уже есть, он продлится.',
+        redeemed: ['Подарок уже открыт', 'Этот подарок уже активирован. Если это был не ты — спроси у дарителя.'],
+        cancelled: ['Подарок отменён', 'Даритель отменил этот подарок. Ссылка больше не работает.'],
+        expired: ['Срок подарка истёк', 'Ссылка действовала 365 дней. Напиши дарителю или в поддержку.'],
+        unknown: ['Подарок не найден', 'Проверь ссылку целиком — возможно, она скопировалась не полностью.'],
+      },
+      en: {
+        docTitle: 'A gift for you · Phraseman', kicker: 'Gift', kickerActive: 'Gift 🎁',
+        loadingTitle: 'Checking your gift…', loadingSub: 'One moment.',
+        open: 'Open in Phraseman',
+        noApp: 'No app yet? Install it, sign in, and open this link again. Or enter the code yourself: Settings → Promo codes.',
+        copy: 'Copy', copied: 'Copied ✓',
+        plan: { monthly: 'a month of Phraseman Plus', yearly: 'a year of Phraseman Plus' },
+        titleNamed: '{name}, you’ve got {plan} as a gift', title: 'You’ve got {plan} as a gift',
+        from: 'From: {name}. ',
+        explain: 'Open the gift in the app — Plus turns on with one tap. If you already have Plus, it will be extended.',
+        redeemed: ['Gift already opened', 'This gift has already been activated. If it wasn’t you, ask the person who sent it.'],
+        cancelled: ['Gift cancelled', 'The sender cancelled this gift. The link no longer works.'],
+        expired: ['Gift expired', 'The link was valid for 365 days. Message the sender or support.'],
+        unknown: ['Gift not found', 'Check the whole link — it may not have been copied completely.'],
+      },
+    };
     var $ = function (id) { return document.getElementById(id); };
+    /* view — что показываем сейчас; при смене языка перерисовываем его же, без нового запроса */
+    var view = { kind: 'loading', code: '', info: {} };
 
-    function set(title, sub, kicker) {
-      $('gift-title').textContent = title;
-      $('gift-sub').textContent = sub;
-      if (kicker) $('gift-kicker').textContent = kicker;
+    function lang() { return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ru'; }
+    function t() { return TEXT[lang()]; }
+    function fill(tpl, map) { return tpl.replace(/\{(\w+)\}/g, function (_m, k) { return map[k] || ''; }); }
+
+    function render() {
+      var x = t();
+      document.title = x.docTitle;
+      $('gift-open-app').textContent = x.open;
+      $('gift-note').textContent = x.noApp;
+      $('gift-copy').textContent = x.copy;
+      if (view.kind === 'loading') {
+        $('gift-kicker').textContent = x.kicker;
+        $('gift-title').textContent = x.loadingTitle;
+        $('gift-sub').textContent = x.loadingSub;
+        return;
+      }
+      if (view.kind === 'active') {
+        var plan = x.plan[view.info.plan] || x.plan.yearly;
+        $('gift-kicker').textContent = x.kickerActive;
+        $('gift-title').textContent = view.info.to ? fill(x.titleNamed, { name: view.info.to, plan: plan }) : fill(x.title, { plan: plan });
+        $('gift-sub').textContent = (view.info.from ? fill(x.from, { name: view.info.from }) : '') + x.explain;
+        $('gift-actions').hidden = false;
+        return;
+      }
+      var pair = x[view.kind] || x.unknown;
+      $('gift-kicker').textContent = x.kicker;
+      $('gift-title').textContent = pair[0];
+      $('gift-sub').textContent = pair[1];
+      $('gift-actions').hidden = true;
     }
+
+    function showActive(code, info) {
+      view = { kind: 'active', code: code, info: info || {} };
+      $('gift-open-app').href = 'phraseman://promo_code_entry?code=' + encodeURIComponent(code) + '&source=gift_link';
+      $('gift-code').textContent = code;
+      render();
+    }
+    function showTerminal(kind) { view = { kind: kind, code: view.code, info: {} }; render(); }
+
     function readCode() {
       var m = location.pathname.match(/^\/g\/([^/?#]+)/i);
       if (!m) return '';
@@ -58,41 +127,28 @@
         return '';
       }
     }
-    function showActive(code, info) {
-      var plan = PLAN[info.plan] || PLAN.yearly;
-      var who = info.to ? info.to + ', тебе' : 'Тебе';
-      set(who + ' подарили ' + plan, (info.from ? 'От: ' + info.from + '. ' : '')
-        + 'Открой подарок в приложении — Plus включится одной кнопкой. Если Plus уже есть, он продлится.', 'Подарок 🎁');
-      $('gift-open-app').href = 'phraseman://promo_code_entry?code=' + encodeURIComponent(code) + '&source=gift_link';
-      $('gift-code').textContent = code;
-      $('gift-actions').hidden = false;
-      var copy = $('gift-copy');
-      copy.addEventListener('click', function () {
-        try {
-          navigator.clipboard.writeText(code).then(function () {
-            copy.textContent = 'Скопировано ✓';
-            setTimeout(function () { copy.textContent = 'Копировать'; }, 2000);
-          }, function (error) { console.warn(LOG, 'link_page:copy_refused', { message: String(error && error.message || error) }); });
-        } catch (error) {
-          console.warn(LOG, 'link_page:copy_unavailable', { message: String(error && error.message || error) });
-        }
-      });
-    }
-    var TERMINAL = {
-      redeemed: ['Подарок уже открыт', 'Этот подарок уже активирован. Если это был не ты — спроси у дарителя.'],
-      cancelled: ['Подарок отменён', 'Даритель отменил этот подарок. Ссылка больше не работает.'],
-      expired: ['Срок подарка истёк', 'Ссылка действовала 365 дней. Напиши дарителю или в поддержку.'],
-      unknown: ['Подарок не найден', 'Проверь ссылку целиком — возможно, она скопировалась не полностью.'],
-    };
 
     function boot() {
       var cfg = window.KNOWLY_SITE || {};
       document.querySelectorAll('[data-store="ios"]').forEach(function (a) { if (cfg.storeIos) a.href = cfg.storeIos; });
       document.querySelectorAll('[data-store="android"]').forEach(function (a) { if (cfg.storeAndroid) a.href = cfg.storeAndroid; });
+      var copy = $('gift-copy');
+      copy.addEventListener('click', function () {
+        try {
+          navigator.clipboard.writeText(view.code).then(function () {
+            copy.textContent = t().copied;
+            setTimeout(function () { copy.textContent = t().copy; }, 2000);
+          }, function (error) { console.warn(LOG, 'link_page:copy_refused', { message: String(error && error.message || error) }); });
+        } catch (error) {
+          console.warn(LOG, 'link_page:copy_unavailable', { message: String(error && error.message || error) });
+        }
+      });
+      render();
       var code = readCode();
+      view.code = code;
       if (!/^[A-Z0-9_-]{3,32}$/.test(code)) {
         console.warn(LOG, 'link_page:early_exit', { reason: 'bad_code', length: code.length });
-        set(TERMINAL.unknown[0], TERMINAL.unknown[1]);
+        showTerminal('unknown');
         return;
       }
       if (!cfg.giftLinkInfoEndpoint) {
@@ -106,7 +162,7 @@
           var info = res.body || {};
           console.log(LOG, 'link_page:info', { http: res.http, status: info.status || null, error: info.error || null });
           if (info.ok && info.status === 'active') { showActive(code, info); return; }
-          if (info.ok && TERMINAL[info.status]) { set(TERMINAL[info.status][0], TERMINAL[info.status][1]); return; }
+          if (info.ok && ['redeemed', 'cancelled', 'expired', 'unknown'].indexOf(info.status) >= 0) { showTerminal(info.status); return; }
           /* лимит или сбой сервера — не прячем подарок: даём открыть, приложение само проверит код */
           showActive(code, {});
         })
@@ -115,7 +171,8 @@
           showActive(code, {});
         });
     }
+    document.addEventListener('pm:lang', render);
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();
   })();
-</script></body></html>
+</script><script>window.I18N=window.I18N||{};window.I18N.en=Object.assign({},window.I18N.en||{},{"approved.0":"The app","approved.1":"Level test","approved.2":"Journal","approved.3":"Give a gift","approved.4":"Support","approved.5":"Start for free","approved.6":"Your voice.","approved.7":"In another<br>language.","approved.8":"Everyday phrases. Pronunciation practice.<br>A language that becomes your own.","approved.9":"More than knowing.<br><em>Being able to say it.</em>","approved.10":"INSIDE PHRASEMAN","approved.11":"Download the app","approved.12":"Learn useful phrases, practice pronunciation and retain what you learn with spaced repetition.","approved.13":"A little more language.<br>A little more freedom.","approved.14":"Practise","approved.15":"About the app","approved.16":"Download Phraseman","approved.17":"Check your level","approved.19":"Discover more","approved.20":"Guides and stories","approved.21":"Plus and Pro","approved.22":"Gift access","approved.23":"Payment options in Russia","approved.24":"We are here","approved.25":"Frequently asked questions","approved.26":"Reviews","approved.27":"Privacy","approved.28":"Terms of use","approved.29":"Data deletion","approved.30":"Cookie settings","approved.31":"THE PHRASEMAN METHOD","approved.32":"From familiar words<br><em>to speaking for yourself.</em>","approved.33":"Whole phrases. Sound. Practice.<br>And review that helps you remember.","approved.34":"01 / UNDERSTAND","approved.35":"02 / SPEAK","approved.36":"03 / REMEMBER","approved.37":"Learn the phrase.<br>Understand the meaning.","approved.38":"Give words<br>your voice.","approved.39":"Recall it.<br>Keep moving forward.","approved.40":"Useful expressions for real situations. Listen and connect the words to what you want to say.","approved.41":"Practise pronunciation, repeat aloud and move on to dialogues. Go from recognizing a phrase to using it.","approved.42":"Flashcards and spaced review help you revisit what you have learned and remember useful phrases.","approved.43":"A bigger journey.<br><em>At your own pace.</em>","approved.44":"Explore the app","approved.45":"Everyone has<br><em>a starting point.</em>","approved.46":"When phrases<br><em>become your own.</em>","approved.47":"A gift that<br><em>helps them speak.</em>","approved.48":"Choose a gift","approved.49":"The essentials,<br><em>clearly explained.</em>","approved.50":"THE PHRASEMAN JOURNAL","approved.51":"Language.<br><em>In everyday terms.</em>","approved.52":"All articles","approved.53":"How to learn","approved.54":"How to speak","approved.55":"While traveling","approved.56":"There are no articles in this category yet.","approved.57":"YOUR STARTING POINT","approved.58":"Which language<br><em>shall we start with?</em>","approved.59":"12–20 adaptive questions to estimate your CEFR level.<br>And a personalized certificate with your result.","approved.60":"Test language","approved.61":"Take your time.<br>Use your own knowledge.","approved.62":"Choose the answer you think is right. If you do not know, skip it.","approved.63":"Start test →","approved.64":"Explore certificate designs →","approved.65":"YOUR ACHIEVEMENT","approved.66":"Your achievement.<br><em>Your style.</em>","approved.67":"Five certificate designs.<br>Your personal result is available after the test.","approved.68":"Check your level →","approved.69":"Download sample ↓","approved.70":"Champagne","approved.71":"Amethyst","approved.72":"Platinum","approved.73":"Terracotta","approved.74":"Sapphire","approved.75":"More language.<br><em>More possibilities.</em>","approved.76":"Choose how far you want to go.<br>Current prices are shown below.","approved.77":"START","approved.78":"FIND YOUR RHYTHM","approved.79":"STAY FOR LONGER","approved.80":"One month of Plus","approved.81":"One year of Plus","approved.82":"Pro for life","approved.83":"All lessons and topics","approved.84":"Access for your chosen period","approved.85":"Permanent access","approved.86":"One payment","approved.87":"Explore the complete learning experience","approved.88":"Choose Plus →","approved.89":"Choose Pro →","approved.90":"The final amount and terms are shown before payment.","approved.91":"Giving it as a gift?","approved.92":"Add a name and choose one of three certificates.","approved.93":"A good conversation<br><em>can make a difference.</em>","approved.94":"WE ARE HERE","approved.95":"SUPPORT IS HERE","approved.96":"Let’s find an answer.","approved.97":"Open the support form","approved.98":"This will open your email app.","approved.99":"PHRASEMAN · iOS AND ANDROID","approved.100":"Your voice.<br><em>Now with you.</em>","approved.101":"Download on the","approved.102":"Get it on","approved.103":"Open on another device","approved.104":"The next step:<br><em>your first lesson.</em>","approved.105":"Check your level →","approved.106":"CLEAR ANSWERS","approved.107":"A question is<br><em>a good place to start.</em>","approved.108":"Looks like a wrong turn","approved.109":"That page is unavailable.<br><em>Return home.</em>","approved.110":"Return home"});</script></body></html>

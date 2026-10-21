@@ -35,6 +35,7 @@ import { GIFT_CERTIFICATE_PHRASES, resolveGiftPhrase } from './gift_certificate_
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 import { swallowed } from './swallowed_error';
+import { giftLog, resolveGiftOrderDelivery, type GiftDelivery } from './web_gift_core';
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
@@ -194,7 +195,7 @@ function pickAllowOrigin(origin: string | undefined): string {
   return '*';
 }
 
-type AnyRequest = {
+export type AnyRequest = {
   method: string;
   headers: Record<string, string | string[] | undefined>;
   body?: unknown;
@@ -202,7 +203,7 @@ type AnyRequest = {
   ip?: string;
   socket?: { remoteAddress?: string };
 };
-type AnyResponse = {
+export type AnyResponse = {
   set: (key: string, value: string) => void;
   status: (code: number) => { send: (body: string) => void; json: (body: unknown) => void };
 };
@@ -249,7 +250,7 @@ async function reserveCheckoutRate(
   });
 }
 
-function applyCors(req: AnyRequest, res: AnyResponse): boolean {
+export function applyCors(req: AnyRequest, res: AnyResponse): boolean {
   const origin = typeof req.headers.origin === 'string' ? req.headers.origin : undefined;
   res.set('Access-Control-Allow-Origin', pickAllowOrigin(origin));
   res.set('Vary', 'Origin');
@@ -267,7 +268,7 @@ function applyCors(req: AnyRequest, res: AnyResponse): boolean {
 }
 
 /** Сайт шлёт fetch без Content-Type (text/plain, без preflight) — тело приходит строкой. */
-function parseJsonBody(req: AnyRequest): Record<string, unknown> | null {
+export function parseJsonBody(req: AnyRequest): Record<string, unknown> | null {
   if (typeof req.body === 'object' && req.body !== null && !Array.isArray(req.body)) {
     return req.body as Record<string, unknown>;
   }
@@ -286,7 +287,7 @@ function cleanEmail(value: unknown): string | null {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? email : null;
 }
 
-function cleanShortText(value: unknown, max: number): string {
+export function cleanShortText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
@@ -1822,6 +1823,8 @@ interface NewOrderInput {
   giftTo?: string;
   giftFrom?: string;
   giftPhraseId?: string;
+  /** Как вручить подарок (владелец 21.10): письмом с кодом или ссылкой /g/<КОД>. */
+  giftDelivery?: GiftDelivery;
 }
 
 async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderInput): Promise<string> {
@@ -1836,6 +1839,7 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
     giftTo: input.giftTo || null,
     giftFrom: input.giftFrom || null,
     giftPhraseId: input.giftPhraseId || null,
+    giftDelivery: input.gift === true ? (input.giftDelivery ?? 'email') : null,
     appNickname: input.nickname || null,
     amountCents: input.amountCents,
     currency: input.currency,
@@ -1932,6 +1936,9 @@ function formatRuDate(ms: number): string {
  * использует тот же размещённый на knowlyapps.com фон, что и /gift/; при
  * заблокированных картинках остаются читаемые цветовой фон и текст.
  */
+/** Сайт, на котором живут ссылки-подарки /g/<КОД> (владелец 21.10). */
+export const GIFT_LINK_ORIGIN = 'https://knowlyapps.com';
+
 export function buildActivationEmail(
   order: FirebaseFirestore.DocumentData,
   support: string,
@@ -1955,8 +1962,12 @@ export function buildActivationEmail(
     ? { canvas: '#101817', ink: '#fff8e8', soft: '#d8ccb0', accent: '#efca70', panel: '#111918' }
     : { canvas: '#f5efe3', ink: '#201c12', soft: '#6f6852', accent: '#8b6508', panel: '#fffaf0' };
 
+  // зачем (владелец 21.10, подарок Plus): «ссылкой» — в письме ссылка-подарок, которую покупатель пересылает сам.
+  const giftDelivery = isGift ? String(order.giftDelivery ?? 'email') : 'email';
+  const giftLink = isGift && giftDelivery === 'link' && activationCode ? `${GIFT_LINK_ORIGIN}/g/${encodeURIComponent(activationCode)}` : '';
+
   const subject = isGift
-    ? `🎁 Подарочный сертификат Phraseman — код ${activationCode}`
+    ? (giftLink ? '🎁 Ссылка-подарок Phraseman готова' : `🎁 Подарочный сертификат Phraseman — код ${activationCode}`)
     : `Ваш код активации Phraseman: ${activationCode}`;
 
   const steps = [
@@ -1972,12 +1983,13 @@ export function buildActivationEmail(
     `Подарок: ${productTitle}`,
     ...(giftPhrase ? ['', giftPhrase.text] : []),
     '',
+    ...(giftLink ? [`Ссылка-подарок: ${giftLink}`, 'Отправьте её тому, кому дарите: ссылка откроет Phraseman, и подарок включится одной кнопкой. Если Plus уже есть — он продлится.', ''] : []),
     `Код активации: ${activationCode}`,
     ...(expiresLine ? [expiresLine] : []),
     '',
     ...(isTestIssue ? ['ТЕСТОВАЯ ВЫДАЧА — ОПЛАТА НЕ ПРОВОДИЛАСЬ', ''] : []),
     isGift
-      ? 'Перешлите этот сертификат тому, кому дарите. Как получателю включить доступ:'
+      ? (giftLink ? 'Если ссылка не открывается, получатель может ввести код вручную:' : 'Перешлите этот сертификат тому, кому дарите. Как получателю включить доступ:')
       : 'Как включить доступ:',
     ...steps,
     '',
@@ -2011,9 +2023,10 @@ export function buildActivationEmail(
       '</div></td></tr></table>',
       '<div data-gift-instructions="true" style="margin-top:16px;padding:24px;background:#ffffff;border-radius:18px;color:#201c12">',
       isTestIssue ? '<p style="margin:0 0 18px;padding:12px 14px;background:#fff2c7;border-radius:12px;text-align:center;color:#6a4b00;font-size:13px;font-weight:800">ТЕСТОВАЯ ВЫДАЧА — ОПЛАТА НЕ ПРОВОДИЛАСЬ</p>' : '',
-      '<p style="margin:0;font-weight:bold">Как включить доступ:</p>',
+      giftLink ? `<p data-gift-link="true" style="margin:0 0 18px;color:#201c12;font-size:15px;line-height:1.5"><b>Ссылка-подарок:</b><br><a href="${htmlEscape(giftLink)}" style="color:#b8860f;font-weight:bold;word-break:break-all">${htmlEscape(giftLink)}</a><br><span style="color:#4c4636;font-size:14px">Отправьте её тому, кому дарите: ссылка откроет Phraseman, и подарок включится одной кнопкой. Если Plus уже есть — он продлится.</span></p>` : '',
+      `<p style="margin:0;font-weight:bold">${giftLink ? 'Если ссылка не открывается — код вручную:' : 'Как включить доступ:'}</p>`,
       stepsHtml,
-      '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
+      giftLink ? '' : '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
       supportHtml,
       '</div></div></div>',
     ].filter(Boolean).join('')
@@ -2174,6 +2187,9 @@ async function handlePaidOrderSideEffects(
   }).catch((e) => {
     logger.warn('web_checkout paid email contact upsert failed', e);
   });
+  if (order.gift === true) {
+    giftLog('paid:gift_email', { orderId: order.orderId ?? null, delivery: order.giftDelivery ?? 'email' });
+  }
   await sendActivationEmail(order).catch((e) => logger.error('web order activation email failed', e));
 }
 
@@ -2992,6 +3008,12 @@ export const webCheckoutCreate = onRequest(
     const amountCents = config.priceCents[plan];
 
     const gift = body.gift === true;
+    // зачем (владелец 21.10): способ вручения подарка проверяется ДО заказа и оплаты (подарок «навсегда» — отказ).
+    const giftDecision = resolveGiftOrderDelivery(body, plan, gift);
+    if (!giftDecision.ok) {
+      res.status(400).json({ ok: false, error: giftDecision.error });
+      return;
+    }
     try {
       const orderId = await createOrderDoc(db, {
         provider: 'stripe',
@@ -3006,6 +3028,7 @@ export const webCheckoutCreate = onRequest(
         giftTo: cleanShortText(body.giftTo, 60),
         giftFrom: cleanShortText(body.giftFrom, 60),
         giftPhraseId: gift ? resolveGiftPhrase(plan, body.giftPhraseId).id : undefined,
+        giftDelivery: giftDecision.delivery,
       });
       const session = await stripeCreateSession({ plan, email, orderId, amountCents, currency: config.currency, gift });
       await db.collection(ORDERS_COLLECTION).doc(orderId).update({
@@ -3260,6 +3283,12 @@ export const paypalOrderCreate = onRequest(
     }
     const config = await readConfig(db);
     const amountCents = config.priceCents[plan];
+    // зачем (владелец 21.10): способ вручения подарка проверяется ДО заказа и оплаты (подарок «навсегда» — отказ).
+    const giftDecision = resolveGiftOrderDelivery(body, plan, body.gift === true);
+    if (!giftDecision.ok) {
+      res.status(400).json({ ok: false, error: giftDecision.error });
+      return;
+    }
 
     try {
       const orderId = await createOrderDoc(db, {
@@ -3275,6 +3304,7 @@ export const paypalOrderCreate = onRequest(
         giftTo: cleanShortText(body.giftTo, 60),
         giftFrom: cleanShortText(body.giftFrom, 60),
         giftPhraseId: body.gift === true ? resolveGiftPhrase(plan, body.giftPhraseId).id : undefined,
+        giftDelivery: giftDecision.delivery,
       });
       const token = await paypalAccessToken(config.paypalLive);
       const resp = await fetch(`${paypalBase(config.paypalLive)}/v2/checkout/orders`, {
@@ -3475,12 +3505,19 @@ export const webOrderStatus = onRequest(
       }
       const order = snap.docs[0].data();
       const isPaid = PAID_STATUSES.has(String(order.status));
+      // зачем (владелец 21.10): отменённый покупателем подарок — свой статус, а не вечное «ожидание».
+      const isCancelled = order.status === 'cancelled_by_buyer';
       res.status(200).json({
         ok: true,
-        status: isPaid ? 'paid' : 'pending',
+        status: isPaid ? 'paid' : isCancelled ? 'cancelled' : 'pending',
         plan: order.plan ?? null,
         planDuration: order.planDuration ?? null,
         code: isPaid ? (order.activationCode ?? null) : null,
+        // зачем (владелец 21.10): страница «спасибо» показывает экран своего способа вручения подарка.
+        giftDelivery: order.gift === true ? (order.giftDelivery ?? 'email') : null,
+        giftLink: isPaid && order.gift === true && order.giftDelivery === 'link' && order.activationCode
+          ? `${GIFT_LINK_ORIGIN}/g/${encodeURIComponent(String(order.activationCode))}`
+          : null,
       });
     } catch (e) {
       logger.error('webOrderStatus failed', e);

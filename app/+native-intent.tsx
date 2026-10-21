@@ -99,6 +99,16 @@ function redirectSystemPathInner({
     return `/premium_modal${raw.slice(retiredPaywall[0].length)}`;
   }
 
+  // зачем (владелец 21.10, подарок Plus «Ссылкой»): knowlyapps.com/g/<КОД> открывает экран промокода с подставленным кодом —
+  // подарок включается одной кнопкой. Битый код — на экран промокода без кода, а не «маршрут не найден».
+  const giftLink = raw.match(/^\/?g\/([^?#/]*)/i);
+  if (giftLink) {
+    const giftCode = giftLink[1].toUpperCase();
+    const valid = /^[A-Z0-9_-]{3,32}$/.test(giftCode);
+    console.log('[GIFT-PLUS] deep_link', JSON.stringify({ valid, length: giftCode.length })); // guard-ok: строка на каждый вход по ссылке-подарку
+    return valid ? `/promo_code_entry?code=${encodeURIComponent(giftCode)}&source=gift_link` : '/promo_code_entry';
+  }
+
   // Referral invite links should not route to a non-existent `/invite` screen.
   // The root layout captures the ref query from Linking.getInitialURL/listeners;
   // this redirect only keeps app launch/navigation on a valid screen.

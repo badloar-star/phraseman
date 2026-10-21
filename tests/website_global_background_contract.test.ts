@@ -35,10 +35,11 @@ describe('public website global background contract', () => {
   const htmlFiles = collectHtmlFiles(WEBSITE_ROOT).sort();
   const humanFacingFiles = htmlFiles.filter((file) => !EXCLUDED_HTML.has(file));
 
-  it('classifies the complete 29-file HTML inventory with only machine verification tokens excluded', () => {
+  it('classifies the complete 30-file HTML inventory with only machine verification tokens excluded', () => {
     // зачем (15.10): +1 файл подтверждения Search Console (a4bf2b7d2); ссылки, приглашение и заглушки теперь на общем оформлении 2.0.
-    expect(htmlFiles).toHaveLength(29);
-    expect(humanFacingFiles).toHaveLength(27);
+    // зачем (21.10, подарок Plus «Ссылкой», 585dcf878): +1 страница ссылки-подарка /g/<КОД> (g/index.html) на общем оформлении 2.0.
+    expect(htmlFiles).toHaveLength(30);
+    expect(humanFacingFiles).toHaveLength(28);
     expect([...EXCLUDED_HTML.keys()].sort()).toEqual([
       'google608bff17010f9de1.html',
       'googled573b3a1e90712e4.html',

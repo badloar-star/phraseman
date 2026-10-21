@@ -110,29 +110,29 @@
       <div class="qscreen qthanks" id="state-gift-link" style="display:none">
         <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
         <p class="kicker">Оплата прошла 🎉</p>
-        <h1>Ссылка-подарок <span class="gold-accent">готова</span></h1>
-        <p class="sub">Отправь её в любом мессенджере. Ссылка откроет Phraseman, и подарок включится одной кнопкой; если Plus уже есть — он продлится. Копия ссылки — у тебя на почте.</p>
+        <h1 data-i18n="gift.link.title">Ссылка-подарок <span class="gold-accent">готова</span></h1>
+        <p class="sub" data-i18n="gift.link.sub">Отправь её в любом мессенджере. Ссылка откроет Phraseman, и подарок включится одной кнопкой; если Plus уже есть — он продлится. Копия ссылки — у тебя на почте.</p>
         <div class="qcode-box">
           <div class="qcode qgift-link" id="gift-link">—</div>
-          <button class="btn-gold qcode-copy" type="button" id="copy-link-btn">Скопировать ссылку</button>
+          <button class="btn-gold qcode-copy" type="button" id="copy-link-btn" data-i18n="gift.link.copy">Скопировать ссылку</button>
         </div>
       </div>
 
       <!-- Подарок отменён покупателем до активации -->
       <div class="qscreen qthanks" id="state-gift-cancelled" style="display:none">
         <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
-        <p class="qstate-title">Подарок <span class="gold-accent">отменён</span></p>
-        <p class="sub">Код и ссылка больше не работают. Деньги вернём вручную — <a href="/contact/">напиши в поддержку</a> с email из оплаты, если мы ещё не связались с тобой.</p>
+        <p class="qstate-title" data-i18n="gift.cancelled.title">Подарок <span class="gold-accent">отменён</span></p>
+        <p class="sub" data-i18n="gift.cancelled.sub">Код и ссылка больше не работают. Деньги вернём вручную — <a href="/contact/">напиши в поддержку</a> с email из оплаты, если мы ещё не связались с тобой.</p>
       </div>
 
       <!-- Отмена кода или ссылки до активации -->
       <div class="qthanks qgift-cancel" id="gift-cancel" style="display:none;padding-top:0">
-        <button class="qgift-cancel-btn" type="button" id="gift-cancel-btn">Отменить подарок</button>
+        <button class="qgift-cancel-btn" type="button" id="gift-cancel-btn" data-i18n="gift.cancel.btn">Отменить подарок</button>
         <div class="qgift-cancel-confirm" id="gift-cancel-confirm" hidden>
-          <p>Отменить? Код и ссылка сразу перестанут работать, деньги вернём вручную через поддержку.</p>
+          <p data-i18n="gift.cancel.ask">Отменить? Код и ссылка сразу перестанут работать, деньги вернём вручную через поддержку.</p>
           <div class="qgift-cancel-row">
-            <button class="qgift-cancel-btn danger" type="button" id="gift-cancel-yes">Да, отменить</button>
-            <button class="qgift-cancel-btn" type="button" id="gift-cancel-no">Оставить</button>
+            <button class="qgift-cancel-btn danger" type="button" id="gift-cancel-yes" data-i18n="gift.cancel.yes">Да, отменить</button>
+            <button class="qgift-cancel-btn" type="button" id="gift-cancel-no" data-i18n="gift.cancel.no">Оставить</button>
           </div>
         </div>
         <p class="qgift-cancel-err" id="gift-cancel-err" role="alert"></p>
@@ -243,23 +243,13 @@
         codeEl.textContent = code;
         show('state-code');
         /* Подарочная покупка (/gift/): тот же код, но подсказки — про получателя. */
-        if (params.get('gift') === '1') {
-          var giftSub = document.querySelector('#state-code .sub');
-          if (giftSub) giftSub.textContent = 'Это подарочный код: перешли его тому, кому даришь, — запиской или сообщением. Код также отправлен тебе на email и сохранён у нас, так что потерять его невозможно.';
-          var giftStep2 = document.querySelectorAll('#state-code .russia-step')[1];
-          if (giftStep2) {
-            var giftStrong = giftStep2.querySelector('strong');
-            var giftP = giftStep2.querySelector('p');
-            if (giftStrong) giftStrong.textContent = 'Получатель вводит код';
-            if (giftP) giftP.innerHTML = 'В приложении: <b>Настройки → Промокоды</b> — вставить код и нажать «Активировать».';
-          }
-        }
+        if (params.get('gift') === '1') { giftEmailShown = true; applyGiftEmailCopy(); }
         var btn = document.getElementById('copy-code-btn');
         btn.addEventListener('click', function () {
           try {
             navigator.clipboard.writeText(code).then(function () {
-              btn.textContent = 'Скопировано ✓';
-              setTimeout(function () { btn.textContent = 'Скопировать код'; }, 2000);
+              btn.textContent = gt('copied');
+              setTimeout(function () { btn.textContent = gt('copyCode'); }, 2000);
             });
           } catch (_) { /* noop */ }
         });
@@ -276,10 +266,49 @@
       }
 
       var GIFT_LOG = '[GIFT-PLUS]';
-      function copyText(btn, text, idleLabel) {
+      /* зачем (Переводчик 21.10, docs/work/tasks/gift-site-copy-2026-10-21.md): подарочная часть «спасибо» — ru и en,
+         англоязычный покупатель не должен видеть русский. Язык — общий переключатель сайта (ds.js, событие pm:lang). */
+      var GIFT_TEXT = {
+        ru: {
+          copied: 'Скопировано ✓', copyCode: 'Скопировать код', copyLink: 'Скопировать ссылку',
+          emailSub: 'Это подарочный код: перешли его тому, кому даришь, — запиской или сообщением. Код также отправлен тебе на email и сохранён у нас, так что потерять его невозможно.',
+          step2: 'Получатель вводит код', step2Text: 'В приложении: <b>Настройки → Промокоды</b> — вставить код и нажать «Активировать».',
+          redeemed: 'Подарок уже активирован — отменить его нельзя.',
+          failed: 'Не получилось отменить. Попробуй ещё раз или напиши в поддержку.',
+          offline: 'Нет связи. Попробуй ещё раз или напиши в поддержку.',
+        },
+        en: {
+          copied: 'Copied ✓', copyCode: 'Copy code', copyLink: 'Copy link',
+          emailSub: 'This is a gift code: pass it on to the person you\u2019re gifting — in a note or a message. The code has also been emailed to you and saved on our side, so it can\u2019t get lost.',
+          step2: 'The recipient enters the code', step2Text: 'In the app: <b>Settings → Promo codes</b> — paste the code and tap \u201cActivate\u201d.',
+          redeemed: 'This gift has already been activated, so it can\u2019t be cancelled.',
+          failed: 'Couldn\u2019t cancel. Try again or contact support.',
+          offline: 'No connection. Try again or contact support.',
+        },
+      };
+      var giftEmailShown = false;
+      function gt(key) { return GIFT_TEXT[document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ru'][key]; }
+      function applyGiftEmailCopy() {
+        var giftSub = document.querySelector('#state-code .sub');
+        if (giftSub) giftSub.textContent = gt('emailSub');
+        var giftStep2 = document.querySelectorAll('#state-code .russia-step')[1];
+        if (!giftStep2) { console.warn(GIFT_LOG, 'thanks:early_exit', { reason: 'no_step2' }); return; }
+        var giftStrong = giftStep2.querySelector('strong');
+        var giftP = giftStep2.querySelector('p');
+        if (giftStrong) giftStrong.textContent = gt('step2');
+        if (giftP) giftP.innerHTML = gt('step2Text');
+      }
+      /* смена языка: ds.js переводит разметку с data-i18n, тексты из кода обновляем здесь */
+      document.addEventListener('pm:lang', function () {
+        if (!giftEmailShown) return;
+        applyGiftEmailCopy();
+        var codeBtn = document.getElementById('copy-code-btn');
+        if (codeBtn) codeBtn.textContent = gt('copyCode');
+      });
+      function copyText(btn, text, idleKey) {
         function done() {
-          btn.textContent = 'Скопировано ✓';
-          setTimeout(function () { btn.textContent = idleLabel; }, 2000);
+          btn.textContent = gt('copied');
+          setTimeout(function () { btn.textContent = gt(idleKey); }, 2000);
         }
         try {
           navigator.clipboard.writeText(text).then(done, function (error) {
@@ -293,7 +322,7 @@
         document.getElementById('gift-link').textContent = link;
         show('state-gift-link');
         var btn = document.getElementById('copy-link-btn');
-        btn.addEventListener('click', function () { copyText(btn, link, 'Скопировать ссылку'); });
+        btn.addEventListener('click', function () { copyText(btn, link, 'copyLink'); });
       }
 
       /* Отмена кода или ссылки до активации. зачем: владелец 21.10 — передумал или ошибся
@@ -319,15 +348,13 @@
               if (res.body && res.body.ok) { box.style.display = 'none'; show('state-gift-cancelled'); return; }
               var reason = res.body && res.body.error;
               console.warn(GIFT_LOG, 'cancel:refused', { http: res.http, error: reason || null });
-              err.textContent = reason === 'already_redeemed'
-                ? 'Подарок уже активирован — отменить его нельзя.'
-                : 'Не получилось отменить. Попробуй ещё раз или напиши в поддержку.';
+              err.textContent = reason === 'already_redeemed' ? gt('redeemed') : gt('failed');
               if (reason === 'already_redeemed') { confirmBox.hidden = true; return; }
               yes.disabled = false; no.disabled = false;
             })
             .catch(function (error) {
               console.warn(GIFT_LOG, 'cancel:failed', { message: String(error && error.message || error) });
-              err.textContent = 'Нет связи. Попробуй ещё раз или напиши в поддержку.';
+              err.textContent = gt('offline');
               yes.disabled = false; no.disabled = false;
             });
         });
@@ -380,4 +407,4 @@
       show('state-waiting');
       poll();
     });
-  </script><script>window.I18N=window.I18N||{};window.I18N.en=Object.assign({},window.I18N.en||{},{"approved.0":"The app","approved.1":"Level test","approved.2":"Journal","approved.3":"Give a gift","approved.4":"Support","approved.5":"Start for free","approved.6":"Your voice.","approved.7":"In another<br>language.","approved.8":"Everyday phrases. Pronunciation practice.<br>A language that becomes your own.","approved.9":"More than knowing.<br><em>Being able to say it.</em>","approved.10":"INSIDE PHRASEMAN","approved.11":"Download the app","approved.12":"Learn useful phrases, practice pronunciation and retain what you learn with spaced repetition.","approved.13":"A little more language.<br>A little more freedom.","approved.14":"Practise","approved.15":"About the app","approved.16":"Download Phraseman","approved.17":"Check your level","approved.19":"Discover more","approved.20":"Guides and stories","approved.21":"Plus and Pro","approved.22":"Gift access","approved.23":"Payment options in Russia","approved.24":"We are here","approved.25":"Frequently asked questions","approved.26":"Reviews","approved.27":"Privacy","approved.28":"Terms of use","approved.29":"Data deletion","approved.30":"Cookie settings","approved.31":"THE PHRASEMAN METHOD","approved.32":"From familiar words<br><em>to speaking for yourself.</em>","approved.33":"Whole phrases. Sound. Practice.<br>And review that helps you remember.","approved.34":"01 / UNDERSTAND","approved.35":"02 / SPEAK","approved.36":"03 / REMEMBER","approved.37":"Learn the phrase.<br>Understand the meaning.","approved.38":"Give words<br>your voice.","approved.39":"Recall it.<br>Keep moving forward.","approved.40":"Useful expressions for real situations. Listen and connect the words to what you want to say.","approved.41":"Practise pronunciation, repeat aloud and move on to dialogues. Go from recognizing a phrase to using it.","approved.42":"Flashcards and spaced review help you revisit what you have learned and remember useful phrases.","approved.43":"A bigger journey.<br><em>At your own pace.</em>","approved.44":"Explore the app","approved.45":"Everyone has<br><em>a starting point.</em>","approved.46":"When phrases<br><em>become your own.</em>","approved.47":"A gift that<br><em>helps them speak.</em>","approved.48":"Choose a gift","approved.49":"The essentials,<br><em>clearly explained.</em>","approved.50":"THE PHRASEMAN JOURNAL","approved.51":"Language.<br><em>In everyday terms.</em>","approved.52":"All articles","approved.53":"How to learn","approved.54":"How to speak","approved.55":"While traveling","approved.56":"There are no articles in this category yet.","approved.57":"YOUR STARTING POINT","approved.58":"Which language<br><em>shall we start with?</em>","approved.59":"12–20 adaptive questions to estimate your CEFR level.<br>And a personalized certificate with your result.","approved.60":"Test language","approved.61":"Take your time.<br>Use your own knowledge.","approved.62":"Choose the answer you think is right. If you do not know, skip it.","approved.63":"Start test →","approved.64":"Explore certificate designs →","approved.65":"YOUR ACHIEVEMENT","approved.66":"Your achievement.<br><em>Your style.</em>","approved.67":"Five certificate designs.<br>Your personal result is available after the test.","approved.68":"Check your level →","approved.69":"Download sample ↓","approved.70":"Champagne","approved.71":"Amethyst","approved.72":"Platinum","approved.73":"Terracotta","approved.74":"Sapphire","approved.75":"More language.<br><em>More possibilities.</em>","approved.76":"Choose how far you want to go.<br>Current prices are shown below.","approved.77":"START","approved.78":"FIND YOUR RHYTHM","approved.79":"STAY FOR LONGER","approved.80":"One month of Plus","approved.81":"One year of Plus","approved.82":"Pro for life","approved.83":"All lessons and topics","approved.84":"Access for your chosen period","approved.85":"Permanent access","approved.86":"One payment","approved.87":"Explore the complete learning experience","approved.88":"Choose Plus →","approved.89":"Choose Pro →","approved.90":"The final amount and terms are shown before payment.","approved.91":"Giving it as a gift?","approved.92":"Add a name and choose one of three certificates.","approved.93":"A good conversation<br><em>can make a difference.</em>","approved.94":"WE ARE HERE","approved.95":"SUPPORT IS HERE","approved.96":"Let’s find an answer.","approved.97":"Open the support form","approved.98":"This will open your email app.","approved.99":"PHRASEMAN · iOS AND ANDROID","approved.100":"Your voice.<br><em>Now with you.</em>","approved.101":"Download on the","approved.102":"Get it on","approved.103":"Open on another device","approved.104":"The next step:<br><em>your first lesson.</em>","approved.105":"Check your level →","approved.106":"CLEAR ANSWERS","approved.107":"A question is<br><em>a good place to start.</em>","approved.108":"Looks like a wrong turn","approved.109":"That page is unavailable.<br><em>Return home.</em>","approved.110":"Return home"});</script></body></html>
+  </script><script>window.I18N=window.I18N||{};window.I18N.en=Object.assign({},window.I18N.en||{},{"approved.0":"The app","approved.1":"Level test","approved.2":"Journal","approved.3":"Give a gift","approved.4":"Support","approved.5":"Start for free","approved.6":"Your voice.","approved.7":"In another<br>language.","approved.8":"Everyday phrases. Pronunciation practice.<br>A language that becomes your own.","approved.9":"More than knowing.<br><em>Being able to say it.</em>","approved.10":"INSIDE PHRASEMAN","approved.11":"Download the app","approved.12":"Learn useful phrases, practice pronunciation and retain what you learn with spaced repetition.","approved.13":"A little more language.<br>A little more freedom.","approved.14":"Practise","approved.15":"About the app","approved.16":"Download Phraseman","approved.17":"Check your level","approved.19":"Discover more","approved.20":"Guides and stories","approved.21":"Plus and Pro","approved.22":"Gift access","approved.23":"Payment options in Russia","approved.24":"We are here","approved.25":"Frequently asked questions","approved.26":"Reviews","approved.27":"Privacy","approved.28":"Terms of use","approved.29":"Data deletion","approved.30":"Cookie settings","approved.31":"THE PHRASEMAN METHOD","approved.32":"From familiar words<br><em>to speaking for yourself.</em>","approved.33":"Whole phrases. Sound. Practice.<br>And review that helps you remember.","approved.34":"01 / UNDERSTAND","approved.35":"02 / SPEAK","approved.36":"03 / REMEMBER","approved.37":"Learn the phrase.<br>Understand the meaning.","approved.38":"Give words<br>your voice.","approved.39":"Recall it.<br>Keep moving forward.","approved.40":"Useful expressions for real situations. Listen and connect the words to what you want to say.","approved.41":"Practise pronunciation, repeat aloud and move on to dialogues. Go from recognizing a phrase to using it.","approved.42":"Flashcards and spaced review help you revisit what you have learned and remember useful phrases.","approved.43":"A bigger journey.<br><em>At your own pace.</em>","approved.44":"Explore the app","approved.45":"Everyone has<br><em>a starting point.</em>","approved.46":"When phrases<br><em>become your own.</em>","approved.47":"A gift that<br><em>helps them speak.</em>","approved.48":"Choose a gift","approved.49":"The essentials,<br><em>clearly explained.</em>","approved.50":"THE PHRASEMAN JOURNAL","approved.51":"Language.<br><em>In everyday terms.</em>","approved.52":"All articles","approved.53":"How to learn","approved.54":"How to speak","approved.55":"While traveling","approved.56":"There are no articles in this category yet.","approved.57":"YOUR STARTING POINT","approved.58":"Which language<br><em>shall we start with?</em>","approved.59":"12–20 adaptive questions to estimate your CEFR level.<br>And a personalized certificate with your result.","approved.60":"Test language","approved.61":"Take your time.<br>Use your own knowledge.","approved.62":"Choose the answer you think is right. If you do not know, skip it.","approved.63":"Start test →","approved.64":"Explore certificate designs →","approved.65":"YOUR ACHIEVEMENT","approved.66":"Your achievement.<br><em>Your style.</em>","approved.67":"Five certificate designs.<br>Your personal result is available after the test.","approved.68":"Check your level →","approved.69":"Download sample ↓","approved.70":"Champagne","approved.71":"Amethyst","approved.72":"Platinum","approved.73":"Terracotta","approved.74":"Sapphire","approved.75":"More language.<br><em>More possibilities.</em>","approved.76":"Choose how far you want to go.<br>Current prices are shown below.","approved.77":"START","approved.78":"FIND YOUR RHYTHM","approved.79":"STAY FOR LONGER","approved.80":"One month of Plus","approved.81":"One year of Plus","approved.82":"Pro for life","approved.83":"All lessons and topics","approved.84":"Access for your chosen period","approved.85":"Permanent access","approved.86":"One payment","approved.87":"Explore the complete learning experience","approved.88":"Choose Plus →","approved.89":"Choose Pro →","approved.90":"The final amount and terms are shown before payment.","approved.91":"Giving it as a gift?","approved.92":"Add a name and choose one of three certificates.","approved.93":"A good conversation<br><em>can make a difference.</em>","approved.94":"WE ARE HERE","approved.95":"SUPPORT IS HERE","approved.96":"Let’s find an answer.","approved.97":"Open the support form","approved.98":"This will open your email app.","approved.99":"PHRASEMAN · iOS AND ANDROID","approved.100":"Your voice.<br><em>Now with you.</em>","approved.101":"Download on the","approved.102":"Get it on","approved.103":"Open on another device","approved.104":"The next step:<br><em>your first lesson.</em>","approved.105":"Check your level →","approved.106":"CLEAR ANSWERS","approved.107":"A question is<br><em>a good place to start.</em>","approved.108":"Looks like a wrong turn","approved.109":"That page is unavailable.<br><em>Return home.</em>","approved.110":"Return home"});</script><script>window.I18N=window.I18N||{};window.I18N.en=Object.assign({},window.I18N.en||{},{"gift.link.title": "Your gift link is <span class=\"gold-accent\">ready</span>", "gift.link.sub": "Send it in any messenger. The link opens Phraseman and the gift turns on with one tap; if they already have Plus, it will be extended. A copy of the link is in your inbox.", "gift.link.copy": "Copy link", "gift.cancelled.title": "Gift <span class=\"gold-accent\">cancelled</span>", "gift.cancelled.sub": "The code and link no longer work. We’ll refund you manually — <a href=\"/contact/\">write to support</a> from the email you paid with if we haven’t contacted you yet.", "gift.cancel.btn": "Cancel gift", "gift.cancel.ask": "Cancel it? The code and link will stop working right away; we’ll refund you manually through support.", "gift.cancel.yes": "Yes, cancel", "gift.cancel.no": "Keep it"});</script></body></html>

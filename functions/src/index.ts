@@ -922,6 +922,8 @@ export {
   adminReplaceSyntheticGiftCertificate,
   adminSendPreparedGiftCertificate,
 } from "./web_checkout";
+// Подарок Plus через сайт (владелец 21.10): страница ссылки /g/<КОД>, отмена кода или ссылки до активации.
+export { giftLinkInfo, giftCancel } from "./web_gift_endpoints";
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
 export { webLeadCapture, webLeadNudgeCron } from "./web_leads";

@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-48:word:backup",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — backup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:backup:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — backup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:backup:audio",
+            "transcript": "backup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:backup:r1",
+              "targetText": "backup",
+              "meaningByLocale": {
+                "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
+                "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "backup",
+            "definitionByLocale": {
+              "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
+              "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We make a backup every day.",
+          "localizedMeaning": {
+            "ru": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+            "uk": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "make",
+            "a",
+            "backup",
+            "every",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i02:r1",
+            "text": "The backup is ready."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i02:r2",
+            "text": "The backup is missing."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i02:r3",
+            "text": "The release is ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i02:audio",
+            "transcript": "The backup is ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i02:r1",
+              "targetText": "The backup is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r2",
+              "targetText": "The backup is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r3",
+              "targetText": "The release is ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The backup is ready.",
+                "uk": "У записі звучить The backup is ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The backup is ready.",
+                "uk": "У записі звучить The backup is ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это ежедневная работа. Выберите форму make",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i03:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i03:r2",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i03:r3",
+            "text": "making"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это ежедневная работа. Выберите форму make",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это ежедневная работа. Выберите форму make",
+            "uk": "Це щоденна робота. Виберіть форму make"
+          },
+          "gappedTargetPhrase": "We ___ a backup every day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i03:r1",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r2",
+              "text": "makes"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r3",
+              "text": "making"
+            }
+          ],
+          "testedDimension": "Это ежедневная работа. Выберите форму make",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Это ежедневная работа. Выберите форму make",
+              "feedbackByLocale": {
+                "ru": "С we нужна make без s.",
+                "uk": "З we потрібна make без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Это ежедневная работа. Выберите форму make",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна make.",
+                "uk": "Тут потрібна make."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:server",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — server",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:server:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — server",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:server:audio",
+            "transcript": "server"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:server:r1",
+              "targetText": "server",
+              "meaningByLocale": {
+                "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
+                "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "server",
+            "definitionByLocale": {
+              "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
+              "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The server is working.",
+          "localizedMeaning": {
+            "ru": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+            "uk": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working"
+          },
+          "orderedTokens": [
+            "The",
+            "server",
+            "is",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i05:r1",
+            "text": "The server is in the office."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i05:r2",
+            "text": "The server is in the basement."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i05:r3",
+            "text": "The printer is in the office."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i05:audio",
+            "transcript": "The server is in the office."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i05:r1",
+              "targetText": "The server is in the office.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r2",
+              "targetText": "The server is in the basement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r3",
+              "targetText": "The printer is in the office.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The server is in the office.",
+                "uk": "У записі звучить The server is in the office."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The server is in the office.",
+                "uk": "У записі звучить The server is in the office."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сервер работает сейчас. Выберите вспомогательный глагол",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сервер работает сейчас. Выберите вспомогательный глагол",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сервер работает сейчас. Выберите вспомогательный глагол",
+            "uk": "Сервер працює зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "The server ___ working.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "Один сервер: is.",
+                "uk": "Один сервер: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Сервер работает сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:downtime",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — downtime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:downtime:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — downtime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:downtime:audio",
+            "transcript": "downtime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:downtime:r1",
+              "targetText": "downtime",
+              "meaningByLocale": {
+                "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
+                "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "downtime",
+            "definitionByLocale": {
+              "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
+              "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We track downtime every week.",
+          "localizedMeaning": {
+            "ru": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+            "uk": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "track",
+            "downtime",
+            "every",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i08:r1",
+            "text": "The downtime is planned."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i08:r2",
+            "text": "The downtime is unexpected."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i08:r3",
+            "text": "The launch is planned."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i08:audio",
+            "transcript": "The downtime is planned."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i08:r1",
+              "targetText": "The downtime is planned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r2",
+              "targetText": "The downtime is unexpected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r3",
+              "targetText": "The launch is planned.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The downtime is planned.",
+                "uk": "У записі звучить The downtime is planned."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The downtime is planned.",
+                "uk": "У записі звучить The downtime is planned."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это еженедельная работа. Выберите форму track",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i09:r1",
+            "text": "track"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i09:r2",
+            "text": "tracks"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i09:r3",
+            "text": "tracking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это еженедельная работа. Выберите форму track",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это еженедельная работа. Выберите форму track",
+            "uk": "Це щотижнева робота. Виберіть форму track"
+          },
+          "gappedTargetPhrase": "We ___ downtime every week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i09:r1",
+              "text": "track"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r2",
+              "text": "tracks"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r3",
+              "text": "tracking"
+            }
+          ],
+          "testedDimension": "Это еженедельная работа. Выберите форму track",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Это еженедельная работа. Выберите форму track",
+              "feedbackByLocale": {
+                "ru": "С we нужна track без s.",
+                "uk": "З we потрібна track без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Это еженедельная работа. Выберите форму track",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна track.",
+                "uk": "Тут потрібна track."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:maintenance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — maintenance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:maintenance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — maintenance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:maintenance:audio",
+            "transcript": "maintenance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:maintenance:r1",
+              "targetText": "maintenance",
+              "meaningByLocale": {
+                "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
+                "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maintenance",
+            "definitionByLocale": {
+              "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
+              "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are doing maintenance.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+            "uk": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "doing",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i11:r1",
+            "text": "The maintenance is complete."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i11:r2",
+            "text": "The maintenance is delayed."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i11:r3",
+            "text": "The rollout is complete."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i11:audio",
+            "transcript": "The maintenance is complete."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i11:r1",
+              "targetText": "The maintenance is complete.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r2",
+              "targetText": "The maintenance is delayed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r3",
+              "targetText": "The rollout is complete.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The maintenance is complete.",
+                "uk": "У записі звучить The maintenance is complete."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The maintenance is complete.",
+                "uk": "У записі звучить The maintenance is complete."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Работа идёт сейчас. Выберите форму do",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i12:r1",
+            "text": "doing"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i12:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i12:r3",
+            "text": "does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Работа идёт сейчас. Выберите форму do",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Работа идёт сейчас. Выберите форму do",
+            "uk": "Робота триває зараз. Виберіть форму do"
+          },
+          "gappedTargetPhrase": "We are ___ maintenance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i12:r1",
+              "text": "doing"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r3",
+              "text": "does"
+            }
+          ],
+          "testedDimension": "Работа идёт сейчас. Выберите форму do",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Работа идёт сейчас. Выберите форму do",
+              "feedbackByLocale": {
+                "ru": "После are для текущей работы нужна doing.",
+                "uk": "Після are для поточної роботи потрібна doing."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Работа идёт сейчас. Выберите форму do",
+              "feedbackByLocale": {
+                "ru": "Does не подходит после are; нужна doing.",
+                "uk": "Does не підходить після are; потрібна doing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-48:i13:p1",
+              "target": "backup",
+              "meaningByLocale": {
+                "ru": "резервная копия",
+                "uk": "резервна копія"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p2",
+              "target": "server",
+              "meaningByLocale": {
+                "ru": "сервер",
+                "uk": "сервер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p3",
+              "target": "downtime",
+              "meaningByLocale": {
+                "ru": "время простоя",
+                "uk": "час простою"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p4",
+              "target": "maintenance",
+              "meaningByLocale": {
+                "ru": "техническое обслуживание",
+                "uk": "технічне обслуговування"
+              }
+            }
+          ],
+          "leftColumn": [
+            "backup",
+            "server",
+            "downtime",
+            "maintenance"
+          ],
+          "rightColumn": [
+            "резервная копия",
+            "сервер",
+            "время простоя",
+            "техническое обслуживание"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i14:audio",
+            "transcript": "We are doing maintenance."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are doing maintenance.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "doing",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, как часто вы сохраняете копию данных. Скажите: «Мы делаем резервную копию каждый день»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, как часто вы сохраняете копию данных. Скажите: «Мы делаем резервную копию каждый день»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i15:audio",
+            "transcript": "We make a backup every day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We make a backup every day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The server is working.",
+          "localizedMeaning": {
+            "ru": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+            "uk": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working"
+          },
+          "orderedTokens": [
+            "The",
+            "server",
+            "is",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с коллегами проверяете систему в назначенное время обслуживания. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы проводим техническое обслуживание»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с коллегами проверяете систему в назначенное время обслуживания. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы проводим техническое обслуживание»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i17:audio",
+            "transcript": "We are doing maintenance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are doing maintenance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-48:word:backup",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — backup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:backup:audio"
+        ],
+        "accessibilityLabel": "Картка слова — backup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:backup:audio",
+            "transcript": "backup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:backup:r1",
+              "targetText": "backup",
+              "meaningByLocale": {
+                "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
+                "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "backup",
+            "definitionByLocale": {
+              "ru": "«резервная копия». We make a backup every day. — «Мы делаем резервную копию каждый день». Копия данных для восстановления.",
+              "uk": "«резервна копія». We make a backup every day. — «Ми робимо резервну копію щодня». Копія даних для відновлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We make a backup every day.",
+          "localizedMeaning": {
+            "ru": "Скажите о ежедневной привычке команды: «Мы делаем резервную копию каждый день». Поставьте every day в конце",
+            "uk": "Скажіть про щоденну звичку команди: «Ми робимо резервну копію щодня». Поставте every day у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "make",
+            "a",
+            "backup",
+            "every",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i02:r1",
+            "text": "The backup is ready."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i02:r2",
+            "text": "The backup is missing."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i02:r3",
+            "text": "The release is ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i02:audio",
+            "transcript": "The backup is ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i02:r1",
+              "targetText": "The backup is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r2",
+              "targetText": "The backup is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r3",
+              "targetText": "The release is ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The backup is ready.",
+                "uk": "У записі звучить The backup is ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The backup is ready.",
+                "uk": "У записі звучить The backup is ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це щоденна робота. Виберіть форму make",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i03:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i03:r2",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i03:r3",
+            "text": "making"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це щоденна робота. Виберіть форму make",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это ежедневная работа. Выберите форму make",
+            "uk": "Це щоденна робота. Виберіть форму make"
+          },
+          "gappedTargetPhrase": "We ___ a backup every day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i03:r1",
+              "text": "make"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r2",
+              "text": "makes"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r3",
+              "text": "making"
+            }
+          ],
+          "testedDimension": "Це щоденна робота. Виберіть форму make",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Це щоденна робота. Виберіть форму make",
+              "feedbackByLocale": {
+                "ru": "С we нужна make без s.",
+                "uk": "З we потрібна make без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Це щоденна робота. Виберіть форму make",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна make.",
+                "uk": "Тут потрібна make."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:server",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — server",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:server:audio"
+        ],
+        "accessibilityLabel": "Картка слова — server",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:server:audio",
+            "transcript": "server"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:server:r1",
+              "targetText": "server",
+              "meaningByLocale": {
+                "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
+                "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "server",
+            "definitionByLocale": {
+              "ru": "«сервер». The server is working. — «Сервер работает». Здесь компьютер, который предоставляет данные другим устройствам.",
+              "uk": "«сервер». The server is working. — «Сервер працює». Тут комп’ютер, який надає дані іншим пристроям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The server is working.",
+          "localizedMeaning": {
+            "ru": "Вы только что проверили систему. Сообщите о текущем состоянии: «Сервер работает». Используйте is working",
+            "uk": "Ви щойно перевірили систему. Повідомте про поточний стан: «Сервер працює». Використайте is working"
+          },
+          "orderedTokens": [
+            "The",
+            "server",
+            "is",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i05:r1",
+            "text": "The server is in the office."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i05:r2",
+            "text": "The server is in the basement."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i05:r3",
+            "text": "The printer is in the office."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i05:audio",
+            "transcript": "The server is in the office."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i05:r1",
+              "targetText": "The server is in the office.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r2",
+              "targetText": "The server is in the basement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r3",
+              "targetText": "The printer is in the office.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The server is in the office.",
+                "uk": "У записі звучить The server is in the office."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The server is in the office.",
+                "uk": "У записі звучить The server is in the office."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сервер працює зараз. Виберіть допоміжне дієслово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сервер працює зараз. Виберіть допоміжне дієслово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сервер работает сейчас. Выберите вспомогательный глагол",
+            "uk": "Сервер працює зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "The server ___ working.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "Один сервер: is.",
+                "uk": "Один сервер: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Сервер працює зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:downtime",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — downtime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:downtime:audio"
+        ],
+        "accessibilityLabel": "Картка слова — downtime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:downtime:audio",
+            "transcript": "downtime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:downtime:r1",
+              "targetText": "downtime",
+              "meaningByLocale": {
+                "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
+                "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "downtime",
+            "definitionByLocale": {
+              "ru": "«время простоя». We track downtime every week. — «Мы отслеживаем время простоя каждую неделю». Здесь время, когда система недоступна для работы.",
+              "uk": "«час простою». We track downtime every week. — «Ми відстежуємо час простою щотижня». Тут час, коли система недоступна для роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We track downtime every week.",
+          "localizedMeaning": {
+            "ru": "Команда еженедельно отслеживает, сколько система не работала. Скажите: «Мы отслеживаем время простоя каждую неделю». Поставьте every week в конце",
+            "uk": "Команда щотижня відстежує, скільки система не працювала. Скажіть: «Ми відстежуємо час простою щотижня». Поставте every week у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "track",
+            "downtime",
+            "every",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i08:r1",
+            "text": "The downtime is planned."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i08:r2",
+            "text": "The downtime is unexpected."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i08:r3",
+            "text": "The launch is planned."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i08:audio",
+            "transcript": "The downtime is planned."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i08:r1",
+              "targetText": "The downtime is planned.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r2",
+              "targetText": "The downtime is unexpected.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r3",
+              "targetText": "The launch is planned.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The downtime is planned.",
+                "uk": "У записі звучить The downtime is planned."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The downtime is planned.",
+                "uk": "У записі звучить The downtime is planned."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це щотижнева робота. Виберіть форму track",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i09:r1",
+            "text": "track"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i09:r2",
+            "text": "tracks"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i09:r3",
+            "text": "tracking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це щотижнева робота. Виберіть форму track",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это еженедельная работа. Выберите форму track",
+            "uk": "Це щотижнева робота. Виберіть форму track"
+          },
+          "gappedTargetPhrase": "We ___ downtime every week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i09:r1",
+              "text": "track"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r2",
+              "text": "tracks"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r3",
+              "text": "tracking"
+            }
+          ],
+          "testedDimension": "Це щотижнева робота. Виберіть форму track",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Це щотижнева робота. Виберіть форму track",
+              "feedbackByLocale": {
+                "ru": "С we нужна track без s.",
+                "uk": "З we потрібна track без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Це щотижнева робота. Виберіть форму track",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна track.",
+                "uk": "Тут потрібна track."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:word:maintenance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — maintenance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:word:maintenance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — maintenance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:word:maintenance:audio",
+            "transcript": "maintenance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:word:maintenance:r1",
+              "targetText": "maintenance",
+              "meaningByLocale": {
+                "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
+                "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maintenance",
+            "definitionByLocale": {
+              "ru": "«техническое обслуживание». We are doing maintenance. — «Мы проводим техническое обслуживание». Работа по поддержанию системы в исправном состоянии.",
+              "uk": "«технічне обслуговування». We are doing maintenance. — «Ми проводимо технічне обслуговування». Робота з підтримання системи у справному стані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are doing maintenance.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, чем команда занята сейчас. Скажите: «Мы проводим техническое обслуживание»",
+            "uk": "Колега запитує, чим команда зайнята зараз. Скажіть: «Ми проводимо технічне обслуговування»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "doing",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i11:r1",
+            "text": "The maintenance is complete."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i11:r2",
+            "text": "The maintenance is delayed."
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i11:r3",
+            "text": "The rollout is complete."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i11:audio",
+            "transcript": "The maintenance is complete."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-48:i11:r1",
+              "targetText": "The maintenance is complete.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r2",
+              "targetText": "The maintenance is delayed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r3",
+              "targetText": "The rollout is complete.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The maintenance is complete.",
+                "uk": "У записі звучить The maintenance is complete."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The maintenance is complete.",
+                "uk": "У записі звучить The maintenance is complete."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Робота триває зараз. Виберіть форму do",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-48:i12:r1",
+            "text": "doing"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i12:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-10:session-48:i12:r3",
+            "text": "does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робота триває зараз. Виберіть форму do",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Работа идёт сейчас. Выберите форму do",
+            "uk": "Робота триває зараз. Виберіть форму do"
+          },
+          "gappedTargetPhrase": "We are ___ maintenance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-48:i12:r1",
+              "text": "doing"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r2",
+              "text": "do"
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r3",
+              "text": "does"
+            }
+          ],
+          "testedDimension": "Робота триває зараз. Виберіть форму do",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Робота триває зараз. Виберіть форму do",
+              "feedbackByLocale": {
+                "ru": "После are для текущей работы нужна doing.",
+                "uk": "Після are для поточної роботи потрібна doing."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Робота триває зараз. Виберіть форму do",
+              "feedbackByLocale": {
+                "ru": "Does не подходит после are; нужна doing.",
+                "uk": "Does не підходить після are; потрібна doing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-48:i13:p1",
+              "target": "backup",
+              "meaningByLocale": {
+                "ru": "резервная копия",
+                "uk": "резервна копія"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p2",
+              "target": "server",
+              "meaningByLocale": {
+                "ru": "сервер",
+                "uk": "сервер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p3",
+              "target": "downtime",
+              "meaningByLocale": {
+                "ru": "время простоя",
+                "uk": "час простою"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-48:i13:p4",
+              "target": "maintenance",
+              "meaningByLocale": {
+                "ru": "техническое обслуживание",
+                "uk": "технічне обслуговування"
+              }
+            }
+          ],
+          "leftColumn": [
+            "backup",
+            "server",
+            "downtime",
+            "maintenance"
+          ],
+          "rightColumn": [
+            "резервна копія",
+            "сервер",
+            "час простою",
+            "технічне обслуговування"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i14:audio",
+            "transcript": "We are doing maintenance."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are doing maintenance.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "doing",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, як часто ви зберігаєте копію даних. Скажіть: «Ми робимо резервну копію щодня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, як часто ви зберігаєте копію даних. Скажіть: «Ми робимо резервну копію щодня»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i15:audio",
+            "transcript": "We make a backup every day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We make a backup every day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The server is working.",
+          "localizedMeaning": {
+            "ru": "Вы проверили работу сервера в данный момент. Скажите: «Сервер работает». Используйте is working",
+            "uk": "Ви перевірили роботу сервера в цю мить. Скажіть: «Сервер працює». Використайте is working"
+          },
+          "orderedTokens": [
+            "The",
+            "server",
+            "is",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-48:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з колегами перевіряєте систему в призначений час обслуговування. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми проводимо технічне обслуговування»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з колегами перевіряєте систему в призначений час обслуговування. Керівник телефонує й запитує, чим ви зайняті. Скажіть: «Ми проводимо технічне обслуговування»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-48:i17:audio",
+            "transcript": "We are doing maintenance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are doing maintenance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-48:word:backup",
+      "correctText": "backup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i01",
+      "correctText": "We make a backup every day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i02",
+      "correctText": "The backup is ready.",
+      "correctResponseId": "en:lesson-10:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i03",
+      "correctText": "make",
+      "correctResponseId": "en:lesson-10:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:word:server",
+      "correctText": "server",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i04",
+      "correctText": "The server is working.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i05",
+      "correctText": "The server is in the office.",
+      "correctResponseId": "en:lesson-10:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:word:downtime",
+      "correctText": "downtime",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i07",
+      "correctText": "We track downtime every week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i08",
+      "correctText": "The downtime is planned.",
+      "correctResponseId": "en:lesson-10:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i09",
+      "correctText": "track",
+      "correctResponseId": "en:lesson-10:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:word:maintenance",
+      "correctText": "maintenance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i10",
+      "correctText": "We are doing maintenance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i11",
+      "correctText": "The maintenance is complete.",
+      "correctResponseId": "en:lesson-10:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i12",
+      "correctText": "doing",
+      "correctResponseId": "en:lesson-10:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i14",
+      "correctText": "We are doing maintenance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i15",
+      "correctText": "We make a backup every day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i16",
+      "correctText": "The server is working.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-48:i17",
+      "correctText": "We are doing maintenance.",
+      "correctResponseId": null
+    }
+  ]
+}

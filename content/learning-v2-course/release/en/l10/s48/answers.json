@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-48:word:backup",
+    "correctText": "backup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i01",
+    "correctText": "We make a backup every day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i02",
+    "correctText": "The backup is ready.",
+    "correctResponseId": "en:lesson-10:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i03",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-10:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:word:server",
+    "correctText": "server",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i04",
+    "correctText": "The server is working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i05",
+    "correctText": "The server is in the office.",
+    "correctResponseId": "en:lesson-10:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:word:downtime",
+    "correctText": "downtime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i07",
+    "correctText": "We track downtime every week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i08",
+    "correctText": "The downtime is planned.",
+    "correctResponseId": "en:lesson-10:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i09",
+    "correctText": "track",
+    "correctResponseId": "en:lesson-10:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:word:maintenance",
+    "correctText": "maintenance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i10",
+    "correctText": "We are doing maintenance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i11",
+    "correctText": "The maintenance is complete.",
+    "correctResponseId": "en:lesson-10:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i12",
+    "correctText": "doing",
+    "correctResponseId": "en:lesson-10:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i13",
+    "correctText": "en:lesson-10:session-48:i13:p1=backup\nen:lesson-10:session-48:i13:p2=server\nen:lesson-10:session-48:i13:p3=downtime\nen:lesson-10:session-48:i13:p4=maintenance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i14",
+    "correctText": "We are doing maintenance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i15",
+    "correctText": "We make a backup every day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i16",
+    "correctText": "The server is working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-48:i17",
+    "correctText": "We are doing maintenance.",
+    "correctResponseId": null
+  }
+]

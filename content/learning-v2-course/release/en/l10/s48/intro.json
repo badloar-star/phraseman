@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "We make a backup every day; The server is working; We are doing maintenance",
+    "uk": "We make a backup every day; The server is working; We are doing maintenance"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сохраняем копию",
+        "uk": "Зберігаємо копію"
+      },
+      "bodyByLocale": {
+        "ru": "Backup — «резервная копия» данных. Команда делает её ежедневно: We make a backup every day — «Мы делаем резервную копию каждый день». Это регулярное действие: Present Simple. Every day здесь стоит в конце.",
+        "uk": "Backup — «резервна копія» даних. Команда робить її щодня: We make a backup every day — «Ми робимо резервну копію щодня». Це регулярна дія: Present Simple. Every day тут стоїть у кінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r1",
+              "text": "We make a backup every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r2",
+              "text": "We makes a backup every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r3",
+              "text": "We making a backup every day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r1",
+              "text": "We make a backup every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r2",
+              "text": "We makes a backup every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro1:r3",
+              "text": "We making a backup every day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Система сейчас работает",
+        "uk": "Система зараз працює"
+      },
+      "bodyByLocale": {
+        "ru": "Server — «сервер», компьютер или программа, предоставляющие данные другим устройствам. Коллега просит проверить его прямо сейчас. Проверка успешна: The server is working — «Сервер работает». Is working описывает работу в данный момент.",
+        "uk": "Server — «сервер», комп’ютер або програма, що надають дані іншим пристроям. Колега просить перевірити його саме зараз. Перевірка успішна: The server is working — «Сервер працює». Is working описує роботу в цю мить."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r1",
+              "text": "The server is working."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r2",
+              "text": "The server are working."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r3",
+              "text": "The server is work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r1",
+              "text": "The server is working."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r2",
+              "text": "The server are working."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro2:r3",
+              "text": "The server is work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обслуживание идёт",
+        "uk": "Обслуговування триває"
+      },
+      "bodyByLocale": {
+        "ru": "Maintenance — «техническое обслуживание». Команда сейчас проверяет систему: We are doing maintenance — «Мы проводим техническое обслуживание». Are doing обозначает текущую работу. Maintenance здесь неисчисляемое: артикль a не нужен.",
+        "uk": "Maintenance — «технічне обслуговування». Команда зараз перевіряє систему: We are doing maintenance — «Ми проводимо технічне обслуговування». Are doing позначає поточну роботу. Maintenance тут незлічуване: артикль a не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r1",
+              "text": "We are doing maintenance."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r2",
+              "text": "We doing maintenance."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r3",
+              "text": "We are do maintenance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r1",
+              "text": "We are doing maintenance."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r2",
+              "text": "We doing maintenance."
+            },
+            {
+              "responseId": "en:lesson-10:session-48:intro3:r3",
+              "text": "We are do maintenance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7cd9699ce3a918cbfe4c20def2d98511368fe10e36caa30af8fa1d413b1e5263"
+}

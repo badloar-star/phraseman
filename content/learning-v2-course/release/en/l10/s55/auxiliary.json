@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-55:intro1:r2": {
-          "ru": "С I нужна set без s.",
-          "uk": "З I потрібна set без s."
+          "ru": "Перед untidy нужна связка is.",
+          "uk": "Перед untidy потрібна зв’язка is."
         },
         "en:lesson-10:session-55:intro1:r3": {
-          "ru": "Здесь нужна личная форма set.",
-          "uk": "Тут потрібна особова форма set."
+          "ru": "Одна комната: is, не are.",
+          "uk": "Одна кімната: is, не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-55:intro2:r2": {
-          "ru": "Перед changing нужна am.",
-          "uk": "Перед changing потрібна am."
+          "ru": "Перед wearing нужна am.",
+          "uk": "Перед wearing потрібна am."
         },
         "en:lesson-10:session-55:intro2:r3": {
-          "ru": "Правильно changing, без e.",
-          "uk": "Правильно changing, без e."
+          "ru": "После am нужна wearing.",
+          "uk": "Після am потрібна wearing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-55:intro3:r2": {
-          "ru": "Одно окно: is.",
-          "uk": "Одне вікно: is."
+          "ru": "После I нужна am.",
+          "uk": "Після I потрібна am."
         },
         "en:lesson-10:session-55:intro3:r3": {
-          "ru": "Перед blocking нужна is.",
-          "uk": "Перед blocking потрібна is."
+          "ru": "С I нужна am, не are.",
+          "uk": "З I потрібна am, не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9233820f32d62fc34a15a1c7d994bc8ec0be6cb4d8178a32e33c58d7da83a053"
+  "auxiliaryFingerprint": "550e3e0c07153c2ace778826da013361f15d495daa8184f95c7a6f46edde0cec"
 }

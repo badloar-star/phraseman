@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-52:word:phase",
-    "correctText": "phase",
+    "interactionId": "en:lesson-10:session-52:word:somebody",
+    "correctText": "somebody",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i01",
-    "correctText": "This phase lasts a week.",
+    "correctText": "Somebody is knocking.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i02",
-    "correctText": "The next phase starts tomorrow.",
+    "correctText": "Somebody is calling you.",
     "correctResponseId": "en:lesson-10:session-52:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-52:i03",
-    "correctText": "lasts",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-52:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-52:word:checkpoint",
-    "correctText": "checkpoint",
+    "interactionId": "en:lesson-10:session-52:word:nobody",
+    "correctText": "nobody",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i04",
-    "correctText": "The next checkpoint is on Friday.",
+    "correctText": "Nobody is at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i05",
-    "correctText": "The checkpoint is tomorrow.",
+    "correctText": "Nobody is in the kitchen.",
     "correctResponseId": "en:lesson-10:session-52:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-52:i06",
-    "correctText": "on",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-52:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-52:word:roadmap",
-    "correctText": "roadmap",
+    "interactionId": "en:lesson-10:session-52:word:everywhere",
+    "correctText": "everywhere",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i07",
-    "correctText": "We review the roadmap every month.",
+    "correctText": "I am looking everywhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i08",
-    "correctText": "The roadmap is on the website.",
+    "correctText": "There are toys everywhere.",
     "correctResponseId": "en:lesson-10:session-52:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-52:i09",
-    "correctText": "review",
+    "correctText": "looking",
     "correctResponseId": "en:lesson-10:session-52:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-52:word:bottleneck",
-    "correctText": "bottleneck",
+    "interactionId": "en:lesson-10:session-52:word:anywhere",
+    "correctText": "anywhere",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i10",
-    "correctText": "We are investigating a bottleneck.",
+    "correctText": "I cannot find my keys anywhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i11",
-    "correctText": "The bottleneck is in production.",
+    "correctText": "I cannot find my phone anywhere.",
     "correctResponseId": "en:lesson-10:session-52:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-52:i12",
-    "correctText": "investigating",
+    "correctText": "find",
     "correctResponseId": "en:lesson-10:session-52:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-52:i13",
-    "correctText": "en:lesson-10:session-52:i13:p1=phase\nen:lesson-10:session-52:i13:p2=checkpoint\nen:lesson-10:session-52:i13:p3=roadmap\nen:lesson-10:session-52:i13:p4=bottleneck",
+    "correctText": "en:lesson-10:session-52:i13:p1=somebody\nen:lesson-10:session-52:i13:p2=nobody\nen:lesson-10:session-52:i13:p3=everywhere\nen:lesson-10:session-52:i13:p4=anywhere",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i14",
-    "correctText": "We are investigating a bottleneck.",
+    "correctText": "Somebody is knocking.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i15",
-    "correctText": "We review the roadmap every month.",
+    "correctText": "Nobody is at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i16",
-    "correctText": "This phase lasts a week.",
+    "correctText": "I am looking everywhere.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-52:i17",
-    "correctText": "We are investigating a bottleneck.",
+    "correctText": "I cannot find my keys anywhere.",
     "correctResponseId": null
   }
 ]

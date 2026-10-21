@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-52",
   "learningOutcomeByLocale": {
-    "ru": "This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck",
-    "uk": "This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck"
+    "ru": "Somebody is knocking; Nobody is at home; I am looking everywhere",
+    "uk": "Somebody is knocking; Nobody is at home; I am looking everywhere"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Длительность этапа",
-        "uk": "Тривалість етапу"
+        "ru": "Стук в дверь",
+        "uk": "Стукіт у двері"
       },
       "bodyByLocale": {
-        "ru": "Phase — «этап», часть процесса или проекта. По плану этот этап длится неделю: This phase lasts a week — «Этот этап длится неделю». Установленную длительность описываем через Present Simple. После this phase нужна lasts с s.",
-        "uk": "Phase — «етап», частина процесу або проєкту. За планом цей етап триває тиждень: This phase lasts a week — «Цей етап триває тиждень». Установлену тривалість описуємо через Present Simple. Після this phase потрібна lasts із s."
+        "ru": "Вы слышите стук, но ещё не знаете, кто пришёл. Somebody — «кто-то»: Somebody is knocking — «Кто-то стучит». Стук слышен сейчас, поэтому is + knocking. Somebody обозначает неизвестного человека и согласуется с is.",
+        "uk": "Ви чуєте стукіт, але ще не знаєте, хто прийшов. Somebody — «хтось»: Somebody is knocking — «Хтось стукає». Стукіт чути зараз, тому is + knocking. Somebody позначає невідому людину й узгоджується з is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-52:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-52:intro1:r1",
-              "text": "This phase lasts a week."
+              "text": "Somebody is knocking."
             },
             {
               "responseId": "en:lesson-10:session-52:intro1:r2",
-              "text": "This phase last a week."
+              "text": "Somebody are knocking."
             },
             {
               "responseId": "en:lesson-10:session-52:intro1:r3",
-              "text": "This phase lasting a week."
+              "text": "Somebody knocking."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-52:intro1:r1",
-              "text": "This phase lasts a week."
+              "text": "Somebody is knocking."
             },
             {
               "responseId": "en:lesson-10:session-52:intro1:r2",
-              "text": "This phase last a week."
+              "text": "Somebody are knocking."
             },
             {
               "responseId": "en:lesson-10:session-52:intro1:r3",
-              "text": "This phase lasting a week."
+              "text": "Somebody knocking."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Регулярно обсуждаем план",
-        "uk": "Регулярно обговорюємо план"
+        "ru": "Дома пусто",
+        "uk": "Удома порожньо"
       },
       "bodyByLocale": {
-        "ru": "Roadmap здесь — «план развития», общий план основных этапов и целей проекта. Команда обсуждает его ежемесячно: We review the roadmap every month — «Мы пересматриваем план развития каждый месяц». Это регулярная работа: Present Simple.",
-        "uk": "Roadmap тут — «план розвитку», загальний план основних етапів і цілей проєкту. Команда обговорює його щомісяця: We review the roadmap every month — «Ми переглядаємо план розвитку щомісяця». Це регулярна робота: Present Simple."
+        "ru": "Вы звоните соседу: все члены семьи ушли. Nobody — «никто»: Nobody is at home — «Никого нет дома». Nobody уже выражает отрицание, поэтому not не добавляем. После nobody здесь нужна is.",
+        "uk": "Ви телефонуєте сусідові: усі члени родини пішли. Nobody — «ніхто»: Nobody is at home — «Нікого немає вдома». Nobody вже виражає заперечення, тому not не додаємо. Після nobody тут потрібна is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-52:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-52:intro2:r1",
-              "text": "We review the roadmap every month."
+              "text": "Nobody is at home."
             },
             {
               "responseId": "en:lesson-10:session-52:intro2:r2",
-              "text": "We reviews the roadmap every month."
+              "text": "Nobody are at home."
             },
             {
               "responseId": "en:lesson-10:session-52:intro2:r3",
-              "text": "We reviewing the roadmap every month."
+              "text": "Nobody is not at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-52:intro2:r1",
-              "text": "We review the roadmap every month."
+              "text": "Nobody is at home."
             },
             {
               "responseId": "en:lesson-10:session-52:intro2:r2",
-              "text": "We reviews the roadmap every month."
+              "text": "Nobody are at home."
             },
             {
               "responseId": "en:lesson-10:session-52:intro2:r3",
-              "text": "We reviewing the roadmap every month."
+              "text": "Nobody is not at home."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищем причину задержки",
-        "uk": "Шукаємо причину затримки"
+        "ru": "Ищу ключи",
+        "uk": "Шукаю ключі"
       },
       "bodyByLocale": {
-        "ru": "Bottleneck — «узкое место»: участок процесса, который ограничивает скорость всей работы. Сейчас команда выясняет, почему задания задерживаются на одном этапе: We are investigating a bottleneck — «Мы изучаем узкое место». Текущая работа: are + investigating. У investigate перед ing убираем e.",
-        "uk": "Bottleneck — «вузьке місце»: ділянка процесу, яка обмежує швидкість усієї роботи. Зараз команда з’ясовує, чому завдання затримуються на одному етапі: We are investigating a bottleneck — «Ми досліджуємо вузьке місце». Поточна робота: are + investigating. У investigate перед ing прибираємо e."
+        "ru": "Everywhere — «везде». Вы сейчас ищете ключи во всех комнатах: I am looking everywhere — «Я ищу везде». Текущий поиск: am + looking. Друг спрашивает о результате. Anywhere — «где-нибудь», а с отрицанием «нигде»: I cannot find my keys anywhere — «Я нигде не могу найти свои ключи».",
+        "uk": "Everywhere — «скрізь». Ви зараз шукаєте ключі в усіх кімнатах: I am looking everywhere — «Я шукаю скрізь». Поточний пошук: am + looking. Друг запитує про результат. Anywhere — «де-небудь», а із запереченням «ніде»: I cannot find my keys anywhere — «Я ніде не можу знайти свої ключі»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-52:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-52:intro3:r1",
-              "text": "We are investigating a bottleneck."
+              "text": "I am looking everywhere."
             },
             {
               "responseId": "en:lesson-10:session-52:intro3:r2",
-              "text": "We investigating a bottleneck."
+              "text": "I looking everywhere."
             },
             {
               "responseId": "en:lesson-10:session-52:intro3:r3",
-              "text": "We are investigateing a bottleneck."
+              "text": "I am look everywhere."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-52:intro3:r1",
-              "text": "We are investigating a bottleneck."
+              "text": "I am looking everywhere."
             },
             {
               "responseId": "en:lesson-10:session-52:intro3:r2",
-              "text": "We investigating a bottleneck."
+              "text": "I looking everywhere."
             },
             {
               "responseId": "en:lesson-10:session-52:intro3:r3",
-              "text": "We are investigateing a bottleneck."
+              "text": "I am look everywhere."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6e2cbb358e6400e4d52495e60a75e29e367885489a6d58bf7af7641f81a3f964"
+  "introFingerprint": "579f470ae0104eeb80f12b1010a33d116d44043993d2cbe3c46928b515d9833f"
 }

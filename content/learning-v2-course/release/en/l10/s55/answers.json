@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-55:word:reminder",
-    "correctText": "reminder",
+    "interactionId": "en:lesson-10:session-55:word:untidy",
+    "correctText": "untidy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i01",
-    "correctText": "I set a reminder every evening.",
+    "correctText": "My room is untidy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i02",
-    "correctText": "The reminder is for tomorrow.",
+    "correctText": "Your desk is untidy.",
     "correctResponseId": "en:lesson-10:session-55:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-55:i03",
-    "correctText": "set",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-55:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-55:word:alert",
-    "correctText": "alert",
+    "interactionId": "en:lesson-10:session-55:word:sleeveless",
+    "correctText": "sleeveless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i04",
-    "correctText": "The alert is on my phone.",
+    "correctText": "I am wearing a sleeveless shirt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i05",
-    "correctText": "The alert is about the weather.",
+    "correctText": "She is wearing a sleeveless dress.",
     "correctResponseId": "en:lesson-10:session-55:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-55:i06",
-    "correctText": "is",
+    "correctText": "wearing",
     "correctResponseId": "en:lesson-10:session-55:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-55:word:ringtone",
-    "correctText": "ringtone",
+    "interactionId": "en:lesson-10:session-55:word:uncomfortable",
+    "correctText": "uncomfortable",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i07",
-    "correctText": "I am changing my ringtone.",
+    "correctText": "These boots are uncomfortable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i08",
-    "correctText": "The ringtone is loud.",
+    "correctText": "This chair is uncomfortable.",
     "correctResponseId": "en:lesson-10:session-55:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-55:i09",
-    "correctText": "changing",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-55:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-55:word:pop-up",
-    "correctText": "pop-up",
+    "interactionId": "en:lesson-10:session-55:word:yet",
+    "correctText": "yet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i10",
-    "correctText": "A pop-up is blocking the screen.",
+    "correctText": "I am not ready yet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i11",
-    "correctText": "The pop-up is still there.",
+    "correctText": "We are not ready yet.",
     "correctResponseId": "en:lesson-10:session-55:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-55:i12",
-    "correctText": "is",
+    "correctText": "am",
     "correctResponseId": "en:lesson-10:session-55:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-55:i13",
-    "correctText": "en:lesson-10:session-55:i13:p1=reminder\nen:lesson-10:session-55:i13:p2=alert\nen:lesson-10:session-55:i13:p3=ringtone\nen:lesson-10:session-55:i13:p4=pop-up",
+    "correctText": "en:lesson-10:session-55:i13:p1=untidy\nen:lesson-10:session-55:i13:p2=sleeveless\nen:lesson-10:session-55:i13:p3=uncomfortable\nen:lesson-10:session-55:i13:p4=yet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i14",
-    "correctText": "I am changing my ringtone.",
+    "correctText": "I am not ready yet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i15",
-    "correctText": "I set a reminder every evening.",
+    "correctText": "These boots are uncomfortable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i16",
-    "correctText": "The alert is on my phone.",
+    "correctText": "These boots are uncomfortable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-55:i17",
-    "correctText": "I am changing my ringtone.",
+    "correctText": "I am not ready yet.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-55",
   "learningOutcomeByLocale": {
-    "ru": "I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen",
-    "uk": "I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen"
+    "ru": "My room is untidy; I am wearing a sleeveless shirt; I am not ready yet",
+    "uk": "My room is untidy; I am wearing a sleeveless shirt; I am not ready yet"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вечерняя привычка",
-        "uk": "Вечірня звичка"
+        "ru": "В комнате беспорядок",
+        "uk": "У кімнаті безлад"
       },
       "bodyByLocale": {
-        "ru": "Reminder — «напоминание». Каждый вечер вы ставите напоминание на следующий день: I set a reminder every evening — «Я ставлю напоминание каждый вечер». Это привычка: Present Simple. С I нужна set без s.",
-        "uk": "Reminder — «нагадування». Щовечора ви встановлюєте нагадування на наступний день: I set a reminder every evening — «Я встановлюю нагадування щовечора». Це звичка: Present Simple. З I потрібна set без s."
+        "ru": "Друг ждёт у двери, а вы ищете одежду среди вещей на стуле. Untidy — «неопрятный, неубранный»: My room is untidy — «В моей комнате беспорядок». Это состояние комнаты, поэтому is без being. Вы убираете вещи прямо сейчас: I am tidying my room.",
+        "uk": "Друг чекає біля дверей, а ви шукаєте одяг серед речей на стільці. Untidy — «неохайний, неприбраний»: My room is untidy — «У моїй кімнаті безлад». Це стан кімнати, тому is без being. Ви прибираєте речі саме зараз: I am tidying my room."
       },
       "question": {
         "interactionId": "en:lesson-10:session-55:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-55:intro1:r1",
-              "text": "I set a reminder every evening."
+              "text": "My room is untidy."
             },
             {
               "responseId": "en:lesson-10:session-55:intro1:r2",
-              "text": "I sets a reminder every evening."
+              "text": "My room untidy."
             },
             {
               "responseId": "en:lesson-10:session-55:intro1:r3",
-              "text": "I setting a reminder every evening."
+              "text": "My room are untidy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-55:intro1:r1",
-              "text": "I set a reminder every evening."
+              "text": "My room is untidy."
             },
             {
               "responseId": "en:lesson-10:session-55:intro1:r2",
-              "text": "I sets a reminder every evening."
+              "text": "My room untidy."
             },
             {
               "responseId": "en:lesson-10:session-55:intro1:r3",
-              "text": "I setting a reminder every evening."
+              "text": "My room are untidy."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Меняю мелодию",
-        "uk": "Змінюю мелодію"
+        "ru": "Одежда для тёплого дня",
+        "uk": "Одяг для теплого дня"
       },
       "bodyByLocale": {
-        "ru": "Ringtone — «мелодия звонка» телефона. Вы сейчас выбираете другую: I am changing my ringtone — «Я меняю мелодию звонка». Текущая работа: am + changing. У change перед ing убираем e.",
-        "uk": "Ringtone — «мелодія дзвінка» телефона. Ви зараз вибираєте іншу: I am changing my ringtone — «Я змінюю мелодію дзвінка». Поточна робота: am + changing. У change перед ing прибираємо e."
+        "ru": "На улице тепло. Вы показываете сестре выбранную рубашку. Sleeveless — «без рукавов»: I am wearing a sleeveless shirt — «На мне рубашка без рукавов». Вы описываете одежду на себе сейчас: am wearing. Это не рассказ о том, что вы носите обычно.",
+        "uk": "Надворі тепло. Ви показуєте сестрі вибрану сорочку. Sleeveless — «без рукавів»: I am wearing a sleeveless shirt — «На мені сорочка без рукавів». Ви описуєте одяг на собі зараз: am wearing. Це не розповідь про те, що ви носите зазвичай."
       },
       "question": {
         "interactionId": "en:lesson-10:session-55:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-55:intro2:r1",
-              "text": "I am changing my ringtone."
+              "text": "I am wearing a sleeveless shirt."
             },
             {
               "responseId": "en:lesson-10:session-55:intro2:r2",
-              "text": "I changing my ringtone."
+              "text": "I wearing a sleeveless shirt."
             },
             {
               "responseId": "en:lesson-10:session-55:intro2:r3",
-              "text": "I am changeing my ringtone."
+              "text": "I am wear a sleeveless shirt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-55:intro2:r1",
-              "text": "I am changing my ringtone."
+              "text": "I am wearing a sleeveless shirt."
             },
             {
               "responseId": "en:lesson-10:session-55:intro2:r2",
-              "text": "I changing my ringtone."
+              "text": "I wearing a sleeveless shirt."
             },
             {
               "responseId": "en:lesson-10:session-55:intro2:r3",
-              "text": "I am changeing my ringtone."
+              "text": "I am wear a sleeveless shirt."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Окно мешает читать",
-        "uk": "Вікно заважає читати"
+        "ru": "Пока не готов",
+        "uk": "Поки не готовий"
       },
       "bodyByLocale": {
-        "ru": "Pop-up — «всплывающее окно», появляющееся поверх содержимого. Сейчас оно закрывает экран: A pop-up is blocking the screen — «Всплывающее окно закрывает экран». Is blocking описывает текущую помеху. Один pop-up: is.",
-        "uk": "Pop-up — «спливне вікно», що з’являється поверх вмісту. Зараз воно закриває екран: A pop-up is blocking the screen — «Спливне вікно закриває екран». Is blocking описує поточну перешкоду. Одне pop-up: is."
+        "ru": "Вы надеваете ботинки, но они жмут. Uncomfortable — «неудобный»: These boots are uncomfortable — «Эти ботинки неудобные». Друг зовёт выходить, а вы меняете обувь. I am not ready yet — «Я ещё не готов». Yet в конце отрицательной фразы означает «ещё»: вы пока не готовы, но скоро будете.",
+        "uk": "Ви взуваєте черевики, але вони тиснуть. Uncomfortable — «незручний»: These boots are uncomfortable — «Ці черевики незручні». Друг кличе виходити, а ви змінюєте взуття. I am not ready yet — «Я ще не готовий». Yet наприкінці заперечного речення означає «ще»: ви поки не готові, але скоро будете."
       },
       "question": {
         "interactionId": "en:lesson-10:session-55:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-55:intro3:r1",
-              "text": "A pop-up is blocking the screen."
+              "text": "I am not ready yet."
             },
             {
               "responseId": "en:lesson-10:session-55:intro3:r2",
-              "text": "A pop-up are blocking the screen."
+              "text": "I not ready yet."
             },
             {
               "responseId": "en:lesson-10:session-55:intro3:r3",
-              "text": "A pop-up blocking the screen."
+              "text": "I are not ready yet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-55:intro3:r1",
-              "text": "A pop-up is blocking the screen."
+              "text": "I am not ready yet."
             },
             {
               "responseId": "en:lesson-10:session-55:intro3:r2",
-              "text": "A pop-up are blocking the screen."
+              "text": "I not ready yet."
             },
             {
               "responseId": "en:lesson-10:session-55:intro3:r3",
-              "text": "A pop-up blocking the screen."
+              "text": "I are not ready yet."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "878bd5b8f35e5efaec62557e0f77e54114ff67c7d395f1214362939549faf1b9"
+  "introFingerprint": "546fa10000938f673ce23191a2b65a52c50324f3dee28e8997d52ea516e63ef7"
 }

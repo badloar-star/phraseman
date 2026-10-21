@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 52 — Этапы проекта
+# Английский · Урок 10 · Занятие 52 — Кто дома и где ключи
 
-**Ситуация.** Обсудить этапы проекта, контрольную точку и задержку работы.
+**Ситуация.** Описать, кто стучит в дверь, и поискать потерянные ключи.
 
-**Что вы освоите:** This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck
-**Новые слова:** phase, checkpoint, roadmap, bottleneck
+**Что вы освоите:** Somebody is knocking; Nobody is at home; I am looking everywhere
+**Новые слова:** somebody, nobody, everywhere, anywhere
 
 ## Интро 1
 
-### Длительность этапа
+### Стук в дверь
 
-Phase — «этап», часть процесса или проекта. По плану этот этап длится неделю: This phase lasts a week — «Этот этап длится неделю». Установленную длительность описываем через Present Simple. После this phase нужна lasts с s.
+Вы слышите стук, но ещё не знаете, кто пришёл. Somebody — «кто-то»: Somebody is knocking — «Кто-то стучит». Стук слышен сейчас, поэтому is + knocking. Somebody обозначает неизвестного человека и согласуется с is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **This phase lasts a week.**
-- ❌ This phase last a week. — *Один этап: lasts с s.*
-- ❌ This phase lasting a week. — *Здесь нужна личная форма lasts.*
+- ✅ **Somebody is knocking.**
+- ❌ Somebody are knocking. — *С somebody нужна is.*
+- ❌ Somebody knocking. — *Перед knocking нужна is.*
 
 ---
 
 ## Интро 2
 
-### Регулярно обсуждаем план
+### Дома пусто
 
-Roadmap здесь — «план развития», общий план основных этапов и целей проекта. Команда обсуждает его ежемесячно: We review the roadmap every month — «Мы пересматриваем план развития каждый месяц». Это регулярная работа: Present Simple.
+Вы звоните соседу: все члены семьи ушли. Nobody — «никто»: Nobody is at home — «Никого нет дома». Nobody уже выражает отрицание, поэтому not не добавляем. После nobody здесь нужна is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We review the roadmap every month.**
-- ❌ We reviews the roadmap every month. — *С we нужна review без s.*
-- ❌ We reviewing the roadmap every month. — *Здесь нужна review.*
+- ✅ **Nobody is at home.**
+- ❌ Nobody are at home. — *С nobody нужна is.*
+- ❌ Nobody is not at home. — *Nobody уже выражает отрицание; not здесь не нужен.*
 
 ---
 
 ## Интро 3
 
-### Ищем причину задержки
+### Ищу ключи
 
-Bottleneck — «узкое место»: участок процесса, который ограничивает скорость всей работы. Сейчас команда выясняет, почему задания задерживаются на одном этапе: We are investigating a bottleneck — «Мы изучаем узкое место». Текущая работа: are + investigating. У investigate перед ing убираем e.
+Everywhere — «везде». Вы сейчас ищете ключи во всех комнатах: I am looking everywhere — «Я ищу везде». Текущий поиск: am + looking. Друг спрашивает о результате. Anywhere — «где-нибудь», а с отрицанием «нигде»: I cannot find my keys anywhere — «Я нигде не могу найти свои ключи».
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are investigating a bottleneck.**
-- ❌ We investigating a bottleneck. — *Перед investigating нужна are.*
-- ❌ We are investigateing a bottleneck. — *Правильно investigating, без e.*
+- ✅ **I am looking everywhere.**
+- ❌ I looking everywhere. — *Перед looking нужна am.*
+- ❌ I am look everywhere. — *После am нужна looking.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — phase**
-<!-- interaction_id: en:lesson-10:session-52:word:phase; family: word_card -->
-> **phase** — «этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.
+**1 · Карточка слова — somebody**
+<!-- interaction_id: en:lesson-10:session-52:word:somebody; family: word_card -->
+> **somebody** — «кто-то». Somebody is knocking. — «Кто-то стучит». Вы пока не знаете, кто именно.
 
-**2 · Объясните длительность по плану: «Этот этап длится неделю»**
+**2 · Вы слышите стук в дверь. Скажите другу: «Кто-то стучит»**
 <!-- interaction_id: en:lesson-10:session-52:i01; family: phrase_builder -->
-Плитки: `week` `a` `lasts` `phase` `This` → **This phase lasts a week.**
+Плитки: `knocking` `is` `Somebody` → **Somebody is knocking.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-52:i02; family: listen_choose -->
-🔊 *The next phase starts tomorrow.* → **The next phase starts tomorrow.** · The next phase starts today. · The next meeting starts tomorrow.
-- The next phase starts today. — *В записи звучит The next phase starts tomorrow.*
-- The next meeting starts tomorrow. — *В записи звучит The next phase starts tomorrow.*
+🔊 *Somebody is calling you.* → **Somebody is calling you.** · Somebody is waiting for you. · Somebody is calling me.
+- Somebody is waiting for you. — *В записи звучит Somebody is calling you.*
+- Somebody is calling me. — *В записи звучит Somebody is calling you.*
 
-**4 · Это установленная длительность. Выберите форму last**
+**4 · Стук слышен сейчас. Выберите вспомогательный глагол**
 <!-- interaction_id: en:lesson-10:session-52:i03; family: context_gap_grammar -->
-This phase ___ a week. → **lasts** · last · lasting
-- last — *Один этап: lasts с s.*
-- lasting — *Здесь нужна lasts.*
+Somebody ___ knocking. → **is** · are · am
+- are — *С somebody нужна is.*
+- am — *Am используется с I.*
 
-**5 · Карточка слова — checkpoint**
-<!-- interaction_id: en:lesson-10:session-52:word:checkpoint; family: word_card -->
-> **checkpoint** — «контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.
+**5 · Карточка слова — nobody**
+<!-- interaction_id: en:lesson-10:session-52:word:nobody; family: word_card -->
+> **nobody** — «никто». Nobody is at home. — «Никого нет дома». Nobody уже содержит отрицание.
 
-**6 · Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»**
+**6 · Вся семья ушла. Сообщите соседу: «Никого нет дома»**
 <!-- interaction_id: en:lesson-10:session-52:i04; family: phrase_builder -->
-Плитки: `Friday` `on` `is` `checkpoint` `next` `The` → **The next checkpoint is on Friday.**
+Плитки: `home` `at` `is` `Nobody` → **Nobody is at home.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-52:i05; family: listen_choose -->
-🔊 *The checkpoint is tomorrow.* → **The checkpoint is tomorrow.** · The checkpoint is today. · The handover is tomorrow.
-- The checkpoint is today. — *В записи звучит The checkpoint is tomorrow.*
-- The handover is tomorrow. — *В записи звучит The checkpoint is tomorrow.*
+🔊 *Nobody is in the kitchen.* → **Nobody is in the kitchen.** · Nobody is in the garden. · Somebody is in the kitchen.
+- Nobody is in the garden. — *В записи звучит Nobody is in the kitchen.*
+- Somebody is in the kitchen. — *В записи звучит Nobody is in the kitchen.*
 
-**8 · Выберите предлог перед днём недели**
+**8 · Выберите связку после nobody**
 <!-- interaction_id: en:lesson-10:session-52:i06; family: context_gap_grammar -->
-The next checkpoint is ___ Friday. → **on** · in · at
-- in — *Перед Friday нужен on.*
-- at — *Перед днём недели нужен on, не at.*
+Nobody ___ at home. → **is** · are · am
+- are — *С nobody нужна is.*
+- am — *Am используется с I.*
 
-**9 · Карточка слова — roadmap**
-<!-- interaction_id: en:lesson-10:session-52:word:roadmap; family: word_card -->
-> **roadmap** — «план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.
+**9 · Карточка слова — everywhere**
+<!-- interaction_id: en:lesson-10:session-52:word:everywhere; family: word_card -->
+> **everywhere** — «везде». I am looking everywhere. — «Я ищу везде». Здесь поиск во всех возможных местах.
 
-**10 · Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце**
+**10 · Вы сейчас ищете ключи во всех комнатах. Скажите: «Я ищу везде»**
 <!-- interaction_id: en:lesson-10:session-52:i07; family: phrase_builder -->
-Плитки: `month` `every` `roadmap` `the` `review` `We` → **We review the roadmap every month.**
+Плитки: `everywhere` `looking` `am` `I` → **I am looking everywhere.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-52:i08; family: listen_choose -->
-🔊 *The roadmap is on the website.* → **The roadmap is on the website.** · The roadmap is in the email. · The forecast is on the website.
-- The roadmap is in the email. — *В записи звучит The roadmap is on the website.*
-- The forecast is on the website. — *В записи звучит The roadmap is on the website.*
+🔊 *There are toys everywhere.* → **There are toys everywhere.** · There are books everywhere. · There are toys here.
+- There are books everywhere. — *В записи звучит There are toys everywhere.*
+- There are toys here. — *В записи звучит There are toys everywhere.*
 
-**12 · Это ежемесячная работа. Выберите форму review**
+**12 · Поиск идёт сейчас. Выберите форму look**
 <!-- interaction_id: en:lesson-10:session-52:i09; family: context_gap_grammar -->
-We ___ the roadmap every month. → **review** · reviews · reviewing
-- reviews — *С we нужна review без s.*
-- reviewing — *Здесь нужна review.*
+I am ___ everywhere. → **looking** · look · looks
+- look — *После am для текущего действия нужна looking.*
+- looks — *Здесь нужна looking, не looks.*
 
-**13 · Карточка слова — bottleneck**
-<!-- interaction_id: en:lesson-10:session-52:word:bottleneck; family: word_card -->
-> **bottleneck** — «узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.
+**13 · Карточка слова — anywhere**
+<!-- interaction_id: en:lesson-10:session-52:word:anywhere; family: word_card -->
+> **anywhere** — «где-нибудь; с отрицанием — нигде». I cannot find my keys anywhere. — «Я нигде не могу найти свои ключи».
 
-**14 · Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»**
+**14 · Ключи всё ещё не найдены. Скажите: «Я нигде не могу найти свои ключи». Поставьте anywhere в конце**
 <!-- interaction_id: en:lesson-10:session-52:i10; family: phrase_builder -->
-Плитки: `bottleneck` `a` `investigating` `are` `We` → **We are investigating a bottleneck.**
+Плитки: `anywhere` `keys` `my` `find` `cannot` `I` → **I cannot find my keys anywhere.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-52:i11; family: listen_choose -->
-🔊 *The bottleneck is in production.* → **The bottleneck is in production.** · The bottleneck is in delivery. · The problem is in production.
-- The bottleneck is in delivery. — *В записи звучит The bottleneck is in production.*
-- The problem is in production. — *В записи звучит The bottleneck is in production.*
+🔊 *I cannot find my phone anywhere.* → **I cannot find my phone anywhere.** · I cannot find my keys anywhere. · I cannot find my bag anywhere.
+- I cannot find my keys anywhere. — *В записи звучит I cannot find my phone anywhere.*
+- I cannot find my bag anywhere. — *В записи звучит I cannot find my phone anywhere.*
 
-**16 · Выберите правильное написание формы investigate**
+**16 · После cannot нужна начальная форма. Выберите форму find**
 <!-- interaction_id: en:lesson-10:session-52:i12; family: context_gap_grammar -->
-We are ___ a bottleneck. → **investigating** · investigateing · investigate
-- investigateing — *Перед ing убираем e: investigating.*
-- investigate — *После are для текущей работы нужна investigating.*
+I cannot ___ my keys anywhere. → **find** · finds · finding
+- finds — *После cannot нужна find без s.*
+- finding — *После cannot нужна find, не finding.*
 
 **17 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-10:session-52:i13; family: speed_match -->
-phase — этап · checkpoint — контрольная точка · roadmap — план развития · bottleneck — узкое место
+somebody — кто-то · nobody — никто · everywhere — везде · anywhere — где-нибудь
 
 **18 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-10:session-52:i14; family: listen_build_dictation -->
-🔊 *We are investigating a bottleneck.* Плитки: `bottleneck` `a` `investigating` `are` `We` → **We are investigating a bottleneck.**
+🔊 *Somebody is knocking.* Плитки: `knocking` `is` `Somebody` → **Somebody is knocking.**
 
-**19 · Коллега спрашивает, как часто команда пересматривает общий план проекта. Скажите: «Мы пересматриваем план развития каждый месяц»**
+**19 · Сосед спрашивает, есть ли кто-нибудь дома. Все ушли. Скажите: «Никого нет дома»**
 <!-- interaction_id: en:lesson-10:session-52:i15; family: scripted_repeat_compare -->
-🎙 **We review the roadmap every month.**
+🎙 **Nobody is at home.**
 
-**20 · Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»**
+**20 · Друг спрашивает, где вы ищете ключи. Скажите: «Я ищу везде»**
 <!-- interaction_id: en:lesson-10:session-52:i16; family: phrase_builder -->
-Плитки: `week` `a` `lasts` `phase` `This` → **This phase lasts a week.**
+Плитки: `everywhere` `looking` `am` `I` → **I am looking everywhere.**
 
-**21 · Вы с коллегами выясняете причину задержек на одном участке процесса. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы изучаем узкое место»**
+**21 · Перед выходом вы проверили карманы и комнаты, но ключей нет. Друг спрашивает, почему вы задерживаетесь. Скажите: «Я нигде не могу найти свои ключи»**
 <!-- interaction_id: en:lesson-10:session-52:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are investigating a bottleneck.**
+🎙 **I cannot find my keys anywhere.**
 

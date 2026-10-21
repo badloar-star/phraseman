@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-52:intro1:r2": {
-          "ru": "Один этап: lasts с s.",
-          "uk": "Один етап: lasts із s."
+          "ru": "С somebody нужна is.",
+          "uk": "З somebody потрібна is."
         },
         "en:lesson-10:session-52:intro1:r3": {
-          "ru": "Здесь нужна личная форма lasts.",
-          "uk": "Тут потрібна особова форма lasts."
+          "ru": "Перед knocking нужна is.",
+          "uk": "Перед knocking потрібна is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-52:intro2:r2": {
-          "ru": "С we нужна review без s.",
-          "uk": "З we потрібна review без s."
+          "ru": "С nobody нужна is.",
+          "uk": "З nobody потрібна is."
         },
         "en:lesson-10:session-52:intro2:r3": {
-          "ru": "Здесь нужна review.",
-          "uk": "Тут потрібна review."
+          "ru": "Nobody уже выражает отрицание; not здесь не нужен.",
+          "uk": "Nobody вже виражає заперечення; not тут не потрібен."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-52:intro3:r2": {
-          "ru": "Перед investigating нужна are.",
-          "uk": "Перед investigating потрібна are."
+          "ru": "Перед looking нужна am.",
+          "uk": "Перед looking потрібна am."
         },
         "en:lesson-10:session-52:intro3:r3": {
-          "ru": "Правильно investigating, без e.",
-          "uk": "Правильно investigating, без e."
+          "ru": "После am нужна looking.",
+          "uk": "Після am потрібна looking."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4e064b57146ada22df44a522bb66564502142b1bd1bf68d0a977ea30ed6a7491"
+  "auxiliaryFingerprint": "1162521aa241260e572c82eba35792eaa1064367a6ca9bcec6eb266bb355793e"
 }

@@ -1,151 +1,152 @@
-# Англійська · Урок 10 · Заняття 55 — Нагадування на телефоні
+# Англійська · Урок 10 · Заняття 55 — Збираємося на прогулянку
 
-**Ситуація.** Налаштувати нагадування й описати повідомлення на екрані.
+**Ситуація.** Вибрати одяг і сказати другові, чи готові ви виходити.
 
-**Що ви опануєте:** I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen
-**Нові слова:** reminder, alert, ringtone, pop-up
+**Нові слова:** untidy, sleeveless, uncomfortable, yet
+
+**Що ви опануєте:** My room is untidy; I am wearing a sleeveless shirt; I am not ready yet
 
 ## Інтро 1
 
-### Вечірня звичка
+### У кімнаті безлад
 
-Reminder — «нагадування». Щовечора ви встановлюєте нагадування на наступний день: I set a reminder every evening — «Я встановлюю нагадування щовечора». Це звичка: Present Simple. З I потрібна set без s.
+Друг чекає біля дверей, а ви шукаєте одяг серед речей на стільці. Untidy — «неохайний, неприбраний»: My room is untidy — «У моїй кімнаті безлад». Це стан кімнати, тому is без being. Ви прибираєте речі саме зараз: I am tidying my room.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I set a reminder every evening.**
-- ❌ I sets a reminder every evening. — *З I потрібна set без s.*
-- ❌ I setting a reminder every evening. — *Тут потрібна особова форма set.*
+- ✅ **My room is untidy.**
+- ❌ My room untidy. — *Перед untidy потрібна зв’язка is.*
+- ❌ My room are untidy. — *Одна кімната: is, не are.*
 
 ---
 
 ## Інтро 2
 
-### Змінюю мелодію
+### Одяг для теплого дня
 
-Ringtone — «мелодія дзвінка» телефона. Ви зараз вибираєте іншу: I am changing my ringtone — «Я змінюю мелодію дзвінка». Поточна робота: am + changing. У change перед ing прибираємо e.
+Надворі тепло. Ви показуєте сестрі вибрану сорочку. Sleeveless — «без рукавів»: I am wearing a sleeveless shirt — «На мені сорочка без рукавів». Ви описуєте одяг на собі зараз: am wearing. Це не розповідь про те, що ви носите зазвичай.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am changing my ringtone.**
-- ❌ I changing my ringtone. — *Перед changing потрібна am.*
-- ❌ I am changeing my ringtone. — *Правильно changing, без e.*
+- ✅ **I am wearing a sleeveless shirt.**
+- ❌ I wearing a sleeveless shirt. — *Перед wearing потрібна am.*
+- ❌ I am wear a sleeveless shirt. — *Після am потрібна wearing.*
 
 ---
 
 ## Інтро 3
 
-### Вікно заважає читати
+### Поки не готовий
 
-Pop-up — «спливне вікно», що з’являється поверх вмісту. Зараз воно закриває екран: A pop-up is blocking the screen — «Спливне вікно закриває екран». Is blocking описує поточну перешкоду. Одне pop-up: is.
+Ви взуваєте черевики, але вони тиснуть. Uncomfortable — «незручний»: These boots are uncomfortable — «Ці черевики незручні». Друг кличе виходити, а ви змінюєте взуття. I am not ready yet — «Я ще не готовий». Yet наприкінці заперечного речення означає «ще»: ви поки не готові, але скоро будете.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **A pop-up is blocking the screen.**
-- ❌ A pop-up are blocking the screen. — *Одне вікно: is.*
-- ❌ A pop-up blocking the screen. — *Перед blocking потрібна is.*
+- ✅ **I am not ready yet.**
+- ❌ I not ready yet. — *Після I потрібна am.*
+- ❌ I are not ready yet. — *З I потрібна am, не are.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — reminder**
-<!-- interaction_id: en:lesson-10:session-55:word:reminder; family: word_card -->
-> **reminder** — «нагадування». I set a reminder every evening. — «Я встановлюю нагадування щовечора». Тут повідомлення, яке допомагає не забути про справу.
+**1 · Картка слова — untidy**
+<!-- interaction_id: en:lesson-10:session-55:word:untidy; family: word_card -->
+> **untidy** — «неохайний, неприбраний». My room is untidy. — «У моїй кімнаті безлад».
 
-**2 · Скажіть про звичку: «Я встановлюю нагадування щовечора». Поставте every evening у кінці**
+**2 · Речі розкидані по кімнаті. Скажіть: «У моїй кімнаті безлад»**
 <!-- interaction_id: en:lesson-10:session-55:i01; family: phrase_builder -->
-Плитки: `evening` `every` `reminder` `a` `set` `I` → **I set a reminder every evening.**
+Плитки: `untidy` `is` `room` `My` → **My room is untidy.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-55:i02; family: listen_choose -->
-🔊 *The reminder is for tomorrow.* → **The reminder is for tomorrow.** · The reminder is for today. · The appointment is for tomorrow.
-- The reminder is for today. — *У записі звучить The reminder is for tomorrow.*
-- The appointment is for tomorrow. — *У записі звучить The reminder is for tomorrow.*
+🔊 *Your desk is untidy.* → **Your desk is untidy.** · Your room is untidy. · My desk is untidy.
+- Your room is untidy. — *У записі звучить Your desk is untidy.*
+- My desk is untidy. — *У записі звучить Your desk is untidy.*
 
-**4 · Це звичка. Виберіть форму set**
+**4 · Виберіть зв’язку: одна кімната**
 <!-- interaction_id: en:lesson-10:session-55:i03; family: context_gap_grammar -->
-I ___ a reminder every evening. → **set** · sets · setting
-- sets — *З I потрібна set без s.*
-- setting — *Тут потрібна set.*
+My room ___ untidy. → **is** · are · am
+- are — *Одна кімната: is.*
+- am — *Am уживається з I.*
 
-**5 · Картка слова — alert**
-<!-- interaction_id: en:lesson-10:session-55:word:alert; family: word_card -->
-> **alert** — «попередження». The alert is on my phone. — «Попередження на моєму телефоні». Тут повідомлення про ситуацію, що потребує уваги.
+**5 · Картка слова — sleeveless**
+<!-- interaction_id: en:lesson-10:session-55:word:sleeveless; family: word_card -->
+> **sleeveless** — «без рукавів». a sleeveless shirt — «сорочка без рукавів».
 
-**6 · Ви отримали повідомлення про затримку потяга. Скажіть: «Попередження на моєму телефоні»**
+**6 · Скажіть, що на вас зараз: «На мені сорочка без рукавів»**
 <!-- interaction_id: en:lesson-10:session-55:i04; family: phrase_builder -->
-Плитки: `phone` `my` `on` `is` `alert` `The` → **The alert is on my phone.**
+Плитки: `shirt` `sleeveless` `a` `wearing` `am` `I` → **I am wearing a sleeveless shirt.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-55:i05; family: listen_choose -->
-🔊 *The alert is about the weather.* → **The alert is about the weather.** · The alert is about the meeting. · The reminder is about the weather.
-- The alert is about the meeting. — *У записі звучить The alert is about the weather.*
-- The reminder is about the weather. — *У записі звучить The alert is about the weather.*
+🔊 *She is wearing a sleeveless dress.* → **She is wearing a sleeveless dress.** · She is wearing a sleeveless shirt. · He is wearing a sleeveless shirt.
+- She is wearing a sleeveless shirt. — *У записі звучить She is wearing a sleeveless dress.*
+- He is wearing a sleeveless shirt. — *У записі звучить She is wearing a sleeveless dress.*
 
-**8 · Ідеться про одне попередження. Виберіть зв’язку**
+**8 · Одяг на вас зараз. Виберіть форму wear**
 <!-- interaction_id: en:lesson-10:session-55:i06; family: context_gap_grammar -->
-The alert ___ on my phone. → **is** · are · am
-- are — *Одне попередження: is.*
-- am — *Am уживається з I.*
+I am ___ a sleeveless shirt. → **wearing** · wear · wears
+- wear — *Після am потрібна wearing.*
+- wears — *Після am потрібна wearing, не wears.*
 
-**9 · Картка слова — ringtone**
-<!-- interaction_id: en:lesson-10:session-55:word:ringtone; family: word_card -->
-> **ringtone** — «мелодія дзвінка». I am changing my ringtone. — «Я змінюю мелодію дзвінка». Звук вхідного виклику на телефоні.
+**9 · Картка слова — uncomfortable**
+<!-- interaction_id: en:lesson-10:session-55:word:uncomfortable; family: word_card -->
+> **uncomfortable** — «незручний». These boots are uncomfortable. — «Ці черевики незручні».
 
-**10 · Ви зараз вибираєте новий звук вхідного виклику. Скажіть: «Я змінюю мелодію дзвінка»**
+**10 · Черевики тиснуть. Скажіть: «Ці черевики незручні»**
 <!-- interaction_id: en:lesson-10:session-55:i07; family: phrase_builder -->
-Плитки: `ringtone` `my` `changing` `am` `I` → **I am changing my ringtone.**
+Плитки: `uncomfortable` `are` `boots` `These` → **These boots are uncomfortable.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-55:i08; family: listen_choose -->
-🔊 *The ringtone is loud.* → **The ringtone is loud.** · The ringtone is quiet. · The music is loud.
-- The ringtone is quiet. — *У записі звучить The ringtone is loud.*
-- The music is loud. — *У записі звучить The ringtone is loud.*
+🔊 *This chair is uncomfortable.* → **This chair is uncomfortable.** · This bed is uncomfortable. · These chairs are uncomfortable.
+- This bed is uncomfortable. — *У записі звучить This chair is uncomfortable.*
+- These chairs are uncomfortable. — *У записі звучить This chair is uncomfortable.*
 
-**12 · Виберіть правильне написання форми change**
+**12 · Виберіть зв’язку: черевики у множині**
 <!-- interaction_id: en:lesson-10:session-55:i09; family: context_gap_grammar -->
-I am ___ my ringtone. → **changing** · changeing · change
-- changeing — *Перед ing прибираємо e: changing.*
-- change — *Після am для поточної роботи потрібна changing.*
+These boots ___ uncomfortable. → **are** · is · am
+- is — *Множина: are.*
+- am — *Am уживається з I.*
 
-**13 · Картка слова — pop-up**
-<!-- interaction_id: en:lesson-10:session-55:word:pop-up; family: word_card -->
-> **pop-up** — «спливне вікно». A pop-up is blocking the screen. — «Спливне вікно закриває екран». Вікно поверх вмісту сторінки або застосунку.
+**13 · Картка слова — yet**
+<!-- interaction_id: en:lesson-10:session-55:word:yet; family: word_card -->
+> **yet** — «ще» в цьому заперечному реченні. I am not ready yet. — «Я ще не готовий».
 
-**14 · Ви не бачите вмісту через вікно, що з’явилося. Скажіть: «Спливне вікно закриває екран»**
+**14 · Друг чекає, а ви змінюєте взуття. Скажіть: «Я ще не готовий». Поставте yet наприкінці**
 <!-- interaction_id: en:lesson-10:session-55:i10; family: phrase_builder -->
-Плитки: `screen` `the` `blocking` `is` `pop-up` `A` → **A pop-up is blocking the screen.**
+Плитки: `yet` `ready` `not` `am` `I` → **I am not ready yet.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-55:i11; family: listen_choose -->
-🔊 *The pop-up is still there.* → **The pop-up is still there.** · The pop-up is gone. · The alert is still there.
-- The pop-up is gone. — *У записі звучить The pop-up is still there.*
-- The alert is still there. — *У записі звучить The pop-up is still there.*
+🔊 *We are not ready yet.* → **We are not ready yet.** · They are not ready yet. · We are ready.
+- They are not ready yet. — *У записі звучить We are not ready yet.*
+- We are ready. — *У записі звучить We are not ready yet.*
 
-**16 · Одне вікно зараз закриває екран. Виберіть допоміжне дієслово**
+**16 · Виберіть зв’язку після I**
 <!-- interaction_id: en:lesson-10:session-55:i12; family: context_gap_grammar -->
-A pop-up ___ blocking the screen. → **is** · are · am
-- are — *Одне вікно: is.*
-- am — *Am уживається з I.*
+I ___ not ready yet. → **am** · is · are
+- is — *З I потрібна am.*
+- are — *З I потрібна am, не are.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-55:i13; family: speed_match -->
-reminder — нагадування · alert — попередження · ringtone — мелодія дзвінка · pop-up — спливне вікно
+untidy — неприбраний · sleeveless — без рукавів · uncomfortable — незручний · yet — ще
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-55:i14; family: listen_build_dictation -->
-🔊 *I am changing my ringtone.* Плитки: `ringtone` `my` `changing` `am` `I` → **I am changing my ringtone.**
+🔊 *I am not ready yet.* Плитки: `yet` `ready` `not` `am` `I` → **I am not ready yet.**
 
-**19 · Друг запитує, як ви не забуваєте про справи. Скажіть: «Я встановлюю нагадування щовечора»**
-<!-- interaction_id: en:lesson-10:session-55:i15; family: scripted_repeat_compare -->
-🎙 **I set a reminder every evening.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-55:i15; family: listen_build_dictation -->
+🔊 *These boots are uncomfortable.* Плитки: `uncomfortable` `are` `boots` `These` → **These boots are uncomfortable.**
 
-**20 · Друг запитує, де подивитися попередження. Скажіть: «Попередження на моєму телефоні»**
-<!-- interaction_id: en:lesson-10:session-55:i16; family: phrase_builder -->
-Плитки: `phone` `my` `on` `is` `alert` `The` → **The alert is on my phone.**
+**20 · Друг запитує, чому ви змінюєте взуття. Скажіть: «Ці черевики незручні»**
+<!-- interaction_id: en:lesson-10:session-55:i16; family: scripted_repeat_compare -->
+🎙 **These boots are uncomfortable.**
 
-**21 · Ви відкрили налаштування й вибираєте інший звук вхідного виклику. Друг запитує, чим ви зайняті зараз. Скажіть: «Я змінюю мелодію дзвінка»**
-<!-- interaction_id: en:lesson-10:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am changing my ringtone.**
+**21 · Друг уже біля дверей, а ви ще одягаєтеся. Скажіть: «Я ще не готовий». Поставте yet наприкінці**
+<!-- interaction_id: en:lesson-10:session-55:i17; family: scripted_repeat_compare -->
+🎙 **I am not ready yet.**
 

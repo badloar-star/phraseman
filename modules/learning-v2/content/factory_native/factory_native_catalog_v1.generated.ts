@@ -3894,9 +3894,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 52,
-    sourceFingerprint: "4bc5f9d5b6408dc0e8e2d98900e2aebd7e5fc045bf02ee21ff56aa12d9710208",
+    sourceFingerprint: "c970b1853889e705d70561684a6cdf48a0d77ca9dce4abea051af8c12462b9ba",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck","uk":"This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Somebody is knocking; Nobody is at home; I am looking everywhere","uk":"Somebody is knocking; Nobody is at home; I am looking everywhere"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3915,9 +3915,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 55,
-    sourceFingerprint: "b8c5fc58a28cd4084eac63455a19b0e9a6ae5d6fe5487a8883e689daf093c189",
+    sourceFingerprint: "92311871471cdcfc4b925c964567275bc387da14fda6877c4f5bfceaed7a1f18",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen","uk":"I set a reminder every evening; I am changing my ringtone; A pop-up is blocking the screen"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"My room is untidy; I am wearing a sleeveless shirt; I am not ready yet","uk":"My room is untidy; I am wearing a sleeveless shirt; I am not ready yet"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
 ]);

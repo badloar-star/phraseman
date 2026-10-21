@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-52:word:phase",
+        "interactionId": "en:lesson-10:session-52:word:somebody",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — phase",
+        "prompt": "Карточка слова — somebody",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:phase:audio"
+          "en:lesson-10:session-52:word:somebody:audio"
         ],
-        "accessibilityLabel": "Карточка слова — phase",
+        "accessibilityLabel": "Карточка слова — somebody",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:phase:audio",
-            "transcript": "phase"
+            "audioTargetId": "en:lesson-10:session-52:word:somebody:audio",
+            "transcript": "somebody"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:phase:r1",
-              "targetText": "phase",
+              "responseId": "en:lesson-10:session-52:word:somebody:r1",
+              "targetText": "somebody",
               "meaningByLocale": {
-                "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
-                "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+                "ru": "«кто-то». Somebody is knocking. — «Кто-то стучит». Вы пока не знаете, кто именно.",
+                "uk": "«хтось». Somebody is knocking. — «Хтось стукає». Ви поки не знаєте, хто саме."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "phase",
+            "word": "somebody",
             "definitionByLocale": {
-              "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
-              "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+              "ru": "«кто-то». Somebody is knocking. — «Кто-то стучит». Вы пока не знаете, кто именно.",
+              "uk": "«хтось». Somebody is knocking. — «Хтось стукає». Ви поки не знаєте, хто саме."
             }
           }
         },
@@ -52,24 +52,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Объясните длительность по плану: «Этот этап длится неделю»",
+        "prompt": "Вы слышите стук в дверь. Скажите другу: «Кто-то стучит»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Объясните длительность по плану: «Этот этап длится неделю»",
+        "accessibilityLabel": "Вы слышите стук в дверь. Скажите другу: «Кто-то стучит»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This phase lasts a week.",
+          "targetPhrase": "Somebody is knocking.",
           "localizedMeaning": {
-            "ru": "Объясните длительность по плану: «Этот этап длится неделю»",
-            "uk": "Поясніть тривалість за планом: «Цей етап триває тиждень»"
+            "ru": "Вы слышите стук в дверь. Скажите другу: «Кто-то стучит»",
+            "uk": "Ви чуєте стукіт у двері. Скажіть другу: «Хтось стукає»"
           },
           "orderedTokens": [
-            "This",
-            "phase",
-            "lasts",
-            "a",
-            "week"
+            "Somebody",
+            "is",
+            "knocking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +88,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i02:r1",
-            "text": "The next phase starts tomorrow."
+            "text": "Somebody is calling you."
           },
           {
             "responseId": "en:lesson-10:session-52:i02:r2",
-            "text": "The next phase starts today."
+            "text": "Somebody is waiting for you."
           },
           {
             "responseId": "en:lesson-10:session-52:i02:r3",
-            "text": "The next meeting starts tomorrow."
+            "text": "Somebody is calling me."
           }
         ],
         "mediaIds": [],
@@ -110,23 +108,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i02:audio",
-            "transcript": "The next phase starts tomorrow."
+            "transcript": "Somebody is calling you."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i02:r1",
-              "targetText": "The next phase starts tomorrow.",
+              "targetText": "Somebody is calling you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i02:r2",
-              "targetText": "The next phase starts today.",
+              "targetText": "Somebody is waiting for you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i02:r3",
-              "targetText": "The next meeting starts tomorrow.",
+              "targetText": "Somebody is calling me.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +135,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The next phase starts tomorrow.",
-                "uk": "У записі звучить The next phase starts tomorrow."
+                "ru": "В записи звучит Somebody is calling you.",
+                "uk": "У записі звучить Somebody is calling you."
               }
             },
             {
@@ -146,8 +144,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The next phase starts tomorrow.",
-                "uk": "У записі звучить The next phase starts tomorrow."
+                "ru": "В записи звучит Somebody is calling you.",
+                "uk": "У записі звучить Somebody is calling you."
               }
             }
           ],
@@ -162,63 +160,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это установленная длительность. Выберите форму last",
+        "prompt": "Стук слышен сейчас. Выберите вспомогательный глагол",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i03:r1",
-            "text": "lasts"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-52:i03:r2",
-            "text": "last"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-52:i03:r3",
-            "text": "lasting"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это установленная длительность. Выберите форму last",
+        "accessibilityLabel": "Стук слышен сейчас. Выберите вспомогательный глагол",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это установленная длительность. Выберите форму last",
-            "uk": "Це встановлена тривалість. Виберіть форму last"
+            "ru": "Стук слышен сейчас. Выберите вспомогательный глагол",
+            "uk": "Стукіт чути зараз. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "This phase ___ a week.",
+          "gappedTargetPhrase": "Somebody ___ knocking.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i03:r1",
-              "text": "lasts"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r2",
-              "text": "last"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r3",
-              "text": "lasting"
+              "text": "am"
             }
           ],
-          "testedDimension": "Это установленная длительность. Выберите форму last",
+          "testedDimension": "Стук слышен сейчас. Выберите вспомогательный глагол",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i03:r2",
               "correct": false,
-              "testedDimension": "Это установленная длительность. Выберите форму last",
+              "testedDimension": "Стук слышен сейчас. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "Один этап: lasts с s.",
-                "uk": "Один етап: lasts із s."
+                "ru": "С somebody нужна is.",
+                "uk": "З somebody потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r3",
               "correct": false,
-              "testedDimension": "Это установленная длительность. Выберите форму last",
+              "testedDimension": "Стук слышен сейчас. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "Здесь нужна lasts.",
-                "uk": "Тут потрібна lasts."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -226,32 +224,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:checkpoint",
+        "interactionId": "en:lesson-10:session-52:word:nobody",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — checkpoint",
+        "prompt": "Карточка слова — nobody",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:checkpoint:audio"
+          "en:lesson-10:session-52:word:nobody:audio"
         ],
-        "accessibilityLabel": "Карточка слова — checkpoint",
+        "accessibilityLabel": "Карточка слова — nobody",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:checkpoint:audio",
-            "transcript": "checkpoint"
+            "audioTargetId": "en:lesson-10:session-52:word:nobody:audio",
+            "transcript": "nobody"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:checkpoint:r1",
-              "targetText": "checkpoint",
+              "responseId": "en:lesson-10:session-52:word:nobody:r1",
+              "targetText": "nobody",
               "meaningByLocale": {
-                "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
-                "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+                "ru": "«никто». Nobody is at home. — «Никого нет дома». Nobody уже содержит отрицание.",
+                "uk": "«ніхто». Nobody is at home. — «Нікого немає вдома». Nobody вже містить заперечення."
               }
             }
           ],
@@ -259,10 +257,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "checkpoint",
+            "word": "nobody",
             "definitionByLocale": {
-              "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
-              "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+              "ru": "«никто». Nobody is at home. — «Никого нет дома». Nobody уже содержит отрицание.",
+              "uk": "«ніхто». Nobody is at home. — «Нікого немає вдома». Nobody вже містить заперечення."
             }
           }
         },
@@ -274,25 +272,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
+        "prompt": "Вся семья ушла. Сообщите соседу: «Никого нет дома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
+        "accessibilityLabel": "Вся семья ушла. Сообщите соседу: «Никого нет дома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The next checkpoint is on Friday.",
+          "targetPhrase": "Nobody is at home.",
           "localizedMeaning": {
-            "ru": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
-            "uk": "Команда перевірить перебіг проєкту в п’ятницю. Скажіть: «Наступна контрольна точка — у п’ятницю»"
+            "ru": "Вся семья ушла. Сообщите соседу: «Никого нет дома»",
+            "uk": "Уся родина пішла. Повідомте сусідові: «Нікого немає вдома»"
           },
           "orderedTokens": [
-            "The",
-            "next",
-            "checkpoint",
+            "Nobody",
             "is",
-            "on",
-            "Friday"
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +309,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i05:r1",
-            "text": "The checkpoint is tomorrow."
+            "text": "Nobody is in the kitchen."
           },
           {
             "responseId": "en:lesson-10:session-52:i05:r2",
-            "text": "The checkpoint is today."
+            "text": "Nobody is in the garden."
           },
           {
             "responseId": "en:lesson-10:session-52:i05:r3",
-            "text": "The handover is tomorrow."
+            "text": "Somebody is in the kitchen."
           }
         ],
         "mediaIds": [],
@@ -333,23 +329,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i05:audio",
-            "transcript": "The checkpoint is tomorrow."
+            "transcript": "Nobody is in the kitchen."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i05:r1",
-              "targetText": "The checkpoint is tomorrow.",
+              "targetText": "Nobody is in the kitchen.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i05:r2",
-              "targetText": "The checkpoint is today.",
+              "targetText": "Nobody is in the garden.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i05:r3",
-              "targetText": "The handover is tomorrow.",
+              "targetText": "Somebody is in the kitchen.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +356,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The checkpoint is tomorrow.",
-                "uk": "У записі звучить The checkpoint is tomorrow."
+                "ru": "В записи звучит Nobody is in the kitchen.",
+                "uk": "У записі звучить Nobody is in the kitchen."
               }
             },
             {
@@ -369,8 +365,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The checkpoint is tomorrow.",
-                "uk": "У записі звучить The checkpoint is tomorrow."
+                "ru": "В записи звучит Nobody is in the kitchen.",
+                "uk": "У записі звучить Nobody is in the kitchen."
               }
             }
           ],
@@ -385,63 +381,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите предлог перед днём недели",
+        "prompt": "Выберите связку после nobody",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i06:r1",
-            "text": "on"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-52:i06:r2",
-            "text": "in"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-52:i06:r3",
-            "text": "at"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите предлог перед днём недели",
+        "accessibilityLabel": "Выберите связку после nobody",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите предлог перед днём недели",
-            "uk": "Виберіть прийменник перед днем тижня"
+            "ru": "Выберите связку после nobody",
+            "uk": "Виберіть зв’язку після nobody"
           },
-          "gappedTargetPhrase": "The next checkpoint is ___ Friday.",
+          "gappedTargetPhrase": "Nobody ___ at home.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i06:r1",
-              "text": "on"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r2",
-              "text": "in"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r3",
-              "text": "at"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите предлог перед днём недели",
+          "testedDimension": "Выберите связку после nobody",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите предлог перед днём недели",
+              "testedDimension": "Выберите связку после nobody",
               "feedbackByLocale": {
-                "ru": "Перед Friday нужен on.",
-                "uk": "Перед Friday потрібен on."
+                "ru": "С nobody нужна is.",
+                "uk": "З nobody потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите предлог перед днём недели",
+              "testedDimension": "Выберите связку после nobody",
               "feedbackByLocale": {
-                "ru": "Перед днём недели нужен on, не at.",
-                "uk": "Перед днем тижня потрібен on, не at."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -449,32 +445,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:roadmap",
+        "interactionId": "en:lesson-10:session-52:word:everywhere",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — roadmap",
+        "prompt": "Карточка слова — everywhere",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:roadmap:audio"
+          "en:lesson-10:session-52:word:everywhere:audio"
         ],
-        "accessibilityLabel": "Карточка слова — roadmap",
+        "accessibilityLabel": "Карточка слова — everywhere",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:roadmap:audio",
-            "transcript": "roadmap"
+            "audioTargetId": "en:lesson-10:session-52:word:everywhere:audio",
+            "transcript": "everywhere"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:roadmap:r1",
-              "targetText": "roadmap",
+              "responseId": "en:lesson-10:session-52:word:everywhere:r1",
+              "targetText": "everywhere",
               "meaningByLocale": {
-                "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
-                "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+                "ru": "«везде». I am looking everywhere. — «Я ищу везде». Здесь поиск во всех возможных местах.",
+                "uk": "«скрізь». I am looking everywhere. — «Я шукаю скрізь». Тут пошук у всіх можливих місцях."
               }
             }
           ],
@@ -482,10 +478,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "roadmap",
+            "word": "everywhere",
             "definitionByLocale": {
-              "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
-              "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+              "ru": "«везде». I am looking everywhere. — «Я ищу везде». Здесь поиск во всех возможных местах.",
+              "uk": "«скрізь». I am looking everywhere. — «Я шукаю скрізь». Тут пошук у всіх можливих місцях."
             }
           }
         },
@@ -497,25 +493,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
+        "prompt": "Вы сейчас ищете ключи во всех комнатах. Скажите: «Я ищу везде»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
+        "accessibilityLabel": "Вы сейчас ищете ключи во всех комнатах. Скажите: «Я ищу везде»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We review the roadmap every month.",
+          "targetPhrase": "I am looking everywhere.",
           "localizedMeaning": {
-            "ru": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
-            "uk": "Скажіть про регулярну роботу команди: «Ми переглядаємо план розвитку щомісяця». Поставте every month у кінці"
+            "ru": "Вы сейчас ищете ключи во всех комнатах. Скажите: «Я ищу везде»",
+            "uk": "Ви зараз шукаєте ключі в усіх кімнатах. Скажіть: «Я шукаю скрізь»"
           },
           "orderedTokens": [
-            "We",
-            "review",
-            "the",
-            "roadmap",
-            "every",
-            "month"
+            "I",
+            "am",
+            "looking",
+            "everywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -536,15 +530,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i08:r1",
-            "text": "The roadmap is on the website."
+            "text": "There are toys everywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i08:r2",
-            "text": "The roadmap is in the email."
+            "text": "There are books everywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i08:r3",
-            "text": "The forecast is on the website."
+            "text": "There are toys here."
           }
         ],
         "mediaIds": [],
@@ -556,23 +550,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i08:audio",
-            "transcript": "The roadmap is on the website."
+            "transcript": "There are toys everywhere."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i08:r1",
-              "targetText": "The roadmap is on the website.",
+              "targetText": "There are toys everywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i08:r2",
-              "targetText": "The roadmap is in the email.",
+              "targetText": "There are books everywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i08:r3",
-              "targetText": "The forecast is on the website.",
+              "targetText": "There are toys here.",
               "meaningByLocale": null
             }
           ],
@@ -583,8 +577,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The roadmap is on the website.",
-                "uk": "У записі звучить The roadmap is on the website."
+                "ru": "В записи звучит There are toys everywhere.",
+                "uk": "У записі звучить There are toys everywhere."
               }
             },
             {
@@ -592,8 +586,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The roadmap is on the website.",
-                "uk": "У записі звучить The roadmap is on the website."
+                "ru": "В записи звучит There are toys everywhere.",
+                "uk": "У записі звучить There are toys everywhere."
               }
             }
           ],
@@ -608,63 +602,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это ежемесячная работа. Выберите форму review",
+        "prompt": "Поиск идёт сейчас. Выберите форму look",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i09:r1",
-            "text": "review"
+            "text": "looking"
           },
           {
             "responseId": "en:lesson-10:session-52:i09:r2",
-            "text": "reviews"
+            "text": "look"
           },
           {
             "responseId": "en:lesson-10:session-52:i09:r3",
-            "text": "reviewing"
+            "text": "looks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это ежемесячная работа. Выберите форму review",
+        "accessibilityLabel": "Поиск идёт сейчас. Выберите форму look",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежемесячная работа. Выберите форму review",
-            "uk": "Це щомісячна робота. Виберіть форму review"
+            "ru": "Поиск идёт сейчас. Выберите форму look",
+            "uk": "Пошук триває зараз. Виберіть форму look"
           },
-          "gappedTargetPhrase": "We ___ the roadmap every month.",
+          "gappedTargetPhrase": "I am ___ everywhere.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i09:r1",
-              "text": "review"
+              "text": "looking"
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r2",
-              "text": "reviews"
+              "text": "look"
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r3",
-              "text": "reviewing"
+              "text": "looks"
             }
           ],
-          "testedDimension": "Это ежемесячная работа. Выберите форму review",
+          "testedDimension": "Поиск идёт сейчас. Выберите форму look",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i09:r2",
               "correct": false,
-              "testedDimension": "Это ежемесячная работа. Выберите форму review",
+              "testedDimension": "Поиск идёт сейчас. Выберите форму look",
               "feedbackByLocale": {
-                "ru": "С we нужна review без s.",
-                "uk": "З we потрібна review без s."
+                "ru": "После am для текущего действия нужна looking.",
+                "uk": "Після am для поточної дії потрібна looking."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r3",
               "correct": false,
-              "testedDimension": "Это ежемесячная работа. Выберите форму review",
+              "testedDimension": "Поиск идёт сейчас. Выберите форму look",
               "feedbackByLocale": {
-                "ru": "Здесь нужна review.",
-                "uk": "Тут потрібна review."
+                "ru": "Здесь нужна looking, не looks.",
+                "uk": "Тут потрібна looking, не looks."
               }
             }
           ]
@@ -672,32 +666,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:bottleneck",
+        "interactionId": "en:lesson-10:session-52:word:anywhere",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — bottleneck",
+        "prompt": "Карточка слова — anywhere",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:bottleneck:audio"
+          "en:lesson-10:session-52:word:anywhere:audio"
         ],
-        "accessibilityLabel": "Карточка слова — bottleneck",
+        "accessibilityLabel": "Карточка слова — anywhere",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:bottleneck:audio",
-            "transcript": "bottleneck"
+            "audioTargetId": "en:lesson-10:session-52:word:anywhere:audio",
+            "transcript": "anywhere"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:bottleneck:r1",
-              "targetText": "bottleneck",
+              "responseId": "en:lesson-10:session-52:word:anywhere:r1",
+              "targetText": "anywhere",
               "meaningByLocale": {
-                "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
-                "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+                "ru": "«где-нибудь; с отрицанием — нигде». I cannot find my keys anywhere. — «Я нигде не могу найти свои ключи».",
+                "uk": "«де-небудь; із запереченням — ніде». I cannot find my keys anywhere. — «Я ніде не можу знайти свої ключі»."
               }
             }
           ],
@@ -705,10 +699,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "bottleneck",
+            "word": "anywhere",
             "definitionByLocale": {
-              "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
-              "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+              "ru": "«где-нибудь; с отрицанием — нигде». I cannot find my keys anywhere. — «Я нигде не могу найти свои ключи».",
+              "uk": "«де-небудь; із запереченням — ніде». I cannot find my keys anywhere. — «Я ніде не можу знайти свої ключі»."
             }
           }
         },
@@ -720,24 +714,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
+        "prompt": "Ключи всё ещё не найдены. Скажите: «Я нигде не могу найти свои ключи». Поставьте anywhere в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
+        "accessibilityLabel": "Ключи всё ещё не найдены. Скажите: «Я нигде не могу найти свои ключи». Поставьте anywhere в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are investigating a bottleneck.",
+          "targetPhrase": "I cannot find my keys anywhere.",
           "localizedMeaning": {
-            "ru": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
-            "uk": "Зараз команда досліджує ділянку процесу, що затримує роботу. Скажіть: «Ми досліджуємо вузьке місце»"
+            "ru": "Ключи всё ещё не найдены. Скажите: «Я нигде не могу найти свои ключи». Поставьте anywhere в конце",
+            "uk": "Ключі досі не знайдено. Скажіть: «Я ніде не можу знайти свої ключі». Поставте anywhere у кінці"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "investigating",
-            "a",
-            "bottleneck"
+            "I",
+            "cannot",
+            "find",
+            "my",
+            "keys",
+            "anywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -758,15 +753,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i11:r1",
-            "text": "The bottleneck is in production."
+            "text": "I cannot find my phone anywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i11:r2",
-            "text": "The bottleneck is in delivery."
+            "text": "I cannot find my keys anywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i11:r3",
-            "text": "The problem is in production."
+            "text": "I cannot find my bag anywhere."
           }
         ],
         "mediaIds": [],
@@ -778,23 +773,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i11:audio",
-            "transcript": "The bottleneck is in production."
+            "transcript": "I cannot find my phone anywhere."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i11:r1",
-              "targetText": "The bottleneck is in production.",
+              "targetText": "I cannot find my phone anywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i11:r2",
-              "targetText": "The bottleneck is in delivery.",
+              "targetText": "I cannot find my keys anywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i11:r3",
-              "targetText": "The problem is in production.",
+              "targetText": "I cannot find my bag anywhere.",
               "meaningByLocale": null
             }
           ],
@@ -805,8 +800,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bottleneck is in production.",
-                "uk": "У записі звучить The bottleneck is in production."
+                "ru": "В записи звучит I cannot find my phone anywhere.",
+                "uk": "У записі звучить I cannot find my phone anywhere."
               }
             },
             {
@@ -814,8 +809,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bottleneck is in production.",
-                "uk": "У записі звучить The bottleneck is in production."
+                "ru": "В записи звучит I cannot find my phone anywhere.",
+                "uk": "У записі звучить I cannot find my phone anywhere."
               }
             }
           ],
@@ -830,63 +825,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите правильное написание формы investigate",
+        "prompt": "После cannot нужна начальная форма. Выберите форму find",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i12:r1",
-            "text": "investigating"
+            "text": "find"
           },
           {
             "responseId": "en:lesson-10:session-52:i12:r2",
-            "text": "investigateing"
+            "text": "finds"
           },
           {
             "responseId": "en:lesson-10:session-52:i12:r3",
-            "text": "investigate"
+            "text": "finding"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите правильное написание формы investigate",
+        "accessibilityLabel": "После cannot нужна начальная форма. Выберите форму find",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы investigate",
-            "uk": "Виберіть правильне написання форми investigate"
+            "ru": "После cannot нужна начальная форма. Выберите форму find",
+            "uk": "Після cannot потрібна початкова форма. Виберіть форму find"
           },
-          "gappedTargetPhrase": "We are ___ a bottleneck.",
+          "gappedTargetPhrase": "I cannot ___ my keys anywhere.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i12:r1",
-              "text": "investigating"
+              "text": "find"
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r2",
-              "text": "investigateing"
+              "text": "finds"
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r3",
-              "text": "investigate"
+              "text": "finding"
             }
           ],
-          "testedDimension": "Выберите правильное написание формы investigate",
+          "testedDimension": "После cannot нужна начальная форма. Выберите форму find",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы investigate",
+              "testedDimension": "После cannot нужна начальная форма. Выберите форму find",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: investigating.",
-                "uk": "Перед ing прибираємо e: investigating."
+                "ru": "После cannot нужна find без s.",
+                "uk": "Після cannot потрібна find без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы investigate",
+              "testedDimension": "После cannot нужна начальная форма. Выберите форму find",
               "feedbackByLocale": {
-                "ru": "После are для текущей работы нужна investigating.",
-                "uk": "Після are для поточної роботи потрібна investigating."
+                "ru": "После cannot нужна find, не finding.",
+                "uk": "Після cannot потрібна find, не finding."
               }
             }
           ]
@@ -909,48 +904,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-52:i13:p1",
-              "target": "phase",
+              "target": "somebody",
               "meaningByLocale": {
-                "ru": "этап",
-                "uk": "етап"
+                "ru": "кто-то",
+                "uk": "хтось"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p2",
-              "target": "checkpoint",
+              "target": "nobody",
               "meaningByLocale": {
-                "ru": "контрольная точка",
-                "uk": "контрольна точка"
+                "ru": "никто",
+                "uk": "ніхто"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p3",
-              "target": "roadmap",
+              "target": "everywhere",
               "meaningByLocale": {
-                "ru": "план развития",
-                "uk": "план розвитку"
+                "ru": "везде",
+                "uk": "скрізь"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p4",
-              "target": "bottleneck",
+              "target": "anywhere",
               "meaningByLocale": {
-                "ru": "узкое место",
-                "uk": "вузьке місце"
+                "ru": "где-нибудь",
+                "uk": "де-небудь"
               }
             }
           ],
           "leftColumn": [
-            "phase",
-            "checkpoint",
-            "roadmap",
-            "bottleneck"
+            "somebody",
+            "nobody",
+            "everywhere",
+            "anywhere"
           ],
           "rightColumn": [
-            "этап",
-            "контрольная точка",
-            "план развития",
-            "узкое место"
+            "кто-то",
+            "никто",
+            "везде",
+            "где-нибудь"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -983,16 +978,14 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i14:audio",
-            "transcript": "We are investigating a bottleneck."
+            "transcript": "Somebody is knocking."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are investigating a bottleneck.",
+          "hiddenTargetPhrase": "Somebody is knocking.",
           "orderedTokens": [
-            "We",
-            "are",
-            "investigating",
-            "a",
-            "bottleneck"
+            "Somebody",
+            "is",
+            "knocking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1009,21 +1002,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, как часто команда пересматривает общий план проекта. Скажите: «Мы пересматриваем план развития каждый месяц»",
+        "prompt": "Сосед спрашивает, есть ли кто-нибудь дома. Все ушли. Скажите: «Никого нет дома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-52:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, как часто команда пересматривает общий план проекта. Скажите: «Мы пересматриваем план развития каждый месяц»",
+        "accessibilityLabel": "Сосед спрашивает, есть ли кто-нибудь дома. Все ушли. Скажите: «Никого нет дома»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i15:audio",
-            "transcript": "We review the roadmap every month."
+            "transcript": "Nobody is at home."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We review the roadmap every month.",
+          "targetPhrase": "Nobody is at home.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1042,24 +1035,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
+        "prompt": "Друг спрашивает, где вы ищете ключи. Скажите: «Я ищу везде»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
+        "accessibilityLabel": "Друг спрашивает, где вы ищете ключи. Скажите: «Я ищу везде»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This phase lasts a week.",
+          "targetPhrase": "I am looking everywhere.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
-            "uk": "Колега запитує про тривалість поточного етапу. Скажіть: «Цей етап триває тиждень»"
+            "ru": "Друг спрашивает, где вы ищете ключи. Скажите: «Я ищу везде»",
+            "uk": "Друг запитує, де ви шукаєте ключі. Скажіть: «Я шукаю скрізь»"
           },
           "orderedTokens": [
-            "This",
-            "phase",
-            "lasts",
-            "a",
-            "week"
+            "I",
+            "am",
+            "looking",
+            "everywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1076,21 +1068,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы с коллегами выясняете причину задержек на одном участке процесса. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы изучаем узкое место»",
+        "prompt": "Перед выходом вы проверили карманы и комнаты, но ключей нет. Друг спрашивает, почему вы задерживаетесь. Скажите: «Я нигде не могу найти свои ключи»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-52:i17:audio"
         ],
-        "accessibilityLabel": "Вы с коллегами выясняете причину задержек на одном участке процесса. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы изучаем узкое место»",
+        "accessibilityLabel": "Перед выходом вы проверили карманы и комнаты, но ключей нет. Друг спрашивает, почему вы задерживаетесь. Скажите: «Я нигде не могу найти свои ключи»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i17:audio",
-            "transcript": "We are investigating a bottleneck."
+            "transcript": "I cannot find my keys anywhere."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are investigating a bottleneck.",
+          "targetPhrase": "I cannot find my keys anywhere.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1114,32 +1106,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-52:word:phase",
+        "interactionId": "en:lesson-10:session-52:word:somebody",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — phase",
+        "prompt": "Картка слова — somebody",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:phase:audio"
+          "en:lesson-10:session-52:word:somebody:audio"
         ],
-        "accessibilityLabel": "Картка слова — phase",
+        "accessibilityLabel": "Картка слова — somebody",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:phase:audio",
-            "transcript": "phase"
+            "audioTargetId": "en:lesson-10:session-52:word:somebody:audio",
+            "transcript": "somebody"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:phase:r1",
-              "targetText": "phase",
+              "responseId": "en:lesson-10:session-52:word:somebody:r1",
+              "targetText": "somebody",
               "meaningByLocale": {
-                "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
-                "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+                "ru": "«кто-то». Somebody is knocking. — «Кто-то стучит». Вы пока не знаете, кто именно.",
+                "uk": "«хтось». Somebody is knocking. — «Хтось стукає». Ви поки не знаєте, хто саме."
               }
             }
           ],
@@ -1147,10 +1139,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "phase",
+            "word": "somebody",
             "definitionByLocale": {
-              "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
-              "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+              "ru": "«кто-то». Somebody is knocking. — «Кто-то стучит». Вы пока не знаете, кто именно.",
+              "uk": "«хтось». Somebody is knocking. — «Хтось стукає». Ви поки не знаєте, хто саме."
             }
           }
         },
@@ -1162,24 +1154,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Поясніть тривалість за планом: «Цей етап триває тиждень»",
+        "prompt": "Ви чуєте стукіт у двері. Скажіть другу: «Хтось стукає»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поясніть тривалість за планом: «Цей етап триває тиждень»",
+        "accessibilityLabel": "Ви чуєте стукіт у двері. Скажіть другу: «Хтось стукає»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This phase lasts a week.",
+          "targetPhrase": "Somebody is knocking.",
           "localizedMeaning": {
-            "ru": "Объясните длительность по плану: «Этот этап длится неделю»",
-            "uk": "Поясніть тривалість за планом: «Цей етап триває тиждень»"
+            "ru": "Вы слышите стук в дверь. Скажите другу: «Кто-то стучит»",
+            "uk": "Ви чуєте стукіт у двері. Скажіть другу: «Хтось стукає»"
           },
           "orderedTokens": [
-            "This",
-            "phase",
-            "lasts",
-            "a",
-            "week"
+            "Somebody",
+            "is",
+            "knocking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1200,15 +1190,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i02:r1",
-            "text": "The next phase starts tomorrow."
+            "text": "Somebody is calling you."
           },
           {
             "responseId": "en:lesson-10:session-52:i02:r2",
-            "text": "The next phase starts today."
+            "text": "Somebody is waiting for you."
           },
           {
             "responseId": "en:lesson-10:session-52:i02:r3",
-            "text": "The next meeting starts tomorrow."
+            "text": "Somebody is calling me."
           }
         ],
         "mediaIds": [],
@@ -1220,23 +1210,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i02:audio",
-            "transcript": "The next phase starts tomorrow."
+            "transcript": "Somebody is calling you."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i02:r1",
-              "targetText": "The next phase starts tomorrow.",
+              "targetText": "Somebody is calling you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i02:r2",
-              "targetText": "The next phase starts today.",
+              "targetText": "Somebody is waiting for you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i02:r3",
-              "targetText": "The next meeting starts tomorrow.",
+              "targetText": "Somebody is calling me.",
               "meaningByLocale": null
             }
           ],
@@ -1247,8 +1237,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The next phase starts tomorrow.",
-                "uk": "У записі звучить The next phase starts tomorrow."
+                "ru": "В записи звучит Somebody is calling you.",
+                "uk": "У записі звучить Somebody is calling you."
               }
             },
             {
@@ -1256,8 +1246,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The next phase starts tomorrow.",
-                "uk": "У записі звучить The next phase starts tomorrow."
+                "ru": "В записи звучит Somebody is calling you.",
+                "uk": "У записі звучить Somebody is calling you."
               }
             }
           ],
@@ -1272,63 +1262,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це встановлена тривалість. Виберіть форму last",
+        "prompt": "Стукіт чути зараз. Виберіть допоміжне дієслово",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i03:r1",
-            "text": "lasts"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-52:i03:r2",
-            "text": "last"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-52:i03:r3",
-            "text": "lasting"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це встановлена тривалість. Виберіть форму last",
+        "accessibilityLabel": "Стукіт чути зараз. Виберіть допоміжне дієслово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это установленная длительность. Выберите форму last",
-            "uk": "Це встановлена тривалість. Виберіть форму last"
+            "ru": "Стук слышен сейчас. Выберите вспомогательный глагол",
+            "uk": "Стукіт чути зараз. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "This phase ___ a week.",
+          "gappedTargetPhrase": "Somebody ___ knocking.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i03:r1",
-              "text": "lasts"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r2",
-              "text": "last"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r3",
-              "text": "lasting"
+              "text": "am"
             }
           ],
-          "testedDimension": "Це встановлена тривалість. Виберіть форму last",
+          "testedDimension": "Стукіт чути зараз. Виберіть допоміжне дієслово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i03:r2",
               "correct": false,
-              "testedDimension": "Це встановлена тривалість. Виберіть форму last",
+              "testedDimension": "Стукіт чути зараз. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "Один этап: lasts с s.",
-                "uk": "Один етап: lasts із s."
+                "ru": "С somebody нужна is.",
+                "uk": "З somebody потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i03:r3",
               "correct": false,
-              "testedDimension": "Це встановлена тривалість. Виберіть форму last",
+              "testedDimension": "Стукіт чути зараз. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "Здесь нужна lasts.",
-                "uk": "Тут потрібна lasts."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1336,32 +1326,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:checkpoint",
+        "interactionId": "en:lesson-10:session-52:word:nobody",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — checkpoint",
+        "prompt": "Картка слова — nobody",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:checkpoint:audio"
+          "en:lesson-10:session-52:word:nobody:audio"
         ],
-        "accessibilityLabel": "Картка слова — checkpoint",
+        "accessibilityLabel": "Картка слова — nobody",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:checkpoint:audio",
-            "transcript": "checkpoint"
+            "audioTargetId": "en:lesson-10:session-52:word:nobody:audio",
+            "transcript": "nobody"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:checkpoint:r1",
-              "targetText": "checkpoint",
+              "responseId": "en:lesson-10:session-52:word:nobody:r1",
+              "targetText": "nobody",
               "meaningByLocale": {
-                "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
-                "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+                "ru": "«никто». Nobody is at home. — «Никого нет дома». Nobody уже содержит отрицание.",
+                "uk": "«ніхто». Nobody is at home. — «Нікого немає вдома». Nobody вже містить заперечення."
               }
             }
           ],
@@ -1369,10 +1359,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "checkpoint",
+            "word": "nobody",
             "definitionByLocale": {
-              "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
-              "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+              "ru": "«никто». Nobody is at home. — «Никого нет дома». Nobody уже содержит отрицание.",
+              "uk": "«ніхто». Nobody is at home. — «Нікого немає вдома». Nobody вже містить заперечення."
             }
           }
         },
@@ -1384,25 +1374,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда перевірить перебіг проєкту в п’ятницю. Скажіть: «Наступна контрольна точка — у п’ятницю»",
+        "prompt": "Уся родина пішла. Повідомте сусідові: «Нікого немає вдома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда перевірить перебіг проєкту в п’ятницю. Скажіть: «Наступна контрольна точка — у п’ятницю»",
+        "accessibilityLabel": "Уся родина пішла. Повідомте сусідові: «Нікого немає вдома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The next checkpoint is on Friday.",
+          "targetPhrase": "Nobody is at home.",
           "localizedMeaning": {
-            "ru": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
-            "uk": "Команда перевірить перебіг проєкту в п’ятницю. Скажіть: «Наступна контрольна точка — у п’ятницю»"
+            "ru": "Вся семья ушла. Сообщите соседу: «Никого нет дома»",
+            "uk": "Уся родина пішла. Повідомте сусідові: «Нікого немає вдома»"
           },
           "orderedTokens": [
-            "The",
-            "next",
-            "checkpoint",
+            "Nobody",
             "is",
-            "on",
-            "Friday"
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1423,15 +1411,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i05:r1",
-            "text": "The checkpoint is tomorrow."
+            "text": "Nobody is in the kitchen."
           },
           {
             "responseId": "en:lesson-10:session-52:i05:r2",
-            "text": "The checkpoint is today."
+            "text": "Nobody is in the garden."
           },
           {
             "responseId": "en:lesson-10:session-52:i05:r3",
-            "text": "The handover is tomorrow."
+            "text": "Somebody is in the kitchen."
           }
         ],
         "mediaIds": [],
@@ -1443,23 +1431,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i05:audio",
-            "transcript": "The checkpoint is tomorrow."
+            "transcript": "Nobody is in the kitchen."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i05:r1",
-              "targetText": "The checkpoint is tomorrow.",
+              "targetText": "Nobody is in the kitchen.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i05:r2",
-              "targetText": "The checkpoint is today.",
+              "targetText": "Nobody is in the garden.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i05:r3",
-              "targetText": "The handover is tomorrow.",
+              "targetText": "Somebody is in the kitchen.",
               "meaningByLocale": null
             }
           ],
@@ -1470,8 +1458,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The checkpoint is tomorrow.",
-                "uk": "У записі звучить The checkpoint is tomorrow."
+                "ru": "В записи звучит Nobody is in the kitchen.",
+                "uk": "У записі звучить Nobody is in the kitchen."
               }
             },
             {
@@ -1479,8 +1467,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The checkpoint is tomorrow.",
-                "uk": "У записі звучить The checkpoint is tomorrow."
+                "ru": "В записи звучит Nobody is in the kitchen.",
+                "uk": "У записі звучить Nobody is in the kitchen."
               }
             }
           ],
@@ -1495,63 +1483,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть прийменник перед днем тижня",
+        "prompt": "Виберіть зв’язку після nobody",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i06:r1",
-            "text": "on"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-52:i06:r2",
-            "text": "in"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-52:i06:r3",
-            "text": "at"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть прийменник перед днем тижня",
+        "accessibilityLabel": "Виберіть зв’язку після nobody",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите предлог перед днём недели",
-            "uk": "Виберіть прийменник перед днем тижня"
+            "ru": "Выберите связку после nobody",
+            "uk": "Виберіть зв’язку після nobody"
           },
-          "gappedTargetPhrase": "The next checkpoint is ___ Friday.",
+          "gappedTargetPhrase": "Nobody ___ at home.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i06:r1",
-              "text": "on"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r2",
-              "text": "in"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r3",
-              "text": "at"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть прийменник перед днем тижня",
+          "testedDimension": "Виберіть зв’язку після nobody",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть прийменник перед днем тижня",
+              "testedDimension": "Виберіть зв’язку після nobody",
               "feedbackByLocale": {
-                "ru": "Перед Friday нужен on.",
-                "uk": "Перед Friday потрібен on."
+                "ru": "С nobody нужна is.",
+                "uk": "З nobody потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть прийменник перед днем тижня",
+              "testedDimension": "Виберіть зв’язку після nobody",
               "feedbackByLocale": {
-                "ru": "Перед днём недели нужен on, не at.",
-                "uk": "Перед днем тижня потрібен on, не at."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1559,32 +1547,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:roadmap",
+        "interactionId": "en:lesson-10:session-52:word:everywhere",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — roadmap",
+        "prompt": "Картка слова — everywhere",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:roadmap:audio"
+          "en:lesson-10:session-52:word:everywhere:audio"
         ],
-        "accessibilityLabel": "Картка слова — roadmap",
+        "accessibilityLabel": "Картка слова — everywhere",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:roadmap:audio",
-            "transcript": "roadmap"
+            "audioTargetId": "en:lesson-10:session-52:word:everywhere:audio",
+            "transcript": "everywhere"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:roadmap:r1",
-              "targetText": "roadmap",
+              "responseId": "en:lesson-10:session-52:word:everywhere:r1",
+              "targetText": "everywhere",
               "meaningByLocale": {
-                "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
-                "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+                "ru": "«везде». I am looking everywhere. — «Я ищу везде». Здесь поиск во всех возможных местах.",
+                "uk": "«скрізь». I am looking everywhere. — «Я шукаю скрізь». Тут пошук у всіх можливих місцях."
               }
             }
           ],
@@ -1592,10 +1580,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "roadmap",
+            "word": "everywhere",
             "definitionByLocale": {
-              "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
-              "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+              "ru": "«везде». I am looking everywhere. — «Я ищу везде». Здесь поиск во всех возможных местах.",
+              "uk": "«скрізь». I am looking everywhere. — «Я шукаю скрізь». Тут пошук у всіх можливих місцях."
             }
           }
         },
@@ -1607,25 +1595,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть про регулярну роботу команди: «Ми переглядаємо план розвитку щомісяця». Поставте every month у кінці",
+        "prompt": "Ви зараз шукаєте ключі в усіх кімнатах. Скажіть: «Я шукаю скрізь»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про регулярну роботу команди: «Ми переглядаємо план розвитку щомісяця». Поставте every month у кінці",
+        "accessibilityLabel": "Ви зараз шукаєте ключі в усіх кімнатах. Скажіть: «Я шукаю скрізь»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We review the roadmap every month.",
+          "targetPhrase": "I am looking everywhere.",
           "localizedMeaning": {
-            "ru": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
-            "uk": "Скажіть про регулярну роботу команди: «Ми переглядаємо план розвитку щомісяця». Поставте every month у кінці"
+            "ru": "Вы сейчас ищете ключи во всех комнатах. Скажите: «Я ищу везде»",
+            "uk": "Ви зараз шукаєте ключі в усіх кімнатах. Скажіть: «Я шукаю скрізь»"
           },
           "orderedTokens": [
-            "We",
-            "review",
-            "the",
-            "roadmap",
-            "every",
-            "month"
+            "I",
+            "am",
+            "looking",
+            "everywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1646,15 +1632,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i08:r1",
-            "text": "The roadmap is on the website."
+            "text": "There are toys everywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i08:r2",
-            "text": "The roadmap is in the email."
+            "text": "There are books everywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i08:r3",
-            "text": "The forecast is on the website."
+            "text": "There are toys here."
           }
         ],
         "mediaIds": [],
@@ -1666,23 +1652,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i08:audio",
-            "transcript": "The roadmap is on the website."
+            "transcript": "There are toys everywhere."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i08:r1",
-              "targetText": "The roadmap is on the website.",
+              "targetText": "There are toys everywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i08:r2",
-              "targetText": "The roadmap is in the email.",
+              "targetText": "There are books everywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i08:r3",
-              "targetText": "The forecast is on the website.",
+              "targetText": "There are toys here.",
               "meaningByLocale": null
             }
           ],
@@ -1693,8 +1679,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The roadmap is on the website.",
-                "uk": "У записі звучить The roadmap is on the website."
+                "ru": "В записи звучит There are toys everywhere.",
+                "uk": "У записі звучить There are toys everywhere."
               }
             },
             {
@@ -1702,8 +1688,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The roadmap is on the website.",
-                "uk": "У записі звучить The roadmap is on the website."
+                "ru": "В записи звучит There are toys everywhere.",
+                "uk": "У записі звучить There are toys everywhere."
               }
             }
           ],
@@ -1718,63 +1704,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це щомісячна робота. Виберіть форму review",
+        "prompt": "Пошук триває зараз. Виберіть форму look",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i09:r1",
-            "text": "review"
+            "text": "looking"
           },
           {
             "responseId": "en:lesson-10:session-52:i09:r2",
-            "text": "reviews"
+            "text": "look"
           },
           {
             "responseId": "en:lesson-10:session-52:i09:r3",
-            "text": "reviewing"
+            "text": "looks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це щомісячна робота. Виберіть форму review",
+        "accessibilityLabel": "Пошук триває зараз. Виберіть форму look",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежемесячная работа. Выберите форму review",
-            "uk": "Це щомісячна робота. Виберіть форму review"
+            "ru": "Поиск идёт сейчас. Выберите форму look",
+            "uk": "Пошук триває зараз. Виберіть форму look"
           },
-          "gappedTargetPhrase": "We ___ the roadmap every month.",
+          "gappedTargetPhrase": "I am ___ everywhere.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i09:r1",
-              "text": "review"
+              "text": "looking"
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r2",
-              "text": "reviews"
+              "text": "look"
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r3",
-              "text": "reviewing"
+              "text": "looks"
             }
           ],
-          "testedDimension": "Це щомісячна робота. Виберіть форму review",
+          "testedDimension": "Пошук триває зараз. Виберіть форму look",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i09:r2",
               "correct": false,
-              "testedDimension": "Це щомісячна робота. Виберіть форму review",
+              "testedDimension": "Пошук триває зараз. Виберіть форму look",
               "feedbackByLocale": {
-                "ru": "С we нужна review без s.",
-                "uk": "З we потрібна review без s."
+                "ru": "После am для текущего действия нужна looking.",
+                "uk": "Після am для поточної дії потрібна looking."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i09:r3",
               "correct": false,
-              "testedDimension": "Це щомісячна робота. Виберіть форму review",
+              "testedDimension": "Пошук триває зараз. Виберіть форму look",
               "feedbackByLocale": {
-                "ru": "Здесь нужна review.",
-                "uk": "Тут потрібна review."
+                "ru": "Здесь нужна looking, не looks.",
+                "uk": "Тут потрібна looking, не looks."
               }
             }
           ]
@@ -1782,32 +1768,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-52:word:bottleneck",
+        "interactionId": "en:lesson-10:session-52:word:anywhere",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — bottleneck",
+        "prompt": "Картка слова — anywhere",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-52:word:bottleneck:audio"
+          "en:lesson-10:session-52:word:anywhere:audio"
         ],
-        "accessibilityLabel": "Картка слова — bottleneck",
+        "accessibilityLabel": "Картка слова — anywhere",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-52:word:bottleneck:audio",
-            "transcript": "bottleneck"
+            "audioTargetId": "en:lesson-10:session-52:word:anywhere:audio",
+            "transcript": "anywhere"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-52:word:bottleneck:r1",
-              "targetText": "bottleneck",
+              "responseId": "en:lesson-10:session-52:word:anywhere:r1",
+              "targetText": "anywhere",
               "meaningByLocale": {
-                "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
-                "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+                "ru": "«где-нибудь; с отрицанием — нигде». I cannot find my keys anywhere. — «Я нигде не могу найти свои ключи».",
+                "uk": "«де-небудь; із запереченням — ніде». I cannot find my keys anywhere. — «Я ніде не можу знайти свої ключі»."
               }
             }
           ],
@@ -1815,10 +1801,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "bottleneck",
+            "word": "anywhere",
             "definitionByLocale": {
-              "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
-              "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+              "ru": "«где-нибудь; с отрицанием — нигде». I cannot find my keys anywhere. — «Я нигде не могу найти свои ключи».",
+              "uk": "«де-небудь; із запереченням — ніде». I cannot find my keys anywhere. — «Я ніде не можу знайти свої ключі»."
             }
           }
         },
@@ -1830,24 +1816,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Зараз команда досліджує ділянку процесу, що затримує роботу. Скажіть: «Ми досліджуємо вузьке місце»",
+        "prompt": "Ключі досі не знайдено. Скажіть: «Я ніде не можу знайти свої ключі». Поставте anywhere у кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Зараз команда досліджує ділянку процесу, що затримує роботу. Скажіть: «Ми досліджуємо вузьке місце»",
+        "accessibilityLabel": "Ключі досі не знайдено. Скажіть: «Я ніде не можу знайти свої ключі». Поставте anywhere у кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are investigating a bottleneck.",
+          "targetPhrase": "I cannot find my keys anywhere.",
           "localizedMeaning": {
-            "ru": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
-            "uk": "Зараз команда досліджує ділянку процесу, що затримує роботу. Скажіть: «Ми досліджуємо вузьке місце»"
+            "ru": "Ключи всё ещё не найдены. Скажите: «Я нигде не могу найти свои ключи». Поставьте anywhere в конце",
+            "uk": "Ключі досі не знайдено. Скажіть: «Я ніде не можу знайти свої ключі». Поставте anywhere у кінці"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "investigating",
-            "a",
-            "bottleneck"
+            "I",
+            "cannot",
+            "find",
+            "my",
+            "keys",
+            "anywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1868,15 +1855,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i11:r1",
-            "text": "The bottleneck is in production."
+            "text": "I cannot find my phone anywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i11:r2",
-            "text": "The bottleneck is in delivery."
+            "text": "I cannot find my keys anywhere."
           },
           {
             "responseId": "en:lesson-10:session-52:i11:r3",
-            "text": "The problem is in production."
+            "text": "I cannot find my bag anywhere."
           }
         ],
         "mediaIds": [],
@@ -1888,23 +1875,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i11:audio",
-            "transcript": "The bottleneck is in production."
+            "transcript": "I cannot find my phone anywhere."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-52:i11:r1",
-              "targetText": "The bottleneck is in production.",
+              "targetText": "I cannot find my phone anywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i11:r2",
-              "targetText": "The bottleneck is in delivery.",
+              "targetText": "I cannot find my keys anywhere.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-52:i11:r3",
-              "targetText": "The problem is in production.",
+              "targetText": "I cannot find my bag anywhere.",
               "meaningByLocale": null
             }
           ],
@@ -1915,8 +1902,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bottleneck is in production.",
-                "uk": "У записі звучить The bottleneck is in production."
+                "ru": "В записи звучит I cannot find my phone anywhere.",
+                "uk": "У записі звучить I cannot find my phone anywhere."
               }
             },
             {
@@ -1924,8 +1911,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The bottleneck is in production.",
-                "uk": "У записі звучить The bottleneck is in production."
+                "ru": "В записи звучит I cannot find my phone anywhere.",
+                "uk": "У записі звучить I cannot find my phone anywhere."
               }
             }
           ],
@@ -1940,63 +1927,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть правильне написання форми investigate",
+        "prompt": "Після cannot потрібна початкова форма. Виберіть форму find",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i12:r1",
-            "text": "investigating"
+            "text": "find"
           },
           {
             "responseId": "en:lesson-10:session-52:i12:r2",
-            "text": "investigateing"
+            "text": "finds"
           },
           {
             "responseId": "en:lesson-10:session-52:i12:r3",
-            "text": "investigate"
+            "text": "finding"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть правильне написання форми investigate",
+        "accessibilityLabel": "Після cannot потрібна початкова форма. Виберіть форму find",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы investigate",
-            "uk": "Виберіть правильне написання форми investigate"
+            "ru": "После cannot нужна начальная форма. Выберите форму find",
+            "uk": "Після cannot потрібна початкова форма. Виберіть форму find"
           },
-          "gappedTargetPhrase": "We are ___ a bottleneck.",
+          "gappedTargetPhrase": "I cannot ___ my keys anywhere.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-52:i12:r1",
-              "text": "investigating"
+              "text": "find"
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r2",
-              "text": "investigateing"
+              "text": "finds"
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r3",
-              "text": "investigate"
+              "text": "finding"
             }
           ],
-          "testedDimension": "Виберіть правильне написання форми investigate",
+          "testedDimension": "Після cannot потрібна початкова форма. Виберіть форму find",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-52:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми investigate",
+              "testedDimension": "Після cannot потрібна початкова форма. Виберіть форму find",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: investigating.",
-                "uk": "Перед ing прибираємо e: investigating."
+                "ru": "После cannot нужна find без s.",
+                "uk": "Після cannot потрібна find без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-52:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми investigate",
+              "testedDimension": "Після cannot потрібна початкова форма. Виберіть форму find",
               "feedbackByLocale": {
-                "ru": "После are для текущей работы нужна investigating.",
-                "uk": "Після are для поточної роботи потрібна investigating."
+                "ru": "После cannot нужна find, не finding.",
+                "uk": "Після cannot потрібна find, не finding."
               }
             }
           ]
@@ -2019,48 +2006,48 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-52:i13:p1",
-              "target": "phase",
+              "target": "somebody",
               "meaningByLocale": {
-                "ru": "этап",
-                "uk": "етап"
+                "ru": "кто-то",
+                "uk": "хтось"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p2",
-              "target": "checkpoint",
+              "target": "nobody",
               "meaningByLocale": {
-                "ru": "контрольная точка",
-                "uk": "контрольна точка"
+                "ru": "никто",
+                "uk": "ніхто"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p3",
-              "target": "roadmap",
+              "target": "everywhere",
               "meaningByLocale": {
-                "ru": "план развития",
-                "uk": "план розвитку"
+                "ru": "везде",
+                "uk": "скрізь"
               }
             },
             {
               "pairId": "en:lesson-10:session-52:i13:p4",
-              "target": "bottleneck",
+              "target": "anywhere",
               "meaningByLocale": {
-                "ru": "узкое место",
-                "uk": "вузьке місце"
+                "ru": "где-нибудь",
+                "uk": "де-небудь"
               }
             }
           ],
           "leftColumn": [
-            "phase",
-            "checkpoint",
-            "roadmap",
-            "bottleneck"
+            "somebody",
+            "nobody",
+            "everywhere",
+            "anywhere"
           ],
           "rightColumn": [
-            "етап",
-            "контрольна точка",
-            "план розвитку",
-            "вузьке місце"
+            "хтось",
+            "ніхто",
+            "скрізь",
+            "де-небудь"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2093,16 +2080,14 @@
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i14:audio",
-            "transcript": "We are investigating a bottleneck."
+            "transcript": "Somebody is knocking."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are investigating a bottleneck.",
+          "hiddenTargetPhrase": "Somebody is knocking.",
           "orderedTokens": [
-            "We",
-            "are",
-            "investigating",
-            "a",
-            "bottleneck"
+            "Somebody",
+            "is",
+            "knocking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2119,21 +2104,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, як часто команда переглядає загальний план проєкту. Скажіть: «Ми переглядаємо план розвитку щомісяця»",
+        "prompt": "Сусід запитує, чи є хтось удома. Усі пішли. Скажіть: «Нікого немає вдома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-52:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, як часто команда переглядає загальний план проєкту. Скажіть: «Ми переглядаємо план розвитку щомісяця»",
+        "accessibilityLabel": "Сусід запитує, чи є хтось удома. Усі пішли. Скажіть: «Нікого немає вдома»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i15:audio",
-            "transcript": "We review the roadmap every month."
+            "transcript": "Nobody is at home."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We review the roadmap every month.",
+          "targetPhrase": "Nobody is at home.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2152,24 +2137,23 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує про тривалість поточного етапу. Скажіть: «Цей етап триває тиждень»",
+        "prompt": "Друг запитує, де ви шукаєте ключі. Скажіть: «Я шукаю скрізь»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує про тривалість поточного етапу. Скажіть: «Цей етап триває тиждень»",
+        "accessibilityLabel": "Друг запитує, де ви шукаєте ключі. Скажіть: «Я шукаю скрізь»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This phase lasts a week.",
+          "targetPhrase": "I am looking everywhere.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
-            "uk": "Колега запитує про тривалість поточного етапу. Скажіть: «Цей етап триває тиждень»"
+            "ru": "Друг спрашивает, где вы ищете ключи. Скажите: «Я ищу везде»",
+            "uk": "Друг запитує, де ви шукаєте ключі. Скажіть: «Я шукаю скрізь»"
           },
           "orderedTokens": [
-            "This",
-            "phase",
-            "lasts",
-            "a",
-            "week"
+            "I",
+            "am",
+            "looking",
+            "everywhere"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2186,21 +2170,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви з колегами з’ясовуєте причину затримок на одній ділянці процесу. Керівник запитує, чим ви зайняті зараз. Скажіть: «Ми досліджуємо вузьке місце»",
+        "prompt": "Перед виходом ви перевірили кишені й кімнати, але ключів немає. Друг запитує, чому ви затримуєтеся. Скажіть: «Я ніде не можу знайти свої ключі»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-52:i17:audio"
         ],
-        "accessibilityLabel": "Ви з колегами з’ясовуєте причину затримок на одній ділянці процесу. Керівник запитує, чим ви зайняті зараз. Скажіть: «Ми досліджуємо вузьке місце»",
+        "accessibilityLabel": "Перед виходом ви перевірили кишені й кімнати, але ключів немає. Друг запитує, чому ви затримуєтеся. Скажіть: «Я ніде не можу знайти свої ключі»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-52:i17:audio",
-            "transcript": "We are investigating a bottleneck."
+            "transcript": "I cannot find my keys anywhere."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are investigating a bottleneck.",
+          "targetPhrase": "I cannot find my keys anywhere.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2225,83 +2209,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-52:word:phase",
-      "correctText": "phase",
+      "interactionId": "en:lesson-10:session-52:word:somebody",
+      "correctText": "somebody",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i01",
-      "correctText": "This phase lasts a week.",
+      "correctText": "Somebody is knocking.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i02",
-      "correctText": "The next phase starts tomorrow.",
+      "correctText": "Somebody is calling you.",
       "correctResponseId": "en:lesson-10:session-52:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-52:i03",
-      "correctText": "lasts",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-52:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-52:word:checkpoint",
-      "correctText": "checkpoint",
+      "interactionId": "en:lesson-10:session-52:word:nobody",
+      "correctText": "nobody",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i04",
-      "correctText": "The next checkpoint is on Friday.",
+      "correctText": "Nobody is at home.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i05",
-      "correctText": "The checkpoint is tomorrow.",
+      "correctText": "Nobody is in the kitchen.",
       "correctResponseId": "en:lesson-10:session-52:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-52:i06",
-      "correctText": "on",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-52:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-52:word:roadmap",
-      "correctText": "roadmap",
+      "interactionId": "en:lesson-10:session-52:word:everywhere",
+      "correctText": "everywhere",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i07",
-      "correctText": "We review the roadmap every month.",
+      "correctText": "I am looking everywhere.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i08",
-      "correctText": "The roadmap is on the website.",
+      "correctText": "There are toys everywhere.",
       "correctResponseId": "en:lesson-10:session-52:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-52:i09",
-      "correctText": "review",
+      "correctText": "looking",
       "correctResponseId": "en:lesson-10:session-52:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-52:word:bottleneck",
-      "correctText": "bottleneck",
+      "interactionId": "en:lesson-10:session-52:word:anywhere",
+      "correctText": "anywhere",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i10",
-      "correctText": "We are investigating a bottleneck.",
+      "correctText": "I cannot find my keys anywhere.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i11",
-      "correctText": "The bottleneck is in production.",
+      "correctText": "I cannot find my phone anywhere.",
       "correctResponseId": "en:lesson-10:session-52:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-52:i12",
-      "correctText": "investigating",
+      "correctText": "find",
       "correctResponseId": "en:lesson-10:session-52:i12:r1"
     },
     {
@@ -2311,22 +2295,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-52:i14",
-      "correctText": "We are investigating a bottleneck.",
+      "correctText": "Somebody is knocking.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i15",
-      "correctText": "We review the roadmap every month.",
+      "correctText": "Nobody is at home.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i16",
-      "correctText": "This phase lasts a week.",
+      "correctText": "I am looking everywhere.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-52:i17",
-      "correctText": "We are investigating a bottleneck.",
+      "correctText": "I cannot find my keys anywhere.",
       "correctResponseId": null
     }
   ]

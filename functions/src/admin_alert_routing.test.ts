@@ -1,6 +1,8 @@
 import { ADMIN_ALERT_IDS } from './admin_alert_catalog';
 import {
   ADMIN_ALERT_STALE_MS,
+  adminAlertLateLabel,
+  adminAlertLateMs,
   INSTANT_ADMIN_ALERT_TYPES,
   criticalErrorGroupKey,
   isLegacyAppVersion,
@@ -71,5 +73,39 @@ describe('admin alert routing (владелец 21.10, №48)', () => {
     expect(a).toContain('learning_v2.finish.episodefinishfailed');
     expect(criticalErrorGroupKey({ payload, occurredAtMs: NOW + 3_600_000 })).not.toBe(a);
     expect(criticalErrorGroupKey({ payload: { ...payload, category: 'spire' }, occurredAtMs: NOW })).not.toBe(a);
+  });
+});
+
+// ── Ревизор 21.10 (на «да» владельца): деньги и безопасность ИИ не теряются в сводке ──────────────
+describe('money and AI safety are never delayed to the digest', () => {
+  test('money from a 1.x build still comes instantly; AI safety from 1.x stays in the digest', () => {
+    for (const eventType of ['premiumPurchase', 'refund', 'paymentWebhookFailure'] as const) {
+      expect(routeAdminAlert({ eventType, occurredAtMs: NOW, payload: { appVersion: '1.6.24' } }, NOW)).toEqual({ kind: 'instant' });
+    }
+    expect(routeAdminAlert({ eventType: 'safetyFlag', occurredAtMs: NOW, payload: { appVersion: '1.6.24' } }, NOW))
+      .toEqual({ kind: 'weekly', reason: 'legacy_1x' });
+  });
+
+  test('late money and AI safety come instantly with the delay; other late events go to the digest', () => {
+    const late = ADMIN_ALERT_STALE_MS + 15 * 60_000;
+    for (const eventType of ['premiumPurchase', 'refund', 'paymentWebhookFailure', 'safetyFlag'] as const) {
+      expect(routeAdminAlert({ eventType, occurredAtMs: NOW - late, payload: {} }, NOW)).toEqual({ kind: 'instant', lateMs: late });
+    }
+    for (const eventType of ['contentReport', 'criticalError', 'trialStart', 'supportEmail'] as const) {
+      expect(routeAdminAlert({ eventType, occurredAtMs: NOW - late, payload: {} }, NOW)).toEqual({ kind: 'weekly', reason: 'stale' });
+    }
+  });
+
+  test('sandbox money is still never sent, even late or from 1.x', () => {
+    expect(routeAdminAlert({ eventType: 'premiumPurchase', occurredAtMs: NOW - 10 * ADMIN_ALERT_STALE_MS, payload: { environment: 'SANDBOX', appVersion: '1.6.0' } }, NOW))
+      .toEqual({ kind: 'drop', reason: 'test_purchase' });
+  });
+
+  test('delay label: minutes under 3 hours, hours above; nothing when on time', () => {
+    expect(adminAlertLateLabel(75 * 60_000)).toBe('с опозданием 75 мин');
+    expect(adminAlertLateLabel(5 * 3_600_000)).toBe('с опозданием 5 ч');
+    expect(adminAlertLateLabel(0)).toBe('');
+    expect(adminAlertLateLabel(undefined)).toBe('');
+    expect(adminAlertLateMs({ occurredAtMs: NOW - 1_000 }, NOW)).toBe(0);
   });
 });

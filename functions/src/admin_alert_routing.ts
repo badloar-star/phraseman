@@ -34,8 +34,16 @@ export const INSTANT_ADMIN_ALERT_TYPES: ReadonlySet<AdminAlertType> = new Set<Ad
 /** Сводке не нужны проверки свежести и версии: она всегда «за прошлую неделю». */
 const ROUTING_EXEMPT: ReadonlySet<AdminAlertType> = new Set<AdminAlertType>(['ownerDailyDigest']);
 
+/**
+ * Деньги: не уходят в сводку ни по старой версии, ни по возрасту.
+ * зачем (Ревизор 21.10, на «да» владельца): покупка, возврат и сбой приёма оплаты нельзя узнать через неделю.
+ */
+const MONEY_ALERT_TYPES: ReadonlySet<AdminAlertType> = new Set<AdminAlertType>(['premiumPurchase', 'refund', 'paymentWebhookFailure']);
+/** Опоздавшие (старше часа), но всё равно «сразу» — с пометкой «с опозданием»: деньги и безопасность ИИ. */
+const LATE_BUT_INSTANT_TYPES: ReadonlySet<AdminAlertType> = new Set<AdminAlertType>([...MONEY_ALERT_TYPES, 'safetyFlag']);
+
 export type AdminAlertRoute =
-  | { readonly kind: 'instant' }
+  | { readonly kind: 'instant'; readonly lateMs?: number }
   | { readonly kind: 'weekly'; readonly reason: 'not_urgent' | 'legacy_1x' | 'stale' }
   | { readonly kind: 'drop'; readonly reason: 'test_purchase' | 'test_account' };
 
@@ -70,11 +78,29 @@ export function routeAdminAlert(
   }
   if (!INSTANT_ADMIN_ALERT_TYPES.has(event.eventType)) return { kind: 'weekly', reason: 'not_urgent' };
   if (ROUTING_EXEMPT.has(event.eventType)) return { kind: 'instant' };
-  if (isLegacyAppVersion(event.payload.appVersion)) return { kind: 'weekly', reason: 'legacy_1x' };
-  if (Number.isFinite(event.occurredAtMs) && nowMs - event.occurredAtMs > ADMIN_ALERT_STALE_MS) {
-    return { kind: 'weekly', reason: 'stale' };
+  if (isLegacyAppVersion(event.payload.appVersion) && !MONEY_ALERT_TYPES.has(event.eventType)) return { kind: 'weekly', reason: 'legacy_1x' };
+  const lateMs = adminAlertLateMs(event, nowMs);
+  if (lateMs > 0) {
+    return LATE_BUT_INSTANT_TYPES.has(event.eventType) ? { kind: 'instant', lateMs } : { kind: 'weekly', reason: 'stale' };
   }
   return { kind: 'instant' };
+}
+
+/**
+ * Насколько событие опоздало сверх часа «свежести» (0 — свежее). Для денег и безопасности ИИ
+ * это не повод молчать, а пометка «с опозданием N мин» в сообщении.
+ */
+export function adminAlertLateMs(event: Pick<AdminAlertRoutingInput, 'occurredAtMs'>, nowMs: number): number {
+  if (!Number.isFinite(event.occurredAtMs) || event.occurredAtMs <= 0) return 0;
+  const ageMs = nowMs - event.occurredAtMs;
+  return ageMs > ADMIN_ALERT_STALE_MS ? ageMs : 0;
+}
+
+/** Пометка опоздания для сообщения: «с опозданием 75 мин» / «с опозданием 3 ч». Пусто, если не опоздало. */
+export function adminAlertLateLabel(lateMs: number | undefined): string {
+  if (!lateMs || lateMs <= 0) return '';
+  const minutes = Math.round(lateMs / 60_000);
+  return minutes < 180 ? `с опозданием ${minutes} мин` : `с опозданием ${Math.round(minutes / 60)} ч`;
 }
 
 /** Текст причины для пометки события: `weekly:stale`, `drop:test_purchase`. */

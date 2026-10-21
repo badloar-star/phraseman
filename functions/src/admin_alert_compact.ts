@@ -27,6 +27,7 @@ import {
   type AdminAlertSafePayload,
 } from './admin_alert_privacy';
 import { adminAlertTemplate } from './admin_alert_templates';
+import { adminAlertLateLabel } from './admin_alert_routing';
 
 export const ADMIN_ALERT_ADMIN_ORIGIN = 'https://phraseman-ea0b3.web.app';
 /** Потолок одного сообщения: с запасом меньше 4096 Telegram. */
@@ -36,6 +37,8 @@ const QUOTE_MAX = 140;
 export interface CompactAlertOptions {
   /** Сколько раз за час случилась эта критичная ошибка (≥2 печатается «×N за час»). */
   readonly count?: number;
+  /** Опоздание сверх часа: деньги и безопасность ИИ приходят сразу, но с пометкой «с опозданием N мин». */
+  readonly lateMs?: number;
 }
 
 function detail(payload: AdminAlertSafePayload, ...labels: readonly string[]): string {
@@ -180,7 +183,11 @@ export function renderCompactAdminAlert(input: AdminAlertMessageInput, options: 
     const digest = renderAdminAlertMessages({ ...input, payload })[0];
     return digest.length <= 4096 ? digest : `${digest.slice(0, 4080)}…`;
   }
-  const body = lines(input.eventType, payload, options).filter((line) => line && line.trim());
+  const raw = [...lines(input.eventType, payload, options)];
+  // зачем (Ревизор 21.10): опоздавшее денежное событие видно сразу, но честно помечено — пометка в конце второй строки.
+  const late = adminAlertLateLabel(options.lateMs);
+  if (late) raw[1] = join([raw[1] ?? '', late]);
+  const body = raw.filter((line) => line && line.trim());
   const text = [...body, adminLink(payload)].join('\n');
   if (text.length <= COMPACT_ALERT_MAX_LENGTH) return text;
   // Страховка: длинные значения уже обрезаны, но экранирование может раздуть строку.

@@ -67,3 +67,15 @@ describe('compact Telegram alert (владелец 21.10, №48)', () => {
     expect(text.split('\n')[0]).toBe('💳 Plus · месяц · App Store');
   });
 });
+
+describe('late money alert (Ревизор 21.10)', () => {
+  test('the delay is shown at the end of the second line, still one message of 3 lines', () => {
+    const text = renderCompactAdminAlert({
+      eventType: 'premiumPurchase', occurredAtMs: NOW,
+      payload: { provider: 'APP_STORE', product: 'plus_yearly', nickname: 'Vertex56818', route: '#revenue' },
+    }, { lateMs: 75 * 60_000 });
+    const lines = text.split('\n');
+    expect(lines).toHaveLength(3);
+    expect(lines[1]).toBe('Vertex56818 · с опозданием 75 мин');
+  });
+});

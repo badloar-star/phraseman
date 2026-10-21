@@ -10,7 +10,7 @@ import { enrichAdminAlertContext } from './admin_alert_context';
 import { materializeDailyDigestPayload } from './admin_alert_daily_counts';
 import { ADMIN_ALERT_EVENTS_COLLECTION } from './admin_alert_outbox';
 import { renderCompactAdminAlert } from './admin_alert_compact';
-import { adminAlertRouteReason, criticalErrorGroupKey, routeAdminAlert } from './admin_alert_routing';
+import { adminAlertLateMs, adminAlertRouteReason, criticalErrorGroupKey, routeAdminAlert } from './admin_alert_routing';
 
 const REGION = 'us-central1';
 const LEASE_MS = 60_000;
@@ -277,7 +277,7 @@ export async function dispatchAdminAlertEvent(input: {
   let batch: AdminAlertMessageBatch;
   try {
     batch = input.store.prepareMessages ? await input.store.prepareMessages(claimed)
-      : { messages: [renderCompactAdminAlert(claimed)], nextPartIndex: 0, payload: claimed.payload };
+      : { messages: [renderCompactAdminAlert(claimed, { lateMs: route.kind === 'instant' ? route.lateMs : undefined })], nextPartIndex: 0, payload: claimed.payload };
   } catch {
     const reason = 'alert_context_unavailable';
     logger.warn(LOG, { step: 'prepare_failed', eventId: claimed.eventId, eventType: claimed.eventType, reason });
@@ -425,7 +425,8 @@ export class FirestoreAdminAlertDeliveryStore implements AdminAlertDeliveryStore
       return document.exists ? document.data() ?? null : null;
     });
     // зачем (владелец 21.10, №48): всегда ОДНО короткое сообщение, без «Часть 1/3» и стеков.
-    const messages = [renderCompactAdminAlert({ ...event, payload })];
+    // Опоздание считается в момент первой отрисовки и замораживается вместе с текстом (повтор не меняет пометку).
+    const messages = [renderCompactAdminAlert({ ...event, payload }, { lateMs: adminAlertLateMs(event, Date.now()) })];
     // Freeze first-delivery text. A retry never rereads a renamed profile or an
     // edited report and cannot accidentally skip/mix parts from two versions.
     await this.update(event.eventId, { telegramMessages: messages, telegramNextPart: 0, deliveryFormatVersion: TELEGRAM_FORMAT_VERSION,

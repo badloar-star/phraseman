@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-14:word:steal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — steal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:steal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — steal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:steal:audio",
+            "transcript": "steal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:steal:r1",
+              "targetText": "steal",
+              "meaningByLocale": {
+                "ru": "красть.",
+                "uk": "красти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steal",
+            "definitionByLocale": {
+              "ru": "красть.",
+              "uk": "красти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Кто-то может украсть вашу сумку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Кто-то может украсть вашу сумку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Someone can steal your bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Кто-то может украсть вашу сумку",
+            "uk": "Скажіть: Хтось може вкрасти вашу сумку"
+          },
+          "orderedTokens": [
+            "Someone",
+            "can",
+            "steal",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i02:r1",
+            "text": "Someone stole my bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i02:r2",
+            "text": "Someone steals my bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i02:r3",
+            "text": "Someone stole my coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i02:audio",
+            "transcript": "Someone stole my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i02:r1",
+              "targetText": "Someone stole my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r2",
+              "targetText": "Someone steals my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r3",
+              "targetText": "Someone stole my coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole my bag.",
+                "uk": "У записі звучить Someone stole my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole my bag.",
+                "uk": "У записі звучить Someone stole my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i03:r1",
+            "text": "stole"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i03:r2",
+            "text": "steal"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i03:r3",
+            "text": "steals"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Someone ___ my phone yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i03:r1",
+              "text": "stole"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r2",
+              "text": "steal"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r3",
+              "text": "steals"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма stole.",
+                "uk": "Для минулого потрібна форма stole."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна stole.",
+                "uk": "Це не форма минулого. Потрібна stole."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:bus-pass",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:bus-pass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:bus-pass:audio",
+            "transcript": "bus pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:bus-pass:r1",
+              "targetText": "bus pass",
+              "meaningByLocale": {
+                "ru": "проездной на автобус.",
+                "uk": "проїзний на автобус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus pass",
+            "definitionByLocale": {
+              "ru": "проездной на автобус.",
+              "uk": "проїзний на автобус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: У меня был проездной на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: У меня был проездной на автобус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had a bus pass.",
+          "localizedMeaning": {
+            "ru": "Скажите: У меня был проездной на автобус",
+            "uk": "Скажіть: У мене був проїзний на автобус"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "a",
+            "bus",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i05:r1",
+            "text": "She had a bus pass."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i05:r2",
+            "text": "She has a bus pass."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i05:r3",
+            "text": "We had a bus pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i05:audio",
+            "transcript": "She had a bus pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i05:r1",
+              "targetText": "She had a bus pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r2",
+              "targetText": "She has a bus pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r3",
+              "targetText": "We had a bus pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a bus pass.",
+                "uk": "У записі звучить She had a bus pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a bus pass.",
+                "uk": "У записі звучить She had a bus pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a bus pass last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i06:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:travel-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — travel card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:travel-card:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — travel card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:travel-card:audio",
+            "transcript": "travel card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:travel-card:r1",
+              "targetText": "travel card",
+              "meaningByLocale": {
+                "ru": "транспортная карта.",
+                "uk": "транспортна картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel card",
+            "definitionByLocale": {
+              "ru": "транспортная карта.",
+              "uk": "транспортна картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я проверил свою транспортную карту",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я проверил свою транспортную карту",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked my travel card.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил свою транспортную карту",
+            "uk": "Скажіть: Я перевірив свою транспортну картку"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "my",
+            "travel",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i08:r1",
+            "text": "She checked her travel card."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i08:r2",
+            "text": "She checks her travel card."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i08:r3",
+            "text": "I checked my travel card."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i08:audio",
+            "transcript": "She checked her travel card."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i08:r1",
+              "targetText": "She checked her travel card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r2",
+              "targetText": "She checks her travel card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r3",
+              "targetText": "I checked my travel card.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her travel card.",
+                "uk": "У записі звучить She checked her travel card."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her travel card.",
+                "uk": "У записі звучить She checked her travel card."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our travel card yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i09:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:coin-purse",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coin purse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:coin-purse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coin purse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:coin-purse:audio",
+            "transcript": "coin purse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:coin-purse:r1",
+              "targetText": "coin purse",
+              "meaningByLocale": {
+                "ru": "маленький кошелёк для монет.",
+                "uk": "маленький гаманець для монет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coin purse",
+            "definitionByLocale": {
+              "ru": "маленький кошелёк для монет.",
+              "uk": "маленький гаманець для монет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Кто-то украл мой кошелёк для мелочи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Кто-то украл мой кошелёк для мелочи",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Someone stole my coin purse.",
+          "localizedMeaning": {
+            "ru": "Скажите: Кто-то украл мой кошелёк для мелочи",
+            "uk": "Скажіть: Хтось украв мій гаманець для дрібних грошей"
+          },
+          "orderedTokens": [
+            "Someone",
+            "stole",
+            "my",
+            "coin",
+            "purse"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i11:r1",
+            "text": "Someone stole her coin purse."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i11:r2",
+            "text": "Someone steals her coin purse."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i11:r3",
+            "text": "Someone stole his coin purse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i11:audio",
+            "transcript": "Someone stole her coin purse."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i11:r1",
+              "targetText": "Someone stole her coin purse.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r2",
+              "targetText": "Someone steals her coin purse.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r3",
+              "targetText": "Someone stole his coin purse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole her coin purse.",
+                "uk": "У записі звучить Someone stole her coin purse."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole her coin purse.",
+                "uk": "У записі звучить Someone stole her coin purse."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i12:r1",
+            "text": "stole"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i12:r2",
+            "text": "steal"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i12:r3",
+            "text": "steals"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Someone ___ his coin purse yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i12:r1",
+              "text": "stole"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r2",
+              "text": "steal"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r3",
+              "text": "steals"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма stole.",
+                "uk": "Для минулого потрібна форма stole."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна stole.",
+                "uk": "Це не форма минулого. Потрібна stole."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-14:i13:p1",
+              "target": "steal",
+              "meaningByLocale": {
+                "ru": "красть",
+                "uk": "красти"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p2",
+              "target": "bus pass",
+              "meaningByLocale": {
+                "ru": "проездной на автобус",
+                "uk": "проїзний на автобус"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p3",
+              "target": "travel card",
+              "meaningByLocale": {
+                "ru": "транспортная карта",
+                "uk": "транспортна картка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p4",
+              "target": "coin purse",
+              "meaningByLocale": {
+                "ru": "маленький кошелёк для монет",
+                "uk": "маленький гаманець для монет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "steal",
+            "bus pass",
+            "travel card",
+            "coin purse"
+          ],
+          "rightColumn": [
+            "красть",
+            "проездной на автобус",
+            "транспортная карта",
+            "маленький кошелёк для монет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i14:audio",
+            "transcript": "My bag was on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My bag was on the chair.",
+          "orderedTokens": [
+            "My",
+            "bag",
+            "was",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i15:audio",
+            "transcript": "Someone stole my wallet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Someone stole my wallet.",
+          "orderedTokens": [
+            "Someone",
+            "stole",
+            "my",
+            "wallet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера транспортная карта была в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера транспортная карта была в сумке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i16:audio",
+            "transcript": "My travel card was in my bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My travel card was in my bag yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: у меня был проездной на автобус в прошлом месяце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: у меня был проездной на автобус в прошлом месяце",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i17:audio",
+            "transcript": "I had a bus pass last month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I had a bus pass last month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-14:word:steal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — steal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:steal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — steal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:steal:audio",
+            "transcript": "steal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:steal:r1",
+              "targetText": "steal",
+              "meaningByLocale": {
+                "ru": "красть.",
+                "uk": "красти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steal",
+            "definitionByLocale": {
+              "ru": "красть.",
+              "uk": "красти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Хтось може вкрасти вашу сумку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Хтось може вкрасти вашу сумку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Someone can steal your bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Кто-то может украсть вашу сумку",
+            "uk": "Скажіть: Хтось може вкрасти вашу сумку"
+          },
+          "orderedTokens": [
+            "Someone",
+            "can",
+            "steal",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i02:r1",
+            "text": "Someone stole my bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i02:r2",
+            "text": "Someone steals my bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i02:r3",
+            "text": "Someone stole my coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i02:audio",
+            "transcript": "Someone stole my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i02:r1",
+              "targetText": "Someone stole my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r2",
+              "targetText": "Someone steals my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r3",
+              "targetText": "Someone stole my coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole my bag.",
+                "uk": "У записі звучить Someone stole my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole my bag.",
+                "uk": "У записі звучить Someone stole my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i03:r1",
+            "text": "stole"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i03:r2",
+            "text": "steal"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i03:r3",
+            "text": "steals"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Someone ___ my phone yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i03:r1",
+              "text": "stole"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r2",
+              "text": "steal"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r3",
+              "text": "steals"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма stole.",
+                "uk": "Для минулого потрібна форма stole."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна stole.",
+                "uk": "Це не форма минулого. Потрібна stole."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:bus-pass",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:bus-pass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:bus-pass:audio",
+            "transcript": "bus pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:bus-pass:r1",
+              "targetText": "bus pass",
+              "meaningByLocale": {
+                "ru": "проездной на автобус.",
+                "uk": "проїзний на автобус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus pass",
+            "definitionByLocale": {
+              "ru": "проездной на автобус.",
+              "uk": "проїзний на автобус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: У мене був проїзний на автобус",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: У мене був проїзний на автобус",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had a bus pass.",
+          "localizedMeaning": {
+            "ru": "Скажите: У меня был проездной на автобус",
+            "uk": "Скажіть: У мене був проїзний на автобус"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "a",
+            "bus",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i05:r1",
+            "text": "She had a bus pass."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i05:r2",
+            "text": "She has a bus pass."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i05:r3",
+            "text": "We had a bus pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i05:audio",
+            "transcript": "She had a bus pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i05:r1",
+              "targetText": "She had a bus pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r2",
+              "targetText": "She has a bus pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r3",
+              "targetText": "We had a bus pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a bus pass.",
+                "uk": "У записі звучить She had a bus pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a bus pass.",
+                "uk": "У записі звучить She had a bus pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a bus pass last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i06:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:travel-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — travel card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:travel-card:audio"
+        ],
+        "accessibilityLabel": "Картка слова — travel card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:travel-card:audio",
+            "transcript": "travel card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:travel-card:r1",
+              "targetText": "travel card",
+              "meaningByLocale": {
+                "ru": "транспортная карта.",
+                "uk": "транспортна картка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "travel card",
+            "definitionByLocale": {
+              "ru": "транспортная карта.",
+              "uk": "транспортна картка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я перевірив свою транспортну картку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я перевірив свою транспортну картку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked my travel card.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил свою транспортную карту",
+            "uk": "Скажіть: Я перевірив свою транспортну картку"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "my",
+            "travel",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i08:r1",
+            "text": "She checked her travel card."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i08:r2",
+            "text": "She checks her travel card."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i08:r3",
+            "text": "I checked my travel card."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i08:audio",
+            "transcript": "She checked her travel card."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i08:r1",
+              "targetText": "She checked her travel card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r2",
+              "targetText": "She checks her travel card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r3",
+              "targetText": "I checked my travel card.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her travel card.",
+                "uk": "У записі звучить She checked her travel card."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked her travel card.",
+                "uk": "У записі звучить She checked her travel card."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our travel card yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i09:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:word:coin-purse",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coin purse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:word:coin-purse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coin purse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:word:coin-purse:audio",
+            "transcript": "coin purse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:word:coin-purse:r1",
+              "targetText": "coin purse",
+              "meaningByLocale": {
+                "ru": "маленький кошелёк для монет.",
+                "uk": "маленький гаманець для монет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coin purse",
+            "definitionByLocale": {
+              "ru": "маленький кошелёк для монет.",
+              "uk": "маленький гаманець для монет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Хтось украв мій гаманець для дрібних грошей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Хтось украв мій гаманець для дрібних грошей",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Someone stole my coin purse.",
+          "localizedMeaning": {
+            "ru": "Скажите: Кто-то украл мой кошелёк для мелочи",
+            "uk": "Скажіть: Хтось украв мій гаманець для дрібних грошей"
+          },
+          "orderedTokens": [
+            "Someone",
+            "stole",
+            "my",
+            "coin",
+            "purse"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i11:r1",
+            "text": "Someone stole her coin purse."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i11:r2",
+            "text": "Someone steals her coin purse."
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i11:r3",
+            "text": "Someone stole his coin purse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i11:audio",
+            "transcript": "Someone stole her coin purse."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-14:i11:r1",
+              "targetText": "Someone stole her coin purse.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r2",
+              "targetText": "Someone steals her coin purse.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r3",
+              "targetText": "Someone stole his coin purse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole her coin purse.",
+                "uk": "У записі звучить Someone stole her coin purse."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Someone stole her coin purse.",
+                "uk": "У записі звучить Someone stole her coin purse."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-14:i12:r1",
+            "text": "stole"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i12:r2",
+            "text": "steal"
+          },
+          {
+            "responseId": "en:lesson-12:session-14:i12:r3",
+            "text": "steals"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "Someone ___ his coin purse yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-14:i12:r1",
+              "text": "stole"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r2",
+              "text": "steal"
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r3",
+              "text": "steals"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма stole.",
+                "uk": "Для минулого потрібна форма stole."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна stole.",
+                "uk": "Це не форма минулого. Потрібна stole."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-14:i13:p1",
+              "target": "steal",
+              "meaningByLocale": {
+                "ru": "красть",
+                "uk": "красти"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p2",
+              "target": "bus pass",
+              "meaningByLocale": {
+                "ru": "проездной на автобус",
+                "uk": "проїзний на автобус"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p3",
+              "target": "travel card",
+              "meaningByLocale": {
+                "ru": "транспортная карта",
+                "uk": "транспортна картка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-14:i13:p4",
+              "target": "coin purse",
+              "meaningByLocale": {
+                "ru": "маленький кошелёк для монет",
+                "uk": "маленький гаманець для монет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "steal",
+            "bus pass",
+            "travel card",
+            "coin purse"
+          ],
+          "rightColumn": [
+            "красти",
+            "проїзний на автобус",
+            "транспортна картка",
+            "маленький гаманець для монет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i14:audio",
+            "transcript": "My bag was on the chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My bag was on the chair.",
+          "orderedTokens": [
+            "My",
+            "bag",
+            "was",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i15:audio",
+            "transcript": "Someone stole my wallet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Someone stole my wallet.",
+          "orderedTokens": [
+            "Someone",
+            "stole",
+            "my",
+            "wallet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора транспортна картка була в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора транспортна картка була в сумці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i16:audio",
+            "transcript": "My travel card was in my bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My travel card was in my bag yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: у мене був проїзний на автобус минулого місяця",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: у мене був проїзний на автобус минулого місяця",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-14:i17:audio",
+            "transcript": "I had a bus pass last month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I had a bus pass last month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-14:word:steal",
+      "correctText": "steal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i01",
+      "correctText": "Someone can steal your bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i02",
+      "correctText": "Someone stole my bag.",
+      "correctResponseId": "en:lesson-12:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i03",
+      "correctText": "stole",
+      "correctResponseId": "en:lesson-12:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:word:bus-pass",
+      "correctText": "bus pass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i04",
+      "correctText": "I had a bus pass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i05",
+      "correctText": "She had a bus pass.",
+      "correctResponseId": "en:lesson-12:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i06",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-12:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:word:travel-card",
+      "correctText": "travel card",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i07",
+      "correctText": "I checked my travel card.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i08",
+      "correctText": "She checked her travel card.",
+      "correctResponseId": "en:lesson-12:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i09",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-12:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:word:coin-purse",
+      "correctText": "coin purse",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i10",
+      "correctText": "Someone stole my coin purse.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i11",
+      "correctText": "Someone stole her coin purse.",
+      "correctResponseId": "en:lesson-12:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i12",
+      "correctText": "stole",
+      "correctResponseId": "en:lesson-12:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i14",
+      "correctText": "My bag was on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i15",
+      "correctText": "Someone stole my wallet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i16",
+      "correctText": "My travel card was in my bag yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:i17",
+      "correctText": "I had a bus pass last month.",
+      "correctResponseId": null
+    }
+  ]
+}

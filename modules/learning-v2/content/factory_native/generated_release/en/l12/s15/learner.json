@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-15:word:tennis-ball",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tennis ball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:word:tennis-ball:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tennis ball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:word:tennis-ball:audio",
+          "transcript": "tennis ball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:word:tennis-ball:r1",
+            "targetText": "tennis ball",
+            "meaningByLocale": {
+              "ru": "теннисный мяч.",
+              "uk": "тенісний м’яч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tennis ball",
+          "definitionByLocale": {
+            "ru": "теннисный мяч.",
+            "uk": "тенісний м’яч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я бросил теннисный мяч",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я бросил теннисный мяч",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I threw the tennis ball.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я бросил теннисный мяч",
+          "uk": "Скажіть: Я кинув тенісний м’яч"
+        },
+        "orderedTokens": [
+          "I",
+          "threw",
+          "the",
+          "tennis",
+          "ball"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i02:r1",
+          "text": "She threw the tennis ball."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i02:r2",
+          "text": "She throws the tennis ball."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i02:r3",
+          "text": "We threw the tennis ball."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i02:audio",
+          "transcript": "She threw the tennis ball."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:i02:r1",
+            "targetText": "She threw the tennis ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i02:r2",
+            "targetText": "She throws the tennis ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i02:r3",
+            "targetText": "We threw the tennis ball.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She threw the tennis ball.",
+              "uk": "У записі звучить She threw the tennis ball."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She threw the tennis ball.",
+              "uk": "У записі звучить She threw the tennis ball."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i03:r1",
+          "text": "threw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i03:r2",
+          "text": "throw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i03:r3",
+          "text": "throws"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the tennis ball yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-15:i03:r1",
+            "text": "threw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i03:r2",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i03:r3",
+            "text": "throws"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма threw.",
+              "uk": "Для минулого потрібна форма threw."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна threw.",
+              "uk": "Це не форма минулого. Потрібна threw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:word:rubber-ball",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rubber ball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:word:rubber-ball:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rubber ball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:word:rubber-ball:audio",
+          "transcript": "rubber ball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:word:rubber-ball:r1",
+            "targetText": "rubber ball",
+            "meaningByLocale": {
+              "ru": "резиновый мяч.",
+              "uk": "гумовий м’яч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rubber ball",
+          "definitionByLocale": {
+            "ru": "резиновый мяч.",
+            "uk": "гумовий м’яч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы бросили резиновый мяч",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы бросили резиновый мяч",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We threw the rubber ball.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы бросили резиновый мяч",
+          "uk": "Скажіть: Ми кинули гумовий м’яч"
+        },
+        "orderedTokens": [
+          "We",
+          "threw",
+          "the",
+          "rubber",
+          "ball"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i05:r1",
+          "text": "I threw the rubber ball."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i05:r2",
+          "text": "I throw the rubber ball."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i05:r3",
+          "text": "She threw the rubber ball."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i05:audio",
+          "transcript": "I threw the rubber ball."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:i05:r1",
+            "targetText": "I threw the rubber ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i05:r2",
+            "targetText": "I throw the rubber ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i05:r3",
+            "targetText": "She threw the rubber ball.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I threw the rubber ball.",
+              "uk": "У записі звучить I threw the rubber ball."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I threw the rubber ball.",
+              "uk": "У записі звучить I threw the rubber ball."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i06:r1",
+          "text": "threw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i06:r2",
+          "text": "throw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i06:r3",
+          "text": "throws"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the rubber ball yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-15:i06:r1",
+            "text": "threw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i06:r2",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i06:r3",
+            "text": "throws"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма threw.",
+              "uk": "Для минулого потрібна форма threw."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна threw.",
+              "uk": "Це не форма минулого. Потрібна threw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:word:paper-plane",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — paper plane",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:word:paper-plane:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — paper plane",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:word:paper-plane:audio",
+          "transcript": "paper plane"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:word:paper-plane:r1",
+            "targetText": "paper plane",
+            "meaningByLocale": {
+              "ru": "бумажный самолётик.",
+              "uk": "паперовий літачок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paper plane",
+          "definitionByLocale": {
+            "ru": "бумажный самолётик.",
+            "uk": "паперовий літачок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она запустила бумажный самолётик",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она запустила бумажный самолётик",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She threw the paper plane.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она запустила бумажный самолётик",
+          "uk": "Скажіть: Вона запустила паперовий літачок"
+        },
+        "orderedTokens": [
+          "She",
+          "threw",
+          "the",
+          "paper",
+          "plane"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i08:r1",
+          "text": "He threw the paper plane."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i08:r2",
+          "text": "He throws the paper plane."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i08:r3",
+          "text": "They threw the paper plane."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i08:audio",
+          "transcript": "He threw the paper plane."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:i08:r1",
+            "targetText": "He threw the paper plane.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i08:r2",
+            "targetText": "He throws the paper plane.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i08:r3",
+            "targetText": "They threw the paper plane.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He threw the paper plane.",
+              "uk": "У записі звучить He threw the paper plane."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He threw the paper plane.",
+              "uk": "У записі звучить He threw the paper plane."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i09:r1",
+          "text": "threw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i09:r2",
+          "text": "throw"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i09:r3",
+          "text": "throws"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the paper plane yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-15:i09:r1",
+            "text": "threw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i09:r2",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i09:r3",
+            "text": "throws"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма threw.",
+              "uk": "Для минулого потрібна форма threw."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна threw.",
+              "uk": "Це не форма минулого. Потрібна threw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:word:skipping-rope",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — skipping rope",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:word:skipping-rope:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — skipping rope",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:word:skipping-rope:audio",
+          "transcript": "skipping rope"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:word:skipping-rope:r1",
+            "targetText": "skipping rope",
+            "meaningByLocale": {
+              "ru": "скакалка.",
+              "uk": "скакалка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skipping rope",
+          "definitionByLocale": {
+            "ru": "скакалка.",
+            "uk": "скакалка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я пользовался скакалкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я пользовался скакалкой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used the skipping rope.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался скакалкой",
+          "uk": "Скажіть: Я користувався скакалкою"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "the",
+          "skipping",
+          "rope"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i11:r1",
+          "text": "We used the skipping rope."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i11:r2",
+          "text": "We use the skipping rope."
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i11:r3",
+          "text": "She used the skipping rope."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i11:audio",
+          "transcript": "We used the skipping rope."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-15:i11:r1",
+            "targetText": "We used the skipping rope.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i11:r2",
+            "targetText": "We use the skipping rope.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i11:r3",
+            "targetText": "She used the skipping rope.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used the skipping rope.",
+              "uk": "У записі звучить We used the skipping rope."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used the skipping rope.",
+              "uk": "У записі звучить We used the skipping rope."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-15:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-15:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the skipping rope yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-15:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-15:i13:p1",
+            "target": "tennis ball",
+            "meaningByLocale": {
+              "ru": "теннисный мяч",
+              "uk": "тенісний м’яч"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-15:i13:p2",
+            "target": "rubber ball",
+            "meaningByLocale": {
+              "ru": "резиновый мяч",
+              "uk": "гумовий м’яч"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-15:i13:p3",
+            "target": "paper plane",
+            "meaningByLocale": {
+              "ru": "бумажный самолётик",
+              "uk": "паперовий літачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-15:i13:p4",
+            "target": "skipping rope",
+            "meaningByLocale": {
+              "ru": "скакалка",
+              "uk": "скакалка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tennis ball",
+          "rubber ball",
+          "paper plane",
+          "skipping rope"
+        ],
+        "rightColumn": [
+          "теннисный мяч",
+          "резиновый мяч",
+          "бумажный самолётик",
+          "скакалка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i14:audio",
+          "transcript": "She threw the ball to me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She threw the ball to me.",
+        "orderedTokens": [
+          "She",
+          "threw",
+          "the",
+          "ball",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i15:audio",
+          "transcript": "We played in the garden yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We played in the garden yesterday.",
+        "orderedTokens": [
+          "We",
+          "played",
+          "in",
+          "the",
+          "garden",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера резиновый мяч был под стулом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера резиновый мяч был под стулом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i16:audio",
+          "transcript": "The rubber ball was under the chair yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The rubber ball was under the chair yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я пользовался скакалкой после школы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я пользовался скакалкой после школы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-15:i17:audio",
+          "transcript": "I used the skipping rope after school."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used the skipping rope after school.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6f38905f9cd517290e6236b659d7cee373de842db09c23ba24cfd883204fb4a2"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "review: chose, hid, played; was/were",
+    "uk": "review: chose, hid, played; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрали пазл",
+        "uk": "Вибрали пазл"
+      },
+      "bodyByLocale": {
+        "ru": "Jigsaw — «пазл, картинка из кусочков». We chose a jigsaw — мы выбрали пазл. Повторяем choose → chose. Выберите сообщение о выборе в прошлом.",
+        "uk": "Jigsaw — «пазл, картинка зі шматочків». We chose a jigsaw — ми вибрали пазл. Повторюємо choose → chose. Виберіть повідомлення про вибір у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r1",
+              "text": "We chose a jigsaw."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r2",
+              "text": "We choose a jigsaw yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r3",
+              "text": "We choosed a jigsaw."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r1",
+              "text": "We chose a jigsaw."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r2",
+              "text": "We choose a jigsaw yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro1:r3",
+              "text": "We choosed a jigsaw."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Карты и домино",
+        "uk": "Карти й доміно"
+      },
+      "bodyByLocale": {
+        "ru": "Playing cards — «игральные карты», dominoes — «домино». We played dominoes — мы играли в домино. Play → played: здесь обычное -ed. Выберите сообщение об игре в домино.",
+        "uk": "Playing cards — «гральні карти», dominoes — «доміно». We played dominoes — ми грали в доміно. Play → played: тут звичайне -ed. Виберіть повідомлення про гру в доміно."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r1",
+              "text": "We played dominoes."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r2",
+              "text": "We chose playing cards."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r3",
+              "text": "We play dominoes yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r1",
+              "text": "We played dominoes."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r2",
+              "text": "We chose playing cards."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro2:r3",
+              "text": "We play dominoes yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прятки",
+        "uk": "Хованки"
+      },
+      "bodyByLocale": {
+        "ru": "Hide-and-seek — «прятки». We played hide-and-seek — мы играли в прятки. А I hid under the table — я спрятался под столом: hide → hid. Выберите сообщение об игре, не о месте, где спрятались.",
+        "uk": "Hide-and-seek — «хованки». We played hide-and-seek — ми грали в хованки. А I hid under the table — я сховався під столом: hide → hid. Виберіть повідомлення про гру, не про місце, де сховалися."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r1",
+              "text": "We played hide-and-seek."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r2",
+              "text": "I hid under the table."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r3",
+              "text": "We play hide-and-seek yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r1",
+              "text": "We played hide-and-seek."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r2",
+              "text": "I hid under the table."
+            },
+            {
+              "responseId": "en:lesson-12:session-16:intro3:r3",
+              "text": "We play hide-and-seek yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5aeaa65ebbe599ec1deff68607b74fff4af00727e3847a446adc91a4668741a4"
+}

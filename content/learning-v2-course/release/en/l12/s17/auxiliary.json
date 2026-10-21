@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-17:intro1:r2": {
+          "ru": "Every Sunday описывает привычку.",
+          "uk": "Every Sunday описує звичку."
+        },
+        "en:lesson-12:session-17:intro1:r3": {
+          "ru": "Now сообщает о действии сейчас.",
+          "uk": "Now повідомляє про дію зараз."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-17:intro2:r2": {
+          "ru": "Для прошлого нужна went.",
+          "uk": "Для минулого потрібна went."
+        },
+        "en:lesson-12:session-17:intro2:r3": {
+          "ru": "Это поездка на автобусе; здесь нужна школьная экскурсия.",
+          "uk": "Це поїздка автобусом; тут потрібна шкільна екскурсія."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-17:intro3:r2": {
+          "ru": "Для прошлого нужна enjoyed.",
+          "uk": "Для минулого потрібна enjoyed."
+        },
+        "en:lesson-12:session-17:intro3:r3": {
+          "ru": "Enjoys — не прошлое и не форма с I.",
+          "uk": "Enjoys — не минуле й не форма з I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "814e060ab1d68eedacc37af98fbdb6eb22df28f90e229beb2c6bba8fe1eb7e86"
+}

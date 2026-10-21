@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "finished event: celebrated, chose, used; was/were",
+    "uk": "finished event: celebrated, chose, used; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Торт ко дню рождения",
+        "uk": "Торт до дня народження"
+      },
+      "bodyByLocale": {
+        "ru": "Birthday cake — «торт ко дню рождения». We celebrated her birthday yesterday — мы отпраздновали её день рождения вчера. Celebrate → celebrated. Событие закончилось. Выберите сообщение о вчерашнем празднике.",
+        "uk": "Birthday cake — «торт до дня народження». We celebrated her birthday yesterday — ми відсвяткували її день народження вчора. Celebrate → celebrated. Подія закінчилася. Виберіть повідомлення про вчорашнє свято."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r1",
+              "text": "We celebrated her birthday yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r2",
+              "text": "We celebrate her birthday yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r3",
+              "text": "We celebrates her birthday yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r1",
+              "text": "We celebrated her birthday yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r2",
+              "text": "We celebrate her birthday yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro1:r3",
+              "text": "We celebrates her birthday yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Колпачок и свечка",
+        "uk": "Ковпачок і свічка"
+      },
+      "bodyByLocale": {
+        "ru": "Party hat — «праздничный колпачок», birthday candle — «свечка для торта ко дню рождения». Вчера она выбрала колпачок: She chose a party hat. Выберите именно колпачок.",
+        "uk": "Party hat — «святковий ковпачок», birthday candle — «свічка для торта до дня народження». Учора вона вибрала ковпачок: She chose a party hat. Виберіть саме ковпачок."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r1",
+              "text": "She chose a party hat."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r2",
+              "text": "She chose a birthday candle."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r3",
+              "text": "She choose a party hat yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r1",
+              "text": "She chose a party hat."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r2",
+              "text": "She chose a birthday candle."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro2:r3",
+              "text": "She choose a party hat yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Упаковочная бумага",
+        "uk": "Пакувальний папір"
+      },
+      "bodyByLocale": {
+        "ru": "Wrapping paper — «упаковочная бумага для подарков». We used wrapping paper — мы использовали упаковочную бумагу. Use → used. Выберите завершённое действие с бумагой, не описание её цвета.",
+        "uk": "Wrapping paper — «пакувальний папір для подарунків». We used wrapping paper — ми використали пакувальний папір. Use → used. Виберіть завершену дію з папером, не опис його кольору."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r1",
+              "text": "We used wrapping paper."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r2",
+              "text": "The wrapping paper was blue."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r3",
+              "text": "We use wrapping paper yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r1",
+              "text": "We used wrapping paper."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r2",
+              "text": "The wrapping paper was blue."
+            },
+            {
+              "responseId": "en:lesson-12:session-18:intro3:r3",
+              "text": "We use wrapping paper yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4be5e40078138bb64b6700e824a88a70385176c4ade4122d0fc9c94892af1416"
+}

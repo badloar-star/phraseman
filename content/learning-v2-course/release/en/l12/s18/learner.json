@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-18:word:birthday-cake",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — birthday cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:word:birthday-cake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — birthday cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:word:birthday-cake:audio",
+          "transcript": "birthday cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:word:birthday-cake:r1",
+            "targetText": "birthday cake",
+            "meaningByLocale": {
+              "ru": "торт ко дню рождения.",
+              "uk": "торт до дня народження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "birthday cake",
+          "definitionByLocale": {
+            "ru": "торт ко дню рождения.",
+            "uk": "торт до дня народження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы выбрали торт ко дню рождения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы выбрали торт ко дню рождения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We chose a birthday cake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы выбрали торт ко дню рождения",
+          "uk": "Скажіть: Ми вибрали торт до дня народження"
+        },
+        "orderedTokens": [
+          "We",
+          "chose",
+          "a",
+          "birthday",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i02:r1",
+          "text": "She chose a birthday cake."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i02:r2",
+          "text": "She chooses a birthday cake."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i02:r3",
+          "text": "I chose a birthday cake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i02:audio",
+          "transcript": "She chose a birthday cake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:i02:r1",
+            "targetText": "She chose a birthday cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i02:r2",
+            "targetText": "She chooses a birthday cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i02:r3",
+            "targetText": "I chose a birthday cake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a birthday cake.",
+              "uk": "У записі звучить She chose a birthday cake."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a birthday cake.",
+              "uk": "У записі звучить She chose a birthday cake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i03:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i03:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i03:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a birthday cake yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-18:i03:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i03:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i03:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:word:party-hat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — party hat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:word:party-hat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — party hat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:word:party-hat:audio",
+          "transcript": "party hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:word:party-hat:r1",
+            "targetText": "party hat",
+            "meaningByLocale": {
+              "ru": "праздничный колпачок.",
+              "uk": "святковий ковпачок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "party hat",
+          "definitionByLocale": {
+            "ru": "праздничный колпачок.",
+            "uk": "святковий ковпачок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я выбрал праздничный колпачок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я выбрал праздничный колпачок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a party hat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал праздничный колпачок",
+          "uk": "Скажіть: Я вибрав святковий ковпачок"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "party",
+          "hat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i05:r1",
+          "text": "We chose a party hat."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i05:r2",
+          "text": "We choose a party hat."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i05:r3",
+          "text": "She chose a party hat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i05:audio",
+          "transcript": "We chose a party hat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:i05:r1",
+            "targetText": "We chose a party hat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i05:r2",
+            "targetText": "We choose a party hat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i05:r3",
+            "targetText": "She chose a party hat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose a party hat.",
+              "uk": "У записі звучить We chose a party hat."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose a party hat.",
+              "uk": "У записі звучить We chose a party hat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i06:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i06:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i06:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a party hat yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-18:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:word:birthday-candle",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — birthday candle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:word:birthday-candle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — birthday candle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:word:birthday-candle:audio",
+          "transcript": "birthday candle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:word:birthday-candle:r1",
+            "targetText": "birthday candle",
+            "meaningByLocale": {
+              "ru": "свечка для торта ко дню рождения.",
+              "uk": "свічка для торта до дня народження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "birthday candle",
+          "definitionByLocale": {
+            "ru": "свечка для торта ко дню рождения.",
+            "uk": "свічка для торта до дня народження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я выбрал свечку для праздничного торта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я выбрал свечку для праздничного торта",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a birthday candle.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал свечку для праздничного торта",
+          "uk": "Скажіть: Я вибрав свічку для святкового торта"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "birthday",
+          "candle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i08:r1",
+          "text": "He chose a birthday candle."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i08:r2",
+          "text": "He chooses a birthday candle."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i08:r3",
+          "text": "They chose a birthday candle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i08:audio",
+          "transcript": "He chose a birthday candle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:i08:r1",
+            "targetText": "He chose a birthday candle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i08:r2",
+            "targetText": "He chooses a birthday candle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i08:r3",
+            "targetText": "They chose a birthday candle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a birthday candle.",
+              "uk": "У записі звучить He chose a birthday candle."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a birthday candle.",
+              "uk": "У записі звучить He chose a birthday candle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i09:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i09:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i09:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a birthday candle yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-18:i09:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i09:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i09:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:word:wrapping-paper",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrapping paper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:word:wrapping-paper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrapping paper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:word:wrapping-paper:audio",
+          "transcript": "wrapping paper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:word:wrapping-paper:r1",
+            "targetText": "wrapping paper",
+            "meaningByLocale": {
+              "ru": "упаковочная бумага для подарков.",
+              "uk": "пакувальний папір для подарунків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrapping paper",
+          "definitionByLocale": {
+            "ru": "упаковочная бумага для подарков.",
+            "uk": "пакувальний папір для подарунків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы использовали упаковочную бумагу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы использовали упаковочную бумагу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used wrapping paper.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы использовали упаковочную бумагу",
+          "uk": "Скажіть: Ми використали пакувальний папір"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "wrapping",
+          "paper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i11:r1",
+          "text": "She used wrapping paper."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i11:r2",
+          "text": "She uses wrapping paper."
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i11:r3",
+          "text": "I used wrapping paper."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i11:audio",
+          "transcript": "She used wrapping paper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-18:i11:r1",
+            "targetText": "She used wrapping paper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i11:r2",
+            "targetText": "She uses wrapping paper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i11:r3",
+            "targetText": "I used wrapping paper.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used wrapping paper.",
+              "uk": "У записі звучить She used wrapping paper."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used wrapping paper.",
+              "uk": "У записі звучить She used wrapping paper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-18:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-18:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ wrapping paper yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-18:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-18:i13:p1",
+            "target": "birthday cake",
+            "meaningByLocale": {
+              "ru": "торт ко дню рождения",
+              "uk": "торт до дня народження"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-18:i13:p2",
+            "target": "party hat",
+            "meaningByLocale": {
+              "ru": "праздничный колпачок",
+              "uk": "святковий ковпачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-18:i13:p3",
+            "target": "birthday candle",
+            "meaningByLocale": {
+              "ru": "свечка для торта ко дню рождения",
+              "uk": "свічка для торта до дня народження"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-18:i13:p4",
+            "target": "wrapping paper",
+            "meaningByLocale": {
+              "ru": "упаковочная бумага для подарков",
+              "uk": "пакувальний папір для подарунків"
+            }
+          }
+        ],
+        "leftColumn": [
+          "birthday cake",
+          "party hat",
+          "birthday candle",
+          "wrapping paper"
+        ],
+        "rightColumn": [
+          "торт ко дню рождения",
+          "праздничный колпачок",
+          "свечка для торта ко дню рождения",
+          "упаковочная бумага для подарков"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i14:audio",
+          "transcript": "We celebrated my birthday yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We celebrated my birthday yesterday.",
+        "orderedTokens": [
+          "We",
+          "celebrated",
+          "my",
+          "birthday",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i15:audio",
+          "transcript": "She chose a birthday card for me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She chose a birthday card for me.",
+        "orderedTokens": [
+          "She",
+          "chose",
+          "a",
+          "birthday",
+          "card",
+          "for",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера праздничный торт был на столе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера праздничный торт был на столе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i16:audio",
+          "transcript": "The birthday cake was on the table yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The birthday cake was on the table yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я использовал синюю упаковочную бумагу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я использовал синюю упаковочную бумагу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-18:i17:audio",
+          "transcript": "I used blue wrapping paper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used blue wrapping paper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "474aecf863185a9465b9e5bcca533ca8b679e430803c4ebfa32c7493a393d002"
+}

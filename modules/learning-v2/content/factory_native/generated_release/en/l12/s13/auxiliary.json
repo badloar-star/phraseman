@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-13:intro1:r2": {
+          "ru": "Нужна неправильная форма shook.",
+          "uk": "Потрібна неправильна форма shook."
+        },
+        "en:lesson-12:session-13:intro1:r3": {
+          "ru": "В прошлом нужна shook.",
+          "uk": "У минулому потрібна shook."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-13:intro2:r2": {
+          "ru": "Здесь сок, а нужен коктейль.",
+          "uk": "Тут сік, а потрібен коктейль."
+        },
+        "en:lesson-12:session-13:intro2:r3": {
+          "ru": "Для прошлого нужна had.",
+          "uk": "Для минулого потрібна had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-13:intro3:r2": {
+          "ru": "Это состояние, не действие.",
+          "uk": "Це стан, не дія."
+        },
+        "en:lesson-12:session-13:intro3:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8fc50805d60831198fba7520c8b814a5118908a587211f76da6c93ca9b4aa35f"
+}

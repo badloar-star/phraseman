@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-16:word:jigsaw",
+    "correctText": "jigsaw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i01",
+    "correctText": "We chose a jigsaw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i02",
+    "correctText": "She chose a jigsaw.",
+    "correctResponseId": "en:lesson-12:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i03",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:word:playing-cards",
+    "correctText": "playing cards",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i04",
+    "correctText": "I chose playing cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i05",
+    "correctText": "We chose playing cards.",
+    "correctResponseId": "en:lesson-12:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i06",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:word:dominoes",
+    "correctText": "dominoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i07",
+    "correctText": "We played dominoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i08",
+    "correctText": "She played dominoes.",
+    "correctResponseId": "en:lesson-12:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i09",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-12:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:word:hide-and-seek",
+    "correctText": "hide-and-seek",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i10",
+    "correctText": "I played hide-and-seek.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i11",
+    "correctText": "We played hide-and-seek.",
+    "correctResponseId": "en:lesson-12:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i12",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-12:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i13",
+    "correctText": "en:lesson-12:session-16:i13:p1=jigsaw\nen:lesson-12:session-16:i13:p2=playing cards\nen:lesson-12:session-16:i13:p3=dominoes\nen:lesson-12:session-16:i13:p4=hide-and-seek",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i14",
+    "correctText": "I hid behind the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i15",
+    "correctText": "We had a good evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i16",
+    "correctText": "The playing cards were on the table yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-16:i17",
+    "correctText": "I played dominoes with my grandpa.",
+    "correctResponseId": null
+  }
+]

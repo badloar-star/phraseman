@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-15:word:tennis-ball",
+    "correctText": "tennis ball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i01",
+    "correctText": "I threw the tennis ball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i02",
+    "correctText": "She threw the tennis ball.",
+    "correctResponseId": "en:lesson-12:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i03",
+    "correctText": "threw",
+    "correctResponseId": "en:lesson-12:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:word:rubber-ball",
+    "correctText": "rubber ball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i04",
+    "correctText": "We threw the rubber ball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i05",
+    "correctText": "I threw the rubber ball.",
+    "correctResponseId": "en:lesson-12:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i06",
+    "correctText": "threw",
+    "correctResponseId": "en:lesson-12:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:word:paper-plane",
+    "correctText": "paper plane",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i07",
+    "correctText": "She threw the paper plane.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i08",
+    "correctText": "He threw the paper plane.",
+    "correctResponseId": "en:lesson-12:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i09",
+    "correctText": "threw",
+    "correctResponseId": "en:lesson-12:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:word:skipping-rope",
+    "correctText": "skipping rope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i10",
+    "correctText": "I used the skipping rope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i11",
+    "correctText": "We used the skipping rope.",
+    "correctResponseId": "en:lesson-12:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i13",
+    "correctText": "en:lesson-12:session-15:i13:p1=tennis ball\nen:lesson-12:session-15:i13:p2=rubber ball\nen:lesson-12:session-15:i13:p3=paper plane\nen:lesson-12:session-15:i13:p4=skipping rope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i14",
+    "correctText": "She threw the ball to me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i15",
+    "correctText": "We played in the garden yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i16",
+    "correctText": "The rubber ball was under the chair yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-15:i17",
+    "correctText": "I used the skipping rope after school.",
+    "correctResponseId": null
+  }
+]

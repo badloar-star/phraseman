@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-18:intro1:r2": {
+          "ru": "Для прошлого нужна celebrated.",
+          "uk": "Для минулого потрібна celebrated."
+        },
+        "en:lesson-12:session-18:intro1:r3": {
+          "ru": "Celebrates — не прошлое и не форма с we.",
+          "uk": "Celebrates — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-18:intro2:r2": {
+          "ru": "Это свечка, а нужен колпачок.",
+          "uk": "Це свічка, а потрібен ковпачок."
+        },
+        "en:lesson-12:session-18:intro2:r3": {
+          "ru": "В прошлом нужна chose.",
+          "uk": "У минулому потрібна chose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-18:intro3:r2": {
+          "ru": "Это описание цвета, не действие.",
+          "uk": "Це опис кольору, не дія."
+        },
+        "en:lesson-12:session-18:intro3:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7c40a27c1637b464d126c7813e3adc806d7718b4fde7565d671d8a0761fd2a52"
+}

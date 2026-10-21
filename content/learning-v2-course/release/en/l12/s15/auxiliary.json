@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-15:intro1:r2": {
+          "ru": "Нужна threw, не throwed.",
+          "uk": "Потрібна threw, не throwed."
+        },
+        "en:lesson-12:session-15:intro1:r3": {
+          "ru": "Для прошлого нужна threw.",
+          "uk": "Для минулого потрібна threw."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-15:intro2:r2": {
+          "ru": "Здесь мяч, а нужен самолётик.",
+          "uk": "Тут м’яч, а потрібен літачок."
+        },
+        "en:lesson-12:session-15:intro2:r3": {
+          "ru": "Throws — настоящее; нужна threw.",
+          "uk": "Throws — теперішній час; потрібна threw."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-15:intro3:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-15:intro3:r3": {
+          "ru": "Uses — не прошлое и не форма с we.",
+          "uk": "Uses — не минуле й не форма з we."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "18d91dc4731a1a516c21c5cbd31a1d3fe25a906f5a718199d795457bd9d3487a"
+}

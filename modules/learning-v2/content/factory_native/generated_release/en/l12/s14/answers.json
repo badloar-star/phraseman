@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-14:word:steal",
+    "correctText": "steal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i01",
+    "correctText": "Someone can steal your bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i02",
+    "correctText": "Someone stole my bag.",
+    "correctResponseId": "en:lesson-12:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i03",
+    "correctText": "stole",
+    "correctResponseId": "en:lesson-12:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:word:bus-pass",
+    "correctText": "bus pass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i04",
+    "correctText": "I had a bus pass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i05",
+    "correctText": "She had a bus pass.",
+    "correctResponseId": "en:lesson-12:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i06",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:word:travel-card",
+    "correctText": "travel card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i07",
+    "correctText": "I checked my travel card.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i08",
+    "correctText": "She checked her travel card.",
+    "correctResponseId": "en:lesson-12:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i09",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:word:coin-purse",
+    "correctText": "coin purse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i10",
+    "correctText": "Someone stole my coin purse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i11",
+    "correctText": "Someone stole her coin purse.",
+    "correctResponseId": "en:lesson-12:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i12",
+    "correctText": "stole",
+    "correctResponseId": "en:lesson-12:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i13",
+    "correctText": "en:lesson-12:session-14:i13:p1=steal\nen:lesson-12:session-14:i13:p2=bus pass\nen:lesson-12:session-14:i13:p3=travel card\nen:lesson-12:session-14:i13:p4=coin purse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i14",
+    "correctText": "My bag was on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i15",
+    "correctText": "Someone stole my wallet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i16",
+    "correctText": "My travel card was in my bag yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-14:i17",
+    "correctText": "I had a bus pass last month.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-14:intro1:r2": {
+          "ru": "Stealed не существует: нужна stole.",
+          "uk": "Stealed не існує: потрібна stole."
+        },
+        "en:lesson-12:session-14:intro1:r3": {
+          "ru": "Steals — настоящее, нужна stole.",
+          "uk": "Steals — теперішній час, потрібна stole."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-14:intro2:r2": {
+          "ru": "Здесь проверка карты, не сообщение о проездном.",
+          "uk": "Тут перевірка картки, не повідомлення про проїзний."
+        },
+        "en:lesson-12:session-14:intro2:r3": {
+          "ru": "Для прошлого нужна had.",
+          "uk": "Для минулого потрібна had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-14:intro3:r2": {
+          "ru": "Это прежнее местонахождение, не сообщение о краже.",
+          "uk": "Це колишнє місце, не повідомлення про крадіжку."
+        },
+        "en:lesson-12:session-14:intro3:r3": {
+          "ru": "В прошлом нужна stole.",
+          "uk": "У минулому потрібна stole."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cdf0b9f469d1c1e45ffed6f52d06908592a4527af591b1ef79fb99180d442a9e"
+}

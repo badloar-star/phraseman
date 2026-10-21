@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-17:word:day-trip",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — day trip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:word:day-trip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — day trip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:word:day-trip:audio",
+          "transcript": "day trip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:word:day-trip:r1",
+            "targetText": "day trip",
+            "meaningByLocale": {
+              "ru": "поездка на один день с возвращением в тот же день.",
+              "uk": "поїздка на один день із поверненням того самого дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "day trip",
+          "definitionByLocale": {
+            "ru": "поездка на один день с возвращением в тот же день.",
+            "uk": "поїздка на один день із поверненням того самого дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми з’їздили кудись на один день",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми з’їздили кудись на один день",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We went on a day trip.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы съездили куда-то на один день",
+          "uk": "Скажіть: Ми з’їздили кудись на один день"
+        },
+        "orderedTokens": [
+          "We",
+          "went",
+          "on",
+          "a",
+          "day",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i02:r1",
+          "text": "She went on a day trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i02:r2",
+          "text": "She goes on a day trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i02:r3",
+          "text": "I went on a day trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i02:audio",
+          "transcript": "She went on a day trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:i02:r1",
+            "targetText": "She went on a day trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i02:r2",
+            "targetText": "She goes on a day trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i02:r3",
+            "targetText": "I went on a day trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She went on a day trip.",
+              "uk": "У записі звучить She went on a day trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She went on a day trip.",
+              "uk": "У записі звучить She went on a day trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i03:r1",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i03:r2",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i03:r3",
+          "text": "goes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ on a day trip last Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-17:i03:r1",
+            "text": "went"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i03:r2",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i03:r3",
+            "text": "goes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма went.",
+              "uk": "Для минулого потрібна форма went."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна went.",
+              "uk": "Це не форма минулого. Потрібна went."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:word:school-trip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — school trip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:word:school-trip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — school trip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:word:school-trip:audio",
+          "transcript": "school trip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:word:school-trip:r1",
+            "targetText": "school trip",
+            "meaningByLocale": {
+              "ru": "школьная экскурсия или поездка.",
+              "uk": "шкільна екскурсія або поїздка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school trip",
+          "definitionByLocale": {
+            "ru": "школьная экскурсия или поездка.",
+            "uk": "шкільна екскурсія або поїздка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я їздив на шкільну екскурсію",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я їздив на шкільну екскурсію",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I went on a school trip.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я ездил на школьную экскурсию",
+          "uk": "Скажіть: Я їздив на шкільну екскурсію"
+        },
+        "orderedTokens": [
+          "I",
+          "went",
+          "on",
+          "a",
+          "school",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i05:r1",
+          "text": "We went on a school trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i05:r2",
+          "text": "We go on a school trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i05:r3",
+          "text": "He went on a school trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i05:audio",
+          "transcript": "We went on a school trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:i05:r1",
+            "targetText": "We went on a school trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i05:r2",
+            "targetText": "We go on a school trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i05:r3",
+            "targetText": "He went on a school trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We went on a school trip.",
+              "uk": "У записі звучить We went on a school trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We went on a school trip.",
+              "uk": "У записі звучить We went on a school trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i06:r1",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i06:r2",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i06:r3",
+          "text": "goes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ on a school trip yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-17:i06:r1",
+            "text": "went"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i06:r2",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i06:r3",
+            "text": "goes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма went.",
+              "uk": "Для минулого потрібна форма went."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна went.",
+              "uk": "Це не форма минулого. Потрібна went."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:word:coach-trip",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coach trip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:word:coach-trip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coach trip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:word:coach-trip:audio",
+          "transcript": "coach trip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:word:coach-trip:r1",
+            "targetText": "coach trip",
+            "meaningByLocale": {
+              "ru": "поездка на туристическом автобусе.",
+              "uk": "поїздка туристичним автобусом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coach trip",
+          "definitionByLocale": {
+            "ru": "поездка на туристическом автобусе.",
+            "uk": "поїздка туристичним автобусом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Нам сподобалася поїздка туристичним автобусом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Нам сподобалася поїздка туристичним автобусом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We enjoyed the coach trip.",
+        "localizedMeaning": {
+          "ru": "Скажите: Нам понравилась поездка на туристическом автобусе",
+          "uk": "Скажіть: Нам сподобалася поїздка туристичним автобусом"
+        },
+        "orderedTokens": [
+          "We",
+          "enjoyed",
+          "the",
+          "coach",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i08:r1",
+          "text": "She enjoyed the coach trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i08:r2",
+          "text": "She enjoys the coach trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i08:r3",
+          "text": "I enjoyed the coach trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i08:audio",
+          "transcript": "She enjoyed the coach trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:i08:r1",
+            "targetText": "She enjoyed the coach trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i08:r2",
+            "targetText": "She enjoys the coach trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i08:r3",
+            "targetText": "I enjoyed the coach trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She enjoyed the coach trip.",
+              "uk": "У записі звучить She enjoyed the coach trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She enjoyed the coach trip.",
+              "uk": "У записі звучить She enjoyed the coach trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i09:r1",
+          "text": "enjoyed"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i09:r2",
+          "text": "enjoy"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i09:r3",
+          "text": "enjoys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the coach trip yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-17:i09:r1",
+            "text": "enjoyed"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i09:r2",
+            "text": "enjoy"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i09:r3",
+            "text": "enjoys"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма enjoyed.",
+              "uk": "Для минулого потрібна форма enjoyed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна enjoyed.",
+              "uk": "Це не форма минулого. Потрібна enjoyed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:word:boat-trip",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boat trip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:word:boat-trip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — boat trip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:word:boat-trip:audio",
+          "transcript": "boat trip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:word:boat-trip:r1",
+            "targetText": "boat trip",
+            "meaningByLocale": {
+              "ru": "поездка или прогулка на лодке либо катере.",
+              "uk": "поїздка або прогулянка човном чи катером."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boat trip",
+          "definitionByLocale": {
+            "ru": "поездка или прогулка на лодке либо катере.",
+            "uk": "поїздка або прогулянка човном чи катером."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Мені сподобалася прогулянка катером",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Мені сподобалася прогулянка катером",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I enjoyed the boat trip.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мне понравилась прогулка на катере",
+          "uk": "Скажіть: Мені сподобалася прогулянка катером"
+        },
+        "orderedTokens": [
+          "I",
+          "enjoyed",
+          "the",
+          "boat",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i11:r1",
+          "text": "We enjoyed the boat trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i11:r2",
+          "text": "We enjoy the boat trip."
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i11:r3",
+          "text": "He enjoyed the boat trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i11:audio",
+          "transcript": "We enjoyed the boat trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-17:i11:r1",
+            "targetText": "We enjoyed the boat trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i11:r2",
+            "targetText": "We enjoy the boat trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i11:r3",
+            "targetText": "He enjoyed the boat trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We enjoyed the boat trip.",
+              "uk": "У записі звучить We enjoyed the boat trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We enjoyed the boat trip.",
+              "uk": "У записі звучить We enjoyed the boat trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-17:i12:r1",
+          "text": "enjoyed"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i12:r2",
+          "text": "enjoy"
+        },
+        {
+          "responseId": "en:lesson-12:session-17:i12:r3",
+          "text": "enjoys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the boat trip yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-17:i12:r1",
+            "text": "enjoyed"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i12:r2",
+            "text": "enjoy"
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i12:r3",
+            "text": "enjoys"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма enjoyed.",
+              "uk": "Для минулого потрібна форма enjoyed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна enjoyed.",
+              "uk": "Це не форма минулого. Потрібна enjoyed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-17:i13:p1",
+            "target": "day trip",
+            "meaningByLocale": {
+              "ru": "поездка на один день с возвращением в тот же день",
+              "uk": "поїздка на один день із поверненням того самого дня"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-17:i13:p2",
+            "target": "school trip",
+            "meaningByLocale": {
+              "ru": "школьная экскурсия или поездка",
+              "uk": "шкільна екскурсія або поїздка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-17:i13:p3",
+            "target": "coach trip",
+            "meaningByLocale": {
+              "ru": "поездка на туристическом автобусе",
+              "uk": "поїздка туристичним автобусом"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-17:i13:p4",
+            "target": "boat trip",
+            "meaningByLocale": {
+              "ru": "поездка или прогулка на лодке либо катере",
+              "uk": "поїздка або прогулянка човном чи катером"
+            }
+          }
+        ],
+        "leftColumn": [
+          "day trip",
+          "school trip",
+          "coach trip",
+          "boat trip"
+        ],
+        "rightColumn": [
+          "поїздка на один день із поверненням того самого дня",
+          "шкільна екскурсія або поїздка",
+          "поїздка туристичним автобусом",
+          "поїздка або прогулянка човном чи катером"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i14:audio",
+          "transcript": "We went to the seaside last Sunday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We went to the seaside last Sunday.",
+        "orderedTokens": [
+          "We",
+          "went",
+          "to",
+          "the",
+          "seaside",
+          "last",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i15:audio",
+          "transcript": "She enjoyed the day trip yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She enjoyed the day trip yesterday.",
+        "orderedTokens": [
+          "She",
+          "enjoyed",
+          "the",
+          "day",
+          "trip",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора шкільна екскурсія була цікава",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора шкільна екскурсія була цікава",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i16:audio",
+          "transcript": "The school trip was interesting yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The school trip was interesting yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-17:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: минулої суботи я їздив на прогулянку катером",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: минулої суботи я їздив на прогулянку катером",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-17:i17:audio",
+          "transcript": "I went on a boat trip last Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I went on a boat trip last Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e9f0cbc77142f61e98bb2379dbbfe6d7feafafc463702dfeb2508b52c4262bc3"
+}

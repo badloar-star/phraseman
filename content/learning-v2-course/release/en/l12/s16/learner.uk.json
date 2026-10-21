@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-16:word:jigsaw",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jigsaw",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:word:jigsaw:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jigsaw",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:word:jigsaw:audio",
+          "transcript": "jigsaw"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:word:jigsaw:r1",
+            "targetText": "jigsaw",
+            "meaningByLocale": {
+              "ru": "пазл, картинка из кусочков.",
+              "uk": "пазл, картинка зі шматочків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jigsaw",
+          "definitionByLocale": {
+            "ru": "пазл, картинка из кусочков.",
+            "uk": "пазл, картинка зі шматочків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми вибрали пазл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми вибрали пазл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We chose a jigsaw.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы выбрали пазл",
+          "uk": "Скажіть: Ми вибрали пазл"
+        },
+        "orderedTokens": [
+          "We",
+          "chose",
+          "a",
+          "jigsaw"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i02:r1",
+          "text": "She chose a jigsaw."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i02:r2",
+          "text": "She chooses a jigsaw."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i02:r3",
+          "text": "I chose a jigsaw."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i02:audio",
+          "transcript": "She chose a jigsaw."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:i02:r1",
+            "targetText": "She chose a jigsaw.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i02:r2",
+            "targetText": "She chooses a jigsaw.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i02:r3",
+            "targetText": "I chose a jigsaw.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a jigsaw.",
+              "uk": "У записі звучить She chose a jigsaw."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a jigsaw.",
+              "uk": "У записі звучить She chose a jigsaw."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i03:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i03:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i03:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a jigsaw yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-16:i03:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i03:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i03:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:word:playing-cards",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — playing cards",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:word:playing-cards:audio"
+      ],
+      "accessibilityLabel": "Картка слова — playing cards",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:word:playing-cards:audio",
+          "transcript": "playing cards"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:word:playing-cards:r1",
+            "targetText": "playing cards",
+            "meaningByLocale": {
+              "ru": "игральные карты.",
+              "uk": "гральні карти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "playing cards",
+          "definitionByLocale": {
+            "ru": "игральные карты.",
+            "uk": "гральні карти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вибрав гральні карти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вибрав гральні карти",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose playing cards.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал игральные карты",
+          "uk": "Скажіть: Я вибрав гральні карти"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "playing",
+          "cards"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i05:r1",
+          "text": "We chose playing cards."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i05:r2",
+          "text": "We choose playing cards."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i05:r3",
+          "text": "She chose playing cards."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i05:audio",
+          "transcript": "We chose playing cards."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:i05:r1",
+            "targetText": "We chose playing cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i05:r2",
+            "targetText": "We choose playing cards.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i05:r3",
+            "targetText": "She chose playing cards.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose playing cards.",
+              "uk": "У записі звучить We chose playing cards."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose playing cards.",
+              "uk": "У записі звучить We chose playing cards."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i06:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i06:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i06:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ playing cards yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-16:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:word:dominoes",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dominoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:word:dominoes:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dominoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:word:dominoes:audio",
+          "transcript": "dominoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:word:dominoes:r1",
+            "targetText": "dominoes",
+            "meaningByLocale": {
+              "ru": "домино.",
+              "uk": "доміно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dominoes",
+          "definitionByLocale": {
+            "ru": "домино.",
+            "uk": "доміно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми грали в доміно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми грали в доміно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We played dominoes.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы играли в домино",
+          "uk": "Скажіть: Ми грали в доміно"
+        },
+        "orderedTokens": [
+          "We",
+          "played",
+          "dominoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i08:r1",
+          "text": "She played dominoes."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i08:r2",
+          "text": "She plays dominoes."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i08:r3",
+          "text": "I played dominoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i08:audio",
+          "transcript": "She played dominoes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:i08:r1",
+            "targetText": "She played dominoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i08:r2",
+            "targetText": "She plays dominoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i08:r3",
+            "targetText": "I played dominoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She played dominoes.",
+              "uk": "У записі звучить She played dominoes."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She played dominoes.",
+              "uk": "У записі звучить She played dominoes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i09:r1",
+          "text": "played"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i09:r2",
+          "text": "play"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i09:r3",
+          "text": "plays"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ dominoes yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-16:i09:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i09:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i09:r3",
+            "text": "plays"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма played.",
+              "uk": "Для минулого потрібна форма played."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна played.",
+              "uk": "Це не форма минулого. Потрібна played."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:word:hide-and-seek",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hide-and-seek",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:word:hide-and-seek:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hide-and-seek",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:word:hide-and-seek:audio",
+          "transcript": "hide-and-seek"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:word:hide-and-seek:r1",
+            "targetText": "hide-and-seek",
+            "meaningByLocale": {
+              "ru": "прятки.",
+              "uk": "хованки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hide-and-seek",
+          "definitionByLocale": {
+            "ru": "прятки.",
+            "uk": "хованки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я грав у хованки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я грав у хованки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I played hide-and-seek.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я играл в прятки",
+          "uk": "Скажіть: Я грав у хованки"
+        },
+        "orderedTokens": [
+          "I",
+          "played",
+          "hide-and-seek"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i11:r1",
+          "text": "We played hide-and-seek."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i11:r2",
+          "text": "We play hide-and-seek."
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i11:r3",
+          "text": "She played hide-and-seek."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i11:audio",
+          "transcript": "We played hide-and-seek."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-16:i11:r1",
+            "targetText": "We played hide-and-seek.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i11:r2",
+            "targetText": "We play hide-and-seek.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i11:r3",
+            "targetText": "She played hide-and-seek.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We played hide-and-seek.",
+              "uk": "У записі звучить We played hide-and-seek."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We played hide-and-seek.",
+              "uk": "У записі звучить We played hide-and-seek."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-16:i12:r1",
+          "text": "played"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i12:r2",
+          "text": "play"
+        },
+        {
+          "responseId": "en:lesson-12:session-16:i12:r3",
+          "text": "plays"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ hide-and-seek yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-16:i12:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i12:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i12:r3",
+            "text": "plays"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма played.",
+              "uk": "Для минулого потрібна форма played."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна played.",
+              "uk": "Це не форма минулого. Потрібна played."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-16:i13:p1",
+            "target": "jigsaw",
+            "meaningByLocale": {
+              "ru": "пазл, картинка из кусочков",
+              "uk": "пазл, картинка зі шматочків"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-16:i13:p2",
+            "target": "playing cards",
+            "meaningByLocale": {
+              "ru": "игральные карты",
+              "uk": "гральні карти"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-16:i13:p3",
+            "target": "dominoes",
+            "meaningByLocale": {
+              "ru": "домино",
+              "uk": "доміно"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-16:i13:p4",
+            "target": "hide-and-seek",
+            "meaningByLocale": {
+              "ru": "прятки",
+              "uk": "хованки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "jigsaw",
+          "playing cards",
+          "dominoes",
+          "hide-and-seek"
+        ],
+        "rightColumn": [
+          "пазл, картинка зі шматочків",
+          "гральні карти",
+          "доміно",
+          "хованки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i14:audio",
+          "transcript": "I hid behind the chair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I hid behind the chair.",
+        "orderedTokens": [
+          "I",
+          "hid",
+          "behind",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i15:audio",
+          "transcript": "We had a good evening."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had a good evening.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "a",
+          "good",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора гральні карти були на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора гральні карти були на столі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i16:audio",
+          "transcript": "The playing cards were on the table yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The playing cards were on the table yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я грав у доміно з дідусем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я грав у доміно з дідусем",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-16:i17:audio",
+          "transcript": "I played dominoes with my grandpa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I played dominoes with my grandpa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "405f716b0c1b55362ba67775532996f5f7ca6d5d734a74a80b09788bd86063e4"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-17:word:day-trip",
+    "correctText": "day trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i01",
+    "correctText": "We went on a day trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i02",
+    "correctText": "She went on a day trip.",
+    "correctResponseId": "en:lesson-12:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i03",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-12:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:word:school-trip",
+    "correctText": "school trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i04",
+    "correctText": "I went on a school trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i05",
+    "correctText": "We went on a school trip.",
+    "correctResponseId": "en:lesson-12:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i06",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-12:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:word:coach-trip",
+    "correctText": "coach trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i07",
+    "correctText": "We enjoyed the coach trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i08",
+    "correctText": "She enjoyed the coach trip.",
+    "correctResponseId": "en:lesson-12:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i09",
+    "correctText": "enjoyed",
+    "correctResponseId": "en:lesson-12:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:word:boat-trip",
+    "correctText": "boat trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i10",
+    "correctText": "I enjoyed the boat trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i11",
+    "correctText": "We enjoyed the boat trip.",
+    "correctResponseId": "en:lesson-12:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i12",
+    "correctText": "enjoyed",
+    "correctResponseId": "en:lesson-12:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i13",
+    "correctText": "en:lesson-12:session-17:i13:p1=day trip\nen:lesson-12:session-17:i13:p2=school trip\nen:lesson-12:session-17:i13:p3=coach trip\nen:lesson-12:session-17:i13:p4=boat trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i14",
+    "correctText": "We went to the seaside last Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i15",
+    "correctText": "She enjoyed the day trip yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i16",
+    "correctText": "The school trip was interesting yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-17:i17",
+    "correctText": "I went on a boat trip last Saturday.",
+    "correctResponseId": null
+  }
+]

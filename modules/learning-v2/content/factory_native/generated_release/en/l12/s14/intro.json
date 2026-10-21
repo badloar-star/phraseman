@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "steal → stole; had, checked; was/were",
+    "uk": "steal → stole; had, checked; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о краже",
+        "uk": "Повідомити про крадіжку"
+      },
+      "bodyByLocale": {
+        "ru": "Steal — «красть», stole — «украл» в прошлом. Someone stole my bag — кто-то украл мою сумку. Не добавляем -ed. Выберите сообщение о краже в прошлом.",
+        "uk": "Steal — «красти», stole — «украв» у минулому. Someone stole my bag — хтось украв мою сумку. Не додаємо -ed. Виберіть повідомлення про крадіжку в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r1",
+              "text": "Someone stole my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r2",
+              "text": "Someone stealed my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r3",
+              "text": "Someone steals my bag yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r1",
+              "text": "Someone stole my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r2",
+              "text": "Someone stealed my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro1:r3",
+              "text": "Someone steals my bag yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проездные",
+        "uk": "Проїзні"
+      },
+      "bodyByLocale": {
+        "ru": "Bus pass — «проездной на автобус», travel card — «транспортная карта». Это разные названия: bus pass именно для автобуса, travel card — общее название транспортной карты. I had a bus pass — у меня был автобусный проездной. Выберите эту фразу.",
+        "uk": "Bus pass — «проїзний на автобус», travel card — «транспортна картка». Це різні назви: bus pass саме для автобуса, travel card — загальна назва транспортної картки. I had a bus pass — у мене був автобусний проїзний. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r1",
+              "text": "I had a bus pass."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r2",
+              "text": "I checked my travel card."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r3",
+              "text": "I have a bus pass yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r1",
+              "text": "I had a bus pass."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r2",
+              "text": "I checked my travel card."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro2:r3",
+              "text": "I have a bus pass yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кошелёк для мелочи",
+        "uk": "Гаманець для дрібних грошей"
+      },
+      "bodyByLocale": {
+        "ru": "Coin purse — «маленький кошелёк для монет». Someone stole my coin purse — кто-то украл мой кошелёк для мелочи. Stole не меняется после someone. Выберите сообщение о краже кошелька.",
+        "uk": "Coin purse — «маленький гаманець для монет». Someone stole my coin purse — хтось украв мій гаманець для дрібних грошей. Stole не змінюється після someone. Виберіть повідомлення про крадіжку гаманця."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r1",
+              "text": "Someone stole my coin purse."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r2",
+              "text": "My coin purse was in my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r3",
+              "text": "Someone steal my coin purse yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r1",
+              "text": "Someone stole my coin purse."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r2",
+              "text": "My coin purse was in my bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-14:intro3:r3",
+              "text": "Someone steal my coin purse yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55894794f6c05a11afdcfade1c95bd0efcd3b238674d8f422544445f16111d81"
+}

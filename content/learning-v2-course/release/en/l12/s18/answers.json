@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-18:word:birthday-cake",
+    "correctText": "birthday cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i01",
+    "correctText": "We chose a birthday cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i02",
+    "correctText": "She chose a birthday cake.",
+    "correctResponseId": "en:lesson-12:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i03",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:word:party-hat",
+    "correctText": "party hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i04",
+    "correctText": "I chose a party hat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i05",
+    "correctText": "We chose a party hat.",
+    "correctResponseId": "en:lesson-12:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i06",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:word:birthday-candle",
+    "correctText": "birthday candle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i07",
+    "correctText": "I chose a birthday candle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i08",
+    "correctText": "He chose a birthday candle.",
+    "correctResponseId": "en:lesson-12:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i09",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:word:wrapping-paper",
+    "correctText": "wrapping paper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i10",
+    "correctText": "We used wrapping paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i11",
+    "correctText": "She used wrapping paper.",
+    "correctResponseId": "en:lesson-12:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i13",
+    "correctText": "en:lesson-12:session-18:i13:p1=birthday cake\nen:lesson-12:session-18:i13:p2=party hat\nen:lesson-12:session-18:i13:p3=birthday candle\nen:lesson-12:session-18:i13:p4=wrapping paper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i14",
+    "correctText": "We celebrated my birthday yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i15",
+    "correctText": "She chose a birthday card for me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i16",
+    "correctText": "The birthday cake was on the table yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-18:i17",
+    "correctText": "I used blue wrapping paper.",
+    "correctResponseId": null
+  }
+]

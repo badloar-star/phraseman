@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-16:intro1:r2": {
+          "ru": "Для прошлого нужна chose.",
+          "uk": "Для минулого потрібна chose."
+        },
+        "en:lesson-12:session-16:intro1:r3": {
+          "ru": "Нужна chose, не choosed.",
+          "uk": "Потрібна chose, не choosed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-16:intro2:r2": {
+          "ru": "Это выбор карт, не игра в домино.",
+          "uk": "Це вибір карт, не гра в доміно."
+        },
+        "en:lesson-12:session-16:intro2:r3": {
+          "ru": "Для прошлого нужна played.",
+          "uk": "Для минулого потрібна played."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-16:intro3:r2": {
+          "ru": "Это конкретное действие в игре, а нужно назвать игру.",
+          "uk": "Це конкретна дія у грі, а потрібно назвати гру."
+        },
+        "en:lesson-12:session-16:intro3:r3": {
+          "ru": "Для прошлого нужна played.",
+          "uk": "Для минулого потрібна played."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "93a877f320be0f4d702382f845849d4917b33c1b9b790af469b4cef7345a6c65"
+}

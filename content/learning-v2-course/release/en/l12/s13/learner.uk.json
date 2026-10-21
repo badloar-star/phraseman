@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-13:word:salt-shaker",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salt shaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:word:salt-shaker:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salt shaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:word:salt-shaker:audio",
+          "transcript": "salt shaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:word:salt-shaker:r1",
+            "targetText": "salt shaker",
+            "meaningByLocale": {
+              "ru": "солонка с отверстиями.",
+              "uk": "сільничка з отворами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salt shaker",
+          "definitionByLocale": {
+            "ru": "солонка с отверстиями.",
+            "uk": "сільничка з отворами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я потрусив сільничку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я потрусив сільничку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I shook the salt shaker.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я потряс солонку",
+          "uk": "Скажіть: Я потрусив сільничку"
+        },
+        "orderedTokens": [
+          "I",
+          "shook",
+          "the",
+          "salt",
+          "shaker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i02:r1",
+          "text": "She shook the salt shaker."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i02:r2",
+          "text": "She shakes the salt shaker."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i02:r3",
+          "text": "They shook the salt shaker."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i02:audio",
+          "transcript": "She shook the salt shaker."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:i02:r1",
+            "targetText": "She shook the salt shaker.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i02:r2",
+            "targetText": "She shakes the salt shaker.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i02:r3",
+            "targetText": "They shook the salt shaker.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She shook the salt shaker.",
+              "uk": "У записі звучить She shook the salt shaker."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She shook the salt shaker.",
+              "uk": "У записі звучить She shook the salt shaker."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i03:r1",
+          "text": "shook"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i03:r2",
+          "text": "shake"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i03:r3",
+          "text": "shakes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the salt shaker yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-13:i03:r1",
+            "text": "shook"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i03:r2",
+            "text": "shake"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i03:r3",
+            "text": "shakes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма shook.",
+              "uk": "Для минулого потрібна форма shook."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна shook.",
+              "uk": "Це не форма минулого. Потрібна shook."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:word:milkshake",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — milkshake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:word:milkshake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — milkshake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:word:milkshake:audio",
+          "transcript": "milkshake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:word:milkshake:r1",
+            "targetText": "milkshake",
+            "meaningByLocale": {
+              "ru": "молочный коктейль.",
+              "uk": "молочний коктейль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milkshake",
+          "definitionByLocale": {
+            "ru": "молочный коктейль.",
+            "uk": "молочний коктейль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми пили молочний коктейль",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми пили молочний коктейль",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had a milkshake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы пили молочный коктейль",
+          "uk": "Скажіть: Ми пили молочний коктейль"
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "a",
+          "milkshake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i05:r1",
+          "text": "I had a milkshake."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i05:r2",
+          "text": "I have a milkshake."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i05:r3",
+          "text": "She had a milkshake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i05:audio",
+          "transcript": "I had a milkshake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:i05:r1",
+            "targetText": "I had a milkshake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i05:r2",
+            "targetText": "I have a milkshake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i05:r3",
+            "targetText": "She had a milkshake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had a milkshake.",
+              "uk": "У записі звучить I had a milkshake."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I had a milkshake.",
+              "uk": "У записі звучить I had a milkshake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i06:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i06:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a milkshake yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-13:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма had.",
+              "uk": "Для минулого потрібна форма had."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна had.",
+              "uk": "Це не форма минулого. Потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:word:grape-juice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grape juice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:word:grape-juice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grape juice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:word:grape-juice:audio",
+          "transcript": "grape juice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:word:grape-juice:r1",
+            "targetText": "grape juice",
+            "meaningByLocale": {
+              "ru": "виноградный сок.",
+              "uk": "виноградний сік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grape juice",
+          "definitionByLocale": {
+            "ru": "виноградный сок.",
+            "uk": "виноградний сік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я пив виноградний сік",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я пив виноградний сік",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I had grape juice.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пил виноградный сок",
+          "uk": "Скажіть: Я пив виноградний сік"
+        },
+        "orderedTokens": [
+          "I",
+          "had",
+          "grape",
+          "juice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i08:r1",
+          "text": "She had grape juice."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i08:r2",
+          "text": "She has grape juice."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i08:r3",
+          "text": "We had grape juice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i08:audio",
+          "transcript": "She had grape juice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:i08:r1",
+            "targetText": "She had grape juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i08:r2",
+            "targetText": "She has grape juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i08:r3",
+            "targetText": "We had grape juice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had grape juice.",
+              "uk": "У записі звучить She had grape juice."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had grape juice.",
+              "uk": "У записі звучить She had grape juice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i09:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i09:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i09:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ grape juice yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-13:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i09:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма had.",
+              "uk": "Для минулого потрібна форма had."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна had.",
+              "uk": "Це не форма минулого. Потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:word:coconut-milk",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coconut milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:word:coconut-milk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coconut milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:word:coconut-milk:audio",
+          "transcript": "coconut milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:word:coconut-milk:r1",
+            "targetText": "coconut milk",
+            "meaningByLocale": {
+              "ru": "кокосовое молоко.",
+              "uk": "кокосове молоко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coconut milk",
+          "definitionByLocale": {
+            "ru": "кокосовое молоко.",
+            "uk": "кокосове молоко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми використали кокосове молоко для супу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми використали кокосове молоко для супу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used coconut milk for the soup.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы использовали кокосовое молоко для супа",
+          "uk": "Скажіть: Ми використали кокосове молоко для супу"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "coconut",
+          "milk",
+          "for",
+          "the",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i11:r1",
+          "text": "She used coconut milk for the soup."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i11:r2",
+          "text": "She uses coconut milk for the soup."
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i11:r3",
+          "text": "I used coconut milk for the soup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i11:audio",
+          "transcript": "She used coconut milk for the soup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-13:i11:r1",
+            "targetText": "She used coconut milk for the soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i11:r2",
+            "targetText": "She uses coconut milk for the soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i11:r3",
+            "targetText": "I used coconut milk for the soup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used coconut milk for the soup.",
+              "uk": "У записі звучить She used coconut milk for the soup."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used coconut milk for the soup.",
+              "uk": "У записі звучить She used coconut milk for the soup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-13:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-13:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ coconut milk for the soup yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-13:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-13:i13:p1",
+            "target": "salt shaker",
+            "meaningByLocale": {
+              "ru": "солонка с отверстиями",
+              "uk": "сільничка з отворами"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-13:i13:p2",
+            "target": "milkshake",
+            "meaningByLocale": {
+              "ru": "молочный коктейль",
+              "uk": "молочний коктейль"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-13:i13:p3",
+            "target": "grape juice",
+            "meaningByLocale": {
+              "ru": "виноградный сок",
+              "uk": "виноградний сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-13:i13:p4",
+            "target": "coconut milk",
+            "meaningByLocale": {
+              "ru": "кокосовое молоко",
+              "uk": "кокосове молоко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "salt shaker",
+          "milkshake",
+          "grape juice",
+          "coconut milk"
+        ],
+        "rightColumn": [
+          "сільничка з отворами",
+          "молочний коктейль",
+          "виноградний сік",
+          "кокосове молоко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i14:audio",
+          "transcript": "He shook the bottle."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He shook the bottle.",
+        "orderedTokens": [
+          "He",
+          "shook",
+          "the",
+          "bottle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i15:audio",
+          "transcript": "We had lunch at one."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had lunch at one.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "lunch",
+          "at",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора виноградний сік був холодний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора виноградний сік був холодний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i16:audio",
+          "transcript": "The grape juice was cold yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The grape juice was cold yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я пив молочний коктейль після обіду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я пив молочний коктейль після обіду",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-13:i17:audio",
+          "transcript": "I had a milkshake after lunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I had a milkshake after lunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c0b7130aff2088a57b469fc9acd34042df9eef8e340279221fc2748dd3ab6686"
+}

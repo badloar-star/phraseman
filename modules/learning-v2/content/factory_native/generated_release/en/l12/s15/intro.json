@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "throw → threw; used; was/were",
+    "uk": "throw → threw; used; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бросили мяч",
+        "uk": "Кинули м’яч"
+      },
+      "bodyByLocale": {
+        "ru": "Tennis ball — «теннисный мяч». Throw → threw: I threw the tennis ball — я бросил теннисный мяч. Threw — форма прошлого для всех лиц. Выберите вчерашнее действие.",
+        "uk": "Tennis ball — «тенісний м’яч». Throw → threw: I threw the tennis ball — я кинув тенісний м’яч. Threw — форма минулого для всіх осіб. Виберіть учорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r1",
+              "text": "I threw the tennis ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r2",
+              "text": "I throwed the tennis ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r3",
+              "text": "I throw the tennis ball yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r1",
+              "text": "I threw the tennis ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r2",
+              "text": "I throwed the tennis ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro1:r3",
+              "text": "I throw the tennis ball yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мяч и самолётик",
+        "uk": "М’яч і літачок"
+      },
+      "bodyByLocale": {
+        "ru": "Rubber ball — «резиновый мяч», paper plane — «бумажный самолётик». She threw the paper plane — она запустила бумажный самолётик. Здесь throw передаёт бросок рукой. Выберите действие с самолётиком.",
+        "uk": "Rubber ball — «гумовий м’яч», paper plane — «паперовий літачок». She threw the paper plane — вона запустила паперовий літачок. Тут throw передає кидок рукою. Виберіть дію з літачком."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r1",
+              "text": "She threw the paper plane."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r2",
+              "text": "She threw the rubber ball."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r3",
+              "text": "She throws the paper plane yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r1",
+              "text": "She threw the paper plane."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r2",
+              "text": "She threw the rubber ball."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro2:r3",
+              "text": "She throws the paper plane yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Скакалка",
+        "uk": "Скакалка"
+      },
+      "bodyByLocale": {
+        "ru": "Skipping rope — «скакалка», британское название. We used the skipping rope — мы пользовались скакалкой. Use → used остаётся правильным глаголом, хотя throw → threw неправильный. Выберите действие в прошлом.",
+        "uk": "Skipping rope — «скакалка», британська назва. We used the skipping rope — ми користувалися скакалкою. Use → used залишається правильним дієсловом, хоча throw → threw неправильне. Виберіть дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r1",
+              "text": "We used the skipping rope."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r2",
+              "text": "We use the skipping rope yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r3",
+              "text": "We uses the skipping rope yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r1",
+              "text": "We used the skipping rope."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r2",
+              "text": "We use the skipping rope yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-15:intro3:r3",
+              "text": "We uses the skipping rope yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "259d65586674f281e564244536acd8d27c48c0085c20abe2f4e5a6c4c76b532c"
+}

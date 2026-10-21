@@ -147,7 +147,7 @@ De un hombre se dice he, de una mujer she. Después de los dos va is. En españo
 | She is upstairs. | Está arriba. | is |
 | He is strict. | Es estricto. | is |
 | She is busy. | Está ocupada. | is |
-| He is not angry. | No está enfadado. | not |
+| He is not angry. | No está enojado. | not |
 
 **fix**
 - ~~Is tall.~~ → He is tall.
@@ -335,6 +335,6 @@ Una sola fórmula para toda la lección: quién + am / is / are + cómo es o dó
 | en | es | hi |
 |---|---|---|
 | I am ready. | Estoy listo / lista. | am |
-| She is not angry. | No está enfadada. | not |
+| She is not angry. | No está enojada. | not |
 | It's locked. | Está cerrado con llave. | It's |
 | They're tight. | Me aprietan. | They're |

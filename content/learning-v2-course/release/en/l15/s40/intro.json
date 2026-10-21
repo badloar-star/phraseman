@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "candle making — изготовление свечей. Повторим going to для намерения. Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. I am going to try candle making. — Я собираюсь попробовать делать свечи. Передайте намерение через going to.",
+        "uk": "candle making — виготовлення свічок. Повторімо going to для наміру. Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. I am going to try candle making. — Я збираюся спробувати робити свічки. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r1",
+              "text": "I am going to try candle making."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r2",
+              "text": "I am trying candle making."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r3",
+              "text": "I is going to try candle making."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r1",
+              "text": "I am going to try candle making."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r2",
+              "text": "I am trying candle making."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro1:r3",
+              "text": "I is going to try candle making."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "model making — изготовление уменьшенных моделей предметов. soap making — изготовление мыла. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на субботнее занятие по изготовлению моделей. We are trying model making on Saturday. — Мы пробуем изготовление моделей в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "model making — виготовлення зменшених моделей предметів. soap making — виготовлення мила. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на суботнє заняття з виготовлення моделей. We are trying model making on Saturday. — Ми пробуємо виготовлення моделей у суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r1",
+              "text": "We are trying model making on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r2",
+              "text": "We are going to try model making on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r3",
+              "text": "We is trying model making on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r1",
+              "text": "We are trying model making on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r2",
+              "text": "We are going to try model making on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro2:r3",
+              "text": "We is trying model making on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "weaving — ткачество, создание полотна переплетением нитей. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители записались на завтрашнее вводное занятие по ткачеству. They are trying weaving tomorrow. — Они пробуют ткачество завтра. Передайте договорённость через Present Continuous.",
+        "uk": "weaving — ткацтво, створення полотна переплетенням ниток. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. They are trying weaving tomorrow. — Вони пробують ткацтво завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r1",
+              "text": "They are trying weaving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r2",
+              "text": "They are going to try weaving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r3",
+              "text": "They is trying weaving tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r1",
+              "text": "They are trying weaving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r2",
+              "text": "They are going to try weaving tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-40:intro3:r3",
+              "text": "They is trying weaving tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf7fea41eeaf005ffbc0db69924610b842fa5ed3cbddcee10b29d967a4e5129a"
+}

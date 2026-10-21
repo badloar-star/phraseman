@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-35:word:haircut",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — haircut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:word:haircut:audio"
+      ],
+      "accessibilityLabel": "Картка слова — haircut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:word:haircut:audio",
+          "transcript": "haircut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:word:haircut:r1",
+            "targetText": "haircut",
+            "meaningByLocale": {
+              "ru": "стрижка волос.",
+              "uk": "стрижка волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "haircut",
+          "definitionByLocale": {
+            "ru": "стрижка волос.",
+            "uk": "стрижка волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to. Скажіть: «Я збираюся підстригтися».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to. Скажіть: «Я збираюся підстригтися».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to get a haircut.",
+        "localizedMeaning": {
+          "ru": "Вы решили подстричься, но ещё не записались к мастеру. Передайте намерение через going to. Скажите: «Я собираюсь подстричься».",
+          "uk": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to. Скажіть: «Я збираюся підстригтися»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "get",
+          "a",
+          "haircut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i02:r1",
+          "text": "I am going to get a haircut."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i02:r2",
+          "text": "I am getting a haircut."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i02:r3",
+          "text": "I is going to get a haircut."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i02:audio",
+          "transcript": "I am going to get a haircut."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:i02:r1",
+            "targetText": "I am going to get a haircut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i02:r2",
+            "targetText": "I am getting a haircut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i02:r3",
+            "targetText": "I is going to get a haircut.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to get a haircut.",
+              "uk": "У записі звучить I am going to get a haircut."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to get a haircut.",
+              "uk": "У записі звучить I am going to get a haircut."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i03:r1",
+          "text": "am going to get"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i03:r2",
+          "text": "am getting"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i03:r3",
+          "text": "get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили подстричься, но ещё не записались к мастеру. Передайте намерение через going to.",
+          "uk": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a haircut.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-35:i03:r1",
+            "text": "am going to get"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i03:r2",
+            "text": "am getting"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i03:r3",
+            "text": "get"
+          }
+        ],
+        "testedDimension": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили підстригтися, але ще не записалися до майстра. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to get.",
+              "uk": "Потрібна повна форма: am going to get."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:word:manicure",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — manicure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:word:manicure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — manicure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:word:manicure:audio",
+          "transcript": "manicure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:word:manicure:r1",
+            "targetText": "manicure",
+            "meaningByLocale": {
+              "ru": "уход за ногтями рук, маникюр.",
+              "uk": "догляд за нігтями рук, манікюр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manicure",
+          "definitionByLocale": {
+            "ru": "уход за ногтями рук, маникюр.",
+            "uk": "догляд за нігтями рук, манікюр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to. Скажіть: «Вона збирається записатися на манікюр».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to. Скажіть: «Вона збирається записатися на манікюр».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to book a manicure.",
+        "localizedMeaning": {
+          "ru": "Ваша мама решила сделать маникюр, но пока не выбрала салон. Передайте намерение через going to. Скажите: «Она собирается записаться на маникюр».",
+          "uk": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to. Скажіть: «Вона збирається записатися на манікюр»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "book",
+          "a",
+          "manicure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i05:r1",
+          "text": "She is going to book a manicure."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i05:r2",
+          "text": "She is booking a manicure."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i05:r3",
+          "text": "She are going to book a manicure."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i05:audio",
+          "transcript": "She is going to book a manicure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:i05:r1",
+            "targetText": "She is going to book a manicure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i05:r2",
+            "targetText": "She is booking a manicure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i05:r3",
+            "targetText": "She are going to book a manicure.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to book a manicure.",
+              "uk": "У записі звучить She is going to book a manicure."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to book a manicure.",
+              "uk": "У записі звучить She is going to book a manicure."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i06:r1",
+          "text": "is going to book"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i06:r2",
+          "text": "is booking"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i06:r3",
+          "text": "book"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша мама решила сделать маникюр, но пока не выбрала салон. Передайте намерение через going to.",
+          "uk": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ a manicure.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-35:i06:r1",
+            "text": "is going to book"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i06:r2",
+            "text": "is booking"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i06:r3",
+            "text": "book"
+          }
+        ],
+        "testedDimension": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша мама вирішила зробити манікюр, але поки не вибрала салон. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to book.",
+              "uk": "Потрібна повна форма: is going to book."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:word:pedicure",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pedicure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:word:pedicure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pedicure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:word:pedicure:audio",
+          "transcript": "pedicure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:word:pedicure:r1",
+            "targetText": "pedicure",
+            "meaningByLocale": {
+              "ru": "уход за ногтями ног, педикюр.",
+              "uk": "догляд за нігтями ніг, педикюр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pedicure",
+          "definitionByLocale": {
+            "ru": "уход за ногтями ног, педикюр.",
+            "uk": "догляд за нігтями ніг, педикюр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на педикюр у суботу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на педикюр у суботу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are having a pedicure on Saturday.",
+        "localizedMeaning": {
+          "ru": "Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Передайте договорённость через Present Continuous. Скажите: «Мы идём на педикюр в субботу».",
+          "uk": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на педикюр у суботу»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "having",
+          "a",
+          "pedicure",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i08:r1",
+          "text": "We are having a pedicure on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i08:r2",
+          "text": "We are going to have a pedicure on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i08:r3",
+          "text": "We is having a pedicure on Saturday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i08:audio",
+          "transcript": "We are having a pedicure on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:i08:r1",
+            "targetText": "We are having a pedicure on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i08:r2",
+            "targetText": "We are going to have a pedicure on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i08:r3",
+            "targetText": "We is having a pedicure on Saturday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are having a pedicure on Saturday.",
+              "uk": "У записі звучить We are having a pedicure on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are having a pedicure on Saturday.",
+              "uk": "У записі звучить We are having a pedicure on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i09:r1",
+          "text": "are having"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i09:r2",
+          "text": "are going to have"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i09:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Передайте договорённость через Present Continuous.",
+          "uk": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a pedicure on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-35:i09:r1",
+            "text": "are having"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i09:r2",
+            "text": "are going to have"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i09:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are having.",
+              "uk": "Потрібна повна форма: are having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:word:hair-colouring",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hair colouring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:word:hair-colouring:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hair colouring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:word:hair-colouring:audio",
+          "transcript": "hair colouring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:word:hair-colouring:r1",
+            "targetText": "hair colouring",
+            "meaningByLocale": {
+              "ru": "окрашивание волос.",
+              "uk": "фарбування волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hair colouring",
+          "definitionByLocale": {
+            "ru": "окрашивание волос.",
+            "uk": "фарбування волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous. Скажіть: «Вони оплачують фарбування волосся завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous. Скажіть: «Вони оплачують фарбування волосся завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are paying for hair colouring tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают окрашивание волос завтра».",
+          "uk": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous. Скажіть: «Вони оплачують фарбування волосся завтра»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "paying",
+          "for",
+          "hair",
+          "colouring",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i11:r1",
+          "text": "They are paying for hair colouring tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i11:r2",
+          "text": "They are going to pay for hair colouring tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i11:r3",
+          "text": "They is paying for hair colouring tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i11:audio",
+          "transcript": "They are paying for hair colouring tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-35:i11:r1",
+            "targetText": "They are paying for hair colouring tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i11:r2",
+            "targetText": "They are going to pay for hair colouring tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i11:r3",
+            "targetText": "They is paying for hair colouring tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are paying for hair colouring tomorrow.",
+              "uk": "У записі звучить They are paying for hair colouring tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are paying for hair colouring tomorrow.",
+              "uk": "У записі звучить They are paying for hair colouring tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-35:i12:r1",
+          "text": "are paying"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i12:r2",
+          "text": "are going to pay"
+        },
+        {
+          "responseId": "en:lesson-15:session-35:i12:r3",
+          "text": "pay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ for hair colouring tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-35:i12:r1",
+            "text": "are paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i12:r2",
+            "text": "are going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i12:r3",
+            "text": "pay"
+          }
+        ],
+        "testedDimension": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are paying.",
+              "uk": "Потрібна повна форма: are paying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-35:i13:p1",
+            "target": "haircut",
+            "meaningByLocale": {
+              "ru": "стрижка волос",
+              "uk": "стрижка волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-35:i13:p2",
+            "target": "manicure",
+            "meaningByLocale": {
+              "ru": "уход за ногтями рук, маникюр",
+              "uk": "догляд за нігтями рук, манікюр"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-35:i13:p3",
+            "target": "pedicure",
+            "meaningByLocale": {
+              "ru": "уход за ногтями ног, педикюр",
+              "uk": "догляд за нігтями ніг, педикюр"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-35:i13:p4",
+            "target": "hair colouring",
+            "meaningByLocale": {
+              "ru": "окрашивание волос",
+              "uk": "фарбування волосся"
+            }
+          }
+        ],
+        "leftColumn": [
+          "haircut",
+          "manicure",
+          "pedicure",
+          "hair colouring"
+        ],
+        "rightColumn": [
+          "стрижка волосся",
+          "догляд за нігтями рук, манікюр",
+          "догляд за нігтями ніг, педикюр",
+          "фарбування волосся"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i14:audio",
+          "transcript": "I am going to call the salon."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to call the salon.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "call",
+          "the",
+          "salon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i15:audio",
+          "transcript": "We are meeting the hairdresser on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting the hairdresser on Saturday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "the",
+          "hairdresser",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i16:audio",
+          "transcript": "I am getting a haircut tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am getting a haircut tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-35:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-35:i17:audio",
+          "transcript": "We are going to have a pedicure on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to have a pedicure on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ed8d4f11f26a4ee10460548d025f884612e302a99ec1a88678e1192f55f41d0f"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "guava — гуава, тропический фрукт. Повторим going to для намерения. Вы решили попробовать гуаву, но ещё не купили её. I am going to try a guava. — Я собираюсь попробовать гуаву. Передайте намерение через going to.",
+        "uk": "guava — гуава, тропічний фрукт. Повторімо going to для наміру. Ви вирішили спробувати гуаву, але ще не купили її. I am going to try a guava. — Я збираюся спробувати гуаву. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r1",
+              "text": "I am going to try a guava."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r2",
+              "text": "I am trying a guava."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r3",
+              "text": "I is going to try a guava."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r1",
+              "text": "I am going to try a guava."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r2",
+              "text": "I am trying a guava."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro1:r3",
+              "text": "I is going to try a guava."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "quince — айва. persimmon — хурма. Если время уже согласовано, потренируем Present Continuous. Продавец отложил для вас айву; вы договорились забрать её завтра. We are collecting the quince tomorrow. — Мы забираем айву завтра. Передайте договорённость через Present Continuous.",
+        "uk": "quince — айва. persimmon — хурма. Якщо час уже узгоджено, потренуймо Present Continuous. Продавець відклав для вас айву; ви домовилися забрати її завтра. We are collecting the quince tomorrow. — Ми забираємо айву завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r1",
+              "text": "We are collecting the quince tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r2",
+              "text": "We are going to collect the quince tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r3",
+              "text": "We is collecting the quince tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r1",
+              "text": "We are collecting the quince tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r2",
+              "text": "We are going to collect the quince tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro2:r3",
+              "text": "We is collecting the quince tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "rhubarb — ревень, растение с кислыми съедобными стеблями. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители заказали ревень для пирога и согласовали получение на пятницу. They are collecting the rhubarb on Friday. — Они забирают ревень в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "rhubarb — ревінь, рослина з кислими їстівними стеблами. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. They are collecting the rhubarb on Friday. — Вони забирають ревінь у п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r1",
+              "text": "They are collecting the rhubarb on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r2",
+              "text": "They are going to collect the rhubarb on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r3",
+              "text": "They is collecting the rhubarb on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r1",
+              "text": "They are collecting the rhubarb on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r2",
+              "text": "They are going to collect the rhubarb on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-36:intro3:r3",
+              "text": "They is collecting the rhubarb on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "362cd7a1104797dd098f2720421814d197064cab7ff078eadd64d6eb901e2c8f"
+}

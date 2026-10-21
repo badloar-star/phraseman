@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-37:word:oregano",
+    "correctText": "oregano",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i01",
+    "correctText": "I am going to buy oregano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i02",
+    "correctText": "I am going to buy oregano.",
+    "correctResponseId": "en:lesson-15:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:word:sage",
+    "correctText": "sage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i04",
+    "correctText": "She is going to buy sage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i05",
+    "correctText": "She is going to buy sage.",
+    "correctResponseId": "en:lesson-15:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:word:coriander",
+    "correctText": "coriander",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i07",
+    "correctText": "We are collecting the coriander tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i08",
+    "correctText": "We are collecting the coriander tomorrow.",
+    "correctResponseId": "en:lesson-15:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:word:cumin",
+    "correctText": "cumin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i10",
+    "correctText": "They are collecting the cumin on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i11",
+    "correctText": "They are collecting the cumin on Saturday.",
+    "correctResponseId": "en:lesson-15:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i13",
+    "correctText": "en:lesson-15:session-37:i13:p1=oregano\nen:lesson-15:session-37:i13:p2=sage\nen:lesson-15:session-37:i13:p3=coriander\nen:lesson-15:session-37:i13:p4=cumin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i14",
+    "correctText": "I am going to cook at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i15",
+    "correctText": "We are visiting the market tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i16",
+    "correctText": "I am buying oregano tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-37:i17",
+    "correctText": "We are going to collect the coriander tomorrow.",
+    "correctResponseId": null
+  }
+]

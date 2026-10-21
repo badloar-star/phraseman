@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-40:word:candle-making",
+    "correctText": "candle making",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i01",
+    "correctText": "I am going to try candle making.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i02",
+    "correctText": "I am going to try candle making.",
+    "correctResponseId": "en:lesson-15:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i03",
+    "correctText": "am going to try",
+    "correctResponseId": "en:lesson-15:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:word:soap-making",
+    "correctText": "soap making",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i04",
+    "correctText": "She is going to try soap making.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i05",
+    "correctText": "She is going to try soap making.",
+    "correctResponseId": "en:lesson-15:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i06",
+    "correctText": "is going to try",
+    "correctResponseId": "en:lesson-15:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:word:model-making",
+    "correctText": "model making",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i07",
+    "correctText": "We are trying model making on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i08",
+    "correctText": "We are trying model making on Saturday.",
+    "correctResponseId": "en:lesson-15:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i09",
+    "correctText": "are trying",
+    "correctResponseId": "en:lesson-15:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:word:weaving",
+    "correctText": "weaving",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i10",
+    "correctText": "They are trying weaving tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i11",
+    "correctText": "They are trying weaving tomorrow.",
+    "correctResponseId": "en:lesson-15:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i12",
+    "correctText": "are trying",
+    "correctResponseId": "en:lesson-15:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i13",
+    "correctText": "en:lesson-15:session-40:i13:p1=candle making\nen:lesson-15:session-40:i13:p2=soap making\nen:lesson-15:session-40:i13:p3=model making\nen:lesson-15:session-40:i13:p4=weaving",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i14",
+    "correctText": "I am going to make something new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i15",
+    "correctText": "We are attending a class on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i16",
+    "correctText": "I am trying candle making tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-40:i17",
+    "correctText": "We are going to try model making on Saturday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-39:word:dietitian",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dietitian",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:dietitian:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dietitian",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:dietitian:audio",
+            "transcript": "dietitian"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:dietitian:r1",
+              "targetText": "dietitian",
+              "meaningByLocale": {
+                "ru": "специалист по питанию.",
+                "uk": "фахівець із харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dietitian",
+            "definitionByLocale": {
+              "ru": "специалист по питанию.",
+              "uk": "фахівець із харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to. Скажите: «Я собираюсь обратиться к специалисту по питанию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to. Скажите: «Я собираюсь обратиться к специалисту по питанию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to see a dietitian.",
+          "localizedMeaning": {
+            "ru": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to. Скажите: «Я собираюсь обратиться к специалисту по питанию».",
+            "uk": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to. Скажіть: «Я збираюся звернутися до фахівця з харчування»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "see",
+            "a",
+            "dietitian"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i02:r1",
+            "text": "I am going to see a dietitian."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i02:r2",
+            "text": "I am seeing a dietitian."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i02:r3",
+            "text": "I is going to see a dietitian."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i02:audio",
+            "transcript": "I am going to see a dietitian."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i02:r1",
+              "targetText": "I am going to see a dietitian.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r2",
+              "targetText": "I am seeing a dietitian.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r3",
+              "targetText": "I is going to see a dietitian.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to see a dietitian.",
+                "uk": "У записі звучить I am going to see a dietitian."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to see a dietitian.",
+                "uk": "У записі звучить I am going to see a dietitian."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i03:r1",
+            "text": "am going to see"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i03:r2",
+            "text": "am seeing"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i03:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+            "uk": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a dietitian.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i03:r1",
+              "text": "am going to see"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r2",
+              "text": "am seeing"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to see.",
+                "uk": "Потрібна повна форма: am going to see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:physiotherapist",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — physiotherapist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:physiotherapist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — physiotherapist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:physiotherapist:audio",
+            "transcript": "physiotherapist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:physiotherapist:r1",
+              "targetText": "physiotherapist",
+              "meaningByLocale": {
+                "ru": "специалист по восстановлению движений и физической функции.",
+                "uk": "фахівець із відновлення рухів і фізичної функції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "physiotherapist",
+            "definitionByLocale": {
+              "ru": "специалист по восстановлению движений и физической функции.",
+              "uk": "фахівець із відновлення рухів і фізичної функції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to. Скажите: «Она собирается обратиться к специалисту по физическому восстановлению».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to. Скажите: «Она собирается обратиться к специалисту по физическому восстановлению».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to see a physiotherapist.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to. Скажите: «Она собирается обратиться к специалисту по физическому восстановлению».",
+            "uk": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to. Скажіть: «Вона збирається звернутися до фахівця з фізичного відновлення»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "see",
+            "a",
+            "physiotherapist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i05:r1",
+            "text": "She is going to see a physiotherapist."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i05:r2",
+            "text": "She is seeing a physiotherapist."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i05:r3",
+            "text": "She are going to see a physiotherapist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i05:audio",
+            "transcript": "She is going to see a physiotherapist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i05:r1",
+              "targetText": "She is going to see a physiotherapist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r2",
+              "targetText": "She is seeing a physiotherapist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r3",
+              "targetText": "She are going to see a physiotherapist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to see a physiotherapist.",
+                "uk": "У записі звучить She is going to see a physiotherapist."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to see a physiotherapist.",
+                "uk": "У записі звучить She is going to see a physiotherapist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i06:r1",
+            "text": "is going to see"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i06:r2",
+            "text": "is seeing"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i06:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a physiotherapist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i06:r1",
+              "text": "is going to see"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r2",
+              "text": "is seeing"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to see.",
+                "uk": "Потрібна повна форма: is going to see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:midwife",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — midwife",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:midwife:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — midwife",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:midwife:audio",
+            "transcript": "midwife"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:midwife:r1",
+              "targetText": "midwife",
+              "meaningByLocale": {
+                "ru": "акушерка, специалист, помогающий во время беременности и родов.",
+                "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midwife",
+            "definitionByLocale": {
+              "ru": "акушерка, специалист, помогающий во время беременности и родов.",
+              "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с акушеркой в понедельник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с акушеркой в понедельник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting the midwife on Monday.",
+          "localizedMeaning": {
+            "ru": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с акушеркой в понедельник».",
+            "uk": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з акушеркою в понеділок»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "the",
+            "midwife",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i08:r1",
+            "text": "We are meeting the midwife on Monday."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i08:r2",
+            "text": "We are going to meet the midwife on Monday."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i08:r3",
+            "text": "We is meeting the midwife on Monday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i08:audio",
+            "transcript": "We are meeting the midwife on Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i08:r1",
+              "targetText": "We are meeting the midwife on Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r2",
+              "targetText": "We are going to meet the midwife on Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r3",
+              "targetText": "We is meeting the midwife on Monday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the midwife on Monday.",
+                "uk": "У записі звучить We are meeting the midwife on Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the midwife on Monday.",
+                "uk": "У записі звучить We are meeting the midwife on Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the midwife on Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:beautician",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beautician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:beautician:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beautician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:beautician:audio",
+            "transcript": "beautician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:beautician:r1",
+              "targetText": "beautician",
+              "meaningByLocale": {
+                "ru": "специалист по косметическому уходу за внешностью.",
+                "uk": "фахівець із косметичного догляду за зовнішністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beautician",
+            "definitionByLocale": {
+              "ru": "специалист по косметическому уходу за внешностью.",
+              "uk": "фахівець із косметичного догляду за зовнішністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the beautician tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».",
+            "uk": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "beautician",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i11:r1",
+            "text": "They are meeting the beautician tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i11:r2",
+            "text": "They are going to meet the beautician tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i11:r3",
+            "text": "They is meeting the beautician tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i11:audio",
+            "transcript": "They are meeting the beautician tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i11:r1",
+              "targetText": "They are meeting the beautician tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r2",
+              "targetText": "They are going to meet the beautician tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r3",
+              "targetText": "They is meeting the beautician tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the beautician tomorrow.",
+                "uk": "У записі звучить They are meeting the beautician tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the beautician tomorrow.",
+                "uk": "У записі звучить They are meeting the beautician tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the beautician tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-39:i13:p1",
+              "target": "dietitian",
+              "meaningByLocale": {
+                "ru": "специалист по питанию",
+                "uk": "фахівець із харчування"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p2",
+              "target": "physiotherapist",
+              "meaningByLocale": {
+                "ru": "специалист по восстановлению движений и физической функции",
+                "uk": "фахівець із відновлення рухів і фізичної функції"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p3",
+              "target": "midwife",
+              "meaningByLocale": {
+                "ru": "акушерка, специалист, помогающий во время беременности и родов",
+                "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p4",
+              "target": "beautician",
+              "meaningByLocale": {
+                "ru": "специалист по косметическому уходу за внешностью",
+                "uk": "фахівець із косметичного догляду за зовнішністю"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dietitian",
+            "physiotherapist",
+            "midwife",
+            "beautician"
+          ],
+          "rightColumn": [
+            "специалист по питанию",
+            "специалист по восстановлению движений и физической функции",
+            "акушерка, специалист, помогающий во время беременности и родов",
+            "специалист по косметическому уходу за внешностью"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i14:audio",
+            "transcript": "I am going to book an appointment."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to book an appointment.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "book",
+            "an",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i15:audio",
+            "transcript": "We are meeting at the clinic on Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the clinic on Monday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "clinic",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i16:audio",
+            "transcript": "I am seeing a dietitian tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am seeing a dietitian tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i17:audio",
+            "transcript": "We are going to meet the midwife on Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet the midwife on Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-39:word:dietitian",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dietitian",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:dietitian:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dietitian",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:dietitian:audio",
+            "transcript": "dietitian"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:dietitian:r1",
+              "targetText": "dietitian",
+              "meaningByLocale": {
+                "ru": "специалист по питанию.",
+                "uk": "фахівець із харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dietitian",
+            "definitionByLocale": {
+              "ru": "специалист по питанию.",
+              "uk": "фахівець із харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to. Скажіть: «Я збираюся звернутися до фахівця з харчування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to. Скажіть: «Я збираюся звернутися до фахівця з харчування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to see a dietitian.",
+          "localizedMeaning": {
+            "ru": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to. Скажите: «Я собираюсь обратиться к специалисту по питанию».",
+            "uk": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to. Скажіть: «Я збираюся звернутися до фахівця з харчування»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "see",
+            "a",
+            "dietitian"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i02:r1",
+            "text": "I am going to see a dietitian."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i02:r2",
+            "text": "I am seeing a dietitian."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i02:r3",
+            "text": "I is going to see a dietitian."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i02:audio",
+            "transcript": "I am going to see a dietitian."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i02:r1",
+              "targetText": "I am going to see a dietitian.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r2",
+              "targetText": "I am seeing a dietitian.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r3",
+              "targetText": "I is going to see a dietitian.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to see a dietitian.",
+                "uk": "У записі звучить I am going to see a dietitian."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to see a dietitian.",
+                "uk": "У записі звучить I am going to see a dietitian."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i03:r1",
+            "text": "am going to see"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i03:r2",
+            "text": "am seeing"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i03:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили обсудить питание со специалистом, но ещё не записались. Передайте намерение через going to.",
+            "uk": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a dietitian.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i03:r1",
+              "text": "am going to see"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r2",
+              "text": "am seeing"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили обговорити харчування з фахівцем, але ще не записалися. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to see.",
+                "uk": "Потрібна повна форма: am going to see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:physiotherapist",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — physiotherapist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:physiotherapist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — physiotherapist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:physiotherapist:audio",
+            "transcript": "physiotherapist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:physiotherapist:r1",
+              "targetText": "physiotherapist",
+              "meaningByLocale": {
+                "ru": "специалист по восстановлению движений и физической функции.",
+                "uk": "фахівець із відновлення рухів і фізичної функції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "physiotherapist",
+            "definitionByLocale": {
+              "ru": "специалист по восстановлению движений и физической функции.",
+              "uk": "фахівець із відновлення рухів і фізичної функції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to. Скажіть: «Вона збирається звернутися до фахівця з фізичного відновлення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to. Скажіть: «Вона збирається звернутися до фахівця з фізичного відновлення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to see a physiotherapist.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to. Скажите: «Она собирается обратиться к специалисту по физическому восстановлению».",
+            "uk": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to. Скажіть: «Вона збирається звернутися до фахівця з фізичного відновлення»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "see",
+            "a",
+            "physiotherapist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i05:r1",
+            "text": "She is going to see a physiotherapist."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i05:r2",
+            "text": "She is seeing a physiotherapist."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i05:r3",
+            "text": "She are going to see a physiotherapist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i05:audio",
+            "transcript": "She is going to see a physiotherapist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i05:r1",
+              "targetText": "She is going to see a physiotherapist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r2",
+              "targetText": "She is seeing a physiotherapist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r3",
+              "targetText": "She are going to see a physiotherapist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to see a physiotherapist.",
+                "uk": "У записі звучить She is going to see a physiotherapist."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to see a physiotherapist.",
+                "uk": "У записі звучить She is going to see a physiotherapist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i06:r1",
+            "text": "is going to see"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i06:r2",
+            "text": "is seeing"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i06:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила обратиться к специалисту по восстановлению движений; запись ещё не сделана. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a physiotherapist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i06:r1",
+              "text": "is going to see"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r2",
+              "text": "is seeing"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила звернутися до фахівця з відновлення рухів; запису ще немає. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to see.",
+                "uk": "Потрібна повна форма: is going to see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:midwife",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — midwife",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:midwife:audio"
+        ],
+        "accessibilityLabel": "Картка слова — midwife",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:midwife:audio",
+            "transcript": "midwife"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:midwife:r1",
+              "targetText": "midwife",
+              "meaningByLocale": {
+                "ru": "акушерка, специалист, помогающий во время беременности и родов.",
+                "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midwife",
+            "definitionByLocale": {
+              "ru": "акушерка, специалист, помогающий во время беременности и родов.",
+              "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з акушеркою в понеділок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з акушеркою в понеділок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting the midwife on Monday.",
+          "localizedMeaning": {
+            "ru": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с акушеркой в понедельник».",
+            "uk": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з акушеркою в понеділок»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "the",
+            "midwife",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i08:r1",
+            "text": "We are meeting the midwife on Monday."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i08:r2",
+            "text": "We are going to meet the midwife on Monday."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i08:r3",
+            "text": "We is meeting the midwife on Monday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i08:audio",
+            "transcript": "We are meeting the midwife on Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i08:r1",
+              "targetText": "We are meeting the midwife on Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r2",
+              "targetText": "We are going to meet the midwife on Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r3",
+              "targetText": "We is meeting the midwife on Monday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the midwife on Monday.",
+                "uk": "У записі звучить We are meeting the midwife on Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the midwife on Monday.",
+                "uk": "У записі звучить We are meeting the midwife on Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ the midwife on Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i09:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:word:beautician",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beautician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:word:beautician:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beautician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:word:beautician:audio",
+            "transcript": "beautician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:word:beautician:r1",
+              "targetText": "beautician",
+              "meaningByLocale": {
+                "ru": "специалист по косметическому уходу за внешностью.",
+                "uk": "фахівець із косметичного догляду за зовнішністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beautician",
+            "definitionByLocale": {
+              "ru": "специалист по косметическому уходу за внешностью.",
+              "uk": "фахівець із косметичного догляду за зовнішністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the beautician tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».",
+            "uk": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "beautician",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i11:r1",
+            "text": "They are meeting the beautician tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i11:r2",
+            "text": "They are going to meet the beautician tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i11:r3",
+            "text": "They is meeting the beautician tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i11:audio",
+            "transcript": "They are meeting the beautician tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-39:i11:r1",
+              "targetText": "They are meeting the beautician tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r2",
+              "targetText": "They are going to meet the beautician tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r3",
+              "targetText": "They is meeting the beautician tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the beautician tomorrow.",
+                "uk": "У записі звучить They are meeting the beautician tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the beautician tomorrow.",
+                "uk": "У записі звучить They are meeting the beautician tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-39:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-39:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ the beautician tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-39:i12:r1",
+              "text": "are meeting"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r2",
+              "text": "are going to meet"
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r3",
+              "text": "meet"
+            }
+          ],
+          "testedDimension": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are meeting.",
+                "uk": "Потрібна повна форма: are meeting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-39:i13:p1",
+              "target": "dietitian",
+              "meaningByLocale": {
+                "ru": "специалист по питанию",
+                "uk": "фахівець із харчування"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p2",
+              "target": "physiotherapist",
+              "meaningByLocale": {
+                "ru": "специалист по восстановлению движений и физической функции",
+                "uk": "фахівець із відновлення рухів і фізичної функції"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p3",
+              "target": "midwife",
+              "meaningByLocale": {
+                "ru": "акушерка, специалист, помогающий во время беременности и родов",
+                "uk": "акушерка, фахівчиня, яка допомагає під час вагітності й пологів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-39:i13:p4",
+              "target": "beautician",
+              "meaningByLocale": {
+                "ru": "специалист по косметическому уходу за внешностью",
+                "uk": "фахівець із косметичного догляду за зовнішністю"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dietitian",
+            "physiotherapist",
+            "midwife",
+            "beautician"
+          ],
+          "rightColumn": [
+            "фахівець із харчування",
+            "фахівець із відновлення рухів і фізичної функції",
+            "акушерка, фахівчиня, яка допомагає під час вагітності й пологів",
+            "фахівець із косметичного догляду за зовнішністю"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i14:audio",
+            "transcript": "I am going to book an appointment."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to book an appointment.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "book",
+            "an",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i15:audio",
+            "transcript": "We are meeting at the clinic on Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the clinic on Monday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "clinic",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i16:audio",
+            "transcript": "I am seeing a dietitian tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am seeing a dietitian tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-39:i17:audio",
+            "transcript": "We are going to meet the midwife on Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to meet the midwife on Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-39:word:dietitian",
+      "correctText": "dietitian",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i01",
+      "correctText": "I am going to see a dietitian.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i02",
+      "correctText": "I am going to see a dietitian.",
+      "correctResponseId": "en:lesson-15:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i03",
+      "correctText": "am going to see",
+      "correctResponseId": "en:lesson-15:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:word:physiotherapist",
+      "correctText": "physiotherapist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i04",
+      "correctText": "She is going to see a physiotherapist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i05",
+      "correctText": "She is going to see a physiotherapist.",
+      "correctResponseId": "en:lesson-15:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i06",
+      "correctText": "is going to see",
+      "correctResponseId": "en:lesson-15:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:word:midwife",
+      "correctText": "midwife",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i07",
+      "correctText": "We are meeting the midwife on Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i08",
+      "correctText": "We are meeting the midwife on Monday.",
+      "correctResponseId": "en:lesson-15:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i09",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:word:beautician",
+      "correctText": "beautician",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i10",
+      "correctText": "They are meeting the beautician tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i11",
+      "correctText": "They are meeting the beautician tomorrow.",
+      "correctResponseId": "en:lesson-15:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i12",
+      "correctText": "are meeting",
+      "correctResponseId": "en:lesson-15:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i14",
+      "correctText": "I am going to book an appointment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i15",
+      "correctText": "We are meeting at the clinic on Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i16",
+      "correctText": "I am seeing a dietitian tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-39:i17",
+      "correctText": "We are going to meet the midwife on Monday.",
+      "correctResponseId": null
+    }
+  ]
+}

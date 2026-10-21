@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "haircut — стрижка волос. Повторим going to для намерения. Вы решили подстричься, но ещё не записались к мастеру. I am going to get a haircut. — Я собираюсь подстричься. Передайте намерение через going to.",
+        "uk": "haircut — стрижка волосся. Повторімо going to для наміру. Ви вирішили підстригтися, але ще не записалися до майстра. I am going to get a haircut. — Я збираюся підстригтися. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r1",
+              "text": "I am going to get a haircut."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r2",
+              "text": "I am getting a haircut."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r3",
+              "text": "I is going to get a haircut."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r1",
+              "text": "I am going to get a haircut."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r2",
+              "text": "I am getting a haircut."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro1:r3",
+              "text": "I is going to get a haircut."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "pedicure — уход за ногтями ног, педикюр. manicure — уход за ногтями рук, маникюр. Если время уже согласовано, потренируем Present Continuous. Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. We are having a pedicure on Saturday. — Мы идём на педикюр в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "pedicure — догляд за нігтями ніг, педикюр. manicure — догляд за нігтями рук, манікюр. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. We are having a pedicure on Saturday. — Ми йдемо на педикюр у суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r1",
+              "text": "We are having a pedicure on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r2",
+              "text": "We are going to have a pedicure on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r3",
+              "text": "We is having a pedicure on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r1",
+              "text": "We are having a pedicure on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r2",
+              "text": "We are going to have a pedicure on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro2:r3",
+              "text": "We is having a pedicure on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "hair colouring — окрашивание волос. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. They are paying for hair colouring tomorrow. — Они оплачивают окрашивание волос завтра. Передайте договорённость через Present Continuous.",
+        "uk": "hair colouring — фарбування волосся. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. They are paying for hair colouring tomorrow. — Вони оплачують фарбування волосся завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r1",
+              "text": "They are paying for hair colouring tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r2",
+              "text": "They are going to pay for hair colouring tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r3",
+              "text": "They is paying for hair colouring tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r1",
+              "text": "They are paying for hair colouring tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r2",
+              "text": "They are going to pay for hair colouring tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-35:intro3:r3",
+              "text": "They is paying for hair colouring tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d04891717d41764a1aab129ac81eb0025bc41e78c0dabc069d4543542abc6262"
+}

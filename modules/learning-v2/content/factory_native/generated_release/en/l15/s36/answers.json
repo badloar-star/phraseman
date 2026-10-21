@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-36:word:guava",
+    "correctText": "guava",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i01",
+    "correctText": "I am going to try a guava.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i02",
+    "correctText": "I am going to try a guava.",
+    "correctResponseId": "en:lesson-15:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i03",
+    "correctText": "am going to try",
+    "correctResponseId": "en:lesson-15:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:word:persimmon",
+    "correctText": "persimmon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i04",
+    "correctText": "She is going to buy a persimmon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i05",
+    "correctText": "She is going to buy a persimmon.",
+    "correctResponseId": "en:lesson-15:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:word:quince",
+    "correctText": "quince",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i07",
+    "correctText": "We are collecting the quince tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i08",
+    "correctText": "We are collecting the quince tomorrow.",
+    "correctResponseId": "en:lesson-15:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:word:rhubarb",
+    "correctText": "rhubarb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i10",
+    "correctText": "They are collecting the rhubarb on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i11",
+    "correctText": "They are collecting the rhubarb on Friday.",
+    "correctResponseId": "en:lesson-15:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i13",
+    "correctText": "en:lesson-15:session-36:i13:p1=guava\nen:lesson-15:session-36:i13:p2=persimmon\nen:lesson-15:session-36:i13:p3=quince\nen:lesson-15:session-36:i13:p4=rhubarb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i14",
+    "correctText": "I am going to buy some fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i15",
+    "correctText": "We are collecting our order tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i16",
+    "correctText": "I am trying a guava tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-36:i17",
+    "correctText": "We are going to collect the quince tomorrow.",
+    "correctResponseId": null
+  }
+]

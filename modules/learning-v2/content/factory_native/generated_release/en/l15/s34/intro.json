@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "first aid — первая помощь при травме или внезапном недомогании. Повторим going to для намерения. Вы решили пройти курс первой помощи, но ещё не выбрали группу. I am going to learn first aid. — Я собираюсь научиться оказывать первую помощь. Передайте намерение через going to.",
+        "uk": "first aid — перша допомога при травмі або раптовому нездужанні. Повторімо going to для наміру. Ви вирішили пройти курс першої допомоги, але ще не вибрали групу. I am going to learn first aid. — Я збираюся навчитися надавати першу допомогу. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r1",
+              "text": "I am going to learn first aid."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r2",
+              "text": "I am learning first aid."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r3",
+              "text": "I is going to learn first aid."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r1",
+              "text": "I am going to learn first aid."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r2",
+              "text": "I am learning first aid."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro1:r3",
+              "text": "I is going to learn first aid."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "swimming lesson — занятие по обучению плаванию. driving lesson — занятие по вождению автомобиля. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. We are having a swimming lesson tomorrow. — У нас занятие по плаванию завтра. Передайте договорённость через Present Continuous.",
+        "uk": "swimming lesson — заняття з навчання плавання. driving lesson — заняття з водіння автомобіля. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. We are having a swimming lesson tomorrow. — У нас заняття з плавання завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r1",
+              "text": "We are having a swimming lesson tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r2",
+              "text": "We are going to have a swimming lesson tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r3",
+              "text": "We is having a swimming lesson tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r1",
+              "text": "We are having a swimming lesson tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r2",
+              "text": "We are going to have a swimming lesson tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro2:r3",
+              "text": "We is having a swimming lesson tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "dance class — занятие танцами. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители подтвердили участие в пятничном занятии танцами. They are attending a dance class on Friday. — Они идут на занятие танцами в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "dance class — заняття танцями. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки підтвердили участь у п’ятничному занятті танцями. They are attending a dance class on Friday. — Вони йдуть на заняття танцями в п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r1",
+              "text": "They are attending a dance class on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r2",
+              "text": "They are going to attend a dance class on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r3",
+              "text": "They is attending a dance class on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r1",
+              "text": "They are attending a dance class on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r2",
+              "text": "They are going to attend a dance class on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-34:intro3:r3",
+              "text": "They is attending a dance class on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "176e1deca5d79c80753a8fac7d635862c0e7a9c6a0c347f659f9ea96096f86b8"
+}

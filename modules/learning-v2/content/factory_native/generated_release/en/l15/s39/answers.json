@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-39:word:dietitian",
+    "correctText": "dietitian",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i01",
+    "correctText": "I am going to see a dietitian.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i02",
+    "correctText": "I am going to see a dietitian.",
+    "correctResponseId": "en:lesson-15:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i03",
+    "correctText": "am going to see",
+    "correctResponseId": "en:lesson-15:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:word:physiotherapist",
+    "correctText": "physiotherapist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i04",
+    "correctText": "She is going to see a physiotherapist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i05",
+    "correctText": "She is going to see a physiotherapist.",
+    "correctResponseId": "en:lesson-15:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i06",
+    "correctText": "is going to see",
+    "correctResponseId": "en:lesson-15:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:word:midwife",
+    "correctText": "midwife",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i07",
+    "correctText": "We are meeting the midwife on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i08",
+    "correctText": "We are meeting the midwife on Monday.",
+    "correctResponseId": "en:lesson-15:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i09",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:word:beautician",
+    "correctText": "beautician",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i10",
+    "correctText": "They are meeting the beautician tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i11",
+    "correctText": "They are meeting the beautician tomorrow.",
+    "correctResponseId": "en:lesson-15:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i13",
+    "correctText": "en:lesson-15:session-39:i13:p1=dietitian\nen:lesson-15:session-39:i13:p2=physiotherapist\nen:lesson-15:session-39:i13:p3=midwife\nen:lesson-15:session-39:i13:p4=beautician",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i14",
+    "correctText": "I am going to book an appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i15",
+    "correctText": "We are meeting at the clinic on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i16",
+    "correctText": "I am seeing a dietitian tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-39:i17",
+    "correctText": "We are going to meet the midwife on Monday.",
+    "correctResponseId": null
+  }
+]

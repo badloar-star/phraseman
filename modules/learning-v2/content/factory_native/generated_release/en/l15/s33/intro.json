@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "christening — христианский обряд крещения, обычно ребёнка. Повторим going to для намерения. Вы решили принять приглашение родственников на крестины, но ещё не ответили им. I am going to attend a christening. — Я собираюсь пойти на крестины. Передайте намерение через going to.",
+        "uk": "christening — християнський обряд хрещення, зазвичай дитини. Повторімо going to для наміру. Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. I am going to attend a christening. — Я збираюся піти на хрестини. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r1",
+              "text": "I am going to attend a christening."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r2",
+              "text": "I am attending a christening."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r3",
+              "text": "I is going to attend a christening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r1",
+              "text": "I am going to attend a christening."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r2",
+              "text": "I am attending a christening."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro1:r3",
+              "text": "I is going to attend a christening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "hen party — предсвадебная вечеринка невесты, девичник. baby shower — праздник перед рождением ребёнка с подарками для будущих родителей. Если время уже согласовано, потренируем Present Continuous. Вы с подругой подтвердили приглашение на субботний девичник. We are attending a hen party on Saturday. — Мы идём на девичник в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "hen party — передвесільна вечірка нареченої, дівич-вечір. baby shower — свято перед народженням дитини з подарунками для майбутніх батьків. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з подругою підтвердили запрошення на суботній дівич-вечір. We are attending a hen party on Saturday. — Ми йдемо на дівич-вечір у суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r1",
+              "text": "We are attending a hen party on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r2",
+              "text": "We are going to attend a hen party on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r3",
+              "text": "We is attending a hen party on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r1",
+              "text": "We are attending a hen party on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r2",
+              "text": "We are going to attend a hen party on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro2:r3",
+              "text": "We is attending a hen party on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "stag party — предсвадебная вечеринка жениха, мальчишник. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. They are attending a stag party on Friday. — Они идут на мальчишник в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "stag party — передвесільна вечірка нареченого, парубоча вечірка. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. They are attending a stag party on Friday. — Вони йдуть на парубочу вечірку в п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r1",
+              "text": "They are attending a stag party on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r2",
+              "text": "They are going to attend a stag party on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r3",
+              "text": "They is attending a stag party on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r1",
+              "text": "They are attending a stag party on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r2",
+              "text": "They are going to attend a stag party on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-33:intro3:r3",
+              "text": "They is attending a stag party on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "18a19fa848cad623af059a8b786cfcdaa39eaad7312a111c48479c5f6de7ff57"
+}

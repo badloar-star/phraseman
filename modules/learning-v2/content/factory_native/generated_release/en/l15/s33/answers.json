@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-33:word:christening",
+    "correctText": "christening",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i01",
+    "correctText": "I am going to attend a christening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i02",
+    "correctText": "I am going to attend a christening.",
+    "correctResponseId": "en:lesson-15:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i03",
+    "correctText": "am going to attend",
+    "correctResponseId": "en:lesson-15:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:word:baby-shower",
+    "correctText": "baby shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i04",
+    "correctText": "She is going to have a baby shower.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i05",
+    "correctText": "She is going to have a baby shower.",
+    "correctResponseId": "en:lesson-15:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i06",
+    "correctText": "is going to have",
+    "correctResponseId": "en:lesson-15:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:word:hen-party",
+    "correctText": "hen party",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i07",
+    "correctText": "We are attending a hen party on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i08",
+    "correctText": "We are attending a hen party on Saturday.",
+    "correctResponseId": "en:lesson-15:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i09",
+    "correctText": "are attending",
+    "correctResponseId": "en:lesson-15:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:word:stag-party",
+    "correctText": "stag party",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i10",
+    "correctText": "They are attending a stag party on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i11",
+    "correctText": "They are attending a stag party on Friday.",
+    "correctResponseId": "en:lesson-15:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i12",
+    "correctText": "are attending",
+    "correctResponseId": "en:lesson-15:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i13",
+    "correctText": "en:lesson-15:session-33:i13:p1=christening\nen:lesson-15:session-33:i13:p2=baby shower\nen:lesson-15:session-33:i13:p3=hen party\nen:lesson-15:session-33:i13:p4=stag party",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i14",
+    "correctText": "I am going to invite my family.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i15",
+    "correctText": "We are attending a party on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i16",
+    "correctText": "I am attending a christening tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-33:i17",
+    "correctText": "We are going to attend a hen party on Saturday.",
+    "correctResponseId": null
+  }
+]

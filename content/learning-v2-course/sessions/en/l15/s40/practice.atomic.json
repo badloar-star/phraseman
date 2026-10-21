@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-40:word:candle-making",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — candle making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:candle-making:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — candle making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:candle-making:audio",
+            "transcript": "candle making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:candle-making:r1",
+              "targetText": "candle making",
+              "meaningByLocale": {
+                "ru": "изготовление свечей.",
+                "uk": "виготовлення свічок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "candle making",
+            "definitionByLocale": {
+              "ru": "изготовление свечей.",
+              "uk": "виготовлення свічок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to. Скажите: «Я собираюсь попробовать делать свечи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to. Скажите: «Я собираюсь попробовать делать свечи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to try candle making.",
+          "localizedMeaning": {
+            "ru": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to. Скажите: «Я собираюсь попробовать делать свечи».",
+            "uk": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to. Скажіть: «Я збираюся спробувати робити свічки»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "candle",
+            "making"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i02:r1",
+            "text": "I am going to try candle making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i02:r2",
+            "text": "I am trying candle making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i02:r3",
+            "text": "I is going to try candle making."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i02:audio",
+            "transcript": "I am going to try candle making."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i02:r1",
+              "targetText": "I am going to try candle making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r2",
+              "targetText": "I am trying candle making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r3",
+              "targetText": "I is going to try candle making.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try candle making.",
+                "uk": "У записі звучить I am going to try candle making."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try candle making.",
+                "uk": "У записі звучить I am going to try candle making."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i03:r1",
+            "text": "am going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i03:r2",
+            "text": "am trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i03:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+            "uk": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ candle making.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i03:r1",
+              "text": "am going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r2",
+              "text": "am trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to try.",
+                "uk": "Потрібна повна форма: am going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:soap-making",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soap making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:soap-making:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soap making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:soap-making:audio",
+            "transcript": "soap making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:soap-making:r1",
+              "targetText": "soap making",
+              "meaningByLocale": {
+                "ru": "изготовление мыла.",
+                "uk": "виготовлення мила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soap making",
+            "definitionByLocale": {
+              "ru": "изготовление мыла.",
+              "uk": "виготовлення мила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to. Скажите: «Она собирается попробовать делать мыло».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to. Скажите: «Она собирается попробовать делать мыло».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to try soap making.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to. Скажите: «Она собирается попробовать делать мыло».",
+            "uk": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати робити мило»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "try",
+            "soap",
+            "making"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i05:r1",
+            "text": "She is going to try soap making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i05:r2",
+            "text": "She is trying soap making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i05:r3",
+            "text": "She are going to try soap making."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i05:audio",
+            "transcript": "She is going to try soap making."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i05:r1",
+              "targetText": "She is going to try soap making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r2",
+              "targetText": "She is trying soap making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r3",
+              "targetText": "She are going to try soap making.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to try soap making.",
+                "uk": "У записі звучить She is going to try soap making."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to try soap making.",
+                "uk": "У записі звучить She is going to try soap making."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i06:r1",
+            "text": "is going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i06:r2",
+            "text": "is trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i06:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ soap making.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i06:r1",
+              "text": "is going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r2",
+              "text": "is trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to try.",
+                "uk": "Потрібна повна форма: is going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:model-making",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — model making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:model-making:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — model making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:model-making:audio",
+            "transcript": "model making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:model-making:r1",
+              "targetText": "model making",
+              "meaningByLocale": {
+                "ru": "изготовление уменьшенных моделей предметов.",
+                "uk": "виготовлення зменшених моделей предметів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "model making",
+            "definitionByLocale": {
+              "ru": "изготовление уменьшенных моделей предметов.",
+              "uk": "виготовлення зменшених моделей предметів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are trying model making on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+            "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо виготовлення моделей у суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "trying",
+            "model",
+            "making",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i08:r1",
+            "text": "We are trying model making on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i08:r2",
+            "text": "We are going to try model making on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i08:r3",
+            "text": "We is trying model making on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i08:audio",
+            "transcript": "We are trying model making on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i08:r1",
+              "targetText": "We are trying model making on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r2",
+              "targetText": "We are going to try model making on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r3",
+              "targetText": "We is trying model making on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying model making on Saturday.",
+                "uk": "У записі звучить We are trying model making on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying model making on Saturday.",
+                "uk": "У записі звучить We are trying model making on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i09:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i09:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i09:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ model making on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i09:r1",
+              "text": "are trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r2",
+              "text": "are going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are trying.",
+                "uk": "Потрібна повна форма: are trying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:weaving",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — weaving",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:weaving:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — weaving",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:weaving:audio",
+            "transcript": "weaving"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:weaving:r1",
+              "targetText": "weaving",
+              "meaningByLocale": {
+                "ru": "ткачество, создание полотна переплетением нитей.",
+                "uk": "ткацтво, створення полотна переплетенням ниток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weaving",
+            "definitionByLocale": {
+              "ru": "ткачество, создание полотна переплетением нитей.",
+              "uk": "ткацтво, створення полотна переплетенням ниток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are trying weaving tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+            "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують ткацтво завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "trying",
+            "weaving",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i11:r1",
+            "text": "They are trying weaving tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i11:r2",
+            "text": "They are going to try weaving tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i11:r3",
+            "text": "They is trying weaving tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i11:audio",
+            "transcript": "They are trying weaving tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i11:r1",
+              "targetText": "They are trying weaving tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r2",
+              "targetText": "They are going to try weaving tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r3",
+              "targetText": "They is trying weaving tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are trying weaving tomorrow.",
+                "uk": "У записі звучить They are trying weaving tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are trying weaving tomorrow.",
+                "uk": "У записі звучить They are trying weaving tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i12:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i12:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i12:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ weaving tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i12:r1",
+              "text": "are trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r2",
+              "text": "are going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are trying.",
+                "uk": "Потрібна повна форма: are trying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-40:i13:p1",
+              "target": "candle making",
+              "meaningByLocale": {
+                "ru": "изготовление свечей",
+                "uk": "виготовлення свічок"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p2",
+              "target": "soap making",
+              "meaningByLocale": {
+                "ru": "изготовление мыла",
+                "uk": "виготовлення мила"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p3",
+              "target": "model making",
+              "meaningByLocale": {
+                "ru": "изготовление уменьшенных моделей предметов",
+                "uk": "виготовлення зменшених моделей предметів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p4",
+              "target": "weaving",
+              "meaningByLocale": {
+                "ru": "ткачество, создание полотна переплетением нитей",
+                "uk": "ткацтво, створення полотна переплетенням ниток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "candle making",
+            "soap making",
+            "model making",
+            "weaving"
+          ],
+          "rightColumn": [
+            "изготовление свечей",
+            "изготовление мыла",
+            "изготовление уменьшенных моделей предметов",
+            "ткачество, создание полотна переплетением нитей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i14:audio",
+            "transcript": "I am going to make something new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to make something new.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "make",
+            "something",
+            "new"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i15:audio",
+            "transcript": "We are attending a class on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are attending a class on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "attending",
+            "a",
+            "class",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i16:audio",
+            "transcript": "I am trying candle making tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am trying candle making tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i17:audio",
+            "transcript": "We are going to try model making on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to try model making on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-40:word:candle-making",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — candle making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:candle-making:audio"
+        ],
+        "accessibilityLabel": "Картка слова — candle making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:candle-making:audio",
+            "transcript": "candle making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:candle-making:r1",
+              "targetText": "candle making",
+              "meaningByLocale": {
+                "ru": "изготовление свечей.",
+                "uk": "виготовлення свічок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "candle making",
+            "definitionByLocale": {
+              "ru": "изготовление свечей.",
+              "uk": "виготовлення свічок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to. Скажіть: «Я збираюся спробувати робити свічки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to. Скажіть: «Я збираюся спробувати робити свічки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to try candle making.",
+          "localizedMeaning": {
+            "ru": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to. Скажите: «Я собираюсь попробовать делать свечи».",
+            "uk": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to. Скажіть: «Я збираюся спробувати робити свічки»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "candle",
+            "making"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i02:r1",
+            "text": "I am going to try candle making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i02:r2",
+            "text": "I am trying candle making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i02:r3",
+            "text": "I is going to try candle making."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i02:audio",
+            "transcript": "I am going to try candle making."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i02:r1",
+              "targetText": "I am going to try candle making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r2",
+              "targetText": "I am trying candle making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r3",
+              "targetText": "I is going to try candle making.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try candle making.",
+                "uk": "У записі звучить I am going to try candle making."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try candle making.",
+                "uk": "У записі звучить I am going to try candle making."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i03:r1",
+            "text": "am going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i03:r2",
+            "text": "am trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i03:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. Передайте намерение через going to.",
+            "uk": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ candle making.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i03:r1",
+              "text": "am going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r2",
+              "text": "am trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to try.",
+                "uk": "Потрібна повна форма: am going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:soap-making",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soap making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:soap-making:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soap making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:soap-making:audio",
+            "transcript": "soap making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:soap-making:r1",
+              "targetText": "soap making",
+              "meaningByLocale": {
+                "ru": "изготовление мыла.",
+                "uk": "виготовлення мила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soap making",
+            "definitionByLocale": {
+              "ru": "изготовление мыла.",
+              "uk": "виготовлення мила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати робити мило».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати робити мило».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to try soap making.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to. Скажите: «Она собирается попробовать делать мыло».",
+            "uk": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати робити мило»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "try",
+            "soap",
+            "making"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i05:r1",
+            "text": "She is going to try soap making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i05:r2",
+            "text": "She is trying soap making."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i05:r3",
+            "text": "She are going to try soap making."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i05:audio",
+            "transcript": "She is going to try soap making."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i05:r1",
+              "targetText": "She is going to try soap making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r2",
+              "targetText": "She is trying soap making.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r3",
+              "targetText": "She are going to try soap making.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to try soap making.",
+                "uk": "У записі звучить She is going to try soap making."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to try soap making.",
+                "uk": "У записі звучить She is going to try soap making."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i06:r1",
+            "text": "is going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i06:r2",
+            "text": "is trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i06:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ soap making.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i06:r1",
+              "text": "is going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r2",
+              "text": "is trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to try.",
+                "uk": "Потрібна повна форма: is going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:model-making",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — model making",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:model-making:audio"
+        ],
+        "accessibilityLabel": "Картка слова — model making",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:model-making:audio",
+            "transcript": "model making"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:model-making:r1",
+              "targetText": "model making",
+              "meaningByLocale": {
+                "ru": "изготовление уменьшенных моделей предметов.",
+                "uk": "виготовлення зменшених моделей предметів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "model making",
+            "definitionByLocale": {
+              "ru": "изготовление уменьшенных моделей предметов.",
+              "uk": "виготовлення зменшених моделей предметів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо виготовлення моделей у суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо виготовлення моделей у суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are trying model making on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+            "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо виготовлення моделей у суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "trying",
+            "model",
+            "making",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i08:r1",
+            "text": "We are trying model making on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i08:r2",
+            "text": "We are going to try model making on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i08:r3",
+            "text": "We is trying model making on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i08:audio",
+            "transcript": "We are trying model making on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i08:r1",
+              "targetText": "We are trying model making on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r2",
+              "targetText": "We are going to try model making on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r3",
+              "targetText": "We is trying model making on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying model making on Saturday.",
+                "uk": "У записі звучить We are trying model making on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying model making on Saturday.",
+                "uk": "У записі звучить We are trying model making on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i09:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i09:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i09:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ model making on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i09:r1",
+              "text": "are trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r2",
+              "text": "are going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are trying.",
+                "uk": "Потрібна повна форма: are trying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:word:weaving",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — weaving",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:word:weaving:audio"
+        ],
+        "accessibilityLabel": "Картка слова — weaving",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:word:weaving:audio",
+            "transcript": "weaving"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:word:weaving:r1",
+              "targetText": "weaving",
+              "meaningByLocale": {
+                "ru": "ткачество, создание полотна переплетением нитей.",
+                "uk": "ткацтво, створення полотна переплетенням ниток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weaving",
+            "definitionByLocale": {
+              "ru": "ткачество, создание полотна переплетением нитей.",
+              "uk": "ткацтво, створення полотна переплетенням ниток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують ткацтво завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують ткацтво завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are trying weaving tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+            "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують ткацтво завтра»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "trying",
+            "weaving",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i11:r1",
+            "text": "They are trying weaving tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i11:r2",
+            "text": "They are going to try weaving tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i11:r3",
+            "text": "They is trying weaving tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i11:audio",
+            "transcript": "They are trying weaving tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-40:i11:r1",
+              "targetText": "They are trying weaving tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r2",
+              "targetText": "They are going to try weaving tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r3",
+              "targetText": "They is trying weaving tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are trying weaving tomorrow.",
+                "uk": "У записі звучить They are trying weaving tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are trying weaving tomorrow.",
+                "uk": "У записі звучить They are trying weaving tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-40:i12:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i12:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-40:i12:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ weaving tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-40:i12:r1",
+              "text": "are trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r2",
+              "text": "are going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are trying.",
+                "uk": "Потрібна повна форма: are trying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-40:i13:p1",
+              "target": "candle making",
+              "meaningByLocale": {
+                "ru": "изготовление свечей",
+                "uk": "виготовлення свічок"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p2",
+              "target": "soap making",
+              "meaningByLocale": {
+                "ru": "изготовление мыла",
+                "uk": "виготовлення мила"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p3",
+              "target": "model making",
+              "meaningByLocale": {
+                "ru": "изготовление уменьшенных моделей предметов",
+                "uk": "виготовлення зменшених моделей предметів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-40:i13:p4",
+              "target": "weaving",
+              "meaningByLocale": {
+                "ru": "ткачество, создание полотна переплетением нитей",
+                "uk": "ткацтво, створення полотна переплетенням ниток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "candle making",
+            "soap making",
+            "model making",
+            "weaving"
+          ],
+          "rightColumn": [
+            "виготовлення свічок",
+            "виготовлення мила",
+            "виготовлення зменшених моделей предметів",
+            "ткацтво, створення полотна переплетенням ниток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i14:audio",
+            "transcript": "I am going to make something new."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to make something new.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "make",
+            "something",
+            "new"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i15:audio",
+            "transcript": "We are attending a class on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are attending a class on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "attending",
+            "a",
+            "class",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i16:audio",
+            "transcript": "I am trying candle making tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am trying candle making tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-40:i17:audio",
+            "transcript": "We are going to try model making on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to try model making on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-40:word:candle-making",
+      "correctText": "candle making",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i01",
+      "correctText": "I am going to try candle making.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i02",
+      "correctText": "I am going to try candle making.",
+      "correctResponseId": "en:lesson-15:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i03",
+      "correctText": "am going to try",
+      "correctResponseId": "en:lesson-15:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:word:soap-making",
+      "correctText": "soap making",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i04",
+      "correctText": "She is going to try soap making.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i05",
+      "correctText": "She is going to try soap making.",
+      "correctResponseId": "en:lesson-15:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i06",
+      "correctText": "is going to try",
+      "correctResponseId": "en:lesson-15:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:word:model-making",
+      "correctText": "model making",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i07",
+      "correctText": "We are trying model making on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i08",
+      "correctText": "We are trying model making on Saturday.",
+      "correctResponseId": "en:lesson-15:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i09",
+      "correctText": "are trying",
+      "correctResponseId": "en:lesson-15:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:word:weaving",
+      "correctText": "weaving",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i10",
+      "correctText": "They are trying weaving tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i11",
+      "correctText": "They are trying weaving tomorrow.",
+      "correctResponseId": "en:lesson-15:session-40:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i12",
+      "correctText": "are trying",
+      "correctResponseId": "en:lesson-15:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i14",
+      "correctText": "I am going to make something new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i15",
+      "correctText": "We are attending a class on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i16",
+      "correctText": "I am trying candle making tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-40:i17",
+      "correctText": "We are going to try model making on Saturday.",
+      "correctResponseId": null
+    }
+  ]
+}

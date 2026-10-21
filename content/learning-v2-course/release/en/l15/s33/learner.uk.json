@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-33:word:christening",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — christening",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:word:christening:audio"
+      ],
+      "accessibilityLabel": "Картка слова — christening",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:word:christening:audio",
+          "transcript": "christening"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:word:christening:r1",
+            "targetText": "christening",
+            "meaningByLocale": {
+              "ru": "христианский обряд крещения, обычно ребёнка.",
+              "uk": "християнський обряд хрещення, зазвичай дитини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "christening",
+          "definitionByLocale": {
+            "ru": "христианский обряд крещения, обычно ребёнка.",
+            "uk": "християнський обряд хрещення, зазвичай дитини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to. Скажіть: «Я збираюся піти на хрестини».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to. Скажіть: «Я збираюся піти на хрестини».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to attend a christening.",
+        "localizedMeaning": {
+          "ru": "Вы решили принять приглашение родственников на крестины, но ещё не ответили им. Передайте намерение через going to. Скажите: «Я собираюсь пойти на крестины».",
+          "uk": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to. Скажіть: «Я збираюся піти на хрестини»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "attend",
+          "a",
+          "christening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i02:r1",
+          "text": "I am going to attend a christening."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i02:r2",
+          "text": "I am attending a christening."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i02:r3",
+          "text": "I is going to attend a christening."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i02:audio",
+          "transcript": "I am going to attend a christening."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:i02:r1",
+            "targetText": "I am going to attend a christening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i02:r2",
+            "targetText": "I am attending a christening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i02:r3",
+            "targetText": "I is going to attend a christening.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to attend a christening.",
+              "uk": "У записі звучить I am going to attend a christening."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to attend a christening.",
+              "uk": "У записі звучить I am going to attend a christening."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i03:r1",
+          "text": "am going to attend"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i03:r2",
+          "text": "am attending"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i03:r3",
+          "text": "attend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили принять приглашение родственников на крестины, но ещё не ответили им. Передайте намерение через going to.",
+          "uk": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a christening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-33:i03:r1",
+            "text": "am going to attend"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i03:r2",
+            "text": "am attending"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i03:r3",
+            "text": "attend"
+          }
+        ],
+        "testedDimension": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили прийняти запрошення родичів на хрестини, але ще не відповіли їм. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to attend.",
+              "uk": "Потрібна повна форма: am going to attend."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:word:baby-shower",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baby shower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:word:baby-shower:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baby shower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:word:baby-shower:audio",
+          "transcript": "baby shower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:word:baby-shower:r1",
+            "targetText": "baby shower",
+            "meaningByLocale": {
+              "ru": "праздник перед рождением ребёнка с подарками для будущих родителей.",
+              "uk": "свято перед народженням дитини з подарунками для майбутніх батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baby shower",
+          "definitionByLocale": {
+            "ru": "праздник перед рождением ребёнка с подарками для будущих родителей.",
+            "uk": "свято перед народженням дитини з подарунками для майбутніх батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to. Скажіть: «Вона збирається влаштувати свято перед народженням дитини».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to. Скажіть: «Вона збирається влаштувати свято перед народженням дитини».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to have a baby shower.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила устроить праздник перед рождением ребёнка; день пока не выбран. Передайте намерение через going to. Скажите: «Она собирается устроить праздник перед рождением ребёнка».",
+          "uk": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to. Скажіть: «Вона збирається влаштувати свято перед народженням дитини»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "have",
+          "a",
+          "baby",
+          "shower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i05:r1",
+          "text": "She is going to have a baby shower."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i05:r2",
+          "text": "She is having a baby shower."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i05:r3",
+          "text": "She are going to have a baby shower."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i05:audio",
+          "transcript": "She is going to have a baby shower."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:i05:r1",
+            "targetText": "She is going to have a baby shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i05:r2",
+            "targetText": "She is having a baby shower.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i05:r3",
+            "targetText": "She are going to have a baby shower.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to have a baby shower.",
+              "uk": "У записі звучить She is going to have a baby shower."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to have a baby shower.",
+              "uk": "У записі звучить She is going to have a baby shower."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i06:r1",
+          "text": "is going to have"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i06:r2",
+          "text": "is having"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i06:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила устроить праздник перед рождением ребёнка; день пока не выбран. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ a baby shower.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-33:i06:r1",
+            "text": "is going to have"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i06:r2",
+            "text": "is having"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i06:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила влаштувати свято перед народженням дитини; день поки не вибрано. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to have.",
+              "uk": "Потрібна повна форма: is going to have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:word:hen-party",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hen party",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:word:hen-party:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hen party",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:word:hen-party:audio",
+          "transcript": "hen party"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:word:hen-party:r1",
+            "targetText": "hen party",
+            "meaningByLocale": {
+              "ru": "предсвадебная вечеринка невесты, девичник.",
+              "uk": "передвесільна вечірка нареченої, дівич-вечір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hen party",
+          "definitionByLocale": {
+            "ru": "предсвадебная вечеринка невесты, девичник.",
+            "uk": "передвесільна вечірка нареченої, дівич-вечір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на дівич-вечір у суботу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на дівич-вечір у суботу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are attending a hen party on Saturday.",
+        "localizedMeaning": {
+          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous. Скажите: «Мы идём на девичник в субботу».",
+          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на дівич-вечір у суботу»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "attending",
+          "a",
+          "hen",
+          "party",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i08:r1",
+          "text": "We are attending a hen party on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i08:r2",
+          "text": "We are going to attend a hen party on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i08:r3",
+          "text": "We is attending a hen party on Saturday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i08:audio",
+          "transcript": "We are attending a hen party on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:i08:r1",
+            "targetText": "We are attending a hen party on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i08:r2",
+            "targetText": "We are going to attend a hen party on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i08:r3",
+            "targetText": "We is attending a hen party on Saturday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are attending a hen party on Saturday.",
+              "uk": "У записі звучить We are attending a hen party on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are attending a hen party on Saturday.",
+              "uk": "У записі звучить We are attending a hen party on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i09:r1",
+          "text": "are attending"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i09:r2",
+          "text": "are going to attend"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i09:r3",
+          "text": "attend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a hen party on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-33:i09:r1",
+            "text": "are attending"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i09:r2",
+            "text": "are going to attend"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i09:r3",
+            "text": "attend"
+          }
+        ],
+        "testedDimension": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are attending.",
+              "uk": "Потрібна повна форма: are attending."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:word:stag-party",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stag party",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:word:stag-party:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stag party",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:word:stag-party:audio",
+          "transcript": "stag party"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:word:stag-party:r1",
+            "targetText": "stag party",
+            "meaningByLocale": {
+              "ru": "предсвадебная вечеринка жениха, мальчишник.",
+              "uk": "передвесільна вечірка нареченого, парубоча вечірка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stag party",
+          "definitionByLocale": {
+            "ru": "предсвадебная вечеринка жениха, мальчишник.",
+            "uk": "передвесільна вечірка нареченого, парубоча вечірка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are attending a stag party on Friday.",
+        "localizedMeaning": {
+          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они идут на мальчишник в пятницу».",
+          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "attending",
+          "a",
+          "stag",
+          "party",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i11:r1",
+          "text": "They are attending a stag party on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i11:r2",
+          "text": "They are going to attend a stag party on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i11:r3",
+          "text": "They is attending a stag party on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i11:audio",
+          "transcript": "They are attending a stag party on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-33:i11:r1",
+            "targetText": "They are attending a stag party on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i11:r2",
+            "targetText": "They are going to attend a stag party on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i11:r3",
+            "targetText": "They is attending a stag party on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are attending a stag party on Friday.",
+              "uk": "У записі звучить They are attending a stag party on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are attending a stag party on Friday.",
+              "uk": "У записі звучить They are attending a stag party on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-33:i12:r1",
+          "text": "are attending"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i12:r2",
+          "text": "are going to attend"
+        },
+        {
+          "responseId": "en:lesson-15:session-33:i12:r3",
+          "text": "attend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ a stag party on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-33:i12:r1",
+            "text": "are attending"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i12:r2",
+            "text": "are going to attend"
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i12:r3",
+            "text": "attend"
+          }
+        ],
+        "testedDimension": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are attending.",
+              "uk": "Потрібна повна форма: are attending."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-33:i13:p1",
+            "target": "christening",
+            "meaningByLocale": {
+              "ru": "христианский обряд крещения, обычно ребёнка",
+              "uk": "християнський обряд хрещення, зазвичай дитини"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-33:i13:p2",
+            "target": "baby shower",
+            "meaningByLocale": {
+              "ru": "праздник перед рождением ребёнка с подарками для будущих родителей",
+              "uk": "свято перед народженням дитини з подарунками для майбутніх батьків"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-33:i13:p3",
+            "target": "hen party",
+            "meaningByLocale": {
+              "ru": "предсвадебная вечеринка невесты, девичник",
+              "uk": "передвесільна вечірка нареченої, дівич-вечір"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-33:i13:p4",
+            "target": "stag party",
+            "meaningByLocale": {
+              "ru": "предсвадебная вечеринка жениха, мальчишник",
+              "uk": "передвесільна вечірка нареченого, парубоча вечірка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "christening",
+          "baby shower",
+          "hen party",
+          "stag party"
+        ],
+        "rightColumn": [
+          "християнський обряд хрещення, зазвичай дитини",
+          "свято перед народженням дитини з подарунками для майбутніх батьків",
+          "передвесільна вечірка нареченої, дівич-вечір",
+          "передвесільна вечірка нареченого, парубоча вечірка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i14:audio",
+          "transcript": "I am going to invite my family."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to invite my family.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "invite",
+          "my",
+          "family"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i15:audio",
+          "transcript": "We are attending a party on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are attending a party on Saturday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "attending",
+          "a",
+          "party",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i16:audio",
+          "transcript": "I am attending a christening tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am attending a christening tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-33:i17:audio",
+          "transcript": "We are going to attend a hen party on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to attend a hen party on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1ea968a820decb74901ee3c8b5671f909f212fb2e5190592f6c61baecf09a156"
+}

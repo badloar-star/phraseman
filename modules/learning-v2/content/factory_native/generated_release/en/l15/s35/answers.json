@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-35:word:haircut",
+    "correctText": "haircut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i01",
+    "correctText": "I am going to get a haircut.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i02",
+    "correctText": "I am going to get a haircut.",
+    "correctResponseId": "en:lesson-15:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i03",
+    "correctText": "am going to get",
+    "correctResponseId": "en:lesson-15:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:word:manicure",
+    "correctText": "manicure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i04",
+    "correctText": "She is going to book a manicure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i05",
+    "correctText": "She is going to book a manicure.",
+    "correctResponseId": "en:lesson-15:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i06",
+    "correctText": "is going to book",
+    "correctResponseId": "en:lesson-15:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:word:pedicure",
+    "correctText": "pedicure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i07",
+    "correctText": "We are having a pedicure on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i08",
+    "correctText": "We are having a pedicure on Saturday.",
+    "correctResponseId": "en:lesson-15:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i09",
+    "correctText": "are having",
+    "correctResponseId": "en:lesson-15:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:word:hair-colouring",
+    "correctText": "hair colouring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i10",
+    "correctText": "They are paying for hair colouring tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i11",
+    "correctText": "They are paying for hair colouring tomorrow.",
+    "correctResponseId": "en:lesson-15:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i12",
+    "correctText": "are paying",
+    "correctResponseId": "en:lesson-15:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i13",
+    "correctText": "en:lesson-15:session-35:i13:p1=haircut\nen:lesson-15:session-35:i13:p2=manicure\nen:lesson-15:session-35:i13:p3=pedicure\nen:lesson-15:session-35:i13:p4=hair colouring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i14",
+    "correctText": "I am going to call the salon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i15",
+    "correctText": "We are meeting the hairdresser on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i16",
+    "correctText": "I am getting a haircut tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-35:i17",
+    "correctText": "We are going to have a pedicure on Saturday.",
+    "correctResponseId": null
+  }
+]

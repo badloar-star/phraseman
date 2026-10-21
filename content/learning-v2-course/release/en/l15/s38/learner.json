@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-38:word:turmeric",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — turmeric",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:word:turmeric:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — turmeric",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:word:turmeric:audio",
+          "transcript": "turmeric"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:word:turmeric:r1",
+            "targetText": "turmeric",
+            "meaningByLocale": {
+              "ru": "куркума, ярко-жёлтая пряность.",
+              "uk": "куркума, яскраво-жовта пряність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "turmeric",
+          "definitionByLocale": {
+            "ru": "куркума, ярко-жёлтая пряность.",
+            "uk": "куркума, яскраво-жовта пряність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to. Скажите: «Я собираюсь купить куркуму».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to. Скажите: «Я собираюсь купить куркуму».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy turmeric.",
+        "localizedMeaning": {
+          "ru": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to. Скажите: «Я собираюсь купить куркуму».",
+          "uk": "Ви вирішили купити куркуму для нової страви. Передайте намір через going to. Скажіть: «Я збираюся купити куркуму»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "turmeric"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i02:r1",
+          "text": "I am going to buy turmeric."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i02:r2",
+          "text": "I am buying turmeric."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i02:r3",
+          "text": "I is going to buy turmeric."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i02:audio",
+          "transcript": "I am going to buy turmeric."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:i02:r1",
+            "targetText": "I am going to buy turmeric.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i02:r2",
+            "targetText": "I am buying turmeric.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i02:r3",
+            "targetText": "I is going to buy turmeric.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy turmeric.",
+              "uk": "У записі звучить I am going to buy turmeric."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy turmeric.",
+              "uk": "У записі звучить I am going to buy turmeric."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i03:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i03:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i03:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+          "uk": "Ви вирішили купити куркуму для нової страви. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ turmeric.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-38:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы решили купить куркуму для нового блюда. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to buy.",
+              "uk": "Потрібна повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:word:cardamom",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cardamom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:word:cardamom:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cardamom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:word:cardamom:audio",
+          "transcript": "cardamom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:word:cardamom:r1",
+            "targetText": "cardamom",
+            "meaningByLocale": {
+              "ru": "кардамон, ароматная пряность.",
+              "uk": "кардамон, ароматна пряність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cardamom",
+          "definitionByLocale": {
+            "ru": "кардамон, ароматная пряность.",
+            "uk": "кардамон, ароматна пряність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to. Скажите: «Она собирается попробовать кардамон».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to. Скажите: «Она собирается попробовать кардамон».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to try cardamom.",
+        "localizedMeaning": {
+          "ru": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to. Скажите: «Она собирается попробовать кардамон».",
+          "uk": "Ваша подруга вирішила спробувати кардамон у випічці. Передайте намір через going to. Скажіть: «Вона збирається спробувати кардамон»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "try",
+          "cardamom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i05:r1",
+          "text": "She is going to try cardamom."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i05:r2",
+          "text": "She is trying cardamom."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i05:r3",
+          "text": "She are going to try cardamom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i05:audio",
+          "transcript": "She is going to try cardamom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:i05:r1",
+            "targetText": "She is going to try cardamom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i05:r2",
+            "targetText": "She is trying cardamom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i05:r3",
+            "targetText": "She are going to try cardamom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to try cardamom.",
+              "uk": "У записі звучить She is going to try cardamom."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to try cardamom.",
+              "uk": "У записі звучить She is going to try cardamom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i06:r1",
+          "text": "is going to try"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i06:r2",
+          "text": "is trying"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i06:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+          "uk": "Ваша подруга вирішила спробувати кардамон у випічці. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ cardamom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-38:i06:r1",
+            "text": "is going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i06:r2",
+            "text": "is trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i06:r3",
+            "text": "try"
+          }
+        ],
+        "testedDimension": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to try.",
+              "uk": "Потрібна повна форма: is going to try."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:word:cloves",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cloves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:word:cloves:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cloves",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:word:cloves:audio",
+          "transcript": "cloves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:word:cloves:r1",
+            "targetText": "cloves",
+            "meaningByLocale": {
+              "ru": "гвоздика, пряность из высушенных бутонов.",
+              "uk": "гвоздика, пряність із висушених бутонів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cloves",
+          "definitionByLocale": {
+            "ru": "гвоздика, пряность из высушенных бутонов.",
+            "uk": "гвоздика, пряність із висушених бутонів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем гвоздику завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем гвоздику завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are collecting the cloves tomorrow.",
+        "localizedMeaning": {
+          "ru": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем гвоздику завтра».",
+          "uk": "Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо гвоздику завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "cloves",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i08:r1",
+          "text": "We are collecting the cloves tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i08:r2",
+          "text": "We are going to collect the cloves tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i08:r3",
+          "text": "We is collecting the cloves tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i08:audio",
+          "transcript": "We are collecting the cloves tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:i08:r1",
+            "targetText": "We are collecting the cloves tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i08:r2",
+            "targetText": "We are going to collect the cloves tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i08:r3",
+            "targetText": "We is collecting the cloves tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the cloves tomorrow.",
+              "uk": "У записі звучить We are collecting the cloves tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the cloves tomorrow.",
+              "uk": "У записі звучить We are collecting the cloves tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i09:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i09:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i09:r3",
+          "text": "collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ the cloves tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-38:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "testedDimension": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are collecting.",
+              "uk": "Потрібна повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:word:nutmeg",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nutmeg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:word:nutmeg:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nutmeg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:word:nutmeg:audio",
+          "transcript": "nutmeg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:word:nutmeg:r1",
+            "targetText": "nutmeg",
+            "meaningByLocale": {
+              "ru": "мускатный орех, пряность.",
+              "uk": "мускатний горіх, пряність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nutmeg",
+          "definitionByLocale": {
+            "ru": "мускатный орех, пряность.",
+            "uk": "мускатний горіх, пряність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают мускатный орех в пятницу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают мускатный орех в пятницу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are collecting the nutmeg on Friday.",
+        "localizedMeaning": {
+          "ru": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают мускатный орех в пятницу».",
+          "uk": "Ваші батьки узгодили з продавцем отримання замовленого мускатного горіха на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають мускатний горіх у п’ятницю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "collecting",
+          "the",
+          "nutmeg",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i11:r1",
+          "text": "They are collecting the nutmeg on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i11:r2",
+          "text": "They are going to collect the nutmeg on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i11:r3",
+          "text": "They is collecting the nutmeg on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i11:audio",
+          "transcript": "They are collecting the nutmeg on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-38:i11:r1",
+            "targetText": "They are collecting the nutmeg on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i11:r2",
+            "targetText": "They are going to collect the nutmeg on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i11:r3",
+            "targetText": "They is collecting the nutmeg on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are collecting the nutmeg on Friday.",
+              "uk": "У записі звучить They are collecting the nutmeg on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are collecting the nutmeg on Friday.",
+              "uk": "У записі звучить They are collecting the nutmeg on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-38:i12:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i12:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-15:session-38:i12:r3",
+          "text": "collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші батьки узгодили з продавцем отримання замовленого мускатного горіха на п’ятницю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ the nutmeg on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-38:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i12:r3",
+            "text": "collect"
+          }
+        ],
+        "testedDimension": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are collecting.",
+              "uk": "Потрібна повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-38:i13:p1",
+            "target": "turmeric",
+            "meaningByLocale": {
+              "ru": "куркума, ярко-жёлтая пряность",
+              "uk": "куркума, яскраво-жовта пряність"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-38:i13:p2",
+            "target": "cardamom",
+            "meaningByLocale": {
+              "ru": "кардамон, ароматная пряность",
+              "uk": "кардамон, ароматна пряність"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-38:i13:p3",
+            "target": "cloves",
+            "meaningByLocale": {
+              "ru": "гвоздика, пряность из высушенных бутонов",
+              "uk": "гвоздика, пряність із висушених бутонів"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-38:i13:p4",
+            "target": "nutmeg",
+            "meaningByLocale": {
+              "ru": "мускатный орех, пряность",
+              "uk": "мускатний горіх, пряність"
+            }
+          }
+        ],
+        "leftColumn": [
+          "turmeric",
+          "cardamom",
+          "cloves",
+          "nutmeg"
+        ],
+        "rightColumn": [
+          "куркума, ярко-жёлтая пряность",
+          "кардамон, ароматная пряность",
+          "гвоздика, пряность из высушенных бутонов",
+          "мускатный орех, пряность"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i14:audio",
+          "transcript": "I am going to try a new recipe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to try a new recipe.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "try",
+          "a",
+          "new",
+          "recipe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i15:audio",
+          "transcript": "We are collecting the spices tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting the spices tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "spices",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i16:audio",
+          "transcript": "I am buying turmeric tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am buying turmeric tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-38:i17:audio",
+          "transcript": "We are going to collect the cloves tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to collect the cloves tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3cf8250453f61169c91e70f72437e0f1b49c8d16b4bcc608de480db39f761b68"
+}

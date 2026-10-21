@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "turmeric — куркума, ярко-жёлтая пряность. Повторим going to для намерения. Вы решили купить куркуму для нового блюда. I am going to buy turmeric. — Я собираюсь купить куркуму. Передайте намерение через going to.",
+        "uk": "turmeric — куркума, яскраво-жовта пряність. Повторімо going to для наміру. Ви вирішили купити куркуму для нової страви. I am going to buy turmeric. — Я збираюся купити куркуму. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r1",
+              "text": "I am going to buy turmeric."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r2",
+              "text": "I am buying turmeric."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r3",
+              "text": "I is going to buy turmeric."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r1",
+              "text": "I am going to buy turmeric."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r2",
+              "text": "I am buying turmeric."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro1:r3",
+              "text": "I is going to buy turmeric."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "cloves — гвоздика, пряность из высушенных бутонов. cardamom — кардамон, ароматная пряность. Если время уже согласовано, потренируем Present Continuous. Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. We are collecting the cloves tomorrow. — Мы забираем гвоздику завтра. Передайте договорённость через Present Continuous.",
+        "uk": "cloves — гвоздика, пряність із висушених бутонів. cardamom — кардамон, ароматна пряність. Якщо час уже узгоджено, потренуймо Present Continuous. Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. We are collecting the cloves tomorrow. — Ми забираємо гвоздику завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r1",
+              "text": "We are collecting the cloves tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r2",
+              "text": "We are going to collect the cloves tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r3",
+              "text": "We is collecting the cloves tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r1",
+              "text": "We are collecting the cloves tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r2",
+              "text": "We are going to collect the cloves tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro2:r3",
+              "text": "We is collecting the cloves tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "nutmeg — мускатный орех, пряность. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. They are collecting the nutmeg on Friday. — Они забирают мускатный орех в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "nutmeg — мускатний горіх, пряність. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили з продавцем отримання замовленого мускатного горіха на п’ятницю. They are collecting the nutmeg on Friday. — Вони забирають мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r1",
+              "text": "They are collecting the nutmeg on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r2",
+              "text": "They are going to collect the nutmeg on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r3",
+              "text": "They is collecting the nutmeg on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r1",
+              "text": "They are collecting the nutmeg on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r2",
+              "text": "They are going to collect the nutmeg on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-38:intro3:r3",
+              "text": "They is collecting the nutmeg on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "445998209267183c7700df6874e1894b62720a2b13ca577b77054ba4c365984c"
+}

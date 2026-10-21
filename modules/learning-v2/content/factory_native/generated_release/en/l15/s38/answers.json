@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-38:word:turmeric",
+    "correctText": "turmeric",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i01",
+    "correctText": "I am going to buy turmeric.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i02",
+    "correctText": "I am going to buy turmeric.",
+    "correctResponseId": "en:lesson-15:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:word:cardamom",
+    "correctText": "cardamom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i04",
+    "correctText": "She is going to try cardamom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i05",
+    "correctText": "She is going to try cardamom.",
+    "correctResponseId": "en:lesson-15:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i06",
+    "correctText": "is going to try",
+    "correctResponseId": "en:lesson-15:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:word:cloves",
+    "correctText": "cloves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i07",
+    "correctText": "We are collecting the cloves tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i08",
+    "correctText": "We are collecting the cloves tomorrow.",
+    "correctResponseId": "en:lesson-15:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:word:nutmeg",
+    "correctText": "nutmeg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i10",
+    "correctText": "They are collecting the nutmeg on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i11",
+    "correctText": "They are collecting the nutmeg on Friday.",
+    "correctResponseId": "en:lesson-15:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i13",
+    "correctText": "en:lesson-15:session-38:i13:p1=turmeric\nen:lesson-15:session-38:i13:p2=cardamom\nen:lesson-15:session-38:i13:p3=cloves\nen:lesson-15:session-38:i13:p4=nutmeg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i14",
+    "correctText": "I am going to try a new recipe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i15",
+    "correctText": "We are collecting the spices tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i16",
+    "correctText": "I am buying turmeric tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-38:i17",
+    "correctText": "We are going to collect the cloves tomorrow.",
+    "correctResponseId": null
+  }
+]

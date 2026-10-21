@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "oregano — орегано, душистая трава для приправы. Повторим going to для намерения. Вы решили купить орегано для домашней пиццы. I am going to buy oregano. — Я собираюсь купить орегано. Передайте намерение через going to.",
+        "uk": "oregano — орегано, духмяна трава для приправи. Повторімо going to для наміру. Ви вирішили купити орегано для домашньої піци. I am going to buy oregano. — Я збираюся купити орегано. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r1",
+              "text": "I am going to buy oregano."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r2",
+              "text": "I am buying oregano."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r3",
+              "text": "I is going to buy oregano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r1",
+              "text": "I am going to buy oregano."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r2",
+              "text": "I am buying oregano."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro1:r3",
+              "text": "I is going to buy oregano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "coriander — кориандр, растение, листья и семена которого используют как приправу. sage — шалфей, ароматная трава, используемая в кулинарии. Если время уже согласовано, потренируем Present Continuous. Продавец подтвердил заказ кориандра и время получения на завтра. We are collecting the coriander tomorrow. — Мы забираем кориандр завтра. Передайте договорённость через Present Continuous.",
+        "uk": "coriander — коріандр, рослина, листя й насіння якої використовують як приправу. sage — шавлія, ароматна трава, яку використовують у кулінарії. Якщо час уже узгоджено, потренуймо Present Continuous. Продавець підтвердив замовлення коріандру й час отримання на завтра. We are collecting the coriander tomorrow. — Ми забираємо коріандр завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r1",
+              "text": "We are collecting the coriander tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r2",
+              "text": "We are going to collect the coriander tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r3",
+              "text": "We is collecting the coriander tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r1",
+              "text": "We are collecting the coriander tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r2",
+              "text": "We are going to collect the coriander tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro2:r3",
+              "text": "We is collecting the coriander tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "cumin — кумин, зира, пряность из семян. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. They are collecting the cumin on Saturday. — Они забирают кумин в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "cumin — кумин, зіра, пряність із насіння. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. They are collecting the cumin on Saturday. — Вони забирають кумин у суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r1",
+              "text": "They are collecting the cumin on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r2",
+              "text": "They are going to collect the cumin on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r3",
+              "text": "They is collecting the cumin on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r1",
+              "text": "They are collecting the cumin on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r2",
+              "text": "They are going to collect the cumin on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-37:intro3:r3",
+              "text": "They is collecting the cumin on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b3c97692aad9ece745507db529fa04dae81399ec13223caba2f883d5b0ed9093"
+}

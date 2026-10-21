@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "live music — живая музыка. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "live music — жива музика. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r1",
+              "text": "The live music is so loud."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r2",
+              "text": "The live music is such loud."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r3",
+              "text": "The live music is much loud."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r1",
+              "text": "The live music is so loud."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r2",
+              "text": "The live music is such loud."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro1:r3",
+              "text": "The live music is much loud."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "live concert — живой концерт. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "live concert — живий концерт. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r1",
+              "text": "We are at such a great live concert."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r2",
+              "text": "We are at so a great live concert."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r3",
+              "text": "We are at a such great live concert."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r1",
+              "text": "We are at such a great live concert."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r2",
+              "text": "We are at so a great live concert."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro2:r3",
+              "text": "We are at a such great live concert."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Порядок слов с such",
+        "uk": "Порядок слів із such"
+      },
+      "bodyByLocale": {
+        "ru": "street performance — уличное выступление. music festival — музыкальный фестиваль. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "street performance — вуличний виступ. music festival — музичний фестиваль. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r1",
+              "text": "This is such a big music festival."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r2",
+              "text": "This is so a big music festival."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r3",
+              "text": "This is a such big music festival."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r1",
+              "text": "This is such a big music festival."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r2",
+              "text": "This is so a big music festival."
+            },
+            {
+              "responseId": "en:lesson-18:session-36:intro3:r3",
+              "text": "This is a such big music festival."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "34c16e3bc849e3a494f365baa21786568ecbf0f91a4af4308108a6423de52ce4"
+}

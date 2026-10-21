@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "waste of time — пустая трата времени. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "waste of time — марна трата часу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r1",
+              "text": "This is such a waste of time."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r2",
+              "text": "This is so a waste of time."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r3",
+              "text": "This is a such waste of time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r1",
+              "text": "This is such a waste of time."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r2",
+              "text": "This is so a waste of time."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro1:r3",
+              "text": "This is a such waste of time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "change of plan — изменение плана. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "change of plan — зміна плану. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r1",
+              "text": "This change of plan is so important."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r2",
+              "text": "This change of plan is such important."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r3",
+              "text": "This change of plan is much important."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r1",
+              "text": "This change of plan is so important."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r2",
+              "text": "This change of plan is such important."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro2:r3",
+              "text": "This change of plan is much important."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "long wait — долгое ожидание. small favour — небольшая услуга, небольшая просьба о помощи. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "long wait — довге очікування. small favour — невелика послуга, невелике прохання про допомогу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r1",
+              "text": "It is such a small favour."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r2",
+              "text": "It is so a small favour."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r3",
+              "text": "It is a such small favour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r1",
+              "text": "It is such a small favour."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r2",
+              "text": "It is so a small favour."
+            },
+            {
+              "responseId": "en:lesson-18:session-39:intro3:r3",
+              "text": "It is a such small favour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "07bae900220ea36a8238b6378f8d9c4e7a90b12ea961365a3b68486ae6088d6f"
+}

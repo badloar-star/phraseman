@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-37:word:fresh-air",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fresh air",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:word:fresh-air:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fresh air",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:word:fresh-air:audio",
+          "transcript": "fresh air"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:word:fresh-air:r1",
+            "targetText": "fresh air",
+            "meaningByLocale": {
+              "ru": "свежий воздух.",
+              "uk": "свіже повітря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fresh air",
+          "definitionByLocale": {
+            "ru": "свежий воздух.",
+            "uk": "свіже повітря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Свіже повітря таке приємне».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Свіже повітря таке приємне».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The fresh air is so nice.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Свежий воздух такой приятный».",
+          "uk": "Скажіть із сильним враженням: «Свіже повітря таке приємне»."
+        },
+        "orderedTokens": [
+          "The",
+          "fresh",
+          "air",
+          "is",
+          "so",
+          "nice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i02:r1",
+          "text": "The fresh air is so nice."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i02:r2",
+          "text": "The fresh air is such nice."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i02:r3",
+          "text": "The fresh air is much nice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i02:audio",
+          "transcript": "The fresh air is so nice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:i02:r1",
+            "targetText": "The fresh air is so nice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i02:r2",
+            "targetText": "The fresh air is such nice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i02:r3",
+            "targetText": "The fresh air is much nice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fresh air is so nice.",
+              "uk": "У записі звучить The fresh air is so nice."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fresh air is so nice.",
+              "uk": "У записі звучить The fresh air is so nice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The fresh air is ___ nice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-37:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:word:hard-work",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hard work",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:word:hard-work:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hard work",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:word:hard-work:audio",
+          "transcript": "hard work"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:word:hard-work:r1",
+            "targetText": "hard work",
+            "meaningByLocale": {
+              "ru": "тяжёлая работа, большой труд.",
+              "uk": "важка робота, велика праця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hard work",
+          "definitionByLocale": {
+            "ru": "тяжёлая работа, большой труд.",
+            "uk": "важка робота, велика праця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Це така важка робота».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Це така важка робота».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such hard work.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такая тяжёлая работа».",
+          "uk": "Скажіть із сильним враженням: «Це така важка робота»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "hard",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i05:r1",
+          "text": "This is such hard work."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i05:r2",
+          "text": "This is so hard work."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i05:r3",
+          "text": "This is much hard work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i05:audio",
+          "transcript": "This is such hard work."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:i05:r1",
+            "targetText": "This is such hard work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i05:r2",
+            "targetText": "This is so hard work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i05:r3",
+            "targetText": "This is much hard work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such hard work.",
+              "uk": "У записі звучить This is such hard work."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such hard work.",
+              "uk": "У записі звучить This is such hard work."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ hard work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-37:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь неисчисляемое значение: such без a.",
+              "uk": "Тут незлічуване значення: such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:word:good-company",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — good company",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:word:good-company:audio"
+      ],
+      "accessibilityLabel": "Картка слова — good company",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:word:good-company:audio",
+          "transcript": "good company"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:word:good-company:r1",
+            "targetText": "good company",
+            "meaningByLocale": {
+              "ru": "приятная компания, приятный собеседник.",
+              "uk": "приємна компанія, приємний співрозмовник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "good company",
+          "definitionByLocale": {
+            "ru": "приятная компания, приятный собеседник.",
+            "uk": "приємна компанія, приємний співрозмовник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «З тобою так приємно проводити час».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «З тобою так приємно проводити час».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are such good company.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «С тобой так приятно проводить время».",
+          "uk": "Скажіть із сильним враженням: «З тобою так приємно проводити час»."
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "such",
+          "good",
+          "company"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i08:r1",
+          "text": "You are such good company."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i08:r2",
+          "text": "You are so good company."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i08:r3",
+          "text": "You are much good company."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i08:audio",
+          "transcript": "You are such good company."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:i08:r1",
+            "targetText": "You are such good company.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i08:r2",
+            "targetText": "You are so good company.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i08:r3",
+            "targetText": "You are much good company.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are such good company.",
+              "uk": "У записі звучить You are such good company."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are such good company.",
+              "uk": "У записі звучить You are such good company."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i09:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i09:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "You are ___ good company.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-37:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь неисчисляемое значение: such без a.",
+              "uk": "Тут незлічуване значення: such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:word:peace-and-quiet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peace and quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:word:peace-and-quiet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peace and quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:word:peace-and-quiet:audio",
+          "transcript": "peace and quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:word:peace-and-quiet:r1",
+            "targetText": "peace and quiet",
+            "meaningByLocale": {
+              "ru": "тишина и покой.",
+              "uk": "тиша і спокій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peace and quiet",
+          "definitionByLocale": {
+            "ru": "тишина и покой.",
+            "uk": "тиша і спокій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Тиша і спокій такі приємні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Тиша і спокій такі приємні».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The peace and quiet is so lovely.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Тишина и покой такие приятные».",
+          "uk": "Скажіть із сильним враженням: «Тиша і спокій такі приємні»."
+        },
+        "orderedTokens": [
+          "The",
+          "peace",
+          "and",
+          "quiet",
+          "is",
+          "so",
+          "lovely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i11:r1",
+          "text": "The peace and quiet is so lovely."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i11:r2",
+          "text": "The peace and quiet is such lovely."
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i11:r3",
+          "text": "The peace and quiet is much lovely."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i11:audio",
+          "transcript": "The peace and quiet is so lovely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-37:i11:r1",
+            "targetText": "The peace and quiet is so lovely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i11:r2",
+            "targetText": "The peace and quiet is such lovely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i11:r3",
+            "targetText": "The peace and quiet is much lovely.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The peace and quiet is so lovely.",
+              "uk": "У записі звучить The peace and quiet is so lovely."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The peace and quiet is so lovely.",
+              "uk": "У записі звучить The peace and quiet is so lovely."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-37:i12:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i12:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-37:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The peace and quiet is ___ lovely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-37:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-37:i13:p1",
+            "target": "fresh air",
+            "meaningByLocale": {
+              "ru": "свежий воздух",
+              "uk": "свіже повітря"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-37:i13:p2",
+            "target": "hard work",
+            "meaningByLocale": {
+              "ru": "тяжёлая работа, большой труд",
+              "uk": "важка робота, велика праця"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-37:i13:p3",
+            "target": "good company",
+            "meaningByLocale": {
+              "ru": "приятная компания, приятный собеседник",
+              "uk": "приємна компанія, приємний співрозмовник"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-37:i13:p4",
+            "target": "peace and quiet",
+            "meaningByLocale": {
+              "ru": "тишина и покой",
+              "uk": "тиша і спокій"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fresh air",
+          "hard work",
+          "good company",
+          "peace and quiet"
+        ],
+        "rightColumn": [
+          "свіже повітря",
+          "важка робота, велика праця",
+          "приємна компанія, приємний співрозмовник",
+          "тиша і спокій"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i14:audio",
+          "transcript": "We are going to get some fresh air."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to get some fresh air.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "get",
+          "some",
+          "fresh",
+          "air"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i15:audio",
+          "transcript": "We are meeting in the park at ten."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting in the park at ten.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "in",
+          "the",
+          "park",
+          "at",
+          "ten"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i16:audio",
+          "transcript": "This place is quieter than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This place is quieter than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-37:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "facb68f5f9d317e827fb1ecf49809ab22d1a7b4167473838b3496ac263fc1317"
+}

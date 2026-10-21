@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-40:word:free-entry",
+    "correctText": "free entry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i01",
+    "correctText": "Free entry is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i02",
+    "correctText": "Free entry is so useful.",
+    "correctResponseId": "en:lesson-18:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:word:free-parking",
+    "correctText": "free parking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i04",
+    "correctText": "Free parking is such a great help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i05",
+    "correctText": "Free parking is such a great help.",
+    "correctResponseId": "en:lesson-18:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:word:public-event",
+    "correctText": "public event",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i07",
+    "correctText": "This is such a fun public event.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i08",
+    "correctText": "This is such a fun public event.",
+    "correctResponseId": "en:lesson-18:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:word:charity-event",
+    "correctText": "charity event",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i10",
+    "correctText": "The charity event is so busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i11",
+    "correctText": "The charity event is so busy.",
+    "correctResponseId": "en:lesson-18:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i13",
+    "correctText": "en:lesson-18:session-40:i13:p1=free entry\nen:lesson-18:session-40:i13:p2=free parking\nen:lesson-18:session-40:i13:p3=public event\nen:lesson-18:session-40:i13:p4=charity event",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i14",
+    "correctText": "We are going to visit the charity event.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i15",
+    "correctText": "We are meeting at the public event on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i16",
+    "correctText": "This event is quieter than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-40:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

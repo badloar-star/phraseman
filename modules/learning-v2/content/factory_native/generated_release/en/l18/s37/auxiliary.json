@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-37:intro1:r2": {
+          "ru": "После пропуска прилагательное без существительного: so.",
+          "uk": "Після пропуску прикметник без іменника: so."
+        },
+        "en:lesson-18:session-37:intro1:r3": {
+          "ru": "Перед обычным прилагательным здесь нужно so, не much.",
+          "uk": "Перед звичайним прикметником тут потрібне so, не much."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-37:intro2:r2": {
+          "ru": "Здесь неисчисляемое значение: such без a.",
+          "uk": "Тут незлічуване значення: such без a."
+        },
+        "en:lesson-18:session-37:intro2:r3": {
+          "ru": "В этом неисчисляемом значении артикль a не нужен.",
+          "uk": "У цьому незлічуваному значенні артикль a не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-37:intro3:r2": {
+          "ru": "После пропуска прилагательное без существительного: so.",
+          "uk": "Після пропуску прикметник без іменника: so."
+        },
+        "en:lesson-18:session-37:intro3:r3": {
+          "ru": "Перед обычным прилагательным здесь нужно so, не much.",
+          "uk": "Перед звичайним прикметником тут потрібне so, не much."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aa72a829f709b602dd84095a8df31aea629bbd619d623fb32e750d19dca24834"
+}

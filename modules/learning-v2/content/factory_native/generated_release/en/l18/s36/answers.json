@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-36:word:live-music",
+    "correctText": "live music",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i01",
+    "correctText": "The live music is so loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i02",
+    "correctText": "The live music is so loud.",
+    "correctResponseId": "en:lesson-18:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:word:live-concert",
+    "correctText": "live concert",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i04",
+    "correctText": "We are at such a great live concert.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i05",
+    "correctText": "We are at such a great live concert.",
+    "correctResponseId": "en:lesson-18:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:word:street-performance",
+    "correctText": "street performance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i07",
+    "correctText": "The street performance is so funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i08",
+    "correctText": "The street performance is so funny.",
+    "correctResponseId": "en:lesson-18:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:word:music-festival",
+    "correctText": "music festival",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i10",
+    "correctText": "This is such a big music festival.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i11",
+    "correctText": "This is such a big music festival.",
+    "correctResponseId": "en:lesson-18:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i13",
+    "correctText": "en:lesson-18:session-36:i13:p1=live music\nen:lesson-18:session-36:i13:p2=live concert\nen:lesson-18:session-36:i13:p3=street performance\nen:lesson-18:session-36:i13:p4=music festival",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i14",
+    "correctText": "We are going to see a street performance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i15",
+    "correctText": "We are going to the music festival on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i16",
+    "correctText": "This live concert is louder than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-36:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

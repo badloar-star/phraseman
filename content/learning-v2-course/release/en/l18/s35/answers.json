@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-35:word:heavy-rain",
+    "correctText": "heavy rain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i01",
+    "correctText": "The heavy rain is so loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i02",
+    "correctText": "The heavy rain is so loud.",
+    "correctResponseId": "en:lesson-18:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:word:strong-wind",
+    "correctText": "strong wind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i04",
+    "correctText": "The strong wind is such a problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i05",
+    "correctText": "The strong wind is such a problem.",
+    "correctResponseId": "en:lesson-18:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:word:thick-fog",
+    "correctText": "thick fog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i07",
+    "correctText": "The thick fog is so bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i08",
+    "correctText": "The thick fog is so bad.",
+    "correctResponseId": "en:lesson-18:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:word:deep-snow",
+    "correctText": "deep snow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i10",
+    "correctText": "The deep snow is such a surprise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i11",
+    "correctText": "The deep snow is such a surprise.",
+    "correctResponseId": "en:lesson-18:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i13",
+    "correctText": "en:lesson-18:session-35:i13:p1=heavy rain\nen:lesson-18:session-35:i13:p2=strong wind\nen:lesson-18:session-35:i13:p3=thick fog\nen:lesson-18:session-35:i13:p4=deep snow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i14",
+    "correctText": "We are going to stay home in the heavy rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i15",
+    "correctText": "We are meeting indoors at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i16",
+    "correctText": "The snow is deeper than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-35:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

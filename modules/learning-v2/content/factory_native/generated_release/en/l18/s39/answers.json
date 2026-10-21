@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-39:word:waste-of-time",
+    "correctText": "waste of time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i01",
+    "correctText": "This is such a waste of time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i02",
+    "correctText": "This is such a waste of time.",
+    "correctResponseId": "en:lesson-18:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:word:change-of-plan",
+    "correctText": "change of plan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i04",
+    "correctText": "This change of plan is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i05",
+    "correctText": "This change of plan is so important.",
+    "correctResponseId": "en:lesson-18:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:word:long-wait",
+    "correctText": "long wait",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i07",
+    "correctText": "We had such a long wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i08",
+    "correctText": "We had such a long wait.",
+    "correctResponseId": "en:lesson-18:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:word:small-favour",
+    "correctText": "small favour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i10",
+    "correctText": "It is such a small favour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i11",
+    "correctText": "It is such a small favour.",
+    "correctResponseId": "en:lesson-18:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i13",
+    "correctText": "en:lesson-18:session-39:i13:p1=waste of time\nen:lesson-18:session-39:i13:p2=change of plan\nen:lesson-18:session-39:i13:p3=long wait\nen:lesson-18:session-39:i13:p4=small favour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i14",
+    "correctText": "We are going to discuss the change of plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i15",
+    "correctText": "We are meeting at three instead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i16",
+    "correctText": "This wait is longer than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-39:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

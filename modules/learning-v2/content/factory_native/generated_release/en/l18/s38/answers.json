@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-38:word:warm-welcome",
+    "correctText": "warm welcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i01",
+    "correctText": "We received such a warm welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i02",
+    "correctText": "We received such a warm welcome.",
+    "correctResponseId": "en:lesson-18:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:word:helping-hand",
+    "correctText": "helping hand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i04",
+    "correctText": "A helping hand is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i05",
+    "correctText": "A helping hand is so useful.",
+    "correctResponseId": "en:lesson-18:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:word:big-smile",
+    "correctText": "big smile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i07",
+    "correctText": "You have such a big smile.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i08",
+    "correctText": "You have such a big smile.",
+    "correctResponseId": "en:lesson-18:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:word:friendly-face",
+    "correctText": "friendly face",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i10",
+    "correctText": "A friendly face is so welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i11",
+    "correctText": "A friendly face is so welcome.",
+    "correctResponseId": "en:lesson-18:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i13",
+    "correctText": "en:lesson-18:session-38:i13:p1=warm welcome\nen:lesson-18:session-38:i13:p2=helping hand\nen:lesson-18:session-38:i13:p3=big smile\nen:lesson-18:session-38:i13:p4=friendly face",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i14",
+    "correctText": "We are going to give her a helping hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i15",
+    "correctText": "We are meeting our friends tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i16",
+    "correctText": "This room is warmer than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-38:i17",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": null
+  }
+]

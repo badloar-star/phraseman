@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-37:word:fresh-air",
+    "correctText": "fresh air",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i01",
+    "correctText": "The fresh air is so nice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i02",
+    "correctText": "The fresh air is so nice.",
+    "correctResponseId": "en:lesson-18:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:word:hard-work",
+    "correctText": "hard work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i04",
+    "correctText": "This is such hard work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i05",
+    "correctText": "This is such hard work.",
+    "correctResponseId": "en:lesson-18:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:word:good-company",
+    "correctText": "good company",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i07",
+    "correctText": "You are such good company.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i08",
+    "correctText": "You are such good company.",
+    "correctResponseId": "en:lesson-18:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:word:peace-and-quiet",
+    "correctText": "peace and quiet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i10",
+    "correctText": "The peace and quiet is so lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i11",
+    "correctText": "The peace and quiet is so lovely.",
+    "correctResponseId": "en:lesson-18:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i13",
+    "correctText": "en:lesson-18:session-37:i13:p1=fresh air\nen:lesson-18:session-37:i13:p2=hard work\nen:lesson-18:session-37:i13:p3=good company\nen:lesson-18:session-37:i13:p4=peace and quiet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i14",
+    "correctText": "We are going to get some fresh air.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i15",
+    "correctText": "We are meeting in the park at ten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i16",
+    "correctText": "This place is quieter than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-37:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

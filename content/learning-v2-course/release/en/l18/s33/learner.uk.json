@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-33:word:close-friend",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — close friend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:word:close-friend:audio"
+      ],
+      "accessibilityLabel": "Картка слова — close friend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:word:close-friend:audio",
+          "transcript": "close friend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:word:close-friend:r1",
+            "targetText": "close friend",
+            "meaningByLocale": {
+              "ru": "близкий друг.",
+              "uk": "близький друг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "close friend",
+          "definitionByLocale": {
+            "ru": "близкий друг.",
+            "uk": "близький друг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Мій близький друг такий добрий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Мій близький друг такий добрий».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My close friend is so kind.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мой близкий друг такой добрый».",
+          "uk": "Скажіть із сильним враженням: «Мій близький друг такий добрий»."
+        },
+        "orderedTokens": [
+          "My",
+          "close",
+          "friend",
+          "is",
+          "so",
+          "kind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i02:r1",
+          "text": "My close friend is so kind."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i02:r2",
+          "text": "My close friend is such kind."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i02:r3",
+          "text": "My close friend is much kind."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i02:audio",
+          "transcript": "My close friend is so kind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:i02:r1",
+            "targetText": "My close friend is so kind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i02:r2",
+            "targetText": "My close friend is such kind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i02:r3",
+            "targetText": "My close friend is much kind.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My close friend is so kind.",
+              "uk": "У записі звучить My close friend is so kind."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My close friend is so kind.",
+              "uk": "У записі звучить My close friend is so kind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "My close friend is ___ kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-33:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:word:mutual-friend",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mutual friend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:word:mutual-friend:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mutual friend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:word:mutual-friend:audio",
+          "transcript": "mutual friend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:word:mutual-friend:r1",
+            "targetText": "mutual friend",
+            "meaningByLocale": {
+              "ru": "общий друг двух людей.",
+              "uk": "спільний друг двох людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mutual friend",
+          "definitionByLocale": {
+            "ru": "общий друг двух людей.",
+            "uk": "спільний друг двох людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Наш спільний друг — така чуйна людина».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Наш спільний друг — така чуйна людина».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our mutual friend is such a helpful person.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Наш общий друг — такой отзывчивый человек».",
+          "uk": "Скажіть із сильним враженням: «Наш спільний друг — така чуйна людина»."
+        },
+        "orderedTokens": [
+          "Our",
+          "mutual",
+          "friend",
+          "is",
+          "such",
+          "a",
+          "helpful",
+          "person"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i05:r1",
+          "text": "Our mutual friend is such a helpful person."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i05:r2",
+          "text": "Our mutual friend is so a helpful person."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i05:r3",
+          "text": "Our mutual friend is much a helpful person."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i05:audio",
+          "transcript": "Our mutual friend is such a helpful person."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:i05:r1",
+            "targetText": "Our mutual friend is such a helpful person.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i05:r2",
+            "targetText": "Our mutual friend is so a helpful person.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i05:r3",
+            "targetText": "Our mutual friend is much a helpful person.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our mutual friend is such a helpful person.",
+              "uk": "У записі звучить Our mutual friend is such a helpful person."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our mutual friend is such a helpful person.",
+              "uk": "У записі звучить Our mutual friend is such a helpful person."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Our mutual friend is ___ a helpful person.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-33:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:word:childhood-friend",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — childhood friend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:word:childhood-friend:audio"
+      ],
+      "accessibilityLabel": "Картка слова — childhood friend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:word:childhood-friend:audio",
+          "transcript": "childhood friend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:word:childhood-friend:r1",
+            "targetText": "childhood friend",
+            "meaningByLocale": {
+              "ru": "друг детства.",
+              "uk": "друг дитинства."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "childhood friend",
+          "definitionByLocale": {
+            "ru": "друг детства.",
+            "uk": "друг дитинства."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Мій друг дитинства такий кумедний».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Мій друг дитинства такий кумедний».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My childhood friend is so funny.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мой друг детства такой смешной».",
+          "uk": "Скажіть із сильним враженням: «Мій друг дитинства такий кумедний»."
+        },
+        "orderedTokens": [
+          "My",
+          "childhood",
+          "friend",
+          "is",
+          "so",
+          "funny"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i08:r1",
+          "text": "My childhood friend is so funny."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i08:r2",
+          "text": "My childhood friend is such funny."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i08:r3",
+          "text": "My childhood friend is much funny."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i08:audio",
+          "transcript": "My childhood friend is so funny."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:i08:r1",
+            "targetText": "My childhood friend is so funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i08:r2",
+            "targetText": "My childhood friend is such funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i08:r3",
+            "targetText": "My childhood friend is much funny.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My childhood friend is so funny.",
+              "uk": "У записі звучить My childhood friend is so funny."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My childhood friend is so funny.",
+              "uk": "У записі звучить My childhood friend is so funny."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "My childhood friend is ___ funny.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-33:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:word:next-door-neighbour",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — next-door neighbour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:word:next-door-neighbour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — next-door neighbour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:word:next-door-neighbour:audio",
+          "transcript": "next-door neighbour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:word:next-door-neighbour:r1",
+            "targetText": "next-door neighbour",
+            "meaningByLocale": {
+              "ru": "сосед из соседнего дома или квартиры.",
+              "uk": "сусід із сусіднього будинку або квартири."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "next-door neighbour",
+          "definitionByLocale": {
+            "ru": "сосед из соседнего дома или квартиры.",
+            "uk": "сусід із сусіднього будинку або квартири."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Мій найближчий сусід — така добра людина».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Мій найближчий сусід — така добра людина».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My next-door neighbour is such a kind person.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мой ближайший сосед — такой добрый человек».",
+          "uk": "Скажіть із сильним враженням: «Мій найближчий сусід — така добра людина»."
+        },
+        "orderedTokens": [
+          "My",
+          "next-door",
+          "neighbour",
+          "is",
+          "such",
+          "a",
+          "kind",
+          "person"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i11:r1",
+          "text": "My next-door neighbour is such a kind person."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i11:r2",
+          "text": "My next-door neighbour is so a kind person."
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i11:r3",
+          "text": "My next-door neighbour is much a kind person."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i11:audio",
+          "transcript": "My next-door neighbour is such a kind person."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-33:i11:r1",
+            "targetText": "My next-door neighbour is such a kind person.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i11:r2",
+            "targetText": "My next-door neighbour is so a kind person.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i11:r3",
+            "targetText": "My next-door neighbour is much a kind person.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My next-door neighbour is such a kind person.",
+              "uk": "У записі звучить My next-door neighbour is such a kind person."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My next-door neighbour is such a kind person.",
+              "uk": "У записі звучить My next-door neighbour is such a kind person."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-33:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-33:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "My next-door neighbour is ___ a kind person.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-33:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-33:i13:p1",
+            "target": "close friend",
+            "meaningByLocale": {
+              "ru": "близкий друг",
+              "uk": "близький друг"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-33:i13:p2",
+            "target": "mutual friend",
+            "meaningByLocale": {
+              "ru": "общий друг двух людей",
+              "uk": "спільний друг двох людей"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-33:i13:p3",
+            "target": "childhood friend",
+            "meaningByLocale": {
+              "ru": "друг детства",
+              "uk": "друг дитинства"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-33:i13:p4",
+            "target": "next-door neighbour",
+            "meaningByLocale": {
+              "ru": "сосед из соседнего дома или квартиры",
+              "uk": "сусід із сусіднього будинку або квартири"
+            }
+          }
+        ],
+        "leftColumn": [
+          "close friend",
+          "mutual friend",
+          "childhood friend",
+          "next-door neighbour"
+        ],
+        "rightColumn": [
+          "близький друг",
+          "спільний друг двох людей",
+          "друг дитинства",
+          "сусід із сусіднього будинку або квартири"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте з so",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте з so",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i14:audio",
+          "transcript": "My close friend is so kind."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My close friend is so kind.",
+        "orderedTokens": [
+          "My",
+          "close",
+          "friend",
+          "is",
+          "so",
+          "kind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте з such",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте з such",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i15:audio",
+          "transcript": "Our mutual friend is such a helpful person."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Our mutual friend is such a helpful person.",
+        "orderedTokens": [
+          "Our",
+          "mutual",
+          "friend",
+          "is",
+          "such",
+          "a",
+          "helpful",
+          "person"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про друга дитинства",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Розкажіть про друга дитинства",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i16:audio",
+          "transcript": "My childhood friend is so funny."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My childhood friend is so funny.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про сусіда",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Розкажіть про сусіда",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-33:i17:audio",
+          "transcript": "My next-door neighbour is such a kind person."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My next-door neighbour is such a kind person.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ea2d45fc504d4bc862d8082a657b9ce7c5c180b7df684702fbde9ff58fd48def"
+}

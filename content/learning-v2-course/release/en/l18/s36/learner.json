@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-36:word:live-music",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — live music",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:word:live-music:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — live music",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:word:live-music:audio",
+          "transcript": "live music"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:word:live-music:r1",
+            "targetText": "live music",
+            "meaningByLocale": {
+              "ru": "живая музыка.",
+              "uk": "жива музика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "live music",
+          "definitionByLocale": {
+            "ru": "живая музыка.",
+            "uk": "жива музика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Живая музыка такая громкая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Живая музыка такая громкая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The live music is so loud.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Живая музыка такая громкая».",
+          "uk": "Скажіть із сильним враженням: «Жива музика така гучна»."
+        },
+        "orderedTokens": [
+          "The",
+          "live",
+          "music",
+          "is",
+          "so",
+          "loud"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i02:r1",
+          "text": "The live music is so loud."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i02:r2",
+          "text": "The live music is such loud."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i02:r3",
+          "text": "The live music is much loud."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i02:audio",
+          "transcript": "The live music is so loud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:i02:r1",
+            "targetText": "The live music is so loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i02:r2",
+            "targetText": "The live music is such loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i02:r3",
+            "targetText": "The live music is much loud.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The live music is so loud.",
+              "uk": "У записі звучить The live music is so loud."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The live music is so loud.",
+              "uk": "У записі звучить The live music is so loud."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The live music is ___ loud.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-36:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:word:live-concert",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — live concert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:word:live-concert:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — live concert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:word:live-concert:audio",
+          "transcript": "live concert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:word:live-concert:r1",
+            "targetText": "live concert",
+            "meaningByLocale": {
+              "ru": "живой концерт.",
+              "uk": "живий концерт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "live concert",
+          "definitionByLocale": {
+            "ru": "живой концерт.",
+            "uk": "живий концерт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Мы на таком замечательном живом концерте».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Мы на таком замечательном живом концерте».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are at such a great live concert.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Мы на таком замечательном живом концерте».",
+          "uk": "Скажіть із сильним враженням: «Ми на такому чудовому живому концерті»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "at",
+          "such",
+          "a",
+          "great",
+          "live",
+          "concert"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i05:r1",
+          "text": "We are at such a great live concert."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i05:r2",
+          "text": "We are at so a great live concert."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i05:r3",
+          "text": "We are at much a great live concert."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i05:audio",
+          "transcript": "We are at such a great live concert."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:i05:r1",
+            "targetText": "We are at such a great live concert.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i05:r2",
+            "targetText": "We are at so a great live concert.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i05:r3",
+            "targetText": "We are at much a great live concert.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are at such a great live concert.",
+              "uk": "У записі звучить We are at such a great live concert."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are at such a great live concert.",
+              "uk": "У записі звучить We are at such a great live concert."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "We are at ___ a great live concert.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-36:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:word:street-performance",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — street performance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:word:street-performance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — street performance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:word:street-performance:audio",
+          "transcript": "street performance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:word:street-performance:r1",
+            "targetText": "street performance",
+            "meaningByLocale": {
+              "ru": "уличное выступление.",
+              "uk": "вуличний виступ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "street performance",
+          "definitionByLocale": {
+            "ru": "уличное выступление.",
+            "uk": "вуличний виступ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Уличное выступление такое смешное».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Уличное выступление такое смешное».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The street performance is so funny.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Уличное выступление такое смешное».",
+          "uk": "Скажіть із сильним враженням: «Вуличний виступ такий кумедний»."
+        },
+        "orderedTokens": [
+          "The",
+          "street",
+          "performance",
+          "is",
+          "so",
+          "funny"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i08:r1",
+          "text": "The street performance is so funny."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i08:r2",
+          "text": "The street performance is such funny."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i08:r3",
+          "text": "The street performance is much funny."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i08:audio",
+          "transcript": "The street performance is so funny."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:i08:r1",
+            "targetText": "The street performance is so funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i08:r2",
+            "targetText": "The street performance is such funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i08:r3",
+            "targetText": "The street performance is much funny.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The street performance is so funny.",
+              "uk": "У записі звучить The street performance is so funny."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The street performance is so funny.",
+              "uk": "У записі звучить The street performance is so funny."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "The street performance is ___ funny.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-36:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:word:music-festival",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — music festival",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:word:music-festival:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — music festival",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:word:music-festival:audio",
+          "transcript": "music festival"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:word:music-festival:r1",
+            "targetText": "music festival",
+            "meaningByLocale": {
+              "ru": "музыкальный фестиваль.",
+              "uk": "музичний фестиваль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "music festival",
+          "definitionByLocale": {
+            "ru": "музыкальный фестиваль.",
+            "uk": "музичний фестиваль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это такой большой музыкальный фестиваль».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это такой большой музыкальный фестиваль».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such a big music festival.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такой большой музыкальный фестиваль».",
+          "uk": "Скажіть із сильним враженням: «Це такий великий музичний фестиваль»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "a",
+          "big",
+          "music",
+          "festival"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i11:r1",
+          "text": "This is such a big music festival."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i11:r2",
+          "text": "This is so a big music festival."
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i11:r3",
+          "text": "This is much a big music festival."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i11:audio",
+          "transcript": "This is such a big music festival."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-36:i11:r1",
+            "targetText": "This is such a big music festival.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i11:r2",
+            "targetText": "This is so a big music festival.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i11:r3",
+            "targetText": "This is much a big music festival.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big music festival.",
+              "uk": "У записі звучить This is such a big music festival."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big music festival.",
+              "uk": "У записі звучить This is such a big music festival."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-36:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-36:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ a big music festival.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-36:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-36:i13:p1",
+            "target": "live music",
+            "meaningByLocale": {
+              "ru": "живая музыка",
+              "uk": "жива музика"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-36:i13:p2",
+            "target": "live concert",
+            "meaningByLocale": {
+              "ru": "живой концерт",
+              "uk": "живий концерт"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-36:i13:p3",
+            "target": "street performance",
+            "meaningByLocale": {
+              "ru": "уличное выступление",
+              "uk": "вуличний виступ"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-36:i13:p4",
+            "target": "music festival",
+            "meaningByLocale": {
+              "ru": "музыкальный фестиваль",
+              "uk": "музичний фестиваль"
+            }
+          }
+        ],
+        "leftColumn": [
+          "live music",
+          "live concert",
+          "street performance",
+          "music festival"
+        ],
+        "rightColumn": [
+          "живая музыка",
+          "живой концерт",
+          "уличное выступление",
+          "музыкальный фестиваль"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i14:audio",
+          "transcript": "We are going to see a street performance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to see a street performance.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "see",
+          "a",
+          "street",
+          "performance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i15:audio",
+          "transcript": "We are going to the music festival on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to the music festival on Saturday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "the",
+          "music",
+          "festival",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i16:audio",
+          "transcript": "This live concert is louder than the last one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This live concert is louder than the last one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-36:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b586562ec6b6e28c71703df97738548fc40beb69b43470e621400b402ec801a0"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-33:word:close-friend",
+    "correctText": "close friend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i01",
+    "correctText": "My close friend is so kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i02",
+    "correctText": "My close friend is so kind.",
+    "correctResponseId": "en:lesson-18:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:word:mutual-friend",
+    "correctText": "mutual friend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i04",
+    "correctText": "Our mutual friend is such a helpful person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i05",
+    "correctText": "Our mutual friend is such a helpful person.",
+    "correctResponseId": "en:lesson-18:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:word:childhood-friend",
+    "correctText": "childhood friend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i07",
+    "correctText": "My childhood friend is so funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i08",
+    "correctText": "My childhood friend is so funny.",
+    "correctResponseId": "en:lesson-18:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:word:next-door-neighbour",
+    "correctText": "next-door neighbour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i10",
+    "correctText": "My next-door neighbour is such a kind person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i11",
+    "correctText": "My next-door neighbour is such a kind person.",
+    "correctResponseId": "en:lesson-18:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i13",
+    "correctText": "en:lesson-18:session-33:i13:p1=close friend\nen:lesson-18:session-33:i13:p2=mutual friend\nen:lesson-18:session-33:i13:p3=childhood friend\nen:lesson-18:session-33:i13:p4=next-door neighbour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i14",
+    "correctText": "My close friend is so kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i15",
+    "correctText": "Our mutual friend is such a helpful person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i16",
+    "correctText": "My childhood friend is so funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-33:i17",
+    "correctText": "My next-door neighbour is such a kind person.",
+    "correctResponseId": null
+  }
+]

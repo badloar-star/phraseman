@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-39:word:waste-of-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waste of time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:waste-of-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waste of time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:waste-of-time:audio",
+            "transcript": "waste of time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:waste-of-time:r1",
+              "targetText": "waste of time",
+              "meaningByLocale": {
+                "ru": "пустая трата времени.",
+                "uk": "марна трата часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waste of time",
+            "definitionByLocale": {
+              "ru": "пустая трата времени.",
+              "uk": "марна трата часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это такая пустая трата времени».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это такая пустая трата времени».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a waste of time.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такая пустая трата времени».",
+            "uk": "Скажіть із сильним враженням: «Це така марна трата часу»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "waste",
+            "of",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i02:r1",
+            "text": "This is such a waste of time."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i02:r2",
+            "text": "This is so a waste of time."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i02:r3",
+            "text": "This is much a waste of time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i02:audio",
+            "transcript": "This is such a waste of time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i02:r1",
+              "targetText": "This is such a waste of time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r2",
+              "targetText": "This is so a waste of time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r3",
+              "targetText": "This is much a waste of time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a waste of time.",
+                "uk": "У записі звучить This is such a waste of time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a waste of time.",
+                "uk": "У записі звучить This is such a waste of time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a waste of time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:change-of-plan",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — change of plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:change-of-plan:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — change of plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:change-of-plan:audio",
+            "transcript": "change of plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:change-of-plan:r1",
+              "targetText": "change of plan",
+              "meaningByLocale": {
+                "ru": "изменение плана.",
+                "uk": "зміна плану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change of plan",
+            "definitionByLocale": {
+              "ru": "изменение плана.",
+              "uk": "зміна плану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это изменение плана так важно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это изменение плана так важно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This change of plan is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это изменение плана так важно».",
+            "uk": "Скажіть із сильним враженням: «Ця зміна плану така важлива»."
+          },
+          "orderedTokens": [
+            "This",
+            "change",
+            "of",
+            "plan",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i05:r1",
+            "text": "This change of plan is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i05:r2",
+            "text": "This change of plan is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i05:r3",
+            "text": "This change of plan is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i05:audio",
+            "transcript": "This change of plan is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i05:r1",
+              "targetText": "This change of plan is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r2",
+              "targetText": "This change of plan is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r3",
+              "targetText": "This change of plan is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This change of plan is so important.",
+                "uk": "У записі звучить This change of plan is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This change of plan is so important.",
+                "uk": "У записі звучить This change of plan is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This change of plan is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:long-wait",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — long wait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:long-wait:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — long wait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:long-wait:audio",
+            "transcript": "long wait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:long-wait:r1",
+              "targetText": "long wait",
+              "meaningByLocale": {
+                "ru": "долгое ожидание.",
+                "uk": "довге очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "long wait",
+            "definitionByLocale": {
+              "ru": "долгое ожидание.",
+              "uk": "довге очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Мы так долго ждали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Мы так долго ждали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a long wait.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Мы так долго ждали».",
+            "uk": "Скажіть із сильним враженням: «Ми так довго чекали»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "long",
+            "wait"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i08:r1",
+            "text": "We had such a long wait."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i08:r2",
+            "text": "We had so a long wait."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i08:r3",
+            "text": "We had much a long wait."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i08:audio",
+            "transcript": "We had such a long wait."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i08:r1",
+              "targetText": "We had such a long wait.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r2",
+              "targetText": "We had so a long wait.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r3",
+              "targetText": "We had much a long wait.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a long wait.",
+                "uk": "У записі звучить We had such a long wait."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a long wait.",
+                "uk": "У записі звучить We had such a long wait."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a long wait.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:small-favour",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — small favour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:small-favour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — small favour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:small-favour:audio",
+            "transcript": "small favour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:small-favour:r1",
+              "targetText": "small favour",
+              "meaningByLocale": {
+                "ru": "небольшая услуга, небольшая просьба о помощи.",
+                "uk": "невелика послуга, невелике прохання про допомогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "small favour",
+            "definitionByLocale": {
+              "ru": "небольшая услуга, небольшая просьба о помощи.",
+              "uk": "невелика послуга, невелике прохання про допомогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это такая небольшая услуга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это такая небольшая услуга».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is such a small favour.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такая небольшая услуга».",
+            "uk": "Скажіть із сильним враженням: «Це така невелика послуга»."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "such",
+            "a",
+            "small",
+            "favour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i11:r1",
+            "text": "It is such a small favour."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i11:r2",
+            "text": "It is so a small favour."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i11:r3",
+            "text": "It is much a small favour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i11:audio",
+            "transcript": "It is such a small favour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i11:r1",
+              "targetText": "It is such a small favour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r2",
+              "targetText": "It is so a small favour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r3",
+              "targetText": "It is much a small favour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is such a small favour.",
+                "uk": "У записі звучить It is such a small favour."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is such a small favour.",
+                "uk": "У записі звучить It is such a small favour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "It is ___ a small favour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i12:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-39:i13:p1",
+              "target": "waste of time",
+              "meaningByLocale": {
+                "ru": "пустая трата времени",
+                "uk": "марна трата часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p2",
+              "target": "change of plan",
+              "meaningByLocale": {
+                "ru": "изменение плана",
+                "uk": "зміна плану"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p3",
+              "target": "long wait",
+              "meaningByLocale": {
+                "ru": "долгое ожидание",
+                "uk": "довге очікування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p4",
+              "target": "small favour",
+              "meaningByLocale": {
+                "ru": "небольшая услуга, небольшая просьба о помощи",
+                "uk": "невелика послуга, невелике прохання про допомогу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "waste of time",
+            "change of plan",
+            "long wait",
+            "small favour"
+          ],
+          "rightColumn": [
+            "пустая трата времени",
+            "изменение плана",
+            "долгое ожидание",
+            "небольшая услуга, небольшая просьба о помощи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i14:audio",
+            "transcript": "We are going to discuss the change of plan."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the change of plan.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "change",
+            "of",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i15:audio",
+            "transcript": "We are meeting at three instead."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at three instead.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "three",
+            "instead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i16:audio",
+            "transcript": "This wait is longer than the last one."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This wait is longer than the last one.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i17:audio",
+            "transcript": "We need two bags of rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bags of rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-39:word:waste-of-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waste of time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:waste-of-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waste of time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:waste-of-time:audio",
+            "transcript": "waste of time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:waste-of-time:r1",
+              "targetText": "waste of time",
+              "meaningByLocale": {
+                "ru": "пустая трата времени.",
+                "uk": "марна трата часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waste of time",
+            "definitionByLocale": {
+              "ru": "пустая трата времени.",
+              "uk": "марна трата часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Це така марна трата часу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Це така марна трата часу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a waste of time.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такая пустая трата времени».",
+            "uk": "Скажіть із сильним враженням: «Це така марна трата часу»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "waste",
+            "of",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i02:r1",
+            "text": "This is such a waste of time."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i02:r2",
+            "text": "This is so a waste of time."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i02:r3",
+            "text": "This is much a waste of time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i02:audio",
+            "transcript": "This is such a waste of time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i02:r1",
+              "targetText": "This is such a waste of time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r2",
+              "targetText": "This is so a waste of time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r3",
+              "targetText": "This is much a waste of time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a waste of time.",
+                "uk": "У записі звучить This is such a waste of time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a waste of time.",
+                "uk": "У записі звучить This is such a waste of time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a waste of time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:change-of-plan",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — change of plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:change-of-plan:audio"
+        ],
+        "accessibilityLabel": "Картка слова — change of plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:change-of-plan:audio",
+            "transcript": "change of plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:change-of-plan:r1",
+              "targetText": "change of plan",
+              "meaningByLocale": {
+                "ru": "изменение плана.",
+                "uk": "зміна плану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change of plan",
+            "definitionByLocale": {
+              "ru": "изменение плана.",
+              "uk": "зміна плану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Ця зміна плану така важлива».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Ця зміна плану така важлива».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This change of plan is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это изменение плана так важно».",
+            "uk": "Скажіть із сильним враженням: «Ця зміна плану така важлива»."
+          },
+          "orderedTokens": [
+            "This",
+            "change",
+            "of",
+            "plan",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i05:r1",
+            "text": "This change of plan is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i05:r2",
+            "text": "This change of plan is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i05:r3",
+            "text": "This change of plan is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i05:audio",
+            "transcript": "This change of plan is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i05:r1",
+              "targetText": "This change of plan is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r2",
+              "targetText": "This change of plan is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r3",
+              "targetText": "This change of plan is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This change of plan is so important.",
+                "uk": "У записі звучить This change of plan is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This change of plan is so important.",
+                "uk": "У записі звучить This change of plan is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This change of plan is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:long-wait",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — long wait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:long-wait:audio"
+        ],
+        "accessibilityLabel": "Картка слова — long wait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:long-wait:audio",
+            "transcript": "long wait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:long-wait:r1",
+              "targetText": "long wait",
+              "meaningByLocale": {
+                "ru": "долгое ожидание.",
+                "uk": "довге очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "long wait",
+            "definitionByLocale": {
+              "ru": "долгое ожидание.",
+              "uk": "довге очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Ми так довго чекали».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Ми так довго чекали».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had such a long wait.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Мы так долго ждали».",
+            "uk": "Скажіть із сильним враженням: «Ми так довго чекали»."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "such",
+            "a",
+            "long",
+            "wait"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i08:r1",
+            "text": "We had such a long wait."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i08:r2",
+            "text": "We had so a long wait."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i08:r3",
+            "text": "We had much a long wait."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i08:audio",
+            "transcript": "We had such a long wait."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i08:r1",
+              "targetText": "We had such a long wait.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r2",
+              "targetText": "We had so a long wait.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r3",
+              "targetText": "We had much a long wait.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a long wait.",
+                "uk": "У записі звучить We had such a long wait."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had such a long wait.",
+                "uk": "У записі звучить We had such a long wait."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "We had ___ a long wait.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:word:small-favour",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — small favour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:word:small-favour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — small favour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:word:small-favour:audio",
+            "transcript": "small favour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:word:small-favour:r1",
+              "targetText": "small favour",
+              "meaningByLocale": {
+                "ru": "небольшая услуга, небольшая просьба о помощи.",
+                "uk": "невелика послуга, невелике прохання про допомогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "small favour",
+            "definitionByLocale": {
+              "ru": "небольшая услуга, небольшая просьба о помощи.",
+              "uk": "невелика послуга, невелике прохання про допомогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Це така невелика послуга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Це така невелика послуга».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is such a small favour.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такая небольшая услуга».",
+            "uk": "Скажіть із сильним враженням: «Це така невелика послуга»."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "such",
+            "a",
+            "small",
+            "favour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i11:r1",
+            "text": "It is such a small favour."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i11:r2",
+            "text": "It is so a small favour."
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i11:r3",
+            "text": "It is much a small favour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i11:audio",
+            "transcript": "It is such a small favour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-39:i11:r1",
+              "targetText": "It is such a small favour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r2",
+              "targetText": "It is so a small favour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r3",
+              "targetText": "It is much a small favour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is such a small favour.",
+                "uk": "У записі звучить It is such a small favour."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is such a small favour.",
+                "uk": "У записі звучить It is such a small favour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-39:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-39:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "It is ___ a small favour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-39:i12:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-39:i13:p1",
+              "target": "waste of time",
+              "meaningByLocale": {
+                "ru": "пустая трата времени",
+                "uk": "марна трата часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p2",
+              "target": "change of plan",
+              "meaningByLocale": {
+                "ru": "изменение плана",
+                "uk": "зміна плану"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p3",
+              "target": "long wait",
+              "meaningByLocale": {
+                "ru": "долгое ожидание",
+                "uk": "довге очікування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-39:i13:p4",
+              "target": "small favour",
+              "meaningByLocale": {
+                "ru": "небольшая услуга, небольшая просьба о помощи",
+                "uk": "невелика послуга, невелике прохання про допомогу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "waste of time",
+            "change of plan",
+            "long wait",
+            "small favour"
+          ],
+          "rightColumn": [
+            "марна трата часу",
+            "зміна плану",
+            "довге очікування",
+            "невелика послуга, невелике прохання про допомогу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i14:audio",
+            "transcript": "We are going to discuss the change of plan."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the change of plan.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "change",
+            "of",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i15:audio",
+            "transcript": "We are meeting at three instead."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at three instead.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "three",
+            "instead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i16:audio",
+            "transcript": "This wait is longer than the last one."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This wait is longer than the last one.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-39:i17:audio",
+            "transcript": "We need two bags of rice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bags of rice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-39:word:waste-of-time",
+      "correctText": "waste of time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i01",
+      "correctText": "This is such a waste of time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i02",
+      "correctText": "This is such a waste of time.",
+      "correctResponseId": "en:lesson-18:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i03",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:word:change-of-plan",
+      "correctText": "change of plan",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i04",
+      "correctText": "This change of plan is so important.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i05",
+      "correctText": "This change of plan is so important.",
+      "correctResponseId": "en:lesson-18:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i06",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:word:long-wait",
+      "correctText": "long wait",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i07",
+      "correctText": "We had such a long wait.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i08",
+      "correctText": "We had such a long wait.",
+      "correctResponseId": "en:lesson-18:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i09",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:word:small-favour",
+      "correctText": "small favour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i10",
+      "correctText": "It is such a small favour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i11",
+      "correctText": "It is such a small favour.",
+      "correctResponseId": "en:lesson-18:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i12",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i14",
+      "correctText": "We are going to discuss the change of plan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i15",
+      "correctText": "We are meeting at three instead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i16",
+      "correctText": "This wait is longer than the last one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-39:i17",
+      "correctText": "We need two bags of rice.",
+      "correctResponseId": null
+    }
+  ]
+}

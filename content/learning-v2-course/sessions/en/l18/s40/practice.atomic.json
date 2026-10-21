@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-40:word:free-entry",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — free entry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:free-entry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — free entry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:free-entry:audio",
+            "transcript": "free entry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:free-entry:r1",
+              "targetText": "free entry",
+              "meaningByLocale": {
+                "ru": "бесплатный вход.",
+                "uk": "безкоштовний вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "free entry",
+            "definitionByLocale": {
+              "ru": "бесплатный вход.",
+              "uk": "безкоштовний вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Бесплатный вход так полезен».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Бесплатный вход так полезен».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Free entry is so useful.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Бесплатный вход так полезен».",
+            "uk": "Скажіть із сильним враженням: «Безкоштовний вхід такий корисний»."
+          },
+          "orderedTokens": [
+            "Free",
+            "entry",
+            "is",
+            "so",
+            "useful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i02:r1",
+            "text": "Free entry is so useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i02:r2",
+            "text": "Free entry is such useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i02:r3",
+            "text": "Free entry is much useful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i02:audio",
+            "transcript": "Free entry is so useful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i02:r1",
+              "targetText": "Free entry is so useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r2",
+              "targetText": "Free entry is such useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r3",
+              "targetText": "Free entry is much useful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free entry is so useful.",
+                "uk": "У записі звучить Free entry is so useful."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free entry is so useful.",
+                "uk": "У записі звучить Free entry is so useful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Free entry is ___ useful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i03:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:free-parking",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — free parking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:free-parking:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — free parking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:free-parking:audio",
+            "transcript": "free parking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:free-parking:r1",
+              "targetText": "free parking",
+              "meaningByLocale": {
+                "ru": "бесплатная парковка.",
+                "uk": "безкоштовне паркування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "free parking",
+            "definitionByLocale": {
+              "ru": "бесплатная парковка.",
+              "uk": "безкоштовне паркування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Бесплатная парковка — такая большая помощь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Бесплатная парковка — такая большая помощь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Free parking is such a great help.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Бесплатная парковка — такая большая помощь».",
+            "uk": "Скажіть із сильним враженням: «Безкоштовне паркування — така велика допомога»."
+          },
+          "orderedTokens": [
+            "Free",
+            "parking",
+            "is",
+            "such",
+            "a",
+            "great",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i05:r1",
+            "text": "Free parking is such a great help."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i05:r2",
+            "text": "Free parking is so a great help."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i05:r3",
+            "text": "Free parking is much a great help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i05:audio",
+            "transcript": "Free parking is such a great help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i05:r1",
+              "targetText": "Free parking is such a great help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r2",
+              "targetText": "Free parking is so a great help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r3",
+              "targetText": "Free parking is much a great help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free parking is such a great help.",
+                "uk": "У записі звучить Free parking is such a great help."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free parking is such a great help.",
+                "uk": "У записі звучить Free parking is such a great help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Free parking is ___ a great help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i06:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:public-event",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — public event",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:public-event:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — public event",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:public-event:audio",
+            "transcript": "public event"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:public-event:r1",
+              "targetText": "public event",
+              "meaningByLocale": {
+                "ru": "открытое для публики мероприятие.",
+                "uk": "відкритий для публіки захід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "public event",
+            "definitionByLocale": {
+              "ru": "открытое для публики мероприятие.",
+              "uk": "відкритий для публіки захід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это такое весёлое открытое мероприятие».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это такое весёлое открытое мероприятие».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a fun public event.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такое весёлое открытое мероприятие».",
+            "uk": "Скажіть із сильним враженням: «Це такий веселий відкритий захід»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "fun",
+            "public",
+            "event"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i08:r1",
+            "text": "This is such a fun public event."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i08:r2",
+            "text": "This is so a fun public event."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i08:r3",
+            "text": "This is much a fun public event."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i08:audio",
+            "transcript": "This is such a fun public event."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i08:r1",
+              "targetText": "This is such a fun public event.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r2",
+              "targetText": "This is so a fun public event.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r3",
+              "targetText": "This is much a fun public event.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a fun public event.",
+                "uk": "У записі звучить This is such a fun public event."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a fun public event.",
+                "uk": "У записі звучить This is such a fun public event."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a fun public event.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:charity-event",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — charity event",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:charity-event:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — charity event",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:charity-event:audio",
+            "transcript": "charity event"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:charity-event:r1",
+              "targetText": "charity event",
+              "meaningByLocale": {
+                "ru": "благотворительное мероприятие.",
+                "uk": "благодійний захід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charity event",
+            "definitionByLocale": {
+              "ru": "благотворительное мероприятие.",
+              "uk": "благодійний захід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «На благотворительном мероприятии так много людей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «На благотворительном мероприятии так много людей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The charity event is so busy.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «На благотворительном мероприятии так много людей».",
+            "uk": "Скажіть із сильним враженням: «На благодійному заході так багато людей»."
+          },
+          "orderedTokens": [
+            "The",
+            "charity",
+            "event",
+            "is",
+            "so",
+            "busy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i11:r1",
+            "text": "The charity event is so busy."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i11:r2",
+            "text": "The charity event is such busy."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i11:r3",
+            "text": "The charity event is much busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i11:audio",
+            "transcript": "The charity event is so busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i11:r1",
+              "targetText": "The charity event is so busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r2",
+              "targetText": "The charity event is such busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r3",
+              "targetText": "The charity event is much busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The charity event is so busy.",
+                "uk": "У записі звучить The charity event is so busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The charity event is so busy.",
+                "uk": "У записі звучить The charity event is so busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "The charity event is ___ busy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-40:i13:p1",
+              "target": "free entry",
+              "meaningByLocale": {
+                "ru": "бесплатный вход",
+                "uk": "безкоштовний вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p2",
+              "target": "free parking",
+              "meaningByLocale": {
+                "ru": "бесплатная парковка",
+                "uk": "безкоштовне паркування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p3",
+              "target": "public event",
+              "meaningByLocale": {
+                "ru": "открытое для публики мероприятие",
+                "uk": "відкритий для публіки захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p4",
+              "target": "charity event",
+              "meaningByLocale": {
+                "ru": "благотворительное мероприятие",
+                "uk": "благодійний захід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "free entry",
+            "free parking",
+            "public event",
+            "charity event"
+          ],
+          "rightColumn": [
+            "бесплатный вход",
+            "бесплатная парковка",
+            "открытое для публики мероприятие",
+            "благотворительное мероприятие"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i14:audio",
+            "transcript": "We are going to visit the charity event."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to visit the charity event.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "visit",
+            "the",
+            "charity",
+            "event"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i15:audio",
+            "transcript": "We are meeting at the public event on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the public event on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "public",
+            "event",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i16:audio",
+            "transcript": "This event is quieter than the last one."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This event is quieter than the last one.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-40:word:free-entry",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — free entry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:free-entry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — free entry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:free-entry:audio",
+            "transcript": "free entry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:free-entry:r1",
+              "targetText": "free entry",
+              "meaningByLocale": {
+                "ru": "бесплатный вход.",
+                "uk": "безкоштовний вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "free entry",
+            "definitionByLocale": {
+              "ru": "бесплатный вход.",
+              "uk": "безкоштовний вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Безкоштовний вхід такий корисний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Безкоштовний вхід такий корисний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Free entry is so useful.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Бесплатный вход так полезен».",
+            "uk": "Скажіть із сильним враженням: «Безкоштовний вхід такий корисний»."
+          },
+          "orderedTokens": [
+            "Free",
+            "entry",
+            "is",
+            "so",
+            "useful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i02:r1",
+            "text": "Free entry is so useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i02:r2",
+            "text": "Free entry is such useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i02:r3",
+            "text": "Free entry is much useful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i02:audio",
+            "transcript": "Free entry is so useful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i02:r1",
+              "targetText": "Free entry is so useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r2",
+              "targetText": "Free entry is such useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r3",
+              "targetText": "Free entry is much useful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free entry is so useful.",
+                "uk": "У записі звучить Free entry is so useful."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free entry is so useful.",
+                "uk": "У записі звучить Free entry is so useful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Free entry is ___ useful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i03:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:free-parking",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — free parking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:free-parking:audio"
+        ],
+        "accessibilityLabel": "Картка слова — free parking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:free-parking:audio",
+            "transcript": "free parking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:free-parking:r1",
+              "targetText": "free parking",
+              "meaningByLocale": {
+                "ru": "бесплатная парковка.",
+                "uk": "безкоштовне паркування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "free parking",
+            "definitionByLocale": {
+              "ru": "бесплатная парковка.",
+              "uk": "безкоштовне паркування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Безкоштовне паркування — така велика допомога».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Безкоштовне паркування — така велика допомога».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Free parking is such a great help.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Бесплатная парковка — такая большая помощь».",
+            "uk": "Скажіть із сильним враженням: «Безкоштовне паркування — така велика допомога»."
+          },
+          "orderedTokens": [
+            "Free",
+            "parking",
+            "is",
+            "such",
+            "a",
+            "great",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i05:r1",
+            "text": "Free parking is such a great help."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i05:r2",
+            "text": "Free parking is so a great help."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i05:r3",
+            "text": "Free parking is much a great help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i05:audio",
+            "transcript": "Free parking is such a great help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i05:r1",
+              "targetText": "Free parking is such a great help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r2",
+              "targetText": "Free parking is so a great help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r3",
+              "targetText": "Free parking is much a great help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free parking is such a great help.",
+                "uk": "У записі звучить Free parking is such a great help."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Free parking is such a great help.",
+                "uk": "У записі звучить Free parking is such a great help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Free parking is ___ a great help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i06:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:public-event",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — public event",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:public-event:audio"
+        ],
+        "accessibilityLabel": "Картка слова — public event",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:public-event:audio",
+            "transcript": "public event"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:public-event:r1",
+              "targetText": "public event",
+              "meaningByLocale": {
+                "ru": "открытое для публики мероприятие.",
+                "uk": "відкритий для публіки захід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "public event",
+            "definitionByLocale": {
+              "ru": "открытое для публики мероприятие.",
+              "uk": "відкритий для публіки захід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Це такий веселий відкритий захід».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Це такий веселий відкритий захід».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a fun public event.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такое весёлое открытое мероприятие».",
+            "uk": "Скажіть із сильним враженням: «Це такий веселий відкритий захід»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "fun",
+            "public",
+            "event"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i08:r1",
+            "text": "This is such a fun public event."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i08:r2",
+            "text": "This is so a fun public event."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i08:r3",
+            "text": "This is much a fun public event."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i08:audio",
+            "transcript": "This is such a fun public event."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i08:r1",
+              "targetText": "This is such a fun public event.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r2",
+              "targetText": "This is so a fun public event.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r3",
+              "targetText": "This is much a fun public event.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a fun public event.",
+                "uk": "У записі звучить This is such a fun public event."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a fun public event.",
+                "uk": "У записі звучить This is such a fun public event."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a fun public event.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i09:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:word:charity-event",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — charity event",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:word:charity-event:audio"
+        ],
+        "accessibilityLabel": "Картка слова — charity event",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:word:charity-event:audio",
+            "transcript": "charity event"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:word:charity-event:r1",
+              "targetText": "charity event",
+              "meaningByLocale": {
+                "ru": "благотворительное мероприятие.",
+                "uk": "благодійний захід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charity event",
+            "definitionByLocale": {
+              "ru": "благотворительное мероприятие.",
+              "uk": "благодійний захід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «На благодійному заході так багато людей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «На благодійному заході так багато людей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The charity event is so busy.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «На благотворительном мероприятии так много людей».",
+            "uk": "Скажіть із сильним враженням: «На благодійному заході так багато людей»."
+          },
+          "orderedTokens": [
+            "The",
+            "charity",
+            "event",
+            "is",
+            "so",
+            "busy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i11:r1",
+            "text": "The charity event is so busy."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i11:r2",
+            "text": "The charity event is such busy."
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i11:r3",
+            "text": "The charity event is much busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i11:audio",
+            "transcript": "The charity event is so busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-40:i11:r1",
+              "targetText": "The charity event is so busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r2",
+              "targetText": "The charity event is such busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r3",
+              "targetText": "The charity event is much busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The charity event is so busy.",
+                "uk": "У записі звучить The charity event is so busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The charity event is so busy.",
+                "uk": "У записі звучить The charity event is so busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-40:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-40:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "The charity event is ___ busy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-40:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-40:i13:p1",
+              "target": "free entry",
+              "meaningByLocale": {
+                "ru": "бесплатный вход",
+                "uk": "безкоштовний вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p2",
+              "target": "free parking",
+              "meaningByLocale": {
+                "ru": "бесплатная парковка",
+                "uk": "безкоштовне паркування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p3",
+              "target": "public event",
+              "meaningByLocale": {
+                "ru": "открытое для публики мероприятие",
+                "uk": "відкритий для публіки захід"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-40:i13:p4",
+              "target": "charity event",
+              "meaningByLocale": {
+                "ru": "благотворительное мероприятие",
+                "uk": "благодійний захід"
+              }
+            }
+          ],
+          "leftColumn": [
+            "free entry",
+            "free parking",
+            "public event",
+            "charity event"
+          ],
+          "rightColumn": [
+            "безкоштовний вхід",
+            "безкоштовне паркування",
+            "відкритий для публіки захід",
+            "благодійний захід"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i14:audio",
+            "transcript": "We are going to visit the charity event."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to visit the charity event.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "visit",
+            "the",
+            "charity",
+            "event"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i15:audio",
+            "transcript": "We are meeting at the public event on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the public event on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "public",
+            "event",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i16:audio",
+            "transcript": "This event is quieter than the last one."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This event is quieter than the last one.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-40:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-40:word:free-entry",
+      "correctText": "free entry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i01",
+      "correctText": "Free entry is so useful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i02",
+      "correctText": "Free entry is so useful.",
+      "correctResponseId": "en:lesson-18:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i03",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:word:free-parking",
+      "correctText": "free parking",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i04",
+      "correctText": "Free parking is such a great help.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i05",
+      "correctText": "Free parking is such a great help.",
+      "correctResponseId": "en:lesson-18:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i06",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:word:public-event",
+      "correctText": "public event",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i07",
+      "correctText": "This is such a fun public event.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i08",
+      "correctText": "This is such a fun public event.",
+      "correctResponseId": "en:lesson-18:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i09",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:word:charity-event",
+      "correctText": "charity event",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i10",
+      "correctText": "The charity event is so busy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i11",
+      "correctText": "The charity event is so busy.",
+      "correctResponseId": "en:lesson-18:session-40:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i12",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i14",
+      "correctText": "We are going to visit the charity event.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i15",
+      "correctText": "We are meeting at the public event on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i16",
+      "correctText": "This event is quieter than the last one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-40:i17",
+      "correctText": "We need two bottles of water.",
+      "correctResponseId": null
+    }
+  ]
+}

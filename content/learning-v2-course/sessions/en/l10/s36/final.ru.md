@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 36 — Перед сдачей проекта
+# Английский · Урок 10 · Занятие 36 — Если на улице дождь
 
-**Ситуация.** Обсудить срок работы, готовый результат и передачу проекта коллеге.
+**Ситуация.** Обсудить с другом планы на дождливый день.
 
-**Что вы освоите:** We check the report every day; I am checking the submission; The handover is tomorrow
-**Новые слова:** deliverable, submission, timeframe, handover
+**Что вы освоите:** We usually eat outdoors; We are eating indoors today; It is still raining
+**Новые слова:** outdoors, indoors, still, instead
 
 ## Интро 1
 
-### Регулярная проверка
+### Обычно обедаем на улице
 
-Повторим deadline — «крайний срок». До сдачи проекта осталось мало времени. Вы с коллегой проверяете отчёт каждый день: We check the report every day — «Мы проверяем отчёт каждый день». Every day показывает повторение; здесь используем Present Simple.
+Летом вы с другом обычно обедаете во дворе. Outdoors — «на открытом воздухе»: We usually eat outdoors — «Мы обычно едим на улице». Usually показывает привычку: eat без am/is/are. Outdoors уже обозначает место, поэтому перед ним не нужен in.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We check the report every day.**
-- ❌ We checks the report every day. — *С we нужна check без s.*
-- ❌ We checking the report every day. — *Для привычки здесь нужна check.*
+- ✅ **We usually eat outdoors.**
+- ❌ We usually eats outdoors. — *После we нужна eat, без s.*
+- ❌ We usually are eat outdoors. — *Для привычки здесь достаточно eat.*
 
 ---
 
 ## Интро 2
 
-### Материалы на проверке
+### Сегодня внутри
 
-Submission — «поданные материалы»: например, отправленный на рассмотрение проект. Коллега уже отправила свою работу, а вы сейчас проверяете её: I am checking the submission — «Я проверяю поданные материалы». Действие идёт сейчас: am + checking. Здесь submission обозначает комплект материалов как одно целое.
+Сегодня дождь. Вы уже сидите за обеденным столом в доме и объясняете другу по телефону: We are eating indoors today — «Сегодня мы едим в помещении». Indoors — «в помещении». Обед идёт сейчас, поэтому are eating. Обычно вы едите на улице, но сегодня иначе.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am checking the submission.**
-- ❌ I checking the submission. — *Нужен am перед checking.*
-- ❌ I is checking the submission. — *С I нужна am.*
+- ✅ **We are eating indoors today.**
+- ❌ We eating indoors today. — *Перед eating нужна are.*
+- ❌ We are eat indoors today. — *После are нужна eating.*
 
 ---
 
 ## Интро 3
 
-### Понимаем отведённое время
+### Меняем план
 
-Timeframe — «временные рамки»: период, отведённый на работу. Это не только конечная дата deadline. Коллега объяснила, сколько у вас времени: I understand the timeframe — «Я понимаю временные рамки». Understand выражает понимание, поэтому здесь используем Present Simple.
+После обеда вы выглядываете в окно: дождь продолжается. Still — «всё ещё»: It is still raining — «Всё ещё идёт дождь». Still стоит между is и raining. Вы хотели гулять, но теперь смотрите фильм: We are watching a film instead — «Вместо этого мы смотрим фильм». Instead — «вместо этого». Слово в конце связывает новый выбор с прежним планом.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I understand the timeframe.**
-- ❌ I understands the timeframe. — *С I нужна understand без s.*
-- ❌ I am understand the timeframe. — *Am understand неверно; нужна understand.*
+- ✅ **It is still raining.**
+- ❌ It still raining. — *Перед still raining нужна is.*
+- ❌ It is still rain. — *После is здесь нужна raining.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — deliverable**
-<!-- interaction_id: en:lesson-10:session-36:word:deliverable; family: word_card -->
-> **deliverable** — «результат работы для передачи заказчику». The report is our main deliverable. — «Отчёт — наш основной результат работы для передачи заказчику». Здесь конкретный документ, который команда обязалась подготовить.
+**1 · Карточка слова — outdoors**
+<!-- interaction_id: en:lesson-10:session-36:word:outdoors; family: word_card -->
+> **outdoors** — «на открытом воздухе». We usually eat outdoors. — «Мы обычно едим на улице».
 
-**2 · Заказчик прежде всего ждёт отчёт. Скажите: «Отчёт — наш основной результат работы для передачи заказчику»**
+**2 · Расскажите о привычке: «Мы обычно едим на улице». Поставьте usually перед eat**
 <!-- interaction_id: en:lesson-10:session-36:i01; family: phrase_builder -->
-Плитки: `deliverable` `main` `our` `is` `report` `The` → **The report is our main deliverable.**
+Плитки: `outdoors` `eat` `usually` `We` → **We usually eat outdoors.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-36:i02; family: listen_choose -->
-🔊 *The deliverable is ready.* → **The deliverable is ready.** · The deliverable is late. · The document is ready.
-- The deliverable is late. — *В записи звучит The deliverable is ready.*
-- The document is ready. — *В записи звучит The deliverable is ready.*
+🔊 *The children are playing outdoors.* → **The children are playing outdoors.** · The children are eating outdoors. · The children are playing here.
+- The children are eating outdoors. — *В записи звучит The children are playing outdoors.*
+- The children are playing here. — *В записи звучит The children are playing outdoors.*
 
-**4 · Вы проверяете отчёт ежедневно. Выберите форму check**
+**4 · Выберите форму eat для привычки**
 <!-- interaction_id: en:lesson-10:session-36:i03; family: context_gap_grammar -->
-We ___ the report every day. → **check** · checks · checking
-- checks — *С we нужна check без s.*
-- checking — *Для регулярного действия нужна check.*
+We usually ___ outdoors. → **eat** · eats · eating
+- eats — *После we глагол без s.*
+- eating — *Для привычки нужна eat.*
 
-**5 · Карточка слова — submission**
-<!-- interaction_id: en:lesson-10:session-36:word:submission; family: word_card -->
-> **submission** — «поданные материалы». I am checking the submission. — «Я проверяю поданные материалы». Здесь проект, отправленный на рассмотрение, как один комплект.
+**5 · Карточка слова — indoors**
+<!-- interaction_id: en:lesson-10:session-36:word:indoors; family: word_card -->
+> **indoors** — «в помещении». We are eating indoors. — «Мы едим в помещении».
 
-**6 · Коллега отправила проект. Вы сейчас его проверяете. Скажите: «Я проверяю поданные материалы»**
+**6 · Сейчас вы обедаете в доме. Скажите: «Мы едим в помещении»**
 <!-- interaction_id: en:lesson-10:session-36:i04; family: phrase_builder -->
-Плитки: `submission` `the` `checking` `am` `I` → **I am checking the submission.**
+Плитки: `indoors` `eating` `are` `We` → **We are eating indoors.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-36:i05; family: listen_choose -->
-🔊 *The submission includes a report.* → **The submission includes a report.** · The submission includes a photo. · The email includes a report.
-- The submission includes a photo. — *В записи звучит The submission includes a report.*
-- The email includes a report. — *В записи звучит The submission includes a report.*
+🔊 *She is waiting indoors.* → **She is waiting indoors.** · She is waiting outdoors. · He is waiting indoors.
+- She is waiting outdoors. — *В записи звучит She is waiting indoors.*
+- He is waiting indoors. — *В записи звучит She is waiting indoors.*
 
-**8 · Вы сейчас проверяете полученную работу. Выберите связку**
+**8 · Обед идёт сейчас. Выберите форму eat**
 <!-- interaction_id: en:lesson-10:session-36:i06; family: context_gap_grammar -->
-I ___ checking the submission. → **am** · is · are
-- is — *С I нужна am, не is.*
-- are — *С I нужна am, не are.*
+We are ___ indoors. → **eating** · eat · eats
+- eat — *После are нужна eating.*
+- eats — *Для текущего действия нужна eating.*
 
-**9 · Карточка слова — timeframe**
-<!-- interaction_id: en:lesson-10:session-36:word:timeframe; family: word_card -->
-> **timeframe** — «временные рамки». I understand the timeframe. — «Я понимаю временные рамки». Период, отведённый на работу.
+**9 · Карточка слова — still**
+<!-- interaction_id: en:lesson-10:session-36:word:still; family: word_card -->
+> **still** — «всё ещё». It is still raining. — «Всё ещё идёт дождь».
 
-**10 · Коллега объяснила, сколько времени выделено на проект. Скажите: «Я понимаю временные рамки»**
+**10 · Дождь не закончился. Скажите: «Всё ещё идёт дождь». Поставьте still после is**
 <!-- interaction_id: en:lesson-10:session-36:i07; family: phrase_builder -->
-Плитки: `timeframe` `the` `understand` `I` → **I understand the timeframe.**
+Плитки: `raining` `still` `is` `It` → **It is still raining.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-36:i08; family: listen_choose -->
-🔊 *The timeframe is two weeks.* → **The timeframe is two weeks.** · The timeframe is three weeks. · The timeframe is two months.
-- The timeframe is three weeks. — *В записи звучит The timeframe is two weeks.*
-- The timeframe is two months. — *В записи звучит The timeframe is two weeks.*
+🔊 *He is still sleeping.* → **He is still sleeping.** · He is still eating. · She is still sleeping.
+- He is still eating. — *В записи звучит He is still sleeping.*
+- She is still sleeping. — *В записи звучит He is still sleeping.*
 
-**12 · Выберите форму understand с I**
+**12 · Дождь продолжается. Выберите вспомогательный глагол**
 <!-- interaction_id: en:lesson-10:session-36:i09; family: context_gap_grammar -->
-I ___ the timeframe. → **understand** · understands · am understand
-- understands — *С I нужна understand без s.*
-- am understand — *Здесь нужна understand без am.*
+It ___ still raining. → **is** · are · am
+- are — *С it нужна is.*
+- am — *Am используется с I.*
 
-**13 · Карточка слова — handover**
-<!-- interaction_id: en:lesson-10:session-36:word:handover; family: word_card -->
-> **handover** — «передача дел». The handover is tomorrow. — «Передача дел завтра». Здесь вы передаёте проект и ответственность за него коллеге.
+**13 · Карточка слова — instead**
+<!-- interaction_id: en:lesson-10:session-36:word:instead; family: word_card -->
+> **instead** — «вместо этого». We are watching a film instead. — «Вместо этого мы смотрим фильм».
 
-**14 · Завтра коллега примет у вас проект. Сообщите: «Передача дел завтра»**
+**14 · Вы отменили прогулку из-за дождя и уже включили фильм. Скажите: «Вместо этого мы смотрим фильм». Поставьте instead в конце**
 <!-- interaction_id: en:lesson-10:session-36:i10; family: phrase_builder -->
-Плитки: `tomorrow` `is` `handover` `The` → **The handover is tomorrow.**
+Плитки: `instead` `film` `a` `watching` `are` `We` → **We are watching a film instead.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-36:i11; family: listen_choose -->
-🔊 *We are preparing for the handover.* → **We are preparing for the handover.** · They are preparing for the handover. · We are preparing for the meeting.
-- They are preparing for the handover. — *В записи звучит We are preparing for the handover.*
-- We are preparing for the meeting. — *В записи звучит We are preparing for the handover.*
+🔊 *I am reading a book instead.* → **I am reading a book instead.** · I am buying a book instead. · I am reading a letter instead.
+- I am buying a book instead. — *В записи звучит I am reading a book instead.*
+- I am reading a letter instead. — *В записи звучит I am reading a book instead.*
 
-**16 · Вы сейчас готовитесь передать проект. Выберите форму preparing**
+**16 · Фильм уже идёт. Выберите форму watch**
 <!-- interaction_id: en:lesson-10:session-36:i12; family: context_gap_grammar -->
-We are ___ for the handover. → **preparing** · prepare · prepares
-- prepare — *После are здесь нужна preparing.*
-- prepares — *Для действия сейчас нужна preparing.*
+We are ___ a film instead. → **watching** · watch · watches
+- watch — *После are нужна watching.*
+- watches — *Здесь нужна watching, не watches.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-36:i13; family: speed_match -->
-deliverable — результат работы для передачи заказчику · submission — поданные материалы · timeframe — временные рамки · handover — передача дел
+outdoors — на открытом воздухе · indoors — в помещении · still — всё ещё · instead — вместо этого
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-36:i14; family: listen_build_dictation -->
-🔊 *I am checking the submission.* Плитки: `submission` `the` `checking` `am` `I` → **I am checking the submission.**
+🔊 *It is still raining.* Плитки: `raining` `still` `is` `It` → **It is still raining.**
 
-**19 · Коллега спрашивает, как часто команда проверяет отчёт. Скажите: «Мы проверяем отчёт каждый день»**
-<!-- interaction_id: en:lesson-10:session-36:i15; family: scripted_repeat_compare -->
-🎙 **We check the report every day.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-36:i15; family: listen_build_dictation -->
+🔊 *We are eating indoors.* Плитки: `indoors` `eating` `are` `We` → **We are eating indoors.**
 
-**20 · Коллега уточнила отведённый период работы. Скажите: «Я понимаю временные рамки»**
-<!-- interaction_id: en:lesson-10:session-36:i16; family: phrase_builder -->
-Плитки: `timeframe` `the` `understand` `I` → **I understand the timeframe.**
+**20 · Друг спрашивает, закончился ли дождь. Посмотрите в окно и скажите: «Всё ещё идёт дождь»**
+<!-- interaction_id: en:lesson-10:session-36:i16; family: scripted_repeat_compare -->
+🎙 **It is still raining.**
 
-**21 · Вы открыли присланный проект и проверяете его. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю поданные материалы»**
-<!-- interaction_id: en:lesson-10:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am checking the submission.**
+**21 · Вместо отменённой прогулки вы уже смотрите фильм. Сообщите другу: «Вместо этого мы смотрим фильм»**
+<!-- interaction_id: en:lesson-10:session-36:i17; family: scripted_repeat_compare -->
+🎙 **We are watching a film instead.**
 

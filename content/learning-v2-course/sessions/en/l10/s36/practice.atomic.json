@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-36:word:deliverable",
+        "interactionId": "en:lesson-10:session-36:word:outdoors",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — deliverable",
+        "prompt": "Карточка слова — outdoors",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:deliverable:audio"
+          "en:lesson-10:session-36:word:outdoors:audio"
         ],
-        "accessibilityLabel": "Карточка слова — deliverable",
+        "accessibilityLabel": "Карточка слова — outdoors",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:deliverable:audio",
-            "transcript": "deliverable"
+            "audioTargetId": "en:lesson-10:session-36:word:outdoors:audio",
+            "transcript": "outdoors"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:deliverable:r1",
-              "targetText": "deliverable",
+              "responseId": "en:lesson-10:session-36:word:outdoors:r1",
+              "targetText": "outdoors",
               "meaningByLocale": {
-                "ru": "«результат работы для передачи заказчику». The report is our main deliverable. — «Отчёт — наш основной результат работы для передачи заказчику». Здесь конкретный документ, который команда обязалась подготовить.",
-                "uk": "«результат роботи для передавання замовнику». The report is our main deliverable. — «Звіт — наш основний результат роботи для передавання замовнику». Тут конкретний документ, який команда зобов’язалася підготувати."
+                "ru": "«на открытом воздухе». We usually eat outdoors. — «Мы обычно едим на улице».",
+                "uk": "«надворі». We usually eat outdoors. — «Ми зазвичай їмо надворі»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "deliverable",
+            "word": "outdoors",
             "definitionByLocale": {
-              "ru": "«результат работы для передачи заказчику». The report is our main deliverable. — «Отчёт — наш основной результат работы для передачи заказчику». Здесь конкретный документ, который команда обязалась подготовить.",
-              "uk": "«результат роботи для передавання замовнику». The report is our main deliverable. — «Звіт — наш основний результат роботи для передавання замовнику». Тут конкретний документ, який команда зобов’язалася підготувати."
+              "ru": "«на открытом воздухе». We usually eat outdoors. — «Мы обычно едим на улице».",
+              "uk": "«надворі». We usually eat outdoors. — «Ми зазвичай їмо надворі»."
             }
           }
         },
@@ -52,25 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Заказчик прежде всего ждёт отчёт. Скажите: «Отчёт — наш основной результат работы для передачи заказчику»",
+        "prompt": "Расскажите о привычке: «Мы обычно едим на улице». Поставьте usually перед eat",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Заказчик прежде всего ждёт отчёт. Скажите: «Отчёт — наш основной результат работы для передачи заказчику»",
+        "accessibilityLabel": "Расскажите о привычке: «Мы обычно едим на улице». Поставьте usually перед eat",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The report is our main deliverable.",
+          "targetPhrase": "We usually eat outdoors.",
           "localizedMeaning": {
-            "ru": "Заказчик прежде всего ждёт отчёт. Скажите: «Отчёт — наш основной результат работы для передачи заказчику»",
-            "uk": "Замовник насамперед чекає на звіт. Скажіть: «Звіт — наш основний результат роботи для передавання замовнику»"
+            "ru": "Расскажите о привычке: «Мы обычно едим на улице». Поставьте usually перед eat",
+            "uk": "Розкажіть про звичку: «Ми зазвичай їмо надворі». Поставте usually перед eat"
           },
           "orderedTokens": [
-            "The",
-            "report",
-            "is",
-            "our",
-            "main",
-            "deliverable"
+            "We",
+            "usually",
+            "eat",
+            "outdoors"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -91,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i02:r1",
-            "text": "The deliverable is ready."
+            "text": "The children are playing outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i02:r2",
-            "text": "The deliverable is late."
+            "text": "The children are eating outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i02:r3",
-            "text": "The document is ready."
+            "text": "The children are playing here."
           }
         ],
         "mediaIds": [],
@@ -111,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i02:audio",
-            "transcript": "The deliverable is ready."
+            "transcript": "The children are playing outdoors."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i02:r1",
-              "targetText": "The deliverable is ready.",
+              "targetText": "The children are playing outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i02:r2",
-              "targetText": "The deliverable is late.",
+              "targetText": "The children are eating outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i02:r3",
-              "targetText": "The document is ready.",
+              "targetText": "The children are playing here.",
               "meaningByLocale": null
             }
           ],
@@ -138,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The deliverable is ready.",
-                "uk": "У записі звучить The deliverable is ready."
+                "ru": "В записи звучит The children are playing outdoors.",
+                "uk": "У записі звучить The children are playing outdoors."
               }
             },
             {
@@ -147,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The deliverable is ready.",
-                "uk": "У записі звучить The deliverable is ready."
+                "ru": "В записи звучит The children are playing outdoors.",
+                "uk": "У записі звучить The children are playing outdoors."
               }
             }
           ],
@@ -163,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы проверяете отчёт ежедневно. Выберите форму check",
+        "prompt": "Выберите форму eat для привычки",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i03:r1",
-            "text": "check"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-10:session-36:i03:r2",
-            "text": "checks"
+            "text": "eats"
           },
           {
             "responseId": "en:lesson-10:session-36:i03:r3",
-            "text": "checking"
+            "text": "eating"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы проверяете отчёт ежедневно. Выберите форму check",
+        "accessibilityLabel": "Выберите форму eat для привычки",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы проверяете отчёт ежедневно. Выберите форму check",
-            "uk": "Ви перевіряєте звіт щодня. Виберіть форму check"
+            "ru": "Выберите форму eat для привычки",
+            "uk": "Виберіть форму eat для звички"
           },
-          "gappedTargetPhrase": "We ___ the report every day.",
+          "gappedTargetPhrase": "We usually ___ outdoors.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i03:r1",
-              "text": "check"
+              "text": "eat"
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r2",
-              "text": "checks"
+              "text": "eats"
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r3",
-              "text": "checking"
+              "text": "eating"
             }
           ],
-          "testedDimension": "Вы проверяете отчёт ежедневно. Выберите форму check",
+          "testedDimension": "Выберите форму eat для привычки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i03:r2",
               "correct": false,
-              "testedDimension": "Вы проверяете отчёт ежедневно. Выберите форму check",
+              "testedDimension": "Выберите форму eat для привычки",
               "feedbackByLocale": {
-                "ru": "С we нужна check без s.",
-                "uk": "З we потрібна check без s."
+                "ru": "После we глагол без s.",
+                "uk": "Після we дієслово без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r3",
               "correct": false,
-              "testedDimension": "Вы проверяете отчёт ежедневно. Выберите форму check",
+              "testedDimension": "Выберите форму eat для привычки",
               "feedbackByLocale": {
-                "ru": "Для регулярного действия нужна check.",
-                "uk": "Для регулярної дії потрібна check."
+                "ru": "Для привычки нужна eat.",
+                "uk": "Для звички потрібна eat."
               }
             }
           ]
@@ -227,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:submission",
+        "interactionId": "en:lesson-10:session-36:word:indoors",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — submission",
+        "prompt": "Карточка слова — indoors",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:submission:audio"
+          "en:lesson-10:session-36:word:indoors:audio"
         ],
-        "accessibilityLabel": "Карточка слова — submission",
+        "accessibilityLabel": "Карточка слова — indoors",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:submission:audio",
-            "transcript": "submission"
+            "audioTargetId": "en:lesson-10:session-36:word:indoors:audio",
+            "transcript": "indoors"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:submission:r1",
-              "targetText": "submission",
+              "responseId": "en:lesson-10:session-36:word:indoors:r1",
+              "targetText": "indoors",
               "meaningByLocale": {
-                "ru": "«поданные материалы». I am checking the submission. — «Я проверяю поданные материалы». Здесь проект, отправленный на рассмотрение, как один комплект.",
-                "uk": "«подані матеріали». I am checking the submission. — «Я перевіряю подані матеріали». Тут проєкт, надісланий на розгляд, як один комплект."
+                "ru": "«в помещении». We are eating indoors. — «Мы едим в помещении».",
+                "uk": "«у приміщенні». We are eating indoors. — «Ми їмо в приміщенні»."
               }
             }
           ],
@@ -260,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "submission",
+            "word": "indoors",
             "definitionByLocale": {
-              "ru": "«поданные материалы». I am checking the submission. — «Я проверяю поданные материалы». Здесь проект, отправленный на рассмотрение, как один комплект.",
-              "uk": "«подані матеріали». I am checking the submission. — «Я перевіряю подані матеріали». Тут проєкт, надісланий на розгляд, як один комплект."
+              "ru": "«в помещении». We are eating indoors. — «Мы едим в помещении».",
+              "uk": "«у приміщенні». We are eating indoors. — «Ми їмо в приміщенні»."
             }
           }
         },
@@ -275,24 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега отправила проект. Вы сейчас его проверяете. Скажите: «Я проверяю поданные материалы»",
+        "prompt": "Сейчас вы обедаете в доме. Скажите: «Мы едим в помещении»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега отправила проект. Вы сейчас его проверяете. Скажите: «Я проверяю поданные материалы»",
+        "accessibilityLabel": "Сейчас вы обедаете в доме. Скажите: «Мы едим в помещении»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am checking the submission.",
+          "targetPhrase": "We are eating indoors.",
           "localizedMeaning": {
-            "ru": "Коллега отправила проект. Вы сейчас его проверяете. Скажите: «Я проверяю поданные материалы»",
-            "uk": "Колега надіслала проєкт. Ви зараз його перевіряєте. Скажіть: «Я перевіряю подані матеріали»"
+            "ru": "Сейчас вы обедаете в доме. Скажите: «Мы едим в помещении»",
+            "uk": "Зараз ви обідаєте в будинку. Скажіть: «Ми їмо в приміщенні»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "checking",
-            "the",
-            "submission"
+            "We",
+            "are",
+            "eating",
+            "indoors"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i05:r1",
-            "text": "The submission includes a report."
+            "text": "She is waiting indoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i05:r2",
-            "text": "The submission includes a photo."
+            "text": "She is waiting outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i05:r3",
-            "text": "The email includes a report."
+            "text": "He is waiting indoors."
           }
         ],
         "mediaIds": [],
@@ -333,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i05:audio",
-            "transcript": "The submission includes a report."
+            "transcript": "She is waiting indoors."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i05:r1",
-              "targetText": "The submission includes a report.",
+              "targetText": "She is waiting indoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i05:r2",
-              "targetText": "The submission includes a photo.",
+              "targetText": "She is waiting outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i05:r3",
-              "targetText": "The email includes a report.",
+              "targetText": "He is waiting indoors.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The submission includes a report.",
-                "uk": "У записі звучить The submission includes a report."
+                "ru": "В записи звучит She is waiting indoors.",
+                "uk": "У записі звучить She is waiting indoors."
               }
             },
             {
@@ -369,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The submission includes a report.",
-                "uk": "У записі звучить The submission includes a report."
+                "ru": "В записи звучит She is waiting indoors.",
+                "uk": "У записі звучить She is waiting indoors."
               }
             }
           ],
@@ -385,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы сейчас проверяете полученную работу. Выберите связку",
+        "prompt": "Обед идёт сейчас. Выберите форму eat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i06:r1",
-            "text": "am"
+            "text": "eating"
           },
           {
             "responseId": "en:lesson-10:session-36:i06:r2",
-            "text": "is"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-10:session-36:i06:r3",
-            "text": "are"
+            "text": "eats"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас проверяете полученную работу. Выберите связку",
+        "accessibilityLabel": "Обед идёт сейчас. Выберите форму eat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас проверяете полученную работу. Выберите связку",
-            "uk": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку"
+            "ru": "Обед идёт сейчас. Выберите форму eat",
+            "uk": "Обід триває зараз. Виберіть форму eat"
           },
-          "gappedTargetPhrase": "I ___ checking the submission.",
+          "gappedTargetPhrase": "We are ___ indoors.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i06:r1",
-              "text": "am"
+              "text": "eating"
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r2",
-              "text": "is"
+              "text": "eat"
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r3",
-              "text": "are"
+              "text": "eats"
             }
           ],
-          "testedDimension": "Вы сейчас проверяете полученную работу. Выберите связку",
+          "testedDimension": "Обед идёт сейчас. Выберите форму eat",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i06:r2",
               "correct": false,
-              "testedDimension": "Вы сейчас проверяете полученную работу. Выберите связку",
+              "testedDimension": "Обед идёт сейчас. Выберите форму eat",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не is.",
-                "uk": "З I потрібна am, не is."
+                "ru": "После are нужна eating.",
+                "uk": "Після are потрібна eating."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r3",
               "correct": false,
-              "testedDimension": "Вы сейчас проверяете полученную работу. Выберите связку",
+              "testedDimension": "Обед идёт сейчас. Выберите форму eat",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не are.",
-                "uk": "З I потрібна am, не are."
+                "ru": "Для текущего действия нужна eating.",
+                "uk": "Для поточної дії потрібна eating."
               }
             }
           ]
@@ -449,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:timeframe",
+        "interactionId": "en:lesson-10:session-36:word:still",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — timeframe",
+        "prompt": "Карточка слова — still",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:timeframe:audio"
+          "en:lesson-10:session-36:word:still:audio"
         ],
-        "accessibilityLabel": "Карточка слова — timeframe",
+        "accessibilityLabel": "Карточка слова — still",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:timeframe:audio",
-            "transcript": "timeframe"
+            "audioTargetId": "en:lesson-10:session-36:word:still:audio",
+            "transcript": "still"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:timeframe:r1",
-              "targetText": "timeframe",
+              "responseId": "en:lesson-10:session-36:word:still:r1",
+              "targetText": "still",
               "meaningByLocale": {
-                "ru": "«временные рамки». I understand the timeframe. — «Я понимаю временные рамки». Период, отведённый на работу.",
-                "uk": "«часові рамки». I understand the timeframe. — «Я розумію часові рамки». Період, відведений на роботу."
+                "ru": "«всё ещё». It is still raining. — «Всё ещё идёт дождь».",
+                "uk": "«усе ще». It is still raining. — «Усе ще йде дощ»."
               }
             }
           ],
@@ -482,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "timeframe",
+            "word": "still",
             "definitionByLocale": {
-              "ru": "«временные рамки». I understand the timeframe. — «Я понимаю временные рамки». Период, отведённый на работу.",
-              "uk": "«часові рамки». I understand the timeframe. — «Я розумію часові рамки». Період, відведений на роботу."
+              "ru": "«всё ещё». It is still raining. — «Всё ещё идёт дождь».",
+              "uk": "«усе ще». It is still raining. — «Усе ще йде дощ»."
             }
           }
         },
@@ -497,23 +494,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега объяснила, сколько времени выделено на проект. Скажите: «Я понимаю временные рамки»",
+        "prompt": "Дождь не закончился. Скажите: «Всё ещё идёт дождь». Поставьте still после is",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега объяснила, сколько времени выделено на проект. Скажите: «Я понимаю временные рамки»",
+        "accessibilityLabel": "Дождь не закончился. Скажите: «Всё ещё идёт дождь». Поставьте still после is",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the timeframe.",
+          "targetPhrase": "It is still raining.",
           "localizedMeaning": {
-            "ru": "Коллега объяснила, сколько времени выделено на проект. Скажите: «Я понимаю временные рамки»",
-            "uk": "Колега пояснила, скільки часу виділено на проєкт. Скажіть: «Я розумію часові рамки»"
+            "ru": "Дождь не закончился. Скажите: «Всё ещё идёт дождь». Поставьте still после is",
+            "uk": "Дощ не закінчився. Скажіть: «Усе ще йде дощ». Поставте still після is"
           },
           "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "timeframe"
+            "It",
+            "is",
+            "still",
+            "raining"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i08:r1",
-            "text": "The timeframe is two weeks."
+            "text": "He is still sleeping."
           },
           {
             "responseId": "en:lesson-10:session-36:i08:r2",
-            "text": "The timeframe is three weeks."
+            "text": "He is still eating."
           },
           {
             "responseId": "en:lesson-10:session-36:i08:r3",
-            "text": "The timeframe is two months."
+            "text": "She is still sleeping."
           }
         ],
         "mediaIds": [],
@@ -554,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i08:audio",
-            "transcript": "The timeframe is two weeks."
+            "transcript": "He is still sleeping."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i08:r1",
-              "targetText": "The timeframe is two weeks.",
+              "targetText": "He is still sleeping.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i08:r2",
-              "targetText": "The timeframe is three weeks.",
+              "targetText": "He is still eating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i08:r3",
-              "targetText": "The timeframe is two months.",
+              "targetText": "She is still sleeping.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The timeframe is two weeks.",
-                "uk": "У записі звучить The timeframe is two weeks."
+                "ru": "В записи звучит He is still sleeping.",
+                "uk": "У записі звучить He is still sleeping."
               }
             },
             {
@@ -590,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The timeframe is two weeks.",
-                "uk": "У записі звучить The timeframe is two weeks."
+                "ru": "В записи звучит He is still sleeping.",
+                "uk": "У записі звучить He is still sleeping."
               }
             }
           ],
@@ -606,63 +603,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму understand с I",
+        "prompt": "Дождь продолжается. Выберите вспомогательный глагол",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i09:r1",
-            "text": "understand"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-36:i09:r2",
-            "text": "understands"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-36:i09:r3",
-            "text": "am understand"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму understand с I",
+        "accessibilityLabel": "Дождь продолжается. Выберите вспомогательный глагол",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Дождь продолжается. Выберите вспомогательный глагол",
+            "uk": "Дощ триває. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "I ___ the timeframe.",
+          "gappedTargetPhrase": "It ___ still raining.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i09:r1",
-              "text": "understand"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r2",
-              "text": "understands"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r3",
-              "text": "am understand"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите форму understand с I",
+          "testedDimension": "Дождь продолжается. Выберите вспомогательный глагол",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Дождь продолжается. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Дождь продолжается. Выберите вспомогательный глагол",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -670,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:handover",
+        "interactionId": "en:lesson-10:session-36:word:instead",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — handover",
+        "prompt": "Карточка слова — instead",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:handover:audio"
+          "en:lesson-10:session-36:word:instead:audio"
         ],
-        "accessibilityLabel": "Карточка слова — handover",
+        "accessibilityLabel": "Карточка слова — instead",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:handover:audio",
-            "transcript": "handover"
+            "audioTargetId": "en:lesson-10:session-36:word:instead:audio",
+            "transcript": "instead"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:handover:r1",
-              "targetText": "handover",
+              "responseId": "en:lesson-10:session-36:word:instead:r1",
+              "targetText": "instead",
               "meaningByLocale": {
-                "ru": "«передача дел». The handover is tomorrow. — «Передача дел завтра». Здесь вы передаёте проект и ответственность за него коллеге.",
-                "uk": "«передавання справ». The handover is tomorrow. — «Передавання справ завтра». Тут ви передаєте проєкт і відповідальність за нього колезі."
+                "ru": "«вместо этого». We are watching a film instead. — «Вместо этого мы смотрим фильм».",
+                "uk": "«натомість». We are watching a film instead. — «Натомість ми дивимося фільм»."
               }
             }
           ],
@@ -703,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "handover",
+            "word": "instead",
             "definitionByLocale": {
-              "ru": "«передача дел». The handover is tomorrow. — «Передача дел завтра». Здесь вы передаёте проект и ответственность за него коллеге.",
-              "uk": "«передавання справ». The handover is tomorrow. — «Передавання справ завтра». Тут ви передаєте проєкт і відповідальність за нього колезі."
+              "ru": "«вместо этого». We are watching a film instead. — «Вместо этого мы смотрим фильм».",
+              "uk": "«натомість». We are watching a film instead. — «Натомість ми дивимося фільм»."
             }
           }
         },
@@ -718,23 +715,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Завтра коллега примет у вас проект. Сообщите: «Передача дел завтра»",
+        "prompt": "Вы отменили прогулку из-за дождя и уже включили фильм. Скажите: «Вместо этого мы смотрим фильм». Поставьте instead в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Завтра коллега примет у вас проект. Сообщите: «Передача дел завтра»",
+        "accessibilityLabel": "Вы отменили прогулку из-за дождя и уже включили фильм. Скажите: «Вместо этого мы смотрим фильм». Поставьте instead в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The handover is tomorrow.",
+          "targetPhrase": "We are watching a film instead.",
           "localizedMeaning": {
-            "ru": "Завтра коллега примет у вас проект. Сообщите: «Передача дел завтра»",
-            "uk": "Завтра колега прийме у вас проєкт. Повідомте: «Передавання справ завтра»"
+            "ru": "Вы отменили прогулку из-за дождя и уже включили фильм. Скажите: «Вместо этого мы смотрим фильм». Поставьте instead в конце",
+            "uk": "Ви скасували прогулянку через дощ і вже ввімкнули фільм. Скажіть: «Натомість ми дивимося фільм». Поставте instead наприкінці"
           },
           "orderedTokens": [
-            "The",
-            "handover",
-            "is",
-            "tomorrow"
+            "We",
+            "are",
+            "watching",
+            "a",
+            "film",
+            "instead"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +754,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i11:r1",
-            "text": "We are preparing for the handover."
+            "text": "I am reading a book instead."
           },
           {
             "responseId": "en:lesson-10:session-36:i11:r2",
-            "text": "They are preparing for the handover."
+            "text": "I am buying a book instead."
           },
           {
             "responseId": "en:lesson-10:session-36:i11:r3",
-            "text": "We are preparing for the meeting."
+            "text": "I am reading a letter instead."
           }
         ],
         "mediaIds": [],
@@ -775,23 +774,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i11:audio",
-            "transcript": "We are preparing for the handover."
+            "transcript": "I am reading a book instead."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i11:r1",
-              "targetText": "We are preparing for the handover.",
+              "targetText": "I am reading a book instead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i11:r2",
-              "targetText": "They are preparing for the handover.",
+              "targetText": "I am buying a book instead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i11:r3",
-              "targetText": "We are preparing for the meeting.",
+              "targetText": "I am reading a letter instead.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +801,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are preparing for the handover.",
-                "uk": "У записі звучить We are preparing for the handover."
+                "ru": "В записи звучит I am reading a book instead.",
+                "uk": "У записі звучить I am reading a book instead."
               }
             },
             {
@@ -811,8 +810,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are preparing for the handover.",
-                "uk": "У записі звучить We are preparing for the handover."
+                "ru": "В записи звучит I am reading a book instead.",
+                "uk": "У записі звучить I am reading a book instead."
               }
             }
           ],
@@ -827,63 +826,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
+        "prompt": "Фильм уже идёт. Выберите форму watch",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i12:r1",
-            "text": "preparing"
+            "text": "watching"
           },
           {
             "responseId": "en:lesson-10:session-36:i12:r2",
-            "text": "prepare"
+            "text": "watch"
           },
           {
             "responseId": "en:lesson-10:session-36:i12:r3",
-            "text": "prepares"
+            "text": "watches"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
+        "accessibilityLabel": "Фильм уже идёт. Выберите форму watch",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
-            "uk": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing"
+            "ru": "Фильм уже идёт. Выберите форму watch",
+            "uk": "Фільм уже триває. Виберіть форму watch"
           },
-          "gappedTargetPhrase": "We are ___ for the handover.",
+          "gappedTargetPhrase": "We are ___ a film instead.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i12:r1",
-              "text": "preparing"
+              "text": "watching"
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r2",
-              "text": "prepare"
+              "text": "watch"
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r3",
-              "text": "prepares"
+              "text": "watches"
             }
           ],
-          "testedDimension": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
+          "testedDimension": "Фильм уже идёт. Выберите форму watch",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i12:r2",
               "correct": false,
-              "testedDimension": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
+              "testedDimension": "Фильм уже идёт. Выберите форму watch",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна preparing.",
-                "uk": "Після are тут потрібна preparing."
+                "ru": "После are нужна watching.",
+                "uk": "Після are потрібна watching."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r3",
               "correct": false,
-              "testedDimension": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
+              "testedDimension": "Фильм уже идёт. Выберите форму watch",
               "feedbackByLocale": {
-                "ru": "Для действия сейчас нужна preparing.",
-                "uk": "Для дії зараз потрібна preparing."
+                "ru": "Здесь нужна watching, не watches.",
+                "uk": "Тут потрібна watching, не watches."
               }
             }
           ]
@@ -896,58 +895,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-36:i13:p1",
-              "target": "deliverable",
+              "target": "outdoors",
               "meaningByLocale": {
-                "ru": "результат работы для передачи заказчику",
-                "uk": "результат роботи для передавання замовнику"
+                "ru": "на открытом воздухе",
+                "uk": "надворі"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p2",
-              "target": "submission",
+              "target": "indoors",
               "meaningByLocale": {
-                "ru": "поданные материалы",
-                "uk": "подані матеріали"
+                "ru": "в помещении",
+                "uk": "у приміщенні"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p3",
-              "target": "timeframe",
+              "target": "still",
               "meaningByLocale": {
-                "ru": "временные рамки",
-                "uk": "часові рамки"
+                "ru": "всё ещё",
+                "uk": "усе ще"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p4",
-              "target": "handover",
+              "target": "instead",
               "meaningByLocale": {
-                "ru": "передача дел",
-                "uk": "передавання справ"
+                "ru": "вместо этого",
+                "uk": "натомість"
               }
             }
           ],
           "leftColumn": [
-            "deliverable",
-            "submission",
-            "timeframe",
-            "handover"
+            "outdoors",
+            "indoors",
+            "still",
+            "instead"
           ],
           "rightColumn": [
-            "результат работы для передачи заказчику",
-            "поданные материалы",
-            "временные рамки",
-            "передача дел"
+            "на открытом воздухе",
+            "в помещении",
+            "всё ещё",
+            "вместо этого"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,27 +968,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i14:audio",
-            "transcript": "I am checking the submission."
+            "transcript": "It is still raining."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am checking the submission.",
+          "hiddenTargetPhrase": "It is still raining.",
           "orderedTokens": [
-            "I",
-            "am",
-            "checking",
-            "the",
-            "submission"
+            "It",
+            "is",
+            "still",
+            "raining"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1003,24 +1001,60 @@
       {
         "interactionId": "en:lesson-10:session-36:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, как часто команда проверяет отчёт. Скажите: «Мы проверяем отчёт каждый день»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, как часто команда проверяет отчёт. Скажите: «Мы проверяем отчёт каждый день»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-36:i15:audio",
+            "transcript": "We are eating indoors."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are eating indoors.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "eating",
+            "indoors"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, закончился ли дождь. Посмотрите в окно и скажите: «Всё ещё идёт дождь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, закончился ли дождь. Посмотрите в окно и скажите: «Всё ещё идёт дождь»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:i15:audio",
-            "transcript": "We check the report every day."
+            "audioTargetId": "en:lesson-10:session-36:i16:audio",
+            "transcript": "It is still raining."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We check the report every day.",
+          "targetPhrase": "It is still raining.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1034,70 +1068,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Коллега уточнила отведённый период работы. Скажите: «Я понимаю временные рамки»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Коллега уточнила отведённый период работы. Скажите: «Я понимаю временные рамки»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the timeframe.",
-          "localizedMeaning": {
-            "ru": "Коллега уточнила отведённый период работы. Скажите: «Я понимаю временные рамки»",
-            "uk": "Колега уточнила відведений період роботи. Скажіть: «Я розумію часові рамки»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "timeframe"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-36:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы открыли присланный проект и проверяете его. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю поданные материалы»",
+        "prompt": "Вместо отменённой прогулки вы уже смотрите фильм. Сообщите другу: «Вместо этого мы смотрим фильм»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i17:audio"
         ],
-        "accessibilityLabel": "Вы открыли присланный проект и проверяете его. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю поданные материалы»",
+        "accessibilityLabel": "Вместо отменённой прогулки вы уже смотрите фильм. Сообщите другу: «Вместо этого мы смотрим фильм»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i17:audio",
-            "transcript": "I am checking the submission."
+            "transcript": "We are watching a film instead."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am checking the submission.",
+          "targetPhrase": "We are watching a film instead.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1110,32 +1103,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-36:word:deliverable",
+        "interactionId": "en:lesson-10:session-36:word:outdoors",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — deliverable",
+        "prompt": "Картка слова — outdoors",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:deliverable:audio"
+          "en:lesson-10:session-36:word:outdoors:audio"
         ],
-        "accessibilityLabel": "Картка слова — deliverable",
+        "accessibilityLabel": "Картка слова — outdoors",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:deliverable:audio",
-            "transcript": "deliverable"
+            "audioTargetId": "en:lesson-10:session-36:word:outdoors:audio",
+            "transcript": "outdoors"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:deliverable:r1",
-              "targetText": "deliverable",
+              "responseId": "en:lesson-10:session-36:word:outdoors:r1",
+              "targetText": "outdoors",
               "meaningByLocale": {
-                "ru": "«результат работы для передачи заказчику». The report is our main deliverable. — «Отчёт — наш основной результат работы для передачи заказчику». Здесь конкретный документ, который команда обязалась подготовить.",
-                "uk": "«результат роботи для передавання замовнику». The report is our main deliverable. — «Звіт — наш основний результат роботи для передавання замовнику». Тут конкретний документ, який команда зобов’язалася підготувати."
+                "ru": "«на открытом воздухе». We usually eat outdoors. — «Мы обычно едим на улице».",
+                "uk": "«надворі». We usually eat outdoors. — «Ми зазвичай їмо надворі»."
               }
             }
           ],
@@ -1143,10 +1136,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "deliverable",
+            "word": "outdoors",
             "definitionByLocale": {
-              "ru": "«результат работы для передачи заказчику». The report is our main deliverable. — «Отчёт — наш основной результат работы для передачи заказчику». Здесь конкретный документ, который команда обязалась подготовить.",
-              "uk": "«результат роботи для передавання замовнику». The report is our main deliverable. — «Звіт — наш основний результат роботи для передавання замовнику». Тут конкретний документ, який команда зобов’язалася підготувати."
+              "ru": "«на открытом воздухе». We usually eat outdoors. — «Мы обычно едим на улице».",
+              "uk": "«надворі». We usually eat outdoors. — «Ми зазвичай їмо надворі»."
             }
           }
         },
@@ -1158,25 +1151,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Замовник насамперед чекає на звіт. Скажіть: «Звіт — наш основний результат роботи для передавання замовнику»",
+        "prompt": "Розкажіть про звичку: «Ми зазвичай їмо надворі». Поставте usually перед eat",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Замовник насамперед чекає на звіт. Скажіть: «Звіт — наш основний результат роботи для передавання замовнику»",
+        "accessibilityLabel": "Розкажіть про звичку: «Ми зазвичай їмо надворі». Поставте usually перед eat",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The report is our main deliverable.",
+          "targetPhrase": "We usually eat outdoors.",
           "localizedMeaning": {
-            "ru": "Заказчик прежде всего ждёт отчёт. Скажите: «Отчёт — наш основной результат работы для передачи заказчику»",
-            "uk": "Замовник насамперед чекає на звіт. Скажіть: «Звіт — наш основний результат роботи для передавання замовнику»"
+            "ru": "Расскажите о привычке: «Мы обычно едим на улице». Поставьте usually перед eat",
+            "uk": "Розкажіть про звичку: «Ми зазвичай їмо надворі». Поставте usually перед eat"
           },
           "orderedTokens": [
-            "The",
-            "report",
-            "is",
-            "our",
-            "main",
-            "deliverable"
+            "We",
+            "usually",
+            "eat",
+            "outdoors"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,15 +1188,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i02:r1",
-            "text": "The deliverable is ready."
+            "text": "The children are playing outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i02:r2",
-            "text": "The deliverable is late."
+            "text": "The children are eating outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i02:r3",
-            "text": "The document is ready."
+            "text": "The children are playing here."
           }
         ],
         "mediaIds": [],
@@ -1217,23 +1208,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i02:audio",
-            "transcript": "The deliverable is ready."
+            "transcript": "The children are playing outdoors."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i02:r1",
-              "targetText": "The deliverable is ready.",
+              "targetText": "The children are playing outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i02:r2",
-              "targetText": "The deliverable is late.",
+              "targetText": "The children are eating outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i02:r3",
-              "targetText": "The document is ready.",
+              "targetText": "The children are playing here.",
               "meaningByLocale": null
             }
           ],
@@ -1244,8 +1235,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The deliverable is ready.",
-                "uk": "У записі звучить The deliverable is ready."
+                "ru": "В записи звучит The children are playing outdoors.",
+                "uk": "У записі звучить The children are playing outdoors."
               }
             },
             {
@@ -1253,8 +1244,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The deliverable is ready.",
-                "uk": "У записі звучить The deliverable is ready."
+                "ru": "В записи звучит The children are playing outdoors.",
+                "uk": "У записі звучить The children are playing outdoors."
               }
             }
           ],
@@ -1269,63 +1260,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви перевіряєте звіт щодня. Виберіть форму check",
+        "prompt": "Виберіть форму eat для звички",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i03:r1",
-            "text": "check"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-10:session-36:i03:r2",
-            "text": "checks"
+            "text": "eats"
           },
           {
             "responseId": "en:lesson-10:session-36:i03:r3",
-            "text": "checking"
+            "text": "eating"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви перевіряєте звіт щодня. Виберіть форму check",
+        "accessibilityLabel": "Виберіть форму eat для звички",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы проверяете отчёт ежедневно. Выберите форму check",
-            "uk": "Ви перевіряєте звіт щодня. Виберіть форму check"
+            "ru": "Выберите форму eat для привычки",
+            "uk": "Виберіть форму eat для звички"
           },
-          "gappedTargetPhrase": "We ___ the report every day.",
+          "gappedTargetPhrase": "We usually ___ outdoors.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i03:r1",
-              "text": "check"
+              "text": "eat"
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r2",
-              "text": "checks"
+              "text": "eats"
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r3",
-              "text": "checking"
+              "text": "eating"
             }
           ],
-          "testedDimension": "Ви перевіряєте звіт щодня. Виберіть форму check",
+          "testedDimension": "Виберіть форму eat для звички",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i03:r2",
               "correct": false,
-              "testedDimension": "Ви перевіряєте звіт щодня. Виберіть форму check",
+              "testedDimension": "Виберіть форму eat для звички",
               "feedbackByLocale": {
-                "ru": "С we нужна check без s.",
-                "uk": "З we потрібна check без s."
+                "ru": "После we глагол без s.",
+                "uk": "Після we дієслово без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i03:r3",
               "correct": false,
-              "testedDimension": "Ви перевіряєте звіт щодня. Виберіть форму check",
+              "testedDimension": "Виберіть форму eat для звички",
               "feedbackByLocale": {
-                "ru": "Для регулярного действия нужна check.",
-                "uk": "Для регулярної дії потрібна check."
+                "ru": "Для привычки нужна eat.",
+                "uk": "Для звички потрібна eat."
               }
             }
           ]
@@ -1333,32 +1324,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:submission",
+        "interactionId": "en:lesson-10:session-36:word:indoors",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — submission",
+        "prompt": "Картка слова — indoors",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:submission:audio"
+          "en:lesson-10:session-36:word:indoors:audio"
         ],
-        "accessibilityLabel": "Картка слова — submission",
+        "accessibilityLabel": "Картка слова — indoors",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:submission:audio",
-            "transcript": "submission"
+            "audioTargetId": "en:lesson-10:session-36:word:indoors:audio",
+            "transcript": "indoors"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:submission:r1",
-              "targetText": "submission",
+              "responseId": "en:lesson-10:session-36:word:indoors:r1",
+              "targetText": "indoors",
               "meaningByLocale": {
-                "ru": "«поданные материалы». I am checking the submission. — «Я проверяю поданные материалы». Здесь проект, отправленный на рассмотрение, как один комплект.",
-                "uk": "«подані матеріали». I am checking the submission. — «Я перевіряю подані матеріали». Тут проєкт, надісланий на розгляд, як один комплект."
+                "ru": "«в помещении». We are eating indoors. — «Мы едим в помещении».",
+                "uk": "«у приміщенні». We are eating indoors. — «Ми їмо в приміщенні»."
               }
             }
           ],
@@ -1366,10 +1357,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "submission",
+            "word": "indoors",
             "definitionByLocale": {
-              "ru": "«поданные материалы». I am checking the submission. — «Я проверяю поданные материалы». Здесь проект, отправленный на рассмотрение, как один комплект.",
-              "uk": "«подані матеріали». I am checking the submission. — «Я перевіряю подані матеріали». Тут проєкт, надісланий на розгляд, як один комплект."
+              "ru": "«в помещении». We are eating indoors. — «Мы едим в помещении».",
+              "uk": "«у приміщенні». We are eating indoors. — «Ми їмо в приміщенні»."
             }
           }
         },
@@ -1381,24 +1372,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега надіслала проєкт. Ви зараз його перевіряєте. Скажіть: «Я перевіряю подані матеріали»",
+        "prompt": "Зараз ви обідаєте в будинку. Скажіть: «Ми їмо в приміщенні»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега надіслала проєкт. Ви зараз його перевіряєте. Скажіть: «Я перевіряю подані матеріали»",
+        "accessibilityLabel": "Зараз ви обідаєте в будинку. Скажіть: «Ми їмо в приміщенні»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am checking the submission.",
+          "targetPhrase": "We are eating indoors.",
           "localizedMeaning": {
-            "ru": "Коллега отправила проект. Вы сейчас его проверяете. Скажите: «Я проверяю поданные материалы»",
-            "uk": "Колега надіслала проєкт. Ви зараз його перевіряєте. Скажіть: «Я перевіряю подані матеріали»"
+            "ru": "Сейчас вы обедаете в доме. Скажите: «Мы едим в помещении»",
+            "uk": "Зараз ви обідаєте в будинку. Скажіть: «Ми їмо в приміщенні»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "checking",
-            "the",
-            "submission"
+            "We",
+            "are",
+            "eating",
+            "indoors"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,15 +1409,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i05:r1",
-            "text": "The submission includes a report."
+            "text": "She is waiting indoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i05:r2",
-            "text": "The submission includes a photo."
+            "text": "She is waiting outdoors."
           },
           {
             "responseId": "en:lesson-10:session-36:i05:r3",
-            "text": "The email includes a report."
+            "text": "He is waiting indoors."
           }
         ],
         "mediaIds": [],
@@ -1439,23 +1429,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i05:audio",
-            "transcript": "The submission includes a report."
+            "transcript": "She is waiting indoors."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i05:r1",
-              "targetText": "The submission includes a report.",
+              "targetText": "She is waiting indoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i05:r2",
-              "targetText": "The submission includes a photo.",
+              "targetText": "She is waiting outdoors.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i05:r3",
-              "targetText": "The email includes a report.",
+              "targetText": "He is waiting indoors.",
               "meaningByLocale": null
             }
           ],
@@ -1466,8 +1456,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The submission includes a report.",
-                "uk": "У записі звучить The submission includes a report."
+                "ru": "В записи звучит She is waiting indoors.",
+                "uk": "У записі звучить She is waiting indoors."
               }
             },
             {
@@ -1475,8 +1465,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The submission includes a report.",
-                "uk": "У записі звучить The submission includes a report."
+                "ru": "В записи звучит She is waiting indoors.",
+                "uk": "У записі звучить She is waiting indoors."
               }
             }
           ],
@@ -1491,63 +1481,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку",
+        "prompt": "Обід триває зараз. Виберіть форму eat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i06:r1",
-            "text": "am"
+            "text": "eating"
           },
           {
             "responseId": "en:lesson-10:session-36:i06:r2",
-            "text": "is"
+            "text": "eat"
           },
           {
             "responseId": "en:lesson-10:session-36:i06:r3",
-            "text": "are"
+            "text": "eats"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку",
+        "accessibilityLabel": "Обід триває зараз. Виберіть форму eat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас проверяете полученную работу. Выберите связку",
-            "uk": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку"
+            "ru": "Обед идёт сейчас. Выберите форму eat",
+            "uk": "Обід триває зараз. Виберіть форму eat"
           },
-          "gappedTargetPhrase": "I ___ checking the submission.",
+          "gappedTargetPhrase": "We are ___ indoors.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i06:r1",
-              "text": "am"
+              "text": "eating"
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r2",
-              "text": "is"
+              "text": "eat"
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r3",
-              "text": "are"
+              "text": "eats"
             }
           ],
-          "testedDimension": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку",
+          "testedDimension": "Обід триває зараз. Виберіть форму eat",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i06:r2",
               "correct": false,
-              "testedDimension": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку",
+              "testedDimension": "Обід триває зараз. Виберіть форму eat",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не is.",
-                "uk": "З I потрібна am, не is."
+                "ru": "После are нужна eating.",
+                "uk": "Після are потрібна eating."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i06:r3",
               "correct": false,
-              "testedDimension": "Ви зараз перевіряєте отриману роботу. Виберіть зв’язку",
+              "testedDimension": "Обід триває зараз. Виберіть форму eat",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не are.",
-                "uk": "З I потрібна am, не are."
+                "ru": "Для текущего действия нужна eating.",
+                "uk": "Для поточної дії потрібна eating."
               }
             }
           ]
@@ -1555,32 +1545,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:timeframe",
+        "interactionId": "en:lesson-10:session-36:word:still",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — timeframe",
+        "prompt": "Картка слова — still",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:timeframe:audio"
+          "en:lesson-10:session-36:word:still:audio"
         ],
-        "accessibilityLabel": "Картка слова — timeframe",
+        "accessibilityLabel": "Картка слова — still",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:timeframe:audio",
-            "transcript": "timeframe"
+            "audioTargetId": "en:lesson-10:session-36:word:still:audio",
+            "transcript": "still"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:timeframe:r1",
-              "targetText": "timeframe",
+              "responseId": "en:lesson-10:session-36:word:still:r1",
+              "targetText": "still",
               "meaningByLocale": {
-                "ru": "«временные рамки». I understand the timeframe. — «Я понимаю временные рамки». Период, отведённый на работу.",
-                "uk": "«часові рамки». I understand the timeframe. — «Я розумію часові рамки». Період, відведений на роботу."
+                "ru": "«всё ещё». It is still raining. — «Всё ещё идёт дождь».",
+                "uk": "«усе ще». It is still raining. — «Усе ще йде дощ»."
               }
             }
           ],
@@ -1588,10 +1578,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "timeframe",
+            "word": "still",
             "definitionByLocale": {
-              "ru": "«временные рамки». I understand the timeframe. — «Я понимаю временные рамки». Период, отведённый на работу.",
-              "uk": "«часові рамки». I understand the timeframe. — «Я розумію часові рамки». Період, відведений на роботу."
+              "ru": "«всё ещё». It is still raining. — «Всё ещё идёт дождь».",
+              "uk": "«усе ще». It is still raining. — «Усе ще йде дощ»."
             }
           }
         },
@@ -1603,23 +1593,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега пояснила, скільки часу виділено на проєкт. Скажіть: «Я розумію часові рамки»",
+        "prompt": "Дощ не закінчився. Скажіть: «Усе ще йде дощ». Поставте still після is",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега пояснила, скільки часу виділено на проєкт. Скажіть: «Я розумію часові рамки»",
+        "accessibilityLabel": "Дощ не закінчився. Скажіть: «Усе ще йде дощ». Поставте still після is",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the timeframe.",
+          "targetPhrase": "It is still raining.",
           "localizedMeaning": {
-            "ru": "Коллега объяснила, сколько времени выделено на проект. Скажите: «Я понимаю временные рамки»",
-            "uk": "Колега пояснила, скільки часу виділено на проєкт. Скажіть: «Я розумію часові рамки»"
+            "ru": "Дождь не закончился. Скажите: «Всё ещё идёт дождь». Поставьте still после is",
+            "uk": "Дощ не закінчився. Скажіть: «Усе ще йде дощ». Поставте still після is"
           },
           "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "timeframe"
+            "It",
+            "is",
+            "still",
+            "raining"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1640,15 +1630,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i08:r1",
-            "text": "The timeframe is two weeks."
+            "text": "He is still sleeping."
           },
           {
             "responseId": "en:lesson-10:session-36:i08:r2",
-            "text": "The timeframe is three weeks."
+            "text": "He is still eating."
           },
           {
             "responseId": "en:lesson-10:session-36:i08:r3",
-            "text": "The timeframe is two months."
+            "text": "She is still sleeping."
           }
         ],
         "mediaIds": [],
@@ -1660,23 +1650,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i08:audio",
-            "transcript": "The timeframe is two weeks."
+            "transcript": "He is still sleeping."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i08:r1",
-              "targetText": "The timeframe is two weeks.",
+              "targetText": "He is still sleeping.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i08:r2",
-              "targetText": "The timeframe is three weeks.",
+              "targetText": "He is still eating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i08:r3",
-              "targetText": "The timeframe is two months.",
+              "targetText": "She is still sleeping.",
               "meaningByLocale": null
             }
           ],
@@ -1687,8 +1677,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The timeframe is two weeks.",
-                "uk": "У записі звучить The timeframe is two weeks."
+                "ru": "В записи звучит He is still sleeping.",
+                "uk": "У записі звучить He is still sleeping."
               }
             },
             {
@@ -1696,8 +1686,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The timeframe is two weeks.",
-                "uk": "У записі звучить The timeframe is two weeks."
+                "ru": "В записи звучит He is still sleeping.",
+                "uk": "У записі звучить He is still sleeping."
               }
             }
           ],
@@ -1712,63 +1702,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму understand з I",
+        "prompt": "Дощ триває. Виберіть допоміжне дієслово",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i09:r1",
-            "text": "understand"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-36:i09:r2",
-            "text": "understands"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-36:i09:r3",
-            "text": "am understand"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму understand з I",
+        "accessibilityLabel": "Дощ триває. Виберіть допоміжне дієслово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Дождь продолжается. Выберите вспомогательный глагол",
+            "uk": "Дощ триває. Виберіть допоміжне дієслово"
           },
-          "gappedTargetPhrase": "I ___ the timeframe.",
+          "gappedTargetPhrase": "It ___ still raining.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i09:r1",
-              "text": "understand"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r2",
-              "text": "understands"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r3",
-              "text": "am understand"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть форму understand з I",
+          "testedDimension": "Дощ триває. Виберіть допоміжне дієслово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Дощ триває. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Дощ триває. Виберіть допоміжне дієслово",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1776,32 +1766,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:word:handover",
+        "interactionId": "en:lesson-10:session-36:word:instead",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — handover",
+        "prompt": "Картка слова — instead",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-36:word:handover:audio"
+          "en:lesson-10:session-36:word:instead:audio"
         ],
-        "accessibilityLabel": "Картка слова — handover",
+        "accessibilityLabel": "Картка слова — instead",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:word:handover:audio",
-            "transcript": "handover"
+            "audioTargetId": "en:lesson-10:session-36:word:instead:audio",
+            "transcript": "instead"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-36:word:handover:r1",
-              "targetText": "handover",
+              "responseId": "en:lesson-10:session-36:word:instead:r1",
+              "targetText": "instead",
               "meaningByLocale": {
-                "ru": "«передача дел». The handover is tomorrow. — «Передача дел завтра». Здесь вы передаёте проект и ответственность за него коллеге.",
-                "uk": "«передавання справ». The handover is tomorrow. — «Передавання справ завтра». Тут ви передаєте проєкт і відповідальність за нього колезі."
+                "ru": "«вместо этого». We are watching a film instead. — «Вместо этого мы смотрим фильм».",
+                "uk": "«натомість». We are watching a film instead. — «Натомість ми дивимося фільм»."
               }
             }
           ],
@@ -1809,10 +1799,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "handover",
+            "word": "instead",
             "definitionByLocale": {
-              "ru": "«передача дел». The handover is tomorrow. — «Передача дел завтра». Здесь вы передаёте проект и ответственность за него коллеге.",
-              "uk": "«передавання справ». The handover is tomorrow. — «Передавання справ завтра». Тут ви передаєте проєкт і відповідальність за нього колезі."
+              "ru": "«вместо этого». We are watching a film instead. — «Вместо этого мы смотрим фильм».",
+              "uk": "«натомість». We are watching a film instead. — «Натомість ми дивимося фільм»."
             }
           }
         },
@@ -1824,23 +1814,25 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Завтра колега прийме у вас проєкт. Повідомте: «Передавання справ завтра»",
+        "prompt": "Ви скасували прогулянку через дощ і вже ввімкнули фільм. Скажіть: «Натомість ми дивимося фільм». Поставте instead наприкінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Завтра колега прийме у вас проєкт. Повідомте: «Передавання справ завтра»",
+        "accessibilityLabel": "Ви скасували прогулянку через дощ і вже ввімкнули фільм. Скажіть: «Натомість ми дивимося фільм». Поставте instead наприкінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The handover is tomorrow.",
+          "targetPhrase": "We are watching a film instead.",
           "localizedMeaning": {
-            "ru": "Завтра коллега примет у вас проект. Сообщите: «Передача дел завтра»",
-            "uk": "Завтра колега прийме у вас проєкт. Повідомте: «Передавання справ завтра»"
+            "ru": "Вы отменили прогулку из-за дождя и уже включили фильм. Скажите: «Вместо этого мы смотрим фильм». Поставьте instead в конце",
+            "uk": "Ви скасували прогулянку через дощ і вже ввімкнули фільм. Скажіть: «Натомість ми дивимося фільм». Поставте instead наприкінці"
           },
           "orderedTokens": [
-            "The",
-            "handover",
-            "is",
-            "tomorrow"
+            "We",
+            "are",
+            "watching",
+            "a",
+            "film",
+            "instead"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1861,15 +1853,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i11:r1",
-            "text": "We are preparing for the handover."
+            "text": "I am reading a book instead."
           },
           {
             "responseId": "en:lesson-10:session-36:i11:r2",
-            "text": "They are preparing for the handover."
+            "text": "I am buying a book instead."
           },
           {
             "responseId": "en:lesson-10:session-36:i11:r3",
-            "text": "We are preparing for the meeting."
+            "text": "I am reading a letter instead."
           }
         ],
         "mediaIds": [],
@@ -1881,23 +1873,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i11:audio",
-            "transcript": "We are preparing for the handover."
+            "transcript": "I am reading a book instead."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-36:i11:r1",
-              "targetText": "We are preparing for the handover.",
+              "targetText": "I am reading a book instead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i11:r2",
-              "targetText": "They are preparing for the handover.",
+              "targetText": "I am buying a book instead.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-36:i11:r3",
-              "targetText": "We are preparing for the meeting.",
+              "targetText": "I am reading a letter instead.",
               "meaningByLocale": null
             }
           ],
@@ -1908,8 +1900,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are preparing for the handover.",
-                "uk": "У записі звучить We are preparing for the handover."
+                "ru": "В записи звучит I am reading a book instead.",
+                "uk": "У записі звучить I am reading a book instead."
               }
             },
             {
@@ -1917,8 +1909,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are preparing for the handover.",
-                "uk": "У записі звучить We are preparing for the handover."
+                "ru": "В записи звучит I am reading a book instead.",
+                "uk": "У записі звучить I am reading a book instead."
               }
             }
           ],
@@ -1933,63 +1925,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing",
+        "prompt": "Фільм уже триває. Виберіть форму watch",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-36:i12:r1",
-            "text": "preparing"
+            "text": "watching"
           },
           {
             "responseId": "en:lesson-10:session-36:i12:r2",
-            "text": "prepare"
+            "text": "watch"
           },
           {
             "responseId": "en:lesson-10:session-36:i12:r3",
-            "text": "prepares"
+            "text": "watches"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing",
+        "accessibilityLabel": "Фільм уже триває. Виберіть форму watch",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас готовитесь передать проект. Выберите форму preparing",
-            "uk": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing"
+            "ru": "Фильм уже идёт. Выберите форму watch",
+            "uk": "Фільм уже триває. Виберіть форму watch"
           },
-          "gappedTargetPhrase": "We are ___ for the handover.",
+          "gappedTargetPhrase": "We are ___ a film instead.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-36:i12:r1",
-              "text": "preparing"
+              "text": "watching"
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r2",
-              "text": "prepare"
+              "text": "watch"
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r3",
-              "text": "prepares"
+              "text": "watches"
             }
           ],
-          "testedDimension": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing",
+          "testedDimension": "Фільм уже триває. Виберіть форму watch",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-36:i12:r2",
               "correct": false,
-              "testedDimension": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing",
+              "testedDimension": "Фільм уже триває. Виберіть форму watch",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна preparing.",
-                "uk": "Після are тут потрібна preparing."
+                "ru": "После are нужна watching.",
+                "uk": "Після are потрібна watching."
               }
             },
             {
               "responseId": "en:lesson-10:session-36:i12:r3",
               "correct": false,
-              "testedDimension": "Ви зараз готуєтеся передати проєкт. Виберіть форму preparing",
+              "testedDimension": "Фільм уже триває. Виберіть форму watch",
               "feedbackByLocale": {
-                "ru": "Для действия сейчас нужна preparing.",
-                "uk": "Для дії зараз потрібна preparing."
+                "ru": "Здесь нужна watching, не watches.",
+                "uk": "Тут потрібна watching, не watches."
               }
             }
           ]
@@ -2002,58 +1994,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-36:i13:p1",
-              "target": "deliverable",
+              "target": "outdoors",
               "meaningByLocale": {
-                "ru": "результат работы для передачи заказчику",
-                "uk": "результат роботи для передавання замовнику"
+                "ru": "на открытом воздухе",
+                "uk": "надворі"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p2",
-              "target": "submission",
+              "target": "indoors",
               "meaningByLocale": {
-                "ru": "поданные материалы",
-                "uk": "подані матеріали"
+                "ru": "в помещении",
+                "uk": "у приміщенні"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p3",
-              "target": "timeframe",
+              "target": "still",
               "meaningByLocale": {
-                "ru": "временные рамки",
-                "uk": "часові рамки"
+                "ru": "всё ещё",
+                "uk": "усе ще"
               }
             },
             {
               "pairId": "en:lesson-10:session-36:i13:p4",
-              "target": "handover",
+              "target": "instead",
               "meaningByLocale": {
-                "ru": "передача дел",
-                "uk": "передавання справ"
+                "ru": "вместо этого",
+                "uk": "натомість"
               }
             }
           ],
           "leftColumn": [
-            "deliverable",
-            "submission",
-            "timeframe",
-            "handover"
+            "outdoors",
+            "indoors",
+            "still",
+            "instead"
           ],
           "rightColumn": [
-            "результат роботи для передавання замовнику",
-            "подані матеріали",
-            "часові рамки",
-            "передавання справ"
+            "надворі",
+            "у приміщенні",
+            "усе ще",
+            "натомість"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2075,27 +2067,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i14:audio",
-            "transcript": "I am checking the submission."
+            "transcript": "It is still raining."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am checking the submission.",
+          "hiddenTargetPhrase": "It is still raining.",
           "orderedTokens": [
-            "I",
-            "am",
-            "checking",
-            "the",
-            "submission"
+            "It",
+            "is",
+            "still",
+            "raining"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2109,24 +2100,60 @@
       {
         "interactionId": "en:lesson-10:session-36:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, як часто команда перевіряє звіт. Скажіть: «Ми перевіряємо звіт щодня»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, як часто команда перевіряє звіт. Скажіть: «Ми перевіряємо звіт щодня»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-36:i15:audio",
+            "transcript": "We are eating indoors."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are eating indoors.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "eating",
+            "indoors"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чи закінчився дощ. Подивіться у вікно й скажіть: «Усе ще йде дощ»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чи закінчився дощ. Подивіться у вікно й скажіть: «Усе ще йде дощ»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-36:i15:audio",
-            "transcript": "We check the report every day."
+            "audioTargetId": "en:lesson-10:session-36:i16:audio",
+            "transcript": "It is still raining."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We check the report every day.",
+          "targetPhrase": "It is still raining.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2140,70 +2167,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-36:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Колега уточнила відведений період роботи. Скажіть: «Я розумію часові рамки»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Колега уточнила відведений період роботи. Скажіть: «Я розумію часові рамки»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the timeframe.",
-          "localizedMeaning": {
-            "ru": "Коллега уточнила отведённый период работы. Скажите: «Я понимаю временные рамки»",
-            "uk": "Колега уточнила відведений період роботи. Скажіть: «Я розумію часові рамки»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "timeframe"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-36:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви відкрили надісланий проєкт і перевіряєте його. Колега запитує, чим ви зараз зайняті. Скажіть: «Я перевіряю подані матеріали»",
+        "prompt": "Замість скасованої прогулянки ви вже дивитеся фільм. Повідомте другові: «Натомість ми дивимося фільм»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-36:i17:audio"
         ],
-        "accessibilityLabel": "Ви відкрили надісланий проєкт і перевіряєте його. Колега запитує, чим ви зараз зайняті. Скажіть: «Я перевіряю подані матеріали»",
+        "accessibilityLabel": "Замість скасованої прогулянки ви вже дивитеся фільм. Повідомте другові: «Натомість ми дивимося фільм»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-36:i17:audio",
-            "transcript": "I am checking the submission."
+            "transcript": "We are watching a film instead."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am checking the submission.",
+          "targetPhrase": "We are watching a film instead.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2217,83 +2203,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-36:word:deliverable",
-      "correctText": "deliverable",
+      "interactionId": "en:lesson-10:session-36:word:outdoors",
+      "correctText": "outdoors",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i01",
-      "correctText": "The report is our main deliverable.",
+      "correctText": "We usually eat outdoors.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i02",
-      "correctText": "The deliverable is ready.",
+      "correctText": "The children are playing outdoors.",
       "correctResponseId": "en:lesson-10:session-36:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-36:i03",
-      "correctText": "check",
+      "correctText": "eat",
       "correctResponseId": "en:lesson-10:session-36:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-36:word:submission",
-      "correctText": "submission",
+      "interactionId": "en:lesson-10:session-36:word:indoors",
+      "correctText": "indoors",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i04",
-      "correctText": "I am checking the submission.",
+      "correctText": "We are eating indoors.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i05",
-      "correctText": "The submission includes a report.",
+      "correctText": "She is waiting indoors.",
       "correctResponseId": "en:lesson-10:session-36:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-36:i06",
-      "correctText": "am",
+      "correctText": "eating",
       "correctResponseId": "en:lesson-10:session-36:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-36:word:timeframe",
-      "correctText": "timeframe",
+      "interactionId": "en:lesson-10:session-36:word:still",
+      "correctText": "still",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i07",
-      "correctText": "I understand the timeframe.",
+      "correctText": "It is still raining.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i08",
-      "correctText": "The timeframe is two weeks.",
+      "correctText": "He is still sleeping.",
       "correctResponseId": "en:lesson-10:session-36:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-36:i09",
-      "correctText": "understand",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-36:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-36:word:handover",
-      "correctText": "handover",
+      "interactionId": "en:lesson-10:session-36:word:instead",
+      "correctText": "instead",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i10",
-      "correctText": "The handover is tomorrow.",
+      "correctText": "We are watching a film instead.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i11",
-      "correctText": "We are preparing for the handover.",
+      "correctText": "I am reading a book instead.",
       "correctResponseId": "en:lesson-10:session-36:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-36:i12",
-      "correctText": "preparing",
+      "correctText": "watching",
       "correctResponseId": "en:lesson-10:session-36:i12:r1"
     },
     {
@@ -2303,22 +2289,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-36:i14",
-      "correctText": "I am checking the submission.",
+      "correctText": "It is still raining.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i15",
-      "correctText": "We check the report every day.",
+      "correctText": "We are eating indoors.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i16",
-      "correctText": "I understand the timeframe.",
+      "correctText": "It is still raining.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-36:i17",
-      "correctText": "I am checking the submission.",
+      "correctText": "We are watching a film instead.",
       "correctResponseId": null
     }
   ]

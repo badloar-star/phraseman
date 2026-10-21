@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-36:word:deliverable",
-    "correctText": "deliverable",
+    "interactionId": "en:lesson-10:session-36:word:outdoors",
+    "correctText": "outdoors",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i01",
-    "correctText": "The report is our main deliverable.",
+    "correctText": "We usually eat outdoors.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i02",
-    "correctText": "The deliverable is ready.",
+    "correctText": "The children are playing outdoors.",
     "correctResponseId": "en:lesson-10:session-36:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-36:i03",
-    "correctText": "check",
+    "correctText": "eat",
     "correctResponseId": "en:lesson-10:session-36:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-36:word:submission",
-    "correctText": "submission",
+    "interactionId": "en:lesson-10:session-36:word:indoors",
+    "correctText": "indoors",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i04",
-    "correctText": "I am checking the submission.",
+    "correctText": "We are eating indoors.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i05",
-    "correctText": "The submission includes a report.",
+    "correctText": "She is waiting indoors.",
     "correctResponseId": "en:lesson-10:session-36:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-36:i06",
-    "correctText": "am",
+    "correctText": "eating",
     "correctResponseId": "en:lesson-10:session-36:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-36:word:timeframe",
-    "correctText": "timeframe",
+    "interactionId": "en:lesson-10:session-36:word:still",
+    "correctText": "still",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i07",
-    "correctText": "I understand the timeframe.",
+    "correctText": "It is still raining.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i08",
-    "correctText": "The timeframe is two weeks.",
+    "correctText": "He is still sleeping.",
     "correctResponseId": "en:lesson-10:session-36:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-36:i09",
-    "correctText": "understand",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-36:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-36:word:handover",
-    "correctText": "handover",
+    "interactionId": "en:lesson-10:session-36:word:instead",
+    "correctText": "instead",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i10",
-    "correctText": "The handover is tomorrow.",
+    "correctText": "We are watching a film instead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i11",
-    "correctText": "We are preparing for the handover.",
+    "correctText": "I am reading a book instead.",
     "correctResponseId": "en:lesson-10:session-36:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-36:i12",
-    "correctText": "preparing",
+    "correctText": "watching",
     "correctResponseId": "en:lesson-10:session-36:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-36:i13",
-    "correctText": "en:lesson-10:session-36:i13:p1=deliverable\nen:lesson-10:session-36:i13:p2=submission\nen:lesson-10:session-36:i13:p3=timeframe\nen:lesson-10:session-36:i13:p4=handover",
+    "correctText": "en:lesson-10:session-36:i13:p1=outdoors\nen:lesson-10:session-36:i13:p2=indoors\nen:lesson-10:session-36:i13:p3=still\nen:lesson-10:session-36:i13:p4=instead",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i14",
-    "correctText": "I am checking the submission.",
+    "correctText": "It is still raining.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i15",
-    "correctText": "We check the report every day.",
+    "correctText": "We are eating indoors.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i16",
-    "correctText": "I understand the timeframe.",
+    "correctText": "It is still raining.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-36:i17",
-    "correctText": "I am checking the submission.",
+    "correctText": "We are watching a film instead.",
     "correctResponseId": null
   }
 ]

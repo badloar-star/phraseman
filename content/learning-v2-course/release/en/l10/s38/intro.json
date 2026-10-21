@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-38",
   "learningOutcomeByLocale": {
-    "ru": "We review the figures every quarter; Revenue is rising; I am checking the projection",
-    "uk": "We review the figures every quarter; Revenue is rising; I am checking the projection"
+    "ru": "Do you need anything; Everything is ready; There is nothing in the bag",
+    "uk": "Do you need anything; Everything is ready; There is nothing in the bag"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Раз в квартал",
-        "uk": "Раз на квартал"
+        "ru": "Нужна ли ещё вещь",
+        "uk": "Чи потрібна ще річ"
       },
       "bodyByLocale": {
-        "ru": "Quarter здесь означает «квартал», три месяца, четверть года. Команда обсуждает показатели каждые три месяца: We review the figures every quarter — «Мы рассматриваем показатели каждый квартал». Every quarter обозначает повторение; используем Present Simple.",
-        "uk": "Quarter тут означає «квартал», три місяці, чверть року. Команда обговорює показники кожні три місяці: We review the figures every quarter — «Ми розглядаємо показники кожного кварталу». Every quarter позначає повторення; використовуємо Present Simple."
+        "ru": "Вы собрали свои вещи и предлагаете помощь сестре перед поездкой. Anything — «что-нибудь» в вопросе: Do you need anything? — «Тебе что-нибудь нужно?» Need описывает потребность: используем do + need. Вопрос не называет конкретную вещь.",
+        "uk": "Ви зібрали свої речі й пропонуєте допомогу сестрі перед поїздкою. Anything — «що-небудь» у запитанні: Do you need anything? — «Тобі що-небудь потрібно?» Need описує потребу: використовуємо do + need. Запитання не називає конкретної речі."
       },
       "question": {
         "interactionId": "en:lesson-10:session-38:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-38:intro1:r1",
-              "text": "We review the figures every quarter."
+              "text": "Do you need anything?"
             },
             {
               "responseId": "en:lesson-10:session-38:intro1:r2",
-              "text": "We reviews the figures every quarter."
+              "text": "Does you need anything?"
             },
             {
               "responseId": "en:lesson-10:session-38:intro1:r3",
-              "text": "We reviewing the figures every quarter."
+              "text": "Do you needs anything?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-38:intro1:r1",
-              "text": "We review the figures every quarter."
+              "text": "Do you need anything?"
             },
             {
               "responseId": "en:lesson-10:session-38:intro1:r2",
-              "text": "We reviews the figures every quarter."
+              "text": "Does you need anything?"
             },
             {
               "responseId": "en:lesson-10:session-38:intro1:r3",
-              "text": "We reviewing the figures every quarter."
+              "text": "Do you needs anything?"
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Показатель растёт",
-        "uk": "Показник зростає"
+        "ru": "Вещи готовы",
+        "uk": "Речі готові"
       },
       "bodyByLocale": {
-        "ru": "Revenue — «выручка»: деньги, которые компания получает от продаж, до вычета расходов. Сейчас выручка растёт: Revenue is rising — «Выручка растёт». Это происходящее в текущий период изменение: используем is + rising. У rise перед ing убираем e.",
-        "uk": "Revenue — «виручка»: гроші, які компанія отримує від продажів, до вирахування витрат. Зараз виручка зростає: Revenue is rising — «Виручка зростає». Це зміна, що відбувається в поточний період: використовуємо is + rising. У rise перед ing прибираємо e."
+        "ru": "Билеты, одежда и еда собраны. Everything — «всё»: Everything is ready — «Всё готово». Хотя вещей несколько, после everything нужна is. Это готовность вещей, а не действие в процессе.",
+        "uk": "Квитки, одяг і їжа зібрані. Everything — «усе»: Everything is ready — «Усе готове». Хоча речей кілька, після everything потрібна is. Це готовність речей, а не дія в процесі."
       },
       "question": {
         "interactionId": "en:lesson-10:session-38:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-38:intro2:r1",
-              "text": "Revenue is rising."
+              "text": "Everything is ready."
             },
             {
               "responseId": "en:lesson-10:session-38:intro2:r2",
-              "text": "Revenue rising."
+              "text": "Everything are ready."
             },
             {
               "responseId": "en:lesson-10:session-38:intro2:r3",
-              "text": "Revenue is riseing."
+              "text": "Everything ready."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-38:intro2:r1",
-              "text": "Revenue is rising."
+              "text": "Everything is ready."
             },
             {
               "responseId": "en:lesson-10:session-38:intro2:r2",
-              "text": "Revenue rising."
+              "text": "Everything are ready."
             },
             {
               "responseId": "en:lesson-10:session-38:intro2:r3",
-              "text": "Revenue is riseing."
+              "text": "Everything ready."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проверяем прогноз",
-        "uk": "Перевіряємо прогноз"
+        "ru": "В какой сумке телефон",
+        "uk": "У якій сумці телефон"
       },
       "bodyByLocale": {
-        "ru": "Projection здесь — «прогноз», расчёт ожидаемого показателя по имеющимся данным. Коллега подготовила прогноз на следующий квартал. Вы сейчас проверяете его: I am checking the projection — «Я проверяю прогноз». Используем am + checking для текущего действия.",
-        "uk": "Projection тут — «прогноз», розрахунок очікуваного показника за наявними даними. Колега підготувала прогноз на наступний квартал. Ви зараз перевіряєте його: I am checking the projection — «Я перевіряю прогноз». Використовуємо am + checking для поточної дії."
+        "ru": "Вы проверяете запасную сумку: она пуста. Nothing — «ничего»: There is nothing in the bag — «В сумке ничего нет». Nothing уже выражает отрицание, поэтому not не добавляем. Телефон точно дома, но точное место вы забыли. Somewhere — «где-то»: My phone is somewhere in the house — «Мой телефон где-то в доме».",
+        "uk": "Ви перевіряєте запасну сумку: вона порожня. Nothing — «нічого»: There is nothing in the bag — «У сумці нічого немає». Nothing уже виражає заперечення, тому not не додаємо. Телефон точно вдома, але точне місце ви забули. Somewhere — «десь»: My phone is somewhere in the house — «Мій телефон десь у будинку»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-38:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-38:intro3:r1",
-              "text": "I am checking the projection."
+              "text": "There is nothing in the bag."
             },
             {
               "responseId": "en:lesson-10:session-38:intro3:r2",
-              "text": "I checking the projection."
+              "text": "There are nothing in the bag."
             },
             {
               "responseId": "en:lesson-10:session-38:intro3:r3",
-              "text": "I are checking the projection."
+              "text": "There is not nothing in the bag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-38:intro3:r1",
-              "text": "I am checking the projection."
+              "text": "There is nothing in the bag."
             },
             {
               "responseId": "en:lesson-10:session-38:intro3:r2",
-              "text": "I checking the projection."
+              "text": "There are nothing in the bag."
             },
             {
               "responseId": "en:lesson-10:session-38:intro3:r3",
-              "text": "I are checking the projection."
+              "text": "There is not nothing in the bag."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b991e4ebb2eb63442b794ce396a34c56a96ed3812bf6940bd9b69031994cc6d9"
+  "introFingerprint": "ee2fadb3c410cfc6fcab0d9e11fd55a82e34d9bd82bc5d14cc9112f79d8d0cf5"
 }

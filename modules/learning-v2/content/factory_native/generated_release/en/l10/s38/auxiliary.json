@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-38:intro1:r2": {
-          "ru": "С we нужна review без s.",
-          "uk": "З we потрібна review без s."
+          "ru": "С you нужна do.",
+          "uk": "З you потрібна do."
         },
         "en:lesson-10:session-38:intro1:r3": {
-          "ru": "Для регулярного действия здесь нужна review.",
-          "uk": "Для регулярної дії тут потрібна review."
+          "ru": "После do нужна need без s.",
+          "uk": "Після do потрібна need без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-38:intro2:r2": {
-          "ru": "Перед rising нужен is.",
-          "uk": "Перед rising потрібне is."
+          "ru": "После everything нужна is.",
+          "uk": "Після everything потрібна is."
         },
         "en:lesson-10:session-38:intro2:r3": {
-          "ru": "Правильно rising, без e.",
-          "uk": "Правильно rising, без e."
+          "ru": "Перед ready нужна связка is.",
+          "uk": "Перед ready потрібна зв’язка is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-38:intro3:r2": {
-          "ru": "Перед checking нужен am.",
-          "uk": "Перед checking потрібне am."
+          "ru": "С nothing здесь нужна is.",
+          "uk": "З nothing тут потрібна is."
         },
         "en:lesson-10:session-38:intro3:r3": {
-          "ru": "С I нужна am, не are.",
-          "uk": "З I потрібна am, не are."
+          "ru": "Nothing уже выражает отрицание.",
+          "uk": "Nothing уже виражає заперечення."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a4fd472bd917787e7bbdf2cdb523485e1513c002112aa7a80bf9825083420a8a"
+  "auxiliaryFingerprint": "a275ecf60f7499975f0d1f0011e0566ea7f0992092b0106252ae519804ee887e"
 }

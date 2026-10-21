@@ -1,57 +1,57 @@
 [
   {
-    "interactionId": "en:lesson-10:session-38:word:quarter",
-    "correctText": "quarter",
+    "interactionId": "en:lesson-10:session-38:word:anything",
+    "correctText": "anything",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i01",
-    "correctText": "We review the figures every quarter.",
+    "correctText": "Do you need anything?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i02",
-    "correctText": "The quarter ends in March.",
+    "correctText": "Do they need anything?",
     "correctResponseId": "en:lesson-10:session-38:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-38:i03",
-    "correctText": "review",
+    "correctText": "Do",
     "correctResponseId": "en:lesson-10:session-38:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-38:word:revenue",
-    "correctText": "revenue",
+    "interactionId": "en:lesson-10:session-38:word:everything",
+    "correctText": "everything",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i04",
-    "correctText": "Revenue is rising.",
+    "correctText": "Everything is ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i05",
-    "correctText": "Revenue is higher this quarter.",
+    "correctText": "Everything is in the car.",
     "correctResponseId": "en:lesson-10:session-38:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-38:i06",
-    "correctText": "rising",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-38:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-38:word:expenditure",
-    "correctText": "expenditure",
+    "interactionId": "en:lesson-10:session-38:word:nothing",
+    "correctText": "nothing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i07",
-    "correctText": "Expenditure is falling.",
+    "correctText": "There is nothing in the bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i08",
-    "correctText": "Expenditure is lower this quarter.",
+    "correctText": "There is nothing on the table.",
     "correctResponseId": "en:lesson-10:session-38:i08:r1"
   },
   {
@@ -60,48 +60,48 @@
     "correctResponseId": "en:lesson-10:session-38:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-38:word:projection",
-    "correctText": "projection",
+    "interactionId": "en:lesson-10:session-38:word:somewhere",
+    "correctText": "somewhere",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i10",
-    "correctText": "I am checking the projection.",
+    "correctText": "My phone is somewhere in the house.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i11",
-    "correctText": "The projection is in the report.",
+    "correctText": "Your keys are somewhere in the kitchen.",
     "correctResponseId": "en:lesson-10:session-38:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-38:i12",
-    "correctText": "am",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-38:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-38:i13",
-    "correctText": "en:lesson-10:session-38:i13:p1=quarter\nen:lesson-10:session-38:i13:p2=revenue\nen:lesson-10:session-38:i13:p3=expenditure\nen:lesson-10:session-38:i13:p4=projection",
+    "correctText": "en:lesson-10:session-38:i13:p1=anything\nen:lesson-10:session-38:i13:p2=everything\nen:lesson-10:session-38:i13:p3=nothing\nen:lesson-10:session-38:i13:p4=somewhere",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i14",
-    "correctText": "Revenue is rising.",
+    "correctText": "Do you need anything?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i15",
-    "correctText": "We review the figures every quarter.",
+    "correctText": "Everything is ready.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i16",
-    "correctText": "Expenditure is falling.",
+    "correctText": "Do you need anything?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-38:i17",
-    "correctText": "I am checking the projection.",
+    "correctText": "Everything is ready.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-36",
   "learningOutcomeByLocale": {
-    "ru": "We check the report every day; I am checking the submission; The handover is tomorrow",
-    "uk": "We check the report every day; I am checking the submission; The handover is tomorrow"
+    "ru": "We usually eat outdoors; We are eating indoors today; It is still raining",
+    "uk": "We usually eat outdoors; We are eating indoors today; It is still raining"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Регулярная проверка",
-        "uk": "Регулярна перевірка"
+        "ru": "Обычно обедаем на улице",
+        "uk": "Зазвичай обідаємо надворі"
       },
       "bodyByLocale": {
-        "ru": "Повторим deadline — «крайний срок». До сдачи проекта осталось мало времени. Вы с коллегой проверяете отчёт каждый день: We check the report every day — «Мы проверяем отчёт каждый день». Every day показывает повторение; здесь используем Present Simple.",
-        "uk": "Повторімо deadline — «крайній строк». До здавання проєкту залишилося мало часу. Ви з колегою перевіряєте звіт щодня: We check the report every day — «Ми перевіряємо звіт щодня». Every day показує повторення; тут використовуємо Present Simple."
+        "ru": "Летом вы с другом обычно обедаете во дворе. Outdoors — «на открытом воздухе»: We usually eat outdoors — «Мы обычно едим на улице». Usually показывает привычку: eat без am/is/are. Outdoors уже обозначает место, поэтому перед ним не нужен in.",
+        "uk": "Улітку ви з другом зазвичай обідаєте у дворі. Outdoors — «надворі»: We usually eat outdoors — «Ми зазвичай їмо надворі». Usually вказує на звичку: eat без am/is/are. Outdoors уже позначає місце, тому перед ним не потрібне in."
       },
       "question": {
         "interactionId": "en:lesson-10:session-36:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-36:intro1:r1",
-              "text": "We check the report every day."
+              "text": "We usually eat outdoors."
             },
             {
               "responseId": "en:lesson-10:session-36:intro1:r2",
-              "text": "We checks the report every day."
+              "text": "We usually eats outdoors."
             },
             {
               "responseId": "en:lesson-10:session-36:intro1:r3",
-              "text": "We checking the report every day."
+              "text": "We usually are eat outdoors."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-36:intro1:r1",
-              "text": "We check the report every day."
+              "text": "We usually eat outdoors."
             },
             {
               "responseId": "en:lesson-10:session-36:intro1:r2",
-              "text": "We checks the report every day."
+              "text": "We usually eats outdoors."
             },
             {
               "responseId": "en:lesson-10:session-36:intro1:r3",
-              "text": "We checking the report every day."
+              "text": "We usually are eat outdoors."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Материалы на проверке",
-        "uk": "Матеріали на перевірці"
+        "ru": "Сегодня внутри",
+        "uk": "Сьогодні всередині"
       },
       "bodyByLocale": {
-        "ru": "Submission — «поданные материалы»: например, отправленный на рассмотрение проект. Коллега уже отправила свою работу, а вы сейчас проверяете её: I am checking the submission — «Я проверяю поданные материалы». Действие идёт сейчас: am + checking. Здесь submission обозначает комплект материалов как одно целое.",
-        "uk": "Submission — «подані матеріали»: наприклад, надісланий на розгляд проєкт. Колега вже надіслала свою роботу, а ви зараз перевіряєте її: I am checking the submission — «Я перевіряю подані матеріали». Дія триває зараз: am + checking. Тут submission позначає комплект матеріалів як одне ціле."
+        "ru": "Сегодня дождь. Вы уже сидите за обеденным столом в доме и объясняете другу по телефону: We are eating indoors today — «Сегодня мы едим в помещении». Indoors — «в помещении». Обед идёт сейчас, поэтому are eating. Обычно вы едите на улице, но сегодня иначе.",
+        "uk": "Сьогодні дощ. Ви вже сидите за обіднім столом у будинку й пояснюєте другові телефоном: We are eating indoors today — «Сьогодні ми їмо в приміщенні». Indoors — «у приміщенні». Обід триває зараз, тому are eating. Зазвичай ви їсте надворі, але сьогодні інакше."
       },
       "question": {
         "interactionId": "en:lesson-10:session-36:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-36:intro2:r1",
-              "text": "I am checking the submission."
+              "text": "We are eating indoors today."
             },
             {
               "responseId": "en:lesson-10:session-36:intro2:r2",
-              "text": "I checking the submission."
+              "text": "We eating indoors today."
             },
             {
               "responseId": "en:lesson-10:session-36:intro2:r3",
-              "text": "I is checking the submission."
+              "text": "We are eat indoors today."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-36:intro2:r1",
-              "text": "I am checking the submission."
+              "text": "We are eating indoors today."
             },
             {
               "responseId": "en:lesson-10:session-36:intro2:r2",
-              "text": "I checking the submission."
+              "text": "We eating indoors today."
             },
             {
               "responseId": "en:lesson-10:session-36:intro2:r3",
-              "text": "I is checking the submission."
+              "text": "We are eat indoors today."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Понимаем отведённое время",
-        "uk": "Розуміємо відведений час"
+        "ru": "Меняем план",
+        "uk": "Змінюємо план"
       },
       "bodyByLocale": {
-        "ru": "Timeframe — «временные рамки»: период, отведённый на работу. Это не только конечная дата deadline. Коллега объяснила, сколько у вас времени: I understand the timeframe — «Я понимаю временные рамки». Understand выражает понимание, поэтому здесь используем Present Simple.",
-        "uk": "Timeframe — «часові рамки»: період, відведений на роботу. Це не лише кінцева дата deadline. Колега пояснила, скільки у вас часу: I understand the timeframe — «Я розумію часові рамки». Understand виражає розуміння, тому тут використовуємо Present Simple."
+        "ru": "После обеда вы выглядываете в окно: дождь продолжается. Still — «всё ещё»: It is still raining — «Всё ещё идёт дождь». Still стоит между is и raining. Вы хотели гулять, но теперь смотрите фильм: We are watching a film instead — «Вместо этого мы смотрим фильм». Instead — «вместо этого». Слово в конце связывает новый выбор с прежним планом.",
+        "uk": "Після обіду ви визираєте у вікно: дощ триває. Still — «усе ще»: It is still raining — «Усе ще йде дощ». Still стоїть між is і raining. Ви хотіли гуляти, але тепер дивитеся фільм: We are watching a film instead — «Натомість ми дивимося фільм». Instead — «натомість». Слово наприкінці пов’язує новий вибір із попереднім планом."
       },
       "question": {
         "interactionId": "en:lesson-10:session-36:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-36:intro3:r1",
-              "text": "I understand the timeframe."
+              "text": "It is still raining."
             },
             {
               "responseId": "en:lesson-10:session-36:intro3:r2",
-              "text": "I understands the timeframe."
+              "text": "It still raining."
             },
             {
               "responseId": "en:lesson-10:session-36:intro3:r3",
-              "text": "I am understand the timeframe."
+              "text": "It is still rain."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-36:intro3:r1",
-              "text": "I understand the timeframe."
+              "text": "It is still raining."
             },
             {
               "responseId": "en:lesson-10:session-36:intro3:r2",
-              "text": "I understands the timeframe."
+              "text": "It still raining."
             },
             {
               "responseId": "en:lesson-10:session-36:intro3:r3",
-              "text": "I am understand the timeframe."
+              "text": "It is still rain."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "717290786315fdcbb6f5c86a59d495eed335209275a23536c899a6ee23b3c7e0"
+  "introFingerprint": "9732bf6d4dcf46e0f9b723e4c49c5642f2d1cdb95abefbf2f489e256a956255c"
 }

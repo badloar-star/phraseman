@@ -3782,9 +3782,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 36,
-    sourceFingerprint: "556e727cdd70bbdac3b6341301154246f0fc4410615864da36a5b0737c0a57fe",
+    sourceFingerprint: "be50e3f2dc84299a4452e00acd5a57c6b7b02b177bcf026aa22593556af1889f",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We check the report every day; I am checking the submission; The handover is tomorrow","uk":"We check the report every day; I am checking the submission; The handover is tomorrow"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually eat outdoors; We are eating indoors today; It is still raining","uk":"We usually eat outdoors; We are eating indoors today; It is still raining"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3796,9 +3796,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 38,
-    sourceFingerprint: "79489f8eb42abbe0eaa1ba1f47dec45c7beb6be7bd31c4a32888f6db74342592",
+    sourceFingerprint: "e4d2d5551aec17517a0150fbf9cacf8e9722cdde843060d8c9c10e71ae5b769f",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review the figures every quarter; Revenue is rising; I am checking the projection","uk":"We review the figures every quarter; Revenue is rising; I am checking the projection"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Do you need anything; Everything is ready; There is nothing in the bag","uk":"Do you need anything; Everything is ready; There is nothing in the bag"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

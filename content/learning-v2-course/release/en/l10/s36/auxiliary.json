@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-36:intro1:r2": {
-          "ru": "С we нужна check без s.",
-          "uk": "З we потрібна check без s."
+          "ru": "После we нужна eat, без s.",
+          "uk": "Після we потрібна eat, без s."
         },
         "en:lesson-10:session-36:intro1:r3": {
-          "ru": "Для привычки здесь нужна check.",
-          "uk": "Для звички тут потрібна check."
+          "ru": "Для привычки здесь достаточно eat.",
+          "uk": "Для звички тут достатньо eat."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-36:intro2:r2": {
-          "ru": "Нужен am перед checking.",
-          "uk": "Потрібне am перед checking."
+          "ru": "Перед eating нужна are.",
+          "uk": "Перед eating потрібна are."
         },
         "en:lesson-10:session-36:intro2:r3": {
-          "ru": "С I нужна am.",
-          "uk": "З I потрібна am."
+          "ru": "После are нужна eating.",
+          "uk": "Після are потрібна eating."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-36:intro3:r2": {
-          "ru": "С I нужна understand без s.",
-          "uk": "З I потрібна understand без s."
+          "ru": "Перед still raining нужна is.",
+          "uk": "Перед still raining потрібна is."
         },
         "en:lesson-10:session-36:intro3:r3": {
-          "ru": "Am understand неверно; нужна understand.",
-          "uk": "Am understand неправильно; потрібна understand."
+          "ru": "После is здесь нужна raining.",
+          "uk": "Після is тут потрібна raining."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "de24599e12eb7cf2494a2283e455b33dbaca09830b192c34f64ecbda6234e9d4"
+  "auxiliaryFingerprint": "8c915d734500e70b7d07e881ebb1076201a3246b03e335458eb7eb0bb10607bb"
 }

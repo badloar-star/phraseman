@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 38 — Итоги квартала
+# Английский · Урок 10 · Занятие 38 — Всё ли готово к поездке
 
-**Ситуация.** Обсудить регулярный отчёт компании и цифры, которые вы проверяете сейчас.
+**Ситуация.** Собрать вещи, проверить сумку и поискать телефон перед выходом.
 
-**Что вы освоите:** We review the figures every quarter; Revenue is rising; I am checking the projection
-**Новые слова:** quarter, revenue, expenditure, projection
+**Что вы освоите:** Do you need anything; Everything is ready; There is nothing in the bag
+**Новые слова:** anything, everything, nothing, somewhere
 
 ## Интро 1
 
-### Раз в квартал
+### Нужна ли ещё вещь
 
-Quarter здесь означает «квартал», три месяца, четверть года. Команда обсуждает показатели каждые три месяца: We review the figures every quarter — «Мы рассматриваем показатели каждый квартал». Every quarter обозначает повторение; используем Present Simple.
+Вы собрали свои вещи и предлагаете помощь сестре перед поездкой. Anything — «что-нибудь» в вопросе: Do you need anything? — «Тебе что-нибудь нужно?» Need описывает потребность: используем do + need. Вопрос не называет конкретную вещь.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We review the figures every quarter.**
-- ❌ We reviews the figures every quarter. — *С we нужна review без s.*
-- ❌ We reviewing the figures every quarter. — *Для регулярного действия здесь нужна review.*
+- ✅ **Do you need anything?**
+- ❌ Does you need anything? — *С you нужна do.*
+- ❌ Do you needs anything? — *После do нужна need без s.*
 
 ---
 
 ## Интро 2
 
-### Показатель растёт
+### Вещи готовы
 
-Revenue — «выручка»: деньги, которые компания получает от продаж, до вычета расходов. Сейчас выручка растёт: Revenue is rising — «Выручка растёт». Это происходящее в текущий период изменение: используем is + rising. У rise перед ing убираем e.
+Билеты, одежда и еда собраны. Everything — «всё»: Everything is ready — «Всё готово». Хотя вещей несколько, после everything нужна is. Это готовность вещей, а не действие в процессе.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **Revenue is rising.**
-- ❌ Revenue rising. — *Перед rising нужен is.*
-- ❌ Revenue is riseing. — *Правильно rising, без e.*
+- ✅ **Everything is ready.**
+- ❌ Everything are ready. — *После everything нужна is.*
+- ❌ Everything ready. — *Перед ready нужна связка is.*
 
 ---
 
 ## Интро 3
 
-### Проверяем прогноз
+### В какой сумке телефон
 
-Projection здесь — «прогноз», расчёт ожидаемого показателя по имеющимся данным. Коллега подготовила прогноз на следующий квартал. Вы сейчас проверяете его: I am checking the projection — «Я проверяю прогноз». Используем am + checking для текущего действия.
+Вы проверяете запасную сумку: она пуста. Nothing — «ничего»: There is nothing in the bag — «В сумке ничего нет». Nothing уже выражает отрицание, поэтому not не добавляем. Телефон точно дома, но точное место вы забыли. Somewhere — «где-то»: My phone is somewhere in the house — «Мой телефон где-то в доме».
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am checking the projection.**
-- ❌ I checking the projection. — *Перед checking нужен am.*
-- ❌ I are checking the projection. — *С I нужна am, не are.*
+- ✅ **There is nothing in the bag.**
+- ❌ There are nothing in the bag. — *С nothing здесь нужна is.*
+- ❌ There is not nothing in the bag. — *Nothing уже выражает отрицание.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — quarter**
-<!-- interaction_id: en:lesson-10:session-38:word:quarter; family: word_card -->
-> **quarter** — «квартал». We review the figures every quarter. — «Мы рассматриваем показатели каждый квартал». Здесь период в три месяца.
+**1 · Карточка слова — anything**
+<!-- interaction_id: en:lesson-10:session-38:word:anything; family: word_card -->
+> **anything** — «что-нибудь» в вопросе. Do you need anything? — «Тебе что-нибудь нужно?»
 
-**2 · Команда обсуждает показатели каждые три месяца. Скажите: «Мы рассматриваем показатели каждый квартал». Поставьте every quarter в конце**
+**2 · Перед поездкой предложите сестре помощь: «Тебе что-нибудь нужно?»**
 <!-- interaction_id: en:lesson-10:session-38:i01; family: phrase_builder -->
-Плитки: `quarter` `every` `figures` `the` `review` `We` → **We review the figures every quarter.**
+Плитки: `anything` `need` `you` `Do` → **Do you need anything?**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-38:i02; family: listen_choose -->
-🔊 *The quarter ends in March.* → **The quarter ends in March.** · The quarter ends in June. · The course ends in March.
-- The quarter ends in June. — *В записи звучит The quarter ends in March.*
-- The course ends in March. — *В записи звучит The quarter ends in March.*
+🔊 *Do they need anything?* → **Do they need anything?** · Do you need anything? · Does he need anything?
+- Do you need anything? — *В записи звучит Do they need anything?*
+- Does he need anything? — *В записи звучит Do they need anything?*
 
-**4 · Это регулярное обсуждение. Выберите форму review**
+**4 · Выберите вспомогательный глагол для вопроса с you**
 <!-- interaction_id: en:lesson-10:session-38:i03; family: context_gap_grammar -->
-We ___ the figures every quarter. → **review** · reviews · reviewing
-- reviews — *С we нужна review без s.*
-- reviewing — *Для регулярного действия нужна review.*
+___ you need anything? → **Do** · Does · Are
+- Does — *С you нужна do.*
+- Are — *Для вопроса с need здесь нужна do.*
 
-**5 · Карточка слова — revenue**
-<!-- interaction_id: en:lesson-10:session-38:word:revenue; family: word_card -->
-> **revenue** — «выручка». Revenue is rising. — «Выручка растёт». Здесь деньги от продаж до вычета расходов.
+**5 · Карточка слова — everything**
+<!-- interaction_id: en:lesson-10:session-38:word:everything; family: word_card -->
+> **everything** — «всё». Everything is ready. — «Всё готово».
 
-**6 · По графику видно, что компания получает от продаж всё больше денег. Опишите текущее изменение: «Выручка растёт»**
+**6 · Вещи собраны. Скажите: «Всё готово»**
 <!-- interaction_id: en:lesson-10:session-38:i04; family: phrase_builder -->
-Плитки: `rising` `is` `Revenue` → **Revenue is rising.**
+Плитки: `ready` `is` `Everything` → **Everything is ready.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-38:i05; family: listen_choose -->
-🔊 *Revenue is higher this quarter.* → **Revenue is higher this quarter.** · Revenue is lower this quarter. · Revenue is higher this month.
-- Revenue is lower this quarter. — *В записи звучит Revenue is higher this quarter.*
-- Revenue is higher this month. — *В записи звучит Revenue is higher this quarter.*
+🔊 *Everything is in the car.* → **Everything is in the car.** · Everything is in the bag. · Everything is ready.
+- Everything is in the bag. — *В записи звучит Everything is in the car.*
+- Everything is ready. — *В записи звучит Everything is in the car.*
 
-**8 · Выберите правильное написание формы rise**
+**8 · Выберите связку после everything**
 <!-- interaction_id: en:lesson-10:session-38:i06; family: context_gap_grammar -->
-Revenue is ___. → **rising** · riseing · rise
-- riseing — *Перед ing убираем e: rising.*
-- rise — *Для текущего изменения после is нужна rising.*
+Everything ___ ready. → **is** · are · am
+- are — *После everything нужна is.*
+- am — *Am используется с I.*
 
-**9 · Карточка слова — expenditure**
-<!-- interaction_id: en:lesson-10:session-38:word:expenditure; family: word_card -->
-> **expenditure** — «расходы». Expenditure is falling. — «Расходы снижаются». Здесь общая сумма потраченных денег. В этом значении неисчисляемое слово.
+**9 · Карточка слова — nothing**
+<!-- interaction_id: en:lesson-10:session-38:word:nothing; family: word_card -->
+> **nothing** — «ничего». There is nothing in the bag. — «В сумке ничего нет».
 
-**10 · Компания сейчас тратит всё меньше денег. Скажите: «Расходы снижаются»**
+**10 · Запасная сумка пуста. Скажите: «В сумке ничего нет». Начните с There**
 <!-- interaction_id: en:lesson-10:session-38:i07; family: phrase_builder -->
-Плитки: `falling` `is` `Expenditure` → **Expenditure is falling.**
+Плитки: `bag` `the` `in` `nothing` `is` `There` → **There is nothing in the bag.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-38:i08; family: listen_choose -->
-🔊 *Expenditure is lower this quarter.* → **Expenditure is lower this quarter.** · Expenditure is higher this quarter. · Revenue is lower this quarter.
-- Expenditure is higher this quarter. — *В записи звучит Expenditure is lower this quarter.*
-- Revenue is lower this quarter. — *В записи звучит Expenditure is lower this quarter.*
+🔊 *There is nothing on the table.* → **There is nothing on the table.** · There is nothing in the bag. · There is nothing on the chair.
+- There is nothing in the bag. — *В записи звучит There is nothing on the table.*
+- There is nothing on the chair. — *В записи звучит There is nothing on the table.*
 
-**12 · Выберите связку с неисчисляемым expenditure**
+**12 · Выберите связку перед nothing**
 <!-- interaction_id: en:lesson-10:session-38:i09; family: context_gap_grammar -->
-Expenditure ___ falling. → **is** · are · am
-- are — *С expenditure в этом значении нужна is.*
-- am — *Am используется с I; здесь нужна is.*
+There ___ nothing in the bag. → **is** · are · am
+- are — *Здесь нужна is.*
+- am — *Am используется с I.*
 
-**13 · Карточка слова — projection**
-<!-- interaction_id: en:lesson-10:session-38:word:projection; family: word_card -->
-> **projection** — «прогноз». I am checking the projection. — «Я проверяю прогноз». Здесь расчёт ожидаемого показателя по данным.
+**13 · Карточка слова — somewhere**
+<!-- interaction_id: en:lesson-10:session-38:word:somewhere; family: word_card -->
+> **somewhere** — «где-то». My phone is somewhere in the house. — «Мой телефон где-то в доме».
 
-**14 · Коллега прислала расчёт на следующий квартал. Вы сейчас сверяете его. Скажите: «Я проверяю прогноз»**
+**14 · Телефон дома, но вы не помните где. Скажите: «Мой телефон где-то в доме». Поставьте somewhere после is**
 <!-- interaction_id: en:lesson-10:session-38:i10; family: phrase_builder -->
-Плитки: `projection` `the` `checking` `am` `I` → **I am checking the projection.**
+Плитки: `house` `the` `in` `somewhere` `is` `phone` `My` → **My phone is somewhere in the house.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-38:i11; family: listen_choose -->
-🔊 *The projection is in the report.* → **The projection is in the report.** · The projection is in the email. · The photo is in the report.
-- The projection is in the email. — *В записи звучит The projection is in the report.*
-- The photo is in the report. — *В записи звучит The projection is in the report.*
+🔊 *Your keys are somewhere in the kitchen.* → **Your keys are somewhere in the kitchen.** · Your keys are somewhere in the bedroom. · My keys are somewhere in the kitchen.
+- Your keys are somewhere in the bedroom. — *В записи звучит Your keys are somewhere in the kitchen.*
+- My keys are somewhere in the kitchen. — *В записи звучит Your keys are somewhere in the kitchen.*
 
-**16 · Вы сейчас проверяете расчёт. Выберите связку**
+**16 · Выберите связку: один телефон**
 <!-- interaction_id: en:lesson-10:session-38:i12; family: context_gap_grammar -->
-I ___ checking the projection. → **am** · is · are
-- is — *С I нужна am.*
-- are — *С I нужна am, не are.*
+My phone ___ somewhere in the house. → **is** · are · am
+- are — *Один телефон: is.*
+- am — *Am используется с I.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-38:i13; family: speed_match -->
-quarter — квартал · revenue — выручка · expenditure — расходы · projection — прогноз
+anything — что-нибудь · everything — всё · nothing — ничего · somewhere — где-то
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-38:i14; family: listen_build_dictation -->
-🔊 *Revenue is rising.* Плитки: `rising` `is` `Revenue` → **Revenue is rising.**
+🔊 *Do you need anything?* Плитки: `anything` `need` `you` `Do` → **Do you need anything?**
 
-**19 · Коллега спрашивает, как часто команда обсуждает показатели. Скажите: «Мы рассматриваем показатели каждый квартал»**
-<!-- interaction_id: en:lesson-10:session-38:i15; family: scripted_repeat_compare -->
-🎙 **We review the figures every quarter.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-38:i15; family: listen_build_dictation -->
+🔊 *Everything is ready.* Плитки: `ready` `is` `Everything` → **Everything is ready.**
 
-**20 · На графике видно текущее снижение общей суммы расходов. Скажите: «Расходы снижаются»**
-<!-- interaction_id: en:lesson-10:session-38:i16; family: phrase_builder -->
-Плитки: `falling` `is` `Expenditure` → **Expenditure is falling.**
+**20 · Сестра собирает вещи. Предложите помощь: «Тебе что-нибудь нужно?»**
+<!-- interaction_id: en:lesson-10:session-38:i16; family: scripted_repeat_compare -->
+🎙 **Do you need anything?**
 
-**21 · Вы сверяете расчёт ожидаемой выручки на следующий квартал. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю прогноз»**
-<!-- interaction_id: en:lesson-10:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am checking the projection.**
+**21 · Водитель ждёт. Подтвердите, что вещи собраны: «Всё готово»**
+<!-- interaction_id: en:lesson-10:session-38:i17; family: scripted_repeat_compare -->
+🎙 **Everything is ready.**
 

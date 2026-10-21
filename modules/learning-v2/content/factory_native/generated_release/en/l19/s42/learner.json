@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-42:word:at-present",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — at present",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:word:at-present:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — at present",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:word:at-present:audio",
+          "transcript": "at present"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:word:at-present:r1",
+            "targetText": "at present",
+            "meaningByLocale": {
+              "ru": "в настоящее время.",
+              "uk": "зараз, на цей час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "at present",
+          "definitionByLocale": {
+            "ru": "в настоящее время.",
+            "uk": "зараз, на цей час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «В настоящее время я могу работать из дома».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «В настоящее время я могу работать из дома».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At present, I can work from home.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «В настоящее время я могу работать из дома».",
+          "uk": "Скажіть із can: «Зараз я можу працювати з дому»."
+        },
+        "orderedTokens": [
+          "At",
+          "present,",
+          "I",
+          "can",
+          "work",
+          "from",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i02:r1",
+          "text": "At present, I can work from home."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i02:r2",
+          "text": "At present, I could work from home."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i02:r3",
+          "text": "At present, I cannot work from home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i02:audio",
+          "transcript": "At present, I can work from home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:i02:r1",
+            "targetText": "At present, I can work from home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i02:r2",
+            "targetText": "At present, I could work from home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i02:r3",
+            "targetText": "At present, I cannot work from home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At present, I can work from home.",
+              "uk": "У записі звучить At present, I can work from home."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At present, I can work from home.",
+              "uk": "У записі звучить At present, I can work from home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "At present, I ___ work from home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-42:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:word:for-instance",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — for instance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:word:for-instance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — for instance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:word:for-instance:audio",
+          "transcript": "for instance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:word:for-instance:r1",
+            "targetText": "for instance",
+            "meaningByLocale": {
+              "ru": "например.",
+              "uk": "наприклад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "for instance",
+          "definitionByLocale": {
+            "ru": "например.",
+            "uk": "наприклад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем помочь, например с готовкой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем помочь, например с готовкой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can help, for instance with cooking.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем помочь, например с готовкой».",
+          "uk": "Скажіть із can: «Ми можемо допомогти, наприклад з готуванням»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "help,",
+          "for",
+          "instance",
+          "with",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i05:r1",
+          "text": "We can help, for instance with cooking."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i05:r2",
+          "text": "We could help, for instance with cooking."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i05:r3",
+          "text": "We cannot help, for instance with cooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i05:audio",
+          "transcript": "We can help, for instance with cooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:i05:r1",
+            "targetText": "We can help, for instance with cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i05:r2",
+            "targetText": "We could help, for instance with cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i05:r3",
+            "targetText": "We cannot help, for instance with cooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help, for instance with cooking.",
+              "uk": "У записі звучить We can help, for instance with cooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can help, for instance with cooking.",
+              "uk": "У записі звучить We can help, for instance with cooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ help, for instance with cooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-42:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:word:in-fact",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in fact",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:word:in-fact:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in fact",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:word:in-fact:audio",
+          "transcript": "in fact"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:word:in-fact:r1",
+            "targetText": "in fact",
+            "meaningByLocale": {
+              "ru": "на самом деле, в действительности.",
+              "uk": "насправді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in fact",
+          "definitionByLocale": {
+            "ru": "на самом деле, в действительности.",
+            "uk": "насправді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «На самом деле она говорит на трёх языках».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «На самом деле она говорит на трёх языках».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "In fact, she can speak three languages.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «На самом деле она говорит на трёх языках».",
+          "uk": "Скажіть із can: «Насправді вона розмовляє трьома мовами»."
+        },
+        "orderedTokens": [
+          "In",
+          "fact,",
+          "she",
+          "can",
+          "speak",
+          "three",
+          "languages"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i08:r1",
+          "text": "In fact, she can speak three languages."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i08:r2",
+          "text": "In fact, she could speak three languages."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i08:r3",
+          "text": "In fact, she cannot speak three languages."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i08:audio",
+          "transcript": "In fact, she can speak three languages."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:i08:r1",
+            "targetText": "In fact, she can speak three languages.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i08:r2",
+            "targetText": "In fact, she could speak three languages.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i08:r3",
+            "targetText": "In fact, she cannot speak three languages.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In fact, she can speak three languages.",
+              "uk": "У записі звучить In fact, she can speak three languages."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In fact, she can speak three languages.",
+              "uk": "У записі звучить In fact, she can speak three languages."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "In fact, she ___ speak three languages.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-42:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:word:after-all",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — after all",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:word:after-all:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — after all",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:word:after-all:audio",
+          "transcript": "after all"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:word:after-all:r1",
+            "targetText": "after all",
+            "meaningByLocale": {
+              "ru": "всё-таки, в итоге вопреки ожиданию.",
+              "uk": "усе-таки, зрештою всупереч очікуванню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "after all",
+          "definitionByLocale": {
+            "ru": "всё-таки, в итоге вопреки ожиданию.",
+            "uk": "усе-таки, зрештою всупереч очікуванню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я всё-таки могу прийти».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я всё-таки могу прийти».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can come after all.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я всё-таки могу прийти».",
+          "uk": "Скажіть із can: «Я все-таки можу прийти»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "come",
+          "after",
+          "all"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i11:r1",
+          "text": "I can come after all."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i11:r2",
+          "text": "I could come after all."
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i11:r3",
+          "text": "I cannot come after all."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i11:audio",
+          "transcript": "I can come after all."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-42:i11:r1",
+            "targetText": "I can come after all.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i11:r2",
+            "targetText": "I could come after all.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i11:r3",
+            "targetText": "I cannot come after all.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can come after all.",
+              "uk": "У записі звучить I can come after all."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can come after all.",
+              "uk": "У записі звучить I can come after all."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-42:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-42:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ come after all.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-42:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-42:i13:p1",
+            "target": "at present",
+            "meaningByLocale": {
+              "ru": "в настоящее время",
+              "uk": "зараз, на цей час"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-42:i13:p2",
+            "target": "for instance",
+            "meaningByLocale": {
+              "ru": "например",
+              "uk": "наприклад"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-42:i13:p3",
+            "target": "in fact",
+            "meaningByLocale": {
+              "ru": "на самом деле, в действительности",
+              "uk": "насправді"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-42:i13:p4",
+            "target": "after all",
+            "meaningByLocale": {
+              "ru": "всё-таки, в итоге вопреки ожиданию",
+              "uk": "усе-таки, зрештою всупереч очікуванню"
+            }
+          }
+        ],
+        "leftColumn": [
+          "at present",
+          "for instance",
+          "in fact",
+          "after all"
+        ],
+        "rightColumn": [
+          "в настоящее время",
+          "например",
+          "на самом деле, в действительности",
+          "всё-таки, в итоге вопреки ожиданию"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, с чем можете помочь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, с чем можете помочь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i16:audio",
+          "transcript": "We can help, for instance with cooking."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can help, for instance with cooking.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите об изменении планов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Сообщите об изменении планов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-42:i17:audio",
+          "transcript": "I can come after all."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can come after all.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f783cc0af17b6d1ae0f435922331c7bc31f134af30856ceab35ad21933854b7d"
+}

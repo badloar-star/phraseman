@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-46:word:out-of-order",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — out of order",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:word:out-of-order:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — out of order",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:word:out-of-order:audio",
+          "transcript": "out of order"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:word:out-of-order:r1",
+            "targetText": "out of order",
+            "meaningByLocale": {
+              "ru": "не работает, неисправен.",
+              "uk": "не працює, несправний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "out of order",
+          "definitionByLocale": {
+            "ru": "не работает, неисправен.",
+            "uk": "не працює, несправний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем повесить на лифт табличку: не работает».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем повесить на лифт табличку: не работает».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can put a sign on the lift: out of order.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем повесить на лифт табличку: не работает».",
+          "uk": "Скажіть із can: «Ми можемо повісити на ліфт табличку: не працює»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "put",
+          "a",
+          "sign",
+          "on",
+          "the",
+          "lift:",
+          "out",
+          "of",
+          "order"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i02:r1",
+          "text": "We can put a sign on the lift: out of order."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i02:r2",
+          "text": "We could put a sign on the lift: out of order."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i02:r3",
+          "text": "We cannot put a sign on the lift: out of order."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i02:audio",
+          "transcript": "We can put a sign on the lift: out of order."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:i02:r1",
+            "targetText": "We can put a sign on the lift: out of order.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i02:r2",
+            "targetText": "We could put a sign on the lift: out of order.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i02:r3",
+            "targetText": "We cannot put a sign on the lift: out of order.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can put a sign on the lift: out of order.",
+              "uk": "У записі звучить We can put a sign on the lift: out of order."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can put a sign on the lift: out of order.",
+              "uk": "У записі звучить We can put a sign on the lift: out of order."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ put a sign on the lift: out of order.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-46:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:word:for-sale",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — for sale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:word:for-sale:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — for sale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:word:for-sale:audio",
+          "transcript": "for sale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:word:for-sale:r1",
+            "targetText": "for sale",
+            "meaningByLocale": {
+              "ru": "продаётся, выставлен на продажу.",
+              "uk": "продається, виставлений на продаж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "for sale",
+          "definitionByLocale": {
+            "ru": "продаётся, выставлен на продажу.",
+            "uk": "продається, виставлений на продаж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Снаружи можно посмотреть велосипеды, выставленные на продажу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Снаружи можно посмотреть велосипеды, выставленные на продажу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can see the bikes for sale outside.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Снаружи можно посмотреть велосипеды, выставленные на продажу».",
+          "uk": "Скажіть із can: «Надворі можна подивитися велосипеди, виставлені на продаж»."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "see",
+          "the",
+          "bikes",
+          "for",
+          "sale",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i05:r1",
+          "text": "You can see the bikes for sale outside."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i05:r2",
+          "text": "You could see the bikes for sale outside."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i05:r3",
+          "text": "You cannot see the bikes for sale outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i05:audio",
+          "transcript": "You can see the bikes for sale outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:i05:r1",
+            "targetText": "You can see the bikes for sale outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i05:r2",
+            "targetText": "You could see the bikes for sale outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i05:r3",
+            "targetText": "You cannot see the bikes for sale outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can see the bikes for sale outside.",
+              "uk": "У записі звучить You can see the bikes for sale outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can see the bikes for sale outside.",
+              "uk": "У записі звучить You can see the bikes for sale outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "You ___ see the bikes for sale outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-46:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:word:on-sale",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — on sale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:word:on-sale:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — on sale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:word:on-sale:audio",
+          "transcript": "on sale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:word:on-sale:r1",
+            "targetText": "on sale",
+            "meaningByLocale": {
+              "ru": "со скидкой, на распродаже.",
+              "uk": "зі знижкою, на розпродажі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on sale",
+          "definitionByLocale": {
+            "ru": "со скидкой, на распродаже.",
+            "uk": "зі знижкою, на розпродажі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я могу купить эти туфли на распродаже».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я могу купить эти туфли на распродаже».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can buy these shoes on sale.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я могу купить эти туфли на распродаже».",
+          "uk": "Скажіть із can: «Я можу купити ці туфлі на розпродажі»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "buy",
+          "these",
+          "shoes",
+          "on",
+          "sale"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i08:r1",
+          "text": "I can buy these shoes on sale."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i08:r2",
+          "text": "I could buy these shoes on sale."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i08:r3",
+          "text": "I cannot buy these shoes on sale."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i08:audio",
+          "transcript": "I can buy these shoes on sale."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:i08:r1",
+            "targetText": "I can buy these shoes on sale.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i08:r2",
+            "targetText": "I could buy these shoes on sale.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i08:r3",
+            "targetText": "I cannot buy these shoes on sale.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can buy these shoes on sale.",
+              "uk": "У записі звучить I can buy these shoes on sale."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can buy these shoes on sale.",
+              "uk": "У записі звучить I can buy these shoes on sale."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ buy these shoes on sale.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-46:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:word:in-stock",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in stock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:word:in-stock:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in stock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:word:in-stock:audio",
+          "transcript": "in stock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:word:in-stock:r1",
+            "targetText": "in stock",
+            "meaningByLocale": {
+              "ru": "в наличии.",
+              "uk": "у наявності."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in stock",
+          "definitionByLocale": {
+            "ru": "в наличии.",
+            "uk": "у наявності."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем купить последний экземпляр в наличии».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем купить последний экземпляр в наличии».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can buy the last one in stock.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем купить последний экземпляр в наличии».",
+          "uk": "Скажіть із can: «Ми можемо купити останній примірник у наявності»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "buy",
+          "the",
+          "last",
+          "one",
+          "in",
+          "stock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i11:r1",
+          "text": "We can buy the last one in stock."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i11:r2",
+          "text": "We could buy the last one in stock."
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i11:r3",
+          "text": "We cannot buy the last one in stock."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i11:audio",
+          "transcript": "We can buy the last one in stock."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-46:i11:r1",
+            "targetText": "We can buy the last one in stock.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i11:r2",
+            "targetText": "We could buy the last one in stock.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i11:r3",
+            "targetText": "We cannot buy the last one in stock.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can buy the last one in stock.",
+              "uk": "У записі звучить We can buy the last one in stock."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can buy the last one in stock.",
+              "uk": "У записі звучить We can buy the last one in stock."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-46:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-46:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ buy the last one in stock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-46:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-46:i13:p1",
+            "target": "out of order",
+            "meaningByLocale": {
+              "ru": "не работает, неисправен",
+              "uk": "не працює, несправний"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-46:i13:p2",
+            "target": "for sale",
+            "meaningByLocale": {
+              "ru": "продаётся, выставлен на продажу",
+              "uk": "продається, виставлений на продаж"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-46:i13:p3",
+            "target": "on sale",
+            "meaningByLocale": {
+              "ru": "со скидкой, на распродаже",
+              "uk": "зі знижкою, на розпродажі"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-46:i13:p4",
+            "target": "in stock",
+            "meaningByLocale": {
+              "ru": "в наличии",
+              "uk": "у наявності"
+            }
+          }
+        ],
+        "leftColumn": [
+          "out of order",
+          "for sale",
+          "on sale",
+          "in stock"
+        ],
+        "rightColumn": [
+          "не работает, неисправен",
+          "продаётся, выставлен на продажу",
+          "со скидкой, на распродаже",
+          "в наличии"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о покупке со скидкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите о покупке со скидкой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i16:audio",
+          "transcript": "I can buy these shoes on sale."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can buy these shoes on sale.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о последнем экземпляре",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите о последнем экземпляре",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-46:i17:audio",
+          "transcript": "We can buy the last one in stock."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can buy the last one in stock.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e2ccdf1278338541dbc6005ca68a701e0e2dd1f536e5aca7f1d3ff19b148b994"
+}

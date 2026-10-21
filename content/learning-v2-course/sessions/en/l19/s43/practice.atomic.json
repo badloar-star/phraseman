@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-43:word:right-away",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — right away",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:right-away:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — right away",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:right-away:audio",
+            "transcript": "right away"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:right-away:r1",
+              "targetText": "right away",
+              "meaningByLocale": {
+                "ru": "сразу, без промедления.",
+                "uk": "одразу, без зволікання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "right away",
+            "definitionByLocale": {
+              "ru": "сразу, без промедления.",
+              "uk": "одразу, без зволікання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне начать сразу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне начать сразу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I start right away?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне начать сразу?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені почати одразу?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "start",
+            "right",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i02:r1",
+            "text": "Could I start right away?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i02:r2",
+            "text": "Can I start right away?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i02:r3",
+            "text": "Could we start right away?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i02:audio",
+            "transcript": "Could I start right away?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i02:r1",
+              "targetText": "Could I start right away?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r2",
+              "targetText": "Can I start right away?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r3",
+              "targetText": "Could we start right away?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I start right away?",
+                "uk": "У записі звучить Could I start right away?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I start right away?",
+                "uk": "У записі звучить Could I start right away?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ start right away?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:from-now-on",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — from now on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:from-now-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — from now on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:from-now-on:audio",
+            "transcript": "from now on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:from-now-on:r1",
+              "targetText": "from now on",
+              "meaningByLocale": {
+                "ru": "с этого момента и дальше.",
+                "uk": "відтепер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "from now on",
+            "definitionByLocale": {
+              "ru": "с этого момента и дальше.",
+              "uk": "відтепер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне с этого момента работать из дома?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне с этого момента работать из дома?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I work from home from now on?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне с этого момента работать из дома?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені відтепер працювати з дому?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "work",
+            "from",
+            "home",
+            "from",
+            "now",
+            "on"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i05:r1",
+            "text": "Could I work from home from now on?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i05:r2",
+            "text": "Can I work from home from now on?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i05:r3",
+            "text": "Could we work from home from now on?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i05:audio",
+            "transcript": "Could I work from home from now on?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i05:r1",
+              "targetText": "Could I work from home from now on?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r2",
+              "targetText": "Can I work from home from now on?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r3",
+              "targetText": "Could we work from home from now on?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work from home from now on?",
+                "uk": "У записі звучить Could I work from home from now on?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work from home from now on?",
+                "uk": "У записі звучить Could I work from home from now on?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ work from home from now on?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:once-again",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — once again",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:once-again:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — once again",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:once-again:audio",
+            "transcript": "once again"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:once-again:r1",
+              "targetText": "once again",
+              "meaningByLocale": {
+                "ru": "ещё раз, снова.",
+                "uk": "ще раз, знову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "once again",
+            "definitionByLocale": {
+              "ru": "ещё раз, снова.",
+              "uk": "ще раз, знову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне попробовать ещё раз?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне попробовать ещё раз?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I try once again?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне попробовать ещё раз?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені спробувати ще раз?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "try",
+            "once",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i08:r1",
+            "text": "Could I try once again?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i08:r2",
+            "text": "Can I try once again?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i08:r3",
+            "text": "Could we try once again?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i08:audio",
+            "transcript": "Could I try once again?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i08:r1",
+              "targetText": "Could I try once again?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r2",
+              "targetText": "Can I try once again?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r3",
+              "targetText": "Could we try once again?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try once again?",
+                "uk": "У записі звучить Could I try once again?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try once again?",
+                "uk": "У записі звучить Could I try once again?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ try once again?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:for-a-while",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — for a while",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:for-a-while:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — for a while",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:for-a-while:audio",
+            "transcript": "for a while"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:for-a-while:r1",
+              "targetText": "for a while",
+              "meaningByLocale": {
+                "ru": "некоторое время, ненадолго.",
+                "uk": "деякий час, ненадовго."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "for a while",
+            "definitionByLocale": {
+              "ru": "некоторое время, ненадолго.",
+              "uk": "деякий час, ненадовго."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне немного отдохнуть?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне немного отдохнуть?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I rest for a while?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне немного отдохнуть?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені трохи відпочити?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "rest",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i11:r1",
+            "text": "Could I rest for a while?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i11:r2",
+            "text": "Can I rest for a while?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i11:r3",
+            "text": "Could we rest for a while?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i11:audio",
+            "transcript": "Could I rest for a while?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i11:r1",
+              "targetText": "Could I rest for a while?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r2",
+              "targetText": "Can I rest for a while?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r3",
+              "targetText": "Could we rest for a while?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I rest for a while?",
+                "uk": "У записі звучить Could I rest for a while?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I rest for a while?",
+                "uk": "У записі звучить Could I rest for a while?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ rest for a while?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-43:i13:p1",
+              "target": "right away",
+              "meaningByLocale": {
+                "ru": "сразу, без промедления",
+                "uk": "одразу, без зволікання"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p2",
+              "target": "from now on",
+              "meaningByLocale": {
+                "ru": "с этого момента и дальше",
+                "uk": "відтепер"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p3",
+              "target": "once again",
+              "meaningByLocale": {
+                "ru": "ещё раз, снова",
+                "uk": "ще раз, знову"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p4",
+              "target": "for a while",
+              "meaningByLocale": {
+                "ru": "некоторое время, ненадолго",
+                "uk": "деякий час, ненадовго"
+              }
+            }
+          ],
+          "leftColumn": [
+            "right away",
+            "from now on",
+            "once again",
+            "for a while"
+          ],
+          "rightColumn": [
+            "сразу, без промедления",
+            "с этого момента и дальше",
+            "ещё раз, снова",
+            "некоторое время, ненадолго"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанная будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанная будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите, что умеете делать сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i16:audio",
+            "transcript": "I can start right away."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can start right away.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i17:audio",
+            "transcript": "This is such a useful lesson."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful lesson.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-43:word:right-away",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — right away",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:right-away:audio"
+        ],
+        "accessibilityLabel": "Картка слова — right away",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:right-away:audio",
+            "transcript": "right away"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:right-away:r1",
+              "targetText": "right away",
+              "meaningByLocale": {
+                "ru": "сразу, без промедления.",
+                "uk": "одразу, без зволікання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "right away",
+            "definitionByLocale": {
+              "ru": "сразу, без промедления.",
+              "uk": "одразу, без зволікання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені почати одразу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені почати одразу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I start right away?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне начать сразу?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені почати одразу?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "start",
+            "right",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i02:r1",
+            "text": "Could I start right away?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i02:r2",
+            "text": "Can I start right away?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i02:r3",
+            "text": "Could we start right away?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i02:audio",
+            "transcript": "Could I start right away?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i02:r1",
+              "targetText": "Could I start right away?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r2",
+              "targetText": "Can I start right away?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r3",
+              "targetText": "Could we start right away?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I start right away?",
+                "uk": "У записі звучить Could I start right away?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I start right away?",
+                "uk": "У записі звучить Could I start right away?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ start right away?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:from-now-on",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — from now on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:from-now-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — from now on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:from-now-on:audio",
+            "transcript": "from now on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:from-now-on:r1",
+              "targetText": "from now on",
+              "meaningByLocale": {
+                "ru": "с этого момента и дальше.",
+                "uk": "відтепер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "from now on",
+            "definitionByLocale": {
+              "ru": "с этого момента и дальше.",
+              "uk": "відтепер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені відтепер працювати з дому?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені відтепер працювати з дому?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I work from home from now on?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне с этого момента работать из дома?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені відтепер працювати з дому?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "work",
+            "from",
+            "home",
+            "from",
+            "now",
+            "on"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i05:r1",
+            "text": "Could I work from home from now on?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i05:r2",
+            "text": "Can I work from home from now on?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i05:r3",
+            "text": "Could we work from home from now on?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i05:audio",
+            "transcript": "Could I work from home from now on?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i05:r1",
+              "targetText": "Could I work from home from now on?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r2",
+              "targetText": "Can I work from home from now on?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r3",
+              "targetText": "Could we work from home from now on?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work from home from now on?",
+                "uk": "У записі звучить Could I work from home from now on?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work from home from now on?",
+                "uk": "У записі звучить Could I work from home from now on?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ work from home from now on?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:once-again",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — once again",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:once-again:audio"
+        ],
+        "accessibilityLabel": "Картка слова — once again",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:once-again:audio",
+            "transcript": "once again"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:once-again:r1",
+              "targetText": "once again",
+              "meaningByLocale": {
+                "ru": "ещё раз, снова.",
+                "uk": "ще раз, знову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "once again",
+            "definitionByLocale": {
+              "ru": "ещё раз, снова.",
+              "uk": "ще раз, знову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені спробувати ще раз?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені спробувати ще раз?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I try once again?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне попробовать ещё раз?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені спробувати ще раз?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "try",
+            "once",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i08:r1",
+            "text": "Could I try once again?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i08:r2",
+            "text": "Can I try once again?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i08:r3",
+            "text": "Could we try once again?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i08:audio",
+            "transcript": "Could I try once again?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i08:r1",
+              "targetText": "Could I try once again?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r2",
+              "targetText": "Can I try once again?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r3",
+              "targetText": "Could we try once again?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try once again?",
+                "uk": "У записі звучить Could I try once again?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try once again?",
+                "uk": "У записі звучить Could I try once again?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ try once again?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:word:for-a-while",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — for a while",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:word:for-a-while:audio"
+        ],
+        "accessibilityLabel": "Картка слова — for a while",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:word:for-a-while:audio",
+            "transcript": "for a while"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:word:for-a-while:r1",
+              "targetText": "for a while",
+              "meaningByLocale": {
+                "ru": "некоторое время, ненадолго.",
+                "uk": "деякий час, ненадовго."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "for a while",
+            "definitionByLocale": {
+              "ru": "некоторое время, ненадолго.",
+              "uk": "деякий час, ненадовго."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені трохи відпочити?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені трохи відпочити?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I rest for a while?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне немного отдохнуть?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені трохи відпочити?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "rest",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i11:r1",
+            "text": "Could I rest for a while?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i11:r2",
+            "text": "Can I rest for a while?"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i11:r3",
+            "text": "Could we rest for a while?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i11:audio",
+            "transcript": "Could I rest for a while?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-43:i11:r1",
+              "targetText": "Could I rest for a while?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r2",
+              "targetText": "Can I rest for a while?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r3",
+              "targetText": "Could we rest for a while?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I rest for a while?",
+                "uk": "У записі звучить Could I rest for a while?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I rest for a while?",
+                "uk": "У записі звучить Could I rest for a while?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-43:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-43:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ rest for a while?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-43:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-43:i13:p1",
+              "target": "right away",
+              "meaningByLocale": {
+                "ru": "сразу, без промедления",
+                "uk": "одразу, без зволікання"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p2",
+              "target": "from now on",
+              "meaningByLocale": {
+                "ru": "с этого момента и дальше",
+                "uk": "відтепер"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p3",
+              "target": "once again",
+              "meaningByLocale": {
+                "ru": "ещё раз, снова",
+                "uk": "ще раз, знову"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-43:i13:p4",
+              "target": "for a while",
+              "meaningByLocale": {
+                "ru": "некоторое время, ненадолго",
+                "uk": "деякий час, ненадовго"
+              }
+            }
+          ],
+          "leftColumn": [
+            "right away",
+            "from now on",
+            "once again",
+            "for a while"
+          ],
+          "rightColumn": [
+            "одразу, без зволікання",
+            "відтепер",
+            "ще раз, знову",
+            "деякий час, ненадовго"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почута майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почута майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть, що вмієте робити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i16:audio",
+            "transcript": "I can start right away."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can start right away.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-43:i17:audio",
+            "transcript": "This is such a useful lesson."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful lesson.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-43:word:right-away",
+      "correctText": "right away",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i01",
+      "correctText": "Could I start right away?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i02",
+      "correctText": "Could I start right away?",
+      "correctResponseId": "en:lesson-19:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i03",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-19:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:word:from-now-on",
+      "correctText": "from now on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i04",
+      "correctText": "Could I work from home from now on?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i05",
+      "correctText": "Could I work from home from now on?",
+      "correctResponseId": "en:lesson-19:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i06",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-19:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:word:once-again",
+      "correctText": "once again",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i07",
+      "correctText": "Could I try once again?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i08",
+      "correctText": "Could I try once again?",
+      "correctResponseId": "en:lesson-19:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i09",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-19:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:word:for-a-while",
+      "correctText": "for a while",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i10",
+      "correctText": "Could I rest for a while?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i11",
+      "correctText": "Could I rest for a while?",
+      "correctResponseId": "en:lesson-19:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i12",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-19:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i14",
+      "correctText": "I will be able to explain this.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i16",
+      "correctText": "I can start right away.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-43:i17",
+      "correctText": "This is such a useful lesson.",
+      "correctResponseId": null
+    }
+  ]
+}

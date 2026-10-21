@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-47:word:in-full",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in full",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:word:in-full:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in full",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:word:in-full:audio",
+          "transcript": "in full"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:word:in-full:r1",
+            "targetText": "in full",
+            "meaningByLocale": {
+              "ru": "полностью, в полном размере.",
+              "uk": "повністю, у повному розмірі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in full",
+          "definitionByLocale": {
+            "ru": "полностью, в полном размере.",
+            "uk": "повністю, у повному розмірі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне заплатить полностью?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне заплатить полностью?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I pay in full?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне заплатить полностью?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені заплатити повністю?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "pay",
+          "in",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i02:r1",
+          "text": "Could I pay in full?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i02:r2",
+          "text": "Can I pay in full?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i02:r3",
+          "text": "Could we pay in full?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i02:audio",
+          "transcript": "Could I pay in full?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:i02:r1",
+            "targetText": "Could I pay in full?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i02:r2",
+            "targetText": "Can I pay in full?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i02:r3",
+            "targetText": "Could we pay in full?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay in full?",
+              "uk": "У записі звучить Could I pay in full?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay in full?",
+              "uk": "У записі звучить Could I pay in full?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ pay in full?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-47:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:word:in-half",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in half",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:word:in-half:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in half",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:word:in-half:audio",
+          "transcript": "in half"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:word:in-half:r1",
+            "targetText": "in half",
+            "meaningByLocale": {
+              "ru": "пополам, на две равные части.",
+              "uk": "навпіл, на дві рівні частини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in half",
+          "definitionByLocale": {
+            "ru": "пополам, на две равные части.",
+            "uk": "навпіл, на дві рівні частини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне разрезать это пополам?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне разрезать это пополам?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I cut this in half?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне разрезать это пополам?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені розрізати це навпіл?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "cut",
+          "this",
+          "in",
+          "half"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i05:r1",
+          "text": "Could I cut this in half?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i05:r2",
+          "text": "Can I cut this in half?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i05:r3",
+          "text": "Could we cut this in half?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i05:audio",
+          "transcript": "Could I cut this in half?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:i05:r1",
+            "targetText": "Could I cut this in half?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i05:r2",
+            "targetText": "Can I cut this in half?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i05:r3",
+            "targetText": "Could we cut this in half?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I cut this in half?",
+              "uk": "У записі звучить Could I cut this in half?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I cut this in half?",
+              "uk": "У записі звучить Could I cut this in half?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ cut this in half?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-47:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:word:in-a-row",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in a row",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:word:in-a-row:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in a row",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:word:in-a-row:audio",
+          "transcript": "in a row"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:word:in-a-row:r1",
+            "targetText": "in a row",
+            "meaningByLocale": {
+              "ru": "подряд.",
+              "uk": "поспіль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in a row",
+          "definitionByLocale": {
+            "ru": "подряд.",
+            "uk": "поспіль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне попробовать два раза подряд?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне попробовать два раза подряд?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I try twice in a row?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне попробовать два раза подряд?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені спробувати двічі поспіль?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "try",
+          "twice",
+          "in",
+          "a",
+          "row"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i08:r1",
+          "text": "Could I try twice in a row?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i08:r2",
+          "text": "Can I try twice in a row?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i08:r3",
+          "text": "Could we try twice in a row?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i08:audio",
+          "transcript": "Could I try twice in a row?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:i08:r1",
+            "targetText": "Could I try twice in a row?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i08:r2",
+            "targetText": "Can I try twice in a row?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i08:r3",
+            "targetText": "Could we try twice in a row?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I try twice in a row?",
+              "uk": "У записі звучить Could I try twice in a row?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I try twice in a row?",
+              "uk": "У записі звучить Could I try twice in a row?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ try twice in a row?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-47:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:word:at-a-time",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — at a time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:word:at-a-time:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — at a time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:word:at-a-time:audio",
+          "transcript": "at a time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:word:at-a-time:r1",
+            "targetText": "at a time",
+            "meaningByLocale": {
+              "ru": "за один раз.",
+              "uk": "за один раз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "at a time",
+          "definitionByLocale": {
+            "ru": "за один раз.",
+            "uk": "за один раз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с Could I: «Можно мне брать по одному за раз?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне брать по одному за раз?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I take one at a time?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне брать по одному за раз?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені брати по одному за раз?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "take",
+          "one",
+          "at",
+          "a",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i11:r1",
+          "text": "Could I take one at a time?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i11:r2",
+          "text": "Can I take one at a time?"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i11:r3",
+          "text": "Could we take one at a time?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i11:audio",
+          "transcript": "Could I take one at a time?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-47:i11:r1",
+            "targetText": "Could I take one at a time?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i11:r2",
+            "targetText": "Can I take one at a time?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i11:r3",
+            "targetText": "Could we take one at a time?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take one at a time?",
+              "uk": "У записі звучить Could I take one at a time?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take one at a time?",
+              "uk": "У записі звучить Could I take one at a time?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-47:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-19:session-47:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ take one at a time?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-47:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-47:i13:p1",
+            "target": "in full",
+            "meaningByLocale": {
+              "ru": "полностью, в полном размере",
+              "uk": "повністю, у повному розмірі"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-47:i13:p2",
+            "target": "in half",
+            "meaningByLocale": {
+              "ru": "пополам, на две равные части",
+              "uk": "навпіл, на дві рівні частини"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-47:i13:p3",
+            "target": "in a row",
+            "meaningByLocale": {
+              "ru": "подряд",
+              "uk": "поспіль"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-47:i13:p4",
+            "target": "at a time",
+            "meaningByLocale": {
+              "ru": "за один раз",
+              "uk": "за один раз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "in full",
+          "in half",
+          "in a row",
+          "at a time"
+        ],
+        "rightColumn": [
+          "полностью, в полном размере",
+          "пополам, на две равные части",
+          "подряд",
+          "за один раз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанная будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанная будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: скажите, что умеете делать сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i16:audio",
+          "transcript": "I can pay in full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can pay in full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните впечатление",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните впечатление",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-47:i17:audio",
+          "transcript": "This box is so heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This box is so heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6871efeacc5803fd23cc57c9008f06781897fe380b6dd6c1100c013c7b753aeb"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без стиральной машины",
+        "uk": "Без пральної машини"
+      },
+      "bodyByLocale": {
+        "ru": "By hand — вручную, без машины. На этикетке свитера указана ручная стирка, и знакомая может постирать его вручную. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Эти выражения уточняют способ действия, количество или частоту.",
+        "uk": "By hand — вручну, без машини. На етикетці светра вказане ручне прання, і знайома може випрати його вручну. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Ці вирази уточнюють спосіб дії, кількість або частоту."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r1",
+              "text": "She can wash this by hand."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r2",
+              "text": "She cans wash this by hand."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r3",
+              "text": "She can to wash this by hand."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r1",
+              "text": "She can wash this by hand."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r2",
+              "text": "She cans wash this by hand."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro1:r3",
+              "text": "She can to wash this by hand."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сколько времени всего",
+        "uk": "Скільки часу загалом"
+      },
+      "bodyByLocale": {
+        "ru": "In total — всего, в общей сложности. У вас два свободных часа на всю встречу. Вы уточняете общую продолжительность, а не время начала. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Эти выражения уточняют способ действия, количество или частоту.",
+        "uk": "In total — усього, загалом. Ви маєте дві вільні години на всю зустріч. Ви уточнюєте загальну тривалість, а не час початку. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Ці вирази уточнюють спосіб дії, кількість або частоту."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r1",
+              "text": "I can stay for two hours in total."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r2",
+              "text": "I cans stay for two hours in total."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r3",
+              "text": "I can to stay for two hours in total."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r1",
+              "text": "I can stay for two hours in total."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r2",
+              "text": "I cans stay for two hours in total."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro2:r3",
+              "text": "I can to stay for two hours in total."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предел и частота",
+        "uk": "Межа й частота"
+      },
+      "bodyByLocale": {
+        "ru": "At most — не больше: в машине осталось четыре места, так что можно взять максимум четырёх человек. Now and then — время от времени: родственники живут далеко, но иногда могут приезжать. Это не точное расписание. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Эти выражения уточняют способ действия, количество или частоту.",
+        "uk": "At most — не більше: в машині залишилося чотири місця, тож можна взяти щонайбільше чотирьох людей. Now and then — час від часу: родичі живуть далеко, але іноді можуть приїжджати. Це не точний розклад. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Ці вирази уточнюють спосіб дії, кількість або частоту."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r1",
+              "text": "They can visit now and then."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r2",
+              "text": "They cans visit now and then."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r3",
+              "text": "They can to visit now and then."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r1",
+              "text": "They can visit now and then."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r2",
+              "text": "They cans visit now and then."
+            },
+            {
+              "responseId": "en:lesson-19:session-45:intro3:r3",
+              "text": "They can to visit now and then."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79f59e7b41b828862cc6f24f1619ad0b64cf37811e4bbb4176c4a6323ea6c6ee"
+}

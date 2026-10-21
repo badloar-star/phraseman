@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-45:word:by-hand",
+    "correctText": "by hand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i01",
+    "correctText": "She can wash this by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i02",
+    "correctText": "She can wash this by hand.",
+    "correctResponseId": "en:lesson-19:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:word:in-total",
+    "correctText": "in total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i04",
+    "correctText": "I can stay for two hours in total.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i05",
+    "correctText": "I can stay for two hours in total.",
+    "correctResponseId": "en:lesson-19:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:word:at-most",
+    "correctText": "at most",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i07",
+    "correctText": "We can take at most four people.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i08",
+    "correctText": "We can take at most four people.",
+    "correctResponseId": "en:lesson-19:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:word:now-and-then",
+    "correctText": "now and then",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i10",
+    "correctText": "They can visit now and then.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i11",
+    "correctText": "They can visit now and then.",
+    "correctResponseId": "en:lesson-19:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i13",
+    "correctText": "en:lesson-19:session-45:i13:p1=by hand\nen:lesson-19:session-45:i13:p2=in total\nen:lesson-19:session-45:i13:p3=at most\nen:lesson-19:session-45:i13:p4=now and then",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i16",
+    "correctText": "She can wash this by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-45:i17",
+    "correctText": "We can take at most four people.",
+    "correctResponseId": null
+  }
+]

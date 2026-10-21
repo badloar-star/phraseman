@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-44:word:in-a-hurry",
+    "correctText": "in a hurry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i01",
+    "correctText": "She can get ready in a hurry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i02",
+    "correctText": "She can get ready in a hurry.",
+    "correctResponseId": "en:lesson-19:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:word:on-my-own",
+    "correctText": "on my own",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i04",
+    "correctText": "I can do this on my own.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i05",
+    "correctText": "I can do this on my own.",
+    "correctResponseId": "en:lesson-19:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:word:in-public",
+    "correctText": "in public",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i07",
+    "correctText": "She can sing in public.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i08",
+    "correctText": "She can sing in public.",
+    "correctResponseId": "en:lesson-19:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:word:in-private",
+    "correctText": "in private",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i10",
+    "correctText": "We can talk in private.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i11",
+    "correctText": "We can talk in private.",
+    "correctResponseId": "en:lesson-19:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i13",
+    "correctText": "en:lesson-19:session-44:i13:p1=in a hurry\nen:lesson-19:session-44:i13:p2=on my own\nen:lesson-19:session-44:i13:p3=in public\nen:lesson-19:session-44:i13:p4=in private",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i16",
+    "correctText": "I can do this on my own.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-44:i17",
+    "correctText": "We can talk in private.",
+    "correctResponseId": null
+  }
+]

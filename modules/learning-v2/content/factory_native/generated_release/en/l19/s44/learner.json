@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-44:word:in-a-hurry",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in a hurry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:word:in-a-hurry:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in a hurry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:word:in-a-hurry:audio",
+          "transcript": "in a hurry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:word:in-a-hurry:r1",
+            "targetText": "in a hurry",
+            "meaningByLocale": {
+              "ru": "в спешке, торопясь.",
+              "uk": "поспіхом, поспішаючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in a hurry",
+          "definitionByLocale": {
+            "ru": "в спешке, торопясь.",
+            "uk": "поспіхом, поспішаючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Она может собраться в спешке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Она может собраться в спешке».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can get ready in a hurry.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Она может собраться в спешке».",
+          "uk": "Скажіть із can: «Вона може зібратися поспіхом»."
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "get",
+          "ready",
+          "in",
+          "a",
+          "hurry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i02:r1",
+          "text": "She can get ready in a hurry."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i02:r2",
+          "text": "She could get ready in a hurry."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i02:r3",
+          "text": "She cannot get ready in a hurry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i02:audio",
+          "transcript": "She can get ready in a hurry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:i02:r1",
+            "targetText": "She can get ready in a hurry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i02:r2",
+            "targetText": "She could get ready in a hurry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i02:r3",
+            "targetText": "She cannot get ready in a hurry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can get ready in a hurry.",
+              "uk": "У записі звучить She can get ready in a hurry."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can get ready in a hurry.",
+              "uk": "У записі звучить She can get ready in a hurry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "She ___ get ready in a hurry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-44:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:word:on-my-own",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — on my own",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:word:on-my-own:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — on my own",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:word:on-my-own:audio",
+          "transcript": "on my own"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:word:on-my-own:r1",
+            "targetText": "on my own",
+            "meaningByLocale": {
+              "ru": "самостоятельно, без чужой помощи.",
+              "uk": "самостійно, без чужої допомоги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on my own",
+          "definitionByLocale": {
+            "ru": "самостоятельно, без чужой помощи.",
+            "uk": "самостійно, без чужої допомоги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я могу сделать это своими силами».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я могу сделать это своими силами».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can do this on my own.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я могу сделать это своими силами».",
+          "uk": "Скажіть із can: «Я можу зробити це власними силами»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "do",
+          "this",
+          "on",
+          "my",
+          "own"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i05:r1",
+          "text": "I can do this on my own."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i05:r2",
+          "text": "I could do this on my own."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i05:r3",
+          "text": "I cannot do this on my own."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i05:audio",
+          "transcript": "I can do this on my own."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:i05:r1",
+            "targetText": "I can do this on my own.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i05:r2",
+            "targetText": "I could do this on my own.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i05:r3",
+            "targetText": "I cannot do this on my own.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can do this on my own.",
+              "uk": "У записі звучить I can do this on my own."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can do this on my own.",
+              "uk": "У записі звучить I can do this on my own."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ do this on my own.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-44:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:word:in-public",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in public",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:word:in-public:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in public",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:word:in-public:audio",
+          "transcript": "in public"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:word:in-public:r1",
+            "targetText": "in public",
+            "meaningByLocale": {
+              "ru": "публично, перед другими людьми.",
+              "uk": "публічно, перед іншими людьми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in public",
+          "definitionByLocale": {
+            "ru": "публично, перед другими людьми.",
+            "uk": "публічно, перед іншими людьми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Она может петь перед людьми».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Она может петь перед людьми».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can sing in public.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Она может петь перед людьми».",
+          "uk": "Скажіть із can: «Вона може співати перед людьми»."
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "sing",
+          "in",
+          "public"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i08:r1",
+          "text": "She can sing in public."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i08:r2",
+          "text": "She could sing in public."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i08:r3",
+          "text": "She cannot sing in public."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i08:audio",
+          "transcript": "She can sing in public."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:i08:r1",
+            "targetText": "She can sing in public.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i08:r2",
+            "targetText": "She could sing in public.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i08:r3",
+            "targetText": "She cannot sing in public.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can sing in public.",
+              "uk": "У записі звучить She can sing in public."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can sing in public.",
+              "uk": "У записі звучить She can sing in public."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "She ___ sing in public.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-44:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:word:in-private",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in private",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:word:in-private:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in private",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:word:in-private:audio",
+          "transcript": "in private"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:word:in-private:r1",
+            "targetText": "in private",
+            "meaningByLocale": {
+              "ru": "наедине, без посторонних.",
+              "uk": "наодинці, без сторонніх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in private",
+          "definitionByLocale": {
+            "ru": "наедине, без посторонних.",
+            "uk": "наодинці, без сторонніх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Мы можем поговорить наедине».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Мы можем поговорить наедине».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can talk in private.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Мы можем поговорить наедине».",
+          "uk": "Скажіть із can: «Ми можемо поговорити наодинці»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "talk",
+          "in",
+          "private"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i11:r1",
+          "text": "We can talk in private."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i11:r2",
+          "text": "We could talk in private."
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i11:r3",
+          "text": "We cannot talk in private."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i11:audio",
+          "transcript": "We can talk in private."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-44:i11:r1",
+            "targetText": "We can talk in private.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i11:r2",
+            "targetText": "We could talk in private.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i11:r3",
+            "targetText": "We cannot talk in private.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can talk in private.",
+              "uk": "У записі звучить We can talk in private."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can talk in private.",
+              "uk": "У записі звучить We can talk in private."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-44:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-44:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "We ___ talk in private.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-44:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-44:i13:p1",
+            "target": "in a hurry",
+            "meaningByLocale": {
+              "ru": "в спешке, торопясь",
+              "uk": "поспіхом, поспішаючи"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-44:i13:p2",
+            "target": "on my own",
+            "meaningByLocale": {
+              "ru": "самостоятельно, без чужой помощи",
+              "uk": "самостійно, без чужої допомоги"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-44:i13:p3",
+            "target": "in public",
+            "meaningByLocale": {
+              "ru": "публично, перед другими людьми",
+              "uk": "публічно, перед іншими людьми"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-44:i13:p4",
+            "target": "in private",
+            "meaningByLocale": {
+              "ru": "наедине, без посторонних",
+              "uk": "наодинці, без сторонніх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "in a hurry",
+          "on my own",
+          "in public",
+          "in private"
+        ],
+        "rightColumn": [
+          "в спешке, торопясь",
+          "самостоятельно, без чужой помощи",
+          "публично, перед другими людьми",
+          "наедине, без посторонних"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что сделаете это сами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что сделаете это сами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i16:audio",
+          "transcript": "I can do this on my own."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can do this on my own.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите разговор наедине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Предложите разговор наедине",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-44:i17:audio",
+          "transcript": "We can talk in private."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can talk in private.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d985ef3c1c13f008e3531741ae24d72f7a5e3044c9d4c5c1a50ad5449959e80e"
+}

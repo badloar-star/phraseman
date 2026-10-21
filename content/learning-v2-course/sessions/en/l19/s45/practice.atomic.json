@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-45:word:by-hand",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — by hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:by-hand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — by hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:by-hand:audio",
+            "transcript": "by hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:by-hand:r1",
+              "targetText": "by hand",
+              "meaningByLocale": {
+                "ru": "вручную.",
+                "uk": "вручну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by hand",
+            "definitionByLocale": {
+              "ru": "вручную.",
+              "uk": "вручну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Она может постирать это вручную».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Она может постирать это вручную».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can wash this by hand.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может постирать это вручную».",
+            "uk": "Скажіть із can: «Вона може випрати це вручну»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "wash",
+            "this",
+            "by",
+            "hand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i02:r1",
+            "text": "She can wash this by hand."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i02:r2",
+            "text": "She could wash this by hand."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i02:r3",
+            "text": "She cannot wash this by hand."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i02:audio",
+            "transcript": "She can wash this by hand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i02:r1",
+              "targetText": "She can wash this by hand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r2",
+              "targetText": "She could wash this by hand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r3",
+              "targetText": "She cannot wash this by hand.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can wash this by hand.",
+                "uk": "У записі звучить She can wash this by hand."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can wash this by hand.",
+                "uk": "У записі звучить She can wash this by hand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ wash this by hand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:in-total",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — in total",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:in-total:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — in total",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:in-total:audio",
+            "transcript": "in total"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:in-total:r1",
+              "targetText": "in total",
+              "meaningByLocale": {
+                "ru": "всего, в общей сложности.",
+                "uk": "усього, загалом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in total",
+            "definitionByLocale": {
+              "ru": "всего, в общей сложности.",
+              "uk": "усього, загалом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Я могу остаться всего на два часа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Я могу остаться всего на два часа».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can stay for two hours in total.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу остаться всего на два часа».",
+            "uk": "Скажіть із can: «Я можу залишитися загалом на дві години»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "stay",
+            "for",
+            "two",
+            "hours",
+            "in",
+            "total"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i05:r1",
+            "text": "I can stay for two hours in total."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i05:r2",
+            "text": "I could stay for two hours in total."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i05:r3",
+            "text": "I cannot stay for two hours in total."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i05:audio",
+            "transcript": "I can stay for two hours in total."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i05:r1",
+              "targetText": "I can stay for two hours in total.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r2",
+              "targetText": "I could stay for two hours in total.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r3",
+              "targetText": "I cannot stay for two hours in total.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can stay for two hours in total.",
+                "uk": "У записі звучить I can stay for two hours in total."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can stay for two hours in total.",
+                "uk": "У записі звучить I can stay for two hours in total."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ stay for two hours in total.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:at-most",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — at most",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:at-most:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — at most",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:at-most:audio",
+            "transcript": "at most"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:at-most:r1",
+              "targetText": "at most",
+              "meaningByLocale": {
+                "ru": "не больше, максимум.",
+                "uk": "не більше, щонайбільше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at most",
+            "definitionByLocale": {
+              "ru": "не больше, максимум.",
+              "uk": "не більше, щонайбільше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Мы можем взять не больше четырёх человек».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Мы можем взять не больше четырёх человек».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can take at most four people.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем взять не больше четырёх человек».",
+            "uk": "Скажіть із can: «Ми можемо взяти не більше чотирьох людей»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "take",
+            "at",
+            "most",
+            "four",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i08:r1",
+            "text": "We can take at most four people."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i08:r2",
+            "text": "We could take at most four people."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i08:r3",
+            "text": "We cannot take at most four people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i08:audio",
+            "transcript": "We can take at most four people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i08:r1",
+              "targetText": "We can take at most four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r2",
+              "targetText": "We could take at most four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r3",
+              "targetText": "We cannot take at most four people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can take at most four people.",
+                "uk": "У записі звучить We can take at most four people."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can take at most four people.",
+                "uk": "У записі звучить We can take at most four people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ take at most four people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:now-and-then",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — now and then",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:now-and-then:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — now and then",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:now-and-then:audio",
+            "transcript": "now and then"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:now-and-then:r1",
+              "targetText": "now and then",
+              "meaningByLocale": {
+                "ru": "время от времени, иногда.",
+                "uk": "час від часу, іноді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "now and then",
+            "definitionByLocale": {
+              "ru": "время от времени, иногда.",
+              "uk": "час від часу, іноді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с can: «Они могут приезжать время от времени».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с can: «Они могут приезжать время от времени».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They can visit now and then.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Они могут приезжать время от времени».",
+            "uk": "Скажіть із can: «Вони можуть приїжджати час від часу»."
+          },
+          "orderedTokens": [
+            "They",
+            "can",
+            "visit",
+            "now",
+            "and",
+            "then"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i11:r1",
+            "text": "They can visit now and then."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i11:r2",
+            "text": "They could visit now and then."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i11:r3",
+            "text": "They cannot visit now and then."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i11:audio",
+            "transcript": "They can visit now and then."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i11:r1",
+              "targetText": "They can visit now and then.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r2",
+              "targetText": "They could visit now and then.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r3",
+              "targetText": "They cannot visit now and then.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They can visit now and then.",
+                "uk": "У записі звучить They can visit now and then."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They can visit now and then.",
+                "uk": "У записі звучить They can visit now and then."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о возможности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "They ___ visit now and then.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о возможности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о возможности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-45:i13:p1",
+              "target": "by hand",
+              "meaningByLocale": {
+                "ru": "вручную",
+                "uk": "вручну"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p2",
+              "target": "in total",
+              "meaningByLocale": {
+                "ru": "всего, в общей сложности",
+                "uk": "усього, загалом"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p3",
+              "target": "at most",
+              "meaningByLocale": {
+                "ru": "не больше, максимум",
+                "uk": "не більше, щонайбільше"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p4",
+              "target": "now and then",
+              "meaningByLocale": {
+                "ru": "время от времени, иногда",
+                "uk": "час від часу, іноді"
+              }
+            }
+          ],
+          "leftColumn": [
+            "by hand",
+            "in total",
+            "at most",
+            "now and then"
+          ],
+          "rightColumn": [
+            "вручную",
+            "всего, в общей сложности",
+            "не больше, максимум",
+            "время от времени, иногда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, как она может постирать вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, как она может постирать вещь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i16:audio",
+            "transcript": "She can wash this by hand."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can wash this by hand.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните предел количества",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Уточните предел количества",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i17:audio",
+            "transcript": "We can take at most four people."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can take at most four people.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-45:word:by-hand",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — by hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:by-hand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — by hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:by-hand:audio",
+            "transcript": "by hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:by-hand:r1",
+              "targetText": "by hand",
+              "meaningByLocale": {
+                "ru": "вручную.",
+                "uk": "вручну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by hand",
+            "definitionByLocale": {
+              "ru": "вручную.",
+              "uk": "вручну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Вона може випрати це вручну».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Вона може випрати це вручну».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can wash this by hand.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Она может постирать это вручную».",
+            "uk": "Скажіть із can: «Вона може випрати це вручну»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "wash",
+            "this",
+            "by",
+            "hand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i02:r1",
+            "text": "She can wash this by hand."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i02:r2",
+            "text": "She could wash this by hand."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i02:r3",
+            "text": "She cannot wash this by hand."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i02:audio",
+            "transcript": "She can wash this by hand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i02:r1",
+              "targetText": "She can wash this by hand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r2",
+              "targetText": "She could wash this by hand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r3",
+              "targetText": "She cannot wash this by hand.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can wash this by hand.",
+                "uk": "У записі звучить She can wash this by hand."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can wash this by hand.",
+                "uk": "У записі звучить She can wash this by hand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "She ___ wash this by hand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:in-total",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — in total",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:in-total:audio"
+        ],
+        "accessibilityLabel": "Картка слова — in total",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:in-total:audio",
+            "transcript": "in total"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:in-total:r1",
+              "targetText": "in total",
+              "meaningByLocale": {
+                "ru": "всего, в общей сложности.",
+                "uk": "усього, загалом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in total",
+            "definitionByLocale": {
+              "ru": "всего, в общей сложности.",
+              "uk": "усього, загалом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Я можу залишитися загалом на дві години».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Я можу залишитися загалом на дві години».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can stay for two hours in total.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Я могу остаться всего на два часа».",
+            "uk": "Скажіть із can: «Я можу залишитися загалом на дві години»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "stay",
+            "for",
+            "two",
+            "hours",
+            "in",
+            "total"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i05:r1",
+            "text": "I can stay for two hours in total."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i05:r2",
+            "text": "I could stay for two hours in total."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i05:r3",
+            "text": "I cannot stay for two hours in total."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i05:audio",
+            "transcript": "I can stay for two hours in total."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i05:r1",
+              "targetText": "I can stay for two hours in total.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r2",
+              "targetText": "I could stay for two hours in total.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r3",
+              "targetText": "I cannot stay for two hours in total.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can stay for two hours in total.",
+                "uk": "У записі звучить I can stay for two hours in total."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can stay for two hours in total.",
+                "uk": "У записі звучить I can stay for two hours in total."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "I ___ stay for two hours in total.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:at-most",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — at most",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:at-most:audio"
+        ],
+        "accessibilityLabel": "Картка слова — at most",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:at-most:audio",
+            "transcript": "at most"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:at-most:r1",
+              "targetText": "at most",
+              "meaningByLocale": {
+                "ru": "не больше, максимум.",
+                "uk": "не більше, щонайбільше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at most",
+            "definitionByLocale": {
+              "ru": "не больше, максимум.",
+              "uk": "не більше, щонайбільше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Ми можемо взяти не більше чотирьох людей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Ми можемо взяти не більше чотирьох людей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can take at most four people.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Мы можем взять не больше четырёх человек».",
+            "uk": "Скажіть із can: «Ми можемо взяти не більше чотирьох людей»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "take",
+            "at",
+            "most",
+            "four",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i08:r1",
+            "text": "We can take at most four people."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i08:r2",
+            "text": "We could take at most four people."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i08:r3",
+            "text": "We cannot take at most four people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i08:audio",
+            "transcript": "We can take at most four people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i08:r1",
+              "targetText": "We can take at most four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r2",
+              "targetText": "We could take at most four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r3",
+              "targetText": "We cannot take at most four people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can take at most four people.",
+                "uk": "У записі звучить We can take at most four people."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can take at most four people.",
+                "uk": "У записі звучить We can take at most four people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "We ___ take at most four people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:word:now-and-then",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — now and then",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:word:now-and-then:audio"
+        ],
+        "accessibilityLabel": "Картка слова — now and then",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:word:now-and-then:audio",
+            "transcript": "now and then"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:word:now-and-then:r1",
+              "targetText": "now and then",
+              "meaningByLocale": {
+                "ru": "время от времени, иногда.",
+                "uk": "час від часу, іноді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "now and then",
+            "definitionByLocale": {
+              "ru": "время от времени, иногда.",
+              "uk": "час від часу, іноді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із can: «Вони можуть приїжджати час від часу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із can: «Вони можуть приїжджати час від часу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They can visit now and then.",
+          "localizedMeaning": {
+            "ru": "Скажите с can: «Они могут приезжать время от времени».",
+            "uk": "Скажіть із can: «Вони можуть приїжджати час від часу»."
+          },
+          "orderedTokens": [
+            "They",
+            "can",
+            "visit",
+            "now",
+            "and",
+            "then"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i11:r1",
+            "text": "They can visit now and then."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i11:r2",
+            "text": "They could visit now and then."
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i11:r3",
+            "text": "They cannot visit now and then."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i11:audio",
+            "transcript": "They can visit now and then."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-45:i11:r1",
+              "targetText": "They can visit now and then.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r2",
+              "targetText": "They could visit now and then.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r3",
+              "targetText": "They cannot visit now and then.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They can visit now and then.",
+                "uk": "У записі звучить They can visit now and then."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They can visit now and then.",
+                "uk": "У записі звучить They can visit now and then."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про можливість зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-45:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-45:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про можливість зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о возможности сейчас.",
+            "uk": "Доповніть фразу про можливість зараз."
+          },
+          "gappedTargetPhrase": "They ___ visit now and then.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-45:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r2",
+              "text": "cans"
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r3",
+              "text": "can to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про можливість зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "Can не получает окончания -s.",
+                "uk": "Can не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про можливість зараз.",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-45:i13:p1",
+              "target": "by hand",
+              "meaningByLocale": {
+                "ru": "вручную",
+                "uk": "вручну"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p2",
+              "target": "in total",
+              "meaningByLocale": {
+                "ru": "всего, в общей сложности",
+                "uk": "усього, загалом"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p3",
+              "target": "at most",
+              "meaningByLocale": {
+                "ru": "не больше, максимум",
+                "uk": "не більше, щонайбільше"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-45:i13:p4",
+              "target": "now and then",
+              "meaningByLocale": {
+                "ru": "время от времени, иногда",
+                "uk": "час від часу, іноді"
+              }
+            }
+          ],
+          "leftColumn": [
+            "by hand",
+            "in total",
+            "at most",
+            "now and then"
+          ],
+          "rightColumn": [
+            "вручну",
+            "усього, загалом",
+            "не більше, щонайбільше",
+            "час від часу, іноді"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i15:audio",
+            "transcript": "We will be able to help tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We will be able to help tomorrow.",
+          "orderedTokens": [
+            "We",
+            "will",
+            "be",
+            "able",
+            "to",
+            "help",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, як вона може випрати річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, як вона може випрати річ",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i16:audio",
+            "transcript": "She can wash this by hand."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can wash this by hand.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть межу кількості",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Уточніть межу кількості",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-45:i17:audio",
+            "transcript": "We can take at most four people."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can take at most four people.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-45:word:by-hand",
+      "correctText": "by hand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i01",
+      "correctText": "She can wash this by hand.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i02",
+      "correctText": "She can wash this by hand.",
+      "correctResponseId": "en:lesson-19:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i03",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:word:in-total",
+      "correctText": "in total",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i04",
+      "correctText": "I can stay for two hours in total.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i05",
+      "correctText": "I can stay for two hours in total.",
+      "correctResponseId": "en:lesson-19:session-45:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i06",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-45:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:word:at-most",
+      "correctText": "at most",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i07",
+      "correctText": "We can take at most four people.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i08",
+      "correctText": "We can take at most four people.",
+      "correctResponseId": "en:lesson-19:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i09",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:word:now-and-then",
+      "correctText": "now and then",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i10",
+      "correctText": "They can visit now and then.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i11",
+      "correctText": "They can visit now and then.",
+      "correctResponseId": "en:lesson-19:session-45:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i12",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-45:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i15",
+      "correctText": "We will be able to help tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i16",
+      "correctText": "She can wash this by hand.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-45:i17",
+      "correctText": "We can take at most four people.",
+      "correctResponseId": null
+    }
+  ]
+}

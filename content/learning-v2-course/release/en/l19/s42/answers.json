@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-42:word:at-present",
+    "correctText": "at present",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i01",
+    "correctText": "At present, I can work from home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i02",
+    "correctText": "At present, I can work from home.",
+    "correctResponseId": "en:lesson-19:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:word:for-instance",
+    "correctText": "for instance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i04",
+    "correctText": "We can help, for instance with cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i05",
+    "correctText": "We can help, for instance with cooking.",
+    "correctResponseId": "en:lesson-19:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:word:in-fact",
+    "correctText": "in fact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i07",
+    "correctText": "In fact, she can speak three languages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i08",
+    "correctText": "In fact, she can speak three languages.",
+    "correctResponseId": "en:lesson-19:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:word:after-all",
+    "correctText": "after all",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i10",
+    "correctText": "I can come after all.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i11",
+    "correctText": "I can come after all.",
+    "correctResponseId": "en:lesson-19:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i13",
+    "correctText": "en:lesson-19:session-42:i13:p1=at present\nen:lesson-19:session-42:i13:p2=for instance\nen:lesson-19:session-42:i13:p3=in fact\nen:lesson-19:session-42:i13:p4=after all",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i16",
+    "correctText": "We can help, for instance with cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-42:i17",
+    "correctText": "I can come after all.",
+    "correctResponseId": null
+  }
+]

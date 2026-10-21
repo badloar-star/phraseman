@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-41:word:on-purpose",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — on purpose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:word:on-purpose:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — on purpose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:word:on-purpose:audio",
+          "transcript": "on purpose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:word:on-purpose:r1",
+            "targetText": "on purpose",
+            "meaningByLocale": {
+              "ru": "намеренно, специально.",
+              "uk": "навмисно, спеціально."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on purpose",
+          "definitionByLocale": {
+            "ru": "намеренно, специально.",
+            "uk": "навмисно, спеціально."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Она умеет плакать специально».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Она умеет плакать специально».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can cry on purpose.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Она умеет плакать специально».",
+          "uk": "Скажіть із can: «Вона вміє плакати навмисно»."
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "cry",
+          "on",
+          "purpose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i02:r1",
+          "text": "She can cry on purpose."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i02:r2",
+          "text": "She could cry on purpose."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i02:r3",
+          "text": "She cannot cry on purpose."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i02:audio",
+          "transcript": "She can cry on purpose."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:i02:r1",
+            "targetText": "She can cry on purpose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i02:r2",
+            "targetText": "She could cry on purpose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i02:r3",
+            "targetText": "She cannot cry on purpose.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can cry on purpose.",
+              "uk": "У записі звучить She can cry on purpose."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can cry on purpose.",
+              "uk": "У записі звучить She can cry on purpose."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i03:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i03:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "She ___ cry on purpose.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-41:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i03:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i03:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:word:by-mistake",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — by mistake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:word:by-mistake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — by mistake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:word:by-mistake:audio",
+          "transcript": "by mistake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:word:by-mistake:r1",
+            "targetText": "by mistake",
+            "meaningByLocale": {
+              "ru": "по ошибке, случайно.",
+              "uk": "помилково, випадково."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "by mistake",
+          "definitionByLocale": {
+            "ru": "по ошибке, случайно.",
+            "uk": "помилково, випадково."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Любой может нажать эту кнопку по ошибке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Любой может нажать эту кнопку по ошибке».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anyone can press this button by mistake.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Любой может нажать эту кнопку по ошибке».",
+          "uk": "Скажіть із can: «Будь-хто може натиснути цю кнопку помилково»."
+        },
+        "orderedTokens": [
+          "Anyone",
+          "can",
+          "press",
+          "this",
+          "button",
+          "by",
+          "mistake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i05:r1",
+          "text": "Anyone can press this button by mistake."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i05:r2",
+          "text": "Anyone could press this button by mistake."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i05:r3",
+          "text": "Anyone cannot press this button by mistake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i05:audio",
+          "transcript": "Anyone can press this button by mistake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:i05:r1",
+            "targetText": "Anyone can press this button by mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i05:r2",
+            "targetText": "Anyone could press this button by mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i05:r3",
+            "targetText": "Anyone cannot press this button by mistake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can press this button by mistake.",
+              "uk": "У записі звучить Anyone can press this button by mistake."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can press this button by mistake.",
+              "uk": "У записі звучить Anyone can press this button by mistake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i06:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i06:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "Anyone ___ press this button by mistake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-41:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i06:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i06:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:word:in-general",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in general",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:word:in-general:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in general",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:word:in-general:audio",
+          "transcript": "in general"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:word:in-general:r1",
+            "targetText": "in general",
+            "meaningByLocale": {
+              "ru": "в целом, вообще.",
+              "uk": "загалом, у цілому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in general",
+          "definitionByLocale": {
+            "ru": "в целом, вообще.",
+            "uk": "загалом, у цілому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «В целом я могу помогать по вечерам».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «В целом я могу помогать по вечерам».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "In general, I can help in the evenings.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «В целом я могу помогать по вечерам».",
+          "uk": "Скажіть із can: «Загалом я можу допомагати вечорами»."
+        },
+        "orderedTokens": [
+          "In",
+          "general,",
+          "I",
+          "can",
+          "help",
+          "in",
+          "the",
+          "evenings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i08:r1",
+          "text": "In general, I can help in the evenings."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i08:r2",
+          "text": "In general, I could help in the evenings."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i08:r3",
+          "text": "In general, I cannot help in the evenings."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i08:audio",
+          "transcript": "In general, I can help in the evenings."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:i08:r1",
+            "targetText": "In general, I can help in the evenings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i08:r2",
+            "targetText": "In general, I could help in the evenings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i08:r3",
+            "targetText": "In general, I cannot help in the evenings.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In general, I can help in the evenings.",
+              "uk": "У записі звучить In general, I can help in the evenings."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In general, I can help in the evenings.",
+              "uk": "У записі звучить In general, I can help in the evenings."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i09:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i09:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "In general, I ___ help in the evenings.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-41:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i09:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i09:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:word:in-particular",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in particular",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:word:in-particular:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in particular",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:word:in-particular:audio",
+          "transcript": "in particular"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:word:in-particular:r1",
+            "targetText": "in particular",
+            "meaningByLocale": {
+              "ru": "в частности, особенно.",
+              "uk": "зокрема, особливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in particular",
+          "definitionByLocale": {
+            "ru": "в частности, особенно.",
+            "uk": "зокрема, особливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с can: «Я могу помочь в частности с готовкой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с can: «Я могу помочь в частности с готовкой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can help with cooking in particular.",
+        "localizedMeaning": {
+          "ru": "Скажите с can: «Я могу помочь в частности с готовкой».",
+          "uk": "Скажіть із can: «Я можу допомогти зокрема з готуванням»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "help",
+          "with",
+          "cooking",
+          "in",
+          "particular"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i11:r1",
+          "text": "I can help with cooking in particular."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i11:r2",
+          "text": "I could help with cooking in particular."
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i11:r3",
+          "text": "I cannot help with cooking in particular."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i11:audio",
+          "transcript": "I can help with cooking in particular."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-41:i11:r1",
+            "targetText": "I can help with cooking in particular.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i11:r2",
+            "targetText": "I could help with cooking in particular.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i11:r3",
+            "targetText": "I cannot help with cooking in particular.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can help with cooking in particular.",
+              "uk": "У записі звучить I can help with cooking in particular."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can help with cooking in particular.",
+              "uk": "У записі звучить I can help with cooking in particular."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о возможности сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-41:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i12:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-19:session-41:i12:r3",
+          "text": "can to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о возможности сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о возможности сейчас.",
+          "uk": "Доповніть фразу про можливість зараз."
+        },
+        "gappedTargetPhrase": "I ___ help with cooking in particular.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-41:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i12:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i12:r3",
+            "text": "can to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о возможности сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "Can не получает окончания -s.",
+              "uk": "Can не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о возможности сейчас.",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-41:i13:p1",
+            "target": "on purpose",
+            "meaningByLocale": {
+              "ru": "намеренно, специально",
+              "uk": "навмисно, спеціально"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-41:i13:p2",
+            "target": "by mistake",
+            "meaningByLocale": {
+              "ru": "по ошибке, случайно",
+              "uk": "помилково, випадково"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-41:i13:p3",
+            "target": "in general",
+            "meaningByLocale": {
+              "ru": "в целом, вообще",
+              "uk": "загалом, у цілому"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-41:i13:p4",
+            "target": "in particular",
+            "meaningByLocale": {
+              "ru": "в частности, особенно",
+              "uk": "зокрема, особливо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "on purpose",
+          "by mistake",
+          "in general",
+          "in particular"
+        ],
+        "rightColumn": [
+          "намеренно, специально",
+          "по ошибке, случайно",
+          "в целом, вообще",
+          "в частности, особенно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: будущая возможность",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: будущая возможность",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, с чем можете помочь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, с чем можете помочь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i16:audio",
+          "transcript": "I can help with cooking in particular."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can help with cooking in particular.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, когда обычно можете помочь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, когда обычно можете помочь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-41:i17:audio",
+          "transcript": "In general, I can help in the evenings."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "In general, I can help in the evenings.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ddfd18bdf1ae0e40c1093faf60897470569ce52d99123d7a223db7f7d384308e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На данный момент",
+        "uk": "На цей час"
+      },
+      "bodyByLocale": {
+        "ru": "At present — в настоящее время. Сейчас вам разрешено работать из дома; вы не утверждаете, что так будет всегда. Это немного формальнее now. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Выражения в начале или конце предложения помогают уточнить время и связать мысли.",
+        "uk": "At present — зараз, на цей час. Нині вам дозволено працювати з дому; ви не стверджуєте, що так буде завжди. Це трохи формальніше за now. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вирази на початку або наприкінці речення допомагають уточнити час і пов’язати думки."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r1",
+              "text": "At present, I can work from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r2",
+              "text": "At present, I cans work from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r3",
+              "text": "At present, I can to work from home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r1",
+              "text": "At present, I can work from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r2",
+              "text": "At present, I cans work from home."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro1:r3",
+              "text": "At present, I can to work from home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Привести пример",
+        "uk": "Навести приклад"
+      },
+      "bodyByLocale": {
+        "ru": "For instance — например. Вы предлагаете помощь с подготовкой праздника и называете готовку как один из возможных вариантов. For example имеет похожее значение. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Выражения в начале или конце предложения помогают уточнить время и связать мысли.",
+        "uk": "For instance — наприклад. Ви пропонуєте допомогу з підготовкою свята й називаєте готування як один із можливих варіантів. For example має схоже значення. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вирази на початку або наприкінці речення допомагають уточнити час і пов’язати думки."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r1",
+              "text": "We can help, for instance with cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r2",
+              "text": "We cans help, for instance with cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r3",
+              "text": "We can to help, for instance with cooking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r1",
+              "text": "We can help, for instance with cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r2",
+              "text": "We cans help, for instance with cooking."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro2:r3",
+              "text": "We can to help, for instance with cooking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дополнить и изменить ответ",
+        "uk": "Доповнити й змінити відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "In fact — на самом деле: собеседник думает, что знакомая знает один иностранный язык, а вы уточняете, что она говорит на трёх языках. After all в конце нашей фразы — всё-таки: сначала вы не могли прийти, но планы изменились. В начале другой фразы after all может означать «ведь». Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Выражения в начале или конце предложения помогают уточнить время и связать мысли.",
+        "uk": "In fact — насправді: співрозмовник думає, що знайома знає одну іноземну мову, а ви уточнюєте, що вона розмовляє трьома мовами. After all наприкінці нашої фрази — усе-таки: спочатку ви не могли прийти, але плани змінилися. На початку іншої фрази after all може означати «адже». Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Вирази на початку або наприкінці речення допомагають уточнити час і пов’язати думки."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r1",
+              "text": "I can come after all."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r2",
+              "text": "I cans come after all."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r3",
+              "text": "I can to come after all."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r1",
+              "text": "I can come after all."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r2",
+              "text": "I cans come after all."
+            },
+            {
+              "responseId": "en:lesson-19:session-42:intro3:r3",
+              "text": "I can to come after all."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9bf934034a48b13d305bb6c8426e07e1ac232ca61543820aa14c0dccf018d1b7"
+}

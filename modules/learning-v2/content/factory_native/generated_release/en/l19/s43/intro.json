@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Начать без ожидания",
+        "uk": "Почати без очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Right away — сразу, без ожидания. Вы пришли на занятие по рисованию, всё готово, и вы спрашиваете, можно ли уже начать. По смыслу это близко к знакомому at once. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Right away — одразу, без очікування. Ви прийшли на заняття з малювання, усе готове, і ви питаєте, чи можна вже почати. За змістом це близько до знайомого at once. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r1",
+              "text": "Could I start right away?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r2",
+              "text": "Could I to start right away?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r3",
+              "text": "I could start right away?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r1",
+              "text": "Could I start right away?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r2",
+              "text": "Could I to start right away?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro1:r3",
+              "text": "I could start right away?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начиная с сегодняшнего дня",
+        "uk": "Починаючи із сьогодні"
+      },
+      "bodyByLocale": {
+        "ru": "From now on — с этого момента и дальше. Вы просите изменить обычный порядок работы: работать из дома не только сегодня, а начиная с сегодняшнего дня. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "From now on — відтепер. Ви просите змінити звичайний порядок роботи: працювати з дому не лише сьогодні, а починаючи із сьогоднішнього дня. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r1",
+              "text": "Could I work from home from now on?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r2",
+              "text": "Could I to work from home from now on?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r3",
+              "text": "I could work from home from now on?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r1",
+              "text": "Could I work from home from now on?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r2",
+              "text": "Could I to work from home from now on?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro2:r3",
+              "text": "I could work from home from now on?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё попытка и короткий отдых",
+        "uk": "Ще спроба й короткий відпочинок"
+      },
+      "bodyByLocale": {
+        "ru": "Once again — ещё раз: первая попытка не удалась, и вы хотите повторить. For a while — некоторое время: после прогулки вы просите ненадолго отдохнуть. Выражение не задаёт точное число минут. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Once again — ще раз: перша спроба не вдалася, і ви хочете повторити. For a while — деякий час: після прогулянки ви просите ненадовго відпочити. Вираз не задає точної кількості хвилин. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r1",
+              "text": "Could I rest for a while?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r2",
+              "text": "Could I to rest for a while?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r3",
+              "text": "I could rest for a while?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r1",
+              "text": "Could I rest for a while?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r2",
+              "text": "Could I to rest for a while?"
+            },
+            {
+              "responseId": "en:lesson-19:session-43:intro3:r3",
+              "text": "I could rest for a while?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9ca912644f234697911fb4c77c2932de6576ab083e8c06f52c558af6347c7575"
+}

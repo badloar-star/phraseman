@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Лифт не работает",
+        "uk": "Ліфт не працює"
+      },
+      "bodyByLocale": {
+        "ru": "Out of order — не работает, неисправен. Лифт сломался, и вы предлагаете повесить на него табличку с этой надписью. В этой сцене выражение относится к технике. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can здесь помогает сказать, что можно сделать в этой ситуации.",
+        "uk": "Out of order — не працює, несправний. Ліфт зламався, і ви пропонуєте повісити на нього табличку із цим написом. У цій сцені вираз стосується техніки. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can тут допомагає сказати, що можна зробити в цій ситуації."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r1",
+              "text": "We can put a sign on the lift: out of order."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r2",
+              "text": "We cans put a sign on the lift: out of order."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r3",
+              "text": "We can to put a sign on the lift: out of order."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r1",
+              "text": "We can put a sign on the lift: out of order."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r2",
+              "text": "We cans put a sign on the lift: out of order."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro1:r3",
+              "text": "We can to put a sign on the lift: out of order."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вещь продаётся",
+        "uk": "Річ продається"
+      },
+      "bodyByLocale": {
+        "ru": "For sale — продаётся, выставлен на продажу. У магазина стоят велосипеды с ценниками. Это не обязательно скидка: выражение сообщает, что вещь можно купить. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can здесь помогает сказать, что можно сделать в этой ситуации.",
+        "uk": "For sale — продається, виставлений на продаж. Біля магазину стоять велосипеди з цінниками. Це не обов’язково знижка: вираз повідомляє, що річ можна купити. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can тут допомагає сказати, що можна зробити в цій ситуації."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r1",
+              "text": "You can see the bikes for sale outside."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r2",
+              "text": "You cans see the bikes for sale outside."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r3",
+              "text": "You can to see the bikes for sale outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r1",
+              "text": "You can see the bikes for sale outside."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r2",
+              "text": "You cans see the bikes for sale outside."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro2:r3",
+              "text": "You can to see the bikes for sale outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Скидка и наличие",
+        "uk": "Знижка й наявність"
+      },
+      "bodyByLocale": {
+        "ru": "On sale здесь — со скидкой, на распродаже: цена туфель снижена. Это обычное значение в американском английском; в британском on sale также может просто означать «в продаже». In stock — в наличии: нужный товар есть в магазине, и остался один экземпляр. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Can здесь помогает сказать, что можно сделать в этой ситуации.",
+        "uk": "On sale тут — зі знижкою, на розпродажі: ціну туфель знижено. Це звичне значення в американській англійській; у британській on sale також може просто означати «у продажу». In stock — у наявності: потрібний товар є в магазині, і залишився один примірник. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Can тут допомагає сказати, що можна зробити в цій ситуації."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r1",
+              "text": "We can buy the last one in stock."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r2",
+              "text": "We cans buy the last one in stock."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r3",
+              "text": "We can to buy the last one in stock."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r1",
+              "text": "We can buy the last one in stock."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r2",
+              "text": "We cans buy the last one in stock."
+            },
+            {
+              "responseId": "en:lesson-19:session-46:intro3:r3",
+              "text": "We can to buy the last one in stock."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f75641b4c5296cb3df9de1eecb837d53cb129f15184f922832ea2f3d368161c9"
+}

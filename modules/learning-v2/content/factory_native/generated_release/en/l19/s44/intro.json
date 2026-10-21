@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Быстро собраться",
+        "uk": "Швидко зібратися"
+      },
+      "bodyByLocale": {
+        "ru": "In a hurry — в спешке, торопясь. Знакомая поздно узнала время встречи, но умеет быстро собраться. Говоря о человеке, можно также сказать She is in a hurry — она торопится. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Дополнительные выражения уточняют, в каких условиях человек может действовать.",
+        "uk": "In a hurry — поспіхом, поспішаючи. Знайома пізно дізналася час зустрічі, але вміє швидко зібратися. Про людину можна також сказати She is in a hurry — вона поспішає. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Додаткові вирази уточнюють, за яких умов людина може діяти."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r1",
+              "text": "She can get ready in a hurry."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r2",
+              "text": "She cans get ready in a hurry."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r3",
+              "text": "She can to get ready in a hurry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r1",
+              "text": "She can get ready in a hurry."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r2",
+              "text": "She cans get ready in a hurry."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro1:r3",
+              "text": "She can to get ready in a hurry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Справиться без помощи",
+        "uk": "Упоратися без допомоги"
+      },
+      "bodyByLocale": {
+        "ru": "On my own здесь — самостоятельно, без помощи. Вы уже умеете собирать эту простую полку и говорите, что справитесь сами. Для другого человека меняется слово перед own: on her own, on your own. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Дополнительные выражения уточняют, в каких условиях человек может действовать.",
+        "uk": "On my own тут — самостійно, без допомоги. Ви вже вмієте збирати цю просту полицю й кажете, що впораєтеся самі. Для іншої людини змінюється слово перед own: on her own, on your own. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Додаткові вирази уточнюють, за яких умов людина може діяти."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r1",
+              "text": "I can do this on my own."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r2",
+              "text": "I cans do this on my own."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r3",
+              "text": "I can to do this on my own."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r1",
+              "text": "I can do this on my own."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r2",
+              "text": "I cans do this on my own."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro2:r3",
+              "text": "I can to do this on my own."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "При людях или наедине",
+        "uk": "При людях чи наодинці"
+      },
+      "bodyByLocale": {
+        "ru": "In public — публично, перед другими людьми: знакомая может петь перед слушателями. In private — наедине: для личного разговора вы нашли тихую комнату, где вас не услышат посторонние. Can передаёт возможность или умение. Оно не меняется с she и we: she can, we can. После can глагол остаётся в начальной форме без to. Дополнительные выражения уточняют, в каких условиях человек может действовать.",
+        "uk": "In public — публічно, перед іншими людьми: знайома може співати перед слухачами. In private — наодинці: для особистої розмови ви знайшли тиху кімнату, де вас не почують сторонні. Can передає можливість або вміння. Воно не змінюється із she та we: she can, we can. Після can дієслово залишається в початковій формі без to. Додаткові вирази уточнюють, за яких умов людина може діяти."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r1",
+              "text": "We can talk in private."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r2",
+              "text": "We cans talk in private."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r3",
+              "text": "We can to talk in private."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r1",
+              "text": "We can talk in private."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r2",
+              "text": "We cans talk in private."
+            },
+            {
+              "responseId": "en:lesson-19:session-44:intro3:r3",
+              "text": "We can to talk in private."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cc40a462f6b516d11f1395b70aea14397bda371fac50bd5245423c4611cf8f49"
+}

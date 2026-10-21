@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заплатить всю сумму",
+        "uk": "Сплатити всю суму"
+      },
+      "bodyByLocale": {
+        "ru": "In full — полностью, в полном размере. Вы хотите заплатить всю сумму за покупку сразу, а не частями. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In full — повністю, у повному розмірі. Ви хочете сплатити всю суму за покупку одразу, а не частинами. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r1",
+              "text": "Could I pay in full?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r2",
+              "text": "Could I to pay in full?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r3",
+              "text": "I could pay in full?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r1",
+              "text": "Could I pay in full?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r2",
+              "text": "Could I to pay in full?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro1:r3",
+              "text": "I could pay in full?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поделить на двоих",
+        "uk": "Поділити на двох"
+      },
+      "bodyByLocale": {
+        "ru": "In half — пополам, на две равные части. На столе один большой сэндвич, и вы спрашиваете, можно ли разделить его на двоих. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In half — навпіл, на дві рівні частини. На столі один великий сендвіч, і ви питаєте, чи можна поділити його на двох. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r1",
+              "text": "Could I cut this in half?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r2",
+              "text": "Could I to cut this in half?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r3",
+              "text": "I could cut this in half?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r1",
+              "text": "Could I cut this in half?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r2",
+              "text": "Could I to cut this in half?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro2:r3",
+              "text": "I could cut this in half?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подряд и по одному",
+        "uk": "Поспіль і по одному"
+      },
+      "bodyByLocale": {
+        "ru": "In a row — подряд, один раз за другим: на тренировке вы просите две попытки подряд. At a time — за один раз: коробки тяжёлые, и вы хотите переносить по одной. One at a time — по одному за раз. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In a row — поспіль, один раз за іншим: на тренуванні ви просите дві спроби поспіль. At a time — за один раз: коробки важкі, і ви хочете переносити по одній. One at a time — по одному за раз. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r1",
+              "text": "Could I take one at a time?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r2",
+              "text": "Could I to take one at a time?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r3",
+              "text": "I could take one at a time?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r1",
+              "text": "Could I take one at a time?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r2",
+              "text": "Could I to take one at a time?"
+            },
+            {
+              "responseId": "en:lesson-19:session-47:intro3:r3",
+              "text": "I could take one at a time?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "594a65f879e522e7dfea9ba954a6d2010e7f18f877eb835f2bbfbf8deb25c7f0"
+}

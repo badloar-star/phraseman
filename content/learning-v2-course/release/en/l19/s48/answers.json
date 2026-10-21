@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-48:word:in-time",
+    "correctText": "in time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i01",
+    "correctText": "We can arrive in time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i02",
+    "correctText": "We can arrive in time.",
+    "correctResponseId": "en:lesson-19:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:word:in-charge",
+    "correctText": "in charge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i04",
+    "correctText": "She can be in charge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i05",
+    "correctText": "She can be in charge.",
+    "correctResponseId": "en:lesson-19:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:word:out-of-sight",
+    "correctText": "out of sight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i07",
+    "correctText": "I can keep the gift out of sight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i08",
+    "correctText": "I can keep the gift out of sight.",
+    "correctResponseId": "en:lesson-19:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:word:out-of-reach",
+    "correctText": "out of reach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i10",
+    "correctText": "We can keep the toy out of reach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i11",
+    "correctText": "We can keep the toy out of reach.",
+    "correctResponseId": "en:lesson-19:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i13",
+    "correctText": "en:lesson-19:session-48:i13:p1=in time\nen:lesson-19:session-48:i13:p2=in charge\nen:lesson-19:session-48:i13:p3=out of sight\nen:lesson-19:session-48:i13:p4=out of reach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i16",
+    "correctText": "We can arrive in time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-48:i17",
+    "correctText": "She can be in charge.",
+    "correctResponseId": null
+  }
+]

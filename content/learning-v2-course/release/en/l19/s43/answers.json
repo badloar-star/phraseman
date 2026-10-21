@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-43:word:right-away",
+    "correctText": "right away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i01",
+    "correctText": "Could I start right away?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i02",
+    "correctText": "Could I start right away?",
+    "correctResponseId": "en:lesson-19:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:word:from-now-on",
+    "correctText": "from now on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i04",
+    "correctText": "Could I work from home from now on?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i05",
+    "correctText": "Could I work from home from now on?",
+    "correctResponseId": "en:lesson-19:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:word:once-again",
+    "correctText": "once again",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i07",
+    "correctText": "Could I try once again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i08",
+    "correctText": "Could I try once again?",
+    "correctResponseId": "en:lesson-19:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:word:for-a-while",
+    "correctText": "for a while",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i10",
+    "correctText": "Could I rest for a while?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i11",
+    "correctText": "Could I rest for a while?",
+    "correctResponseId": "en:lesson-19:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-19:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i13",
+    "correctText": "en:lesson-19:session-43:i13:p1=right away\nen:lesson-19:session-43:i13:p2=from now on\nen:lesson-19:session-43:i13:p3=once again\nen:lesson-19:session-43:i13:p4=for a while",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i16",
+    "correctText": "I can start right away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-43:i17",
+    "correctText": "This is such a useful lesson.",
+    "correctResponseId": null
+  }
+]

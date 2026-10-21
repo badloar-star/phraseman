@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-52:word:departure-time",
+    "correctText": "departure time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i01",
+    "correctText": "We checked a few departure times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i02",
+    "correctText": "We checked a few departure times.",
+    "correctResponseId": "en:lesson-17:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i03",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:word:arrival-time",
+    "correctText": "arrival time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i04",
+    "correctText": "We know few arrival times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i05",
+    "correctText": "We know few arrival times.",
+    "correctResponseId": "en:lesson-17:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i06",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:word:flight-number",
+    "correctText": "flight number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i07",
+    "correctText": "We saved a few flight numbers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i08",
+    "correctText": "We saved a few flight numbers.",
+    "correctResponseId": "en:lesson-17:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i09",
+    "correctText": "a few",
+    "correctResponseId": "en:lesson-17:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:word:booking-reference",
+    "correctText": "booking reference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i10",
+    "correctText": "We have few booking references.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i11",
+    "correctText": "We have few booking references.",
+    "correctResponseId": "en:lesson-17:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i12",
+    "correctText": "few",
+    "correctResponseId": "en:lesson-17:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i13",
+    "correctText": "en:lesson-17:session-52:i13:p1=departure time\nen:lesson-17:session-52:i13:p2=arrival time\nen:lesson-17:session-52:i13:p3=flight number\nen:lesson-17:session-52:i13:p4=booking reference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i14",
+    "correctText": "We checked a few departure times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i15",
+    "correctText": "We have few booking references.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i16",
+    "correctText": "We saved a few flight numbers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-52:i17",
+    "correctText": "We know few arrival times.",
+    "correctResponseId": null
+  }
+]

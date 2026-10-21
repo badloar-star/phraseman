@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-54:word:fresh-food",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fresh food",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:word:fresh-food:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fresh food",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:word:fresh-food:audio",
+          "transcript": "fresh food"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:word:fresh-food:r1",
+            "targetText": "fresh food",
+            "meaningByLocale": {
+              "ru": "свежие продукты.",
+              "uk": "свіжі продукти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fresh food",
+          "definitionByLocale": {
+            "ru": "свежие продукты.",
+            "uk": "свіжі продукти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подчеркните, что некоторое количество свежих продуктов есть. Скажите: «У нас есть немного свежих продуктов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что некоторое количество свежих продуктов есть. Скажите: «У нас есть немного свежих продуктов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have a little fresh food.",
+        "localizedMeaning": {
+          "ru": "Подчеркните, что некоторое количество свежих продуктов есть. Скажите: «У нас есть немного свежих продуктов».",
+          "uk": "Підкресліть, що певна кількість свіжих продуктів є. Скажіть: «У нас є трохи свіжих продуктів»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "little",
+          "fresh",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i02:r1",
+          "text": "We have a little fresh food."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i02:r2",
+          "text": "We have little fresh food."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i02:r3",
+          "text": "We have a few fresh food."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i02:audio",
+          "transcript": "We have a little fresh food."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:i02:r1",
+            "targetText": "We have a little fresh food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i02:r2",
+            "targetText": "We have little fresh food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i02:r3",
+            "targetText": "We have a few fresh food.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a little fresh food.",
+              "uk": "У записі звучить We have a little fresh food."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a little fresh food.",
+              "uk": "У записі звучить We have a little fresh food."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните, что некоторое количество свежих продуктов есть.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i03:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i03:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i03:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните, что некоторое количество свежих продуктов есть.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните, что некоторое количество свежих продуктов есть.",
+          "uk": "Підкресліть, що певна кількість свіжих продуктів є."
+        },
+        "gappedTargetPhrase": "We have ___ fresh food.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-54:i03:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i03:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i03:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Подчеркните, что некоторое количество свежих продуктов есть.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните, что некоторое количество свежих продуктов есть.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните, что некоторое количество свежих продуктов есть.",
+            "feedbackByLocale": {
+              "ru": "Few используется с исчисляемыми во множественном числе.",
+              "uk": "Few використовується зі злічуваними у множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:word:leftover-food",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leftover food",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:word:leftover-food:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leftover food",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:word:leftover-food:audio",
+          "transcript": "leftover food"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:word:leftover-food:r1",
+            "targetText": "leftover food",
+            "meaningByLocale": {
+              "ru": "еда, оставшаяся после приготовления или еды.",
+              "uk": "їжа, що залишилася після приготування або прийому їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leftover food",
+          "definitionByLocale": {
+            "ru": "еда, оставшаяся после приготовления или еды.",
+            "uk": "їжа, що залишилася після приготування або прийому їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество. Скажите: «У нас осталось мало еды после обеда».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество. Скажите: «У нас осталось мало еды после обеда».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have little leftover food.",
+        "localizedMeaning": {
+          "ru": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество. Скажите: «У нас осталось мало еды после обеда».",
+          "uk": "Після обіду залишилося мало їжі. Ви задоволені, що майже все з’їли. Підкресліть малу кількість. Скажіть: «У нас залишилося мало їжі після обіду»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "little",
+          "leftover",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i05:r1",
+          "text": "We have little leftover food."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i05:r2",
+          "text": "We have a little leftover food."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i05:r3",
+          "text": "We have a few leftover food."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i05:audio",
+          "transcript": "We have little leftover food."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:i05:r1",
+            "targetText": "We have little leftover food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i05:r2",
+            "targetText": "We have a little leftover food.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i05:r3",
+            "targetText": "We have a few leftover food.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little leftover food.",
+              "uk": "У записі звучить We have little leftover food."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little leftover food.",
+              "uk": "У записі звучить We have little leftover food."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i06:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i06:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i06:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+          "uk": "Після обіду залишилося мало їжі. Ви задоволені, що майже все з’їли. Підкресліть малу кількість."
+        },
+        "gappedTargetPhrase": "We have ___ leftover food.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-54:i06:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i06:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i06:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "После обеда осталось мало еды. Вы довольны, что почти всё съели. Подчеркните малое количество.",
+            "feedbackByLocale": {
+              "ru": "Few используется с исчисляемыми во множественном числе.",
+              "uk": "Few використовується зі злічуваними у множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:word:food-waste",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — food waste",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:word:food-waste:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — food waste",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:word:food-waste:audio",
+          "transcript": "food waste"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:word:food-waste:r1",
+            "targetText": "food waste",
+            "meaningByLocale": {
+              "ru": "пищевые отходы, выброшенная еда.",
+              "uk": "харчові відходи, викинута їжа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "food waste",
+          "definitionByLocale": {
+            "ru": "пищевые отходы, выброшенная еда.",
+            "uk": "харчові відходи, викинута їжа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие. Скажите: «Есть немного пищевых отходов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие. Скажите: «Есть немного пищевых отходов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a little food waste.",
+        "localizedMeaning": {
+          "ru": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие. Скажите: «Есть немного пищевых отходов».",
+          "uk": "Харчові відходи все ж є, хоча їх небагато. Підтвердьте наявність. Скажіть: «Є трохи харчових відходів»."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "little",
+          "food",
+          "waste"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i08:r1",
+          "text": "There is a little food waste."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i08:r2",
+          "text": "There is little food waste."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i08:r3",
+          "text": "There is a few food waste."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i08:audio",
+          "transcript": "There is a little food waste."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:i08:r1",
+            "targetText": "There is a little food waste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i08:r2",
+            "targetText": "There is little food waste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i08:r3",
+            "targetText": "There is a few food waste.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a little food waste.",
+              "uk": "У записі звучить There is a little food waste."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a little food waste.",
+              "uk": "У записі звучить There is a little food waste."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i09:r1",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i09:r2",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i09:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+          "uk": "Харчові відходи все ж є, хоча їх небагато. Підтвердьте наявність."
+        },
+        "gappedTargetPhrase": "There is ___ food waste.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-54:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Пищевые отходы всё же есть, хотя их немного. Подтвердите наличие.",
+            "feedbackByLocale": {
+              "ru": "Few используется с исчисляемыми во множественном числе.",
+              "uk": "Few використовується зі злічуваними у множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:word:bottled-water",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bottled water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:word:bottled-water:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bottled water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:word:bottled-water:audio",
+          "transcript": "bottled water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:word:bottled-water:r1",
+            "targetText": "bottled water",
+            "meaningByLocale": {
+              "ru": "вода в бутылках.",
+              "uk": "вода у пляшках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottled water",
+          "definitionByLocale": {
+            "ru": "вода в бутылках.",
+            "uk": "вода у пляшках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для группы запас воды в бутылках мал. Подчеркните нехватку. Скажите: «У нас мало воды в бутылках».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для группы запас воды в бутылках мал. Подчеркните нехватку. Скажите: «У нас мало воды в бутылках».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have little bottled water.",
+        "localizedMeaning": {
+          "ru": "Для группы запас воды в бутылках мал. Подчеркните нехватку. Скажите: «У нас мало воды в бутылках».",
+          "uk": "Для групи запас води у пляшках малий. Підкресліть брак. Скажіть: «У нас мало води у пляшках»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "little",
+          "bottled",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i11:r1",
+          "text": "We have little bottled water."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i11:r2",
+          "text": "We have a little bottled water."
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i11:r3",
+          "text": "We have a few bottled water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i11:audio",
+          "transcript": "We have little bottled water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-54:i11:r1",
+            "targetText": "We have little bottled water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i11:r2",
+            "targetText": "We have a little bottled water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i11:r3",
+            "targetText": "We have a few bottled water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little bottled water.",
+              "uk": "У записі звучить We have little bottled water."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have little bottled water.",
+              "uk": "У записі звучить We have little bottled water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-54:i12:r1",
+          "text": "little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i12:r2",
+          "text": "a little"
+        },
+        {
+          "responseId": "en:lesson-17:session-54:i12:r3",
+          "text": "a few"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+          "uk": "Для групи запас води у пляшках малий. Підкресліть брак."
+        },
+        "gappedTargetPhrase": "We have ___ bottled water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-54:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i12:r3",
+            "text": "a few"
+          }
+        ],
+        "testedDimension": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+            "feedbackByLocale": {
+              "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+              "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Для группы запас воды в бутылках мал. Подчеркните нехватку.",
+            "feedbackByLocale": {
+              "ru": "Few используется с исчисляемыми во множественном числе.",
+              "uk": "Few використовується зі злічуваними у множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-54:i13:p1",
+            "target": "fresh food",
+            "meaningByLocale": {
+              "ru": "свежие продукты",
+              "uk": "свіжі продукти"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-54:i13:p2",
+            "target": "leftover food",
+            "meaningByLocale": {
+              "ru": "еда, оставшаяся после приготовления или еды",
+              "uk": "їжа, що залишилася після приготування або прийому їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-54:i13:p3",
+            "target": "food waste",
+            "meaningByLocale": {
+              "ru": "пищевые отходы, выброшенная еда",
+              "uk": "харчові відходи, викинута їжа"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-54:i13:p4",
+            "target": "bottled water",
+            "meaningByLocale": {
+              "ru": "вода в бутылках",
+              "uk": "вода у пляшках"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fresh food",
+          "leftover food",
+          "food waste",
+          "bottled water"
+        ],
+        "rightColumn": [
+          "свежие продукты",
+          "еда, оставшаяся после приготовления или еды",
+          "пищевые отходы, выброшенная еда",
+          "вода в бутылках"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с a little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с a little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i14:audio",
+          "transcript": "We have a little fresh food."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have a little fresh food.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "a",
+          "little",
+          "fresh",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с little",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с little",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i15:audio",
+          "transcript": "We have little bottled water."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have little bottled water.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "little",
+          "bottled",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните наличие некоторого количества",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Подчеркните наличие некоторого количества",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i16:audio",
+          "transcript": "There is a little food waste."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a little food waste.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подчеркните малое количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Подчеркните малое количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-54:i17:audio",
+          "transcript": "We have little leftover food."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have little leftover food.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "98821f0fac85ca9d7b32c557cfa7fa53c62b298c5dcb248939fa711c9a154227"
+}

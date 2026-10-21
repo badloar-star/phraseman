@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "a little / little + non-count noun",
+    "uk": "a little / little + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Немного всё же есть",
+        "uk": "Трохи все ж є"
+      },
+      "bodyByLocale": {
+        "ru": "personal space — личное пространство. Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.",
+        "uk": "personal space — особистий простір. Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r1",
+              "text": "I need a little personal space."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r2",
+              "text": "I need little personal space."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r3",
+              "text": "I need a few personal space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r1",
+              "text": "I need a little personal space."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r2",
+              "text": "I need little personal space."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro1:r3",
+              "text": "I need a few personal space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подчеркнуть малое количество",
+        "uk": "Підкреслити малу кількість"
+      },
+      "bodyByLocale": {
+        "ru": "peace of mind — душевное спокойствие, отсутствие тревог. quality time — время, проведённое вместе с вниманием друг к другу. Вас многое тревожит. Подчеркните, что спокойствия мало. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.",
+        "uk": "peace of mind — душевний спокій, відсутність тривог. quality time — час, проведений разом з увагою одне до одного. Вас багато що тривожить. Підкресліть, що спокою мало. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r1",
+              "text": "I have little peace of mind."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r2",
+              "text": "I have a little peace of mind."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r3",
+              "text": "I have a few peace of mind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r1",
+              "text": "I have little peace of mind."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r2",
+              "text": "I have a little peace of mind."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro2:r3",
+              "text": "I have a few peace of mind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смысл зависит от a",
+        "uk": "Зміст залежить від a"
+      },
+      "bodyByLocale": {
+        "ru": "work-life balance — баланс между работой и личной жизнью. Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.",
+        "uk": "work-life balance — баланс між роботою й особистим життям. Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r1",
+              "text": "There is little work-life balance here."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r2",
+              "text": "There is a little work-life balance here."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r3",
+              "text": "There is a few work-life balance here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r1",
+              "text": "There is little work-life balance here."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r2",
+              "text": "There is a little work-life balance here."
+            },
+            {
+              "responseId": "en:lesson-17:session-55:intro3:r3",
+              "text": "There is a few work-life balance here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d572e1880d1551b0867acc95a67e930870a22acdc6cd17ab085fca2d17ae89a8"
+}

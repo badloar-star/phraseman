@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-53:word:train-platform",
+    "correctText": "train platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i01",
+    "correctText": "There are some train platforms outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i02",
+    "correctText": "There are some train platforms outside.",
+    "correctResponseId": "en:lesson-17:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:word:train-fare",
+    "correctText": "train fare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i04",
+    "correctText": "We don't know any train fares.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i05",
+    "correctText": "We don't know any train fares.",
+    "correctResponseId": "en:lesson-17:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:word:day-ticket",
+    "correctText": "day ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i07",
+    "correctText": "We bought some day tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i08",
+    "correctText": "We bought some day tickets.",
+    "correctResponseId": "en:lesson-17:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:word:weekly-ticket",
+    "correctText": "weekly ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i10",
+    "correctText": "Do you sell any weekly tickets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i11",
+    "correctText": "Do you sell any weekly tickets?",
+    "correctResponseId": "en:lesson-17:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i13",
+    "correctText": "en:lesson-17:session-53:i13:p1=train platform\nen:lesson-17:session-53:i13:p2=train fare\nen:lesson-17:session-53:i13:p3=day ticket\nen:lesson-17:session-53:i13:p4=weekly ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i14",
+    "correctText": "There are some train platforms outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i15",
+    "correctText": "Do you sell any weekly tickets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i16",
+    "correctText": "We bought some day tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-53:i17",
+    "correctText": "We don't know any train fares.",
+    "correctResponseId": null
+  }
+]

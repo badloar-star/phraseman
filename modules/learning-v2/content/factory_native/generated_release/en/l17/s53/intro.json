@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "train platform — железнодорожная платформа, место посадки в поезд. Вы показываете, что несколько платформ находятся снаружи здания. Train platform → train platforms. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "train platform — залізнична платформа, місце посадки в поїзд. Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r1",
+              "text": "There are some train platforms outside."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r2",
+              "text": "There are any train platforms outside."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r3",
+              "text": "There are a train platforms outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r1",
+              "text": "There are some train platforms outside."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r2",
+              "text": "There are any train platforms outside."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro1:r3",
+              "text": "There are a train platforms outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "train fare — стоимость проезда на поезде. Вы ещё не знаете ни одного тарифа из обсуждаемого списка. Train fare → train fares. day ticket — билет, действующий в течение дня. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "train fare — вартість проїзду потягом. Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares. day ticket — квиток, що діє протягом дня. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r1",
+              "text": "We don't know any train fares."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r2",
+              "text": "We don't know some train fares."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r3",
+              "text": "We don't know a train fares."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r1",
+              "text": "We don't know any train fares."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r2",
+              "text": "We don't know some train fares."
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro2:r3",
+              "text": "We don't know a train fares."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "weekly ticket — проездной билет на неделю. Вы не знаете, продаются ли такие билеты. Спросите нейтрально. Weekly ticket → weekly tickets. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "weekly ticket — проїзний квиток на тиждень. Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r1",
+              "text": "Do you sell any weekly tickets?"
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r2",
+              "text": "Do you sell some weekly tickets?"
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r3",
+              "text": "Do you sell a weekly tickets?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r1",
+              "text": "Do you sell any weekly tickets?"
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r2",
+              "text": "Do you sell some weekly tickets?"
+            },
+            {
+              "responseId": "en:lesson-17:session-53:intro3:r3",
+              "text": "Do you sell a weekly tickets?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3c664417d39bc33ddd5886f17f588ea9729a8b4cc93df0ea9908576c5b08b450"
+}

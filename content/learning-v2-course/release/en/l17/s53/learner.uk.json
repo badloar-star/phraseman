@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-53:word:train-platform",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — train platform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:word:train-platform:audio"
+      ],
+      "accessibilityLabel": "Картка слова — train platform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:word:train-platform:audio",
+          "transcript": "train platform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:word:train-platform:r1",
+            "targetText": "train platform",
+            "meaningByLocale": {
+              "ru": "железнодорожная платформа, место посадки в поезд.",
+              "uk": "залізнична платформа, місце посадки в поїзд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train platform",
+          "definitionByLocale": {
+            "ru": "железнодорожная платформа, место посадки в поезд.",
+            "uk": "залізнична платформа, місце посадки в поїзд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Скажіть: «Зовні є кілька залізничних платформ».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Скажіть: «Зовні є кілька залізничних платформ».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are some train platforms outside.",
+        "localizedMeaning": {
+          "ru": "Вы показываете, что несколько платформ находятся снаружи здания. Train platform → train platforms. Скажите: «Снаружи есть несколько железнодорожных платформ».",
+          "uk": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Скажіть: «Зовні є кілька залізничних платформ»."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "train",
+          "platforms",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i02:r1",
+          "text": "There are some train platforms outside."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i02:r2",
+          "text": "There are any train platforms outside."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i02:r3",
+          "text": "There are a train platforms outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i02:audio",
+          "transcript": "There are some train platforms outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:i02:r1",
+            "targetText": "There are some train platforms outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i02:r2",
+            "targetText": "There are any train platforms outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i02:r3",
+            "targetText": "There are a train platforms outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some train platforms outside.",
+              "uk": "У записі звучить There are some train platforms outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are some train platforms outside.",
+              "uk": "У записі звучить There are some train platforms outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете, что несколько платформ находятся снаружи здания. Train platform → train platforms.",
+          "uk": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms."
+        },
+        "gappedTargetPhrase": "There are ___ train platforms outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-53:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:word:train-fare",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — train fare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:word:train-fare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — train fare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:word:train-fare:audio",
+          "transcript": "train fare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:word:train-fare:r1",
+            "targetText": "train fare",
+            "meaningByLocale": {
+              "ru": "стоимость проезда на поезде.",
+              "uk": "вартість проїзду потягом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train fare",
+          "definitionByLocale": {
+            "ru": "стоимость проезда на поезде.",
+            "uk": "вартість проїзду потягом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares. Скажіть: «Ми не знаємо вартості проїзду жодним із цих потягів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares. Скажіть: «Ми не знаємо вартості проїзду жодним із цих потягів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't know any train fares.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не знаете ни одного тарифа из обсуждаемого списка. Train fare → train fares. Скажите: «Мы не знаем стоимости проезда ни на одном из этих поездов».",
+          "uk": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares. Скажіть: «Ми не знаємо вартості проїзду жодним із цих потягів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "know",
+          "any",
+          "train",
+          "fares"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i05:r1",
+          "text": "We don't know any train fares."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i05:r2",
+          "text": "We don't know some train fares."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i05:r3",
+          "text": "We don't know a train fares."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i05:audio",
+          "transcript": "We don't know any train fares."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:i05:r1",
+            "targetText": "We don't know any train fares.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i05:r2",
+            "targetText": "We don't know some train fares.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i05:r3",
+            "targetText": "We don't know a train fares.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't know any train fares.",
+              "uk": "У записі звучить We don't know any train fares."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't know any train fares.",
+              "uk": "У записі звучить We don't know any train fares."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не знаете ни одного тарифа из обсуждаемого списка. Train fare → train fares.",
+          "uk": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares."
+        },
+        "gappedTargetPhrase": "We don't know ___ train fares.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-53:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:word:day-ticket",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — day ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:word:day-ticket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — day ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:word:day-ticket:audio",
+          "transcript": "day ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:word:day-ticket:r1",
+            "targetText": "day ticket",
+            "meaningByLocale": {
+              "ru": "билет, действующий в течение дня.",
+              "uk": "квиток, що діє протягом дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "day ticket",
+          "definitionByLocale": {
+            "ru": "билет, действующий в течение дня.",
+            "uk": "квиток, що діє протягом дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets. Скажіть: «Ми купили кілька квитків на день».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets. Скажіть: «Ми купили кілька квитків на день».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We bought some day tickets.",
+        "localizedMeaning": {
+          "ru": "Для семьи куплены несколько билетов на день. Подтвердите это. Day ticket → day tickets. Скажите: «Мы купили несколько билетов на день».",
+          "uk": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets. Скажіть: «Ми купили кілька квитків на день»."
+        },
+        "orderedTokens": [
+          "We",
+          "bought",
+          "some",
+          "day",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i08:r1",
+          "text": "We bought some day tickets."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i08:r2",
+          "text": "We bought any day tickets."
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i08:r3",
+          "text": "We bought a day tickets."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i08:audio",
+          "transcript": "We bought some day tickets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:i08:r1",
+            "targetText": "We bought some day tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i08:r2",
+            "targetText": "We bought any day tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i08:r3",
+            "targetText": "We bought a day tickets.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We bought some day tickets.",
+              "uk": "У записі звучить We bought some day tickets."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We bought some day tickets.",
+              "uk": "У записі звучить We bought some day tickets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для семьи куплены несколько билетов на день. Подтвердите это. Day ticket → day tickets.",
+          "uk": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets."
+        },
+        "gappedTargetPhrase": "We bought ___ day tickets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-53:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:word:weekly-ticket",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — weekly ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:word:weekly-ticket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — weekly ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:word:weekly-ticket:audio",
+          "transcript": "weekly ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:word:weekly-ticket:r1",
+            "targetText": "weekly ticket",
+            "meaningByLocale": {
+              "ru": "проездной билет на неделю.",
+              "uk": "проїзний квиток на тиждень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weekly ticket",
+          "definitionByLocale": {
+            "ru": "проездной билет на неделю.",
+            "uk": "проїзний квиток на тиждень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets. Скажіть: «Ви продаєте якісь проїзні на тиждень».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets. Скажіть: «Ви продаєте якісь проїзні на тиждень».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you sell any weekly tickets?",
+        "localizedMeaning": {
+          "ru": "Вы не знаете, продаются ли такие билеты. Спросите нейтрально. Weekly ticket → weekly tickets. Скажите: «Вы продаёте какие-либо проездные на неделю».",
+          "uk": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets. Скажіть: «Ви продаєте якісь проїзні на тиждень»."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "sell",
+          "any",
+          "weekly",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i11:r1",
+          "text": "Do you sell any weekly tickets?"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i11:r2",
+          "text": "Do you sell some weekly tickets?"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i11:r3",
+          "text": "Do you sell a weekly tickets?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i11:audio",
+          "transcript": "Do you sell any weekly tickets?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-53:i11:r1",
+            "targetText": "Do you sell any weekly tickets?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i11:r2",
+            "targetText": "Do you sell some weekly tickets?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i11:r3",
+            "targetText": "Do you sell a weekly tickets?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you sell any weekly tickets?",
+              "uk": "У записі звучить Do you sell any weekly tickets?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you sell any weekly tickets?",
+              "uk": "У записі звучить Do you sell any weekly tickets?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-53:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-53:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, продаются ли такие билеты. Спросите нейтрально. Weekly ticket → weekly tickets.",
+          "uk": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets."
+        },
+        "gappedTargetPhrase": "Do you sell ___ weekly tickets?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-53:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-53:i13:p1",
+            "target": "train platform",
+            "meaningByLocale": {
+              "ru": "железнодорожная платформа, место посадки в поезд",
+              "uk": "залізнична платформа, місце посадки в поїзд"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-53:i13:p2",
+            "target": "train fare",
+            "meaningByLocale": {
+              "ru": "стоимость проезда на поезде",
+              "uk": "вартість проїзду потягом"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-53:i13:p3",
+            "target": "day ticket",
+            "meaningByLocale": {
+              "ru": "билет, действующий в течение дня",
+              "uk": "квиток, що діє протягом дня"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-53:i13:p4",
+            "target": "weekly ticket",
+            "meaningByLocale": {
+              "ru": "проездной билет на неделю",
+              "uk": "проїзний квиток на тиждень"
+            }
+          }
+        ],
+        "leftColumn": [
+          "train platform",
+          "train fare",
+          "day ticket",
+          "weekly ticket"
+        ],
+        "rightColumn": [
+          "залізнична платформа, місце посадки в поїзд",
+          "вартість проїзду потягом",
+          "квиток, що діє протягом дня",
+          "проїзний квиток на тиждень"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте твердження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте твердження",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i14:audio",
+          "transcript": "There are some train platforms outside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are some train platforms outside.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "some",
+          "train",
+          "platforms",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i15:audio",
+          "transcript": "Do you sell any weekly tickets?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you sell any weekly tickets?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "sell",
+          "any",
+          "weekly",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що певна кількість є",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що певна кількість є",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i16:audio",
+          "transcript": "We bought some day tickets."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We bought some day tickets.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повністю заперечте наявність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Повністю заперечте наявність",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-53:i17:audio",
+          "transcript": "We don't know any train fares."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't know any train fares.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5852db2f2af66a44213784e754f5b4b38ef9c214629cb5f64d6be724fcfdcb0b"
+}

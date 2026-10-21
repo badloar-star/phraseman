@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "small talk — непринуждённый разговор на общие темы. Короткий непринуждённый разговор состоялся. Подтвердите это. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "small talk — невимушена розмова на загальні теми. Коротка невимушена розмова відбулася. Підтвердьте це. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r1",
+              "text": "We made some small talk."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r2",
+              "text": "We made any small talk."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r3",
+              "text": "We made a small talk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r1",
+              "text": "We made some small talk."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r2",
+              "text": "We made any small talk."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro1:r3",
+              "text": "We made a small talk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "spare change — мелкие деньги, мелочь при себе. Мелочи нет вообще. Отрицайте наличие полностью. daily routine — ежедневный распорядок или привычная последовательность дел. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "spare change — дрібні гроші, дріб’язок при собі. Дрібних грошей немає взагалі. Повністю заперечте наявність. daily routine — щоденний розпорядок або звична послідовність справ. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r1",
+              "text": "I don't have any spare change."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r2",
+              "text": "I don't have some spare change."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r3",
+              "text": "I don't have a spare change."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r1",
+              "text": "I don't have any spare change."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r2",
+              "text": "I don't have some spare change."
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro2:r3",
+              "text": "I don't have a spare change."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "drinking water — питьевая вода. Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "drinking water — питна вода. Ви не знаєте, чи є тут питна вода. Запитайте нейтрально. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r1",
+              "text": "Is there any drinking water?"
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r2",
+              "text": "Is there some drinking water?"
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r3",
+              "text": "Is there a drinking water?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r1",
+              "text": "Is there any drinking water?"
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r2",
+              "text": "Is there some drinking water?"
+            },
+            {
+              "responseId": "en:lesson-17:session-56:intro3:r3",
+              "text": "Is there a drinking water?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b94453687548e40e290f2f8de5f1cd80006c80c9501efefeb58ddc49b036fdf0"
+}

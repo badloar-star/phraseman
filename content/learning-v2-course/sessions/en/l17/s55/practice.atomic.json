@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-55:word:personal-space",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — personal space",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:personal-space:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — personal space",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:personal-space:audio",
+            "transcript": "personal space"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:personal-space:r1",
+              "targetText": "personal space",
+              "meaningByLocale": {
+                "ru": "личное пространство.",
+                "uk": "особистий простір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "personal space",
+            "definitionByLocale": {
+              "ru": "личное пространство.",
+              "uk": "особистий простір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. Скажите: «Мне нужно немного личного пространства».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. Скажите: «Мне нужно немного личного пространства».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need a little personal space.",
+          "localizedMeaning": {
+            "ru": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. Скажите: «Мне нужно немного личного пространства».",
+            "uk": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Скажіть: «Мені потрібно трохи особистого простору»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "little",
+            "personal",
+            "space"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i02:r1",
+            "text": "I need a little personal space."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i02:r2",
+            "text": "I need little personal space."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i02:r3",
+            "text": "I need a few personal space."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i02:audio",
+            "transcript": "I need a little personal space."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i02:r1",
+              "targetText": "I need a little personal space.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r2",
+              "targetText": "I need little personal space.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r3",
+              "targetText": "I need a few personal space.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need a little personal space.",
+                "uk": "У записі звучить I need a little personal space."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need a little personal space.",
+                "uk": "У записі звучить I need a little personal space."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i03:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i03:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i03:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+            "uk": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору."
+          },
+          "gappedTargetPhrase": "I need ___ personal space.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i03:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:peace-of-mind",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — peace of mind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:peace-of-mind:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — peace of mind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:peace-of-mind:audio",
+            "transcript": "peace of mind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:peace-of-mind:r1",
+              "targetText": "peace of mind",
+              "meaningByLocale": {
+                "ru": "душевное спокойствие, отсутствие тревог.",
+                "uk": "душевний спокій, відсутність тривог."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peace of mind",
+            "definitionByLocale": {
+              "ru": "душевное спокойствие, отсутствие тревог.",
+              "uk": "душевний спокій, відсутність тривог."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас многое тревожит. Подчеркните, что спокойствия мало. Скажите: «У меня мало душевного спокойствия».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас многое тревожит. Подчеркните, что спокойствия мало. Скажите: «У меня мало душевного спокойствия».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have little peace of mind.",
+          "localizedMeaning": {
+            "ru": "Вас многое тревожит. Подчеркните, что спокойствия мало. Скажите: «У меня мало душевного спокойствия».",
+            "uk": "Вас багато що тривожить. Підкресліть, що спокою мало. Скажіть: «У мене мало душевного спокою»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "little",
+            "peace",
+            "of",
+            "mind"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i05:r1",
+            "text": "I have little peace of mind."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i05:r2",
+            "text": "I have a little peace of mind."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i05:r3",
+            "text": "I have a few peace of mind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i05:audio",
+            "transcript": "I have little peace of mind."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i05:r1",
+              "targetText": "I have little peace of mind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r2",
+              "targetText": "I have a little peace of mind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r3",
+              "targetText": "I have a few peace of mind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have little peace of mind.",
+                "uk": "У записі звучить I have little peace of mind."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have little peace of mind.",
+                "uk": "У записі звучить I have little peace of mind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i06:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i06:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i06:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+            "uk": "Вас багато що тривожить. Підкресліть, що спокою мало."
+          },
+          "gappedTargetPhrase": "I have ___ peace of mind.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i06:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:quality-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — quality time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:quality-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — quality time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:quality-time:audio",
+            "transcript": "quality time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:quality-time:r1",
+              "targetText": "quality time",
+              "meaningByLocale": {
+                "ru": "время, проведённое вместе с вниманием друг к другу.",
+                "uk": "час, проведений разом з увагою одне до одного."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quality time",
+            "definitionByLocale": {
+              "ru": "время, проведённое вместе с вниманием друг к другу.",
+              "uk": "час, проведений разом з увагою одне до одного."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку. Скажите: «Мы приятно проводим немного времени вместе, уделяя внимание друг другу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку. Скажите: «Мы приятно проводим немного времени вместе, уделяя внимание друг другу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We enjoy a little quality time.",
+          "localizedMeaning": {
+            "ru": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку. Скажите: «Мы приятно проводим немного времени вместе, уделяя внимание друг другу».",
+            "uk": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак. Скажіть: «Ми приємно проводимо трохи часу разом, приділяючи увагу одне одному»."
+          },
+          "orderedTokens": [
+            "We",
+            "enjoy",
+            "a",
+            "little",
+            "quality",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i08:r1",
+            "text": "We enjoy a little quality time."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i08:r2",
+            "text": "We enjoy little quality time."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i08:r3",
+            "text": "We enjoy a few quality time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i08:audio",
+            "transcript": "We enjoy a little quality time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i08:r1",
+              "targetText": "We enjoy a little quality time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r2",
+              "targetText": "We enjoy little quality time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r3",
+              "targetText": "We enjoy a few quality time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We enjoy a little quality time.",
+                "uk": "У записі звучить We enjoy a little quality time."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We enjoy a little quality time.",
+                "uk": "У записі звучить We enjoy a little quality time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+            "uk": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак."
+          },
+          "gappedTargetPhrase": "We enjoy ___ quality time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:work-life-balance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — work-life balance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:work-life-balance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — work-life balance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:work-life-balance:audio",
+            "transcript": "work-life balance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:work-life-balance:r1",
+              "targetText": "work-life balance",
+              "meaningByLocale": {
+                "ru": "баланс между работой и личной жизнью.",
+                "uk": "баланс між роботою й особистим життям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work-life balance",
+            "definitionByLocale": {
+              "ru": "баланс между работой и личной жизнью.",
+              "uk": "баланс між роботою й особистим життям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. Скажите: «Здесь мало баланса между работой и личной жизнью».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. Скажите: «Здесь мало баланса между работой и личной жизнью».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is little work-life balance here.",
+          "localizedMeaning": {
+            "ru": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. Скажите: «Здесь мало баланса между работой и личной жизнью».",
+            "uk": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Скажіть: «Тут мало балансу між роботою й особистим життям»."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "little",
+            "work-life",
+            "balance",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i11:r1",
+            "text": "There is little work-life balance here."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i11:r2",
+            "text": "There is a little work-life balance here."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i11:r3",
+            "text": "There is a few work-life balance here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i11:audio",
+            "transcript": "There is little work-life balance here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i11:r1",
+              "targetText": "There is little work-life balance here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r2",
+              "targetText": "There is a little work-life balance here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r3",
+              "targetText": "There is a few work-life balance here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is little work-life balance here.",
+                "uk": "У записі звучить There is little work-life balance here."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is little work-life balance here.",
+                "uk": "У записі звучить There is little work-life balance here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i12:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+            "uk": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу."
+          },
+          "gappedTargetPhrase": "There is ___ work-life balance here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-55:i13:p1",
+              "target": "personal space",
+              "meaningByLocale": {
+                "ru": "личное пространство",
+                "uk": "особистий простір"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p2",
+              "target": "peace of mind",
+              "meaningByLocale": {
+                "ru": "душевное спокойствие, отсутствие тревог",
+                "uk": "душевний спокій, відсутність тривог"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p3",
+              "target": "quality time",
+              "meaningByLocale": {
+                "ru": "время, проведённое вместе с вниманием друг к другу",
+                "uk": "час, проведений разом з увагою одне до одного"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p4",
+              "target": "work-life balance",
+              "meaningByLocale": {
+                "ru": "баланс между работой и личной жизнью",
+                "uk": "баланс між роботою й особистим життям"
+              }
+            }
+          ],
+          "leftColumn": [
+            "personal space",
+            "peace of mind",
+            "quality time",
+            "work-life balance"
+          ],
+          "rightColumn": [
+            "личное пространство",
+            "душевное спокойствие, отсутствие тревог",
+            "время, проведённое вместе с вниманием друг к другу",
+            "баланс между работой и личной жизнью"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i14:audio",
+            "transcript": "I need a little personal space."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a little personal space.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "little",
+            "personal",
+            "space"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i15:audio",
+            "transcript": "There is little work-life balance here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is little work-life balance here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "little",
+            "work-life",
+            "balance",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните наличие некоторого количества",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните наличие некоторого количества",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i16:audio",
+            "transcript": "We enjoy a little quality time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We enjoy a little quality time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i17:audio",
+            "transcript": "I have little peace of mind."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have little peace of mind.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-55:word:personal-space",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — personal space",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:personal-space:audio"
+        ],
+        "accessibilityLabel": "Картка слова — personal space",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:personal-space:audio",
+            "transcript": "personal space"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:personal-space:r1",
+              "targetText": "personal space",
+              "meaningByLocale": {
+                "ru": "личное пространство.",
+                "uk": "особистий простір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "personal space",
+            "definitionByLocale": {
+              "ru": "личное пространство.",
+              "uk": "особистий простір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Скажіть: «Мені потрібно трохи особистого простору».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Скажіть: «Мені потрібно трохи особистого простору».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need a little personal space.",
+          "localizedMeaning": {
+            "ru": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. Скажите: «Мне нужно немного личного пространства».",
+            "uk": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Скажіть: «Мені потрібно трохи особистого простору»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "little",
+            "personal",
+            "space"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i02:r1",
+            "text": "I need a little personal space."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i02:r2",
+            "text": "I need little personal space."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i02:r3",
+            "text": "I need a few personal space."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i02:audio",
+            "transcript": "I need a little personal space."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i02:r1",
+              "targetText": "I need a little personal space.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r2",
+              "targetText": "I need little personal space.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r3",
+              "targetText": "I need a few personal space.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need a little personal space.",
+                "uk": "У записі звучить I need a little personal space."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need a little personal space.",
+                "uk": "У записі звучить I need a little personal space."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i03:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i03:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i03:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства.",
+            "uk": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору."
+          },
+          "gappedTargetPhrase": "I need ___ personal space.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i03:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:peace-of-mind",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — peace of mind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:peace-of-mind:audio"
+        ],
+        "accessibilityLabel": "Картка слова — peace of mind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:peace-of-mind:audio",
+            "transcript": "peace of mind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:peace-of-mind:r1",
+              "targetText": "peace of mind",
+              "meaningByLocale": {
+                "ru": "душевное спокойствие, отсутствие тревог.",
+                "uk": "душевний спокій, відсутність тривог."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peace of mind",
+            "definitionByLocale": {
+              "ru": "душевное спокойствие, отсутствие тревог.",
+              "uk": "душевний спокій, відсутність тривог."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас багато що тривожить. Підкресліть, що спокою мало. Скажіть: «У мене мало душевного спокою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас багато що тривожить. Підкресліть, що спокою мало. Скажіть: «У мене мало душевного спокою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have little peace of mind.",
+          "localizedMeaning": {
+            "ru": "Вас многое тревожит. Подчеркните, что спокойствия мало. Скажите: «У меня мало душевного спокойствия».",
+            "uk": "Вас багато що тривожить. Підкресліть, що спокою мало. Скажіть: «У мене мало душевного спокою»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "little",
+            "peace",
+            "of",
+            "mind"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i05:r1",
+            "text": "I have little peace of mind."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i05:r2",
+            "text": "I have a little peace of mind."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i05:r3",
+            "text": "I have a few peace of mind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i05:audio",
+            "transcript": "I have little peace of mind."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i05:r1",
+              "targetText": "I have little peace of mind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r2",
+              "targetText": "I have a little peace of mind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r3",
+              "targetText": "I have a few peace of mind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have little peace of mind.",
+                "uk": "У записі звучить I have little peace of mind."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have little peace of mind.",
+                "uk": "У записі звучить I have little peace of mind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас багато що тривожить. Підкресліть, що спокою мало.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i06:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i06:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i06:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас багато що тривожить. Підкресліть, що спокою мало.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас многое тревожит. Подчеркните, что спокойствия мало.",
+            "uk": "Вас багато що тривожить. Підкресліть, що спокою мало."
+          },
+          "gappedTargetPhrase": "I have ___ peace of mind.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i06:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Вас багато що тривожить. Підкресліть, що спокою мало.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Вас багато що тривожить. Підкресліть, що спокою мало.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Вас багато що тривожить. Підкресліть, що спокою мало.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:quality-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — quality time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:quality-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — quality time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:quality-time:audio",
+            "transcript": "quality time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:quality-time:r1",
+              "targetText": "quality time",
+              "meaningByLocale": {
+                "ru": "время, проведённое вместе с вниманием друг к другу.",
+                "uk": "час, проведений разом з увагою одне до одного."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quality time",
+            "definitionByLocale": {
+              "ru": "время, проведённое вместе с вниманием друг к другу.",
+              "uk": "час, проведений разом з увагою одне до одного."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак. Скажіть: «Ми приємно проводимо трохи часу разом, приділяючи увагу одне одному».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак. Скажіть: «Ми приємно проводимо трохи часу разом, приділяючи увагу одне одному».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We enjoy a little quality time.",
+          "localizedMeaning": {
+            "ru": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку. Скажите: «Мы приятно проводим немного времени вместе, уделяя внимание друг другу».",
+            "uk": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак. Скажіть: «Ми приємно проводимо трохи часу разом, приділяючи увагу одне одному»."
+          },
+          "orderedTokens": [
+            "We",
+            "enjoy",
+            "a",
+            "little",
+            "quality",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i08:r1",
+            "text": "We enjoy a little quality time."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i08:r2",
+            "text": "We enjoy little quality time."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i08:r3",
+            "text": "We enjoy a few quality time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i08:audio",
+            "transcript": "We enjoy a little quality time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i08:r1",
+              "targetText": "We enjoy a little quality time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r2",
+              "targetText": "We enjoy little quality time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r3",
+              "targetText": "We enjoy a few quality time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We enjoy a little quality time.",
+                "uk": "У записі звучить We enjoy a little quality time."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We enjoy a little quality time.",
+                "uk": "У записі звучить We enjoy a little quality time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i09:r1",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i09:r2",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i09:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У вас всё же есть немного времени друг для друга. Подчеркните это, а не нехватку.",
+            "uk": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак."
+          },
+          "gappedTargetPhrase": "We enjoy ___ quality time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i09:r1",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r2",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви все ж маєте трохи часу одне для одного. Підкресліть це, а не брак.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:word:work-life-balance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — work-life balance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:word:work-life-balance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — work-life balance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:word:work-life-balance:audio",
+            "transcript": "work-life balance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:word:work-life-balance:r1",
+              "targetText": "work-life balance",
+              "meaningByLocale": {
+                "ru": "баланс между работой и личной жизнью.",
+                "uk": "баланс між роботою й особистим життям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "work-life balance",
+            "definitionByLocale": {
+              "ru": "баланс между работой и личной жизнью.",
+              "uk": "баланс між роботою й особистим життям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Скажіть: «Тут мало балансу між роботою й особистим життям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Скажіть: «Тут мало балансу між роботою й особистим життям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is little work-life balance here.",
+          "localizedMeaning": {
+            "ru": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. Скажите: «Здесь мало баланса между работой и личной жизнью».",
+            "uk": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Скажіть: «Тут мало балансу між роботою й особистим життям»."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "little",
+            "work-life",
+            "balance",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i11:r1",
+            "text": "There is little work-life balance here."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i11:r2",
+            "text": "There is a little work-life balance here."
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i11:r3",
+            "text": "There is a few work-life balance here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i11:audio",
+            "transcript": "There is little work-life balance here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-55:i11:r1",
+              "targetText": "There is little work-life balance here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r2",
+              "targetText": "There is a little work-life balance here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r3",
+              "targetText": "There is a few work-life balance here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is little work-life balance here.",
+                "uk": "У записі звучить There is little work-life balance here."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is little work-life balance here.",
+                "uk": "У записі звучить There is little work-life balance here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-55:i12:r1",
+            "text": "little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i12:r2",
+            "text": "a little"
+          },
+          {
+            "responseId": "en:lesson-17:session-55:i12:r3",
+            "text": "a few"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса.",
+            "uk": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу."
+          },
+          "gappedTargetPhrase": "There is ___ work-life balance here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-55:i12:r1",
+              "text": "little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r2",
+              "text": "a little"
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r3",
+              "text": "a few"
+            }
+          ],
+          "testedDimension": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Робота майже не залишає часу на особисте життя. Підкресліть брак балансу.",
+              "feedbackByLocale": {
+                "ru": "Few используется с исчисляемыми во множественном числе.",
+                "uk": "Few використовується зі злічуваними у множині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-55:i13:p1",
+              "target": "personal space",
+              "meaningByLocale": {
+                "ru": "личное пространство",
+                "uk": "особистий простір"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p2",
+              "target": "peace of mind",
+              "meaningByLocale": {
+                "ru": "душевное спокойствие, отсутствие тревог",
+                "uk": "душевний спокій, відсутність тривог"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p3",
+              "target": "quality time",
+              "meaningByLocale": {
+                "ru": "время, проведённое вместе с вниманием друг к другу",
+                "uk": "час, проведений разом з увагою одне до одного"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-55:i13:p4",
+              "target": "work-life balance",
+              "meaningByLocale": {
+                "ru": "баланс между работой и личной жизнью",
+                "uk": "баланс між роботою й особистим життям"
+              }
+            }
+          ],
+          "leftColumn": [
+            "personal space",
+            "peace of mind",
+            "quality time",
+            "work-life balance"
+          ],
+          "rightColumn": [
+            "особистий простір",
+            "душевний спокій, відсутність тривог",
+            "час, проведений разом з увагою одне до одного",
+            "баланс між роботою й особистим життям"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i14:audio",
+            "transcript": "I need a little personal space."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need a little personal space.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "a",
+            "little",
+            "personal",
+            "space"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з little",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з little",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i15:audio",
+            "transcript": "There is little work-life balance here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is little work-life balance here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "little",
+            "work-life",
+            "balance",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть наявність певної кількості",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть наявність певної кількості",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i16:audio",
+            "transcript": "We enjoy a little quality time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We enjoy a little quality time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-55:i17:audio",
+            "transcript": "I have little peace of mind."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have little peace of mind.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-55:word:personal-space",
+      "correctText": "personal space",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i01",
+      "correctText": "I need a little personal space.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i02",
+      "correctText": "I need a little personal space.",
+      "correctResponseId": "en:lesson-17:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i03",
+      "correctText": "a little",
+      "correctResponseId": "en:lesson-17:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:word:peace-of-mind",
+      "correctText": "peace of mind",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i04",
+      "correctText": "I have little peace of mind.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i05",
+      "correctText": "I have little peace of mind.",
+      "correctResponseId": "en:lesson-17:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i06",
+      "correctText": "little",
+      "correctResponseId": "en:lesson-17:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:word:quality-time",
+      "correctText": "quality time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i07",
+      "correctText": "We enjoy a little quality time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i08",
+      "correctText": "We enjoy a little quality time.",
+      "correctResponseId": "en:lesson-17:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i09",
+      "correctText": "a little",
+      "correctResponseId": "en:lesson-17:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:word:work-life-balance",
+      "correctText": "work-life balance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i10",
+      "correctText": "There is little work-life balance here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i11",
+      "correctText": "There is little work-life balance here.",
+      "correctResponseId": "en:lesson-17:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i12",
+      "correctText": "little",
+      "correctResponseId": "en:lesson-17:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i14",
+      "correctText": "I need a little personal space.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i15",
+      "correctText": "There is little work-life balance here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i16",
+      "correctText": "We enjoy a little quality time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-55:i17",
+      "correctText": "I have little peace of mind.",
+      "correctResponseId": null
+    }
+  ]
+}

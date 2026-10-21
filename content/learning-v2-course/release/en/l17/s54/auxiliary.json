@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-54:intro1:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість."
+        },
+        "en:lesson-17:session-54:intro1:r3": {
+          "ru": "С неисчисляемым нужно little, не few.",
+          "uk": "Із незлічуваним потрібне little, не few."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-54:intro2:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+        },
+        "en:lesson-17:session-54:intro2:r3": {
+          "ru": "С неисчисляемым нужно little, не few.",
+          "uk": "Із незлічуваним потрібне little, не few."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-54:intro3:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість."
+        },
+        "en:lesson-17:session-54:intro3:r3": {
+          "ru": "С неисчисляемым нужно little, не few.",
+          "uk": "Із незлічуваним потрібне little, не few."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "629e1c31c7cba8442bee6a579985f303c9865c976a3ba018609cdc6dd65fc404"
+}

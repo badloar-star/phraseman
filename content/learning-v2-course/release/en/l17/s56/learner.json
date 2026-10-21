@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-56:word:small-talk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — small talk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:word:small-talk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — small talk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:word:small-talk:audio",
+          "transcript": "small talk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:word:small-talk:r1",
+            "targetText": "small talk",
+            "meaningByLocale": {
+              "ru": "непринуждённый разговор на общие темы.",
+              "uk": "невимушена розмова на загальні теми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "small talk",
+          "definitionByLocale": {
+            "ru": "непринуждённый разговор на общие темы.",
+            "uk": "невимушена розмова на загальні теми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Короткий непринуждённый разговор состоялся. Подтвердите это. Скажите: «Мы немного поговорили на общие темы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Короткий непринуждённый разговор состоялся. Подтвердите это. Скажите: «Мы немного поговорили на общие темы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We made some small talk.",
+        "localizedMeaning": {
+          "ru": "Короткий непринуждённый разговор состоялся. Подтвердите это. Скажите: «Мы немного поговорили на общие темы».",
+          "uk": "Коротка невимушена розмова відбулася. Підтвердьте це. Скажіть: «Ми трохи поговорили на загальні теми»."
+        },
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "small",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i02:r1",
+          "text": "We made some small talk."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i02:r2",
+          "text": "We made any small talk."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i02:r3",
+          "text": "We made a small talk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i02:audio",
+          "transcript": "We made some small talk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:i02:r1",
+            "targetText": "We made some small talk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i02:r2",
+            "targetText": "We made any small talk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i02:r3",
+            "targetText": "We made a small talk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some small talk.",
+              "uk": "У записі звучить We made some small talk."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We made some small talk.",
+              "uk": "У записі звучить We made some small talk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i03:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i03:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+          "uk": "Коротка невимушена розмова відбулася. Підтвердьте це."
+        },
+        "gappedTargetPhrase": "We made ___ small talk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-56:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Короткий непринуждённый разговор состоялся. Подтвердите это.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:word:spare-change",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spare change",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:word:spare-change:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spare change",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:word:spare-change:audio",
+          "transcript": "spare change"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:word:spare-change:r1",
+            "targetText": "spare change",
+            "meaningByLocale": {
+              "ru": "мелкие деньги, мелочь при себе.",
+              "uk": "дрібні гроші, дріб’язок при собі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spare change",
+          "definitionByLocale": {
+            "ru": "мелкие деньги, мелочь при себе.",
+            "uk": "дрібні гроші, дріб’язок при собі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мелочи нет вообще. Отрицайте наличие полностью. Скажите: «У меня совсем нет мелочи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мелочи нет вообще. Отрицайте наличие полностью. Скажите: «У меня совсем нет мелочи».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don't have any spare change.",
+        "localizedMeaning": {
+          "ru": "Мелочи нет вообще. Отрицайте наличие полностью. Скажите: «У меня совсем нет мелочи».",
+          "uk": "Дрібних грошей немає взагалі. Повністю заперечте наявність. Скажіть: «У мене зовсім немає дрібних грошей»."
+        },
+        "orderedTokens": [
+          "I",
+          "don't",
+          "have",
+          "any",
+          "spare",
+          "change"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i05:r1",
+          "text": "I don't have any spare change."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i05:r2",
+          "text": "I don't have some spare change."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i05:r3",
+          "text": "I don't have a spare change."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i05:audio",
+          "transcript": "I don't have any spare change."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:i05:r1",
+            "targetText": "I don't have any spare change.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i05:r2",
+            "targetText": "I don't have some spare change.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i05:r3",
+            "targetText": "I don't have a spare change.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't have any spare change.",
+              "uk": "У записі звучить I don't have any spare change."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't have any spare change.",
+              "uk": "У записі звучить I don't have any spare change."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мелочи нет вообще. Отрицайте наличие полностью.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i06:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i06:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i06:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мелочи нет вообще. Отрицайте наличие полностью.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мелочи нет вообще. Отрицайте наличие полностью.",
+          "uk": "Дрібних грошей немає взагалі. Повністю заперечте наявність."
+        },
+        "gappedTargetPhrase": "I don't have ___ spare change.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-56:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i06:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Мелочи нет вообще. Отрицайте наличие полностью.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Мелочи нет вообще. Отрицайте наличие полностью.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Мелочи нет вообще. Отрицайте наличие полностью.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:word:daily-routine",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — daily routine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:word:daily-routine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — daily routine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:word:daily-routine:audio",
+          "transcript": "daily routine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:word:daily-routine:r1",
+            "targetText": "daily routine",
+            "meaningByLocale": {
+              "ru": "ежедневный распорядок или привычная последовательность дел.",
+              "uk": "щоденний розпорядок або звична послідовність справ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daily routine",
+          "definitionByLocale": {
+            "ru": "ежедневный распорядок или привычная последовательность дел.",
+            "uk": "щоденний розпорядок або звична послідовність справ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines. Скажите: «У нас есть несколько повседневных привычек».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines. Скажите: «У нас есть несколько повседневных привычек».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have some daily routines.",
+        "localizedMeaning": {
+          "ru": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines. Скажите: «У нас есть несколько повседневных привычек».",
+          "uk": "Ви маєте звичний порядок ранкових і вечірніх справ. Підтвердьте наявність таких порядків. Daily routine → daily routines. Скажіть: «У нас є кілька повсякденних звичок»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "some",
+          "daily",
+          "routines"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i08:r1",
+          "text": "We have some daily routines."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i08:r2",
+          "text": "We have any daily routines."
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i08:r3",
+          "text": "We have a daily routines."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i08:audio",
+          "transcript": "We have some daily routines."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:i08:r1",
+            "targetText": "We have some daily routines.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i08:r2",
+            "targetText": "We have any daily routines.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i08:r3",
+            "targetText": "We have a daily routines.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have some daily routines.",
+              "uk": "У записі звучить We have some daily routines."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have some daily routines.",
+              "uk": "У записі звучить We have some daily routines."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i09:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i09:r2",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i09:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+          "uk": "Ви маєте звичний порядок ранкових і вечірніх справ. Підтвердьте наявність таких порядків. Daily routine → daily routines."
+        },
+        "gappedTargetPhrase": "We have ___ daily routines.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-56:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i09:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении о некотором количестве используем some.",
+              "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "У вас есть привычный порядок утренних и вечерних дел. Подтвердите наличие таких порядков. Daily routine → daily routines.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:word:drinking-water",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drinking water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:word:drinking-water:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drinking water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:word:drinking-water:audio",
+          "transcript": "drinking water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:word:drinking-water:r1",
+            "targetText": "drinking water",
+            "meaningByLocale": {
+              "ru": "питьевая вода.",
+              "uk": "питна вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drinking water",
+          "definitionByLocale": {
+            "ru": "питьевая вода.",
+            "uk": "питна вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально. Скажите: «Есть какая-либо питьевая вода».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально. Скажите: «Есть какая-либо питьевая вода».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there any drinking water?",
+        "localizedMeaning": {
+          "ru": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально. Скажите: «Есть какая-либо питьевая вода».",
+          "uk": "Ви не знаєте, чи є тут питна вода. Запитайте нейтрально. Скажіть: «Є якась питна вода»."
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "drinking",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i11:r1",
+          "text": "Is there any drinking water?"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i11:r2",
+          "text": "Is there some drinking water?"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i11:r3",
+          "text": "Is there a drinking water?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i11:audio",
+          "transcript": "Is there any drinking water?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-56:i11:r1",
+            "targetText": "Is there any drinking water?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i11:r2",
+            "targetText": "Is there some drinking water?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i11:r3",
+            "targetText": "Is there a drinking water?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there any drinking water?",
+              "uk": "У записі звучить Is there any drinking water?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there any drinking water?",
+              "uk": "У записі звучить Is there any drinking water?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-56:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-17:session-56:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+          "uk": "Ви не знаєте, чи є тут питна вода. Запитайте нейтрально."
+        },
+        "gappedTargetPhrase": "Is there ___ drinking water?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-56:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+              "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете, есть ли здесь питьевая вода. Спросите нейтрально.",
+            "feedbackByLocale": {
+              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "uk": "A не ставиться перед незлічуваним або множиною."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-56:i13:p1",
+            "target": "small talk",
+            "meaningByLocale": {
+              "ru": "непринуждённый разговор на общие темы",
+              "uk": "невимушена розмова на загальні теми"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-56:i13:p2",
+            "target": "spare change",
+            "meaningByLocale": {
+              "ru": "мелкие деньги, мелочь при себе",
+              "uk": "дрібні гроші, дріб’язок при собі"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-56:i13:p3",
+            "target": "daily routine",
+            "meaningByLocale": {
+              "ru": "ежедневный распорядок или привычная последовательность дел",
+              "uk": "щоденний розпорядок або звична послідовність справ"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-56:i13:p4",
+            "target": "drinking water",
+            "meaningByLocale": {
+              "ru": "питьевая вода",
+              "uk": "питна вода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "small talk",
+          "spare change",
+          "daily routine",
+          "drinking water"
+        ],
+        "rightColumn": [
+          "непринуждённый разговор на общие темы",
+          "мелкие деньги, мелочь при себе",
+          "ежедневный распорядок или привычная последовательность дел",
+          "питьевая вода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное утверждение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное утверждение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i14:audio",
+          "transcript": "We made some small talk."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We made some small talk.",
+        "orderedTokens": [
+          "We",
+          "made",
+          "some",
+          "small",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i15:audio",
+          "transcript": "Is there any drinking water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there any drinking water?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "any",
+          "drinking",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что некоторое количество есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что некоторое количество есть",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i16:audio",
+          "transcript": "We have some daily routines."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have some daily routines.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полностью отрицайте наличие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Полностью отрицайте наличие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-56:i17:audio",
+          "transcript": "I don't have any spare change."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don't have any spare change.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4365eebc594d70d18deb45a06fa87f75d24c5bcc5e618b603d562df823b04994"
+}

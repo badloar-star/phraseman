@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "a few / few + plural count noun",
+    "uk": "a few / few + plural count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько всё же есть",
+        "uk": "Кілька все ж є"
+      },
+      "bodyByLocale": {
+        "ru": "departure time — время отправления или вылета. Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "departure time — час відправлення або вильоту. Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r1",
+              "text": "We checked a few departure times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r2",
+              "text": "We checked few departure times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r3",
+              "text": "We checked a little departure times."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r1",
+              "text": "We checked a few departure times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r2",
+              "text": "We checked few departure times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro1:r3",
+              "text": "We checked a little departure times."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подчеркнуть нехватку",
+        "uk": "Підкреслити брак"
+      },
+      "bodyByLocale": {
+        "ru": "arrival time — время прибытия. flight number — номер авиарейса. Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "arrival time — час прибуття. flight number — номер авіарейсу. Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r1",
+              "text": "We know few arrival times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r2",
+              "text": "We know a few arrival times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r3",
+              "text": "We know a little arrival times."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r1",
+              "text": "We know few arrival times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r2",
+              "text": "We know a few arrival times."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro2:r3",
+              "text": "We know a little arrival times."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смысл зависит от a",
+        "uk": "Зміст залежить від a"
+      },
+      "bodyByLocale": {
+        "ru": "booking reference — номер или код бронирования. Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
+        "uk": "booking reference — номер або код бронювання. Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r1",
+              "text": "We have few booking references."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r2",
+              "text": "We have a few booking references."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r3",
+              "text": "We have a little booking references."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r1",
+              "text": "We have few booking references."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r2",
+              "text": "We have a few booking references."
+            },
+            {
+              "responseId": "en:lesson-17:session-52:intro3:r3",
+              "text": "We have a little booking references."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e95bda78f219d261108de9075dea9cbb406b93e5311d36c343fa65b316392e03"
+}

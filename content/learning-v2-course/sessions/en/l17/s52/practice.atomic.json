@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-52:word:departure-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — departure time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:departure-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — departure time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:departure-time:audio",
+            "transcript": "departure time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:departure-time:r1",
+              "targetText": "departure time",
+              "meaningByLocale": {
+                "ru": "время отправления или вылета.",
+                "uk": "час відправлення або вильоту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "departure time",
+            "definitionByLocale": {
+              "ru": "время отправления или вылета.",
+              "uk": "час відправлення або вильоту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. Скажите: «Мы проверили время отправления нескольких рейсов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. Скажите: «Мы проверили время отправления нескольких рейсов».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked a few departure times.",
+          "localizedMeaning": {
+            "ru": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. Скажите: «Мы проверили время отправления нескольких рейсов».",
+            "uk": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Скажіть: «Ми перевірили час відправлення кількох рейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "a",
+            "few",
+            "departure",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i02:r1",
+            "text": "We checked a few departure times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i02:r2",
+            "text": "We checked few departure times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i02:r3",
+            "text": "We checked a little departure times."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i02:audio",
+            "transcript": "We checked a few departure times."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i02:r1",
+              "targetText": "We checked a few departure times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r2",
+              "targetText": "We checked few departure times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r3",
+              "targetText": "We checked a little departure times.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked a few departure times.",
+                "uk": "У записі звучить We checked a few departure times."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked a few departure times.",
+                "uk": "У записі звучить We checked a few departure times."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+            "uk": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times."
+          },
+          "gappedTargetPhrase": "We checked ___ departure times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:arrival-time",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — arrival time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:arrival-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — arrival time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:arrival-time:audio",
+            "transcript": "arrival time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:arrival-time:r1",
+              "targetText": "arrival time",
+              "meaningByLocale": {
+                "ru": "время прибытия.",
+                "uk": "час прибуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrival time",
+            "definitionByLocale": {
+              "ru": "время прибытия.",
+              "uk": "час прибуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times. Скажите: «Мы знаем время прибытия лишь немногих рейсов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times. Скажите: «Мы знаем время прибытия лишь немногих рейсов».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We know few arrival times.",
+          "localizedMeaning": {
+            "ru": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times. Скажите: «Мы знаем время прибытия лишь немногих рейсов».",
+            "uk": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times. Скажіть: «Ми знаємо час прибуття лише небагатьох рейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "know",
+            "few",
+            "arrival",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i05:r1",
+            "text": "We know few arrival times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i05:r2",
+            "text": "We know a few arrival times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i05:r3",
+            "text": "We know a little arrival times."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i05:audio",
+            "transcript": "We know few arrival times."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i05:r1",
+              "targetText": "We know few arrival times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r2",
+              "targetText": "We know a few arrival times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r3",
+              "targetText": "We know a little arrival times.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We know few arrival times.",
+                "uk": "У записі звучить We know few arrival times."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We know few arrival times.",
+                "uk": "У записі звучить We know few arrival times."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i06:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+            "uk": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times."
+          },
+          "gappedTargetPhrase": "We know ___ arrival times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:flight-number",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flight number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:flight-number:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flight number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:flight-number:audio",
+            "transcript": "flight number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:flight-number:r1",
+              "targetText": "flight number",
+              "meaningByLocale": {
+                "ru": "номер авиарейса.",
+                "uk": "номер авіарейсу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flight number",
+            "definitionByLocale": {
+              "ru": "номер авиарейса.",
+              "uk": "номер авіарейсу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers. Скажите: «Мы сохранили несколько номеров авиарейсов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers. Скажите: «Мы сохранили несколько номеров авиарейсов».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We saved a few flight numbers.",
+          "localizedMeaning": {
+            "ru": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers. Скажите: «Мы сохранили несколько номеров авиарейсов».",
+            "uk": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers. Скажіть: «Ми зберегли кілька номерів авіарейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "saved",
+            "a",
+            "few",
+            "flight",
+            "numbers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i08:r1",
+            "text": "We saved a few flight numbers."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i08:r2",
+            "text": "We saved few flight numbers."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i08:r3",
+            "text": "We saved a little flight numbers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i08:audio",
+            "transcript": "We saved a few flight numbers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i08:r1",
+              "targetText": "We saved a few flight numbers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r2",
+              "targetText": "We saved few flight numbers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r3",
+              "targetText": "We saved a little flight numbers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We saved a few flight numbers.",
+                "uk": "У записі звучить We saved a few flight numbers."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We saved a few flight numbers.",
+                "uk": "У записі звучить We saved a few flight numbers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i09:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i09:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i09:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+            "uk": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers."
+          },
+          "gappedTargetPhrase": "We saved ___ flight numbers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i09:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:booking-reference",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — booking reference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:booking-reference:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — booking reference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:booking-reference:audio",
+            "transcript": "booking reference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:booking-reference:r1",
+              "targetText": "booking reference",
+              "meaningByLocale": {
+                "ru": "номер или код бронирования.",
+                "uk": "номер або код бронювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "booking reference",
+            "definitionByLocale": {
+              "ru": "номер или код бронирования.",
+              "uk": "номер або код бронювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. Скажите: «У нас мало номеров бронирований».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. Скажите: «У нас мало номеров бронирований».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few booking references.",
+          "localizedMeaning": {
+            "ru": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. Скажите: «У нас мало номеров бронирований».",
+            "uk": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Скажіть: «У нас мало номерів бронювань»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "booking",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i11:r1",
+            "text": "We have few booking references."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i11:r2",
+            "text": "We have a few booking references."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i11:r3",
+            "text": "We have a little booking references."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i11:audio",
+            "transcript": "We have few booking references."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i11:r1",
+              "targetText": "We have few booking references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r2",
+              "targetText": "We have a few booking references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r3",
+              "targetText": "We have a little booking references.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few booking references.",
+                "uk": "У записі звучить We have few booking references."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few booking references.",
+                "uk": "У записі звучить We have few booking references."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i12:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i12:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i12:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+            "uk": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references."
+          },
+          "gappedTargetPhrase": "We have ___ booking references.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i12:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-52:i13:p1",
+              "target": "departure time",
+              "meaningByLocale": {
+                "ru": "время отправления или вылета",
+                "uk": "час відправлення або вильоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p2",
+              "target": "arrival time",
+              "meaningByLocale": {
+                "ru": "время прибытия",
+                "uk": "час прибуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p3",
+              "target": "flight number",
+              "meaningByLocale": {
+                "ru": "номер авиарейса",
+                "uk": "номер авіарейсу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p4",
+              "target": "booking reference",
+              "meaningByLocale": {
+                "ru": "номер или код бронирования",
+                "uk": "номер або код бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "departure time",
+            "arrival time",
+            "flight number",
+            "booking reference"
+          ],
+          "rightColumn": [
+            "время отправления или вылета",
+            "время прибытия",
+            "номер авиарейса",
+            "номер или код бронирования"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i14:audio",
+            "transcript": "We checked a few departure times."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We checked a few departure times.",
+          "orderedTokens": [
+            "We",
+            "checked",
+            "a",
+            "few",
+            "departure",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i15:audio",
+            "transcript": "We have few booking references."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have few booking references.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "booking",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните наличие нескольких",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Подчеркните наличие нескольких",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i16:audio",
+            "transcript": "We saved a few flight numbers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We saved a few flight numbers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подчеркните малое количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Подчеркните малое количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i17:audio",
+            "transcript": "We know few arrival times."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We know few arrival times.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-52:word:departure-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — departure time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:departure-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — departure time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:departure-time:audio",
+            "transcript": "departure time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:departure-time:r1",
+              "targetText": "departure time",
+              "meaningByLocale": {
+                "ru": "время отправления или вылета.",
+                "uk": "час відправлення або вильоту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "departure time",
+            "definitionByLocale": {
+              "ru": "время отправления или вылета.",
+              "uk": "час відправлення або вильоту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Скажіть: «Ми перевірили час відправлення кількох рейсів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Скажіть: «Ми перевірили час відправлення кількох рейсів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked a few departure times.",
+          "localizedMeaning": {
+            "ru": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. Скажите: «Мы проверили время отправления нескольких рейсов».",
+            "uk": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Скажіть: «Ми перевірили час відправлення кількох рейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "a",
+            "few",
+            "departure",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i02:r1",
+            "text": "We checked a few departure times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i02:r2",
+            "text": "We checked few departure times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i02:r3",
+            "text": "We checked a little departure times."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i02:audio",
+            "transcript": "We checked a few departure times."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i02:r1",
+              "targetText": "We checked a few departure times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r2",
+              "targetText": "We checked few departure times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r3",
+              "targetText": "We checked a little departure times.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked a few departure times.",
+                "uk": "У записі звучить We checked a few departure times."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We checked a few departure times.",
+                "uk": "У записі звучить We checked a few departure times."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i03:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i03:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i03:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
+            "uk": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times."
+          },
+          "gappedTargetPhrase": "We checked ___ departure times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i03:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:arrival-time",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — arrival time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:arrival-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — arrival time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:arrival-time:audio",
+            "transcript": "arrival time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:arrival-time:r1",
+              "targetText": "arrival time",
+              "meaningByLocale": {
+                "ru": "время прибытия.",
+                "uk": "час прибуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrival time",
+            "definitionByLocale": {
+              "ru": "время прибытия.",
+              "uk": "час прибуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times. Скажіть: «Ми знаємо час прибуття лише небагатьох рейсів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times. Скажіть: «Ми знаємо час прибуття лише небагатьох рейсів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We know few arrival times.",
+          "localizedMeaning": {
+            "ru": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times. Скажите: «Мы знаем время прибытия лишь немногих рейсов».",
+            "uk": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times. Скажіть: «Ми знаємо час прибуття лише небагатьох рейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "know",
+            "few",
+            "arrival",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i05:r1",
+            "text": "We know few arrival times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i05:r2",
+            "text": "We know a few arrival times."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i05:r3",
+            "text": "We know a little arrival times."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i05:audio",
+            "transcript": "We know few arrival times."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i05:r1",
+              "targetText": "We know few arrival times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r2",
+              "targetText": "We know a few arrival times.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r3",
+              "targetText": "We know a little arrival times.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We know few arrival times.",
+                "uk": "У записі звучить We know few arrival times."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We know few arrival times.",
+                "uk": "У записі звучить We know few arrival times."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i06:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i06:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i06:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
+            "uk": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times."
+          },
+          "gappedTargetPhrase": "We know ___ arrival times.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i06:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:flight-number",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flight number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:flight-number:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flight number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:flight-number:audio",
+            "transcript": "flight number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:flight-number:r1",
+              "targetText": "flight number",
+              "meaningByLocale": {
+                "ru": "номер авиарейса.",
+                "uk": "номер авіарейсу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flight number",
+            "definitionByLocale": {
+              "ru": "номер авиарейса.",
+              "uk": "номер авіарейсу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers. Скажіть: «Ми зберегли кілька номерів авіарейсів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers. Скажіть: «Ми зберегли кілька номерів авіарейсів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We saved a few flight numbers.",
+          "localizedMeaning": {
+            "ru": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers. Скажите: «Мы сохранили несколько номеров авиарейсов».",
+            "uk": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers. Скажіть: «Ми зберегли кілька номерів авіарейсів»."
+          },
+          "orderedTokens": [
+            "We",
+            "saved",
+            "a",
+            "few",
+            "flight",
+            "numbers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i08:r1",
+            "text": "We saved a few flight numbers."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i08:r2",
+            "text": "We saved few flight numbers."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i08:r3",
+            "text": "We saved a little flight numbers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i08:audio",
+            "transcript": "We saved a few flight numbers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i08:r1",
+              "targetText": "We saved a few flight numbers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r2",
+              "targetText": "We saved few flight numbers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r3",
+              "targetText": "We saved a little flight numbers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We saved a few flight numbers.",
+                "uk": "У записі звучить We saved a few flight numbers."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We saved a few flight numbers.",
+                "uk": "У записі звучить We saved a few flight numbers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i09:r1",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i09:r2",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i09:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
+            "uk": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers."
+          },
+          "gappedTargetPhrase": "We saved ___ flight numbers.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i09:r1",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r2",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:word:booking-reference",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — booking reference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:word:booking-reference:audio"
+        ],
+        "accessibilityLabel": "Картка слова — booking reference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:word:booking-reference:audio",
+            "transcript": "booking reference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:word:booking-reference:r1",
+              "targetText": "booking reference",
+              "meaningByLocale": {
+                "ru": "номер или код бронирования.",
+                "uk": "номер або код бронювання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "booking reference",
+            "definitionByLocale": {
+              "ru": "номер или код бронирования.",
+              "uk": "номер або код бронювання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Скажіть: «У нас мало номерів бронювань».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Скажіть: «У нас мало номерів бронювань».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have few booking references.",
+          "localizedMeaning": {
+            "ru": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. Скажите: «У нас мало номеров бронирований».",
+            "uk": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Скажіть: «У нас мало номерів бронювань»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "booking",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i11:r1",
+            "text": "We have few booking references."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i11:r2",
+            "text": "We have a few booking references."
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i11:r3",
+            "text": "We have a little booking references."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i11:audio",
+            "transcript": "We have few booking references."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-52:i11:r1",
+              "targetText": "We have few booking references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r2",
+              "targetText": "We have a few booking references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r3",
+              "targetText": "We have a little booking references.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few booking references.",
+                "uk": "У записі звучить We have few booking references."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have few booking references.",
+                "uk": "У записі звучить We have few booking references."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-52:i12:r1",
+            "text": "few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i12:r2",
+            "text": "a few"
+          },
+          {
+            "responseId": "en:lesson-17:session-52:i12:r3",
+            "text": "a little"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
+            "uk": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references."
+          },
+          "gappedTargetPhrase": "We have ___ booking references.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-52:i12:r1",
+              "text": "few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r2",
+              "text": "a few"
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r3",
+              "text": "a little"
+            }
+          ],
+          "testedDimension": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
+              "feedbackByLocale": {
+                "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+                "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
+              "feedbackByLocale": {
+                "ru": "Little относится к неисчисляемому количеству.",
+                "uk": "Little стосується незлічуваної кількості."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-52:i13:p1",
+              "target": "departure time",
+              "meaningByLocale": {
+                "ru": "время отправления или вылета",
+                "uk": "час відправлення або вильоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p2",
+              "target": "arrival time",
+              "meaningByLocale": {
+                "ru": "время прибытия",
+                "uk": "час прибуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p3",
+              "target": "flight number",
+              "meaningByLocale": {
+                "ru": "номер авиарейса",
+                "uk": "номер авіарейсу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-52:i13:p4",
+              "target": "booking reference",
+              "meaningByLocale": {
+                "ru": "номер или код бронирования",
+                "uk": "номер або код бронювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "departure time",
+            "arrival time",
+            "flight number",
+            "booking reference"
+          ],
+          "rightColumn": [
+            "час відправлення або вильоту",
+            "час прибуття",
+            "номер авіарейсу",
+            "номер або код бронювання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з a few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з a few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i14:audio",
+            "transcript": "We checked a few departure times."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We checked a few departure times.",
+          "orderedTokens": [
+            "We",
+            "checked",
+            "a",
+            "few",
+            "departure",
+            "times"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу з few",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу з few",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i15:audio",
+            "transcript": "We have few booking references."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have few booking references.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "few",
+            "booking",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть наявність кількох",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Підкресліть наявність кількох",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i16:audio",
+            "transcript": "We saved a few flight numbers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We saved a few flight numbers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Підкресліть малу кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Підкресліть малу кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-52:i17:audio",
+            "transcript": "We know few arrival times."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We know few arrival times.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-52:word:departure-time",
+      "correctText": "departure time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i01",
+      "correctText": "We checked a few departure times.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i02",
+      "correctText": "We checked a few departure times.",
+      "correctResponseId": "en:lesson-17:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i03",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:word:arrival-time",
+      "correctText": "arrival time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i04",
+      "correctText": "We know few arrival times.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i05",
+      "correctText": "We know few arrival times.",
+      "correctResponseId": "en:lesson-17:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i06",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:word:flight-number",
+      "correctText": "flight number",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i07",
+      "correctText": "We saved a few flight numbers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i08",
+      "correctText": "We saved a few flight numbers.",
+      "correctResponseId": "en:lesson-17:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i09",
+      "correctText": "a few",
+      "correctResponseId": "en:lesson-17:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:word:booking-reference",
+      "correctText": "booking reference",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i10",
+      "correctText": "We have few booking references.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i11",
+      "correctText": "We have few booking references.",
+      "correctResponseId": "en:lesson-17:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i12",
+      "correctText": "few",
+      "correctResponseId": "en:lesson-17:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i14",
+      "correctText": "We checked a few departure times.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i15",
+      "correctText": "We have few booking references.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i16",
+      "correctText": "We saved a few flight numbers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:i17",
+      "correctText": "We know few arrival times.",
+      "correctResponseId": null
+    }
+  ]
+}

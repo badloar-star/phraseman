@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-54:word:fresh-food",
+    "correctText": "fresh food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i01",
+    "correctText": "We have a little fresh food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i02",
+    "correctText": "We have a little fresh food.",
+    "correctResponseId": "en:lesson-17:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i03",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:word:leftover-food",
+    "correctText": "leftover food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i04",
+    "correctText": "We have little leftover food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i05",
+    "correctText": "We have little leftover food.",
+    "correctResponseId": "en:lesson-17:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i06",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:word:food-waste",
+    "correctText": "food waste",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i07",
+    "correctText": "There is a little food waste.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i08",
+    "correctText": "There is a little food waste.",
+    "correctResponseId": "en:lesson-17:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:word:bottled-water",
+    "correctText": "bottled water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i10",
+    "correctText": "We have little bottled water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i11",
+    "correctText": "We have little bottled water.",
+    "correctResponseId": "en:lesson-17:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i13",
+    "correctText": "en:lesson-17:session-54:i13:p1=fresh food\nen:lesson-17:session-54:i13:p2=leftover food\nen:lesson-17:session-54:i13:p3=food waste\nen:lesson-17:session-54:i13:p4=bottled water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i14",
+    "correctText": "We have a little fresh food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i15",
+    "correctText": "We have little bottled water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i16",
+    "correctText": "There is a little food waste.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-54:i17",
+    "correctText": "We have little leftover food.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-56:word:small-talk",
+    "correctText": "small talk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i01",
+    "correctText": "We made some small talk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i02",
+    "correctText": "We made some small talk.",
+    "correctResponseId": "en:lesson-17:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:word:spare-change",
+    "correctText": "spare change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i04",
+    "correctText": "I don't have any spare change.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i05",
+    "correctText": "I don't have any spare change.",
+    "correctResponseId": "en:lesson-17:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:word:daily-routine",
+    "correctText": "daily routine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i07",
+    "correctText": "We have some daily routines.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i08",
+    "correctText": "We have some daily routines.",
+    "correctResponseId": "en:lesson-17:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:word:drinking-water",
+    "correctText": "drinking water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i10",
+    "correctText": "Is there any drinking water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i11",
+    "correctText": "Is there any drinking water?",
+    "correctResponseId": "en:lesson-17:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i13",
+    "correctText": "en:lesson-17:session-56:i13:p1=small talk\nen:lesson-17:session-56:i13:p2=spare change\nen:lesson-17:session-56:i13:p3=daily routine\nen:lesson-17:session-56:i13:p4=drinking water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i14",
+    "correctText": "We made some small talk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i15",
+    "correctText": "Is there any drinking water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i16",
+    "correctText": "We have some daily routines.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-56:i17",
+    "correctText": "I don't have any spare change.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-52:intro1:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість."
+        },
+        "en:lesson-17:session-52:intro1:r3": {
+          "ru": "С исчисляемым во множественном числе нужно few, не little.",
+          "uk": "Із злічуваним у множині потрібне few, не little."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-52:intro2:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+        },
+        "en:lesson-17:session-52:intro2:r3": {
+          "ru": "С исчисляемым во множественном числе нужно few, не little.",
+          "uk": "Із злічуваним у множині потрібне few, не little."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-52:intro3:r2": {
+          "ru": "Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.",
+          "uk": "Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість."
+        },
+        "en:lesson-17:session-52:intro3:r3": {
+          "ru": "С исчисляемым во множественном числе нужно few, не little.",
+          "uk": "Із злічуваним у множині потрібне few, не little."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dee48ef41ee1a8132ff5e0f812d5cfee9a769175af74a6e7cbb183d487f3ad17"
+}

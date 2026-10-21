@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-55:word:personal-space",
+    "correctText": "personal space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i01",
+    "correctText": "I need a little personal space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i02",
+    "correctText": "I need a little personal space.",
+    "correctResponseId": "en:lesson-17:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i03",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:word:peace-of-mind",
+    "correctText": "peace of mind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i04",
+    "correctText": "I have little peace of mind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i05",
+    "correctText": "I have little peace of mind.",
+    "correctResponseId": "en:lesson-17:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i06",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:word:quality-time",
+    "correctText": "quality time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i07",
+    "correctText": "We enjoy a little quality time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i08",
+    "correctText": "We enjoy a little quality time.",
+    "correctResponseId": "en:lesson-17:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i09",
+    "correctText": "a little",
+    "correctResponseId": "en:lesson-17:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:word:work-life-balance",
+    "correctText": "work-life balance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i10",
+    "correctText": "There is little work-life balance here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i11",
+    "correctText": "There is little work-life balance here.",
+    "correctResponseId": "en:lesson-17:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i12",
+    "correctText": "little",
+    "correctResponseId": "en:lesson-17:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i13",
+    "correctText": "en:lesson-17:session-55:i13:p1=personal space\nen:lesson-17:session-55:i13:p2=peace of mind\nen:lesson-17:session-55:i13:p3=quality time\nen:lesson-17:session-55:i13:p4=work-life balance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i14",
+    "correctText": "I need a little personal space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i15",
+    "correctText": "There is little work-life balance here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i16",
+    "correctText": "We enjoy a little quality time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-55:i17",
+    "correctText": "I have little peace of mind.",
+    "correctResponseId": null
+  }
+]

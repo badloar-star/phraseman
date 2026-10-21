@@ -41,6 +41,15 @@ const CACHE_PREFIX = 'spire_room_cache_v1';
 const PARTICIPATION_PREFIX = 'spire_participation_v1';
 /** Тот же принцип, что у конфига и лиги: чужие цифры — не чаще раза в 6 часов. */
 export const SPIRE_ROOM_REFRESH_MS = 6 * 60 * 60 * 1000;
+// зачем (владелец 21.10, №49 В1, «пустые комнаты»): к неполной комнате подсаживают новых людей, а 6-часовой кэш часами
+// показывал её пустой. Неполную (меньше SPIRE_SPARSE_ROOM_LIVE живых) перечитываем при открытии не чаще раза в 30 мин.
+export const SPIRE_SPARSE_ROOM_LIVE = 5;
+export const SPIRE_SPARSE_ROOM_REFRESH_MS = 30 * 60 * 1000;
+
+/** Срок свежести кэша комнаты: неполная — 30 мин, остальные — 6 ч. */
+export function spireRoomRefreshMsFor(liveMembers: number): number {
+  return liveMembers < SPIRE_SPARSE_ROOM_LIVE ? SPIRE_SPARSE_ROOM_REFRESH_MS : SPIRE_ROOM_REFRESH_MS;
+}
 const PARTICIPATION_KEEP = 3;
 const ROOM_SCHEMA = 'spire-room-cache.v1' as const;
 
@@ -182,9 +191,13 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   const cached = cachedAny && cachedAny.weekId === weekId ? cachedAny : null;
   const age = cached ? nowMs - cached.fetchedAtMs : -1;
   DebugLogger.info(LOG, `room: вход lang=${input.lang} week=${weekId} force=${String(input.force === true)} кэш=${cached ? `есть (возраст ${age}мс)` : cachedAny ? `старой недели ${cachedAny.weekId}` : 'нет'}`);
-  if (cached && age < SPIRE_ROOM_REFRESH_MS && !input.force) {
-    console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'skip', why: 'cache_fresh', ageMs: age, ttlMs: SPIRE_ROOM_REFRESH_MS })); // guard-ok: 💸 пропуск сети с причиной
+  const ttlMs = cached ? spireRoomRefreshMsFor(cached.members.length) : SPIRE_ROOM_REFRESH_MS;
+  if (cached && age < ttlMs && !input.force) {
+    console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'skip', why: 'cache_fresh', ageMs: age, ttlMs, live: cached.members.length })); // guard-ok: 💸 пропуск сети с причиной
     return { status: 'cache', room: cached, reason: 'cache_fresh' };
+  }
+  if (cached && ttlMs !== SPIRE_ROOM_REFRESH_MS && age < SPIRE_ROOM_REFRESH_MS && !input.force) {
+    console.log('[SPIRE-ROOM]', JSON.stringify({ event: 'sparse_refresh', live: cached.members.length, ageMs: age, ttlMs })); // guard-ok: причина раннего перечитывания
   }
   if (!spireCloudAvailable()) {
     DebugLogger.info(LOG, 'room: облако выключено — отдаём кэш как есть');

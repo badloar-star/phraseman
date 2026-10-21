@@ -98,6 +98,10 @@ test('no Firestore listeners or collection scans in the game layer', () => {
   }
   const room = read('app/spire/spire_room_client.ts');
   assert.ok(room.includes('SPIRE_ROOM_REFRESH_MS = 6 * 60 * 60 * 1000'), 'room TTL is 6 hours');
+  // зачем (владелец 21.10, №49 В1): неполная комната (<5 живых) перечитывается не чаще раза в 30 мин
+  assert.ok(room.includes('SPIRE_SPARSE_ROOM_LIVE = 5'), 'sparse room threshold is 5 live members');
+  assert.ok(room.includes('SPIRE_SPARSE_ROOM_REFRESH_MS = 30 * 60 * 1000'), 'sparse room TTL is 30 minutes');
+  assert.ok(room.includes('const ttlMs = cached ? spireRoomRefreshMsFor(cached.members.length) : SPIRE_ROOM_REFRESH_MS;'), 'TTL depends on live members');
 });
 
 test('glass tokens: palette, opaque sheets, safe-area, no thick borders or text squeezing', () => {

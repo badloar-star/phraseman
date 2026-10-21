@@ -207,6 +207,23 @@ export function spireMemberStepsUpdate(
   };
 }
 
+export type SpireJoinCandidate = Readonly<{ id: string; n: number }>;
+
+/**
+ * Кандидаты на подсадку: только неполные, самая заполненная первой (живые собираются вместе, а не по одиночке).
+ * зачем (владелец 21.10, №49 В1): «все комнаты должны заполняться, даже если там уже все продвинулись» — прогресс
+ * соседей и день их входа не фильтр; при равенстве — по id, чтобы порядок был детерминированным.
+ */
+export function pickSpireJoinCandidates(
+  docs: readonly Readonly<{ id: string; members: unknown }>[],
+  roomSize: number = SPIRE_ROOM_SIZE,
+): SpireJoinCandidate[] {
+  return docs
+    .map((d) => ({ id: d.id, n: liveCount(d.members) }))
+    .filter((c) => c.n < roomSize)
+    .sort((a, b) => b.n - a.n || a.id.localeCompare(b.id));
+}
+
 type JoinResult = {
   ok: true;
   groupId: string;
@@ -283,21 +300,24 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     spireGroups: { [lang]: { groupId, weekId, tier, cohortDay } },
   });
 
-  // 2) Открытая комната той же недели, языка, шпиля и дня входа.
+  // 2) Открытая комната той же недели, языка и шпиля — любого дня входа.
+  // зачем (владелец 21.10, №49 В1, «пустые комнаты»): при выключенных ботах деление «12 шпилей × 7 дней входа × язык»
+  // почти всегда давало комнату из одного человека. День входа из поиска убран (он нужен только формуле ботов, они
+  // выключены); шпиль оставлен — итог недели считает повышение по шпилю КОМНАТЫ (spire_finalize_core.ts).
+  console.log(LOG, JSON.stringify({ event: 'search', lang, tier, weekId, joinCohortDay: cohortDay, filter: 'week+lang+tier+open' }));
   for (let attempt = 0; attempt < JOIN_ATTEMPTS; attempt++) {
     const snap = await db.collection(SPIRE_GROUPS_COLLECTION)
       .where('weekId', '==', weekId)
       .where('lang', '==', lang)
       .where('tier', '==', tier)
-      .where('cohortDay', '==', cohortDay)
       .where('open', '==', true)
       .limit(ROOM_QUERY_LIMIT)
       .get();
-    // Самая заполненная первой: живые собираются вместе, а не по одиночке.
-    const candidates = snap.docs
-      .map((d) => ({ id: d.id, n: liveCount(d.data().members) }))
-      .filter((c) => c.n < SPIRE_ROOM_SIZE)
-      .sort((a, b) => b.n - a.n);
+    const candidates = pickSpireJoinCandidates(snap.docs.map((d) => ({ id: d.id, members: d.data().members })));
+    console.log(LOG, JSON.stringify({
+      event: 'candidates', lang, tier, attempt, scanned: snap.size, candidates: candidates.length,
+      top: candidates.slice(0, 3).map((c) => ({ groupId: c.id, live: c.n })),
+    }));
     if (candidates.length === 0) {
       console.log(LOG, JSON.stringify({ event: 'no_open_room', lang, tier, cohortDay, scanned: snap.size, attempt }));
       break;
@@ -324,7 +344,7 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
       return true;
     });
     if (joined) {
-      console.log(LOG, JSON.stringify({ event: 'joined', groupId: target, lang, tier, cohortDay, attempt }));
+      console.log(LOG, JSON.stringify({ event: 'joined', groupId: target, lang, tier, cohortDay, attempt, liveBefore: candidates[0].n }));
       return { ok: true, groupId: target, weekId, lang, tier, cohortDay, status: 'joined' };
     }
     console.warn(LOG, JSON.stringify({ event: 'join_race_lost', groupId: target, attempt }));
@@ -350,6 +370,6 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     });
     tx.set(lbRef, leaderboardPatch(groupId), { merge: true });
   });
-  console.log(LOG, JSON.stringify({ event: 'created', groupId, lang, tier, cohortDay }));
+  console.log(LOG, JSON.stringify({ event: 'created', groupId, lang, tier, cohortDay, reason: 'no_open_room_of_tier_after_attempts' }));
   return { ok: true, groupId, weekId, lang, tier, cohortDay, status: 'created' };
 });

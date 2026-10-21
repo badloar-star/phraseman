@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-09:intro1:r2": {
+          "ru": "Pecan можно посчитать: many + pecans во множественном числе.",
+          "uk": "Pecan можна порахувати: many + pecans у множині."
+        },
+        "en:lesson-17:session-09:intro1:r3": {
+          "ru": "Артикль a здесь не ставится перед many или much.",
+          "uk": "Артикль a тут не ставиться перед many або much."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-09:intro2:r2": {
+          "ru": "Polenta как блюдо — неисчисляемое слово: much.",
+          "uk": "Polenta як страва — незлічуване слово: much."
+        },
+        "en:lesson-17:session-09:intro2:r3": {
+          "ru": "Артикль a здесь не ставится перед many или much.",
+          "uk": "Артикль a тут не ставиться перед many або much."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-09:intro3:r2": {
+          "ru": "Semolina как крупа — неисчисляемое слово: much, не many.",
+          "uk": "Semolina як крупа — незлічуване слово: much, не many."
+        },
+        "en:lesson-17:session-09:intro3:r3": {
+          "ru": "Артикль a здесь не ставится перед many или much.",
+          "uk": "Артикль a тут не ставиться перед many або much."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bc9166003b329accc7f61c85845dfd9dd509bf92b679c17f03be6270b085ec1b"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-16:intro1:r2": {
+          "ru": "poet можно посчитать: many + poets во множественном числе.",
+          "uk": "poet можна порахувати: many + poets у множині."
+        },
+        "en:lesson-17:session-16:intro1:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-16:intro2:r2": {
+          "ru": "poetry в этом значении — неисчисляемое слово: much.",
+          "uk": "poetry у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-16:intro2:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-16:intro3:r2": {
+          "ru": "prose в этом значении — неисчисляемое слово: much.",
+          "uk": "prose у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-16:intro3:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "10d7739fec146844db9a5f432f8629bd983d0e829c88be01440ec7717c78f733"
+}

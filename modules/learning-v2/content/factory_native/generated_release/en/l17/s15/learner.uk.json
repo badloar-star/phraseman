@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-15:word:trainee",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trainee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:word:trainee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trainee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:word:trainee:audio",
+          "transcript": "trainee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:word:trainee:r1",
+            "targetText": "trainee",
+            "meaningByLocale": {
+              "ru": "стажёр, человек, проходящий подготовку к работе.",
+              "uk": "стажер, людина, яка проходить підготовку до роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trainee",
+          "definitionByLocale": {
+            "ru": "стажёр, человек, проходящий подготовку к работе.",
+            "uk": "стажер, людина, яка проходить підготовку до роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "trainee → trainees. Скажіть: «Скільки в нас стажерів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "trainee → trainees. Скажіть: «Скільки в нас стажерів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many trainees do we have?",
+        "localizedMeaning": {
+          "ru": "trainee → trainees. Скажите: «Сколько у нас стажёров».",
+          "uk": "trainee → trainees. Скажіть: «Скільки в нас стажерів»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "trainees",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i02:r1",
+          "text": "How many trainees do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i02:r2",
+          "text": "How much trainees do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i02:r3",
+          "text": "How a many trainees do we have?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i02:audio",
+          "transcript": "How many trainees do we have?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:i02:r1",
+            "targetText": "How many trainees do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i02:r2",
+            "targetText": "How much trainees do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i02:r3",
+            "targetText": "How a many trainees do we have?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many trainees do we have?",
+              "uk": "У записі звучить How many trainees do we have?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many trainees do we have?",
+              "uk": "У записі звучить How many trainees do we have?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ trainees do we have?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-15:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "trainee можно посчитать: many + trainees во множественном числе.",
+              "uk": "trainee можна порахувати: many + trainees у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:word:apprentice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — apprentice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:word:apprentice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — apprentice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:word:apprentice:audio",
+          "transcript": "apprentice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:word:apprentice:r1",
+            "targetText": "apprentice",
+            "meaningByLocale": {
+              "ru": "ученик, осваивающий профессию у мастера на работе.",
+              "uk": "учень, який опановує професію в майстра на роботі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apprentice",
+          "definitionByLocale": {
+            "ru": "ученик, осваивающий профессию у мастера на работе.",
+            "uk": "учень, який опановує професію в майстра на роботі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "apprentice → apprentices. Скажіть: «У нас небагато учнів майстра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "apprentice → apprentices. Скажіть: «У нас небагато учнів майстра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have many apprentices.",
+        "localizedMeaning": {
+          "ru": "apprentice → apprentices. Скажите: «У нас не так много учеников мастера».",
+          "uk": "apprentice → apprentices. Скажіть: «У нас небагато учнів майстра»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "many",
+          "apprentices"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i05:r1",
+          "text": "We don't have many apprentices."
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i05:r2",
+          "text": "We don't have much apprentices."
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i05:r3",
+          "text": "We don't have a many apprentices."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i05:audio",
+          "transcript": "We don't have many apprentices."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:i05:r1",
+            "targetText": "We don't have many apprentices.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i05:r2",
+            "targetText": "We don't have much apprentices.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i05:r3",
+            "targetText": "We don't have a many apprentices.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many apprentices.",
+              "uk": "У записі звучить We don't have many apprentices."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many apprentices.",
+              "uk": "У записі звучить We don't have many apprentices."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't have ___ apprentices.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-15:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "apprentice можно посчитать: many + apprentices во множественном числе.",
+              "uk": "apprentice можна порахувати: many + apprentices у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:word:supervision",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — supervision",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:word:supervision:audio"
+      ],
+      "accessibilityLabel": "Картка слова — supervision",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:word:supervision:audio",
+          "transcript": "supervision"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:word:supervision:r1",
+            "targetText": "supervision",
+            "meaningByLocale": {
+              "ru": "наблюдение и контроль со стороны ответственного человека.",
+              "uk": "нагляд і контроль із боку відповідальної людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "supervision",
+          "definitionByLocale": {
+            "ru": "наблюдение и контроль со стороны ответственного человека.",
+            "uk": "нагляд і контроль із боку відповідальної людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Як багато нагляду їм потрібно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Як багато нагляду їм потрібно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much supervision do they need?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Как много контроля им нужно».",
+          "uk": "Скажіть: «Як багато нагляду їм потрібно»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "supervision",
+          "do",
+          "they",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i08:r1",
+          "text": "How much supervision do they need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i08:r2",
+          "text": "How many supervision do they need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i08:r3",
+          "text": "How a much supervision do they need?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i08:audio",
+          "transcript": "How much supervision do they need?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:i08:r1",
+            "targetText": "How much supervision do they need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i08:r2",
+            "targetText": "How many supervision do they need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i08:r3",
+            "targetText": "How a much supervision do they need?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much supervision do they need?",
+              "uk": "У записі звучить How much supervision do they need?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much supervision do they need?",
+              "uk": "У записі звучить How much supervision do they need?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ supervision do they need?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-15:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "supervision в этом значении — неисчисляемое слово: much.",
+              "uk": "supervision у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:word:guidance",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guidance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:word:guidance:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guidance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:word:guidance:audio",
+          "transcript": "guidance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:word:guidance:r1",
+            "targetText": "guidance",
+            "meaningByLocale": {
+              "ru": "наставления, помощь советом и направлением действий.",
+              "uk": "настанови, допомога порадою та спрямуванням дій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guidance",
+          "definitionByLocale": {
+            "ru": "наставления, помощь советом и направлением действий.",
+            "uk": "настанови, допомога порадою та спрямуванням дій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Їм не потрібно багато настанов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Їм не потрібно багато настанов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They don't need much guidance.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Им не нужно много наставлений».",
+          "uk": "Скажіть: «Їм не потрібно багато настанов»."
+        },
+        "orderedTokens": [
+          "They",
+          "don't",
+          "need",
+          "much",
+          "guidance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i11:r1",
+          "text": "They don't need much guidance."
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i11:r2",
+          "text": "They don't need many guidance."
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i11:r3",
+          "text": "They don't need a much guidance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i11:audio",
+          "transcript": "They don't need much guidance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-15:i11:r1",
+            "targetText": "They don't need much guidance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i11:r2",
+            "targetText": "They don't need many guidance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i11:r3",
+            "targetText": "They don't need a much guidance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They don't need much guidance.",
+              "uk": "У записі звучить They don't need much guidance."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They don't need much guidance.",
+              "uk": "У записі звучить They don't need much guidance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-15:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-15:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "They don't need ___ guidance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-15:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "guidance в этом значении — неисчисляемое слово: much.",
+              "uk": "guidance у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-15:i13:p1",
+            "target": "trainee",
+            "meaningByLocale": {
+              "ru": "стажёр, человек, проходящий подготовку к работе",
+              "uk": "стажер, людина, яка проходить підготовку до роботи"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-15:i13:p2",
+            "target": "apprentice",
+            "meaningByLocale": {
+              "ru": "ученик, осваивающий профессию у мастера на работе",
+              "uk": "учень, який опановує професію в майстра на роботі"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-15:i13:p3",
+            "target": "supervision",
+            "meaningByLocale": {
+              "ru": "наблюдение и контроль со стороны ответственного человека",
+              "uk": "нагляд і контроль із боку відповідальної людини"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-15:i13:p4",
+            "target": "guidance",
+            "meaningByLocale": {
+              "ru": "наставления, помощь советом и направлением действий",
+              "uk": "настанови, допомога порадою та спрямуванням дій"
+            }
+          }
+        ],
+        "leftColumn": [
+          "trainee",
+          "apprentice",
+          "supervision",
+          "guidance"
+        ],
+        "rightColumn": [
+          "стажер, людина, яка проходить підготовку до роботи",
+          "учень, який опановує професію в майстра на роботі",
+          "нагляд і контроль із боку відповідальної людини",
+          "настанови, допомога порадою та спрямуванням дій"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте питання з many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте питання з many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i14:audio",
+          "transcript": "How many trainees do we have?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many trainees do we have?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "trainees",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте питання з much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте питання з much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i15:audio",
+          "transcript": "How much supervision do they need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much supervision do they need?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "supervision",
+          "do",
+          "they",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу з much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу з much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i16:audio",
+          "transcript": "They don't need much guidance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They don't need much guidance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу з many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу з many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-15:i17:audio",
+          "transcript": "We don't have many apprentices."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have many apprentices.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1932cd7673027c9f39f6a7459d0e0e2d558abfcebe381778634f31b97fb32077"
+}

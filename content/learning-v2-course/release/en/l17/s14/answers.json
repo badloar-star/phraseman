@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-14:word:lodger",
+    "correctText": "lodger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i01",
+    "correctText": "How many lodgers do you have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i02",
+    "correctText": "How many lodgers do you have?",
+    "correctResponseId": "en:lesson-17:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:word:landlady",
+    "correctText": "landlady",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i04",
+    "correctText": "We don't know many landladies.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i05",
+    "correctText": "We don't know many landladies.",
+    "correctResponseId": "en:lesson-17:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:word:accommodation",
+    "correctText": "accommodation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i07",
+    "correctText": "How much accommodation do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i08",
+    "correctText": "How much accommodation do we need?",
+    "correctResponseId": "en:lesson-17:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:word:maintenance",
+    "correctText": "maintenance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i10",
+    "correctText": "The house doesn't need much maintenance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i11",
+    "correctText": "The house doesn't need much maintenance.",
+    "correctResponseId": "en:lesson-17:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i13",
+    "correctText": "en:lesson-17:session-14:i13:p1=lodger\nen:lesson-17:session-14:i13:p2=landlady\nen:lesson-17:session-14:i13:p3=accommodation\nen:lesson-17:session-14:i13:p4=maintenance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i14",
+    "correctText": "How many lodgers do you have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i15",
+    "correctText": "How much accommodation do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i16",
+    "correctText": "The house doesn't need much maintenance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-14:i17",
+    "correctText": "We don't know many landladies.",
+    "correctResponseId": null
+  }
+]

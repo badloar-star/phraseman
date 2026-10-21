@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-12:word:qualification",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — qualification",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:word:qualification:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — qualification",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:word:qualification:audio",
+          "transcript": "qualification"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:word:qualification:r1",
+            "targetText": "qualification",
+            "meaningByLocale": {
+              "ru": "квалификация, полученная после обучения или экзамена.",
+              "uk": "кваліфікація, отримана після навчання або іспиту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "qualification",
+          "definitionByLocale": {
+            "ru": "квалификация, полученная после обучения или экзамена.",
+            "uk": "кваліфікація, отримана після навчання або іспиту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "qualification → qualifications. Скажите: «Сколько у вас квалификаций».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "qualification → qualifications. Скажите: «Сколько у вас квалификаций».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many qualifications do you have?",
+        "localizedMeaning": {
+          "ru": "qualification → qualifications. Скажите: «Сколько у вас квалификаций».",
+          "uk": "qualification → qualifications. Скажіть: «Скільки у вас кваліфікацій»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "qualifications",
+          "do",
+          "you",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i02:r1",
+          "text": "How many qualifications do you have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i02:r2",
+          "text": "How much qualifications do you have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i02:r3",
+          "text": "How a many qualifications do you have?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i02:audio",
+          "transcript": "How many qualifications do you have?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:i02:r1",
+            "targetText": "How many qualifications do you have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i02:r2",
+            "targetText": "How much qualifications do you have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i02:r3",
+            "targetText": "How a many qualifications do you have?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many qualifications do you have?",
+              "uk": "У записі звучить How many qualifications do you have?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many qualifications do you have?",
+              "uk": "У записі звучить How many qualifications do you have?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ qualifications do you have?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-12:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "qualification можно посчитать: many + qualifications во множественном числе.",
+              "uk": "qualification можна порахувати: many + qualifications у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:word:certificate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — certificate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:word:certificate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — certificate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:word:certificate:audio",
+          "transcript": "certificate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:word:certificate:r1",
+            "targetText": "certificate",
+            "meaningByLocale": {
+              "ru": "свидетельство, сертификат о завершении обучения или результате.",
+              "uk": "свідоцтво, сертифікат про завершення навчання або результат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "certificate",
+          "definitionByLocale": {
+            "ru": "свидетельство, сертификат о завершении обучения или результате.",
+            "uk": "свідоцтво, сертифікат про завершення навчання або результат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "certificate → certificates. Скажите: «У нас не так много сертификатов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "certificate → certificates. Скажите: «У нас не так много сертификатов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have many certificates.",
+        "localizedMeaning": {
+          "ru": "certificate → certificates. Скажите: «У нас не так много сертификатов».",
+          "uk": "certificate → certificates. Скажіть: «У нас небагато сертифікатів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "many",
+          "certificates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i05:r1",
+          "text": "We don't have many certificates."
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i05:r2",
+          "text": "We don't have much certificates."
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i05:r3",
+          "text": "We don't have a many certificates."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i05:audio",
+          "transcript": "We don't have many certificates."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:i05:r1",
+            "targetText": "We don't have many certificates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i05:r2",
+            "targetText": "We don't have much certificates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i05:r3",
+            "targetText": "We don't have a many certificates.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many certificates.",
+              "uk": "У записі звучить We don't have many certificates."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many certificates.",
+              "uk": "У записі звучить We don't have many certificates."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't have ___ certificates.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-12:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "certificate можно посчитать: many + certificates во множественном числе.",
+              "uk": "certificate можна порахувати: many + certificates у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:word:knowledge",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — knowledge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:word:knowledge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — knowledge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:word:knowledge:audio",
+          "transcript": "knowledge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:word:knowledge:r1",
+            "targetText": "knowledge",
+            "meaningByLocale": {
+              "ru": "знания, понимание предмета.",
+              "uk": "знання, розуміння предмета."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knowledge",
+          "definitionByLocale": {
+            "ru": "знания, понимание предмета.",
+            "uk": "знання, розуміння предмета."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Как много знаний нам нужно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Как много знаний нам нужно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much knowledge do we need?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Как много знаний нам нужно».",
+          "uk": "Скажіть: «Як багато знань нам потрібно»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "knowledge",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i08:r1",
+          "text": "How much knowledge do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i08:r2",
+          "text": "How many knowledge do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i08:r3",
+          "text": "How a much knowledge do we need?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i08:audio",
+          "transcript": "How much knowledge do we need?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:i08:r1",
+            "targetText": "How much knowledge do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i08:r2",
+            "targetText": "How many knowledge do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i08:r3",
+            "targetText": "How a much knowledge do we need?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much knowledge do we need?",
+              "uk": "У записі звучить How much knowledge do we need?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much knowledge do we need?",
+              "uk": "У записі звучить How much knowledge do we need?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ knowledge do we need?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-12:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "knowledge в этом значении — неисчисляемое слово: much.",
+              "uk": "knowledge у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:word:tuition",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tuition",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:word:tuition:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tuition",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:word:tuition:audio",
+          "transcript": "tuition"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:word:tuition:r1",
+            "targetText": "tuition",
+            "meaningByLocale": {
+              "ru": "обучение у преподавателя, занятия с наставником.",
+              "uk": "навчання у викладача, заняття з наставником."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tuition",
+          "definitionByLocale": {
+            "ru": "обучение у преподавателя, занятия с наставником.",
+            "uk": "навчання у викладача, заняття з наставником."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Нам не нужно много занятий с преподавателем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Нам не нужно много занятий с преподавателем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't need much tuition.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам не нужно много занятий с преподавателем».",
+          "uk": "Скажіть: «Нам не потрібно багато занять із викладачем»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "need",
+          "much",
+          "tuition"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i11:r1",
+          "text": "We don't need much tuition."
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i11:r2",
+          "text": "We don't need many tuition."
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i11:r3",
+          "text": "We don't need a much tuition."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i11:audio",
+          "transcript": "We don't need much tuition."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-12:i11:r1",
+            "targetText": "We don't need much tuition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i11:r2",
+            "targetText": "We don't need many tuition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i11:r3",
+            "targetText": "We don't need a much tuition.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't need much tuition.",
+              "uk": "У записі звучить We don't need much tuition."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't need much tuition.",
+              "uk": "У записі звучить We don't need much tuition."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-12:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-12:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't need ___ tuition.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-12:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "tuition в этом значении — неисчисляемое слово: much.",
+              "uk": "tuition у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-12:i13:p1",
+            "target": "qualification",
+            "meaningByLocale": {
+              "ru": "квалификация, полученная после обучения или экзамена",
+              "uk": "кваліфікація, отримана після навчання або іспиту"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-12:i13:p2",
+            "target": "certificate",
+            "meaningByLocale": {
+              "ru": "свидетельство, сертификат о завершении обучения или результате",
+              "uk": "свідоцтво, сертифікат про завершення навчання або результат"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-12:i13:p3",
+            "target": "knowledge",
+            "meaningByLocale": {
+              "ru": "знания, понимание предмета",
+              "uk": "знання, розуміння предмета"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-12:i13:p4",
+            "target": "tuition",
+            "meaningByLocale": {
+              "ru": "обучение у преподавателя, занятия с наставником",
+              "uk": "навчання у викладача, заняття з наставником"
+            }
+          }
+        ],
+        "leftColumn": [
+          "qualification",
+          "certificate",
+          "knowledge",
+          "tuition"
+        ],
+        "rightColumn": [
+          "квалификация, полученная после обучения или экзамена",
+          "свидетельство, сертификат о завершении обучения или результате",
+          "знания, понимание предмета",
+          "обучение у преподавателя, занятия с наставником"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i14:audio",
+          "transcript": "How many qualifications do you have?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many qualifications do you have?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "qualifications",
+          "do",
+          "you",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i15:audio",
+          "transcript": "How much knowledge do we need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much knowledge do we need?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "knowledge",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i16:audio",
+          "transcript": "We don't need much tuition."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't need much tuition.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-12:i17:audio",
+          "transcript": "We don't have many certificates."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have many certificates.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dd02e9cff128876bfdb446a5f2f0b7b584acebb661985b986525181ebf2fc698"
+}

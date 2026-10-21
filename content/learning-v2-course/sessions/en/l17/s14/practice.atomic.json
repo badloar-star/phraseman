@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-14:word:lodger",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lodger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:lodger:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lodger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:lodger:audio",
+            "transcript": "lodger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:lodger:r1",
+              "targetText": "lodger",
+              "meaningByLocale": {
+                "ru": "человек, снимающий комнату в доме владельца.",
+                "uk": "людина, яка орендує кімнату в будинку власника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lodger",
+            "definitionByLocale": {
+              "ru": "человек, снимающий комнату в доме владельца.",
+              "uk": "людина, яка орендує кімнату в будинку власника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "lodger → lodgers. Скажите: «Сколько у вас жильцов, снимающих комнаты».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "lodger → lodgers. Скажите: «Сколько у вас жильцов, снимающих комнаты».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How many lodgers do you have?",
+          "localizedMeaning": {
+            "ru": "lodger → lodgers. Скажите: «Сколько у вас жильцов, снимающих комнаты».",
+            "uk": "lodger → lodgers. Скажіть: «Скільки у вас мешканців, які орендують кімнати»."
+          },
+          "orderedTokens": [
+            "How",
+            "many",
+            "lodgers",
+            "do",
+            "you",
+            "have"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i02:r1",
+            "text": "How many lodgers do you have?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i02:r2",
+            "text": "How much lodgers do you have?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i02:r3",
+            "text": "How a many lodgers do you have?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i02:audio",
+            "transcript": "How many lodgers do you have?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i02:r1",
+              "targetText": "How many lodgers do you have?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r2",
+              "targetText": "How much lodgers do you have?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r3",
+              "targetText": "How a many lodgers do you have?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How many lodgers do you have?",
+                "uk": "У записі звучить How many lodgers do you have?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How many lodgers do you have?",
+                "uk": "У записі звучить How many lodgers do you have?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "How ___ lodgers do you have?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i03:r1",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r2",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r3",
+              "text": "a many"
+            }
+          ],
+          "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "lodger можно посчитать: many + lodgers во множественном числе.",
+                "uk": "lodger можна порахувати: many + lodgers у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:landlady",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — landlady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:landlady:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — landlady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:landlady:audio",
+            "transcript": "landlady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:landlady:r1",
+              "targetText": "landlady",
+              "meaningByLocale": {
+                "ru": "женщина, сдающая жильё в аренду.",
+                "uk": "жінка, яка здає житло в оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landlady",
+            "definitionByLocale": {
+              "ru": "женщина, сдающая жильё в аренду.",
+              "uk": "жінка, яка здає житло в оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "landlady → landladies. Скажите: «Мы знаем не так много женщин, сдающих жильё».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "landlady → landladies. Скажите: «Мы знаем не так много женщин, сдающих жильё».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't know many landladies.",
+          "localizedMeaning": {
+            "ru": "landlady → landladies. Скажите: «Мы знаем не так много женщин, сдающих жильё».",
+            "uk": "landlady → landladies. Скажіть: «Ми знаємо небагато жінок, які здають житло»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "know",
+            "many",
+            "landladies"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i05:r1",
+            "text": "We don't know many landladies."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i05:r2",
+            "text": "We don't know much landladies."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i05:r3",
+            "text": "We don't know a many landladies."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i05:audio",
+            "transcript": "We don't know many landladies."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i05:r1",
+              "targetText": "We don't know many landladies.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r2",
+              "targetText": "We don't know much landladies.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r3",
+              "targetText": "We don't know a many landladies.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't know many landladies.",
+                "uk": "У записі звучить We don't know many landladies."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't know many landladies.",
+                "uk": "У записі звучить We don't know many landladies."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "We don't know ___ landladies.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i06:r1",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r2",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r3",
+              "text": "a many"
+            }
+          ],
+          "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "landlady можно посчитать: many + landladies во множественном числе.",
+                "uk": "landlady можна порахувати: many + landladies у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:accommodation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — accommodation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:accommodation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — accommodation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:accommodation:audio",
+            "transcript": "accommodation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:accommodation:r1",
+              "targetText": "accommodation",
+              "meaningByLocale": {
+                "ru": "жильё, место для проживания.",
+                "uk": "житло, місце для проживання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accommodation",
+            "definitionByLocale": {
+              "ru": "жильё, место для проживания.",
+              "uk": "житло, місце для проживання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Сколько жилья нам нужно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Сколько жилья нам нужно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How much accommodation do we need?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сколько жилья нам нужно».",
+            "uk": "Скажіть: «Скільки житла нам потрібно»."
+          },
+          "orderedTokens": [
+            "How",
+            "much",
+            "accommodation",
+            "do",
+            "we",
+            "need"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i08:r1",
+            "text": "How much accommodation do we need?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i08:r2",
+            "text": "How many accommodation do we need?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i08:r3",
+            "text": "How a much accommodation do we need?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i08:audio",
+            "transcript": "How much accommodation do we need?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i08:r1",
+              "targetText": "How much accommodation do we need?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r2",
+              "targetText": "How many accommodation do we need?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r3",
+              "targetText": "How a much accommodation do we need?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much accommodation do we need?",
+                "uk": "У записі звучить How much accommodation do we need?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much accommodation do we need?",
+                "uk": "У записі звучить How much accommodation do we need?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "How ___ accommodation do we need?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i09:r1",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r2",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r3",
+              "text": "a much"
+            }
+          ],
+          "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "accommodation в этом значении — неисчисляемое слово: much.",
+                "uk": "accommodation у цьому значенні — незлічуване слово: much."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:maintenance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — maintenance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:maintenance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — maintenance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:maintenance:audio",
+            "transcript": "maintenance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:maintenance:r1",
+              "targetText": "maintenance",
+              "meaningByLocale": {
+                "ru": "обслуживание и уход за зданием, техникой или вещами.",
+                "uk": "обслуговування й догляд за будівлею, технікою або речами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maintenance",
+            "definitionByLocale": {
+              "ru": "обслуживание и уход за зданием, техникой или вещами.",
+              "uk": "обслуговування й догляд за будівлею, технікою або речами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Дом не требует большого ухода».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Дом не требует большого ухода».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The house doesn't need much maintenance.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Дом не требует большого ухода».",
+            "uk": "Скажіть: «Будинок не потребує значного догляду»."
+          },
+          "orderedTokens": [
+            "The",
+            "house",
+            "doesn't",
+            "need",
+            "much",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i11:r1",
+            "text": "The house doesn't need much maintenance."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i11:r2",
+            "text": "The house doesn't need many maintenance."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i11:r3",
+            "text": "The house doesn't need a much maintenance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i11:audio",
+            "transcript": "The house doesn't need much maintenance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i11:r1",
+              "targetText": "The house doesn't need much maintenance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r2",
+              "targetText": "The house doesn't need many maintenance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r3",
+              "targetText": "The house doesn't need a much maintenance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The house doesn't need much maintenance.",
+                "uk": "У записі звучить The house doesn't need much maintenance."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The house doesn't need much maintenance.",
+                "uk": "У записі звучить The house doesn't need much maintenance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "The house doesn't need ___ maintenance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i12:r1",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r2",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r3",
+              "text": "a much"
+            }
+          ],
+          "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "maintenance в этом значении — неисчисляемое слово: much.",
+                "uk": "maintenance у цьому значенні — незлічуване слово: much."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-14:i13:p1",
+              "target": "lodger",
+              "meaningByLocale": {
+                "ru": "человек, снимающий комнату в доме владельца",
+                "uk": "людина, яка орендує кімнату в будинку власника"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p2",
+              "target": "landlady",
+              "meaningByLocale": {
+                "ru": "женщина, сдающая жильё в аренду",
+                "uk": "жінка, яка здає житло в оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p3",
+              "target": "accommodation",
+              "meaningByLocale": {
+                "ru": "жильё, место для проживания",
+                "uk": "житло, місце для проживання"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p4",
+              "target": "maintenance",
+              "meaningByLocale": {
+                "ru": "обслуживание и уход за зданием, техникой или вещами",
+                "uk": "обслуговування й догляд за будівлею, технікою або речами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lodger",
+            "landlady",
+            "accommodation",
+            "maintenance"
+          ],
+          "rightColumn": [
+            "человек, снимающий комнату в доме владельца",
+            "женщина, сдающая жильё в аренду",
+            "жильё, место для проживания",
+            "обслуживание и уход за зданием, техникой или вещами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос с many",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос с many",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i14:audio",
+            "transcript": "How many lodgers do you have?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How many lodgers do you have?",
+          "orderedTokens": [
+            "How",
+            "many",
+            "lodgers",
+            "do",
+            "you",
+            "have"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос с much",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос с much",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i15:audio",
+            "transcript": "How much accommodation do we need?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How much accommodation do we need?",
+          "orderedTokens": [
+            "How",
+            "much",
+            "accommodation",
+            "do",
+            "we",
+            "need"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу с much",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу с much",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i16:audio",
+            "transcript": "The house doesn't need much maintenance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The house doesn't need much maintenance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу с many",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу с many",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i17:audio",
+            "transcript": "We don't know many landladies."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't know many landladies.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-14:word:lodger",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lodger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:lodger:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lodger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:lodger:audio",
+            "transcript": "lodger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:lodger:r1",
+              "targetText": "lodger",
+              "meaningByLocale": {
+                "ru": "человек, снимающий комнату в доме владельца.",
+                "uk": "людина, яка орендує кімнату в будинку власника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lodger",
+            "definitionByLocale": {
+              "ru": "человек, снимающий комнату в доме владельца.",
+              "uk": "людина, яка орендує кімнату в будинку власника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "lodger → lodgers. Скажіть: «Скільки у вас мешканців, які орендують кімнати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "lodger → lodgers. Скажіть: «Скільки у вас мешканців, які орендують кімнати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How many lodgers do you have?",
+          "localizedMeaning": {
+            "ru": "lodger → lodgers. Скажите: «Сколько у вас жильцов, снимающих комнаты».",
+            "uk": "lodger → lodgers. Скажіть: «Скільки у вас мешканців, які орендують кімнати»."
+          },
+          "orderedTokens": [
+            "How",
+            "many",
+            "lodgers",
+            "do",
+            "you",
+            "have"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i02:r1",
+            "text": "How many lodgers do you have?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i02:r2",
+            "text": "How much lodgers do you have?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i02:r3",
+            "text": "How a many lodgers do you have?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i02:audio",
+            "transcript": "How many lodgers do you have?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i02:r1",
+              "targetText": "How many lodgers do you have?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r2",
+              "targetText": "How much lodgers do you have?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r3",
+              "targetText": "How a many lodgers do you have?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How many lodgers do you have?",
+                "uk": "У записі звучить How many lodgers do you have?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How many lodgers do you have?",
+                "uk": "У записі звучить How many lodgers do you have?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "How ___ lodgers do you have?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i03:r1",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r2",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r3",
+              "text": "a many"
+            }
+          ],
+          "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "lodger можно посчитать: many + lodgers во множественном числе.",
+                "uk": "lodger можна порахувати: many + lodgers у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:landlady",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — landlady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:landlady:audio"
+        ],
+        "accessibilityLabel": "Картка слова — landlady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:landlady:audio",
+            "transcript": "landlady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:landlady:r1",
+              "targetText": "landlady",
+              "meaningByLocale": {
+                "ru": "женщина, сдающая жильё в аренду.",
+                "uk": "жінка, яка здає житло в оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landlady",
+            "definitionByLocale": {
+              "ru": "женщина, сдающая жильё в аренду.",
+              "uk": "жінка, яка здає житло в оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "landlady → landladies. Скажіть: «Ми знаємо небагато жінок, які здають житло».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "landlady → landladies. Скажіть: «Ми знаємо небагато жінок, які здають житло».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't know many landladies.",
+          "localizedMeaning": {
+            "ru": "landlady → landladies. Скажите: «Мы знаем не так много женщин, сдающих жильё».",
+            "uk": "landlady → landladies. Скажіть: «Ми знаємо небагато жінок, які здають житло»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "know",
+            "many",
+            "landladies"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i05:r1",
+            "text": "We don't know many landladies."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i05:r2",
+            "text": "We don't know much landladies."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i05:r3",
+            "text": "We don't know a many landladies."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i05:audio",
+            "transcript": "We don't know many landladies."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i05:r1",
+              "targetText": "We don't know many landladies.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r2",
+              "targetText": "We don't know much landladies.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r3",
+              "targetText": "We don't know a many landladies.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't know many landladies.",
+                "uk": "У записі звучить We don't know many landladies."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't know many landladies.",
+                "uk": "У записі звучить We don't know many landladies."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "We don't know ___ landladies.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i06:r1",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r2",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r3",
+              "text": "a many"
+            }
+          ],
+          "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "landlady можно посчитать: many + landladies во множественном числе.",
+                "uk": "landlady можна порахувати: many + landladies у множині."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:accommodation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — accommodation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:accommodation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — accommodation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:accommodation:audio",
+            "transcript": "accommodation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:accommodation:r1",
+              "targetText": "accommodation",
+              "meaningByLocale": {
+                "ru": "жильё, место для проживания.",
+                "uk": "житло, місце для проживання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accommodation",
+            "definitionByLocale": {
+              "ru": "жильё, место для проживания.",
+              "uk": "житло, місце для проживання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Скільки житла нам потрібно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Скільки житла нам потрібно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "How much accommodation do we need?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сколько жилья нам нужно».",
+            "uk": "Скажіть: «Скільки житла нам потрібно»."
+          },
+          "orderedTokens": [
+            "How",
+            "much",
+            "accommodation",
+            "do",
+            "we",
+            "need"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i08:r1",
+            "text": "How much accommodation do we need?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i08:r2",
+            "text": "How many accommodation do we need?"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i08:r3",
+            "text": "How a much accommodation do we need?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i08:audio",
+            "transcript": "How much accommodation do we need?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i08:r1",
+              "targetText": "How much accommodation do we need?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r2",
+              "targetText": "How many accommodation do we need?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r3",
+              "targetText": "How a much accommodation do we need?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much accommodation do we need?",
+                "uk": "У записі звучить How much accommodation do we need?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much accommodation do we need?",
+                "uk": "У записі звучить How much accommodation do we need?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "How ___ accommodation do we need?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i09:r1",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r2",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r3",
+              "text": "a much"
+            }
+          ],
+          "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "accommodation в этом значении — неисчисляемое слово: much.",
+                "uk": "accommodation у цьому значенні — незлічуване слово: much."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:word:maintenance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — maintenance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:word:maintenance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — maintenance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:word:maintenance:audio",
+            "transcript": "maintenance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:word:maintenance:r1",
+              "targetText": "maintenance",
+              "meaningByLocale": {
+                "ru": "обслуживание и уход за зданием, техникой или вещами.",
+                "uk": "обслуговування й догляд за будівлею, технікою або речами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maintenance",
+            "definitionByLocale": {
+              "ru": "обслуживание и уход за зданием, техникой или вещами.",
+              "uk": "обслуговування й догляд за будівлею, технікою або речами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Будинок не потребує значного догляду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Будинок не потребує значного догляду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The house doesn't need much maintenance.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Дом не требует большого ухода».",
+            "uk": "Скажіть: «Будинок не потребує значного догляду»."
+          },
+          "orderedTokens": [
+            "The",
+            "house",
+            "doesn't",
+            "need",
+            "much",
+            "maintenance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i11:r1",
+            "text": "The house doesn't need much maintenance."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i11:r2",
+            "text": "The house doesn't need many maintenance."
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i11:r3",
+            "text": "The house doesn't need a much maintenance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i11:audio",
+            "transcript": "The house doesn't need much maintenance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-14:i11:r1",
+              "targetText": "The house doesn't need much maintenance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r2",
+              "targetText": "The house doesn't need many maintenance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r3",
+              "targetText": "The house doesn't need a much maintenance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The house doesn't need much maintenance.",
+                "uk": "У записі звучить The house doesn't need much maintenance."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The house doesn't need much maintenance.",
+                "uk": "У записі звучить The house doesn't need much maintenance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-14:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-14:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          },
+          "gappedTargetPhrase": "The house doesn't need ___ maintenance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-14:i12:r1",
+              "text": "much"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r2",
+              "text": "many"
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r3",
+              "text": "a much"
+            }
+          ],
+          "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "maintenance в этом значении — неисчисляемое слово: much.",
+                "uk": "maintenance у цьому значенні — незлічуване слово: much."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+              "feedbackByLocale": {
+                "ru": "Перед many/much здесь не нужен a.",
+                "uk": "Перед many/much тут не потрібен a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-14:i13:p1",
+              "target": "lodger",
+              "meaningByLocale": {
+                "ru": "человек, снимающий комнату в доме владельца",
+                "uk": "людина, яка орендує кімнату в будинку власника"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p2",
+              "target": "landlady",
+              "meaningByLocale": {
+                "ru": "женщина, сдающая жильё в аренду",
+                "uk": "жінка, яка здає житло в оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p3",
+              "target": "accommodation",
+              "meaningByLocale": {
+                "ru": "жильё, место для проживания",
+                "uk": "житло, місце для проживання"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-14:i13:p4",
+              "target": "maintenance",
+              "meaningByLocale": {
+                "ru": "обслуживание и уход за зданием, техникой или вещами",
+                "uk": "обслуговування й догляд за будівлею, технікою або речами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lodger",
+            "landlady",
+            "accommodation",
+            "maintenance"
+          ],
+          "rightColumn": [
+            "людина, яка орендує кімнату в будинку власника",
+            "жінка, яка здає житло в оренду",
+            "житло, місце для проживання",
+            "обслуговування й догляд за будівлею, технікою або речами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте питання з many",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте питання з many",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i14:audio",
+            "transcript": "How many lodgers do you have?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How many lodgers do you have?",
+          "orderedTokens": [
+            "How",
+            "many",
+            "lodgers",
+            "do",
+            "you",
+            "have"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте питання з much",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте питання з much",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i15:audio",
+            "transcript": "How much accommodation do we need?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How much accommodation do we need?",
+          "orderedTokens": [
+            "How",
+            "much",
+            "accommodation",
+            "do",
+            "we",
+            "need"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу з much",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу з much",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i16:audio",
+            "transcript": "The house doesn't need much maintenance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The house doesn't need much maintenance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу з many",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу з many",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-14:i17:audio",
+            "transcript": "We don't know many landladies."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't know many landladies.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-14:word:lodger",
+      "correctText": "lodger",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i01",
+      "correctText": "How many lodgers do you have?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i02",
+      "correctText": "How many lodgers do you have?",
+      "correctResponseId": "en:lesson-17:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i03",
+      "correctText": "many",
+      "correctResponseId": "en:lesson-17:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:word:landlady",
+      "correctText": "landlady",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i04",
+      "correctText": "We don't know many landladies.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i05",
+      "correctText": "We don't know many landladies.",
+      "correctResponseId": "en:lesson-17:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i06",
+      "correctText": "many",
+      "correctResponseId": "en:lesson-17:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:word:accommodation",
+      "correctText": "accommodation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i07",
+      "correctText": "How much accommodation do we need?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i08",
+      "correctText": "How much accommodation do we need?",
+      "correctResponseId": "en:lesson-17:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i09",
+      "correctText": "much",
+      "correctResponseId": "en:lesson-17:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:word:maintenance",
+      "correctText": "maintenance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i10",
+      "correctText": "The house doesn't need much maintenance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i11",
+      "correctText": "The house doesn't need much maintenance.",
+      "correctResponseId": "en:lesson-17:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i12",
+      "correctText": "much",
+      "correctResponseId": "en:lesson-17:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i14",
+      "correctText": "How many lodgers do you have?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i15",
+      "correctText": "How much accommodation do we need?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i16",
+      "correctText": "The house doesn't need much maintenance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-14:i17",
+      "correctText": "We don't know many landladies.",
+      "correctResponseId": null
+    }
+  ]
+}

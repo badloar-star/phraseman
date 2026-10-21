@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-10:word:assignment",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — assignment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:word:assignment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — assignment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:word:assignment:audio",
+          "transcript": "assignment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:word:assignment:r1",
+            "targetText": "assignment",
+            "meaningByLocale": {
+              "ru": "учебное задание.",
+              "uk": "навчальне завдання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "assignment",
+          "definitionByLocale": {
+            "ru": "учебное задание.",
+            "uk": "навчальне завдання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "assignment → assignments. Скажите: «Сколько у нас учебных заданий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "assignment → assignments. Скажите: «Сколько у нас учебных заданий».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many assignments do we have?",
+        "localizedMeaning": {
+          "ru": "assignment → assignments. Скажите: «Сколько у нас учебных заданий».",
+          "uk": "assignment → assignments. Скажіть: «Скільки в нас навчальних завдань»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "assignments",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i02:r1",
+          "text": "How many assignments do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i02:r2",
+          "text": "How much assignments do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i02:r3",
+          "text": "How a many assignments do we have?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i02:audio",
+          "transcript": "How many assignments do we have?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:i02:r1",
+            "targetText": "How many assignments do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i02:r2",
+            "targetText": "How much assignments do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i02:r3",
+            "targetText": "How a many assignments do we have?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many assignments do we have?",
+              "uk": "У записі звучить How many assignments do we have?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many assignments do we have?",
+              "uk": "У записі звучить How many assignments do we have?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ assignments do we have?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-10:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "assignment можно посчитать: many + assignments во множественном числе.",
+              "uk": "assignment можна порахувати: many + assignments у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:word:worksheet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worksheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:word:worksheet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — worksheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:word:worksheet:audio",
+          "transcript": "worksheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:word:worksheet:r1",
+            "targetText": "worksheet",
+            "meaningByLocale": {
+              "ru": "лист с учебными заданиями.",
+              "uk": "аркуш із навчальними завданнями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worksheet",
+          "definitionByLocale": {
+            "ru": "лист с учебными заданиями.",
+            "uk": "аркуш із навчальними завданнями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "worksheet → worksheets. Скажите: «У нас не так много листов с заданиями».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "worksheet → worksheets. Скажите: «У нас не так много листов с заданиями».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have many worksheets.",
+        "localizedMeaning": {
+          "ru": "worksheet → worksheets. Скажите: «У нас не так много листов с заданиями».",
+          "uk": "worksheet → worksheets. Скажіть: «У нас небагато аркушів із завданнями»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "many",
+          "worksheets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i05:r1",
+          "text": "We don't have many worksheets."
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i05:r2",
+          "text": "We don't have much worksheets."
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i05:r3",
+          "text": "We don't have a many worksheets."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i05:audio",
+          "transcript": "We don't have many worksheets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:i05:r1",
+            "targetText": "We don't have many worksheets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i05:r2",
+            "targetText": "We don't have much worksheets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i05:r3",
+            "targetText": "We don't have a many worksheets.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many worksheets.",
+              "uk": "У записі звучить We don't have many worksheets."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many worksheets.",
+              "uk": "У записі звучить We don't have many worksheets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't have ___ worksheets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-10:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "worksheet можно посчитать: many + worksheets во множественном числе.",
+              "uk": "worksheet можна порахувати: many + worksheets у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:word:coursework",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coursework",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:word:coursework:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coursework",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:word:coursework:audio",
+          "transcript": "coursework"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:word:coursework:r1",
+            "targetText": "coursework",
+            "meaningByLocale": {
+              "ru": "учебные работы, выполняемые в течение курса.",
+              "uk": "навчальні роботи, виконувані протягом курсу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coursework",
+          "definitionByLocale": {
+            "ru": "учебные работы, выполняемые в течение курса.",
+            "uk": "навчальні роботи, виконувані протягом курсу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Как много у нас учебной работы по курсу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Как много у нас учебной работы по курсу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much coursework do we have?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Как много у нас учебной работы по курсу».",
+          "uk": "Скажіть: «Як багато в нас навчальної роботи за курсом»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "coursework",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i08:r1",
+          "text": "How much coursework do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i08:r2",
+          "text": "How many coursework do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i08:r3",
+          "text": "How a much coursework do we have?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i08:audio",
+          "transcript": "How much coursework do we have?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:i08:r1",
+            "targetText": "How much coursework do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i08:r2",
+            "targetText": "How many coursework do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i08:r3",
+            "targetText": "How a much coursework do we have?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much coursework do we have?",
+              "uk": "У записі звучить How much coursework do we have?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much coursework do we have?",
+              "uk": "У записі звучить How much coursework do we have?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ coursework do we have?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-10:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "coursework в этом значении — неисчисляемое слово: much.",
+              "uk": "coursework у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:word:revision",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — revision",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:word:revision:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — revision",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:word:revision:audio",
+          "transcript": "revision"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:word:revision:r1",
+            "targetText": "revision",
+            "meaningByLocale": {
+              "ru": "повторение учебного материала перед проверкой или экзаменом.",
+              "uk": "повторення навчального матеріалу перед перевіркою або іспитом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "revision",
+          "definitionByLocale": {
+            "ru": "повторение учебного материала перед проверкой или экзаменом.",
+            "uk": "повторення навчального матеріалу перед перевіркою або іспитом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Нам не нужно много повторять учебный материал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Нам не нужно много повторять учебный материал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't need much revision.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам не нужно много повторять учебный материал».",
+          "uk": "Скажіть: «Нам не потрібно багато повторювати навчальний матеріал»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "need",
+          "much",
+          "revision"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i11:r1",
+          "text": "We don't need much revision."
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i11:r2",
+          "text": "We don't need many revision."
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i11:r3",
+          "text": "We don't need a much revision."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i11:audio",
+          "transcript": "We don't need much revision."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-10:i11:r1",
+            "targetText": "We don't need much revision.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i11:r2",
+            "targetText": "We don't need many revision.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i11:r3",
+            "targetText": "We don't need a much revision.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't need much revision.",
+              "uk": "У записі звучить We don't need much revision."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't need much revision.",
+              "uk": "У записі звучить We don't need much revision."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-10:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-10:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't need ___ revision.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-10:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "revision в этом значении — неисчисляемое слово: much.",
+              "uk": "revision у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-10:i13:p1",
+            "target": "assignment",
+            "meaningByLocale": {
+              "ru": "учебное задание",
+              "uk": "навчальне завдання"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-10:i13:p2",
+            "target": "worksheet",
+            "meaningByLocale": {
+              "ru": "лист с учебными заданиями",
+              "uk": "аркуш із навчальними завданнями"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-10:i13:p3",
+            "target": "coursework",
+            "meaningByLocale": {
+              "ru": "учебные работы, выполняемые в течение курса",
+              "uk": "навчальні роботи, виконувані протягом курсу"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-10:i13:p4",
+            "target": "revision",
+            "meaningByLocale": {
+              "ru": "повторение учебного материала перед проверкой или экзаменом",
+              "uk": "повторення навчального матеріалу перед перевіркою або іспитом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "assignment",
+          "worksheet",
+          "coursework",
+          "revision"
+        ],
+        "rightColumn": [
+          "учебное задание",
+          "лист с учебными заданиями",
+          "учебные работы, выполняемые в течение курса",
+          "повторение учебного материала перед проверкой или экзаменом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i14:audio",
+          "transcript": "How many assignments do we have?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many assignments do we have?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "assignments",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i15:audio",
+          "transcript": "How much coursework do we have?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much coursework do we have?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "coursework",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i16:audio",
+          "transcript": "We don't need much revision."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't need much revision.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-10:i17:audio",
+          "transcript": "We don't have many worksheets."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have many worksheets.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "16849586fe8ec5e510bb3a6180648047643206117dba9ee35865f62957d95bed"
+}

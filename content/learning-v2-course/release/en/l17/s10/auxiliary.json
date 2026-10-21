@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-10:intro1:r2": {
+          "ru": "assignment можно посчитать: many + assignments во множественном числе.",
+          "uk": "assignment можна порахувати: many + assignments у множині."
+        },
+        "en:lesson-17:session-10:intro1:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-10:intro2:r2": {
+          "ru": "coursework в этом значении — неисчисляемое слово: much.",
+          "uk": "coursework у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-10:intro2:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-10:intro3:r2": {
+          "ru": "revision в этом значении — неисчисляемое слово: much.",
+          "uk": "revision у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-10:intro3:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0956611b7e502cdd2b9cb587b3839e1202edbe536982788031037c1618bebe80"
+}

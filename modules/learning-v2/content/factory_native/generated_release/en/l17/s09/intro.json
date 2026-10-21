@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сколько отдельных предметов",
+        "uk": "Скільки окремих предметів"
+      },
+      "bodyByLocale": {
+        "ru": "pecan — орех пекан. Pecan — один орех, pecans — несколько. Вопрос о количестве отдельных предметов строим с how many и существительным во множественном числе.",
+        "uk": "pecan — горіх пекан. Pecan — один горіх, pecans — декілька. Питання про кількість окремих предметів будуємо з how many та іменником у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r1",
+              "text": "How many pecans do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r2",
+              "text": "How much pecans do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r3",
+              "text": "How a many pecans do we need?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r1",
+              "text": "How many pecans do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r2",
+              "text": "How much pecans do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro1:r3",
+              "text": "How a many pecans do we need?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сколько неисчисляемого",
+        "uk": "Скільки незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "polenta — полента, каша из кукурузной крупы. Brazil nut — бразильский орех; во множественном числе Brazil nuts. Считаем орехи с many. А polenta — общее название блюда: how much polenta, без множественного -s.",
+        "uk": "polenta — полента, каша з кукурудзяної крупи. Brazil nut — бразильський горіх; у множині Brazil nuts. Рахуємо горіхи з many. А polenta — загальна назва страви: how much polenta, без множинного -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r1",
+              "text": "How much polenta do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r2",
+              "text": "How many polenta do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r3",
+              "text": "How a much polenta do we need?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r1",
+              "text": "How much polenta do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r2",
+              "text": "How many polenta do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro2:r3",
+              "text": "How a much polenta do we need?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Количество в отрицании",
+        "uk": "Кількість у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "semolina — манная крупа. В отрицании сохраняется то же правило: don't have many Brazil nuts, но don't have much semolina. Not much и not many означают «не много»; точное количество из этих слов неизвестно.",
+        "uk": "semolina — манна крупа. У запереченні зберігається те саме правило: don't have many Brazil nuts, але don't have much semolina. Not much і not many означають «небагато»; точна кількість із цих слів невідома."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r1",
+              "text": "We don't have much semolina."
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r2",
+              "text": "We don't have many semolina."
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r3",
+              "text": "We don't have a much semolina."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r1",
+              "text": "We don't have much semolina."
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r2",
+              "text": "We don't have many semolina."
+            },
+            {
+              "responseId": "en:lesson-17:session-09:intro3:r3",
+              "text": "We don't have a much semolina."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f85649907f23698589a4ec992bf077f95cb3ff49015811e1098a8a883c5789a"
+}

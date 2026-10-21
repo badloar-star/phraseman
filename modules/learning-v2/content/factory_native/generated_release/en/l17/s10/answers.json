@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-10:word:assignment",
+    "correctText": "assignment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i01",
+    "correctText": "How many assignments do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i02",
+    "correctText": "How many assignments do we have?",
+    "correctResponseId": "en:lesson-17:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:word:worksheet",
+    "correctText": "worksheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i04",
+    "correctText": "We don't have many worksheets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i05",
+    "correctText": "We don't have many worksheets.",
+    "correctResponseId": "en:lesson-17:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:word:coursework",
+    "correctText": "coursework",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i07",
+    "correctText": "How much coursework do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i08",
+    "correctText": "How much coursework do we have?",
+    "correctResponseId": "en:lesson-17:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:word:revision",
+    "correctText": "revision",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i10",
+    "correctText": "We don't need much revision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i11",
+    "correctText": "We don't need much revision.",
+    "correctResponseId": "en:lesson-17:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i13",
+    "correctText": "en:lesson-17:session-10:i13:p1=assignment\nen:lesson-17:session-10:i13:p2=worksheet\nen:lesson-17:session-10:i13:p3=coursework\nen:lesson-17:session-10:i13:p4=revision",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i14",
+    "correctText": "How many assignments do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i15",
+    "correctText": "How much coursework do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i16",
+    "correctText": "We don't need much revision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-10:i17",
+    "correctText": "We don't have many worksheets.",
+    "correctResponseId": null
+  }
+]

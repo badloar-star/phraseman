@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-15:word:trainee",
+    "correctText": "trainee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i01",
+    "correctText": "How many trainees do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i02",
+    "correctText": "How many trainees do we have?",
+    "correctResponseId": "en:lesson-17:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:word:apprentice",
+    "correctText": "apprentice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i04",
+    "correctText": "We don't have many apprentices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i05",
+    "correctText": "We don't have many apprentices.",
+    "correctResponseId": "en:lesson-17:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:word:supervision",
+    "correctText": "supervision",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i07",
+    "correctText": "How much supervision do they need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i08",
+    "correctText": "How much supervision do they need?",
+    "correctResponseId": "en:lesson-17:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:word:guidance",
+    "correctText": "guidance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i10",
+    "correctText": "They don't need much guidance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i11",
+    "correctText": "They don't need much guidance.",
+    "correctResponseId": "en:lesson-17:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i13",
+    "correctText": "en:lesson-17:session-15:i13:p1=trainee\nen:lesson-17:session-15:i13:p2=apprentice\nen:lesson-17:session-15:i13:p3=supervision\nen:lesson-17:session-15:i13:p4=guidance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i14",
+    "correctText": "How many trainees do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i15",
+    "correctText": "How much supervision do they need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i16",
+    "correctText": "They don't need much guidance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-15:i17",
+    "correctText": "We don't have many apprentices.",
+    "correctResponseId": null
+  }
+]

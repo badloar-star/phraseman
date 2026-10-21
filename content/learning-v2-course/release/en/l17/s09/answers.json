@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-09:word:pecan",
+    "correctText": "pecan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i01",
+    "correctText": "How many pecans do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i02",
+    "correctText": "How many pecans do we need?",
+    "correctResponseId": "en:lesson-17:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:word:Brazil-nut",
+    "correctText": "Brazil nut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i04",
+    "correctText": "We don't have many Brazil nuts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i05",
+    "correctText": "We don't have many Brazil nuts.",
+    "correctResponseId": "en:lesson-17:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:word:polenta",
+    "correctText": "polenta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i07",
+    "correctText": "How much polenta do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i08",
+    "correctText": "How much polenta do we need?",
+    "correctResponseId": "en:lesson-17:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:word:semolina",
+    "correctText": "semolina",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i10",
+    "correctText": "We don't have much semolina.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i11",
+    "correctText": "We don't have much semolina.",
+    "correctResponseId": "en:lesson-17:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i13",
+    "correctText": "en:lesson-17:session-09:i13:p1=pecan\nen:lesson-17:session-09:i13:p2=Brazil nut\nen:lesson-17:session-09:i13:p3=polenta\nen:lesson-17:session-09:i13:p4=semolina",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i14",
+    "correctText": "How many pecans do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i15",
+    "correctText": "How much polenta do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i16",
+    "correctText": "We don't have much semolina.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-09:i17",
+    "correctText": "We don't have many Brazil nuts.",
+    "correctResponseId": null
+  }
+]

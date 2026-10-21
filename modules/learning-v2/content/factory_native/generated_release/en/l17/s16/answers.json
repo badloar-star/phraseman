@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-16:word:poet",
+    "correctText": "poet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i01",
+    "correctText": "How many poets do you know?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i02",
+    "correctText": "How many poets do you know?",
+    "correctResponseId": "en:lesson-17:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:word:novelist",
+    "correctText": "novelist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i04",
+    "correctText": "We don't know many novelists.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i05",
+    "correctText": "We don't know many novelists.",
+    "correctResponseId": "en:lesson-17:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:word:poetry",
+    "correctText": "poetry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i07",
+    "correctText": "How much poetry do you read?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i08",
+    "correctText": "How much poetry do you read?",
+    "correctResponseId": "en:lesson-17:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:word:prose",
+    "correctText": "prose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i10",
+    "correctText": "We don't read much prose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i11",
+    "correctText": "We don't read much prose.",
+    "correctResponseId": "en:lesson-17:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i13",
+    "correctText": "en:lesson-17:session-16:i13:p1=poet\nen:lesson-17:session-16:i13:p2=novelist\nen:lesson-17:session-16:i13:p3=poetry\nen:lesson-17:session-16:i13:p4=prose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i14",
+    "correctText": "How many poets do you know?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i15",
+    "correctText": "How much poetry do you read?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i16",
+    "correctText": "We don't read much prose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-16:i17",
+    "correctText": "We don't know many novelists.",
+    "correctResponseId": null
+  }
+]

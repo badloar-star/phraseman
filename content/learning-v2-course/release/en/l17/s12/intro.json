@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество отдельных предметов или людей",
+        "uk": "Кількість окремих предметів або людей"
+      },
+      "bodyByLocale": {
+        "ru": "qualification — квалификация, полученная после обучения или экзамена. qualification можно посчитать: many + qualifications во множественном числе.",
+        "uk": "qualification — кваліфікація, отримана після навчання або іспиту. qualification можна порахувати: many + qualifications у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r1",
+              "text": "How many qualifications do you have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r2",
+              "text": "How much qualifications do you have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r3",
+              "text": "How a many qualifications do you have?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r1",
+              "text": "How many qualifications do you have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r2",
+              "text": "How much qualifications do you have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro1:r3",
+              "text": "How a many qualifications do you have?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Количество неисчисляемого",
+        "uk": "Кількість незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "knowledge — знания, понимание предмета. certificate — свидетельство, сертификат о завершении обучения или результате. certificate можно посчитать: many + certificates во множественном числе. knowledge в этом значении — неисчисляемое слово: much.",
+        "uk": "knowledge — знання, розуміння предмета. certificate — свідоцтво, сертифікат про завершення навчання або результат. certificate можна порахувати: many + certificates у множині. knowledge у цьому значенні — незлічуване слово: much."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r1",
+              "text": "How much knowledge do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r2",
+              "text": "How many knowledge do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r3",
+              "text": "How a much knowledge do we need?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r1",
+              "text": "How much knowledge do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r2",
+              "text": "How many knowledge do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro2:r3",
+              "text": "How a much knowledge do we need?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не много — в отрицании",
+        "uk": "Небагато — у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "tuition — обучение у преподавателя, занятия с наставником. tuition в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
+        "uk": "tuition — навчання у викладача, заняття з наставником. tuition у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r1",
+              "text": "We don't need much tuition."
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r2",
+              "text": "We don't need many tuition."
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r3",
+              "text": "We don't need a much tuition."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r1",
+              "text": "We don't need much tuition."
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r2",
+              "text": "We don't need many tuition."
+            },
+            {
+              "responseId": "en:lesson-17:session-12:intro3:r3",
+              "text": "We don't need a much tuition."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dc1043d043feb84989b56d8ca22a92dfb52667d4c1127243323dbb11f6c83c6c"
+}

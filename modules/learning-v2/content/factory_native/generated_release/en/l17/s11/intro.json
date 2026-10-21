@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество отдельных предметов или людей",
+        "uk": "Кількість окремих предметів або людей"
+      },
+      "bodyByLocale": {
+        "ru": "commuter — человек, регулярно ездящий из дома на работу или учёбу. commuter можно посчитать: many + commuters во множественном числе.",
+        "uk": "commuter — людина, яка регулярно їздить із дому на роботу або навчання. commuter можна порахувати: many + commuters у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r1",
+              "text": "How many commuters use this train?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r2",
+              "text": "How much commuters use this train?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r3",
+              "text": "How a many commuters use this train?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r1",
+              "text": "How many commuters use this train?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r2",
+              "text": "How much commuters use this train?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro1:r3",
+              "text": "How a many commuters use this train?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Количество неисчисляемого",
+        "uk": "Кількість незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "congestion — загруженность дорог, скопление транспорта. motorist — автомобилист, водитель автомобиля. motorist можно посчитать: many + motorists во множественном числе. congestion в этом значении — неисчисляемое слово: much.",
+        "uk": "congestion — завантаженість доріг, скупчення транспорту. motorist — автомобіліст, водій автомобіля. motorist можна порахувати: many + motorists у множині. congestion у цьому значенні — незлічуване слово: much."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r1",
+              "text": "How much congestion is there today?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r2",
+              "text": "How many congestion is there today?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r3",
+              "text": "How a much congestion is there today?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r1",
+              "text": "How much congestion is there today?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r2",
+              "text": "How many congestion is there today?"
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro2:r3",
+              "text": "How a much congestion is there today?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не много — в отрицании",
+        "uk": "Небагато — у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "pollution — загрязнение окружающей среды. pollution в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
+        "uk": "pollution — забруднення довкілля. pollution у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r1",
+              "text": "There isn't much pollution here."
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r2",
+              "text": "There isn't many pollution here."
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r3",
+              "text": "There isn't a much pollution here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r1",
+              "text": "There isn't much pollution here."
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r2",
+              "text": "There isn't many pollution here."
+            },
+            {
+              "responseId": "en:lesson-17:session-11:intro3:r3",
+              "text": "There isn't a much pollution here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb9f453e2adc60d2ae65047833bbd68f04f97a822ca3ac2b9050c60f229396c9"
+}

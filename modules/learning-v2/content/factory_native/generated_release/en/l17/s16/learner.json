@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-16:word:poet",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — poet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:word:poet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — poet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:word:poet:audio",
+          "transcript": "poet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:word:poet:r1",
+            "targetText": "poet",
+            "meaningByLocale": {
+              "ru": "поэт, автор стихов.",
+              "uk": "поет, автор віршів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poet",
+          "definitionByLocale": {
+            "ru": "поэт, автор стихов.",
+            "uk": "поет, автор віршів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "poet → poets. Скажите: «Скольких поэтов вы знаете».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "poet → poets. Скажите: «Скольких поэтов вы знаете».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many poets do you know?",
+        "localizedMeaning": {
+          "ru": "poet → poets. Скажите: «Скольких поэтов вы знаете».",
+          "uk": "poet → poets. Скажіть: «Скількох поетів ви знаєте»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "poets",
+          "do",
+          "you",
+          "know"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i02:r1",
+          "text": "How many poets do you know?"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i02:r2",
+          "text": "How much poets do you know?"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i02:r3",
+          "text": "How a many poets do you know?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i02:audio",
+          "transcript": "How many poets do you know?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:i02:r1",
+            "targetText": "How many poets do you know?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i02:r2",
+            "targetText": "How much poets do you know?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i02:r3",
+            "targetText": "How a many poets do you know?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many poets do you know?",
+              "uk": "У записі звучить How many poets do you know?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many poets do you know?",
+              "uk": "У записі звучить How many poets do you know?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ poets do you know?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-16:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "poet можно посчитать: many + poets во множественном числе.",
+              "uk": "poet можна порахувати: many + poets у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:word:novelist",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — novelist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:word:novelist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — novelist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:word:novelist:audio",
+          "transcript": "novelist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:word:novelist:r1",
+            "targetText": "novelist",
+            "meaningByLocale": {
+              "ru": "романист, автор романов.",
+              "uk": "романіст, автор романів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "novelist",
+          "definitionByLocale": {
+            "ru": "романист, автор романов.",
+            "uk": "романіст, автор романів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "novelist → novelists. Скажите: «Мы знаем не так много романистов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "novelist → novelists. Скажите: «Мы знаем не так много романистов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't know many novelists.",
+        "localizedMeaning": {
+          "ru": "novelist → novelists. Скажите: «Мы знаем не так много романистов».",
+          "uk": "novelist → novelists. Скажіть: «Ми знаємо небагато романістів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "know",
+          "many",
+          "novelists"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i05:r1",
+          "text": "We don't know many novelists."
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i05:r2",
+          "text": "We don't know much novelists."
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i05:r3",
+          "text": "We don't know a many novelists."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i05:audio",
+          "transcript": "We don't know many novelists."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:i05:r1",
+            "targetText": "We don't know many novelists.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i05:r2",
+            "targetText": "We don't know much novelists.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i05:r3",
+            "targetText": "We don't know a many novelists.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't know many novelists.",
+              "uk": "У записі звучить We don't know many novelists."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't know many novelists.",
+              "uk": "У записі звучить We don't know many novelists."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't know ___ novelists.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-16:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "novelist можно посчитать: many + novelists во множественном числе.",
+              "uk": "novelist можна порахувати: many + novelists у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:word:poetry",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — poetry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:word:poetry:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — poetry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:word:poetry:audio",
+          "transcript": "poetry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:word:poetry:r1",
+            "targetText": "poetry",
+            "meaningByLocale": {
+              "ru": "поэзия, стихи как вид литературы.",
+              "uk": "поезія, вірші як вид літератури."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poetry",
+          "definitionByLocale": {
+            "ru": "поэзия, стихи как вид литературы.",
+            "uk": "поезія, вірші як вид літератури."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Как много поэзии вы читаете».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Как много поэзии вы читаете».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much poetry do you read?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Как много поэзии вы читаете».",
+          "uk": "Скажіть: «Як багато поезії ви читаєте»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "poetry",
+          "do",
+          "you",
+          "read"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i08:r1",
+          "text": "How much poetry do you read?"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i08:r2",
+          "text": "How many poetry do you read?"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i08:r3",
+          "text": "How a much poetry do you read?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i08:audio",
+          "transcript": "How much poetry do you read?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:i08:r1",
+            "targetText": "How much poetry do you read?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i08:r2",
+            "targetText": "How many poetry do you read?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i08:r3",
+            "targetText": "How a much poetry do you read?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much poetry do you read?",
+              "uk": "У записі звучить How much poetry do you read?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much poetry do you read?",
+              "uk": "У записі звучить How much poetry do you read?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ poetry do you read?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-16:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "poetry в этом значении — неисчисляемое слово: much.",
+              "uk": "poetry у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:word:prose",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:word:prose:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:word:prose:audio",
+          "transcript": "prose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:word:prose:r1",
+            "targetText": "prose",
+            "meaningByLocale": {
+              "ru": "проза, литература не в стихах.",
+              "uk": "проза, література не у віршах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prose",
+          "definitionByLocale": {
+            "ru": "проза, литература не в стихах.",
+            "uk": "проза, література не у віршах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы читаем не так много прозы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы читаем не так много прозы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't read much prose.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы читаем не так много прозы».",
+          "uk": "Скажіть: «Ми читаємо небагато прози»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "read",
+          "much",
+          "prose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i11:r1",
+          "text": "We don't read much prose."
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i11:r2",
+          "text": "We don't read many prose."
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i11:r3",
+          "text": "We don't read a much prose."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i11:audio",
+          "transcript": "We don't read much prose."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-16:i11:r1",
+            "targetText": "We don't read much prose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i11:r2",
+            "targetText": "We don't read many prose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i11:r3",
+            "targetText": "We don't read a much prose.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't read much prose.",
+              "uk": "У записі звучить We don't read much prose."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't read much prose.",
+              "uk": "У записі звучить We don't read much prose."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-16:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-16:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't read ___ prose.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-16:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "prose в этом значении — неисчисляемое слово: much.",
+              "uk": "prose у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-16:i13:p1",
+            "target": "poet",
+            "meaningByLocale": {
+              "ru": "поэт, автор стихов",
+              "uk": "поет, автор віршів"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-16:i13:p2",
+            "target": "novelist",
+            "meaningByLocale": {
+              "ru": "романист, автор романов",
+              "uk": "романіст, автор романів"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-16:i13:p3",
+            "target": "poetry",
+            "meaningByLocale": {
+              "ru": "поэзия, стихи как вид литературы",
+              "uk": "поезія, вірші як вид літератури"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-16:i13:p4",
+            "target": "prose",
+            "meaningByLocale": {
+              "ru": "проза, литература не в стихах",
+              "uk": "проза, література не у віршах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "poet",
+          "novelist",
+          "poetry",
+          "prose"
+        ],
+        "rightColumn": [
+          "поэт, автор стихов",
+          "романист, автор романов",
+          "поэзия, стихи как вид литературы",
+          "проза, литература не в стихах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i14:audio",
+          "transcript": "How many poets do you know?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many poets do you know?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "poets",
+          "do",
+          "you",
+          "know"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i15:audio",
+          "transcript": "How much poetry do you read?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much poetry do you read?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "poetry",
+          "do",
+          "you",
+          "read"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i16:audio",
+          "transcript": "We don't read much prose."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't read much prose.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-16:i17:audio",
+          "transcript": "We don't know many novelists."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't know many novelists.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0cd73c51242bea9e8954969ea5780d6cbdbd484134211bda0eb10ceef85b27af"
+}

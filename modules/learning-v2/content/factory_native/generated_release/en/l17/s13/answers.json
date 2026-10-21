@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-13:word:participant",
+    "correctText": "participant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i01",
+    "correctText": "How many participants do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i02",
+    "correctText": "How many participants do we have?",
+    "correctResponseId": "en:lesson-17:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:word:sponsor",
+    "correctText": "sponsor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i04",
+    "correctText": "We don't have many sponsors.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i05",
+    "correctText": "We don't have many sponsors.",
+    "correctResponseId": "en:lesson-17:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:word:entertainment",
+    "correctText": "entertainment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i07",
+    "correctText": "How much entertainment do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i08",
+    "correctText": "How much entertainment do we need?",
+    "correctResponseId": "en:lesson-17:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:word:funding",
+    "correctText": "funding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i10",
+    "correctText": "We don't have much funding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i11",
+    "correctText": "We don't have much funding.",
+    "correctResponseId": "en:lesson-17:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i13",
+    "correctText": "en:lesson-17:session-13:i13:p1=participant\nen:lesson-17:session-13:i13:p2=sponsor\nen:lesson-17:session-13:i13:p3=entertainment\nen:lesson-17:session-13:i13:p4=funding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i14",
+    "correctText": "How many participants do we have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i15",
+    "correctText": "How much entertainment do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i16",
+    "correctText": "We don't have much funding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-13:i17",
+    "correctText": "We don't have many sponsors.",
+    "correctResponseId": null
+  }
+]

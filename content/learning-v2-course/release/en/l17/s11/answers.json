@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-11:word:commuter",
+    "correctText": "commuter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i01",
+    "correctText": "How many commuters use this train?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i02",
+    "correctText": "How many commuters use this train?",
+    "correctResponseId": "en:lesson-17:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:word:motorist",
+    "correctText": "motorist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i04",
+    "correctText": "We don't see many motorists here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i05",
+    "correctText": "We don't see many motorists here.",
+    "correctResponseId": "en:lesson-17:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:word:congestion",
+    "correctText": "congestion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i07",
+    "correctText": "How much congestion is there today?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i08",
+    "correctText": "How much congestion is there today?",
+    "correctResponseId": "en:lesson-17:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:word:pollution",
+    "correctText": "pollution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i10",
+    "correctText": "There isn't much pollution here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i11",
+    "correctText": "There isn't much pollution here.",
+    "correctResponseId": "en:lesson-17:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i13",
+    "correctText": "en:lesson-17:session-11:i13:p1=commuter\nen:lesson-17:session-11:i13:p2=motorist\nen:lesson-17:session-11:i13:p3=congestion\nen:lesson-17:session-11:i13:p4=pollution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i14",
+    "correctText": "How many commuters use this train?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i15",
+    "correctText": "How much congestion is there today?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i16",
+    "correctText": "There isn't much pollution here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-11:i17",
+    "correctText": "We don't see many motorists here.",
+    "correctResponseId": null
+  }
+]

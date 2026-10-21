@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество отдельных предметов или людей",
+        "uk": "Кількість окремих предметів або людей"
+      },
+      "bodyByLocale": {
+        "ru": "poet — поэт, автор стихов. poet можно посчитать: many + poets во множественном числе.",
+        "uk": "poet — поет, автор віршів. poet можна порахувати: many + poets у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r1",
+              "text": "How many poets do you know?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r2",
+              "text": "How much poets do you know?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r3",
+              "text": "How a many poets do you know?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r1",
+              "text": "How many poets do you know?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r2",
+              "text": "How much poets do you know?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro1:r3",
+              "text": "How a many poets do you know?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Количество неисчисляемого",
+        "uk": "Кількість незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "poetry — поэзия, стихи как вид литературы. novelist — романист, автор романов. novelist можно посчитать: many + novelists во множественном числе. poetry в этом значении — неисчисляемое слово: much.",
+        "uk": "poetry — поезія, вірші як вид літератури. novelist — романіст, автор романів. novelist можна порахувати: many + novelists у множині. poetry у цьому значенні — незлічуване слово: much."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r1",
+              "text": "How much poetry do you read?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r2",
+              "text": "How many poetry do you read?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r3",
+              "text": "How a much poetry do you read?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r1",
+              "text": "How much poetry do you read?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r2",
+              "text": "How many poetry do you read?"
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro2:r3",
+              "text": "How a much poetry do you read?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не много — в отрицании",
+        "uk": "Небагато — у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "prose — проза, литература не в стихах. prose в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
+        "uk": "prose — проза, література не у віршах. prose у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r1",
+              "text": "We don't read much prose."
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r2",
+              "text": "We don't read many prose."
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r3",
+              "text": "We don't read a much prose."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r1",
+              "text": "We don't read much prose."
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r2",
+              "text": "We don't read many prose."
+            },
+            {
+              "responseId": "en:lesson-17:session-16:intro3:r3",
+              "text": "We don't read a much prose."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e8ef71186f76d5fa3ba33950fd12b7f714a8fb39031458051a4231447dd0bc6d"
+}

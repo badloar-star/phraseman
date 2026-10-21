@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество отдельных предметов или людей",
+        "uk": "Кількість окремих предметів або людей"
+      },
+      "bodyByLocale": {
+        "ru": "participant — участник мероприятия или занятия. participant можно посчитать: many + participants во множественном числе.",
+        "uk": "participant — учасник заходу або заняття. participant можна порахувати: many + participants у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r1",
+              "text": "How many participants do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r2",
+              "text": "How much participants do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r3",
+              "text": "How a many participants do we have?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r1",
+              "text": "How many participants do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r2",
+              "text": "How much participants do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro1:r3",
+              "text": "How a many participants do we have?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Количество неисчисляемого",
+        "uk": "Кількість незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "entertainment — развлечения, развлекательная программа. sponsor — спонсор, человек или организация, поддерживающие мероприятие деньгами. sponsor можно посчитать: many + sponsors во множественном числе. entertainment в этом значении — неисчисляемое слово: much.",
+        "uk": "entertainment — розваги, розважальна програма. sponsor — спонсор, людина або організація, що підтримує захід грошима. sponsor можна порахувати: many + sponsors у множині. entertainment у цьому значенні — незлічуване слово: much."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r1",
+              "text": "How much entertainment do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r2",
+              "text": "How many entertainment do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r3",
+              "text": "How a much entertainment do we need?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r1",
+              "text": "How much entertainment do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r2",
+              "text": "How many entertainment do we need?"
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro2:r3",
+              "text": "How a much entertainment do we need?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не много — в отрицании",
+        "uk": "Небагато — у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "funding — финансирование, деньги на определённое дело. funding в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
+        "uk": "funding — фінансування, гроші на певну справу. funding у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r1",
+              "text": "We don't have much funding."
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r2",
+              "text": "We don't have many funding."
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r3",
+              "text": "We don't have a much funding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r1",
+              "text": "We don't have much funding."
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r2",
+              "text": "We don't have many funding."
+            },
+            {
+              "responseId": "en:lesson-17:session-13:intro3:r3",
+              "text": "We don't have a much funding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76b44130b164e6b8f475f73f4443244a0cf0e7286dd0499bdc42ee459be71eff"
+}

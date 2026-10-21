@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-13:word:participant",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — participant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:word:participant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — participant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:word:participant:audio",
+          "transcript": "participant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:word:participant:r1",
+            "targetText": "participant",
+            "meaningByLocale": {
+              "ru": "участник мероприятия или занятия.",
+              "uk": "учасник заходу або заняття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "participant",
+          "definitionByLocale": {
+            "ru": "участник мероприятия или занятия.",
+            "uk": "учасник заходу або заняття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "participant → participants. Скажите: «Сколько у нас участников».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "participant → participants. Скажите: «Сколько у нас участников».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many participants do we have?",
+        "localizedMeaning": {
+          "ru": "participant → participants. Скажите: «Сколько у нас участников».",
+          "uk": "participant → participants. Скажіть: «Скільки в нас учасників»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "participants",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i02:r1",
+          "text": "How many participants do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i02:r2",
+          "text": "How much participants do we have?"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i02:r3",
+          "text": "How a many participants do we have?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i02:audio",
+          "transcript": "How many participants do we have?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:i02:r1",
+            "targetText": "How many participants do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i02:r2",
+            "targetText": "How much participants do we have?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i02:r3",
+            "targetText": "How a many participants do we have?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many participants do we have?",
+              "uk": "У записі звучить How many participants do we have?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many participants do we have?",
+              "uk": "У записі звучить How many participants do we have?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ participants do we have?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-13:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "participant можно посчитать: many + participants во множественном числе.",
+              "uk": "participant можна порахувати: many + participants у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:word:sponsor",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sponsor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:word:sponsor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sponsor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:word:sponsor:audio",
+          "transcript": "sponsor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:word:sponsor:r1",
+            "targetText": "sponsor",
+            "meaningByLocale": {
+              "ru": "спонсор, человек или организация, поддерживающие мероприятие деньгами.",
+              "uk": "спонсор, людина або організація, що підтримує захід грошима."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sponsor",
+          "definitionByLocale": {
+            "ru": "спонсор, человек или организация, поддерживающие мероприятие деньгами.",
+            "uk": "спонсор, людина або організація, що підтримує захід грошима."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "sponsor → sponsors. Скажите: «У нас не так много спонсоров».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "sponsor → sponsors. Скажите: «У нас не так много спонсоров».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have many sponsors.",
+        "localizedMeaning": {
+          "ru": "sponsor → sponsors. Скажите: «У нас не так много спонсоров».",
+          "uk": "sponsor → sponsors. Скажіть: «У нас небагато спонсорів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "many",
+          "sponsors"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i05:r1",
+          "text": "We don't have many sponsors."
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i05:r2",
+          "text": "We don't have much sponsors."
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i05:r3",
+          "text": "We don't have a many sponsors."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i05:audio",
+          "transcript": "We don't have many sponsors."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:i05:r1",
+            "targetText": "We don't have many sponsors.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i05:r2",
+            "targetText": "We don't have much sponsors.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i05:r3",
+            "targetText": "We don't have a many sponsors.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many sponsors.",
+              "uk": "У записі звучить We don't have many sponsors."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many sponsors.",
+              "uk": "У записі звучить We don't have many sponsors."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't have ___ sponsors.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-13:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "sponsor можно посчитать: many + sponsors во множественном числе.",
+              "uk": "sponsor можна порахувати: many + sponsors у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:word:entertainment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — entertainment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:word:entertainment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — entertainment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:word:entertainment:audio",
+          "transcript": "entertainment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:word:entertainment:r1",
+            "targetText": "entertainment",
+            "meaningByLocale": {
+              "ru": "развлечения, развлекательная программа.",
+              "uk": "розваги, розважальна програма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "entertainment",
+          "definitionByLocale": {
+            "ru": "развлечения, развлекательная программа.",
+            "uk": "розваги, розважальна програма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Сколько развлечений нам нужно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Сколько развлечений нам нужно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much entertainment do we need?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Сколько развлечений нам нужно».",
+          "uk": "Скажіть: «Скільки розваг нам потрібно»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "entertainment",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i08:r1",
+          "text": "How much entertainment do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i08:r2",
+          "text": "How many entertainment do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i08:r3",
+          "text": "How a much entertainment do we need?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i08:audio",
+          "transcript": "How much entertainment do we need?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:i08:r1",
+            "targetText": "How much entertainment do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i08:r2",
+            "targetText": "How many entertainment do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i08:r3",
+            "targetText": "How a much entertainment do we need?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much entertainment do we need?",
+              "uk": "У записі звучить How much entertainment do we need?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much entertainment do we need?",
+              "uk": "У записі звучить How much entertainment do we need?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ entertainment do we need?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-13:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "entertainment в этом значении — неисчисляемое слово: much.",
+              "uk": "entertainment у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:word:funding",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — funding",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:word:funding:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — funding",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:word:funding:audio",
+          "transcript": "funding"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:word:funding:r1",
+            "targetText": "funding",
+            "meaningByLocale": {
+              "ru": "финансирование, деньги на определённое дело.",
+              "uk": "фінансування, гроші на певну справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funding",
+          "definitionByLocale": {
+            "ru": "финансирование, деньги на определённое дело.",
+            "uk": "фінансування, гроші на певну справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «У нас мало средств на это дело».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «У нас мало средств на это дело».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have much funding.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У нас мало средств на это дело».",
+          "uk": "Скажіть: «У нас мало коштів на цю справу»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "much",
+          "funding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i11:r1",
+          "text": "We don't have much funding."
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i11:r2",
+          "text": "We don't have many funding."
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i11:r3",
+          "text": "We don't have a much funding."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i11:audio",
+          "transcript": "We don't have much funding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-13:i11:r1",
+            "targetText": "We don't have much funding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i11:r2",
+            "targetText": "We don't have many funding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i11:r3",
+            "targetText": "We don't have a much funding.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have much funding.",
+              "uk": "У записі звучить We don't have much funding."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have much funding.",
+              "uk": "У записі звучить We don't have much funding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-13:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-13:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't have ___ funding.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-13:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "funding в этом значении — неисчисляемое слово: much.",
+              "uk": "funding у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-13:i13:p1",
+            "target": "participant",
+            "meaningByLocale": {
+              "ru": "участник мероприятия или занятия",
+              "uk": "учасник заходу або заняття"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-13:i13:p2",
+            "target": "sponsor",
+            "meaningByLocale": {
+              "ru": "спонсор, человек или организация, поддерживающие мероприятие деньгами",
+              "uk": "спонсор, людина або організація, що підтримує захід грошима"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-13:i13:p3",
+            "target": "entertainment",
+            "meaningByLocale": {
+              "ru": "развлечения, развлекательная программа",
+              "uk": "розваги, розважальна програма"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-13:i13:p4",
+            "target": "funding",
+            "meaningByLocale": {
+              "ru": "финансирование, деньги на определённое дело",
+              "uk": "фінансування, гроші на певну справу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "participant",
+          "sponsor",
+          "entertainment",
+          "funding"
+        ],
+        "rightColumn": [
+          "участник мероприятия или занятия",
+          "спонсор, человек или организация, поддерживающие мероприятие деньгами",
+          "развлечения, развлекательная программа",
+          "финансирование, деньги на определённое дело"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i14:audio",
+          "transcript": "How many participants do we have?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many participants do we have?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "participants",
+          "do",
+          "we",
+          "have"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос с much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i15:audio",
+          "transcript": "How much entertainment do we need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much entertainment do we need?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "entertainment",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i16:audio",
+          "transcript": "We don't have much funding."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have much funding.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-13:i17:audio",
+          "transcript": "We don't have many sponsors."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have many sponsors.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "350874da97b982a059b1d353dc88941bddee304eee00855db1e349033d9e9310"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "many + plural count noun / much + non-count noun",
+    "uk": "many + plural count noun / much + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество отдельных предметов или людей",
+        "uk": "Кількість окремих предметів або людей"
+      },
+      "bodyByLocale": {
+        "ru": "assignment — учебное задание. assignment можно посчитать: many + assignments во множественном числе.",
+        "uk": "assignment — навчальне завдання. assignment можна порахувати: many + assignments у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r1",
+              "text": "How many assignments do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r2",
+              "text": "How much assignments do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r3",
+              "text": "How a many assignments do we have?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r1",
+              "text": "How many assignments do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r2",
+              "text": "How much assignments do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro1:r3",
+              "text": "How a many assignments do we have?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Количество неисчисляемого",
+        "uk": "Кількість незлічуваного"
+      },
+      "bodyByLocale": {
+        "ru": "coursework — учебные работы, выполняемые в течение курса. worksheet — лист с учебными заданиями. worksheet можно посчитать: many + worksheets во множественном числе. coursework в этом значении — неисчисляемое слово: much.",
+        "uk": "coursework — навчальні роботи, виконувані протягом курсу. worksheet — аркуш із навчальними завданнями. worksheet можна порахувати: many + worksheets у множині. coursework у цьому значенні — незлічуване слово: much."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r1",
+              "text": "How much coursework do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r2",
+              "text": "How many coursework do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r3",
+              "text": "How a much coursework do we have?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r1",
+              "text": "How much coursework do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r2",
+              "text": "How many coursework do we have?"
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro2:r3",
+              "text": "How a much coursework do we have?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не много — в отрицании",
+        "uk": "Небагато — у запереченні"
+      },
+      "bodyByLocale": {
+        "ru": "revision — повторение учебного материала перед проверкой или экзаменом. revision в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
+        "uk": "revision — повторення навчального матеріалу перед перевіркою або іспитом. revision у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r1",
+              "text": "We don't need much revision."
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r2",
+              "text": "We don't need many revision."
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r3",
+              "text": "We don't need a much revision."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r1",
+              "text": "We don't need much revision."
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r2",
+              "text": "We don't need many revision."
+            },
+            {
+              "responseId": "en:lesson-17:session-10:intro3:r3",
+              "text": "We don't need a much revision."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3ea0485d47a79a3cd0f83dc42d48f1749bcdacdf7d0960f6e871246639770552"
+}

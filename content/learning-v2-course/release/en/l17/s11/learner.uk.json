@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-11:word:commuter",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — commuter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:word:commuter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — commuter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:word:commuter:audio",
+          "transcript": "commuter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:word:commuter:r1",
+            "targetText": "commuter",
+            "meaningByLocale": {
+              "ru": "человек, регулярно ездящий из дома на работу или учёбу.",
+              "uk": "людина, яка регулярно їздить із дому на роботу або навчання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "commuter",
+          "definitionByLocale": {
+            "ru": "человек, регулярно ездящий из дома на работу или учёбу.",
+            "uk": "людина, яка регулярно їздить із дому на роботу або навчання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "commuter → commuters. Скажіть: «Скільки людей їздить цим потягом на роботу або навчання».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "commuter → commuters. Скажіть: «Скільки людей їздить цим потягом на роботу або навчання».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many commuters use this train?",
+        "localizedMeaning": {
+          "ru": "commuter → commuters. Скажите: «Сколько людей ездит этим поездом на работу или учёбу».",
+          "uk": "commuter → commuters. Скажіть: «Скільки людей їздить цим потягом на роботу або навчання»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "commuters",
+          "use",
+          "this",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i02:r1",
+          "text": "How many commuters use this train?"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i02:r2",
+          "text": "How much commuters use this train?"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i02:r3",
+          "text": "How a many commuters use this train?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i02:audio",
+          "transcript": "How many commuters use this train?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:i02:r1",
+            "targetText": "How many commuters use this train?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i02:r2",
+            "targetText": "How much commuters use this train?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i02:r3",
+            "targetText": "How a many commuters use this train?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many commuters use this train?",
+              "uk": "У записі звучить How many commuters use this train?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many commuters use this train?",
+              "uk": "У записі звучить How many commuters use this train?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ commuters use this train?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-11:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "commuter можно посчитать: many + commuters во множественном числе.",
+              "uk": "commuter можна порахувати: many + commuters у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:word:motorist",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — motorist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:word:motorist:audio"
+      ],
+      "accessibilityLabel": "Картка слова — motorist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:word:motorist:audio",
+          "transcript": "motorist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:word:motorist:r1",
+            "targetText": "motorist",
+            "meaningByLocale": {
+              "ru": "автомобилист, водитель автомобиля.",
+              "uk": "автомобіліст, водій автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "motorist",
+          "definitionByLocale": {
+            "ru": "автомобилист, водитель автомобиля.",
+            "uk": "автомобіліст, водій автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "motorist → motorists. Скажіть: «Ми бачимо тут небагато автомобілістів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "motorist → motorists. Скажіть: «Ми бачимо тут небагато автомобілістів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't see many motorists here.",
+        "localizedMeaning": {
+          "ru": "motorist → motorists. Скажите: «Мы видим здесь не так много автомобилистов».",
+          "uk": "motorist → motorists. Скажіть: «Ми бачимо тут небагато автомобілістів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "see",
+          "many",
+          "motorists",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i05:r1",
+          "text": "We don't see many motorists here."
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i05:r2",
+          "text": "We don't see much motorists here."
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i05:r3",
+          "text": "We don't see a many motorists here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i05:audio",
+          "transcript": "We don't see many motorists here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:i05:r1",
+            "targetText": "We don't see many motorists here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i05:r2",
+            "targetText": "We don't see much motorists here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i05:r3",
+            "targetText": "We don't see a many motorists here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't see many motorists here.",
+              "uk": "У записі звучить We don't see many motorists here."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't see many motorists here.",
+              "uk": "У записі звучить We don't see many motorists here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "We don't see ___ motorists here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-11:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "motorist можно посчитать: many + motorists во множественном числе.",
+              "uk": "motorist можна порахувати: many + motorists у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:word:congestion",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — congestion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:word:congestion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — congestion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:word:congestion:audio",
+          "transcript": "congestion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:word:congestion:r1",
+            "targetText": "congestion",
+            "meaningByLocale": {
+              "ru": "загруженность дорог, скопление транспорта.",
+              "uk": "завантаженість доріг, скупчення транспорту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "congestion",
+          "definitionByLocale": {
+            "ru": "загруженность дорог, скопление транспорта.",
+            "uk": "завантаженість доріг, скупчення транспорту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Наскільки дороги завантажені сьогодні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Наскільки дороги завантажені сьогодні».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much congestion is there today?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Насколько дороги загружены сегодня».",
+          "uk": "Скажіть: «Наскільки дороги завантажені сьогодні»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "congestion",
+          "is",
+          "there",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i08:r1",
+          "text": "How much congestion is there today?"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i08:r2",
+          "text": "How many congestion is there today?"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i08:r3",
+          "text": "How a much congestion is there today?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i08:audio",
+          "transcript": "How much congestion is there today?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:i08:r1",
+            "targetText": "How much congestion is there today?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i08:r2",
+            "targetText": "How many congestion is there today?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i08:r3",
+            "targetText": "How a much congestion is there today?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much congestion is there today?",
+              "uk": "У записі звучить How much congestion is there today?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much congestion is there today?",
+              "uk": "У записі звучить How much congestion is there today?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "How ___ congestion is there today?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-11:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "congestion в этом значении — неисчисляемое слово: much.",
+              "uk": "congestion у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:word:pollution",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pollution",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:word:pollution:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pollution",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:word:pollution:audio",
+          "transcript": "pollution"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:word:pollution:r1",
+            "targetText": "pollution",
+            "meaningByLocale": {
+              "ru": "загрязнение окружающей среды.",
+              "uk": "забруднення довкілля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pollution",
+          "definitionByLocale": {
+            "ru": "загрязнение окружающей среды.",
+            "uk": "забруднення довкілля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Тут небагато забруднення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Тут небагато забруднення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn't much pollution here.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Здесь не так много загрязнения».",
+          "uk": "Скажіть: «Тут небагато забруднення»."
+        },
+        "orderedTokens": [
+          "There",
+          "isn't",
+          "much",
+          "pollution",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i11:r1",
+          "text": "There isn't much pollution here."
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i11:r2",
+          "text": "There isn't many pollution here."
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i11:r3",
+          "text": "There isn't a much pollution here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i11:audio",
+          "transcript": "There isn't much pollution here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-11:i11:r1",
+            "targetText": "There isn't much pollution here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i11:r2",
+            "targetText": "There isn't many pollution here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i11:r3",
+            "targetText": "There isn't a much pollution here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There isn't much pollution here.",
+              "uk": "У записі звучить There isn't much pollution here."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There isn't much pollution here.",
+              "uk": "У записі звучить There isn't much pollution here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-11:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-11:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+        },
+        "gappedTargetPhrase": "There isn't ___ pollution here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-11:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "pollution в этом значении — неисчисляемое слово: much.",
+              "uk": "pollution у цьому значенні — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-11:i13:p1",
+            "target": "commuter",
+            "meaningByLocale": {
+              "ru": "человек, регулярно ездящий из дома на работу или учёбу",
+              "uk": "людина, яка регулярно їздить із дому на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-11:i13:p2",
+            "target": "motorist",
+            "meaningByLocale": {
+              "ru": "автомобилист, водитель автомобиля",
+              "uk": "автомобіліст, водій автомобіля"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-11:i13:p3",
+            "target": "congestion",
+            "meaningByLocale": {
+              "ru": "загруженность дорог, скопление транспорта",
+              "uk": "завантаженість доріг, скупчення транспорту"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-11:i13:p4",
+            "target": "pollution",
+            "meaningByLocale": {
+              "ru": "загрязнение окружающей среды",
+              "uk": "забруднення довкілля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "commuter",
+          "motorist",
+          "congestion",
+          "pollution"
+        ],
+        "rightColumn": [
+          "людина, яка регулярно їздить із дому на роботу або навчання",
+          "автомобіліст, водій автомобіля",
+          "завантаженість доріг, скупчення транспорту",
+          "забруднення довкілля"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте питання з many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте питання з many",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i14:audio",
+          "transcript": "How many commuters use this train?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many commuters use this train?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "commuters",
+          "use",
+          "this",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте питання з much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте питання з much",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i15:audio",
+          "transcript": "How much congestion is there today?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much congestion is there today?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "congestion",
+          "is",
+          "there",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу з much",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу з much",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i16:audio",
+          "transcript": "There isn't much pollution here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There isn't much pollution here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу з many",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу з many",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-11:i17:audio",
+          "transcript": "We don't see many motorists here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't see many motorists here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e894e4f9bb60f540a2c8abac42de048c0ddbc7688d1ed685148e34015d0db84a"
+}

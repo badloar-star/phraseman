@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-09:word:pecan",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pecan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:word:pecan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pecan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:word:pecan:audio",
+          "transcript": "pecan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:word:pecan:r1",
+            "targetText": "pecan",
+            "meaningByLocale": {
+              "ru": "орех пекан.",
+              "uk": "горіх пекан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pecan",
+          "definitionByLocale": {
+            "ru": "орех пекан.",
+            "uk": "горіх пекан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Pecan → pecans. Скажите: «Сколько орехов пекан нам нужно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Pecan → pecans. Скажите: «Сколько орехов пекан нам нужно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How many pecans do we need?",
+        "localizedMeaning": {
+          "ru": "Pecan → pecans. Скажите: «Сколько орехов пекан нам нужно».",
+          "uk": "Pecan → pecans. Скажіть: «Скільки горіхів пекан нам потрібно»."
+        },
+        "orderedTokens": [
+          "How",
+          "many",
+          "pecans",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i02:r1",
+          "text": "How many pecans do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i02:r2",
+          "text": "How much pecans do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i02:r3",
+          "text": "How a many pecans do we need?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i02:audio",
+          "transcript": "How many pecans do we need?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:i02:r1",
+            "targetText": "How many pecans do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i02:r2",
+            "targetText": "How much pecans do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i02:r3",
+            "targetText": "How a many pecans do we need?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many pecans do we need?",
+              "uk": "У записі звучить How many pecans do we need?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How many pecans do we need?",
+              "uk": "У записі звучить How many pecans do we need?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i03:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i03:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i03:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+        },
+        "gappedTargetPhrase": "How ___ pecans do we need?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-09:i03:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i03:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i03:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Pecan можно посчитать: many + pecans во множественном числе.",
+              "uk": "Pecan можна порахувати: many + pecans у множині."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:word:Brazil-nut",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Brazil nut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:word:Brazil-nut:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Brazil nut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:word:Brazil-nut:audio",
+          "transcript": "Brazil nut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:word:Brazil-nut:r1",
+            "targetText": "Brazil nut",
+            "meaningByLocale": {
+              "ru": "бразильский орех.",
+              "uk": "бразильський горіх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Brazil nut",
+          "definitionByLocale": {
+            "ru": "бразильский орех.",
+            "uk": "бразильський горіх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Brazil nut → Brazil nuts. Скажите: «У нас немного бразильских орехов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Brazil nut → Brazil nuts. Скажите: «У нас немного бразильских орехов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have many Brazil nuts.",
+        "localizedMeaning": {
+          "ru": "Brazil nut → Brazil nuts. Скажите: «У нас немного бразильских орехов».",
+          "uk": "Brazil nut → Brazil nuts. Скажіть: «У нас небагато бразильських горіхів»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "many",
+          "Brazil",
+          "nuts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i05:r1",
+          "text": "We don't have many Brazil nuts."
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i05:r2",
+          "text": "We don't have much Brazil nuts."
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i05:r3",
+          "text": "We don't have a many Brazil nuts."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i05:audio",
+          "transcript": "We don't have many Brazil nuts."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:i05:r1",
+            "targetText": "We don't have many Brazil nuts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i05:r2",
+            "targetText": "We don't have much Brazil nuts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i05:r3",
+            "targetText": "We don't have a many Brazil nuts.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many Brazil nuts.",
+              "uk": "У записі звучить We don't have many Brazil nuts."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have many Brazil nuts.",
+              "uk": "У записі звучить We don't have many Brazil nuts."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i06:r1",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i06:r2",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i06:r3",
+          "text": "a many"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+        },
+        "gappedTargetPhrase": "We don't have ___ Brazil nuts.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-09:i06:r1",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i06:r2",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i06:r3",
+            "text": "a many"
+          }
+        ],
+        "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Brazil nuts — отдельные орехи: many, не much.",
+              "uk": "Brazil nuts — окремі горіхи: many, не much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:word:polenta",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — polenta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:word:polenta:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — polenta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:word:polenta:audio",
+          "transcript": "polenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:word:polenta:r1",
+            "targetText": "polenta",
+            "meaningByLocale": {
+              "ru": "полента, каша из кукурузной крупы.",
+              "uk": "полента, каша з кукурудзяної крупи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "polenta",
+          "definitionByLocale": {
+            "ru": "полента, каша из кукурузной крупы.",
+            "uk": "полента, каша з кукурудзяної крупи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Сколько поленты нам нужно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Сколько поленты нам нужно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much polenta do we need?",
+        "localizedMeaning": {
+          "ru": "Скажите: «Сколько поленты нам нужно».",
+          "uk": "Скажіть: «Скільки поленти нам потрібно»."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "polenta",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i08:r1",
+          "text": "How much polenta do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i08:r2",
+          "text": "How many polenta do we need?"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i08:r3",
+          "text": "How a much polenta do we need?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i08:audio",
+          "transcript": "How much polenta do we need?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:i08:r1",
+            "targetText": "How much polenta do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i08:r2",
+            "targetText": "How many polenta do we need?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i08:r3",
+            "targetText": "How a much polenta do we need?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much polenta do we need?",
+              "uk": "У записі звучить How much polenta do we need?"
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How much polenta do we need?",
+              "uk": "У записі звучить How much polenta do we need?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i09:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i09:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i09:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+        },
+        "gappedTargetPhrase": "How ___ polenta do we need?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-09:i09:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i09:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i09:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Polenta как блюдо — неисчисляемое слово: much.",
+              "uk": "Polenta як страва — незлічуване слово: much."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:word:semolina",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — semolina",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:word:semolina:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — semolina",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:word:semolina:audio",
+          "transcript": "semolina"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:word:semolina:r1",
+            "targetText": "semolina",
+            "meaningByLocale": {
+              "ru": "манная крупа.",
+              "uk": "манна крупа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "semolina",
+          "definitionByLocale": {
+            "ru": "манная крупа.",
+            "uk": "манна крупа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «У нас немного манной крупы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «У нас немного манной крупы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have much semolina.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У нас немного манной крупы».",
+          "uk": "Скажіть: «У нас небагато манної крупи»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "much",
+          "semolina"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i11:r1",
+          "text": "We don't have much semolina."
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i11:r2",
+          "text": "We don't have many semolina."
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i11:r3",
+          "text": "We don't have a much semolina."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i11:audio",
+          "transcript": "We don't have much semolina."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-09:i11:r1",
+            "targetText": "We don't have much semolina.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i11:r2",
+            "targetText": "We don't have many semolina.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i11:r3",
+            "targetText": "We don't have a much semolina.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have much semolina.",
+              "uk": "У записі звучить We don't have much semolina."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have much semolina.",
+              "uk": "У записі звучить We don't have much semolina."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-09:i12:r1",
+          "text": "much"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i12:r2",
+          "text": "many"
+        },
+        {
+          "responseId": "en:lesson-17:session-09:i12:r3",
+          "text": "a much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+        },
+        "gappedTargetPhrase": "We don't have ___ semolina.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-09:i12:r1",
+            "text": "much"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i12:r2",
+            "text": "many"
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i12:r3",
+            "text": "a much"
+          }
+        ],
+        "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Semolina как крупа — неисчисляемое слово: much, не many.",
+              "uk": "Semolina як крупа — незлічуване слово: much, не many."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+            "feedbackByLocale": {
+              "ru": "Перед many/much здесь не нужен a.",
+              "uk": "Перед many/much тут не потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-09:i13:p1",
+            "target": "pecan",
+            "meaningByLocale": {
+              "ru": "орех пекан",
+              "uk": "горіх пекан"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-09:i13:p2",
+            "target": "Brazil nut",
+            "meaningByLocale": {
+              "ru": "бразильский орех",
+              "uk": "бразильський горіх"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-09:i13:p3",
+            "target": "polenta",
+            "meaningByLocale": {
+              "ru": "полента, каша из кукурузной крупы",
+              "uk": "полента, каша з кукурудзяної крупи"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-09:i13:p4",
+            "target": "semolina",
+            "meaningByLocale": {
+              "ru": "манная крупа",
+              "uk": "манна крупа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pecan",
+          "Brazil nut",
+          "polenta",
+          "semolina"
+        ],
+        "rightColumn": [
+          "орех пекан",
+          "бразильский орех",
+          "полента, каша из кукурузной крупы",
+          "манная крупа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос об орехах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос об орехах",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i14:audio",
+          "transcript": "How many pecans do we need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How many pecans do we need?",
+        "orderedTokens": [
+          "How",
+          "many",
+          "pecans",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос о поленте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос о поленте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i15:audio",
+          "transcript": "How much polenta do we need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How much polenta do we need?",
+        "orderedTokens": [
+          "How",
+          "much",
+          "polenta",
+          "do",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что манной крупы немного",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что манной крупы немного",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i16:audio",
+          "transcript": "We don't have much semolina."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have much semolina.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-09:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что бразильских орехов немного",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что бразильских орехов немного",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-09:i17:audio",
+          "transcript": "We don't have many Brazil nuts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We don't have many Brazil nuts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3228a705bb6d9152a56f785aaa8b03ca2382ae9ebee6479bce918f36324d6f0"
+}

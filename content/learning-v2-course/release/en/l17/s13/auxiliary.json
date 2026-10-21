@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-13:intro1:r2": {
+          "ru": "participant можно посчитать: many + participants во множественном числе.",
+          "uk": "participant можна порахувати: many + participants у множині."
+        },
+        "en:lesson-17:session-13:intro1:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-13:intro2:r2": {
+          "ru": "entertainment в этом значении — неисчисляемое слово: much.",
+          "uk": "entertainment у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-13:intro2:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-13:intro3:r2": {
+          "ru": "funding в этом значении — неисчисляемое слово: much.",
+          "uk": "funding у цьому значенні — незлічуване слово: much."
+        },
+        "en:lesson-17:session-13:intro3:r3": {
+          "ru": "Перед many/much здесь не ставим артикль a.",
+          "uk": "Перед many/much тут не ставимо артикль a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "05b31783b67f77b4542d2618b061b48de0a0137529fc776f54aa15e6965c5e8d"
+}

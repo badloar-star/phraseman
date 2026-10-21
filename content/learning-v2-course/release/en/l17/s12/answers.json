@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-12:word:qualification",
+    "correctText": "qualification",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i01",
+    "correctText": "How many qualifications do you have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i02",
+    "correctText": "How many qualifications do you have?",
+    "correctResponseId": "en:lesson-17:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i03",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:word:certificate",
+    "correctText": "certificate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i04",
+    "correctText": "We don't have many certificates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i05",
+    "correctText": "We don't have many certificates.",
+    "correctResponseId": "en:lesson-17:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i06",
+    "correctText": "many",
+    "correctResponseId": "en:lesson-17:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:word:knowledge",
+    "correctText": "knowledge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i07",
+    "correctText": "How much knowledge do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i08",
+    "correctText": "How much knowledge do we need?",
+    "correctResponseId": "en:lesson-17:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i09",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:word:tuition",
+    "correctText": "tuition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i10",
+    "correctText": "We don't need much tuition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i11",
+    "correctText": "We don't need much tuition.",
+    "correctResponseId": "en:lesson-17:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i12",
+    "correctText": "much",
+    "correctResponseId": "en:lesson-17:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i13",
+    "correctText": "en:lesson-17:session-12:i13:p1=qualification\nen:lesson-17:session-12:i13:p2=certificate\nen:lesson-17:session-12:i13:p3=knowledge\nen:lesson-17:session-12:i13:p4=tuition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i14",
+    "correctText": "How many qualifications do you have?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i15",
+    "correctText": "How much knowledge do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i16",
+    "correctText": "We don't need much tuition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-12:i17",
+    "correctText": "We don't have many certificates.",
+    "correctResponseId": null
+  }
+]

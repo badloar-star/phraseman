@@ -537,7 +537,12 @@ const lastProbeAtByOwner = new Map<string, number>();
  * стоит 1 чтение и делается не чаще раза в минуту; полный список читается только когда пришло что-то новое.
  * Возвращает обновлённый список, если было новое, иначе null.
  */
-export async function probeUserNotificationsHead(reason: string): Promise<UserNotification[] | null> {
+export async function probeUserNotificationsHead(
+  reason: string,
+  options: Readonly<{ minIntervalMs?: number }> = {},
+): Promise<UserNotification[] | null> {
+  // зачем (владелец 21.10, №45 шаг 6; Ревизор п.4): Главная пробует реже (5 мин), «Друзья» — прежняя минута (правило 17.10).
+  const minIntervalMs = options.minIntervalMs ?? USER_NOTIFICATIONS_PROBE_MIN_INTERVAL_MS;
   const ownerUid = await getNotificationOwnerUid();
   if (!ownerUid) {
     logFriendAdd('bell_probe', { reason, decision: 'no_owner' });
@@ -545,8 +550,8 @@ export async function probeUserNotificationsHead(reason: string): Promise<UserNo
   }
   const now = Date.now();
   const lastProbeAt = lastProbeAtByOwner.get(ownerUid) ?? 0;
-  if (now - lastProbeAt < USER_NOTIFICATIONS_PROBE_MIN_INTERVAL_MS) {
-    logFriendAdd('bell_probe', { reason, decision: 'ttl_skip', sinceLastMs: now - lastProbeAt });
+  if (now - lastProbeAt < minIntervalMs) {
+    logFriendAdd('bell_probe', { reason, decision: 'ttl_skip', sinceLastMs: now - lastProbeAt, minIntervalMs });
     return null;
   }
   const db = getFirestore();

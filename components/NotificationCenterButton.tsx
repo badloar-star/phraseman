@@ -65,6 +65,8 @@ const EXEMPT_COLOR_6 = '#07110A'; // theme-exempt: центр уведомлен
 // The header reads the server at app entry only when its 12-hour cache is stale.
 // Between refreshes it renders the cached unread count, without background polling.
 const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
+// Проба «есть ли новое» на Главной — не чаще раза в 5 мин (№45 шаг 6); открытый колокольчик перечитывает сразу.
+const HOME_BELL_PROBE_MIN_INTERVAL_MS = 5 * 60_000;
 
 type NotificationCenterButtonProps = {
   /** Без провайдера HomeBellStateContext берётся отсюда; на Главной приходит из контекста (шапка не перерисовывается на возврате). */
@@ -267,7 +269,7 @@ function NotificationCenterButton({
     const refreshOnce = () => {
       // зачем (владелец 17.10 «друзья должны находиться мгновенно, а не через полчаса»): полный перечит раз в 12 ч прятал
       // заявку в друзья часами. Сначала проба одного документа (≤1 раз в минуту), полный список — только если пришло новое.
-      void probeUserNotificationsHead('home_focus').then((probed) => probed ?? refreshUserNotificationsOnce({
+      void probeUserNotificationsHead('home_focus', { minIntervalMs: HOME_BELL_PROBE_MIN_INTERVAL_MS }).then((probed) => probed ?? refreshUserNotificationsOnce({
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
       })).then((list) => {
         if (alive && requestGenerationRef.current === generation) {

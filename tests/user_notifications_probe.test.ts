@@ -89,7 +89,26 @@ it('ничего нового: только 1 документ, полный с�
   expect(mockLimits).toEqual([1]);
 });
 
-it('колокольчик на фокусе Главной сначала пробует, полный перечит по 12 ч остаётся запасным', () => {
+it('порог Главной 5 мин: через 2 мин сеть не трогается, через 5 мин — 1 документ (№45 шаг 6)', async () => {
+  (getCanonicalUserId as jest.Mock).mockResolvedValue('owner-home');
+  mockDocs.push(friendRequest('n1', 100));
+  await refreshUserNotificationsOnce({ force: true });
+  mockLimits.length = 0;
+  mockNow += 120_000;
+  await expect(probeUserNotificationsHead('home_focus', { minIntervalMs: 5 * 60_000 })).resolves.toBeNull();
+  expect(mockLimits).toEqual([1]);
+
+  mockNow += 120_000;
+  await expect(probeUserNotificationsHead('home_focus', { minIntervalMs: 5 * 60_000 })).resolves.toBeNull();
+  expect(mockLimits).toEqual([1]);
+
+  mockNow += 5 * 60_000;
+  await expect(probeUserNotificationsHead('home_focus', { minIntervalMs: 5 * 60_000 })).resolves.toBeNull();
+  expect(mockLimits).toEqual([1, 1]);
+});
+
+it('колокольчик на фокусе Главной сначала пробует (порог 5 мин), полный перечит по 12 ч остаётся запасным', () => {
   const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'NotificationCenterButton.tsx'), 'utf8');
-  expect(src).toContain("probeUserNotificationsHead('home_focus').then((probed) => probed ?? refreshUserNotificationsOnce({");
+  expect(src).toContain('const HOME_BELL_PROBE_MIN_INTERVAL_MS = 5 * 60_000;');
+  expect(src).toContain("probeUserNotificationsHead('home_focus', { minIntervalMs: HOME_BELL_PROBE_MIN_INTERVAL_MS }).then((probed) => probed ?? refreshUserNotificationsOnce({");
 });

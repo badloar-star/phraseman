@@ -190,6 +190,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
+  // Слушатель access_projection на связи (был живой снапшот). Ветка «кэш» возврата из фона опирается на него (№45 шаг 6).
+  const premiumListenerLiveRef = useRef(false);
   const vipSnapshotStateRef = useRef<boolean | null>(null);
   // H-VIPCHURN: зеркало isPremium в ref, чтобы onSnapshot-эффект мог читать актуальное
   // значение БЕЗ isPremium в своём dep-массиве. Иначе эффект пересоздавал Firestore-
@@ -584,6 +586,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
     const start = async () => {
       clearRetry();
+      premiumListenerLiveRef.current = false;
       if (!isListenerCurrent()) return;
       if (unsubscribe) {
         unsubscribe();
@@ -621,6 +624,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         unsubscribe = db.collection('users').doc(uid).collection('access_projection').doc('current').onSnapshot(
           (snap) => {
             retryAttempt = 0; // живой снапшот — канал работает, отступ обнуляем
+            if (isListenerCurrent()) premiumListenerLiveRef.current = true;
             if (!snap.exists || !isListenerCurrent()) return;
             const data = snap.data ? snap.data() : undefined;
             const projectedVipActive = data?.vipActive === true;
@@ -713,6 +717,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
             });
           },
           () => {
+            premiumListenerLiveRef.current = false;
             if (unsubscribe) {
               unsubscribe();
               unsubscribe = null;
@@ -721,6 +726,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
           },
         );
       } catch {
+        premiumListenerLiveRef.current = false;
         scheduleRetry();
       }
     };
@@ -728,6 +734,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     void start();
     return () => {
       cancelled = true;
+      premiumListenerLiveRef.current = false;
       clearRetry();
       clearBackgroundResume();
       if (unsubscribe) unsubscribe();
@@ -758,7 +765,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         const restoreAgeMs = lastRestoreAt > 0 ? Date.now() - lastRestoreAt : null;
         const restoreFresh = restoreAgeMs !== null && restoreAgeMs >= 0 && restoreAgeMs < FOREGROUND_CLOUD_RESTORE_TTL_MS;
         if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud' && restoreFresh) {
-          console.log('[READ-TTL]', JSON.stringify({ area: 'foreground_cloud_restore', source: 'cache', restoreAgeMs, backgroundDurationMs })); // guard-ok: ветка решения
+          // зачем (Ревизор к 586248557): облако не читаем, но если слушатель Plus сейчас в повторе — сбрасываем кэш
+          // премиума, чтобы лёгкий reload пересчитал доступ, а не ждал переподключения слушателя.
+          const listenerState = premiumListenerLiveRef.current ? 'live' : 'not_live';
+          console.log('[READ-TTL]', JSON.stringify({ area: 'foreground_cloud_restore', source: 'cache', restoreAgeMs, backgroundDurationMs, listenerState })); // guard-ok: ветка решения
+          if (listenerState === 'not_live') invalidatePremiumCache();
         } else if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud') {
           console.log('[READ-TTL]', JSON.stringify({ area: 'foreground_cloud_restore', source: 'network', restoreAgeMs, backgroundDurationMs })); // guard-ok: ветка решения
           invalidatePremiumCache();

@@ -295,10 +295,32 @@ export async function scheduleYoutubePremiereLocalNotification(input: {
   title: string;
   triggerAtMs: number;
 }): Promise<string | null> {
+  // зачем (багрепорт тестера 21.10, iPhone: «Не удалось поставить напоминание»; правило «сперва логи»): раньше любой сбой здесь
+  // глох пустым catch и превращался в общее окно ошибки без следа. Теперь вход, trigger, итог и каждый ранний выход пишут причину.
+  const startedAt = Date.now();
+  const triggerOk = Number.isFinite(input.triggerAtMs);
+  console.warn('[VIDEO-REMINDER] schedule: вход', JSON.stringify({ // guard-ok: трассировка бага напоминания
+    platform: Platform.OS, videoId: input.videoId, channelId: input.channelId, titleLen: input.title.length,
+    triggerAtMs: input.triggerAtMs, triggerIso: triggerOk ? new Date(input.triggerAtMs).toISOString() : 'NaN',
+    nowMs: startedAt, inMs: triggerOk ? input.triggerAtMs - startedAt : null,
+  }));
   try {
     const N = await getNotifications();
-    if (!N || !Number.isFinite(input.triggerAtMs) || input.triggerAtMs <= Date.now()) return null;
-    return await N.scheduleNotificationAsync({
+    if (!N) {
+      console.warn('[VIDEO-REMINDER] schedule: ранний выход — модуль уведомлений недоступен (getNotifications → null)'); // guard-ok: причина выхода
+      return null;
+    }
+    if (!triggerOk) {
+      console.warn('[VIDEO-REMINDER] schedule: ранний выход — время напоминания не число', String(input.triggerAtMs)); // guard-ok: причина выхода
+      return null;
+    }
+    if (input.triggerAtMs <= Date.now()) {
+      console.warn('[VIDEO-REMINDER] schedule: ранний выход — время напоминания уже в прошлом', JSON.stringify({ triggerAtMs: input.triggerAtMs, nowMs: Date.now() })); // guard-ok: причина выхода
+      return null;
+    }
+    const trigger = withAndroidChannel({ type: 'date' as const, date: new Date(input.triggerAtMs) });
+    console.warn('[VIDEO-REMINDER] schedule: trigger', JSON.stringify(trigger)); // guard-ok: формат trigger для iOS
+    const id = await N.scheduleNotificationAsync({
       content: {
         title: 'YouTube Premiere',
         body: input.title,
@@ -309,9 +331,15 @@ export async function scheduleYoutubePremiereLocalNotification(input: {
           channelId: input.channelId,
         },
       },
-      trigger: withAndroidChannel({ type: 'date' as const, date: new Date(input.triggerAtMs) }),
+      trigger,
     });
-  } catch {
+    console.warn('[VIDEO-REMINDER] schedule: готово', JSON.stringify({ id, tookMs: Date.now() - startedAt })); // guard-ok: итог
+    return id;
+  } catch (error) {
+    const e = error as { name?: string; code?: string; message?: string; stack?: string } | null;
+    console.warn('[VIDEO-REMINDER] schedule: scheduleNotificationAsync упал', JSON.stringify({ // guard-ok: полная ошибка
+      name: e?.name ?? null, code: e?.code ?? null, message: e?.message ?? String(error), stack: String(e?.stack ?? '').split('\n').slice(0, 4).join(' | '),
+    }));
     return null;
   }
 }

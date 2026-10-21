@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, InteractionManager, Linking, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { AppState, InteractionManager, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
@@ -631,8 +631,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const remind = async (video: YoutubeVideoSnapshot) => {
     setRemindedIds((current) => current.includes(video.id) ? current : [...current, video.id]);
     const rollback = () => setRemindedIds((current) => current.filter((id) => id !== video.id));
+    // зачем (баг тестера 21.10, iPhone «Не удалось поставить напоминание»; правило «сперва логи»): вход экрана — какой ролик, какое время старта, какая платформа
+    console.warn('[VIDEO-REMINDER] screen: тап «Напомнить»', JSON.stringify({ platform: Platform.OS, videoId: video.id, channelId: video.channelId, state: video.state, scheduledStartTime: video.scheduledStartTime ?? null, nowIso: new Date().toISOString() })); // guard-ok: трассировка бага напоминания
     try {
       const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' });
+      console.warn('[VIDEO-REMINDER] screen: итог', JSON.stringify(result.ok ? { ok: true, mode: result.mode } : { ok: false, reason: result.reason })); // guard-ok: итог
       if (result.ok) return;
       DebugLogger.warn('[VIDEO-TAB]', `напоминание не поставлено: reason=${result.reason}`);
       rollback();
@@ -647,6 +650,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         showGlassAlert(copy.error); // master_disabled, schedule_failed
       }
     } catch (error) {
+      const e = error as { name?: string; code?: string; message?: string; stack?: string } | null;
+      console.warn('[VIDEO-REMINDER] screen: исключение → окно «не удалось»', JSON.stringify({ // guard-ok: полная ошибка
+        name: e?.name ?? null, code: e?.code ?? null, message: e?.message ?? String(error), stack: String(e?.stack ?? '').split('\n').slice(0, 4).join(' | '),
+      }));
       DebugLogger.error('[VIDEO-TAB]:remind', error, 'warning');
       rollback();
       showGlassAlert(copy.error);

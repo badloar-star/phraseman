@@ -42,9 +42,15 @@ export type YoutubePremiereReminderEvent = YoutubePremiereReminderInput & {
 const defaultDependencies: YoutubePremiereNotificationDependencies = {
   isMasterEnabled: async () => (await import('./notifications')).isNotifMasterEnabled(),
   requestPermission: async () => {
-    const result = await (await import('./notifications')).requestNotificationPermissionWithFallback({
+    // зачем (баг тестера 21.10, правило «сперва логи»): статус разрешения ДО и ПОСЛЕ запроса — видно, дошёл ли человек до системного окна
+    const notifications = await import('./notifications');
+    const before = await notifications.getNotificationPermissionStatus();
+    console.warn('[VIDEO-REMINDER] permission: до запроса', before); // guard-ok: трассировка бага напоминания
+    const result = await notifications.requestNotificationPermissionWithFallback({
       openSettingsIfBlocked: false,
     });
+    const after = await notifications.getNotificationPermissionStatus();
+    console.warn('[VIDEO-REMINDER] permission: после запроса', JSON.stringify({ before, after, granted: result.granted, blocked: result.blocked })); // guard-ok: итог
     return { granted: result.granted, blocked: result.blocked };
   },
   schedule: async (input) => (
@@ -80,7 +86,9 @@ async function readStoredReminders(): Promise<StoredPremiereReminder[]> {
     const parsed = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(parsed)) return [];
     return parsed.map(parseReminder).filter((item): item is StoredPremiereReminder => !!item);
-  } catch {
+  } catch (error) {
+    // зачем: немой catch прятал битое хранилище напоминаний — без следа «ничего не сохранилось»
+    console.warn('[VIDEO-REMINDER] storage: чтение сохранённых напоминаний упало → пустой список', error instanceof Error ? error.message : String(error)); // guard-ok: причина
     return [];
   }
 }
@@ -136,12 +144,25 @@ export async function requestYoutubePremiereReminderFromTap(
   const videoId = validText(input.videoId, 100);
   const channelId = validText(input.channelId, 80);
   const title = validText(input.title, 300);
-  if (!trigger || !videoId || !channelId || !title) return { ok: false, reason: 'invalid_or_past' };
+  // зачем (баг тестера 21.10): вход и КАЖДЫЙ ранний выход пишут причину — окно «Не удалось поставить напоминание» собирается из трёх разных веток
+  console.warn('[VIDEO-REMINDER] request: вход', JSON.stringify({ // guard-ok: трассировка бага напоминания
+    videoId: input.videoId, channelId: input.channelId, titleLen: String(input.title ?? '').length, scheduledStartTime: input.scheduledStartTime,
+    nowMs, nowIso: Number.isFinite(nowMs) ? new Date(nowMs).toISOString() : 'NaN',
+    trigger: trigger ? { triggerAtMs: trigger.triggerAtMs, triggerIso: new Date(trigger.triggerAtMs).toISOString(), mode: trigger.mode } : null,
+  }));
+  if (!trigger || !videoId || !channelId || !title) {
+    console.warn('[VIDEO-REMINDER] request: отказ invalid_or_past', JSON.stringify({ hasTrigger: !!trigger, hasVideoId: !!videoId, hasChannelId: !!channelId, hasTitle: !!title })); // guard-ok: причина
+    return { ok: false, reason: 'invalid_or_past' };
+  }
   const permission = await dependencies.requestPermission();
   if (!permission.granted) {
-    return { ok: false, reason: permission.blocked ? 'permission_blocked' : 'permission_denied' };
+    const reason = permission.blocked ? 'permission_blocked' : 'permission_denied';
+    console.warn('[VIDEO-REMINDER] request: отказ', reason, JSON.stringify(permission)); // guard-ok: причина
+    return { ok: false, reason };
   }
-  if (!(await dependencies.isMasterEnabled())) return { ok: false, reason: 'master_disabled' };
+  const masterEnabled = await dependencies.isMasterEnabled();
+  console.warn('[VIDEO-REMINDER] request: общий тумблер уведомлений в приложении', String(masterEnabled)); // guard-ok: значение, решившее ветку
+  if (!masterEnabled) return { ok: false, reason: 'master_disabled' };
 
   const reminders = await readStoredReminders();
   const previous = reminders.find((item) => item.videoId === videoId);
@@ -154,11 +175,13 @@ export async function requestYoutubePremiereReminderFromTap(
     triggerAtMs: trigger.triggerAtMs,
   });
   if (!notificationId) {
+    console.warn('[VIDEO-REMINDER] request: отказ schedule_failed — планировщик вернул пустой id (причину см. строки «schedule:» выше)', JSON.stringify({ videoId, previous: !!previous })); // guard-ok: причина
     await saveReminders(reminders.filter((item) => item.videoId !== videoId), nowMs).catch(swallowError('youtube_premiere_notifications:requestYoutubePremiereReminderFromTap'));
     return { ok: false, reason: 'schedule_failed' };
   }
   const reminder = { videoId, channelId, scheduledStartTime: input.scheduledStartTime, notificationId };
   await saveReminders([...reminders.filter((item) => item.videoId !== videoId), reminder], nowMs);
+  console.warn('[VIDEO-REMINDER] request: готово', JSON.stringify({ videoId, notificationId, mode: trigger.mode })); // guard-ok: итог
   return { ok: true, reminder, mode: trigger.mode };
 }
 

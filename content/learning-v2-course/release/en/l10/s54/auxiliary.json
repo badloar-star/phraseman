@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-54:intro1:r2": {
+          "ru": "Перед rescheduling нужна am.",
+          "uk": "Перед rescheduling потрібна am."
+        },
+        "en:lesson-10:session-54:intro1:r3": {
+          "ru": "Правильно rescheduling, без e.",
+          "uk": "Правильно rescheduling, без e."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-54:intro2:r2": {
+          "ru": "С we нужна check без s.",
+          "uk": "З we потрібна check без s."
+        },
+        "en:lesson-10:session-54:intro2:r3": {
+          "ru": "Здесь нужна check.",
+          "uk": "Тут потрібна check."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-54:intro3:r2": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        },
+        "en:lesson-10:session-54:intro3:r3": {
+          "ru": "Нужна связка am.",
+          "uk": "Потрібна зв’язка am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4aac56b308ddc31f853ba8bfe82b03cb1fca66ba2c7ff65b47004562c613f63a"
+}

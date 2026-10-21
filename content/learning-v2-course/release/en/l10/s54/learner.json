@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-54:word:reschedule",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reschedule",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:word:reschedule:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reschedule",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:word:reschedule:audio",
+          "transcript": "reschedule"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:word:reschedule:r1",
+            "targetText": "reschedule",
+            "meaningByLocale": {
+              "ru": "«переносить на другое время». I am rescheduling my appointment. — «Я переношу свою встречу». Меняем назначенное время, а не отменяем встречу совсем.",
+              "uk": "«переносити на інший час». I am rescheduling my appointment. — «Я переношу свою зустріч». Змінюємо призначений час, а не скасовуємо зустріч зовсім."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reschedule",
+          "definitionByLocale": {
+            "ru": "«переносить на другое время». I am rescheduling my appointment. — «Я переношу свою встречу». Меняем назначенное время, а не отменяем встречу совсем.",
+            "uk": "«переносити на інший час». I am rescheduling my appointment. — «Я переношу свою зустріч». Змінюємо призначений час, а не скасовуємо зустріч зовсім."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Администраторы каждую неделю меняют время некоторых встреч. Скажите: «Мы переносим встречи каждую неделю». Поставьте every week в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Администраторы каждую неделю меняют время некоторых встреч. Скажите: «Мы переносим встречи каждую неделю». Поставьте every week в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We reschedule appointments every week.",
+        "localizedMeaning": {
+          "ru": "Администраторы каждую неделю меняют время некоторых встреч. Скажите: «Мы переносим встречи каждую неделю». Поставьте every week в конце",
+          "uk": "Адміністратори щотижня змінюють час деяких зустрічей. Скажіть: «Ми переносимо зустрічі щотижня». Поставте every week у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "reschedule",
+          "appointments",
+          "every",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i02:r1",
+          "text": "We are rescheduling the meeting."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i02:r2",
+          "text": "They are rescheduling the meeting."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i02:r3",
+          "text": "We are cancelling the meeting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i02:audio",
+          "transcript": "We are rescheduling the meeting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:i02:r1",
+            "targetText": "We are rescheduling the meeting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i02:r2",
+            "targetText": "They are rescheduling the meeting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i02:r3",
+            "targetText": "We are cancelling the meeting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are rescheduling the meeting.",
+              "uk": "У записі звучить We are rescheduling the meeting."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are rescheduling the meeting.",
+              "uk": "У записі звучить We are rescheduling the meeting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы reschedule",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i03:r1",
+          "text": "rescheduling"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i03:r2",
+          "text": "rescheduleing"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i03:r3",
+          "text": "reschedule"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы reschedule",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы reschedule",
+          "uk": "Виберіть правильне написання форми reschedule"
+        },
+        "gappedTargetPhrase": "I am ___ my appointment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-54:i03:r1",
+            "text": "rescheduling"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i03:r2",
+            "text": "rescheduleing"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i03:r3",
+            "text": "reschedule"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы reschedule",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы reschedule",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: rescheduling.",
+              "uk": "Перед ing прибираємо e: rescheduling."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы reschedule",
+            "feedbackByLocale": {
+              "ru": "После am для текущей работы нужна rescheduling.",
+              "uk": "Після am для поточної роботи потрібна rescheduling."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:word:availability",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — availability",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:word:availability:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — availability",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:word:availability:audio",
+          "transcript": "availability"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:word:availability:r1",
+            "targetText": "availability",
+            "meaningByLocale": {
+              "ru": "«наличие свободного времени». We check availability every morning. — «Мы проверяем наличие свободного времени каждое утро». Здесь свободное время для записи на встречу.",
+              "uk": "«наявність вільного часу». We check availability every morning. — «Ми перевіряємо наявність вільного часу щоранку». Тут вільний час для запису на зустріч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "availability",
+          "definitionByLocale": {
+            "ru": "«наличие свободного времени». We check availability every morning. — «Мы проверяем наличие свободного времени каждое утро». Здесь свободное время для записи на встречу.",
+            "uk": "«наявність вільного часу». We check availability every morning. — «Ми перевіряємо наявність вільного часу щоранку». Тут вільний час для запису на зустріч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Администраторы каждое утро проверяют свободное время для записи. Скажите: «Мы проверяем наличие свободного времени каждое утро». Поставьте every morning в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Администраторы каждое утро проверяют свободное время для записи. Скажите: «Мы проверяем наличие свободного времени каждое утро». Поставьте every morning в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We check availability every morning.",
+        "localizedMeaning": {
+          "ru": "Администраторы каждое утро проверяют свободное время для записи. Скажите: «Мы проверяем наличие свободного времени каждое утро». Поставьте every morning в конце",
+          "uk": "Адміністратори щоранку перевіряють вільний час для запису. Скажіть: «Ми перевіряємо наявність вільного часу щоранку». Поставте every morning у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "check",
+          "availability",
+          "every",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i05:r1",
+          "text": "I am checking availability."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i05:r2",
+          "text": "We are checking availability."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i05:r3",
+          "text": "I am checking the forecast."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i05:audio",
+          "transcript": "I am checking availability."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:i05:r1",
+            "targetText": "I am checking availability.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i05:r2",
+            "targetText": "We are checking availability.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i05:r3",
+            "targetText": "I am checking the forecast.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am checking availability.",
+              "uk": "У записі звучить I am checking availability."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am checking availability.",
+              "uk": "У записі звучить I am checking availability."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это утренняя привычка. Выберите форму check",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i06:r1",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i06:r2",
+          "text": "checks"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i06:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это утренняя привычка. Выберите форму check",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это утренняя привычка. Выберите форму check",
+          "uk": "Це ранкова звичка. Виберіть форму check"
+        },
+        "gappedTargetPhrase": "We ___ availability every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-54:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Это утренняя привычка. Выберите форму check",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Это утренняя привычка. Выберите форму check",
+            "feedbackByLocale": {
+              "ru": "С we нужна check без s.",
+              "uk": "З we потрібна check без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Это утренняя привычка. Выберите форму check",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна check.",
+              "uk": "Тут потрібна check."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:word:time-slot",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — time slot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:word:time-slot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — time slot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:word:time-slot:audio",
+          "transcript": "time slot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:word:time-slot:r1",
+            "targetText": "time slot",
+            "meaningByLocale": {
+              "ru": "«временной интервал для записи». This time slot is available. — «Этот временной интервал для записи свободен». Time slot — выделенное время в расписании, например с двух до половины третьего.",
+              "uk": "«часовий проміжок для запису». This time slot is available. — «Цей часовий проміжок для запису вільний». Time slot — виділений час у розкладі, наприклад із другої до пів на третю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "time slot",
+          "definitionByLocale": {
+            "ru": "«временной интервал для записи». This time slot is available. — «Этот временной интервал для записи свободен». Time slot — выделенное время в расписании, например с двух до половины третьего.",
+            "uk": "«часовий проміжок для запису». This time slot is available. — «Цей часовий проміжок для запису вільний». Time slot — виділений час у розкладі, наприклад із другої до пів на третю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите свободное время в расписании. Скажите: «Этот временной интервал для записи свободен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите свободное время в расписании. Скажите: «Этот временной интервал для записи свободен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This time slot is available.",
+        "localizedMeaning": {
+          "ru": "Покажите свободное время в расписании. Скажите: «Этот временной интервал для записи свободен»",
+          "uk": "Покажіть вільний час у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»"
+        },
+        "orderedTokens": [
+          "This",
+          "time",
+          "slot",
+          "is",
+          "available"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i08:r1",
+          "text": "The time slot is thirty minutes."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i08:r2",
+          "text": "The time slot is twenty minutes."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i08:r3",
+          "text": "The interval is thirty minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i08:audio",
+          "transcript": "The time slot is thirty minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:i08:r1",
+            "targetText": "The time slot is thirty minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i08:r2",
+            "targetText": "The time slot is twenty minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i08:r3",
+            "targetText": "The interval is thirty minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The time slot is thirty minutes.",
+              "uk": "У записі звучить The time slot is thirty minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The time slot is thirty minutes.",
+              "uk": "У записі звучить The time slot is thirty minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном интервале. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном интервале. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном интервале. Выберите связку",
+          "uk": "Ідеться про один проміжок. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "This time slot ___ available.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-54:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном интервале. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Один интервал: is.",
+              "uk": "Один проміжок: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:word:waiting-list",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — waiting list",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:word:waiting-list:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — waiting list",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:word:waiting-list:audio",
+          "transcript": "waiting list"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:word:waiting-list:r1",
+            "targetText": "waiting list",
+            "meaningByLocale": {
+              "ru": "«список ожидания». I am on the waiting list. — «Я в списке ожидания». Список людей, ожидающих свободного места.",
+              "uk": "«список очікування». I am on the waiting list. — «Я у списку очікування». Список людей, які чекають на вільне місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waiting list",
+          "definitionByLocale": {
+            "ru": "«список ожидания». I am on the waiting list. — «Я в списке ожидания». Список людей, ожидающих свободного места.",
+            "uk": "«список очікування». I am on the waiting list. — «Я у списку очікування». Список людей, які чекають на вільне місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Свободных мест пока нет, но вас уже записали в список. Скажите: «Я в списке ожидания»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Свободных мест пока нет, но вас уже записали в список. Скажите: «Я в списке ожидания»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am on the waiting list.",
+        "localizedMeaning": {
+          "ru": "Свободных мест пока нет, но вас уже записали в список. Скажите: «Я в списке ожидания»",
+          "uk": "Вільних місць поки немає, але вас уже записали до списку. Скажіть: «Я у списку очікування»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "on",
+          "the",
+          "waiting",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i11:r1",
+          "text": "The waiting list is long."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i11:r2",
+          "text": "The waiting list is short."
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i11:r3",
+          "text": "The queue is long."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i11:audio",
+          "transcript": "The waiting list is long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-54:i11:r1",
+            "targetText": "The waiting list is long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i11:r2",
+            "targetText": "The waiting list is short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i11:r3",
+            "targetText": "The queue is long.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiting list is long.",
+              "uk": "У записі звучить The waiting list is long."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiting list is long.",
+              "uk": "У записі звучить The waiting list is long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку после I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-54:i12:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-54:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку после I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку после I",
+          "uk": "Виберіть зв’язку після I"
+        },
+        "gappedTargetPhrase": "I ___ on the waiting list.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-54:i12:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите связку после I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку после I",
+            "feedbackByLocale": {
+              "ru": "С I нужна am.",
+              "uk": "З I потрібна am."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку после I",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна am, не are.",
+              "uk": "Тут потрібна am, не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-54:i13:p1",
+            "target": "reschedule",
+            "meaningByLocale": {
+              "ru": "переносить на другое время",
+              "uk": "переносити на інший час"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-54:i13:p2",
+            "target": "availability",
+            "meaningByLocale": {
+              "ru": "наличие свободного времени",
+              "uk": "наявність вільного часу"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-54:i13:p3",
+            "target": "time slot",
+            "meaningByLocale": {
+              "ru": "временной интервал для записи",
+              "uk": "часовий проміжок для запису"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-54:i13:p4",
+            "target": "waiting list",
+            "meaningByLocale": {
+              "ru": "список ожидания",
+              "uk": "список очікування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reschedule",
+          "availability",
+          "time slot",
+          "waiting list"
+        ],
+        "rightColumn": [
+          "переносить на другое время",
+          "наличие свободного времени",
+          "временной интервал для записи",
+          "список ожидания"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i14:audio",
+          "transcript": "I am rescheduling my appointment."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am rescheduling my appointment.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "rescheduling",
+          "my",
+          "appointment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, удалось ли вам получить место. Вы пока ждёте. Скажите: «Я в списке ожидания»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, удалось ли вам получить место. Вы пока ждёте. Скажите: «Я в списке ожидания»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i15:audio",
+          "transcript": "I am on the waiting list."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am on the waiting list.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете клиенту свободный интервал в расписании. Скажите: «Этот временной интервал для записи свободен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете клиенту свободный интервал в расписании. Скажите: «Этот временной интервал для записи свободен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This time slot is available.",
+        "localizedMeaning": {
+          "ru": "Вы показываете клиенту свободный интервал в расписании. Скажите: «Этот временной интервал для записи свободен»",
+          "uk": "Ви показуєте клієнту вільний проміжок у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»"
+        },
+        "orderedTokens": [
+          "This",
+          "time",
+          "slot",
+          "is",
+          "available"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы открыли форму записи и сейчас меняете время встречи. Друг спрашивает, чем вы заняты. Скажите: «Я переношу свою встречу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Вы открыли форму записи и сейчас меняете время встречи. Друг спрашивает, чем вы заняты. Скажите: «Я переношу свою встречу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i17:audio",
+          "transcript": "I am rescheduling my appointment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am rescheduling my appointment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "de06f06e2b37cc15a472fc1e3a717f95514aa42df8fdcf13c1aef0de473882ae"
+}

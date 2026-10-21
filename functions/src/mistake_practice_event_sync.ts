@@ -37,7 +37,7 @@ type EventRecord = Readonly<{
   eventFingerprint: string;
 }>;
 type SyncRequest =
-  | Readonly<{ action: 'append'; expectedStableUid: string; studyTarget: StudyTarget; events: readonly Record<string, unknown>[] }>
+  | Readonly<{ action: 'append'; expectedStableUid: string; studyTarget: StudyTarget; events: readonly Record<string, unknown>[]; received: number }>
   | Readonly<{ action: 'list'; expectedStableUid: string; studyTarget: StudyTarget; cursor: string | null }>;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -89,11 +89,23 @@ export function parseMistakePracticeEventSyncRequest(input: unknown): SyncReques
   if (input.action === 'append' && exact(input, ['action', 'expectedStableUid', 'studyTarget', 'events']) &&
     Array.isArray(input.events) && input.events.length > 0 &&
     input.events.length <= MISTAKE_PRACTICE_EVENT_PAGE_MAX) {
+    // зачем (№45, 21.10, решение владельца «останавливаем повторы старых версий»): клиенты 1.6.x кладут в журнал
+    // одного языка события другого. Раньше вся пачка отклонялась (event_target_mismatch, 400), старый клиент
+    // повторял синк по кругу и каждый раз перечитывал до 50 документов — ≈ треть всех чтений Firestore.
+    // Теперь чужие события молча отбрасываются (они живут в журнале своего языка), остальное принимается.
+    const target = input.studyTarget as StudyTarget;
+    const own = input.events.filter((event) => !isRecord(event) || typeof event.studyTarget !== 'string' ||
+      event.studyTarget === target);
+    const droppedForeign = input.events.length - own.length;
+    if (droppedForeign > 0) {
+      console.info('[MP-SYNC] foreign_dropped', JSON.stringify({ studyTarget: target, received: input.events.length, droppedForeign }));
+    }
     return Object.freeze({
       action: 'append',
       expectedStableUid: input.expectedStableUid,
-      studyTarget: input.studyTarget,
-      events: Object.freeze(input.events.map((event) => parseEvent(event, input.studyTarget as StudyTarget))),
+      studyTarget: target,
+      events: Object.freeze(own.map((event) => parseEvent(event, target))),
+      received: input.events.length,
     });
   }
   if (input.action === 'list' && exact(input, ['action', 'expectedStableUid', 'studyTarget', 'cursor']) &&
@@ -175,6 +187,12 @@ export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
   assertMistakePracticeExpectedOwner(input.expectedStableUid, binding.stableUid);
   const collection = db.collection('users').doc(binding.stableUid).collection('progress_events');
   if (input.action === 'append') {
+    // зачем (№45): клиенты сверяют appended с размером отправленной пачки — отвечаем полученным числом,
+    // иначе старый клиент снова сочтёт ответ ошибкой. Пачка только из чужих событий — без единого чтения.
+    if (input.events.length === 0) {
+      console.info('[MP-SYNC] append:all_foreign_skip', JSON.stringify({ studyTarget: input.studyTarget, received: input.received }));
+      return Object.freeze({ ok: true, appended: input.received });
+    }
     const records = input.events.map((event) => materializeMistakePracticeEventRecord({
       stableUid: binding.stableUid,
       studyTarget: input.studyTarget,
@@ -204,7 +222,7 @@ export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
         }
       });
     });
-    return Object.freeze({ ok: true, appended: records.length });
+    return Object.freeze({ ok: true, appended: input.received });
   }
   const ownerSnapshot = await db.collection('users').doc(binding.stableUid).get();
   if (!ownerSnapshot.exists || ownerSnapshot.data()?.identityHidden === true ||

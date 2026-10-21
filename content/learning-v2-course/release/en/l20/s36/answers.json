@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-36:word:assistance",
+    "correctText": "assistance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i01",
+    "correctText": "You needn't pay for assistance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i02",
+    "correctText": "You needn't pay for assistance.",
+    "correctResponseId": "en:lesson-20:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i03",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:word:approval",
+    "correctText": "approval",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i04",
+    "correctText": "We needn't ask for approval.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i05",
+    "correctText": "We needn't ask for approval.",
+    "correctResponseId": "en:lesson-20:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i06",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:word:participation",
+    "correctText": "participation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i07",
+    "correctText": "She needn't confirm her participation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i08",
+    "correctText": "She needn't confirm her participation.",
+    "correctResponseId": "en:lesson-20:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i09",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:word:contribution",
+    "correctText": "contribution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i10",
+    "correctText": "You needn't make a contribution.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i11",
+    "correctText": "You needn't make a contribution.",
+    "correctResponseId": "en:lesson-20:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i12",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i13",
+    "correctText": "en:lesson-20:session-36:i13:p1=assistance\nen:lesson-20:session-36:i13:p2=approval\nen:lesson-20:session-36:i13:p3=participation\nen:lesson-20:session-36:i13:p4=contribution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i16",
+    "correctText": "You needn't make a contribution.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-36:i17",
+    "correctText": "She needn't confirm her participation.",
+    "correctResponseId": null
+  }
+]

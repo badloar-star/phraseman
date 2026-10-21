@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-33:word:personally",
+    "correctText": "personally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i01",
+    "correctText": "You needn't collect it personally.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i02",
+    "correctText": "You needn't collect it personally.",
+    "correctResponseId": "en:lesson-20:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i03",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:word:permanently",
+    "correctText": "permanently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i04",
+    "correctText": "We needn't move permanently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i05",
+    "correctText": "We needn't move permanently.",
+    "correctResponseId": "en:lesson-20:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i06",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:word:publicly",
+    "correctText": "publicly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i07",
+    "correctText": "She needn't speak publicly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i08",
+    "correctText": "She needn't speak publicly.",
+    "correctResponseId": "en:lesson-20:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i09",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:word:straight-away",
+    "correctText": "straight away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i10",
+    "correctText": "You needn't reply straight away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i11",
+    "correctText": "You needn't reply straight away.",
+    "correctResponseId": "en:lesson-20:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i12",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i13",
+    "correctText": "en:lesson-20:session-33:i13:p1=personally\nen:lesson-20:session-33:i13:p2=permanently\nen:lesson-20:session-33:i13:p3=publicly\nen:lesson-20:session-33:i13:p4=straight away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i16",
+    "correctText": "You needn't reply straight away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-33:i17",
+    "correctText": "She needn't speak publicly.",
+    "correctResponseId": null
+  }
+]

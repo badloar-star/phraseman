@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-35:word:struggle",
+    "correctText": "struggle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i01",
+    "correctText": "You needn't struggle alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i02",
+    "correctText": "You needn't struggle alone.",
+    "correctResponseId": "en:lesson-20:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i03",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:word:prove",
+    "correctText": "prove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i04",
+    "correctText": "You needn't prove anything.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i05",
+    "correctText": "You needn't prove anything.",
+    "correctResponseId": "en:lesson-20:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i06",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:word:pretend",
+    "correctText": "pretend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i07",
+    "correctText": "She needn't pretend to be happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i08",
+    "correctText": "She needn't pretend to be happy.",
+    "correctResponseId": "en:lesson-20:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i09",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:word:justify",
+    "correctText": "justify",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i10",
+    "correctText": "You needn't justify your choice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i11",
+    "correctText": "You needn't justify your choice.",
+    "correctResponseId": "en:lesson-20:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i12",
+    "correctText": "needn't",
+    "correctResponseId": "en:lesson-20:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i13",
+    "correctText": "en:lesson-20:session-35:i13:p1=struggle\nen:lesson-20:session-35:i13:p2=prove\nen:lesson-20:session-35:i13:p3=pretend\nen:lesson-20:session-35:i13:p4=justify",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i16",
+    "correctText": "You needn't justify your choice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-35:i17",
+    "correctText": "She needn't pretend to be happy.",
+    "correctResponseId": null
+  }
+]

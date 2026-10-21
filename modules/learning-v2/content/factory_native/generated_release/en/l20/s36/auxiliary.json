@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-36:intro1:r2": {
+          "ru": "После needn't не нужно to.",
+          "uk": "Після needn't не потрібне to."
+        },
+        "en:lesson-20:session-36:intro1:r3": {
+          "ru": "Needn't не получает окончания -s.",
+          "uk": "Needn't не отримує закінчення -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-36:intro2:r2": {
+          "ru": "После needn't не нужно to.",
+          "uk": "Після needn't не потрібне to."
+        },
+        "en:lesson-20:session-36:intro2:r3": {
+          "ru": "Needn't не получает окончания -s.",
+          "uk": "Needn't не отримує закінчення -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-36:intro3:r2": {
+          "ru": "После needn't не нужно to.",
+          "uk": "Після needn't не потрібне to."
+        },
+        "en:lesson-20:session-36:intro3:r3": {
+          "ru": "Needn't не получает окончания -s.",
+          "uk": "Needn't не отримує закінчення -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df0d5bf8de6dc1e1b8c250b9cd8197b5512598ee0b7b227047304e89500cffb6"
+}

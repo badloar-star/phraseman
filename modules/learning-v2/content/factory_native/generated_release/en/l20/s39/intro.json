@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить взглянуть",
+        "uk": "Попросити поглянути"
+      },
+      "bodyByLocale": {
+        "ru": "Take a look — взглянуть, посмотреть. Друг показывает фотографию на телефоне; вы просите дать вам её рассмотреть. Это обычная разговорная просьба. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Take a look — поглянути, подивитися. Друг показує фотографію на телефоні; ви просите дати вам її роздивитися. Це звичайне розмовне прохання. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r1",
+              "text": "Could I take a look?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r2",
+              "text": "Could I to take a look?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r3",
+              "text": "I could take a look?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r1",
+              "text": "Could I take a look?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r2",
+              "text": "Could I to take a look?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro1:r3",
+              "text": "I could take a look?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предложить помощь",
+        "uk": "Запропонувати допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Give you a hand — помочь вам. Друг несёт несколько сумок, и вы предлагаете помощь. Здесь hand — часть выражения: речь не о том, чтобы буквально отдать руку. You может означать «тебе» или «вам». Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Give you a hand — допомогти вам. Друг несе кілька сумок, і ви пропонуєте допомогу. Тут hand — частина виразу: йдеться не про те, щоб буквально віддати руку. You може означати «тобі» або «вам». Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r1",
+              "text": "Could I give you a hand?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r2",
+              "text": "Could I to give you a hand?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r3",
+              "text": "I could give you a hand?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r1",
+              "text": "Could I give you a hand?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r2",
+              "text": "Could I to give you a hand?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro2:r3",
+              "text": "I could give you a hand?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попробовать самому",
+        "uk": "Спробувати самому"
+      },
+      "bodyByLocale": {
+        "ru": "Have a chat — побеседовать. Вы хотите спокойно поговорить с другом: have a chat with you. Give it a try — попробовать это: друг показал игру, и вы просите разрешения попробовать. It обозначает эту игру. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Have a chat — поспілкуватися. Ви хочете спокійно поговорити з другом: have a chat with you. Give it a try — спробувати це: друг показав гру, і ви просите дозволу спробувати. It позначає цю гру. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r1",
+              "text": "Could I give it a try?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r2",
+              "text": "Could I to give it a try?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r3",
+              "text": "I could give it a try?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r1",
+              "text": "Could I give it a try?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r2",
+              "text": "Could I to give it a try?"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:intro3:r3",
+              "text": "I could give it a try?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ed5b46cc5f70a0ec3184df9ebc9249234d4c577b2dd4e4e5f52729b17d2d53d"
+}

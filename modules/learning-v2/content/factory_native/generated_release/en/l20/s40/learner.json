@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-40:word:make-an-effort",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — make an effort",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:word:make-an-effort:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — make an effort",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:word:make-an-effort:audio",
+          "transcript": "make an effort"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:word:make-an-effort:r1",
+            "targetText": "make an effort",
+            "meaningByLocale": {
+              "ru": "приложить усилие.",
+              "uk": "докласти зусиль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make an effort",
+          "definitionByLocale": {
+            "ru": "приложить усилие.",
+            "uk": "докласти зусиль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Тебе стоит приложить усилие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Тебе стоит приложить усилие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You ought to make an effort.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Тебе стоит приложить усилие».",
+          "uk": "Дайте пораду з ought to: «Тобі варто докласти зусиль»."
+        },
+        "orderedTokens": [
+          "You",
+          "ought",
+          "to",
+          "make",
+          "an",
+          "effort"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i02:r1",
+          "text": "You ought to make an effort."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i02:r2",
+          "text": "You can make an effort."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i02:r3",
+          "text": "You could make an effort."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i02:audio",
+          "transcript": "You ought to make an effort."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:i02:r1",
+            "targetText": "You ought to make an effort.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i02:r2",
+            "targetText": "You can make an effort.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i02:r3",
+            "targetText": "You could make an effort.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to make an effort.",
+              "uk": "У записі звучить You ought to make an effort."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You ought to make an effort.",
+              "uk": "У записі звучить You ought to make an effort."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i03:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i03:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i03:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ make an effort.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-40:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:word:take-a-chance",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — take a chance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:word:take-a-chance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — take a chance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:word:take-a-chance:audio",
+          "transcript": "take a chance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:word:take-a-chance:r1",
+            "targetText": "take a chance",
+            "meaningByLocale": {
+              "ru": "рискнуть, попробовать без гарантии успеха.",
+              "uk": "ризикнути, спробувати без гарантії успіху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take a chance",
+          "definitionByLocale": {
+            "ru": "рискнуть, попробовать без гарантии успеха.",
+            "uk": "ризикнути, спробувати без гарантії успіху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Нам стоит рискнуть».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Нам стоит рискнуть».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to take a chance.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит рискнуть».",
+          "uk": "Дайте пораду з ought to: «Нам варто ризикнути»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "take",
+          "a",
+          "chance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i05:r1",
+          "text": "We ought to take a chance."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i05:r2",
+          "text": "We can take a chance."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i05:r3",
+          "text": "We could take a chance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i05:audio",
+          "transcript": "We ought to take a chance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:i05:r1",
+            "targetText": "We ought to take a chance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i05:r2",
+            "targetText": "We can take a chance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i05:r3",
+            "targetText": "We could take a chance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to take a chance.",
+              "uk": "У записі звучить We ought to take a chance."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to take a chance.",
+              "uk": "У записі звучить We ought to take a chance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i06:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i06:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i06:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ take a chance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-40:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:word:have-a-word",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — have a word",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:word:have-a-word:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — have a word",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:word:have-a-word:audio",
+          "transcript": "have a word"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:word:have-a-word:r1",
+            "targetText": "have a word",
+            "meaningByLocale": {
+              "ru": "коротко поговорить.",
+              "uk": "коротко поговорити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "have a word",
+          "definitionByLocale": {
+            "ru": "коротко поговорить.",
+            "uk": "коротко поговорити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Ей стоит коротко поговорить с учителем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Ей стоит коротко поговорить с учителем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She ought to have a word with the teacher.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Ей стоит коротко поговорить с учителем».",
+          "uk": "Дайте пораду з ought to: «Їй варто коротко поговорити з учителем»."
+        },
+        "orderedTokens": [
+          "She",
+          "ought",
+          "to",
+          "have",
+          "a",
+          "word",
+          "with",
+          "the",
+          "teacher"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i08:r1",
+          "text": "She ought to have a word with the teacher."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i08:r2",
+          "text": "She can have a word with the teacher."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i08:r3",
+          "text": "She could have a word with the teacher."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i08:audio",
+          "transcript": "She ought to have a word with the teacher."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:i08:r1",
+            "targetText": "She ought to have a word with the teacher.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i08:r2",
+            "targetText": "She can have a word with the teacher.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i08:r3",
+            "targetText": "She could have a word with the teacher.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She ought to have a word with the teacher.",
+              "uk": "У записі звучить She ought to have a word with the teacher."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She ought to have a word with the teacher.",
+              "uk": "У записі звучить She ought to have a word with the teacher."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i09:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i09:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i09:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ have a word with the teacher.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-40:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:word:get-in-touch",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get in touch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:word:get-in-touch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get in touch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:word:get-in-touch:audio",
+          "transcript": "get in touch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:word:get-in-touch:r1",
+            "targetText": "get in touch",
+            "meaningByLocale": {
+              "ru": "связаться.",
+              "uk": "звʼязатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get in touch",
+          "definitionByLocale": {
+            "ru": "связаться.",
+            "uk": "звʼязатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Ему стоит связаться со своим другом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Ему стоит связаться со своим другом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He ought to get in touch with his friend.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Ему стоит связаться со своим другом».",
+          "uk": "Дайте пораду з ought to: «Йому варто звʼязатися зі своїм другом»."
+        },
+        "orderedTokens": [
+          "He",
+          "ought",
+          "to",
+          "get",
+          "in",
+          "touch",
+          "with",
+          "his",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i11:r1",
+          "text": "He ought to get in touch with his friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i11:r2",
+          "text": "He can get in touch with his friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i11:r3",
+          "text": "He could get in touch with his friend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i11:audio",
+          "transcript": "He ought to get in touch with his friend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-40:i11:r1",
+            "targetText": "He ought to get in touch with his friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i11:r2",
+            "targetText": "He can get in touch with his friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i11:r3",
+            "targetText": "He could get in touch with his friend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He ought to get in touch with his friend.",
+              "uk": "У записі звучить He ought to get in touch with his friend."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He ought to get in touch with his friend.",
+              "uk": "У записі звучить He ought to get in touch with his friend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-40:i12:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i12:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-40:i12:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ get in touch with his friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-40:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-40:i13:p1",
+            "target": "make an effort",
+            "meaningByLocale": {
+              "ru": "приложить усилие",
+              "uk": "докласти зусиль"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-40:i13:p2",
+            "target": "take a chance",
+            "meaningByLocale": {
+              "ru": "рискнуть, попробовать без гарантии успеха",
+              "uk": "ризикнути, спробувати без гарантії успіху"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-40:i13:p3",
+            "target": "have a word",
+            "meaningByLocale": {
+              "ru": "коротко поговорить",
+              "uk": "коротко поговорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-40:i13:p4",
+            "target": "get in touch",
+            "meaningByLocale": {
+              "ru": "связаться",
+              "uk": "звʼязатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "make an effort",
+          "take a chance",
+          "have a word",
+          "get in touch"
+        ],
+        "rightColumn": [
+          "приложить усилие",
+          "рискнуть, попробовать без гарантии успеха",
+          "коротко поговорить",
+          "связаться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте поговорить с учителем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте поговорить с учителем",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i16:audio",
+          "transcript": "She ought to have a word with the teacher."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She ought to have a word with the teacher.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте связаться с другом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте связаться с другом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-40:i17:audio",
+          "transcript": "He ought to get in touch with his friend."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He ought to get in touch with his friend.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7a8ff2cf686460018a9ab5cf31856cffae41bd24528163ae39e6d25245014708"
+}

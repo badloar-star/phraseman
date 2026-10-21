@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-38:word:major",
+    "correctText": "major",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i01",
+    "correctText": "We ought to discuss this major change.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i02",
+    "correctText": "We ought to discuss this major change.",
+    "correctResponseId": "en:lesson-20:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:word:minor",
+    "correctText": "minor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i04",
+    "correctText": "You ought to correct this minor mistake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i05",
+    "correctText": "You ought to correct this minor mistake.",
+    "correctResponseId": "en:lesson-20:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:word:recent",
+    "correctText": "recent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i07",
+    "correctText": "We ought to read a recent review.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i08",
+    "correctText": "We ought to read a recent review.",
+    "correctResponseId": "en:lesson-20:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:word:capable",
+    "correctText": "capable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i10",
+    "correctText": "She ought to hire a capable guide.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i11",
+    "correctText": "She ought to hire a capable guide.",
+    "correctResponseId": "en:lesson-20:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i13",
+    "correctText": "en:lesson-20:session-38:i13:p1=major\nen:lesson-20:session-38:i13:p2=minor\nen:lesson-20:session-38:i13:p3=recent\nen:lesson-20:session-38:i13:p4=capable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i16",
+    "correctText": "We ought to discuss this major change.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-38:i17",
+    "correctText": "We ought to read a recent review.",
+    "correctResponseId": null
+  }
+]

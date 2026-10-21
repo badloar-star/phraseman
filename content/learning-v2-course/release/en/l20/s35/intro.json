@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "needn't + base verb",
+    "uk": "needn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно попросить помощи",
+        "uk": "Можна попросити допомоги"
+      },
+      "bodyByLocale": {
+        "ru": "Struggle — с трудом справляться, испытывать трудности. Друг не может собрать шкаф, и вы предлагаете помочь: ему не нужно мучиться с этой работой одному. Alone — уже знакомое «один, без других». Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Struggle — насилу давати раду, мати труднощі. Друг не може зібрати шафу, і ви пропонуєте допомогти: йому не потрібно мучитися із цією роботою самому. Alone — уже знайоме «сам, без інших». Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r1",
+              "text": "You needn't struggle alone."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r2",
+              "text": "You needn't to struggle alone."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r3",
+              "text": "You needn'ts struggle alone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r1",
+              "text": "You needn't struggle alone."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r2",
+              "text": "You needn't to struggle alone."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro1:r3",
+              "text": "You needn'ts struggle alone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Незачем что-то доказывать",
+        "uk": "Немає потреби щось доводити"
+      },
+      "bodyByLocale": {
+        "ru": "Prove — доказывать. Друг хочет соревноваться с вами на прогулке, а вы предлагаете просто идти вместе: ему незачем что-либо доказывать. Pretend — притворяться. Pretend to be happy — притворяться счастливым. Знакомая устала после трудного дня; среди друзей ей не нужно изображать радость. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Prove — доводити. Друг хоче змагатися з вами на прогулянці, а ви пропонуєте просто йти разом: йому немає потреби щось доводити. Pretend — удавати. Pretend to be happy — удавати щасливого. Знайома втомилася після складного дня; серед друзів їй не потрібно зображати радість. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r1",
+              "text": "You needn't prove anything."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r2",
+              "text": "You needn't to prove anything."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r3",
+              "text": "You needn'ts prove anything."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r1",
+              "text": "You needn't prove anything."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r2",
+              "text": "You needn't to prove anything."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro2:r3",
+              "text": "You needn'ts prove anything."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Я принимаю твой выбор",
+        "uk": "Я приймаю твій вибір"
+      },
+      "bodyByLocale": {
+        "ru": "Justify — обосновывать или оправдывать. Друг выбирает спокойный вечер дома вместо похода в кино и начинает объяснять причины. Вы принимаете его выбор и говорите, что объяснения не обязательны. Justify your choice — обосновать свой выбор. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Justify — обґрунтовувати або виправдовувати. Друг вибирає спокійний вечір удома замість походу в кіно й починає пояснювати причини. Ви приймаєте його вибір і кажете, що пояснення не обовʼязкові. Justify your choice — обґрунтувати свій вибір. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r1",
+              "text": "You needn't justify your choice."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r2",
+              "text": "You needn't to justify your choice."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r3",
+              "text": "You needn'ts justify your choice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r1",
+              "text": "You needn't justify your choice."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r2",
+              "text": "You needn't to justify your choice."
+            },
+            {
+              "responseId": "en:lesson-20:session-35:intro3:r3",
+              "text": "You needn'ts justify your choice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "72ab0b589e272da9e047d6df89e6e1804cc51e61a9cef159357aca3d937536e4"
+}

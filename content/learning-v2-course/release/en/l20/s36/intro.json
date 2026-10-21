@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "needn't + base verb",
+    "uk": "needn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Помощь бесплатна",
+        "uk": "Допомога безкоштовна"
+      },
+      "bodyByLocale": {
+        "ru": "Assistance — помощь, более формальное слово, чем help. На встрече соседей организатор бесплатно помогает записаться на занятия и объясняет, что платить за помощь не требуется. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Assistance — допомога, формальніше слово, ніж help. На зустрічі сусідів організатор безкоштовно допомагає записатися на заняття й пояснює, що платити за допомогу не потрібно. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r1",
+              "text": "You needn't pay for assistance."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r2",
+              "text": "You needn't to pay for assistance."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r3",
+              "text": "You needn'ts pay for assistance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r1",
+              "text": "You needn't pay for assistance."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r2",
+              "text": "You needn't to pay for assistance."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro1:r3",
+              "text": "You needn'ts pay for assistance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Всё уже согласовано",
+        "uk": "Усе вже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "Approval — одобрение. Организатор уже разрешил участникам самим выбирать тему встречи: каждый раз просить его одобрения не нужно. Participation — участие. Знакомая уже записалась на встречу; организатор говорит, что дополнительного подтверждения не требуется. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Approval — схвалення. Організатор уже дозволив учасникам самим вибирати тему зустрічі: щоразу просити його схвалення не потрібно. Participation — участь. Знайома вже записалася на зустріч; організатор каже, що додаткове підтвердження не потрібне. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r1",
+              "text": "We needn't ask for approval."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r2",
+              "text": "We needn't to ask for approval."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r3",
+              "text": "We needn'ts ask for approval."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r1",
+              "text": "We needn't ask for approval."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r2",
+              "text": "We needn't to ask for approval."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro2:r3",
+              "text": "We needn'ts ask for approval."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Взнос по желанию",
+        "uk": "Внесок за бажанням"
+      },
+      "bodyByLocale": {
+        "ru": "Contribution — вклад или взнос. На бесплатной встрече можно оставить деньги на чай, но это добровольно. Make a contribution — сделать взнос. Вы объясняете гостю, что он может прийти и без взноса. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Contribution — внесок. На безкоштовній зустрічі можна залишити гроші на чай, але це добровільно. Make a contribution — зробити внесок. Ви пояснюєте гостеві, що він може прийти й без внеску. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r1",
+              "text": "You needn't make a contribution."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r2",
+              "text": "You needn't to make a contribution."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r3",
+              "text": "You needn'ts make a contribution."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r1",
+              "text": "You needn't make a contribution."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r2",
+              "text": "You needn't to make a contribution."
+            },
+            {
+              "responseId": "en:lesson-20:session-36:intro3:r3",
+              "text": "You needn'ts make a contribution."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "11e5c6844a3da9c0244dc83df111e19cc4f35363ce64b7eedba5815ed313608d"
+}

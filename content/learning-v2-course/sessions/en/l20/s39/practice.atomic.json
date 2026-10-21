@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-39:word:take-a-look",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take a look",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:take-a-look:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take a look",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:take-a-look:audio",
+            "transcript": "take a look"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:take-a-look:r1",
+              "targetText": "take a look",
+              "meaningByLocale": {
+                "ru": "взглянуть, посмотреть.",
+                "uk": "поглянути, подивитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a look",
+            "definitionByLocale": {
+              "ru": "взглянуть, посмотреть.",
+              "uk": "поглянути, подивитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне взглянуть?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне взглянуть?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I take a look?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне взглянуть?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені поглянути?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "take",
+            "a",
+            "look"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i02:r1",
+            "text": "Could I take a look?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i02:r2",
+            "text": "Can I take a look?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i02:r3",
+            "text": "Could we take a look?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i02:audio",
+            "transcript": "Could I take a look?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i02:r1",
+              "targetText": "Could I take a look?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r2",
+              "targetText": "Can I take a look?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r3",
+              "targetText": "Could we take a look?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I take a look?",
+                "uk": "У записі звучить Could I take a look?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I take a look?",
+                "uk": "У записі звучить Could I take a look?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ take a look?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:give-you-a-hand",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — give you a hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:give-you-a-hand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — give you a hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:give-you-a-hand:audio",
+            "transcript": "give you a hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:give-you-a-hand:r1",
+              "targetText": "give you a hand",
+              "meaningByLocale": {
+                "ru": "помочь тебе или вам.",
+                "uk": "допомогти тобі або вам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give you a hand",
+            "definitionByLocale": {
+              "ru": "помочь тебе или вам.",
+              "uk": "допомогти тобі або вам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне тебе помочь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне тебе помочь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I give you a hand?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне тебе помочь?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені тобі допомогти?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "give",
+            "you",
+            "a",
+            "hand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i05:r1",
+            "text": "Could I give you a hand?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i05:r2",
+            "text": "Can I give you a hand?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i05:r3",
+            "text": "Could we give you a hand?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i05:audio",
+            "transcript": "Could I give you a hand?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i05:r1",
+              "targetText": "Could I give you a hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r2",
+              "targetText": "Can I give you a hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r3",
+              "targetText": "Could we give you a hand?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give you a hand?",
+                "uk": "У записі звучить Could I give you a hand?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give you a hand?",
+                "uk": "У записі звучить Could I give you a hand?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give you a hand?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:have-a-chat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — have a chat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:have-a-chat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — have a chat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:have-a-chat:audio",
+            "transcript": "have a chat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:have-a-chat:r1",
+              "targetText": "have a chat",
+              "meaningByLocale": {
+                "ru": "побеседовать.",
+                "uk": "поспілкуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a chat",
+            "definitionByLocale": {
+              "ru": "побеседовать.",
+              "uk": "поспілкуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне с тобой побеседовать?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне с тобой побеседовать?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I have a chat with you?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне с тобой побеседовать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені з тобою поспілкуватися?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "chat",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i08:r1",
+            "text": "Could I have a chat with you?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i08:r2",
+            "text": "Can I have a chat with you?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i08:r3",
+            "text": "Could we have a chat with you?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i08:audio",
+            "transcript": "Could I have a chat with you?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i08:r1",
+              "targetText": "Could I have a chat with you?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r2",
+              "targetText": "Can I have a chat with you?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r3",
+              "targetText": "Could we have a chat with you?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I have a chat with you?",
+                "uk": "У записі звучить Could I have a chat with you?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I have a chat with you?",
+                "uk": "У записі звучить Could I have a chat with you?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ have a chat with you?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:give-it-a-try",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — give it a try",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:give-it-a-try:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — give it a try",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:give-it-a-try:audio",
+            "transcript": "give it a try"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:give-it-a-try:r1",
+              "targetText": "give it a try",
+              "meaningByLocale": {
+                "ru": "попробовать это.",
+                "uk": "спробувати це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give it a try",
+            "definitionByLocale": {
+              "ru": "попробовать это.",
+              "uk": "спробувати це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне это попробовать?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне это попробовать?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I give it a try?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне это попробовать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені це спробувати?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "give",
+            "it",
+            "a",
+            "try"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i11:r1",
+            "text": "Could I give it a try?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i11:r2",
+            "text": "Can I give it a try?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i11:r3",
+            "text": "Could we give it a try?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i11:audio",
+            "transcript": "Could I give it a try?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i11:r1",
+              "targetText": "Could I give it a try?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r2",
+              "targetText": "Can I give it a try?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r3",
+              "targetText": "Could we give it a try?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give it a try?",
+                "uk": "У записі звучить Could I give it a try?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give it a try?",
+                "uk": "У записі звучить Could I give it a try?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give it a try?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-39:i13:p1",
+              "target": "take a look",
+              "meaningByLocale": {
+                "ru": "взглянуть, посмотреть",
+                "uk": "поглянути, подивитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p2",
+              "target": "give you a hand",
+              "meaningByLocale": {
+                "ru": "помочь тебе или вам",
+                "uk": "допомогти тобі або вам"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p3",
+              "target": "have a chat",
+              "meaningByLocale": {
+                "ru": "побеседовать",
+                "uk": "поспілкуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p4",
+              "target": "give it a try",
+              "meaningByLocale": {
+                "ru": "попробовать это",
+                "uk": "спробувати це"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a look",
+            "give you a hand",
+            "have a chat",
+            "give it a try"
+          ],
+          "rightColumn": [
+            "взглянуть, посмотреть",
+            "помочь тебе или вам",
+            "побеседовать",
+            "попробовать это"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанная будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанная будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите другу помощь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите другу помощь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i16:audio",
+            "transcript": "Could I give you a hand?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I give you a hand?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите друга побеседовать с вами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Попросите друга побеседовать с вами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i17:audio",
+            "transcript": "Could I have a chat with you?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I have a chat with you?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-39:word:take-a-look",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take a look",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:take-a-look:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take a look",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:take-a-look:audio",
+            "transcript": "take a look"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:take-a-look:r1",
+              "targetText": "take a look",
+              "meaningByLocale": {
+                "ru": "взглянуть, посмотреть.",
+                "uk": "поглянути, подивитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a look",
+            "definitionByLocale": {
+              "ru": "взглянуть, посмотреть.",
+              "uk": "поглянути, подивитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені поглянути?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені поглянути?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I take a look?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне взглянуть?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені поглянути?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "take",
+            "a",
+            "look"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i02:r1",
+            "text": "Could I take a look?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i02:r2",
+            "text": "Can I take a look?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i02:r3",
+            "text": "Could we take a look?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i02:audio",
+            "transcript": "Could I take a look?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i02:r1",
+              "targetText": "Could I take a look?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r2",
+              "targetText": "Can I take a look?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r3",
+              "targetText": "Could we take a look?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I take a look?",
+                "uk": "У записі звучить Could I take a look?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I take a look?",
+                "uk": "У записі звучить Could I take a look?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ take a look?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:give-you-a-hand",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — give you a hand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:give-you-a-hand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — give you a hand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:give-you-a-hand:audio",
+            "transcript": "give you a hand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:give-you-a-hand:r1",
+              "targetText": "give you a hand",
+              "meaningByLocale": {
+                "ru": "помочь тебе или вам.",
+                "uk": "допомогти тобі або вам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give you a hand",
+            "definitionByLocale": {
+              "ru": "помочь тебе или вам.",
+              "uk": "допомогти тобі або вам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені тобі допомогти?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені тобі допомогти?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I give you a hand?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне тебе помочь?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені тобі допомогти?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "give",
+            "you",
+            "a",
+            "hand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i05:r1",
+            "text": "Could I give you a hand?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i05:r2",
+            "text": "Can I give you a hand?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i05:r3",
+            "text": "Could we give you a hand?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i05:audio",
+            "transcript": "Could I give you a hand?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i05:r1",
+              "targetText": "Could I give you a hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r2",
+              "targetText": "Can I give you a hand?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r3",
+              "targetText": "Could we give you a hand?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give you a hand?",
+                "uk": "У записі звучить Could I give you a hand?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give you a hand?",
+                "uk": "У записі звучить Could I give you a hand?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give you a hand?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:have-a-chat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — have a chat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:have-a-chat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — have a chat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:have-a-chat:audio",
+            "transcript": "have a chat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:have-a-chat:r1",
+              "targetText": "have a chat",
+              "meaningByLocale": {
+                "ru": "побеседовать.",
+                "uk": "поспілкуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a chat",
+            "definitionByLocale": {
+              "ru": "побеседовать.",
+              "uk": "поспілкуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені з тобою поспілкуватися?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені з тобою поспілкуватися?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I have a chat with you?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне с тобой побеседовать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені з тобою поспілкуватися?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "chat",
+            "with",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i08:r1",
+            "text": "Could I have a chat with you?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i08:r2",
+            "text": "Can I have a chat with you?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i08:r3",
+            "text": "Could we have a chat with you?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i08:audio",
+            "transcript": "Could I have a chat with you?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i08:r1",
+              "targetText": "Could I have a chat with you?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r2",
+              "targetText": "Can I have a chat with you?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r3",
+              "targetText": "Could we have a chat with you?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I have a chat with you?",
+                "uk": "У записі звучить Could I have a chat with you?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I have a chat with you?",
+                "uk": "У записі звучить Could I have a chat with you?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ have a chat with you?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:word:give-it-a-try",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — give it a try",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:word:give-it-a-try:audio"
+        ],
+        "accessibilityLabel": "Картка слова — give it a try",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:word:give-it-a-try:audio",
+            "transcript": "give it a try"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:word:give-it-a-try:r1",
+              "targetText": "give it a try",
+              "meaningByLocale": {
+                "ru": "попробовать это.",
+                "uk": "спробувати це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give it a try",
+            "definitionByLocale": {
+              "ru": "попробовать это.",
+              "uk": "спробувати це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені це спробувати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені це спробувати?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I give it a try?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне это попробовать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені це спробувати?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "give",
+            "it",
+            "a",
+            "try"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i11:r1",
+            "text": "Could I give it a try?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i11:r2",
+            "text": "Can I give it a try?"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i11:r3",
+            "text": "Could we give it a try?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i11:audio",
+            "transcript": "Could I give it a try?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-39:i11:r1",
+              "targetText": "Could I give it a try?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r2",
+              "targetText": "Can I give it a try?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r3",
+              "targetText": "Could we give it a try?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give it a try?",
+                "uk": "У записі звучить Could I give it a try?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I give it a try?",
+                "uk": "У записі звучить Could I give it a try?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-39:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-39:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give it a try?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-39:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-39:i13:p1",
+              "target": "take a look",
+              "meaningByLocale": {
+                "ru": "взглянуть, посмотреть",
+                "uk": "поглянути, подивитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p2",
+              "target": "give you a hand",
+              "meaningByLocale": {
+                "ru": "помочь тебе или вам",
+                "uk": "допомогти тобі або вам"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p3",
+              "target": "have a chat",
+              "meaningByLocale": {
+                "ru": "побеседовать",
+                "uk": "поспілкуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-39:i13:p4",
+              "target": "give it a try",
+              "meaningByLocale": {
+                "ru": "попробовать это",
+                "uk": "спробувати це"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a look",
+            "give you a hand",
+            "have a chat",
+            "give it a try"
+          ],
+          "rightColumn": [
+            "поглянути, подивитися",
+            "допомогти тобі або вам",
+            "поспілкуватися",
+            "спробувати це"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почута майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почута майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте другові допомогу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте другові допомогу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i16:audio",
+            "transcript": "Could I give you a hand?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I give you a hand?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть друга поспілкуватися з вами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Попросіть друга поспілкуватися з вами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-39:i17:audio",
+            "transcript": "Could I have a chat with you?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I have a chat with you?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-39:word:take-a-look",
+      "correctText": "take a look",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i01",
+      "correctText": "Could I take a look?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i02",
+      "correctText": "Could I take a look?",
+      "correctResponseId": "en:lesson-20:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i03",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:word:give-you-a-hand",
+      "correctText": "give you a hand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i04",
+      "correctText": "Could I give you a hand?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i05",
+      "correctText": "Could I give you a hand?",
+      "correctResponseId": "en:lesson-20:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i06",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:word:have-a-chat",
+      "correctText": "have a chat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i07",
+      "correctText": "Could I have a chat with you?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i08",
+      "correctText": "Could I have a chat with you?",
+      "correctResponseId": "en:lesson-20:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i09",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:word:give-it-a-try",
+      "correctText": "give it a try",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i10",
+      "correctText": "Could I give it a try?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i11",
+      "correctText": "Could I give it a try?",
+      "correctResponseId": "en:lesson-20:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i12",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i14",
+      "correctText": "I will be able to explain this.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i16",
+      "correctText": "Could I give you a hand?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-39:i17",
+      "correctText": "Could I have a chat with you?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-37:word:normal",
+    "correctText": "normal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i01",
+    "correctText": "You ought to check the normal price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i02",
+    "correctText": "You ought to check the normal price.",
+    "correctResponseId": "en:lesson-20:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:word:typical",
+    "correctText": "typical",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i04",
+    "correctText": "We ought to choose a typical example.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i05",
+    "correctText": "We ought to choose a typical example.",
+    "correctResponseId": "en:lesson-20:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:word:natural",
+    "correctText": "natural",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i07",
+    "correctText": "She ought to use natural light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i08",
+    "correctText": "She ought to use natural light.",
+    "correctResponseId": "en:lesson-20:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:word:likely",
+    "correctText": "likely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i10",
+    "correctText": "We ought to consider this likely problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i11",
+    "correctText": "We ought to consider this likely problem.",
+    "correctResponseId": "en:lesson-20:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i13",
+    "correctText": "en:lesson-20:session-37:i13:p1=normal\nen:lesson-20:session-37:i13:p2=typical\nen:lesson-20:session-37:i13:p3=natural\nen:lesson-20:session-37:i13:p4=likely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i16",
+    "correctText": "You ought to check the normal price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-37:i17",
+    "correctText": "She ought to use natural light.",
+    "correctResponseId": null
+  }
+]

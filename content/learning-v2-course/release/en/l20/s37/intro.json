@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сравнить с обычной ценой",
+        "uk": "Порівняти зі звичайною ціною"
+      },
+      "bodyByLocale": {
+        "ru": "Normal — обычный. В магазине объявили скидку, и вы советуете другу сравнить предложение с обычной ценой, the normal price. Здесь normal не оценивает человека: речь только о цене без скидки. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Normal — звичайний. У магазині оголосили знижку, і ви радите другові порівняти пропозицію зі звичайною ціною, the normal price. Тут normal не оцінює людину: йдеться лише про ціну без знижки. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r1",
+              "text": "You ought to check the normal price."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r2",
+              "text": "You oughts to check the normal price."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r3",
+              "text": "You ought check the normal price."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r1",
+              "text": "You ought to check the normal price."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r2",
+              "text": "You oughts to check the normal price."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro1:r3",
+              "text": "You ought check the normal price."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать характерный пример",
+        "uk": "Вибрати характерний приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Typical — типичный, характерный. Вы объясняете правило и выбираете пример, похожий на большинство случаев. Natural light — естественный дневной свет: знакомая фотографирует комнату и может открыть шторы. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Typical — типовий, характерний. Ви пояснюєте правило й вибираєте приклад, схожий на більшість випадків. Natural light — природне денне світло: знайома фотографує кімнату й може відкрити штори. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r1",
+              "text": "We ought to choose a typical example."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r2",
+              "text": "We oughts to choose a typical example."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r3",
+              "text": "We ought choose a typical example."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r1",
+              "text": "We ought to choose a typical example."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r2",
+              "text": "We oughts to choose a typical example."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro2:r3",
+              "text": "We ought choose a typical example."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Учесть вероятную проблему",
+        "uk": "Урахувати ймовірну проблему"
+      },
+      "bodyByLocale": {
+        "ru": "Likely — вероятный. На дороге часто бывают пробки, и вы считаете задержку вероятной проблемой для поездки. Это предположение о том, что может случиться, а не уверенность. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Likely — імовірний. На дорозі часто бувають затори, і ви вважаєте затримку ймовірною проблемою для поїздки. Це припущення про те, що може статися, а не впевненість. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r1",
+              "text": "We ought to consider this likely problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r2",
+              "text": "We oughts to consider this likely problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r3",
+              "text": "We ought consider this likely problem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r1",
+              "text": "We ought to consider this likely problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r2",
+              "text": "We oughts to consider this likely problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-37:intro3:r3",
+              "text": "We ought consider this likely problem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31ce3754a8ae169605554133c2eb06e1e438c1ae08ce1acb592633f53e1af300"
+}

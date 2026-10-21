@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "needn't + base verb",
+    "uk": "needn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Необязательно приходить лично",
+        "uk": "Необовʼязково приходити особисто"
+      },
+      "bodyByLocale": {
+        "ru": "Personally — лично. Сотрудник объяснил, что посылку может забрать ваш знакомый. Вы передаёте это разрешение другу: ему необязательно идти за ней лично. It обозначает посылку. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Personally — особисто. Працівник пояснив, що посилку може забрати ваш знайомий. Ви передаєте цей дозвіл другові: йому необовʼязково йти по неї особисто. It позначає посилку. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r1",
+              "text": "You needn't collect it personally."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r2",
+              "text": "You needn't to collect it personally."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r3",
+              "text": "You needn'ts collect it personally."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r1",
+              "text": "You needn't collect it personally."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r2",
+              "text": "You needn't to collect it personally."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro1:r3",
+              "text": "You needn'ts collect it personally."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно переехать временно",
+        "uk": "Можна переїхати тимчасово"
+      },
+      "bodyByLocale": {
+        "ru": "Permanently — навсегда или на постоянной основе. Вы с семьёй обсуждаете временное жильё на время ремонта: постоянный переезд не требуется. Publicly — перед другими людьми, публично. Организатор разрешил участнице сообщить своё мнение ему лично, без выступления перед группой. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Permanently — назавжди або на постійній основі. Ви з родиною обговорюєте тимчасове житло на час ремонту: постійний переїзд не потрібен. Publicly — перед іншими людьми, публічно. Організатор дозволив учасниці повідомити свою думку йому особисто, без виступу перед групою. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r1",
+              "text": "We needn't move permanently."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r2",
+              "text": "We needn't to move permanently."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r3",
+              "text": "We needn'ts move permanently."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r1",
+              "text": "We needn't move permanently."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r2",
+              "text": "We needn't to move permanently."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro2:r3",
+              "text": "We needn'ts move permanently."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ может подождать",
+        "uk": "Відповідь може зачекати"
+      },
+      "bodyByLocale": {
+        "ru": "Straight away — сразу, без ожидания. Вы отправили другу вопрос, который не требует срочного ответа, и говорите, что он может ответить позже. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Straight away — одразу, без очікування. Ви надіслали другові запитання, яке не потребує термінової відповіді, і кажете, що він може відповісти пізніше. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r1",
+              "text": "You needn't reply straight away."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r2",
+              "text": "You needn't to reply straight away."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r3",
+              "text": "You needn'ts reply straight away."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r1",
+              "text": "You needn't reply straight away."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r2",
+              "text": "You needn't to reply straight away."
+            },
+            {
+              "responseId": "en:lesson-20:session-33:intro3:r3",
+              "text": "You needn'ts reply straight away."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed2be666e195a0f04b1e57f05590002b92b6d250880e8ca5838eba305598fedd"
+}

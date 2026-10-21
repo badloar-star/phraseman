@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-34",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-34:word:entirely",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — entirely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:word:entirely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — entirely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:word:entirely:audio",
+          "transcript": "entirely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:word:entirely:r1",
+            "targetText": "entirely",
+            "meaningByLocale": {
+              "ru": "полностью, целиком.",
+              "uk": "повністю, цілком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "entirely",
+          "definitionByLocale": {
+            "ru": "полностью, целиком.",
+            "uk": "повністю, цілком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с needn’t: «Тебе необязательно соглашаться полностью».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с needn’t: «Тебе необязательно соглашаться полностью».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't agree entirely.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно соглашаться полностью».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково погоджуватися повністю»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "agree",
+          "entirely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i02:r1",
+          "text": "You needn't agree entirely."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i02:r2",
+          "text": "You must agree entirely."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i02:r3",
+          "text": "You should agree entirely."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i02:audio",
+          "transcript": "You needn't agree entirely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:i02:r1",
+            "targetText": "You needn't agree entirely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i02:r2",
+            "targetText": "You must agree entirely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i02:r3",
+            "targetText": "You should agree entirely.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't agree entirely.",
+              "uk": "У записі звучить You needn't agree entirely."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't agree entirely.",
+              "uk": "У записі звучить You needn't agree entirely."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что это необязательно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i03:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i03:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i03:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что это необязательно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ agree entirely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-34:i03:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i03:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i03:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажите, что это необязательно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:word:formally",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — formally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:word:formally:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — formally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:word:formally:audio",
+          "transcript": "formally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:word:formally:r1",
+            "targetText": "formally",
+            "meaningByLocale": {
+              "ru": "официально, в строгом стиле.",
+              "uk": "офіційно, у строгому стилі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "formally",
+          "definitionByLocale": {
+            "ru": "официально, в строгом стиле.",
+            "uk": "офіційно, у строгому стилі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с needn’t: «Нам необязательно одеваться официально».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с needn’t: «Нам необязательно одеваться официально».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We needn't dress formally.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Нам необязательно одеваться официально».",
+          "uk": "Скажіть із needn’t: «Нам необовʼязково вдягатися офіційно»."
+        },
+        "orderedTokens": [
+          "We",
+          "needn't",
+          "dress",
+          "formally"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i05:r1",
+          "text": "We needn't dress formally."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i05:r2",
+          "text": "We must dress formally."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i05:r3",
+          "text": "We should dress formally."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i05:audio",
+          "transcript": "We needn't dress formally."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:i05:r1",
+            "targetText": "We needn't dress formally.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i05:r2",
+            "targetText": "We must dress formally.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i05:r3",
+            "targetText": "We should dress formally.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't dress formally.",
+              "uk": "У записі звучить We needn't dress formally."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't dress formally.",
+              "uk": "У записі звучить We needn't dress formally."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что это необязательно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i06:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i06:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i06:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что это необязательно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "We ___ dress formally.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-34:i06:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i06:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i06:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажите, что это необязательно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:word:precisely",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — precisely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:word:precisely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — precisely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:word:precisely:audio",
+          "transcript": "precisely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:word:precisely:r1",
+            "targetText": "precisely",
+            "meaningByLocale": {
+              "ru": "точно.",
+              "uk": "точно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "precisely",
+          "definitionByLocale": {
+            "ru": "точно.",
+            "uk": "точно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с needn’t: «Ей необязательно измерять это точно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с needn’t: «Ей необязательно измерять это точно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She needn't measure it precisely.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Ей необязательно измерять это точно».",
+          "uk": "Скажіть із needn’t: «Їй необовʼязково вимірювати це точно»."
+        },
+        "orderedTokens": [
+          "She",
+          "needn't",
+          "measure",
+          "it",
+          "precisely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i08:r1",
+          "text": "She needn't measure it precisely."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i08:r2",
+          "text": "She must measure it precisely."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i08:r3",
+          "text": "She should measure it precisely."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i08:audio",
+          "transcript": "She needn't measure it precisely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:i08:r1",
+            "targetText": "She needn't measure it precisely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i08:r2",
+            "targetText": "She must measure it precisely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i08:r3",
+            "targetText": "She should measure it precisely.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't measure it precisely.",
+              "uk": "У записі звучить She needn't measure it precisely."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't measure it precisely.",
+              "uk": "У записі звучить She needn't measure it precisely."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что это необязательно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i09:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i09:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i09:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что это необязательно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "She ___ measure it precisely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-34:i09:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i09:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i09:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажите, что это необязательно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:word:strictly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — strictly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:word:strictly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — strictly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:word:strictly:audio",
+          "transcript": "strictly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:word:strictly:r1",
+            "targetText": "strictly",
+            "meaningByLocale": {
+              "ru": "строго.",
+              "uk": "суворо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "strictly",
+          "definitionByLocale": {
+            "ru": "строго.",
+            "uk": "суворо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с needn’t: «Нам необязательно строго следовать этому расписанию».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с needn’t: «Нам необязательно строго следовать этому расписанию».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We needn't follow this schedule strictly.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Нам необязательно строго следовать этому расписанию».",
+          "uk": "Скажіть із needn’t: «Нам необовʼязково суворо дотримуватися цього розкладу»."
+        },
+        "orderedTokens": [
+          "We",
+          "needn't",
+          "follow",
+          "this",
+          "schedule",
+          "strictly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i11:r1",
+          "text": "We needn't follow this schedule strictly."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i11:r2",
+          "text": "We must follow this schedule strictly."
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i11:r3",
+          "text": "We should follow this schedule strictly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i11:audio",
+          "transcript": "We needn't follow this schedule strictly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-34:i11:r1",
+            "targetText": "We needn't follow this schedule strictly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i11:r2",
+            "targetText": "We must follow this schedule strictly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i11:r3",
+            "targetText": "We should follow this schedule strictly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't follow this schedule strictly.",
+              "uk": "У записі звучить We needn't follow this schedule strictly."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't follow this schedule strictly.",
+              "uk": "У записі звучить We needn't follow this schedule strictly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что это необязательно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-34:i12:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i12:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-34:i12:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что это необязательно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "We ___ follow this schedule strictly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-34:i12:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i12:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i12:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажите, что это необязательно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-34:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-34:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что это необязательно.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-34:i13:p1",
+            "target": "entirely",
+            "meaningByLocale": {
+              "ru": "полностью, целиком",
+              "uk": "повністю, цілком"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-34:i13:p2",
+            "target": "formally",
+            "meaningByLocale": {
+              "ru": "официально, в строгом стиле",
+              "uk": "офіційно, у строгому стилі"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-34:i13:p3",
+            "target": "precisely",
+            "meaningByLocale": {
+              "ru": "точно",
+              "uk": "точно"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-34:i13:p4",
+            "target": "strictly",
+            "meaningByLocale": {
+              "ru": "строго",
+              "uk": "суворо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "entirely",
+          "formally",
+          "precisely",
+          "strictly"
+        ],
+        "rightColumn": [
+          "полностью, целиком",
+          "официально, в строгом стиле",
+          "точно",
+          "строго"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: совет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: совет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i15:audio",
+          "transcript": "You should check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You should check the address.",
+        "orderedTokens": [
+          "You",
+          "should",
+          "check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что соблюдать расписание строго необязательно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что соблюдать расписание строго необязательно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i16:audio",
+          "transcript": "We needn't follow this schedule strictly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We needn't follow this schedule strictly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-34:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ей необязательно измерять точно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-34:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ей необязательно измерять точно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-34:i17:audio",
+          "transcript": "She needn't measure it precisely."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She needn't measure it precisely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "db7f0665e83e6e44e8c74ff775a3375b1250af0b9443296176876661c5444689"
+}

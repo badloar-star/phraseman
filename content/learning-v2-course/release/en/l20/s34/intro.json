@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "needn't + base verb",
+    "uk": "needn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно согласиться частично",
+        "uk": "Можна погодитися частково"
+      },
+      "bodyByLocale": {
+        "ru": "Entirely — полностью, во всём. Вы обсуждаете план с другом и говорите, что он может поддерживать лишь часть ваших предложений. Agree entirely — полностью соглашаться. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Entirely — повністю, в усьому. Ви обговорюєте план із другом і кажете, що він може підтримувати лише частину ваших пропозицій. Agree entirely — повністю погоджуватися. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r1",
+              "text": "You needn't agree entirely."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r2",
+              "text": "You needn't to agree entirely."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r3",
+              "text": "You needn'ts agree entirely."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r1",
+              "text": "You needn't agree entirely."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r2",
+              "text": "You needn't to agree entirely."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro1:r3",
+              "text": "You needn'ts agree entirely."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обычный домашний ужин",
+        "uk": "Звичайна домашня вечеря"
+      },
+      "bodyByLocale": {
+        "ru": "Formally здесь описывает одежду для официального случая. Dress formally — одеваться в строгом стиле. Друзья пригласили вас на обычный домашний ужин: костюм не нужен. Precisely — точно: подруга отрезает ленту для украшения подарка, и длину можно выбрать приблизительно. It обозначает эту ленту. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Formally тут описує одяг для офіційної нагоди. Dress formally — вдягатися у строгому стилі. Друзі запросили вас на звичайну домашню вечерю: костюм не потрібен. Precisely — точно: подруга відрізає стрічку для прикрашання подарунка, і довжину можна вибрати приблизно. It позначає цю стрічку. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r1",
+              "text": "We needn't dress formally."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r2",
+              "text": "We needn't to dress formally."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r3",
+              "text": "We needn'ts dress formally."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r1",
+              "text": "We needn't dress formally."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r2",
+              "text": "We needn't to dress formally."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro2:r3",
+              "text": "We needn'ts dress formally."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Гибкий план прогулки",
+        "uk": "Гнучкий план прогулянки"
+      },
+      "bodyByLocale": {
+        "ru": "Strictly — строго. Вы составили примерное расписание прогулки, но готовы задержаться в понравившемся месте. Follow this schedule strictly — строго следовать этому расписанию. Needn't + начальная форма глагола означает «необязательно, нет необходимости». Человек может сделать это, если хочет: это не запрет. Needn't — сокращение need not. После needn't нет to, и с she форма не меняется.",
+        "uk": "Strictly — суворо. Ви склали приблизний розклад прогулянки, але готові затриматися в місці, яке сподобається. Follow this schedule strictly — суворо дотримуватися цього розкладу. Needn't + початкова форма дієслова означає «необовʼязково, немає потреби». Людина може це зробити, якщо хоче: це не заборона. Needn't — скорочення need not. Після needn't немає to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r1",
+              "text": "We needn't follow this schedule strictly."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r2",
+              "text": "We needn't to follow this schedule strictly."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r3",
+              "text": "We needn'ts follow this schedule strictly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r1",
+              "text": "We needn't follow this schedule strictly."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r2",
+              "text": "We needn't to follow this schedule strictly."
+            },
+            {
+              "responseId": "en:lesson-20:session-34:intro3:r3",
+              "text": "We needn'ts follow this schedule strictly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6246ace68704460d83fd396df61cd530bc671c1bb7c5414f5a3cea7f35e5948e"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-39:word:take-a-look",
+    "correctText": "take a look",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i01",
+    "correctText": "Could I take a look?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i02",
+    "correctText": "Could I take a look?",
+    "correctResponseId": "en:lesson-20:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:word:give-you-a-hand",
+    "correctText": "give you a hand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i04",
+    "correctText": "Could I give you a hand?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i05",
+    "correctText": "Could I give you a hand?",
+    "correctResponseId": "en:lesson-20:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:word:have-a-chat",
+    "correctText": "have a chat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i07",
+    "correctText": "Could I have a chat with you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i08",
+    "correctText": "Could I have a chat with you?",
+    "correctResponseId": "en:lesson-20:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:word:give-it-a-try",
+    "correctText": "give it a try",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i10",
+    "correctText": "Could I give it a try?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i11",
+    "correctText": "Could I give it a try?",
+    "correctResponseId": "en:lesson-20:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i13",
+    "correctText": "en:lesson-20:session-39:i13:p1=take a look\nen:lesson-20:session-39:i13:p2=give you a hand\nen:lesson-20:session-39:i13:p3=have a chat\nen:lesson-20:session-39:i13:p4=give it a try",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i16",
+    "correctText": "Could I give you a hand?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-39:i17",
+    "correctText": "Could I have a chat with you?",
+    "correctResponseId": null
+  }
+]

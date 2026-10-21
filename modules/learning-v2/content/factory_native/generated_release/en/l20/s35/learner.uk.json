@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-35:word:struggle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — struggle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:word:struggle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — struggle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:word:struggle:audio",
+          "transcript": "struggle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:word:struggle:r1",
+            "targetText": "struggle",
+            "meaningByLocale": {
+              "ru": "испытывать трудности, с трудом справляться.",
+              "uk": "мати труднощі, насилу давати раду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "struggle",
+          "definitionByLocale": {
+            "ru": "испытывать трудности, с трудом справляться.",
+            "uk": "мати труднощі, насилу давати раду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Тобі необовʼязково давати раду труднощам наодинці».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Тобі необовʼязково давати раду труднощам наодинці».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't struggle alone.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно справляться с трудностями в одиночку».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково давати раду труднощам наодинці»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "struggle",
+          "alone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i02:r1",
+          "text": "You needn't struggle alone."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i02:r2",
+          "text": "You must struggle alone."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i02:r3",
+          "text": "You should struggle alone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i02:audio",
+          "transcript": "You needn't struggle alone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:i02:r1",
+            "targetText": "You needn't struggle alone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i02:r2",
+            "targetText": "You must struggle alone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i02:r3",
+            "targetText": "You should struggle alone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't struggle alone.",
+              "uk": "У записі звучить You needn't struggle alone."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't struggle alone.",
+              "uk": "У записі звучить You needn't struggle alone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i03:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i03:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i03:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ struggle alone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-35:i03:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i03:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i03:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:word:prove",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — prove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:word:prove:audio"
+      ],
+      "accessibilityLabel": "Картка слова — prove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:word:prove:audio",
+          "transcript": "prove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:word:prove:r1",
+            "targetText": "prove",
+            "meaningByLocale": {
+              "ru": "доказывать.",
+              "uk": "доводити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prove",
+          "definitionByLocale": {
+            "ru": "доказывать.",
+            "uk": "доводити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Тобі необовʼязково щось доводити».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Тобі необовʼязково щось доводити».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't prove anything.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно что-либо доказывать».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково щось доводити»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "prove",
+          "anything"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i05:r1",
+          "text": "You needn't prove anything."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i05:r2",
+          "text": "You must prove anything."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i05:r3",
+          "text": "You should prove anything."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i05:audio",
+          "transcript": "You needn't prove anything."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:i05:r1",
+            "targetText": "You needn't prove anything.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i05:r2",
+            "targetText": "You must prove anything.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i05:r3",
+            "targetText": "You should prove anything.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't prove anything.",
+              "uk": "У записі звучить You needn't prove anything."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't prove anything.",
+              "uk": "У записі звучить You needn't prove anything."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i06:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i06:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i06:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ prove anything.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-35:i06:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i06:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i06:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:word:pretend",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pretend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:word:pretend:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pretend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:word:pretend:audio",
+          "transcript": "pretend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:word:pretend:r1",
+            "targetText": "pretend",
+            "meaningByLocale": {
+              "ru": "притворяться.",
+              "uk": "удавати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pretend",
+          "definitionByLocale": {
+            "ru": "притворяться.",
+            "uk": "удавати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Їй необовʼязково вдавати щасливу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Їй необовʼязково вдавати щасливу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She needn't pretend to be happy.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Ей необязательно притворяться счастливой».",
+          "uk": "Скажіть із needn’t: «Їй необовʼязково вдавати щасливу»."
+        },
+        "orderedTokens": [
+          "She",
+          "needn't",
+          "pretend",
+          "to",
+          "be",
+          "happy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i08:r1",
+          "text": "She needn't pretend to be happy."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i08:r2",
+          "text": "She must pretend to be happy."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i08:r3",
+          "text": "She should pretend to be happy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i08:audio",
+          "transcript": "She needn't pretend to be happy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:i08:r1",
+            "targetText": "She needn't pretend to be happy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i08:r2",
+            "targetText": "She must pretend to be happy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i08:r3",
+            "targetText": "She should pretend to be happy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't pretend to be happy.",
+              "uk": "У записі звучить She needn't pretend to be happy."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't pretend to be happy.",
+              "uk": "У записі звучить She needn't pretend to be happy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i09:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i09:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i09:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "She ___ pretend to be happy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-35:i09:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i09:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i09:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:word:justify",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — justify",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:word:justify:audio"
+      ],
+      "accessibilityLabel": "Картка слова — justify",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:word:justify:audio",
+          "transcript": "justify"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:word:justify:r1",
+            "targetText": "justify",
+            "meaningByLocale": {
+              "ru": "обосновывать, оправдывать.",
+              "uk": "обґрунтовувати, виправдовувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "justify",
+          "definitionByLocale": {
+            "ru": "обосновывать, оправдывать.",
+            "uk": "обґрунтовувати, виправдовувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Тобі необовʼязково обґрунтовувати свій вибір».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Тобі необовʼязково обґрунтовувати свій вибір».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't justify your choice.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно обосновывать свой выбор».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково обґрунтовувати свій вибір»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "justify",
+          "your",
+          "choice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i11:r1",
+          "text": "You needn't justify your choice."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i11:r2",
+          "text": "You must justify your choice."
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i11:r3",
+          "text": "You should justify your choice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i11:audio",
+          "transcript": "You needn't justify your choice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-35:i11:r1",
+            "targetText": "You needn't justify your choice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i11:r2",
+            "targetText": "You must justify your choice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i11:r3",
+            "targetText": "You should justify your choice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't justify your choice.",
+              "uk": "У записі звучить You needn't justify your choice."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't justify your choice.",
+              "uk": "У записі звучить You needn't justify your choice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-35:i12:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i12:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-35:i12:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ justify your choice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-35:i12:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i12:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i12:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-35:i13:p1",
+            "target": "struggle",
+            "meaningByLocale": {
+              "ru": "испытывать трудности, с трудом справляться",
+              "uk": "мати труднощі, насилу давати раду"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-35:i13:p2",
+            "target": "prove",
+            "meaningByLocale": {
+              "ru": "доказывать",
+              "uk": "доводити"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-35:i13:p3",
+            "target": "pretend",
+            "meaningByLocale": {
+              "ru": "притворяться",
+              "uk": "удавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-35:i13:p4",
+            "target": "justify",
+            "meaningByLocale": {
+              "ru": "обосновывать, оправдывать",
+              "uk": "обґрунтовувати, виправдовувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "struggle",
+          "prove",
+          "pretend",
+          "justify"
+        ],
+        "rightColumn": [
+          "мати труднощі, насилу давати раду",
+          "доводити",
+          "удавати",
+          "обґрунтовувати, виправдовувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: порада",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: порада",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i15:audio",
+          "transcript": "You should check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You should check the address.",
+        "orderedTokens": [
+          "You",
+          "should",
+          "check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що обґрунтовувати вибір необовʼязково",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що обґрунтовувати вибір необовʼязково",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i16:audio",
+          "transcript": "You needn't justify your choice."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You needn't justify your choice.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-35:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що їй необовʼязково вдавати щасливу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що їй необовʼязково вдавати щасливу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-35:i17:audio",
+          "transcript": "She needn't pretend to be happy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She needn't pretend to be happy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "517ae08ede0de4997c8a570833f3ec72e2d33d865082da71e3a6db558b7bd27b"
+}

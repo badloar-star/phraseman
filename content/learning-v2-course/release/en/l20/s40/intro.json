@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приложить усилие",
+        "uk": "Докласти зусиль"
+      },
+      "bodyByLocale": {
+        "ru": "Make an effort — приложить усилие. Друг хочет лучше запомнить слова, но пока не открывал тетрадь; вы советуете ему попробовать позаниматься. Effort уже знакомо, а сейчас учим устойчивое выражение целиком. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Make an effort — докласти зусиль. Друг хоче краще запамʼятати слова, але поки не відкривав зошита; ви радите йому спробувати позайматися. Effort уже знайоме, а зараз вивчаємо сталий вираз цілком. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r1",
+              "text": "You ought to make an effort."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r2",
+              "text": "You oughts to make an effort."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r3",
+              "text": "You ought make an effort."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r1",
+              "text": "You ought to make an effort."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r2",
+              "text": "You oughts to make an effort."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro1:r3",
+              "text": "You ought make an effort."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попробовать неизвестное",
+        "uk": "Спробувати невідоме"
+      },
+      "bodyByLocale": {
+        "ru": "Take a chance — рискнуть, попробовать без уверенности в результате. Вы выбираете незнакомую настольную игру: она может понравиться, а может нет. Здесь речь только о небольшом бытовом выборе. Have a word with — коротко поговорить с человеком: знакомая хочет уточнить домашнее задание у учителя. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Take a chance — ризикнути, спробувати без упевненості в результаті. Ви вибираєте незнайому настільну гру: вона може сподобатися, а може ні. Тут ідеться лише про невеликий побутовий вибір. Have a word with — коротко поговорити з людиною: знайома хоче уточнити домашнє завдання у вчителя. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r1",
+              "text": "We ought to take a chance."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r2",
+              "text": "We oughts to take a chance."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r3",
+              "text": "We ought take a chance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r1",
+              "text": "We ought to take a chance."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r2",
+              "text": "We oughts to take a chance."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro2:r3",
+              "text": "We ought take a chance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связаться с другом",
+        "uk": "Звʼязатися з другом"
+      },
+      "bodyByLocale": {
+        "ru": "Get in touch — связаться, например написать или позвонить. Знакомый давно не общался с другом и хочет узнать, как у него дела. После выражения перед человеком нужно with: get in touch with his friend. Это установить контакт; знакомое keep in touch — поддерживать общение. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Get in touch — звʼязатися, наприклад написати або зателефонувати. Знайомий давно не спілкувався з другом і хоче дізнатися, як у нього справи. Після виразу перед людиною потрібне with: get in touch with his friend. Це встановити контакт; знайоме keep in touch — підтримувати спілкування. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r1",
+              "text": "He ought to get in touch with his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r2",
+              "text": "He oughts to get in touch with his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r3",
+              "text": "He ought get in touch with his friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r1",
+              "text": "He ought to get in touch with his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r2",
+              "text": "He oughts to get in touch with his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-40:intro3:r3",
+              "text": "He ought get in touch with his friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d22806a2f15f92e43d882f4e8a42352760cb6e492042472076e5019cb18aa181"
+}

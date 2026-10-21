@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-36:word:assistance",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — assistance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:word:assistance:audio"
+      ],
+      "accessibilityLabel": "Картка слова — assistance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:word:assistance:audio",
+          "transcript": "assistance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:word:assistance:r1",
+            "targetText": "assistance",
+            "meaningByLocale": {
+              "ru": "помощь, содействие.",
+              "uk": "допомога, сприяння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "assistance",
+          "definitionByLocale": {
+            "ru": "помощь, содействие.",
+            "uk": "допомога, сприяння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Тобі необовʼязково платити за допомогу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Тобі необовʼязково платити за допомогу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't pay for assistance.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно платить за помощь».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково платити за допомогу»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "pay",
+          "for",
+          "assistance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i02:r1",
+          "text": "You needn't pay for assistance."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i02:r2",
+          "text": "You must pay for assistance."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i02:r3",
+          "text": "You should pay for assistance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i02:audio",
+          "transcript": "You needn't pay for assistance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:i02:r1",
+            "targetText": "You needn't pay for assistance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i02:r2",
+            "targetText": "You must pay for assistance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i02:r3",
+            "targetText": "You should pay for assistance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't pay for assistance.",
+              "uk": "У записі звучить You needn't pay for assistance."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't pay for assistance.",
+              "uk": "У записі звучить You needn't pay for assistance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i03:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i03:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i03:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ pay for assistance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-36:i03:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i03:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i03:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:word:approval",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — approval",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:word:approval:audio"
+      ],
+      "accessibilityLabel": "Картка слова — approval",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:word:approval:audio",
+          "transcript": "approval"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:word:approval:r1",
+            "targetText": "approval",
+            "meaningByLocale": {
+              "ru": "одобрение.",
+              "uk": "схвалення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "approval",
+          "definitionByLocale": {
+            "ru": "одобрение.",
+            "uk": "схвалення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Нам необовʼязково просити схвалення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Нам необовʼязково просити схвалення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We needn't ask for approval.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Нам необязательно просить одобрения».",
+          "uk": "Скажіть із needn’t: «Нам необовʼязково просити схвалення»."
+        },
+        "orderedTokens": [
+          "We",
+          "needn't",
+          "ask",
+          "for",
+          "approval"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i05:r1",
+          "text": "We needn't ask for approval."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i05:r2",
+          "text": "We must ask for approval."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i05:r3",
+          "text": "We should ask for approval."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i05:audio",
+          "transcript": "We needn't ask for approval."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:i05:r1",
+            "targetText": "We needn't ask for approval.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i05:r2",
+            "targetText": "We must ask for approval.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i05:r3",
+            "targetText": "We should ask for approval.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't ask for approval.",
+              "uk": "У записі звучить We needn't ask for approval."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needn't ask for approval.",
+              "uk": "У записі звучить We needn't ask for approval."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i06:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i06:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i06:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "We ___ ask for approval.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-36:i06:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i06:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i06:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:word:participation",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — participation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:word:participation:audio"
+      ],
+      "accessibilityLabel": "Картка слова — participation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:word:participation:audio",
+          "transcript": "participation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:word:participation:r1",
+            "targetText": "participation",
+            "meaningByLocale": {
+              "ru": "участие.",
+              "uk": "участь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "participation",
+          "definitionByLocale": {
+            "ru": "участие.",
+            "uk": "участь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Їй необовʼязково підтверджувати свою участь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Їй необовʼязково підтверджувати свою участь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She needn't confirm her participation.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Ей необязательно подтверждать своё участие».",
+          "uk": "Скажіть із needn’t: «Їй необовʼязково підтверджувати свою участь»."
+        },
+        "orderedTokens": [
+          "She",
+          "needn't",
+          "confirm",
+          "her",
+          "participation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i08:r1",
+          "text": "She needn't confirm her participation."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i08:r2",
+          "text": "She must confirm her participation."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i08:r3",
+          "text": "She should confirm her participation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i08:audio",
+          "transcript": "She needn't confirm her participation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:i08:r1",
+            "targetText": "She needn't confirm her participation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i08:r2",
+            "targetText": "She must confirm her participation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i08:r3",
+            "targetText": "She should confirm her participation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't confirm her participation.",
+              "uk": "У записі звучить She needn't confirm her participation."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She needn't confirm her participation.",
+              "uk": "У записі звучить She needn't confirm her participation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i09:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i09:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i09:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "She ___ confirm her participation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-36:i09:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i09:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i09:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:word:contribution",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — contribution",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:word:contribution:audio"
+      ],
+      "accessibilityLabel": "Картка слова — contribution",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:word:contribution:audio",
+          "transcript": "contribution"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:word:contribution:r1",
+            "targetText": "contribution",
+            "meaningByLocale": {
+              "ru": "вклад, взнос.",
+              "uk": "внесок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contribution",
+          "definitionByLocale": {
+            "ru": "вклад, взнос.",
+            "uk": "внесок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із needn’t: «Тобі необовʼязково робити внесок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із needn’t: «Тобі необовʼязково робити внесок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You needn't make a contribution.",
+        "localizedMeaning": {
+          "ru": "Скажите с needn’t: «Тебе необязательно делать взнос».",
+          "uk": "Скажіть із needn’t: «Тобі необовʼязково робити внесок»."
+        },
+        "orderedTokens": [
+          "You",
+          "needn't",
+          "make",
+          "a",
+          "contribution"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i11:r1",
+          "text": "You needn't make a contribution."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i11:r2",
+          "text": "You must make a contribution."
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i11:r3",
+          "text": "You should make a contribution."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i11:audio",
+          "transcript": "You needn't make a contribution."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-36:i11:r1",
+            "targetText": "You needn't make a contribution.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i11:r2",
+            "targetText": "You must make a contribution.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i11:r3",
+            "targetText": "You should make a contribution.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't make a contribution.",
+              "uk": "У записі звучить You needn't make a contribution."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You needn't make a contribution.",
+              "uk": "У записі звучить You needn't make a contribution."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-36:i12:r1",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i12:r2",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-36:i12:r3",
+          "text": "needn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "You ___ make a contribution.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-36:i12:r1",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i12:r2",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i12:r3",
+            "text": "needn't to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Must означает, что действие необходимо; здесь необходимости нет.",
+              "uk": "Must означає, що дія необхідна; тут потреби немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После needn't не нужно to.",
+              "uk": "Після needn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-36:i13:p1",
+            "target": "assistance",
+            "meaningByLocale": {
+              "ru": "помощь, содействие",
+              "uk": "допомога, сприяння"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-36:i13:p2",
+            "target": "approval",
+            "meaningByLocale": {
+              "ru": "одобрение",
+              "uk": "схвалення"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-36:i13:p3",
+            "target": "participation",
+            "meaningByLocale": {
+              "ru": "участие",
+              "uk": "участь"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-36:i13:p4",
+            "target": "contribution",
+            "meaningByLocale": {
+              "ru": "вклад, взнос",
+              "uk": "внесок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "assistance",
+          "approval",
+          "participation",
+          "contribution"
+        ],
+        "rightColumn": [
+          "допомога, сприяння",
+          "схвалення",
+          "участь",
+          "внесок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: порада",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: порада",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i15:audio",
+          "transcript": "You should check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You should check the address.",
+        "orderedTokens": [
+          "You",
+          "should",
+          "check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що робити внесок необовʼязково",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що робити внесок необовʼязково",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i16:audio",
+          "transcript": "You needn't make a contribution."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You needn't make a contribution.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що їй необовʼязково підтверджувати участь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що їй необовʼязково підтверджувати участь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-36:i17:audio",
+          "transcript": "She needn't confirm her participation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She needn't confirm her participation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e9d393030fb0f5b08867bf081e098b4a2a109777335d02263d92f20ce9648d09"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-40:word:make-an-effort",
+    "correctText": "make an effort",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i01",
+    "correctText": "You ought to make an effort.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i02",
+    "correctText": "You ought to make an effort.",
+    "correctResponseId": "en:lesson-20:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:word:take-a-chance",
+    "correctText": "take a chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i04",
+    "correctText": "We ought to take a chance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i05",
+    "correctText": "We ought to take a chance.",
+    "correctResponseId": "en:lesson-20:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:word:have-a-word",
+    "correctText": "have a word",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i07",
+    "correctText": "She ought to have a word with the teacher.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i08",
+    "correctText": "She ought to have a word with the teacher.",
+    "correctResponseId": "en:lesson-20:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:word:get-in-touch",
+    "correctText": "get in touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i10",
+    "correctText": "He ought to get in touch with his friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i11",
+    "correctText": "He ought to get in touch with his friend.",
+    "correctResponseId": "en:lesson-20:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i13",
+    "correctText": "en:lesson-20:session-40:i13:p1=make an effort\nen:lesson-20:session-40:i13:p2=take a chance\nen:lesson-20:session-40:i13:p3=have a word\nen:lesson-20:session-40:i13:p4=get in touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i16",
+    "correctText": "She ought to have a word with the teacher.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-40:i17",
+    "correctText": "He ought to get in touch with his friend.",
+    "correctResponseId": null
+  }
+]

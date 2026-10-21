@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обсудить существенную перемену",
+        "uk": "Обговорити суттєву зміну"
+      },
+      "bodyByLocale": {
+        "ru": "Major — значительный. Группа хочет заменить однодневную поездку недельным путешествием. Это сильно меняет план, поэтому стоит обсудить this major change. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Major — значний. Група хоче замінити одноденну поїздку тижневою подорожжю. Це сильно змінює план, тому варто обговорити this major change. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r1",
+              "text": "We ought to discuss this major change."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r2",
+              "text": "We oughts to discuss this major change."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r3",
+              "text": "We ought discuss this major change."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r1",
+              "text": "We ought to discuss this major change."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r2",
+              "text": "We oughts to discuss this major change."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro1:r3",
+              "text": "We ought discuss this major change."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Исправить мелкую ошибку",
+        "uk": "Виправити дрібну помилку"
+      },
+      "bodyByLocale": {
+        "ru": "Minor — небольшой по значению. В приглашении есть мелкая опечатка, которая не меняет смысл. Major и minor помогают различить существенное и незначительное. Recent — недавний: при выборе экскурсии полезен отзыв, написанный недавно. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Minor — невеликий за значенням. У запрошенні є дрібна друкарська помилка, яка не змінює зміст. Major і minor допомагають розрізнити суттєве й незначне. Recent — недавній: під час вибору екскурсії корисний відгук, написаний недавно. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r1",
+              "text": "You ought to correct this minor mistake."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r2",
+              "text": "You oughts to correct this minor mistake."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r3",
+              "text": "You ought correct this minor mistake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r1",
+              "text": "You ought to correct this minor mistake."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r2",
+              "text": "You oughts to correct this minor mistake."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro2:r3",
+              "text": "You ought correct this minor mistake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выбрать умелого гида",
+        "uk": "Вибрати вмілого гіда"
+      },
+      "bodyByLocale": {
+        "ru": "Capable — умелый, способный хорошо выполнить дело. Знакомая ищет гида для группы, и вы советуете выбрать человека, который хорошо справляется со своей работой. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Capable — умілий, здатний добре виконати справу. Знайома шукає гіда для групи, і ви радите вибрати людину, яка добре дає раду своїй роботі. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r1",
+              "text": "She ought to hire a capable guide."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r2",
+              "text": "She oughts to hire a capable guide."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r3",
+              "text": "She ought hire a capable guide."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r1",
+              "text": "She ought to hire a capable guide."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r2",
+              "text": "She oughts to hire a capable guide."
+            },
+            {
+              "responseId": "en:lesson-20:session-38:intro3:r3",
+              "text": "She ought hire a capable guide."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "08f56afbd3595dd1db1251409155934f6771ed2757c1e1dc74a6e9cef3a0b0a6"
+}

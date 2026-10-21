@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-26:intro1:r2": {
+          "ru": "Вчера: was, не is.",
+          "uk": "Учора: was, не is."
+        },
+        "en:lesson-11:session-26:intro1:r3": {
+          "ru": "Food здесь неисчисляемое: was.",
+          "uk": "Food тут незлічуване: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-26:intro2:r2": {
+          "ru": "Две бутылочки: were.",
+          "uk": "Дві пляшечки: were."
+        },
+        "en:lesson-11:session-26:intro2:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-26:intro3:r2": {
+          "ru": "Yesterday указывает на прошлое: was.",
+          "uk": "Yesterday вказує на минуле: was."
+        },
+        "en:lesson-11:session-26:intro3:r3": {
+          "ru": "Одна коляска: was.",
+          "uk": "Одна коляска: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "097191b4ba06da1bb2785e98f26da95657e365ca4ba4f9dbb6673fa6ae0c7b73"
+}

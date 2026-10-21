@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Питание для малыша",
+        "uk": "Харчування для малюка"
+      },
+      "bodyByLocale": {
+        "ru": "Baby food — «детское питание». Это еда, а не отдельный предмет, поэтому говорим без a: There was baby food in the cupboard — «В шкафу было детское питание». О месте вчера: Yesterday the baby food was in the cupboard. Выберите сообщение о вчерашнем месте питания.",
+        "uk": "Baby food — «дитяче харчування». Це їжа, а не окремий предмет, тому говоримо без a: There was baby food in the cupboard — «У шафі було дитяче харчування». Про місце вчора: Yesterday the baby food was in the cupboard. Виберіть повідомлення про вчорашнє місце харчування."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r1",
+              "text": "Yesterday the baby food was in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r2",
+              "text": "Yesterday the baby food is in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r3",
+              "text": "Yesterday the baby food were in the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r1",
+              "text": "Yesterday the baby food was in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r2",
+              "text": "Yesterday the baby food is in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro1:r3",
+              "text": "Yesterday the baby food were in the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бутылочка",
+        "uk": "Пляшечка"
+      },
+      "bodyByLocale": {
+        "ru": "Baby bottle — «детская бутылочка» для кормления. Один предмет: There was a baby bottle on the table. Два: There were two baby bottles on the table — «На столе были две детские бутылочки». Окончание множественного числа добавляем к bottle. Выберите фразу о двух бутылочках.",
+        "uk": "Baby bottle — «дитяча пляшечка» для годування. Один предмет: There was a baby bottle on the table. Два: There were two baby bottles on the table — «На столі були дві дитячі пляшечки». Закінчення множини додаємо до bottle. Виберіть фразу про дві пляшечки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r1",
+              "text": "There were two baby bottles on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r2",
+              "text": "There was two baby bottles on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r3",
+              "text": "There were a two baby bottles on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r1",
+              "text": "There were two baby bottles on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r2",
+              "text": "There was two baby bottles on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro2:r3",
+              "text": "There were a two baby bottles on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коляска и стульчик",
+        "uk": "Коляска й стільчик"
+      },
+      "bodyByLocale": {
+        "ru": "Pram — «детская коляска», обычно для маленького ребёнка, который лежит. High chair — «детский стульчик для кормления». Вчера коляска стояла у двери: The pram was next to the door yesterday. Сейчас стульчик на кухне: The high chair is in the kitchen now. Выберите сообщение о коляске вчера.",
+        "uk": "Pram — «дитяча коляска», зазвичай для маленької дитини, яка лежить. High chair — «дитячий стільчик для годування». Учора коляска стояла біля дверей: The pram was next to the door yesterday. Зараз стільчик на кухні: The high chair is in the kitchen now. Виберіть повідомлення про коляску вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r1",
+              "text": "The pram was next to the door yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r2",
+              "text": "The pram is next to the door yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r3",
+              "text": "The pram were next to the door yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r1",
+              "text": "The pram was next to the door yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r2",
+              "text": "The pram is next to the door yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-26:intro3:r3",
+              "text": "The pram were next to the door yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c5ac0cb36c76e288dba0225e7fab1ecd2d2f83992237f425a1004fb8abaebfec"
+}

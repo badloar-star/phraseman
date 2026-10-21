@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-27:intro1:r2": {
+          "ru": "Hair в этом значении используем с was.",
+          "uk": "Hair у цьому значенні використовуємо з was."
+        },
+        "en:lesson-11:session-27:intro1:r3": {
+          "ru": "Мы описываем прошлое: was.",
+          "uk": "Ми описуємо минуле: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-27:intro2:r2": {
+          "ru": "Hair используем с was.",
+          "uk": "Hair використовуємо з was."
+        },
+        "en:lesson-11:session-27:intro2:r3": {
+          "ru": "Last year — прошлое: was.",
+          "uk": "Last year — минуле: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-27:intro3:r2": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        },
+        "en:lesson-11:session-27:intro3:r3": {
+          "ru": "Описываем прошлое: was.",
+          "uk": "Описуємо минуле: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8f7406d09e4ed1d9636c31b656603e3b9bf5352a4e6c9927144684d3da11f6d2"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Светлые волосы",
+        "uk": "Світле волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Blond — «светловолосый»; о волосах — «светлые». На фото прошлого года у мужчины светлые волосы: The man was blond. Можно сказать о волосах: His hair was blond. Hair, когда говорим о волосах в целом, употребляем с was, хотя по-русски «волосы» во множественном числе. Выберите фразу о волосах мужчины в прошлом.",
+        "uk": "Blond — «світловолосий»; про волосся — «світле». На фото минулого року в чоловіка світле волосся: The man was blond. Можна сказати про волосся: His hair was blond. Hair, коли говоримо про волосся загалом, уживаємо з was. Виберіть фразу про волосся чоловіка в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r1",
+              "text": "His hair was blond."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r2",
+              "text": "His hair were blond."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r3",
+              "text": "His hair is blond."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r1",
+              "text": "His hair was blond."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r2",
+              "text": "His hair were blond."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro1:r3",
+              "text": "His hair is blond."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кудрявые и волнистые",
+        "uk": "Кучеряве та хвилясте"
+      },
+      "bodyByLocale": {
+        "ru": "Curly — «кудрявый», wavy — «волнистый». Curly hair — волосы с завитками, wavy hair — волосы мягкими волнами. Оба слова описывают волосы: Her hair was curly last year — «В прошлом году её волосы были кудрявыми». Вы обсуждаете внешность на прошлогоднем фото. Выберите эту фразу.",
+        "uk": "Curly — «кучерявий», wavy — «хвилястий». Curly hair — волосся із завитками, wavy hair — волосся м’якими хвилями. Обидва слова описують волосся: Her hair was curly last year — «Минулого року її волосся було кучеряве». Ви обговорюєте зовнішність на торішньому фото. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r1",
+              "text": "Her hair was curly last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r2",
+              "text": "Her hair were curly last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r3",
+              "text": "Her hair is curly last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r1",
+              "text": "Her hair was curly last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r2",
+              "text": "Her hair were curly last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro2:r3",
+              "text": "Her hair is curly last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Без волос",
+        "uk": "Без волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Bald — «лысый», о человеке без волос на голове или с очень небольшим их количеством. На прошлом фото дедушка уже был лысым: My grandpa was bald. Это описание внешности, не оценка человека. Выберите фразу о дедушке в прошлом.",
+        "uk": "Bald — «лисий», про людину без волосся на голові або з дуже малою його кількістю. На минулому фото дідусь уже був лисий: My grandpa was bald. Це опис зовнішності, не оцінка людини. Виберіть фразу про дідуся в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r1",
+              "text": "My grandpa was bald."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r2",
+              "text": "My grandpa were bald."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r3",
+              "text": "My grandpa is bald."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r1",
+              "text": "My grandpa was bald."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r2",
+              "text": "My grandpa were bald."
+            },
+            {
+              "responseId": "en:lesson-11:session-27:intro3:r3",
+              "text": "My grandpa is bald."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b25c2038b591a8c95d15219c49ac0100639baed26152ef1db05e490164c3e213"
+}

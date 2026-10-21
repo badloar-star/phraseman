@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-28:intro1:r2": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        },
+        "en:lesson-11:session-28:intro1:r3": {
+          "ru": "Перед одним исчисляемым предметом здесь нужен a.",
+          "uk": "Перед одним злічуваним предметом тут потрібне a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-28:intro2:r2": {
+          "ru": "Yesterday — прошлое: was.",
+          "uk": "Yesterday — минуле: was."
+        },
+        "en:lesson-11:session-28:intro2:r3": {
+          "ru": "Juice здесь неисчисляемое: was.",
+          "uk": "Juice тут незлічуване: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-28:intro3:r2": {
+          "ru": "О еде без подсчёта порций: was.",
+          "uk": "Про їжу без підрахунку порцій: was."
+        },
+        "en:lesson-11:session-28:intro3:r3": {
+          "ru": "После there нужна was.",
+          "uk": "Після there потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f9d5e5455bc60b5825d248f376fee8e22b4bda96223f052a0e34ad6078cc307a"
+}

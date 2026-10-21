@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-27:word:blond",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blond",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:word:blond:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blond",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:word:blond:audio",
+          "transcript": "blond"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:word:blond:r1",
+            "targetText": "blond",
+            "meaningByLocale": {
+              "ru": "светловолосый, о волосах — светлые.",
+              "uk": "світловолосий, про волосся — світле."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blond",
+          "definitionByLocale": {
+            "ru": "светловолосый, о волосах — светлые.",
+            "uk": "світловолосий, про волосся — світле."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишите мужчину на прошлогоднем фото: он был светловолосым",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите мужчину на прошлогоднем фото: он был светловолосым",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The man was blond.",
+        "localizedMeaning": {
+          "ru": "Опишите мужчину на прошлогоднем фото: он был светловолосым",
+          "uk": "Опишіть чоловіка на торішньому фото: він був світловолосий"
+        },
+        "orderedTokens": [
+          "The",
+          "man",
+          "was",
+          "blond"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i02:r1",
+          "text": "His hair was blond."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i02:r2",
+          "text": "His hair is blond."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i02:r3",
+          "text": "Was his hair blond?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i02:audio",
+          "transcript": "His hair was blond."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:i02:r1",
+            "targetText": "His hair was blond.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i02:r2",
+            "targetText": "His hair is blond.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i02:r3",
+            "targetText": "Was his hair blond?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His hair was blond.",
+              "uk": "У записі звучить His hair was blond."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His hair was blond.",
+              "uk": "У записі звучить His hair was blond."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Его волосы в прошлом году были светлыми. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Его волосы в прошлом году были светлыми. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Его волосы в прошлом году были светлыми. Выберите форму",
+          "uk": "Його волосся минулого року було світле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "His hair ___ blond last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-27:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Его волосы в прошлом году были светлыми. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Его волосы в прошлом году были светлыми. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Hair в этом значении с was.",
+              "uk": "Hair у цьому значенні з was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Его волосы в прошлом году были светлыми. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Last year — прошлое: was.",
+              "uk": "Last year — минуле: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:word:curly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — curly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:word:curly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — curly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:word:curly:audio",
+          "transcript": "curly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:word:curly:r1",
+            "targetText": "curly",
+            "meaningByLocale": {
+              "ru": "кудрявый, вьющийся.",
+              "uk": "кучерявий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curly",
+          "definitionByLocale": {
+            "ru": "кудрявый, вьющийся.",
+            "uk": "кучерявий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите подругу, были ли её волосы кудрявыми",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите подругу, были ли её волосы кудрявыми",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was your hair curly?",
+        "localizedMeaning": {
+          "ru": "Спросите подругу, были ли её волосы кудрявыми",
+          "uk": "Запитайте подругу, чи було її волосся кучеряве"
+        },
+        "orderedTokens": [
+          "Was",
+          "your",
+          "hair",
+          "curly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i05:r1",
+          "text": "Her hair was curly last year."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i05:r2",
+          "text": "Her hair is curly now."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i05:r3",
+          "text": "His hair was curly last year."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i05:audio",
+          "transcript": "Her hair was curly last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:i05:r1",
+            "targetText": "Her hair was curly last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i05:r2",
+            "targetText": "Her hair is curly now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i05:r3",
+            "targetText": "His hair was curly last year.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her hair was curly last year.",
+              "uk": "У записі звучить Her hair was curly last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her hair was curly last year.",
+              "uk": "У записі звучить Her hair was curly last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас её волосы кудрявые. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас её волосы кудрявые. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас её волосы кудрявые. Выберите форму",
+          "uk": "Зараз її волосся кучеряве. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Her hair ___ curly now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-27:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас её волосы кудрявые. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Сейчас её волосы кудрявые. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Сейчас её волосы кудрявые. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Hair используем с is.",
+              "uk": "Hair використовуємо з is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:word:bald",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bald",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:word:bald:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bald",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:word:bald:audio",
+          "transcript": "bald"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:word:bald:r1",
+            "targetText": "bald",
+            "meaningByLocale": {
+              "ru": "лысый.",
+              "uk": "лисий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bald",
+          "definitionByLocale": {
+            "ru": "лысый.",
+            "uk": "лисий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что ваш дедушка был лысым",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что ваш дедушка был лысым",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My grandpa was bald.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваш дедушка был лысым",
+          "uk": "Скажіть, що ваш дідусь був лисий"
+        },
+        "orderedTokens": [
+          "My",
+          "grandpa",
+          "was",
+          "bald"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i08:r1",
+          "text": "Was the man bald?"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i08:r2",
+          "text": "The man was bald."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i08:r3",
+          "text": "Is the man bald?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i08:audio",
+          "transcript": "Was the man bald?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:i08:r1",
+            "targetText": "Was the man bald?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i08:r2",
+            "targetText": "The man was bald.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i08:r3",
+            "targetText": "Is the man bald?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the man bald?",
+              "uk": "У записі звучить Was the man bald?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the man bald?",
+              "uk": "У записі звучить Was the man bald?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+          "uk": "На торішньому фото двоє чоловіків були лисі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The two men ___ bald.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-27:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Два человека: were.",
+              "uk": "Дві людини: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Прошлое, множественное число: were.",
+              "uk": "Минулий час, множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:word:wavy",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wavy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:word:wavy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wavy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:word:wavy:audio",
+          "transcript": "wavy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:word:wavy:r1",
+            "targetText": "wavy",
+            "meaningByLocale": {
+              "ru": "волнистый, например о волосах.",
+              "uk": "хвилястий, наприклад про волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wavy",
+          "definitionByLocale": {
+            "ru": "волнистый, например о волосах.",
+            "uk": "хвилястий, наприклад про волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что её волосы были волнистыми",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что её волосы были волнистыми",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Her hair was wavy.",
+        "localizedMeaning": {
+          "ru": "Скажите, что её волосы были волнистыми",
+          "uk": "Скажіть, що її волосся було хвилясте"
+        },
+        "orderedTokens": [
+          "Her",
+          "hair",
+          "was",
+          "wavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i11:r1",
+          "text": "His hair is wavy now."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i11:r2",
+          "text": "His hair was wavy last year."
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i11:r3",
+          "text": "Her hair is wavy now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i11:audio",
+          "transcript": "His hair is wavy now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-27:i11:r1",
+            "targetText": "His hair is wavy now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i11:r2",
+            "targetText": "His hair was wavy last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i11:r3",
+            "targetText": "Her hair is wavy now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His hair is wavy now.",
+              "uk": "У записі звучить His hair is wavy now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His hair is wavy now.",
+              "uk": "У записі звучить His hair is wavy now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-27:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-27:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+          "uk": "Друг запитав Was your hair wavy? Воно було пряме. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-27:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "Hair заменяем it: wasn’t.",
+              "uk": "Hair замінюємо на it: wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was your hair wavy? Они были прямыми. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was: ответ wasn’t.",
+              "uk": "Запитання з was: відповідь wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-27:i13:p1",
+            "target": "blond",
+            "meaningByLocale": {
+              "ru": "светловолосый",
+              "uk": "світловолосий"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-27:i13:p2",
+            "target": "curly",
+            "meaningByLocale": {
+              "ru": "кудрявый",
+              "uk": "кучерявий"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-27:i13:p3",
+            "target": "bald",
+            "meaningByLocale": {
+              "ru": "лысый",
+              "uk": "лисий"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-27:i13:p4",
+            "target": "wavy",
+            "meaningByLocale": {
+              "ru": "волнистый",
+              "uk": "хвилястий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "blond",
+          "curly",
+          "bald",
+          "wavy"
+        ],
+        "rightColumn": [
+          "светловолосый",
+          "кудрявый",
+          "лысый",
+          "волнистый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i14:audio",
+          "transcript": "Please don't move the photo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move the photo.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i15:audio",
+          "transcript": "We are looking at a photo right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are looking at a photo right now.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "looking",
+          "at",
+          "a",
+          "photo",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, были ли его волосы волнистыми",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите, были ли его волосы волнистыми",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i16:audio",
+          "transcript": "Was his hair wavy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was his hair wavy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите, что на фото были два мужчины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Сообщите, что на фото были два мужчины",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-27:i17:audio",
+          "transcript": "There were two men in the photo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There were two men in the photo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1e58628f8f1cd33b86d480d7414277543e71ab5afed72773abb226e8ff95d87a"
+}

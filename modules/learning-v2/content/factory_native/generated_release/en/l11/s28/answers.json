@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-28:word:cereal-bar",
+    "correctText": "cereal bar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i01",
+    "correctText": "There was a cereal bar on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i02",
+    "correctText": "The cereal bar was sweet.",
+    "correctResponseId": "en:lesson-11:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:word:orange-juice",
+    "correctText": "orange juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i04",
+    "correctText": "Was the orange juice cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i05",
+    "correctText": "There was orange juice in the glass.",
+    "correctResponseId": "en:lesson-11:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:word:apple-juice",
+    "correctText": "apple juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i07",
+    "correctText": "There was apple juice in the bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i08",
+    "correctText": "The apple juice was in the fridge yesterday.",
+    "correctResponseId": "en:lesson-11:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:word:fruit-salad",
+    "correctText": "fruit salad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i10",
+    "correctText": "Was the fruit salad fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i11",
+    "correctText": "The fruit salad was in the bowl.",
+    "correctResponseId": "en:lesson-11:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i13",
+    "correctText": "en:lesson-11:session-28:i13:p1=cereal bar\nen:lesson-11:session-28:i13:p2=orange juice\nen:lesson-11:session-28:i13:p3=apple juice\nen:lesson-11:session-28:i13:p4=fruit salad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i14",
+    "correctText": "Please don't move my bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i15",
+    "correctText": "I am eating right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i16",
+    "correctText": "There was fruit salad in the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-28:i17",
+    "correctText": "The cereal bar was not in the bag.",
+    "correctResponseId": null
+  }
+]

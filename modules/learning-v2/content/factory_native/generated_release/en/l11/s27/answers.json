@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-27:word:blond",
+    "correctText": "blond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i01",
+    "correctText": "The man was blond.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i02",
+    "correctText": "His hair was blond.",
+    "correctResponseId": "en:lesson-11:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:word:curly",
+    "correctText": "curly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i04",
+    "correctText": "Was your hair curly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i05",
+    "correctText": "Her hair was curly last year.",
+    "correctResponseId": "en:lesson-11:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:word:bald",
+    "correctText": "bald",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i07",
+    "correctText": "My grandpa was bald.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i08",
+    "correctText": "Was the man bald?",
+    "correctResponseId": "en:lesson-11:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:word:wavy",
+    "correctText": "wavy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i10",
+    "correctText": "Her hair was wavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i11",
+    "correctText": "His hair is wavy now.",
+    "correctResponseId": "en:lesson-11:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i13",
+    "correctText": "en:lesson-11:session-27:i13:p1=blond\nen:lesson-11:session-27:i13:p2=curly\nen:lesson-11:session-27:i13:p3=bald\nen:lesson-11:session-27:i13:p4=wavy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i14",
+    "correctText": "Please don't move the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i15",
+    "correctText": "We are looking at a photo right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i16",
+    "correctText": "Was his hair wavy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-27:i17",
+    "correctText": "There were two men in the photo.",
+    "correctResponseId": null
+  }
+]

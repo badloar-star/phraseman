@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-26:word:baby-food",
+    "correctText": "baby food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i01",
+    "correctText": "There was baby food in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i02",
+    "correctText": "The baby food was warm.",
+    "correctResponseId": "en:lesson-11:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:word:baby-bottle",
+    "correctText": "baby bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i04",
+    "correctText": "Was the baby bottle empty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i05",
+    "correctText": "There were two baby bottles in the bag.",
+    "correctResponseId": "en:lesson-11:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:word:pram",
+    "correctText": "pram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i07",
+    "correctText": "Yesterday the pram was next to the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i08",
+    "correctText": "The pram is in the garden now.",
+    "correctResponseId": "en:lesson-11:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:word:high-chair",
+    "correctText": "high chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i10",
+    "correctText": "Was the high chair clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i11",
+    "correctText": "The high chair was in the kitchen.",
+    "correctResponseId": "en:lesson-11:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i13",
+    "correctText": "en:lesson-11:session-26:i13:p1=baby food\nen:lesson-11:session-26:i13:p2=baby bottle\nen:lesson-11:session-26:i13:p3=pram\nen:lesson-11:session-26:i13:p4=high chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i14",
+    "correctText": "Please don't wake the baby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i15",
+    "correctText": "The baby is sleeping right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i16",
+    "correctText": "The baby bottle was not in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-26:i17",
+    "correctText": "There was a pram near the café.",
+    "correctResponseId": null
+  }
+]

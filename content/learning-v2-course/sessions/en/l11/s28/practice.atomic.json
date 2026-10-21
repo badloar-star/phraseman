@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-28:word:cereal-bar",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cereal bar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:cereal-bar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cereal bar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:cereal-bar:audio",
+            "transcript": "cereal bar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:cereal-bar:r1",
+              "targetText": "cereal bar",
+              "meaningByLocale": {
+                "ru": "злаковый батончик.",
+                "uk": "злаковий батончик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cereal bar",
+            "definitionByLocale": {
+              "ru": "злаковый батончик.",
+              "uk": "злаковий батончик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на столе был злаковый батончик. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на столе был злаковый батончик. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a cereal bar on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был злаковый батончик. Начните с There",
+            "uk": "Повідомте: на столі був злаковий батончик. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "cereal",
+            "bar",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i02:r1",
+            "text": "The cereal bar was sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i02:r2",
+            "text": "The cereal bar was salty."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i02:r3",
+            "text": "Was the cereal bar sweet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i02:audio",
+            "transcript": "The cereal bar was sweet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i02:r1",
+              "targetText": "The cereal bar was sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r2",
+              "targetText": "The cereal bar was salty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r3",
+              "targetText": "Was the cereal bar sweet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cereal bar was sweet.",
+                "uk": "У записі звучить The cereal bar was sweet."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cereal bar was sweet.",
+                "uk": "У записі звучить The cereal bar was sweet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера в сумке были два батончика. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера в сумке были два батончика. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера в сумке были два батончика. Выберите форму",
+            "uk": "Учора в сумці були два батончики. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two cereal bars in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера в сумке были два батончика. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера в сумке были два батончика. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два батончика: were.",
+                "uk": "Два батончики: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера в сумке были два батончика. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: were.",
+                "uk": "Yesterday — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:orange-juice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — orange juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:orange-juice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — orange juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:orange-juice:audio",
+            "transcript": "orange juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:orange-juice:r1",
+              "targetText": "orange juice",
+              "meaningByLocale": {
+                "ru": "апельсиновый сок.",
+                "uk": "апельсиновий сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "orange juice",
+            "definitionByLocale": {
+              "ru": "апельсиновый сок.",
+              "uk": "апельсиновий сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли апельсиновый сок холодным",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли апельсиновый сок холодным",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the orange juice cold?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли апельсиновый сок холодным",
+            "uk": "Запитайте, чи був апельсиновий сік холодний"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "orange",
+            "juice",
+            "cold"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i05:r1",
+            "text": "There was orange juice in the glass."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i05:r2",
+            "text": "There was orange juice in the bottle."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i05:r3",
+            "text": "The orange juice was cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i05:audio",
+            "transcript": "There was orange juice in the glass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i05:r1",
+              "targetText": "There was orange juice in the glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r2",
+              "targetText": "There was orange juice in the bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r3",
+              "targetText": "The orange juice was cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was orange juice in the glass.",
+                "uk": "У записі звучить There was orange juice in the glass."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was orange juice in the glass.",
+                "uk": "У записі звучить There was orange juice in the glass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас апельсиновый сок тёплый. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас апельсиновый сок тёплый. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас апельсиновый сок тёплый. Выберите форму",
+            "uk": "Зараз апельсиновий сік теплий. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The orange juice ___ warm now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас апельсиновый сок тёплый. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Сейчас апельсиновый сок тёплый. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Сейчас: is.",
+                "uk": "Зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Сейчас апельсиновый сок тёплый. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Juice неисчисляемое: is.",
+                "uk": "Juice незлічуване: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:apple-juice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — apple juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:apple-juice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — apple juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:apple-juice:audio",
+            "transcript": "apple juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:apple-juice:r1",
+              "targetText": "apple juice",
+              "meaningByLocale": {
+                "ru": "яблочный сок.",
+                "uk": "яблучний сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "apple juice",
+            "definitionByLocale": {
+              "ru": "яблочный сок.",
+              "uk": "яблучний сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в бутылке был яблочный сок. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в бутылке был яблочный сок. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was apple juice in the bottle.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в бутылке был яблочный сок. Начните с There",
+            "uk": "Повідомте: у пляшці був яблучний сік. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "apple",
+            "juice",
+            "in",
+            "the",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i08:r1",
+            "text": "The apple juice was in the fridge yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i08:r2",
+            "text": "The apple juice is in the fridge now."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i08:r3",
+            "text": "The apple juice was on the table yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i08:audio",
+            "transcript": "The apple juice was in the fridge yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i08:r1",
+              "targetText": "The apple juice was in the fridge yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r2",
+              "targetText": "The apple juice is in the fridge now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r3",
+              "targetText": "The apple juice was on the table yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The apple juice was in the fridge yesterday.",
+                "uk": "У записі звучить The apple juice was in the fridge yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The apple juice was in the fridge yesterday.",
+                "uk": "У записі звучить The apple juice was in the fridge yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+            "uk": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:fruit-salad",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fruit salad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:fruit-salad:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fruit salad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:fruit-salad:audio",
+            "transcript": "fruit salad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:fruit-salad:r1",
+              "targetText": "fruit salad",
+              "meaningByLocale": {
+                "ru": "фруктовый салат.",
+                "uk": "фруктовий салат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fruit salad",
+            "definitionByLocale": {
+              "ru": "фруктовый салат.",
+              "uk": "фруктовий салат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли фруктовый салат свежим",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли фруктовый салат свежим",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the fruit salad fresh?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли фруктовый салат свежим",
+            "uk": "Запитайте, чи був фруктовий салат свіжий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "fruit",
+            "salad",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i11:r1",
+            "text": "The fruit salad was in the bowl."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i11:r2",
+            "text": "The fruit salad was on the plate."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i11:r3",
+            "text": "The fruit salad is in the bowl."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i11:audio",
+            "transcript": "The fruit salad was in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i11:r1",
+              "targetText": "The fruit salad was in the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r2",
+              "targetText": "The fruit salad was on the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r3",
+              "targetText": "The fruit salad is in the bowl.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit salad was in the bowl.",
+                "uk": "У записі звучить The fruit salad was in the bowl."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit salad was in the bowl.",
+                "uk": "У записі звучить The fruit salad was in the bowl."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера фруктовый салат был холодным. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера фруктовый салат был холодным. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фруктовый салат был холодным. Выберите форму",
+            "uk": "Учора фруктовий салат був холодний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The fruit salad ___ cold yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера фруктовый салат был холодным. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Вчера фруктовый салат был холодным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: was.",
+                "uk": "Yesterday — минуле: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Вчера фруктовый салат был холодным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Об этой еде говорим was.",
+                "uk": "Про цю їжу говоримо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-28:i13:p1",
+              "target": "cereal bar",
+              "meaningByLocale": {
+                "ru": "злаковый батончик",
+                "uk": "злаковий батончик"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p2",
+              "target": "orange juice",
+              "meaningByLocale": {
+                "ru": "апельсиновый сок",
+                "uk": "апельсиновий сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p3",
+              "target": "apple juice",
+              "meaningByLocale": {
+                "ru": "яблочный сок",
+                "uk": "яблучний сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p4",
+              "target": "fruit salad",
+              "meaningByLocale": {
+                "ru": "фруктовый салат",
+                "uk": "фруктовий салат"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cereal bar",
+            "orange juice",
+            "apple juice",
+            "fruit salad"
+          ],
+          "rightColumn": [
+            "злаковый батончик",
+            "апельсиновый сок",
+            "яблочный сок",
+            "фруктовый салат"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i14:audio",
+            "transcript": "Please don't move my bottle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move my bottle.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "my",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i15:audio",
+            "transcript": "I am eating right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am eating right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "eating",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что в миске был фруктовый салат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что в миске был фруктовый салат",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i16:audio",
+            "transcript": "There was fruit salad in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was fruit salad in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что батончик был не в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что батончик был не в сумке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i17:audio",
+            "transcript": "The cereal bar was not in the bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cereal bar was not in the bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-28:word:cereal-bar",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cereal bar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:cereal-bar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cereal bar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:cereal-bar:audio",
+            "transcript": "cereal bar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:cereal-bar:r1",
+              "targetText": "cereal bar",
+              "meaningByLocale": {
+                "ru": "злаковый батончик.",
+                "uk": "злаковий батончик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cereal bar",
+            "definitionByLocale": {
+              "ru": "злаковый батончик.",
+              "uk": "злаковий батончик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на столі був злаковий батончик. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на столі був злаковий батончик. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a cereal bar on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был злаковый батончик. Начните с There",
+            "uk": "Повідомте: на столі був злаковий батончик. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "cereal",
+            "bar",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i02:r1",
+            "text": "The cereal bar was sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i02:r2",
+            "text": "The cereal bar was salty."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i02:r3",
+            "text": "Was the cereal bar sweet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i02:audio",
+            "transcript": "The cereal bar was sweet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i02:r1",
+              "targetText": "The cereal bar was sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r2",
+              "targetText": "The cereal bar was salty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r3",
+              "targetText": "Was the cereal bar sweet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cereal bar was sweet.",
+                "uk": "У записі звучить The cereal bar was sweet."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cereal bar was sweet.",
+                "uk": "У записі звучить The cereal bar was sweet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора в сумці були два батончики. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора в сумці були два батончики. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера в сумке были два батончика. Выберите форму",
+            "uk": "Учора в сумці були два батончики. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two cereal bars in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора в сумці були два батончики. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора в сумці були два батончики. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два батончика: were.",
+                "uk": "Два батончики: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора в сумці були два батончики. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: were.",
+                "uk": "Yesterday — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:orange-juice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — orange juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:orange-juice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — orange juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:orange-juice:audio",
+            "transcript": "orange juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:orange-juice:r1",
+              "targetText": "orange juice",
+              "meaningByLocale": {
+                "ru": "апельсиновый сок.",
+                "uk": "апельсиновий сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "orange juice",
+            "definitionByLocale": {
+              "ru": "апельсиновый сок.",
+              "uk": "апельсиновий сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був апельсиновий сік холодний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був апельсиновий сік холодний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the orange juice cold?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли апельсиновый сок холодным",
+            "uk": "Запитайте, чи був апельсиновий сік холодний"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "orange",
+            "juice",
+            "cold"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i05:r1",
+            "text": "There was orange juice in the glass."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i05:r2",
+            "text": "There was orange juice in the bottle."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i05:r3",
+            "text": "The orange juice was cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i05:audio",
+            "transcript": "There was orange juice in the glass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i05:r1",
+              "targetText": "There was orange juice in the glass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r2",
+              "targetText": "There was orange juice in the bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r3",
+              "targetText": "The orange juice was cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was orange juice in the glass.",
+                "uk": "У записі звучить There was orange juice in the glass."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was orange juice in the glass.",
+                "uk": "У записі звучить There was orange juice in the glass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз апельсиновий сік теплий. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз апельсиновий сік теплий. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас апельсиновый сок тёплый. Выберите форму",
+            "uk": "Зараз апельсиновий сік теплий. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The orange juice ___ warm now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз апельсиновий сік теплий. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Зараз апельсиновий сік теплий. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Сейчас: is.",
+                "uk": "Зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Зараз апельсиновий сік теплий. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Juice неисчисляемое: is.",
+                "uk": "Juice незлічуване: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:apple-juice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — apple juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:apple-juice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — apple juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:apple-juice:audio",
+            "transcript": "apple juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:apple-juice:r1",
+              "targetText": "apple juice",
+              "meaningByLocale": {
+                "ru": "яблочный сок.",
+                "uk": "яблучний сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "apple juice",
+            "definitionByLocale": {
+              "ru": "яблочный сок.",
+              "uk": "яблучний сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у пляшці був яблучний сік. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у пляшці був яблучний сік. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was apple juice in the bottle.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в бутылке был яблочный сок. Начните с There",
+            "uk": "Повідомте: у пляшці був яблучний сік. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "apple",
+            "juice",
+            "in",
+            "the",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i08:r1",
+            "text": "The apple juice was in the fridge yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i08:r2",
+            "text": "The apple juice is in the fridge now."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i08:r3",
+            "text": "The apple juice was on the table yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i08:audio",
+            "transcript": "The apple juice was in the fridge yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i08:r1",
+              "targetText": "The apple juice was in the fridge yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r2",
+              "targetText": "The apple juice is in the fridge now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r3",
+              "targetText": "The apple juice was on the table yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The apple juice was in the fridge yesterday.",
+                "uk": "У записі звучить The apple juice was in the fridge yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The apple juice was in the fridge yesterday.",
+                "uk": "У записі звучить The apple juice was in the fridge yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the apple juice cold? Он был тёплым. Ответьте отрицательно",
+            "uk": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the apple juice cold? Він був теплий. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:word:fruit-salad",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fruit salad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:word:fruit-salad:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fruit salad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:word:fruit-salad:audio",
+            "transcript": "fruit salad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:word:fruit-salad:r1",
+              "targetText": "fruit salad",
+              "meaningByLocale": {
+                "ru": "фруктовый салат.",
+                "uk": "фруктовий салат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fruit salad",
+            "definitionByLocale": {
+              "ru": "фруктовый салат.",
+              "uk": "фруктовий салат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був фруктовий салат свіжий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був фруктовий салат свіжий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the fruit salad fresh?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли фруктовый салат свежим",
+            "uk": "Запитайте, чи був фруктовий салат свіжий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "fruit",
+            "salad",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i11:r1",
+            "text": "The fruit salad was in the bowl."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i11:r2",
+            "text": "The fruit salad was on the plate."
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i11:r3",
+            "text": "The fruit salad is in the bowl."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i11:audio",
+            "transcript": "The fruit salad was in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-28:i11:r1",
+              "targetText": "The fruit salad was in the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r2",
+              "targetText": "The fruit salad was on the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r3",
+              "targetText": "The fruit salad is in the bowl.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit salad was in the bowl.",
+                "uk": "У записі звучить The fruit salad was in the bowl."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit salad was in the bowl.",
+                "uk": "У записі звучить The fruit salad was in the bowl."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора фруктовий салат був холодний. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-28:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-28:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора фруктовий салат був холодний. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фруктовый салат был холодным. Выберите форму",
+            "uk": "Учора фруктовий салат був холодний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The fruit salad ___ cold yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-28:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора фруктовий салат був холодний. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Учора фруктовий салат був холодний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое: was.",
+                "uk": "Yesterday — минуле: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Учора фруктовий салат був холодний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Об этой еде говорим was.",
+                "uk": "Про цю їжу говоримо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-28:i13:p1",
+              "target": "cereal bar",
+              "meaningByLocale": {
+                "ru": "злаковый батончик",
+                "uk": "злаковий батончик"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p2",
+              "target": "orange juice",
+              "meaningByLocale": {
+                "ru": "апельсиновый сок",
+                "uk": "апельсиновий сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p3",
+              "target": "apple juice",
+              "meaningByLocale": {
+                "ru": "яблочный сок",
+                "uk": "яблучний сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-28:i13:p4",
+              "target": "fruit salad",
+              "meaningByLocale": {
+                "ru": "фруктовый салат",
+                "uk": "фруктовий салат"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cereal bar",
+            "orange juice",
+            "apple juice",
+            "fruit salad"
+          ],
+          "rightColumn": [
+            "злаковий батончик",
+            "апельсиновий сік",
+            "яблучний сік",
+            "фруктовий салат"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i14:audio",
+            "transcript": "Please don't move my bottle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move my bottle.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "my",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i15:audio",
+            "transcript": "I am eating right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am eating right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "eating",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що в мисці був фруктовий салат",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що в мисці був фруктовий салат",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i16:audio",
+            "transcript": "There was fruit salad in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was fruit salad in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що батончик був не в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що батончик був не в сумці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-28:i17:audio",
+            "transcript": "The cereal bar was not in the bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cereal bar was not in the bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-28:word:cereal-bar",
+      "correctText": "cereal bar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i01",
+      "correctText": "There was a cereal bar on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i02",
+      "correctText": "The cereal bar was sweet.",
+      "correctResponseId": "en:lesson-11:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i03",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:word:orange-juice",
+      "correctText": "orange juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i04",
+      "correctText": "Was the orange juice cold?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i05",
+      "correctText": "There was orange juice in the glass.",
+      "correctResponseId": "en:lesson-11:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:word:apple-juice",
+      "correctText": "apple juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i07",
+      "correctText": "There was apple juice in the bottle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i08",
+      "correctText": "The apple juice was in the fridge yesterday.",
+      "correctResponseId": "en:lesson-11:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i09",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:word:fruit-salad",
+      "correctText": "fruit salad",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i10",
+      "correctText": "Was the fruit salad fresh?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i11",
+      "correctText": "The fruit salad was in the bowl.",
+      "correctResponseId": "en:lesson-11:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i14",
+      "correctText": "Please don't move my bottle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i15",
+      "correctText": "I am eating right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i16",
+      "correctText": "There was fruit salad in the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-28:i17",
+      "correctText": "The cereal bar was not in the bag.",
+      "correctResponseId": null
+    }
+  ]
+}

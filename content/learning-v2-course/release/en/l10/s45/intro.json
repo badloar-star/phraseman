@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "We review our progress every month; This is a major achievement; We are making a breakthrough",
+    "uk": "We review our progress every month; This is a major achievement; We are making a breakthrough"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проверяем продвижение",
+        "uk": "Перевіряємо поступ"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим milestone — «важная веха». Команда близка к важному этапу проекта. Вы обсуждаете продвижение каждый месяц: We review our progress every month — «Мы анализируем свой прогресс каждый месяц». Это регулярное действие: используем Present Simple.",
+        "uk": "Повторімо milestone — «важлива віха». Команда наближається до важливого етапу проєкту. Ви обговорюєте поступ щомісяця: We review our progress every month — «Ми аналізуємо свій поступ щомісяця». Це регулярна дія: використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r1",
+              "text": "We review our progress every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r2",
+              "text": "We reviews our progress every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r3",
+              "text": "We reviewing our progress every month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r1",
+              "text": "We review our progress every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r2",
+              "text": "We reviews our progress every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro1:r3",
+              "text": "We reviewing our progress every month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Важный результат",
+        "uk": "Важливий результат"
+      },
+      "bodyByLocale": {
+        "ru": "Achievement — «достижение»: успешный результат, для которого потребовались усилия. Команда завершила сложную часть проекта: This is a major achievement — «Это большое достижение». Is связывает this с оценкой результата; это Present Simple.",
+        "uk": "Achievement — «досягнення»: успішний результат, для якого були потрібні зусилля. Команда завершила складну частину проєкту: This is a major achievement — «Це велике досягнення». Is поєднує this з оцінкою результату; це Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r1",
+              "text": "This is a major achievement."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r2",
+              "text": "This are a major achievement."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r3",
+              "text": "This a major achievement."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r1",
+              "text": "This is a major achievement."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r2",
+              "text": "This are a major achievement."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro2:r3",
+              "text": "This a major achievement."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прорыв происходит сейчас",
+        "uk": "Прорив відбувається зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Breakthrough — «прорыв»: важный шаг вперёд после трудностей. Команда прямо сейчас находит решение давней проблемы: We are making a breakthrough — «Мы совершаем прорыв». Для происходящего изменения используем are + making. У make перед ing убираем e.",
+        "uk": "Breakthrough — «прорив»: важливий крок уперед після труднощів. Команда саме зараз знаходить розв’язання давньої проблеми: We are making a breakthrough — «Ми здійснюємо прорив». Для зміни, що відбувається, використовуємо are + making. У make перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r1",
+              "text": "We are making a breakthrough."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r2",
+              "text": "We are makeing a breakthrough."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r3",
+              "text": "We making a breakthrough."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r1",
+              "text": "We are making a breakthrough."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r2",
+              "text": "We are makeing a breakthrough."
+            },
+            {
+              "responseId": "en:lesson-10:session-45:intro3:r3",
+              "text": "We making a breakthrough."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1daa699d310a4a5de02a696fb1c83964bc180bc775ac5c6ff6842dde9c523d75"
+}

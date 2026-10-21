@@ -27,6 +27,7 @@ import {
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
+import PlusLaunchSplashHost from './plus-splash/PlusLaunchSplashHost';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -412,4 +413,16 @@ const styles = StyleSheet.create({
   ghostText: { fontWeight: '700' },
 });
 
-export default memo(EntitlementExpiredHost);
+// зачем (владелец 21.10, №35 заставка Plus): оба окна — про состояние подписки, живут под одним арбитром и одними провайдерами.
+// Заставку Plus подключаем здесь, а не в app/_layout.tsx: в _layout.tsx сейчас чужие незакоммиченные правки. Когда файл освободится,
+// строку `<PlusLaunchSplashHost />` можно перенести в _layout рядом с этим хостом и убрать обёртку.
+function EntitlementExpiredHostWithPlusSplash() {
+  return (
+    <>
+      <EntitlementExpiredHost />
+      <PlusLaunchSplashHost />
+    </>
+  );
+}
+
+export default memo(EntitlementExpiredHostWithPlusSplash);

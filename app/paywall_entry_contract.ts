@@ -117,6 +117,9 @@ export const PAYWALL_SOURCE_VALUES = [
   // зачем (Ядро 11.10): тап по пушу «VIP заканчивается» (notification_tap_handler) — источника не было в списке,
   // и в стор-сборке окно Plus закрывалось само вместо показа.
   'notification_premium_expiry',
+  // зачем (владелец 21.10, №35): кнопка полноэкранной заставки Plus при запуске (PlusLaunchSplashHost) — свой source, чтобы воронка отличала её от остальных входов;
+  // без записи в списке rejectUnknown в стор-сборке молча закрыл бы пейвол
+  'plus_launch_splash',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];

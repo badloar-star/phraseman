@@ -51,8 +51,8 @@ const cache = new WeakMap<GlassTokens, GalleryFaceColors>();
 export function galleryFaceColors(g: GlassTokens): GalleryFaceColors {
   const hit = cache.get(g);
   if (hit) return hit;
-  const g1 = g.accentGradient[0] ?? g.accent;
-  const g2 = g.accentGradient[g.accentGradient.length - 1] ?? g.accent;
+  const g1 = g.accentGradient[0] ?? g.accent; // light-accent-ok: запасной вариант на случай пустого градиента темы; светлая плитка читает градиент акцента
+  const g2 = g.accentGradient[g.accentGradient.length - 1] ?? g.accent; // light-accent-ok: запасной вариант на случай пустого градиента темы; светлая плитка читает градиент акцента
   const base = g.deepBase;
   // тёмное оформление: белый на тёмной базе (макет); светлое: тёмный текст темы на светлой тоновой базе
   const ink = g.isLight ? g.text : g.mediaInk;

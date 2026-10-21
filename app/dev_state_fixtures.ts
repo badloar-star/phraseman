@@ -17,6 +17,7 @@ import { IS_STORE_RELEASE } from './config';
 import { devSeenResetKeys, parseDevSeenRequest, type DevSeenRequest } from './dev_seen_reset';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
+import { setDevPlusSplash } from './dev_plus_splash';
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
@@ -286,6 +287,8 @@ export type DevStateRequest = Readonly<{
   yearActivity?: 'demo' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
+  /** Заставка Plus при запуске (№35, dev_plus_splash.ts): trial / notrial / loading / failed — показать сразу в этом состоянии цены, мимо политики «раз в 14 дней» и без записи счётчика (только память); off — снять. */
+  plusSplash?: 'trial' | 'notrial' | 'loading' | 'failed' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
   animations?: 'on' | 'off';
   /** `robot_no_cloud=1`: тумблеры Уведомлений и Приватности меняют только экран — без сохранения и облака (только память). */
@@ -456,6 +459,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   }
   request.yearActivity = pick('yearActivity', ['demo', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
+  request.plusSplash = pick('plusSplash', ['trial', 'notrial', 'loading', 'failed', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
   request.guest = pick('guest', ['required'] as const);
@@ -998,6 +1002,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.overlays !== undefined) {
     // зачем (координатор 12.10): для кадров, где окна не нужны, гасим все очередные окна корня (память, без записи и без отметок «прочитано»)
     await step('overlays', request.overlays, async () => setDevOverlaysOff(request.overlays === 'off'));
+  }
+  if (request.plusSplash !== undefined) {
+    // зачем (координатор 21.10, «Сверка», №35): состояния цены заставки Plus без магазина; только память, счётчик показа не пишется
+    await step('plusSplash', request.plusSplash, async () => setDevPlusSplash(request.plusSplash === 'off' ? null : request.plusSplash ?? null));
   }
   if (request.animations !== undefined) {
     await step('animations', request.animations, async () => setDevAnimationsOff(request.animations === 'off'));

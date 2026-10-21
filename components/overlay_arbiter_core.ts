@@ -29,7 +29,8 @@ export type OverlayKey =
   | 'coinsMigration'
   | 'shardsEarned'
   | 'coachToast'
-  | 'actionToast';
+  | 'actionToast'
+  | 'plusSplash';
 
 export type WantsMap = Record<OverlayKey, boolean>;
 
@@ -86,6 +87,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'shardsEarned',
   'coachToast',
   'actionToast',
+  // plusSplash — заставка Plus при запуске (№35, владелец 21.10): предложение, а не системное окно, поэтому в хвосте очереди —
+  // любое другое окно запуска (обновление, итог недели, награды, «С возвращением», тосты) идёт раньше. Нативный <Modal> (NATIVE_MODAL_KEYS).
+  // Стоит перед coinsMigration: сторож порядка очереди (tests/ — контракт «мягкого апселла») держит coinsMigration последним.
+  'plusSplash',
   // coinsMigration — одноразовый информ-модал «Осколки → Монеты» (без награды по тапу,
   // закрывает юзер): дожидается всех наград/тостов.
   'coinsMigration',
@@ -153,6 +158,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'compassBriefing',
   'reviewPrompt',
   'coinsMigration',
+  'plusSplash',
 ]);
 
 /** Рендерится ли ключ нативным <Modal> (нужен ли зазор при передаче слота). */
@@ -211,6 +217,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   coachToast: false,
   actionToast: false,
   coinsMigration: false,
+  plusSplash: false,
 };
 
 export function resolveNextOverlay(

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утро 22 октября</title>
+<style>
+/* зачем (координатор 22.10, ночь): одна страница, с которой владелец утром открывает всё, что надо решить.
+   Только относительные ссылки, без внешних запросов. Обе темы: системная + переключатель. Обводок контейнеров нет. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+:root { --bg: #F3F3F7; --card: #FFFFFF; --tx: #15161B; --sec: #575862; --acc: #4F46C8; --warn: #A6460F; --warn-bg: #FCE9DC; --ok: #1F7A4F; --ok-bg: #DDF2E6;
+  --cell-l: #ECECF1; --cell-d: #12141B; --sh: 0 10px 28px -16px rgba(30, 30, 60, .35); color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #08090C; --card: #15161C; --tx: #F2F2F5; --sec: #A9AAB4; --acc: #B9B4FF;
+  --warn: #FFB48A; --warn-bg: #3A2214; --ok: #7FDDA9; --ok-bg: #12301F; --cell-l: #E6E6EC; --cell-d: #0B0C10; --sh: 0 12px 30px -16px rgba(0, 0, 0, .8); color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #08090C; --card: #15161C; --tx: #F2F2F5; --sec: #A9AAB4; --acc: #B9B4FF;
+  --warn: #FFB48A; --warn-bg: #3A2214; --ok: #7FDDA9; --ok-bg: #12301F; --cell-l: #E6E6EC; --cell-d: #0B0C10; --sh: 0 12px 30px -16px rgba(0, 0, 0, .8); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--tx); font: 400 16px/1.5 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px 16px 80px; }
+.top { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: clamp(28px, 5vw, 40px); line-height: 1.12; letter-spacing: -.02em; text-wrap: balance; flex: 1 1 320px; }
+.lead { margin: 10px 0 0; color: var(--sec); max-width: 62ch; }
+.theme { border: 0; cursor: pointer; padding: 10px 16px; border-radius: 999px; background: var(--card); color: var(--tx); font: 700 14px 'Inter', system-ui, sans-serif; box-shadow: var(--sh); }
+.theme:active { transform: scale(.97); }
+h2 { margin: 44px 0 14px; font-size: 22px; letter-spacing: -.01em; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.tile { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 18px 44px 18px 18px; border-radius: 22px; background: var(--card); box-shadow: var(--sh);
+  color: inherit; text-decoration: none; transition: transform .16s cubic-bezier(.23, 1, .32, 1); }
+.tile:hover { transform: translateY(-2px); }
+.tile:active { transform: scale(.98); }
+.tile:focus-visible, .theme:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+.tile .t { font-size: 18px; font-weight: 700; line-height: 1.25; }
+.tile .s { color: var(--sec); font-size: 14.5px; }
+.tile .d { margin-top: 4px; color: var(--acc); font-weight: 700; font-size: 14.5px; }
+.tile .go { position: absolute; right: 18px; top: 18px; color: var(--sec); font-size: 18px; }
+.gal-note { color: var(--sec); margin: -4px 0 16px; max-width: 70ch; }
+.gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.art { margin: 0; padding: 10px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.cell { aspect-ratio: 1; border-radius: 12px; display: grid; place-items: center; overflow: hidden; position: relative; }
+.cell.light { background: var(--cell-l); }
+.cell.dark { background: var(--cell-d); }
+/* рамка 8 %: где предмет выходит за неё, поля тесные */
+.cell::after { content: ''; position: absolute; inset: 8%; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(255, 90, 60, .55); pointer-events: none; opacity: 0; }
+.tight .cell::after { opacity: 1; }
+.cell img { width: 100%; height: 100%; object-fit: contain; display: block; }
+figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 10px 4px 2px; }
+figcaption b { font-size: 14.5px; flex-basis: 100%; }
+.fn { color: var(--sec); font-size: 12.5px; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+.badge { font-size: 12.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--warn-bg); color: var(--warn); }
+.badge.ok { background: var(--ok-bg); color: var(--ok); }
+@media (prefers-reduced-motion: reduce) { .tile, .theme { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Утро 22 октября: что посмотреть и решить</h1>
+    <button class="theme" type="button" id="theme">Светлая / тёмная</button>
+  </div>
+  <p class="lead">Пять страниц с решениями и все 36 картинок «Сцены». Выкладок ночью не было; подарок через сайт и политика ждут вашего «да» (вопросы координатора).</p>
+  <h2>Что решить</h2>
+  <div class="tiles"><a class="tile" href="home-scene-states.html"><span class="t">Главная · состояния героя</span><span class="s">Тёмные темы и настоящие картинки «Сцены»: всё ли читается и не сливается?</span><span class="d">Решить: принять героев Главной</span><span class="go" aria-hidden="true">→</span></a><a class="tile" href="peak-scene-concepts.html"><span class="t">Пик · язык «Сцены»</span><span class="s">Цвета теперь из каждой из 23 тем, в тёмном сцена и панель не сливаются.</span><span class="d">Решить: выбрать A, B или C</span><span class="go" aria-hidden="true">→</span></a><a class="tile" href="today-scene-concepts.html"><span class="t">«Сегодня» · язык «Сцены»</span><span class="s">Тот же приём для тёмного оформления, переключатель всех тем.</span><span class="d">Решить: выбрать A, B или C</span><span class="go" aria-hidden="true">→</span></a><a class="tile" href="dialogs-scene-concepts.html"><span class="t">Диалоги · «Сцена»</span><span class="s">Выбирается диалог, цвета из темы, проверка на 360 px.</span><span class="d">Решить: принять экран входа и диалога</span><span class="go" aria-hidden="true">→</span></a><a class="tile" href="dialogs-scene-states.html"><span class="t">Диалоги · состояния героя</span><span class="s">8 состояний по приоритету, таблица правил, тон сцены в тёмном.</span><span class="d">Решить: порядок состояний и предметы-герои</span><span class="go" aria-hidden="true">→</span></a></div>
+  <h2>Картинки «Сцены» · 18 пар</h2>
+  <p class="gal-note">Слева light, справа dark. Обрезанных нет. У 11 пар предмет нарисован впритык — красная рамка показывает 8 % от края; решение координатора — отступ даёт вёрстка, перерисовка не нужна. Все 36 файлов уже лежат в приложении, но пока не подключены.</p>
+  <div class="gal"><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_all_done.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_all_done.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · всё пройдено</b><span class="fn">home_scene_all_done.webp</span><span class="badge">поля 7.9 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_continue.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_continue.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · продолжить</b><span class="fn">home_scene_continue.webp</span><span class="badge">поля 2.5 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_day_done.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_day_done.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · день выполнен</b><span class="fn">home_scene_day_done.webp</span><span class="badge">поля 5.4 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_exam_ready.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_exam_ready.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · экзамен ждёт</b><span class="fn">home_scene_exam_ready.webp</span><span class="badge">поля 6.5 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_newbie.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_newbie.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · новичок</b><span class="fn">home_scene_newbie.webp</span><span class="badge">поля 3.9 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_no_energy.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_no_energy.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · 0 энергии</b><span class="fn">home_scene_no_energy.webp</span><span class="badge">поля 7.1 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_offline.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_offline.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · нет сети</b><span class="fn">home_scene_offline.webp</span><span class="badge">поля 3.5 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_streak_lost.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_streak_lost.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · серия прервалась</b><span class="fn">home_scene_streak_lost.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_streak_risk.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_streak_risk.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · серия под угрозой</b><span class="fn">home_scene_streak_risk.webp</span><span class="badge">поля 4.7 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/home_scene_welcome_back.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/home_scene_welcome_back.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Главная · с возвращением</b><span class="fn">home_scene_welcome_back.webp</span><span class="badge">поля 5.7 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_all_done.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_all_done.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · все пройдены</b><span class="fn">dialogs_scene_all_done.webp</span><span class="badge">поля 6.9 %</span></figcaption></figure><figure class="art tight"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_consent.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_consent.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · согласие</b><span class="fn">dialogs_scene_consent.webp</span><span class="badge">поля 7.3 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_day_done.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_day_done.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · сегодня пройден</b><span class="fn">dialogs_scene_day_done.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_first.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_first.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · первый</b><span class="fn">dialogs_scene_first.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_limit.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_limit.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · лимит Free</b><span class="fn">dialogs_scene_limit.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_low.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_low.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · мало ответов</b><span class="fn">dialogs_scene_low.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_next.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_next.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · следующий</b><span class="fn">dialogs_scene_next.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure><figure class="art"><div class="pair"><div class="cell light"><img src="assets/v2art/light/dialogs_scene_offline.webp" alt="" loading="lazy" width="512" height="512"></div><div class="cell dark"><img src="assets/v2art/dark/dialogs_scene_offline.webp" alt="" loading="lazy" width="512" height="512"></div></div><figcaption><b>Диалоги · нет сети</b><span class="fn">dialogs_scene_offline.webp</span><span class="badge ok">поля ≥ 8 %</span></figcaption></figure></div>
+</div>
+<script>
+  /* переключатель темы: системная по умолчанию, выбор живёт только на этой странице */
+  (function () {
+    var root = document.documentElement;
+    document.getElementById('theme').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', dark ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

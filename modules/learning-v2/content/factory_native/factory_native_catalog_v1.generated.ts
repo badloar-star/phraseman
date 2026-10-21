@@ -5495,4 +5495,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: when and while in past stories","uk":"review: when and while in past stories"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 14","uk":"Англійська · Урок 14"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 1,
+    sourceFingerprint: "bede86cb607ad762d2dd775a8df897c95467a0031e8181a0b0cc614e127505b7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"be going to + base verb: an intention already decided","uk":"be going to + base verb: an intention already decided"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 2,
+    sourceFingerprint: "920023ef62645eaf75df44a9a6ed71adea67a85bd070fd017e20bf3f9ad4369c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: going to for decided intentions","uk":"review: going to for decided intentions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 3,
+    sourceFingerprint: "ca0d72e36762878c214c372265ffeab4fb0e0de43a2715a33aa9d174b2678ddc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: going to for decided intentions","uk":"review: going to for decided intentions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 4,
+    sourceFingerprint: "781ab8341589d6ac4c86ffe601942016f1203e0609ffe480f0b9e5567792da77",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: going to for decided intentions","uk":"review: going to for decided intentions"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
 ]);

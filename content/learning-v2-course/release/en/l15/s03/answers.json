@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-03:word:repot",
+    "correctText": "repot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i01",
+    "correctText": "I am going to repot this plant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i02",
+    "correctText": "You are going to repot this plant.",
+    "correctResponseId": "en:lesson-15:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:word:fertilise",
+    "correctText": "fertilise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i04",
+    "correctText": "They are going to fertilise the soil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i05",
+    "correctText": "You are going to fertilise the soil.",
+    "correctResponseId": "en:lesson-15:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:word:mulch",
+    "correctText": "mulch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i07",
+    "correctText": "She is going to mulch the flower bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i08",
+    "correctText": "You are going to mulch the flower bed.",
+    "correctResponseId": "en:lesson-15:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:word:compost",
+    "correctText": "compost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i10",
+    "correctText": "We are going to compost the leaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i11",
+    "correctText": "You are going to compost the leaves.",
+    "correctResponseId": "en:lesson-15:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i13",
+    "correctText": "en:lesson-15:session-03:i13:p1=repot\nen:lesson-15:session-03:i13:p2=fertilise\nen:lesson-15:session-03:i13:p3=mulch\nen:lesson-15:session-03:i13:p4=compost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i14",
+    "correctText": "I am going to work in the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i15",
+    "correctText": "She is going to water the plants.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i16",
+    "correctText": "She is going to repot this plant tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-03:i17",
+    "correctText": "I am going to fertilise the soil tomorrow.",
+    "correctResponseId": null
+  }
+]

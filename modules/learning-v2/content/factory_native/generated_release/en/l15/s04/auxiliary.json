@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-04:intro1:r2": {
+          "ru": "После going нужна to.",
+          "uk": "Після going потрібна to."
+        },
+        "en:lesson-15:session-04:intro1:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-04:intro2:r2": {
+          "ru": "Paint tray — лоток для краски.",
+          "uk": "Paint tray — лоток для фарби."
+        },
+        "en:lesson-15:session-04:intro2:r3": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-04:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-04:intro3:r3": {
+          "ru": "После going to нужна apply.",
+          "uk": "Після going to потрібна apply."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "633273f882c4fa79ea7fe50031afc5785f943f5e46b8e261a55c2bb792d2148c"
+}

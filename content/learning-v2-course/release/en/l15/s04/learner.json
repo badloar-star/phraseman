@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-04:word:paint-roller",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — paint roller",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:word:paint-roller:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — paint roller",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:word:paint-roller:audio",
+          "transcript": "paint roller"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:word:paint-roller:r1",
+            "targetText": "paint roller",
+            "meaningByLocale": {
+              "ru": "малярный валик.",
+              "uk": "малярний валик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paint roller",
+          "definitionByLocale": {
+            "ru": "малярный валик.",
+            "uk": "малярний валик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я собираюсь пользоваться малярным валиком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я собираюсь пользоваться малярным валиком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to use a paint roller.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я собираюсь пользоваться малярным валиком",
+          "uk": "Скажіть: Я збираюся користуватися малярним валиком"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "use",
+          "a",
+          "paint",
+          "roller"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i02:r1",
+          "text": "You are going to use a paint roller."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i02:r2",
+          "text": "I am going to use a paint roller."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i02:r3",
+          "text": "They are going to use a paint roller."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i02:audio",
+          "transcript": "You are going to use a paint roller."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:i02:r1",
+            "targetText": "You are going to use a paint roller.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i02:r2",
+            "targetText": "I am going to use a paint roller.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i02:r3",
+            "targetText": "They are going to use a paint roller.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to use a paint roller.",
+              "uk": "У записі звучить You are going to use a paint roller."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to use a paint roller.",
+              "uk": "У записі звучить You are going to use a paint roller."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ going to use a paint roller.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-04:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:word:paint-tray",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — paint tray",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:word:paint-tray:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — paint tray",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:word:paint-tray:audio",
+          "transcript": "paint tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:word:paint-tray:r1",
+            "targetText": "paint tray",
+            "meaningByLocale": {
+              "ru": "лоток для краски.",
+              "uk": "лоток для фарби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paint tray",
+          "definitionByLocale": {
+            "ru": "лоток для краски.",
+            "uk": "лоток для фарби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они собираются вымыть лоток для краски",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они собираются вымыть лоток для краски",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are going to clean the paint tray.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они собираются вымыть лоток для краски",
+          "uk": "Скажіть: Вони збираються вимити лоток для фарби"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "clean",
+          "the",
+          "paint",
+          "tray"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i05:r1",
+          "text": "You are going to clean the paint tray."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i05:r2",
+          "text": "They are going to clean the paint tray."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i05:r3",
+          "text": "She is going to clean the paint tray."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i05:audio",
+          "transcript": "You are going to clean the paint tray."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:i05:r1",
+            "targetText": "You are going to clean the paint tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i05:r2",
+            "targetText": "They are going to clean the paint tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i05:r3",
+            "targetText": "She is going to clean the paint tray.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to clean the paint tray.",
+              "uk": "У записі звучить You are going to clean the paint tray."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to clean the paint tray.",
+              "uk": "У записі звучить You are going to clean the paint tray."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ going to clean the paint tray.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-04:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:word:dust-sheet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dust sheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:word:dust-sheet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dust sheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:word:dust-sheet:audio",
+          "transcript": "dust sheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:word:dust-sheet:r1",
+            "targetText": "dust sheet",
+            "meaningByLocale": {
+              "ru": "защитное полотнище для пола или мебели при ремонте.",
+              "uk": "захисне полотнище для підлоги або меблів під час ремонту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dust sheet",
+          "definitionByLocale": {
+            "ru": "защитное полотнище для пола или мебели при ремонте.",
+            "uk": "захисне полотнище для підлоги або меблів під час ремонту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она собирается купить защитное полотнище",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она собирается купить защитное полотнище",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to buy a dust sheet.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она собирается купить защитное полотнище",
+          "uk": "Скажіть: Вона збирається купити захисне полотнище"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "dust",
+          "sheet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i08:r1",
+          "text": "You are going to buy a dust sheet."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i08:r2",
+          "text": "She is going to buy a dust sheet."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i08:r3",
+          "text": "They are going to buy a dust sheet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i08:audio",
+          "transcript": "You are going to buy a dust sheet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:i08:r1",
+            "targetText": "You are going to buy a dust sheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i08:r2",
+            "targetText": "She is going to buy a dust sheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i08:r3",
+            "targetText": "They are going to buy a dust sheet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to buy a dust sheet.",
+              "uk": "У записі звучить You are going to buy a dust sheet."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to buy a dust sheet.",
+              "uk": "У записі звучить You are going to buy a dust sheet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ going to buy a dust sheet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-04:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:word:undercoat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undercoat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:word:undercoat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undercoat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:word:undercoat:audio",
+          "transcript": "undercoat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:word:undercoat:r1",
+            "targetText": "undercoat",
+            "meaningByLocale": {
+              "ru": "подготовительный слой краски под окончательным цветом.",
+              "uk": "підготовчий шар фарби під остаточним кольором."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undercoat",
+          "definitionByLocale": {
+            "ru": "подготовительный слой краски под окончательным цветом.",
+            "uk": "підготовчий шар фарби під остаточним кольором."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы собираемся нанести подготовительный слой краски",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы собираемся нанести подготовительный слой краски",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are going to apply an undercoat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы собираемся нанести подготовительный слой краски",
+          "uk": "Скажіть: Ми збираємося нанести підготовчий шар фарби"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "apply",
+          "an",
+          "undercoat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i11:r1",
+          "text": "You are going to apply an undercoat."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i11:r2",
+          "text": "We are going to apply an undercoat."
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i11:r3",
+          "text": "She is going to apply an undercoat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i11:audio",
+          "transcript": "You are going to apply an undercoat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-04:i11:r1",
+            "targetText": "You are going to apply an undercoat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i11:r2",
+            "targetText": "We are going to apply an undercoat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i11:r3",
+            "targetText": "She is going to apply an undercoat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to apply an undercoat.",
+              "uk": "У записі звучить You are going to apply an undercoat."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to apply an undercoat.",
+              "uk": "У записі звучить You are going to apply an undercoat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-04:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-04:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ going to apply an undercoat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-04:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-04:i13:p1",
+            "target": "paint roller",
+            "meaningByLocale": {
+              "ru": "малярный валик",
+              "uk": "малярний валик"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-04:i13:p2",
+            "target": "paint tray",
+            "meaningByLocale": {
+              "ru": "лоток для краски",
+              "uk": "лоток для фарби"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-04:i13:p3",
+            "target": "dust sheet",
+            "meaningByLocale": {
+              "ru": "защитное полотнище для пола или мебели при ремонте",
+              "uk": "захисне полотнище для підлоги або меблів під час ремонту"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-04:i13:p4",
+            "target": "undercoat",
+            "meaningByLocale": {
+              "ru": "подготовительный слой краски под окончательным цветом",
+              "uk": "підготовчий шар фарби під остаточним кольором"
+            }
+          }
+        ],
+        "leftColumn": [
+          "paint roller",
+          "paint tray",
+          "dust sheet",
+          "undercoat"
+        ],
+        "rightColumn": [
+          "малярный валик",
+          "лоток для краски",
+          "защитное полотнище для пола или мебели при ремонте",
+          "подготовительный слой краски под окончательным цветом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i14:audio",
+          "transcript": "I am going to paint the room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to paint the room.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "paint",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i15:audio",
+          "transcript": "She is going to buy some paint."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is going to buy some paint.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "buy",
+          "some",
+          "paint"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о плане: завтра она собирается пользоваться малярным валиком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите о плане: завтра она собирается пользоваться малярным валиком",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i16:audio",
+          "transcript": "She is going to use a paint roller tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is going to use a paint roller tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о плане: завтра я собираюсь вымыть лоток для краски",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите о плане: завтра я собираюсь вымыть лоток для краски",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-04:i17:audio",
+          "transcript": "I am going to clean the paint tray tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am going to clean the paint tray tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c6d72f4a8ee5c7e7ad67ef65d9a8b23a27649d57f1766f1f8b5ddf2ad17d63c9"
+}

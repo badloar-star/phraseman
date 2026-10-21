@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пересадить в другой горшок",
+        "uk": "Пересадити в інший горщик"
+      },
+      "bodyByLocale": {
+        "ru": "Repot — пересадить растение в другой горшок. I am going to repot this plant. — Я собираюсь пересадить это растение. Выберите намерение с начальной формой глагола.",
+        "uk": "Repot — пересадити рослину в інший горщик. I am going to repot this plant. — Я збираюся пересадити цю рослину. Виберіть намір із початковою формою дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r1",
+              "text": "I am going to repot this plant."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r2",
+              "text": "I am going to repotting this plant."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r3",
+              "text": "I are going to repot this plant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r1",
+              "text": "I am going to repot this plant."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r2",
+              "text": "I am going to repotting this plant."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro1:r3",
+              "text": "I are going to repot this plant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Удобрить и укрыть почву",
+        "uk": "Удобрити й укрити ґрунт"
+      },
+      "bodyByLocale": {
+        "ru": "Fertilise — удобрить; mulch — покрыть почву защитным слоем, например корой. She is going to mulch the flower bed. — Она собирается покрыть почву на клумбе мульчей. Выберите укрытие почвы.",
+        "uk": "Fertilise — удобрити; mulch — покрити ґрунт захисним шаром, наприклад корою. She is going to mulch the flower bed. — Вона збирається покрити ґрунт на клумбі мульчею. Виберіть укриття ґрунту."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r1",
+              "text": "She is going to mulch the flower bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r2",
+              "text": "She is going to fertilise the flower bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r3",
+              "text": "She are going to mulch the flower bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r1",
+              "text": "She is going to mulch the flower bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r2",
+              "text": "She is going to fertilise the flower bed."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro2:r3",
+              "text": "She are going to mulch the flower bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отправить в компост",
+        "uk": "Відправити в компост"
+      },
+      "bodyByLocale": {
+        "ru": "Compost — компостировать, отправить растительные остатки в компост. We are going to compost the leaves. — Мы собираемся отправить листья в компост. Выберите план.",
+        "uk": "Compost — компостувати, відправити рослинні рештки в компост. We are going to compost the leaves. — Ми збираємося відправити листя в компост. Виберіть план."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r1",
+              "text": "We are going to compost the leaves."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r2",
+              "text": "We is going to compost the leaves."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r3",
+              "text": "We are going to composted the leaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r1",
+              "text": "We are going to compost the leaves."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r2",
+              "text": "We is going to compost the leaves."
+            },
+            {
+              "responseId": "en:lesson-15:session-03:intro3:r3",
+              "text": "We are going to composted the leaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "922f8cb03543f6daa4c9e4098c4923f8e014871daa19cae3ad13fb2c4f59f3d9"
+}

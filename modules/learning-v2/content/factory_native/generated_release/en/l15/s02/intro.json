@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посыпать",
+        "uk": "Посипати"
+      },
+      "bodyByLocale": {
+        "ru": "Sprinkle — посыпать небольшим количеством чего-то. I am going to sprinkle sugar on the cake. — Я собираюсь посыпать пирог сахаром. После going to используем sprinkle.",
+        "uk": "Sprinkle — посипати невеликою кількістю чогось. I am going to sprinkle sugar on the cake. — Я збираюся посипати пиріг цукром. Після going to вживаємо sprinkle."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r1",
+              "text": "I am going to sprinkle sugar on the cake."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r2",
+              "text": "I am going to sprinkling sugar on the cake."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r3",
+              "text": "I is going to sprinkle sugar on the cake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r1",
+              "text": "I am going to sprinkle sugar on the cake."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r2",
+              "text": "I am going to sprinkling sugar on the cake."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro1:r3",
+              "text": "I is going to sprinkle sugar on the cake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Набрать ложкой и просеять",
+        "uk": "Набрати ложкою й просіяти"
+      },
+      "bodyByLocale": {
+        "ru": "Scoop — набрать ложкой или совком; sift — просеять через сито. She is going to sift the flour. — Она собирается просеять муку. Выберите просеять.",
+        "uk": "Scoop — набрати ложкою або совком; sift — просіяти крізь сито. She is going to sift the flour. — Вона збирається просіяти борошно. Виберіть просіяти."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r1",
+              "text": "She is going to sift the flour."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r2",
+              "text": "She is going to scoop the flour."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r3",
+              "text": "She are going to sift the flour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r1",
+              "text": "She is going to sift the flour."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r2",
+              "text": "She is going to scoop the flour."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro2:r3",
+              "text": "She are going to sift the flour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Месить тесто",
+        "uk": "Місити тісто"
+      },
+      "bodyByLocale": {
+        "ru": "Knead — месить тесто руками. We are going to knead the dough. — Мы собираемся месить тесто. Выберите правильную форму для плана.",
+        "uk": "Knead — місити тісто руками. We are going to knead the dough. — Ми збираємося місити тісто. Виберіть правильну форму для плану."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r1",
+              "text": "We are going to knead the dough."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r2",
+              "text": "We is going to knead the dough."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r3",
+              "text": "We are going to kneaded the dough."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r1",
+              "text": "We are going to knead the dough."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r2",
+              "text": "We is going to knead the dough."
+            },
+            {
+              "responseId": "en:lesson-15:session-02:intro3:r3",
+              "text": "We are going to kneaded the dough."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f5bc9f335acb7d06536b8c93b1ed1d1ab16aab9728999fd14ca7f8dbfeb98788"
+}

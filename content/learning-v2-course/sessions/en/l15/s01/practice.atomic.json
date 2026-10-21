@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-01",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-01:word:descale",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — descale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:descale:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — descale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:descale:audio",
+            "transcript": "descale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:descale:r1",
+              "targetText": "descale",
+              "meaningByLocale": {
+                "ru": "удалить накипь.",
+                "uk": "видалити накип."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "descale",
+            "definitionByLocale": {
+              "ru": "удалить накипь.",
+              "uk": "видалити накип."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я собираюсь удалить накипь в чайнике",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я собираюсь удалить накипь в чайнике",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to descale the kettle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь удалить накипь в чайнике",
+            "uk": "Скажіть: Я збираюся видалити накип у чайнику"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "descale",
+            "the",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i02:r1",
+            "text": "You are going to descale the kettle."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i02:r2",
+            "text": "I am going to descale the kettle."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i02:r3",
+            "text": "They are going to descale the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i02:audio",
+            "transcript": "You are going to descale the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i02:r1",
+              "targetText": "You are going to descale the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r2",
+              "targetText": "I am going to descale the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r3",
+              "targetText": "They are going to descale the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to descale the kettle.",
+                "uk": "У записі звучить You are going to descale the kettle."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to descale the kettle.",
+                "uk": "У записі звучить You are going to descale the kettle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to descale the kettle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:declutter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — declutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:declutter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — declutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:declutter:audio",
+            "transcript": "declutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:declutter:r1",
+              "targetText": "declutter",
+              "meaningByLocale": {
+                "ru": "разобрать вещи и убрать лишнее.",
+                "uk": "розібрати речі й прибрати зайве."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "declutter",
+            "definitionByLocale": {
+              "ru": "разобрать вещи и убрать лишнее.",
+              "uk": "розібрати речі й прибрати зайве."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они собираются разобрать вещи и убрать лишнее в комнате",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они собираются разобрать вещи и убрать лишнее в комнате",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to declutter the room.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются разобрать вещи и убрать лишнее в комнате",
+            "uk": "Скажіть: Вони збираються розібрати речі й прибрати зайве в кімнаті"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "declutter",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i05:r1",
+            "text": "You are going to declutter the room."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i05:r2",
+            "text": "They are going to declutter the room."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i05:r3",
+            "text": "She is going to declutter the room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i05:audio",
+            "transcript": "You are going to declutter the room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i05:r1",
+              "targetText": "You are going to declutter the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r2",
+              "targetText": "They are going to declutter the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r3",
+              "targetText": "She is going to declutter the room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to declutter the room.",
+                "uk": "У записі звучить You are going to declutter the room."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to declutter the room.",
+                "uk": "У записі звучить You are going to declutter the room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to declutter the room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:repaint",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — repaint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:repaint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — repaint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:repaint:audio",
+            "transcript": "repaint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:repaint:r1",
+              "targetText": "repaint",
+              "meaningByLocale": {
+                "ru": "покрасить заново.",
+                "uk": "пофарбувати заново."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repaint",
+            "definitionByLocale": {
+              "ru": "покрасить заново.",
+              "uk": "пофарбувати заново."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она собирается перекрасить стену",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она собирается перекрасить стену",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to repaint the wall.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается перекрасить стену",
+            "uk": "Скажіть: Вона збирається перефарбувати стіну"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "repaint",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i08:r1",
+            "text": "You are going to repaint the wall."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i08:r2",
+            "text": "She is going to repaint the wall."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i08:r3",
+            "text": "They are going to repaint the wall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i08:audio",
+            "transcript": "You are going to repaint the wall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i08:r1",
+              "targetText": "You are going to repaint the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r2",
+              "targetText": "She is going to repaint the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r3",
+              "targetText": "They are going to repaint the wall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to repaint the wall.",
+                "uk": "У записі звучить You are going to repaint the wall."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to repaint the wall.",
+                "uk": "У записі звучить You are going to repaint the wall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to repaint the wall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:alter",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — alter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:alter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — alter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:alter:audio",
+            "transcript": "alter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:alter:r1",
+              "targetText": "alter",
+              "meaningByLocale": {
+                "ru": "подогнать одежду по размеру, перешить.",
+                "uk": "підігнати одяг за розміром, перешити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "alter",
+            "definitionByLocale": {
+              "ru": "подогнать одежду по размеру, перешить.",
+              "uk": "підігнати одяг за розміром, перешити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы собираемся подогнать платье",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы собираемся подогнать платье",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to alter the dress.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся подогнать платье",
+            "uk": "Скажіть: Ми збираємося підігнати сукню"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "alter",
+            "the",
+            "dress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i11:r1",
+            "text": "You are going to alter the dress."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i11:r2",
+            "text": "We are going to alter the dress."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i11:r3",
+            "text": "She is going to alter the dress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i11:audio",
+            "transcript": "You are going to alter the dress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i11:r1",
+              "targetText": "You are going to alter the dress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r2",
+              "targetText": "We are going to alter the dress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r3",
+              "targetText": "She is going to alter the dress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to alter the dress.",
+                "uk": "У записі звучить You are going to alter the dress."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to alter the dress.",
+                "uk": "У записі звучить You are going to alter the dress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже принят. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже принят. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to alter the dress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже принят. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже принят. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-01:i13:p1",
+              "target": "descale",
+              "meaningByLocale": {
+                "ru": "удалить накипь",
+                "uk": "видалити накип"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p2",
+              "target": "declutter",
+              "meaningByLocale": {
+                "ru": "разобрать вещи и убрать лишнее",
+                "uk": "розібрати речі й прибрати зайве"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p3",
+              "target": "repaint",
+              "meaningByLocale": {
+                "ru": "покрасить заново",
+                "uk": "пофарбувати заново"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p4",
+              "target": "alter",
+              "meaningByLocale": {
+                "ru": "подогнать одежду по размеру, перешить",
+                "uk": "підігнати одяг за розміром, перешити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "descale",
+            "declutter",
+            "repaint",
+            "alter"
+          ],
+          "rightColumn": [
+            "удалить накипь",
+            "разобрать вещи и убрать лишнее",
+            "покрасить заново",
+            "подогнать одежду по размеру, перешить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i14:audio",
+            "transcript": "I am going to work at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to work at home.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "work",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i15:audio",
+            "transcript": "She is going to clean the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to clean the kitchen.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "clean",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите о плане: завтра я собираюсь перекрасить стену",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите о плане: завтра я собираюсь перекрасить стену",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i16:audio",
+            "transcript": "I am going to repaint the wall tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to repaint the wall tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите о плане: завтра она собирается подогнать платье",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите о плане: завтра она собирается подогнать платье",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i17:audio",
+            "transcript": "She is going to alter the dress tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to alter the dress tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-01:word:descale",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — descale",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:descale:audio"
+        ],
+        "accessibilityLabel": "Картка слова — descale",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:descale:audio",
+            "transcript": "descale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:descale:r1",
+              "targetText": "descale",
+              "meaningByLocale": {
+                "ru": "удалить накипь.",
+                "uk": "видалити накип."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "descale",
+            "definitionByLocale": {
+              "ru": "удалить накипь.",
+              "uk": "видалити накип."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я збираюся видалити накип у чайнику",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я збираюся видалити накип у чайнику",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to descale the kettle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собираюсь удалить накипь в чайнике",
+            "uk": "Скажіть: Я збираюся видалити накип у чайнику"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "descale",
+            "the",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i02:r1",
+            "text": "You are going to descale the kettle."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i02:r2",
+            "text": "I am going to descale the kettle."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i02:r3",
+            "text": "They are going to descale the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i02:audio",
+            "transcript": "You are going to descale the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i02:r1",
+              "targetText": "You are going to descale the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r2",
+              "targetText": "I am going to descale the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r3",
+              "targetText": "They are going to descale the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to descale the kettle.",
+                "uk": "У записі звучить You are going to descale the kettle."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to descale the kettle.",
+                "uk": "У записі звучить You are going to descale the kettle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ going to descale the kettle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:declutter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — declutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:declutter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — declutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:declutter:audio",
+            "transcript": "declutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:declutter:r1",
+              "targetText": "declutter",
+              "meaningByLocale": {
+                "ru": "разобрать вещи и убрать лишнее.",
+                "uk": "розібрати речі й прибрати зайве."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "declutter",
+            "definitionByLocale": {
+              "ru": "разобрать вещи и убрать лишнее.",
+              "uk": "розібрати речі й прибрати зайве."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони збираються розібрати речі й прибрати зайве в кімнаті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони збираються розібрати речі й прибрати зайве в кімнаті",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going to declutter the room.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они собираются разобрать вещи и убрать лишнее в комнате",
+            "uk": "Скажіть: Вони збираються розібрати речі й прибрати зайве в кімнаті"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "to",
+            "declutter",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i05:r1",
+            "text": "You are going to declutter the room."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i05:r2",
+            "text": "They are going to declutter the room."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i05:r3",
+            "text": "She is going to declutter the room."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i05:audio",
+            "transcript": "You are going to declutter the room."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i05:r1",
+              "targetText": "You are going to declutter the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r2",
+              "targetText": "They are going to declutter the room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r3",
+              "targetText": "She is going to declutter the room.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to declutter the room.",
+                "uk": "У записі звучить You are going to declutter the room."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to declutter the room.",
+                "uk": "У записі звучить You are going to declutter the room."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ going to declutter the room.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:repaint",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — repaint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:repaint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — repaint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:repaint:audio",
+            "transcript": "repaint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:repaint:r1",
+              "targetText": "repaint",
+              "meaningByLocale": {
+                "ru": "покрасить заново.",
+                "uk": "пофарбувати заново."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repaint",
+            "definitionByLocale": {
+              "ru": "покрасить заново.",
+              "uk": "пофарбувати заново."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона збирається перефарбувати стіну",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона збирається перефарбувати стіну",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to repaint the wall.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она собирается перекрасить стену",
+            "uk": "Скажіть: Вона збирається перефарбувати стіну"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "repaint",
+            "the",
+            "wall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i08:r1",
+            "text": "You are going to repaint the wall."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i08:r2",
+            "text": "She is going to repaint the wall."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i08:r3",
+            "text": "They are going to repaint the wall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i08:audio",
+            "transcript": "You are going to repaint the wall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i08:r1",
+              "targetText": "You are going to repaint the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r2",
+              "targetText": "She is going to repaint the wall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r3",
+              "targetText": "They are going to repaint the wall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to repaint the wall.",
+                "uk": "У записі звучить You are going to repaint the wall."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to repaint the wall.",
+                "uk": "У записі звучить You are going to repaint the wall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to repaint the wall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:word:alter",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — alter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:word:alter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — alter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:word:alter:audio",
+            "transcript": "alter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:word:alter:r1",
+              "targetText": "alter",
+              "meaningByLocale": {
+                "ru": "подогнать одежду по размеру, перешить.",
+                "uk": "підігнати одяг за розміром, перешити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "alter",
+            "definitionByLocale": {
+              "ru": "подогнать одежду по размеру, перешить.",
+              "uk": "підігнати одяг за розміром, перешити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми збираємося підігнати сукню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми збираємося підігнати сукню",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going to alter the dress.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы собираемся подогнать платье",
+            "uk": "Скажіть: Ми збираємося підігнати сукню"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "alter",
+            "the",
+            "dress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i11:r1",
+            "text": "You are going to alter the dress."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i11:r2",
+            "text": "We are going to alter the dress."
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i11:r3",
+            "text": "She is going to alter the dress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i11:audio",
+            "transcript": "You are going to alter the dress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-01:i11:r1",
+              "targetText": "You are going to alter the dress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r2",
+              "targetText": "We are going to alter the dress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r3",
+              "targetText": "She is going to alter the dress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to alter the dress.",
+                "uk": "У записі звучить You are going to alter the dress."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You are going to alter the dress.",
+                "uk": "У записі звучить You are going to alter the dress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "План уже ухвалено. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-01:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-01:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "План уже принят. Выберите am, is или are",
+            "uk": "План уже ухвалено. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ going to alter the dress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-01:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-01:i13:p1",
+              "target": "descale",
+              "meaningByLocale": {
+                "ru": "удалить накипь",
+                "uk": "видалити накип"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p2",
+              "target": "declutter",
+              "meaningByLocale": {
+                "ru": "разобрать вещи и убрать лишнее",
+                "uk": "розібрати речі й прибрати зайве"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p3",
+              "target": "repaint",
+              "meaningByLocale": {
+                "ru": "покрасить заново",
+                "uk": "пофарбувати заново"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-01:i13:p4",
+              "target": "alter",
+              "meaningByLocale": {
+                "ru": "подогнать одежду по размеру, перешить",
+                "uk": "підігнати одяг за розміром, перешити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "descale",
+            "declutter",
+            "repaint",
+            "alter"
+          ],
+          "rightColumn": [
+            "видалити накип",
+            "розібрати речі й прибрати зайве",
+            "пофарбувати заново",
+            "підігнати одяг за розміром, перешити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i14:audio",
+            "transcript": "I am going to work at home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to work at home.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "work",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i15:audio",
+            "transcript": "She is going to clean the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to clean the kitchen.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "clean",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть про план: завтра я збираюся перефарбувати стіну",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть про план: завтра я збираюся перефарбувати стіну",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i16:audio",
+            "transcript": "I am going to repaint the wall tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to repaint the wall tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть про план: завтра вона збирається підігнати сукню",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть про план: завтра вона збирається підігнати сукню",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-01:i17:audio",
+            "transcript": "She is going to alter the dress tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to alter the dress tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-01:word:descale",
+      "correctText": "descale",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i01",
+      "correctText": "I am going to descale the kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i02",
+      "correctText": "You are going to descale the kettle.",
+      "correctResponseId": "en:lesson-15:session-01:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-01:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:word:declutter",
+      "correctText": "declutter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i04",
+      "correctText": "They are going to declutter the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i05",
+      "correctText": "You are going to declutter the room.",
+      "correctResponseId": "en:lesson-15:session-01:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-01:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:word:repaint",
+      "correctText": "repaint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i07",
+      "correctText": "She is going to repaint the wall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i08",
+      "correctText": "You are going to repaint the wall.",
+      "correctResponseId": "en:lesson-15:session-01:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-01:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:word:alter",
+      "correctText": "alter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i10",
+      "correctText": "We are going to alter the dress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i11",
+      "correctText": "You are going to alter the dress.",
+      "correctResponseId": "en:lesson-15:session-01:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-01:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i14",
+      "correctText": "I am going to work at home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i15",
+      "correctText": "She is going to clean the kitchen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i16",
+      "correctText": "I am going to repaint the wall tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:i17",
+      "correctText": "She is going to alter the dress tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

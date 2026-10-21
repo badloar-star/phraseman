@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "be going to + base verb: an intention already decided",
+    "uk": "be going to + base verb: an intention already decided"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я собираюсь",
+        "uk": "Я збираюся"
+      },
+      "bodyByLocale": {
+        "ru": "Descale — удалить накипь. I am going to descale the kettle. — Я собираюсь удалить накипь в чайнике. План уже принят: am going to + глагол в начальной форме. Это намерение, а не действие прямо сейчас.",
+        "uk": "Descale — видалити накип. I am going to descale the kettle. — Я збираюся видалити накип у чайнику. План уже ухвалено: am going to + дієслово в початковій формі. Це намір, а не дія просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r1",
+              "text": "I am going to descale the kettle."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r2",
+              "text": "I am going descale the kettle."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r3",
+              "text": "I am going to descaling the kettle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r1",
+              "text": "I am going to descale the kettle."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r2",
+              "text": "I am going descale the kettle."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro1:r3",
+              "text": "I am going to descaling the kettle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "План для неё",
+        "uk": "План для неї"
+      },
+      "bodyByLocale": {
+        "ru": "Declutter — разобрать вещи и убрать лишнее; repaint — покрасить заново. She is going to repaint the wall. — Она собирается перекрасить стену. С she нужна is; после going to — repaint.",
+        "uk": "Declutter — розібрати речі й прибрати зайве; repaint — пофарбувати заново. She is going to repaint the wall. — Вона збирається перефарбувати стіну. З she потрібна is; після going to — repaint."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r1",
+              "text": "She is going to repaint the wall."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r2",
+              "text": "She are going to repaint the wall."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r3",
+              "text": "She is going to repaints the wall."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r1",
+              "text": "She is going to repaint the wall."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r2",
+              "text": "She are going to repaint the wall."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro2:r3",
+              "text": "She is going to repaints the wall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мы собираемся",
+        "uk": "Ми збираємося"
+      },
+      "bodyByLocale": {
+        "ru": "Alter — подогнать одежду по размеру, перешить. We are going to alter the dress. — Мы собираемся подогнать платье. С we нужна are. Выберите уже принятое намерение.",
+        "uk": "Alter — підігнати одяг за розміром, перешити. We are going to alter the dress. — Ми збираємося підігнати сукню. З we потрібна are. Виберіть уже ухвалений намір."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r1",
+              "text": "We are going to alter the dress."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r2",
+              "text": "We is going to alter the dress."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r3",
+              "text": "We are going to altered the dress."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r1",
+              "text": "We are going to alter the dress."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r2",
+              "text": "We is going to alter the dress."
+            },
+            {
+              "responseId": "en:lesson-15:session-01:intro3:r3",
+              "text": "We are going to altered the dress."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f7a659bfe220d175a824c8ea1fe2985bb36ac3caafab98740f0b7e8c2ad0a38b"
+}

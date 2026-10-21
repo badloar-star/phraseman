@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-02:intro1:r2": {
+          "ru": "Нужна начальная форма sprinkle.",
+          "uk": "Потрібна початкова форма sprinkle."
+        },
+        "en:lesson-15:session-02:intro1:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-02:intro2:r2": {
+          "ru": "Scoop — набрать ложкой или совком, не просеять.",
+          "uk": "Scoop — набрати ложкою або совком, не просіяти."
+        },
+        "en:lesson-15:session-02:intro2:r3": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-02:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-02:intro3:r3": {
+          "ru": "После going to нужна knead.",
+          "uk": "Після going to потрібна knead."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "370fd27d2a7ba02b2bb080ca9b4becd32c27f1970a122548d7d5995dd408a5d2"
+}

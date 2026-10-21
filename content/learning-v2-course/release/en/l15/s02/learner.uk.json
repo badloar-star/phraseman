@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-02:word:sprinkle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sprinkle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:word:sprinkle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sprinkle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:word:sprinkle:audio",
+          "transcript": "sprinkle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:word:sprinkle:r1",
+            "targetText": "sprinkle",
+            "meaningByLocale": {
+              "ru": "посыпать небольшим количеством чего-то.",
+              "uk": "посипати невеликою кількістю чогось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sprinkle",
+          "definitionByLocale": {
+            "ru": "посыпать небольшим количеством чего-то.",
+            "uk": "посипати невеликою кількістю чогось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я збираюся посипати пиріг цукром",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я збираюся посипати пиріг цукром",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to sprinkle sugar on the cake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я собираюсь посыпать пирог сахаром",
+          "uk": "Скажіть: Я збираюся посипати пиріг цукром"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "sprinkle",
+          "sugar",
+          "on",
+          "the",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i02:r1",
+          "text": "You are going to sprinkle sugar on the cake."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i02:r2",
+          "text": "I am going to sprinkle sugar on the cake."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i02:r3",
+          "text": "They are going to sprinkle sugar on the cake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i02:audio",
+          "transcript": "You are going to sprinkle sugar on the cake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:i02:r1",
+            "targetText": "You are going to sprinkle sugar on the cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i02:r2",
+            "targetText": "I am going to sprinkle sugar on the cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i02:r3",
+            "targetText": "They are going to sprinkle sugar on the cake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sprinkle sugar on the cake.",
+              "uk": "У записі звучить You are going to sprinkle sugar on the cake."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sprinkle sugar on the cake.",
+              "uk": "У записі звучить You are going to sprinkle sugar on the cake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ going to sprinkle sugar on the cake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-02:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:word:scoop",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scoop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:word:scoop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scoop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:word:scoop:audio",
+          "transcript": "scoop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:word:scoop:r1",
+            "targetText": "scoop",
+            "meaningByLocale": {
+              "ru": "набрать ложкой или совком.",
+              "uk": "набрати ложкою або совком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scoop",
+          "definitionByLocale": {
+            "ru": "набрать ложкой или совком.",
+            "uk": "набрати ложкою або совком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони збираються розкласти морозиво ложкою в миски",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони збираються розкласти морозиво ложкою в миски",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are going to scoop ice cream into bowls.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они собираются разложить мороженое ложкой по мискам",
+          "uk": "Скажіть: Вони збираються розкласти морозиво ложкою в миски"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "scoop",
+          "ice",
+          "cream",
+          "into",
+          "bowls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i05:r1",
+          "text": "You are going to scoop ice cream into bowls."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i05:r2",
+          "text": "They are going to scoop ice cream into bowls."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i05:r3",
+          "text": "She is going to scoop ice cream into bowls."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i05:audio",
+          "transcript": "You are going to scoop ice cream into bowls."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:i05:r1",
+            "targetText": "You are going to scoop ice cream into bowls.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i05:r2",
+            "targetText": "They are going to scoop ice cream into bowls.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i05:r3",
+            "targetText": "She is going to scoop ice cream into bowls.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to scoop ice cream into bowls.",
+              "uk": "У записі звучить You are going to scoop ice cream into bowls."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to scoop ice cream into bowls.",
+              "uk": "У записі звучить You are going to scoop ice cream into bowls."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ going to scoop ice cream into bowls.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-02:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:word:sift",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:word:sift:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:word:sift:audio",
+          "transcript": "sift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:word:sift:r1",
+            "targetText": "sift",
+            "meaningByLocale": {
+              "ru": "просеять через сито.",
+              "uk": "просіяти крізь сито."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sift",
+          "definitionByLocale": {
+            "ru": "просеять через сито.",
+            "uk": "просіяти крізь сито."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона збирається просіяти борошно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона збирається просіяти борошно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to sift the flour.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она собирается просеять муку",
+          "uk": "Скажіть: Вона збирається просіяти борошно"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "sift",
+          "the",
+          "flour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i08:r1",
+          "text": "You are going to sift the flour."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i08:r2",
+          "text": "She is going to sift the flour."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i08:r3",
+          "text": "They are going to sift the flour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i08:audio",
+          "transcript": "You are going to sift the flour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:i08:r1",
+            "targetText": "You are going to sift the flour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i08:r2",
+            "targetText": "She is going to sift the flour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i08:r3",
+            "targetText": "They are going to sift the flour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sift the flour.",
+              "uk": "У записі звучить You are going to sift the flour."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to sift the flour.",
+              "uk": "У записі звучить You are going to sift the flour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ going to sift the flour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-02:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:word:knead",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — knead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:word:knead:audio"
+      ],
+      "accessibilityLabel": "Картка слова — knead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:word:knead:audio",
+          "transcript": "knead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:word:knead:r1",
+            "targetText": "knead",
+            "meaningByLocale": {
+              "ru": "месить тесто руками.",
+              "uk": "місити тісто руками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knead",
+          "definitionByLocale": {
+            "ru": "месить тесто руками.",
+            "uk": "місити тісто руками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми збираємося місити тісто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми збираємося місити тісто",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are going to knead the dough.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы собираемся месить тесто",
+          "uk": "Скажіть: Ми збираємося місити тісто"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "knead",
+          "the",
+          "dough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i11:r1",
+          "text": "You are going to knead the dough."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i11:r2",
+          "text": "We are going to knead the dough."
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i11:r3",
+          "text": "She is going to knead the dough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i11:audio",
+          "transcript": "You are going to knead the dough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-02:i11:r1",
+            "targetText": "You are going to knead the dough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i11:r2",
+            "targetText": "We are going to knead the dough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i11:r3",
+            "targetText": "She is going to knead the dough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to knead the dough.",
+              "uk": "У записі звучить You are going to knead the dough."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to knead the dough.",
+              "uk": "У записі звучить You are going to knead the dough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже ухвалено. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-02:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-02:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже ухвалено. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ going to knead the dough.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-02:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "План уже ухвалено. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-02:i13:p1",
+            "target": "sprinkle",
+            "meaningByLocale": {
+              "ru": "посыпать небольшим количеством чего-то",
+              "uk": "посипати невеликою кількістю чогось"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-02:i13:p2",
+            "target": "scoop",
+            "meaningByLocale": {
+              "ru": "набрать ложкой или совком",
+              "uk": "набрати ложкою або совком"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-02:i13:p3",
+            "target": "sift",
+            "meaningByLocale": {
+              "ru": "просеять через сито",
+              "uk": "просіяти крізь сито"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-02:i13:p4",
+            "target": "knead",
+            "meaningByLocale": {
+              "ru": "месить тесто руками",
+              "uk": "місити тісто руками"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sprinkle",
+          "scoop",
+          "sift",
+          "knead"
+        ],
+        "rightColumn": [
+          "посипати невеликою кількістю чогось",
+          "набрати ложкою або совком",
+          "просіяти крізь сито",
+          "місити тісто руками"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i14:audio",
+          "transcript": "I am going to make a cake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to make a cake.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "make",
+          "a",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i15:audio",
+          "transcript": "She is going to prepare lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is going to prepare lunch.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "prepare",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про план: завтра я збираюся просіяти борошно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть про план: завтра я збираюся просіяти борошно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i16:audio",
+          "transcript": "I am going to sift the flour tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am going to sift the flour tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про план: завтра вона збирається місити тісто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть про план: завтра вона збирається місити тісто",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-02:i17:audio",
+          "transcript": "She is going to knead the dough tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is going to knead the dough tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "74a23afd112dfe6722ca5bb8f55ce3f77ead0859a91247c7bdfccd4b1a00046e"
+}

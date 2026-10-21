@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-03:intro1:r2": {
+          "ru": "После going to нужна repot.",
+          "uk": "Після going to потрібна repot."
+        },
+        "en:lesson-15:session-03:intro1:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-03:intro2:r2": {
+          "ru": "Fertilise — удобрить, а не укрыть почву.",
+          "uk": "Fertilise — удобрити, а не вкрити ґрунт."
+        },
+        "en:lesson-15:session-03:intro2:r3": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-03:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-03:intro3:r3": {
+          "ru": "После going to нужна compost.",
+          "uk": "Після going to потрібна compost."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "515bc9bfbda4243f8be5d46b7bde568eeb4f1a69b0d5141a654be107c0ae2f77"
+}

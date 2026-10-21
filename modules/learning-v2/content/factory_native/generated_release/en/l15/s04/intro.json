@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to for decided intentions",
+    "uk": "review: going to for decided intentions"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Малярный валик",
+        "uk": "Малярний валик"
+      },
+      "bodyByLocale": {
+        "ru": "Paint roller — малярный валик. I am going to use a paint roller. — Я собираюсь пользоваться малярным валиком. Выберите план с going to.",
+        "uk": "Paint roller — малярний валик. I am going to use a paint roller. — Я збираюся користуватися малярним валиком. Виберіть план із going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r1",
+              "text": "I am going to use a paint roller."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r2",
+              "text": "I am going use a paint roller."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r3",
+              "text": "I is going to use a paint roller."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r1",
+              "text": "I am going to use a paint roller."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r2",
+              "text": "I am going use a paint roller."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro1:r3",
+              "text": "I is going to use a paint roller."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Лоток и защитное полотнище",
+        "uk": "Лоток і захисне полотнище"
+      },
+      "bodyByLocale": {
+        "ru": "Paint tray — лоток для краски; dust sheet — полотнище, которым накрывают пол или мебель во время ремонта. She is going to buy a dust sheet. — Она собирается купить защитное полотнище. Выберите полотнище.",
+        "uk": "Paint tray — лоток для фарби; dust sheet — полотнище, яким накривають підлогу або меблі під час ремонту. She is going to buy a dust sheet. — Вона збирається купити захисне полотнище. Виберіть полотнище."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r1",
+              "text": "She is going to buy a dust sheet."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r2",
+              "text": "She is going to buy a paint tray."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r3",
+              "text": "She are going to buy a dust sheet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r1",
+              "text": "She is going to buy a dust sheet."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r2",
+              "text": "She is going to buy a paint tray."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro2:r3",
+              "text": "She are going to buy a dust sheet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подготовительный слой краски",
+        "uk": "Підготовчий шар фарби"
+      },
+      "bodyByLocale": {
+        "ru": "Undercoat — подготовительный слой краски под окончательным цветом. We are going to apply an undercoat. — Мы собираемся нанести подготовительный слой краски. Apply здесь значит «нанести».",
+        "uk": "Undercoat — підготовчий шар фарби під остаточним кольором. We are going to apply an undercoat. — Ми збираємося нанести підготовчий шар фарби. Apply тут означає «нанести»."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r1",
+              "text": "We are going to apply an undercoat."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r2",
+              "text": "We is going to apply an undercoat."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r3",
+              "text": "We are going to applying an undercoat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r1",
+              "text": "We are going to apply an undercoat."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r2",
+              "text": "We is going to apply an undercoat."
+            },
+            {
+              "responseId": "en:lesson-15:session-04:intro3:r3",
+              "text": "We are going to applying an undercoat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ded6244245a46f499978f720de345f3197cc1acafd2652a67772669055684a4e"
+}

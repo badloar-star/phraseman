@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-03:word:repot",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — repot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:word:repot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — repot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:word:repot:audio",
+          "transcript": "repot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:word:repot:r1",
+            "targetText": "repot",
+            "meaningByLocale": {
+              "ru": "пересадить растение в другой горшок.",
+              "uk": "пересадити рослину в інший горщик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "repot",
+          "definitionByLocale": {
+            "ru": "пересадить растение в другой горшок.",
+            "uk": "пересадити рослину в інший горщик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я собираюсь пересадить это растение в другой горшок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я собираюсь пересадить это растение в другой горшок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to repot this plant.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я собираюсь пересадить это растение в другой горшок",
+          "uk": "Скажіть: Я збираюся пересадити цю рослину в інший горщик"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "repot",
+          "this",
+          "plant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i02:r1",
+          "text": "You are going to repot this plant."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i02:r2",
+          "text": "I am going to repot this plant."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i02:r3",
+          "text": "They are going to repot this plant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i02:audio",
+          "transcript": "You are going to repot this plant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:i02:r1",
+            "targetText": "You are going to repot this plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i02:r2",
+            "targetText": "I am going to repot this plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i02:r3",
+            "targetText": "They are going to repot this plant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to repot this plant.",
+              "uk": "У записі звучить You are going to repot this plant."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to repot this plant.",
+              "uk": "У записі звучить You are going to repot this plant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ going to repot this plant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-03:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:word:fertilise",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fertilise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:word:fertilise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fertilise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:word:fertilise:audio",
+          "transcript": "fertilise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:word:fertilise:r1",
+            "targetText": "fertilise",
+            "meaningByLocale": {
+              "ru": "удобрить растения или почву.",
+              "uk": "удобрити рослини або ґрунт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fertilise",
+          "definitionByLocale": {
+            "ru": "удобрить растения или почву.",
+            "uk": "удобрити рослини або ґрунт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они собираются удобрить почву",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они собираются удобрить почву",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are going to fertilise the soil.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они собираются удобрить почву",
+          "uk": "Скажіть: Вони збираються удобрити ґрунт"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "going",
+          "to",
+          "fertilise",
+          "the",
+          "soil"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i05:r1",
+          "text": "You are going to fertilise the soil."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i05:r2",
+          "text": "They are going to fertilise the soil."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i05:r3",
+          "text": "She is going to fertilise the soil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i05:audio",
+          "transcript": "You are going to fertilise the soil."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:i05:r1",
+            "targetText": "You are going to fertilise the soil.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i05:r2",
+            "targetText": "They are going to fertilise the soil.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i05:r3",
+            "targetText": "She is going to fertilise the soil.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to fertilise the soil.",
+              "uk": "У записі звучить You are going to fertilise the soil."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to fertilise the soil.",
+              "uk": "У записі звучить You are going to fertilise the soil."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ going to fertilise the soil.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-03:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:word:mulch",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mulch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:word:mulch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mulch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:word:mulch:audio",
+          "transcript": "mulch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:word:mulch:r1",
+            "targetText": "mulch",
+            "meaningByLocale": {
+              "ru": "покрыть почву защитным слоем.",
+              "uk": "покрити ґрунт захисним шаром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mulch",
+          "definitionByLocale": {
+            "ru": "покрыть почву защитным слоем.",
+            "uk": "покрити ґрунт захисним шаром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она собирается покрыть почву на клумбе мульчей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она собирается покрыть почву на клумбе мульчей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to mulch the flower bed.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она собирается покрыть почву на клумбе мульчей",
+          "uk": "Скажіть: Вона збирається покрити ґрунт на клумбі мульчею"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "mulch",
+          "the",
+          "flower",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i08:r1",
+          "text": "You are going to mulch the flower bed."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i08:r2",
+          "text": "She is going to mulch the flower bed."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i08:r3",
+          "text": "They are going to mulch the flower bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i08:audio",
+          "transcript": "You are going to mulch the flower bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:i08:r1",
+            "targetText": "You are going to mulch the flower bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i08:r2",
+            "targetText": "She is going to mulch the flower bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i08:r3",
+            "targetText": "They are going to mulch the flower bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to mulch the flower bed.",
+              "uk": "У записі звучить You are going to mulch the flower bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to mulch the flower bed.",
+              "uk": "У записі звучить You are going to mulch the flower bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ going to mulch the flower bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-03:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:word:compost",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — compost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:word:compost:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — compost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:word:compost:audio",
+          "transcript": "compost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:word:compost:r1",
+            "targetText": "compost",
+            "meaningByLocale": {
+              "ru": "отправить растительные остатки в компост.",
+              "uk": "відправити рослинні рештки в компост."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compost",
+          "definitionByLocale": {
+            "ru": "отправить растительные остатки в компост.",
+            "uk": "відправити рослинні рештки в компост."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы собираемся отправить листья в компост",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы собираемся отправить листья в компост",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are going to compost the leaves.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы собираемся отправить листья в компост",
+          "uk": "Скажіть: Ми збираємося відправити листя в компост"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "compost",
+          "the",
+          "leaves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i11:r1",
+          "text": "You are going to compost the leaves."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i11:r2",
+          "text": "We are going to compost the leaves."
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i11:r3",
+          "text": "She is going to compost the leaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i11:audio",
+          "transcript": "You are going to compost the leaves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-03:i11:r1",
+            "targetText": "You are going to compost the leaves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i11:r2",
+            "targetText": "We are going to compost the leaves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i11:r3",
+            "targetText": "She is going to compost the leaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to compost the leaves.",
+              "uk": "У записі звучить You are going to compost the leaves."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You are going to compost the leaves.",
+              "uk": "У записі звучить You are going to compost the leaves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "План уже принят. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-03:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-03:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "План уже принят. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "План уже принят. Выберите am, is или are",
+          "uk": "План уже ухвалено. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ going to compost the leaves.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-03:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "План уже принят. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "План уже принят. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-03:i13:p1",
+            "target": "repot",
+            "meaningByLocale": {
+              "ru": "пересадить растение в другой горшок",
+              "uk": "пересадити рослину в інший горщик"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-03:i13:p2",
+            "target": "fertilise",
+            "meaningByLocale": {
+              "ru": "удобрить растения или почву",
+              "uk": "удобрити рослини або ґрунт"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-03:i13:p3",
+            "target": "mulch",
+            "meaningByLocale": {
+              "ru": "покрыть почву защитным слоем",
+              "uk": "покрити ґрунт захисним шаром"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-03:i13:p4",
+            "target": "compost",
+            "meaningByLocale": {
+              "ru": "отправить растительные остатки в компост",
+              "uk": "відправити рослинні рештки в компост"
+            }
+          }
+        ],
+        "leftColumn": [
+          "repot",
+          "fertilise",
+          "mulch",
+          "compost"
+        ],
+        "rightColumn": [
+          "пересадить растение в другой горшок",
+          "удобрить растения или почву",
+          "покрыть почву защитным слоем",
+          "отправить растительные остатки в компост"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i14:audio",
+          "transcript": "I am going to work in the garden."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to work in the garden.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "work",
+          "in",
+          "the",
+          "garden"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i15:audio",
+          "transcript": "She is going to water the plants."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is going to water the plants.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "water",
+          "the",
+          "plants"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о плане: завтра она собирается пересадить это растение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите о плане: завтра она собирается пересадить это растение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i16:audio",
+          "transcript": "She is going to repot this plant tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is going to repot this plant tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о плане: завтра я собираюсь удобрить почву",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите о плане: завтра я собираюсь удобрить почву",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-03:i17:audio",
+          "transcript": "I am going to fertilise the soil tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am going to fertilise the soil tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6b3d8253b277ae8fcc76161e6418798f8a2ceddb963639c8c60240bdc24df681"
+}

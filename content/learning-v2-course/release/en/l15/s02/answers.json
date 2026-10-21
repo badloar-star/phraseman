@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-02:word:sprinkle",
+    "correctText": "sprinkle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i01",
+    "correctText": "I am going to sprinkle sugar on the cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i02",
+    "correctText": "You are going to sprinkle sugar on the cake.",
+    "correctResponseId": "en:lesson-15:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:word:scoop",
+    "correctText": "scoop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i04",
+    "correctText": "They are going to scoop ice cream into bowls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i05",
+    "correctText": "You are going to scoop ice cream into bowls.",
+    "correctResponseId": "en:lesson-15:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:word:sift",
+    "correctText": "sift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i07",
+    "correctText": "She is going to sift the flour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i08",
+    "correctText": "You are going to sift the flour.",
+    "correctResponseId": "en:lesson-15:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:word:knead",
+    "correctText": "knead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i10",
+    "correctText": "We are going to knead the dough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i11",
+    "correctText": "You are going to knead the dough.",
+    "correctResponseId": "en:lesson-15:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i13",
+    "correctText": "en:lesson-15:session-02:i13:p1=sprinkle\nen:lesson-15:session-02:i13:p2=scoop\nen:lesson-15:session-02:i13:p3=sift\nen:lesson-15:session-02:i13:p4=knead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i14",
+    "correctText": "I am going to make a cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i15",
+    "correctText": "She is going to prepare lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i16",
+    "correctText": "I am going to sift the flour tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-02:i17",
+    "correctText": "She is going to knead the dough tomorrow.",
+    "correctResponseId": null
+  }
+]

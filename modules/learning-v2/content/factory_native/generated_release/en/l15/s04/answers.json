@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-04:word:paint-roller",
+    "correctText": "paint roller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i01",
+    "correctText": "I am going to use a paint roller.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i02",
+    "correctText": "You are going to use a paint roller.",
+    "correctResponseId": "en:lesson-15:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:word:paint-tray",
+    "correctText": "paint tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i04",
+    "correctText": "They are going to clean the paint tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i05",
+    "correctText": "You are going to clean the paint tray.",
+    "correctResponseId": "en:lesson-15:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:word:dust-sheet",
+    "correctText": "dust sheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i07",
+    "correctText": "She is going to buy a dust sheet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i08",
+    "correctText": "You are going to buy a dust sheet.",
+    "correctResponseId": "en:lesson-15:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:word:undercoat",
+    "correctText": "undercoat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i10",
+    "correctText": "We are going to apply an undercoat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i11",
+    "correctText": "You are going to apply an undercoat.",
+    "correctResponseId": "en:lesson-15:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i13",
+    "correctText": "en:lesson-15:session-04:i13:p1=paint roller\nen:lesson-15:session-04:i13:p2=paint tray\nen:lesson-15:session-04:i13:p3=dust sheet\nen:lesson-15:session-04:i13:p4=undercoat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i14",
+    "correctText": "I am going to paint the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i15",
+    "correctText": "She is going to buy some paint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i16",
+    "correctText": "She is going to use a paint roller tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-04:i17",
+    "correctText": "I am going to clean the paint tray tomorrow.",
+    "correctResponseId": null
+  }
+]

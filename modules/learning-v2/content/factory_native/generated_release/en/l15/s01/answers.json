@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-01:word:descale",
+    "correctText": "descale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i01",
+    "correctText": "I am going to descale the kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i02",
+    "correctText": "You are going to descale the kettle.",
+    "correctResponseId": "en:lesson-15:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:word:declutter",
+    "correctText": "declutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i04",
+    "correctText": "They are going to declutter the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i05",
+    "correctText": "You are going to declutter the room.",
+    "correctResponseId": "en:lesson-15:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:word:repaint",
+    "correctText": "repaint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i07",
+    "correctText": "She is going to repaint the wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i08",
+    "correctText": "You are going to repaint the wall.",
+    "correctResponseId": "en:lesson-15:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:word:alter",
+    "correctText": "alter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i10",
+    "correctText": "We are going to alter the dress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i11",
+    "correctText": "You are going to alter the dress.",
+    "correctResponseId": "en:lesson-15:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i13",
+    "correctText": "en:lesson-15:session-01:i13:p1=descale\nen:lesson-15:session-01:i13:p2=declutter\nen:lesson-15:session-01:i13:p3=repaint\nen:lesson-15:session-01:i13:p4=alter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i14",
+    "correctText": "I am going to work at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i15",
+    "correctText": "She is going to clean the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i16",
+    "correctText": "I am going to repaint the wall tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-01:i17",
+    "correctText": "She is going to alter the dress tomorrow.",
+    "correctResponseId": null
+  }
+]

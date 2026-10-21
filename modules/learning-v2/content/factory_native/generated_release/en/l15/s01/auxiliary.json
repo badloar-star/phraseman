@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-01:intro1:r2": {
+          "ru": "После going нужна to: going to descale.",
+          "uk": "Після going потрібна to: going to descale."
+        },
+        "en:lesson-15:session-01:intro1:r3": {
+          "ru": "После going to нужна начальная форма descale, не descaling.",
+          "uk": "Після going to потрібна початкова форма descale, не descaling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-01:intro2:r2": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        },
+        "en:lesson-15:session-01:intro2:r3": {
+          "ru": "После going to глагол без -s: repaint.",
+          "uk": "Після going to дієслово без -s: repaint."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-01:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-15:session-01:intro3:r3": {
+          "ru": "После going to нужна начальная форма alter.",
+          "uk": "Після going to потрібна початкова форма alter."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b0a9d5bac1282d3f84ee0e85ba1b64589a1c0f6dc62ef8e33431b574e0b5498e"
+}

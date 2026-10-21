@@ -104,13 +104,19 @@ function pairId(a: string, b: string): string {
 /** Server-cached remote_config/app.numbers overlay — 60s TTL, same spirit as friendsGetProfiles. */
 const CONFIG_CACHE_TTL_MS = 60_000;
 let cachedConfig: { expiresAtMs: number; value: FriendsTogetherConfig } | null = null;
+/**
+ * remote_config/app.bools.friends_together_enabled из того же чтения конфига (новых чтений нет).
+ * зачем (1 · ЯДРО 21.10, ревью 90db69ba4): текст пуша о серии вдвоём включается вместе с остальным «Вместе», а не сразу с выкладкой.
+ */
+let cachedTogetherEnabled = false;
 
 async function resolveConfig(db: admin.firestore.Firestore): Promise<FriendsTogetherConfig> {
   const now = Date.now();
   if (cachedConfig && cachedConfig.expiresAtMs > now) return cachedConfig.value;
   try {
     const snap = await db.collection('remote_config').doc('app').get();
-    const data = snap.data() as { numbers?: Record<string, unknown> } | undefined;
+    const data = snap.data() as { numbers?: Record<string, unknown>; bools?: Record<string, unknown> } | undefined;
+    cachedTogetherEnabled = data?.bools?.friends_together_enabled === true;
     const value = friendsTogetherConfigFromNumbers(data?.numbers);
     cachedConfig = { expiresAtMs: now + CONFIG_CACHE_TTL_MS, value };
     return value;
@@ -247,9 +253,10 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
   const pushToken = (result as { _friendPushToken?: string })._friendPushToken;
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
-  const pushPairStreak = Number((result as { pairStreak?: unknown }).pairStreak) || 0;
+  const pushPairStreak = cachedTogetherEnabled ? Number((result as { pairStreak?: unknown }).pairStreak) || 0 : 0;
   if (pushToken) {
     const copy = friendNudgePushCopy(senderName, pushPairStreak);
+    console.log(`[FRIENDS-TOGETHER] nudge:push together=${cachedTogetherEnabled} pairStreak=${pushPairStreak} title="${copy.title}"`);
     void sendExpoPush(
       pushToken,
       copy.title,

@@ -261,6 +261,8 @@ export function pairStreakDays(
  * День-ориентир для серии: локальный день отправителя (anchor его active_days_v1), если он не старше вчерашнего UTC,
  * иначе сегодняшний UTC. зачем: active_days_v1 пишется по локальной дате телефона — у человека в UTC+3 после 21:00
  * UTC уже «завтра», и серия по чистому UTC теряла бы сегодняшний общий день.
+ * Оговорка (ревью 1 · ЯДРО 21.10): ориентир — день ОТПРАВИТЕЛЯ; если у друга по его часам уже «завтра», серия в тексте
+ * пуша может оказаться на 1 меньше. Для текста пуша это не критично; на телефоне серию считает pair_streak.ts по своему дню.
  */
 export function pairStreakReferenceDay(senderDays: ActiveDaysState | null | undefined, nowMs: number): string {
   const utcToday = new Date(nowMs).toISOString().slice(0, 10);

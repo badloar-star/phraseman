@@ -77,6 +77,23 @@ type ProjectionResponse = {
   progressAuthority: 'server' | 'unavailable';
 };
 
+/** Те же ключи, что пишет checkBanStatus в app/_layout.tsx (равенство сторожит тест). */
+const BAN_STATUS_CACHE_KEY = 'ban_status_cached_v1';
+const BAN_STATUS_CACHE_AT_KEY = 'ban_status_cached_at_v1';
+const BAN_STATUS_CACHE_TRUST_MS = 6 * 60 * 60 * 1000;
+
+async function readFreshBanStatusCache(): Promise<'banned' | 'clear' | 'unknown'> {
+  try {
+    const [[, raw], [, atRaw]] = await AsyncStorage.multiGet([BAN_STATUS_CACHE_KEY, BAN_STATUS_CACHE_AT_KEY]);
+    const ageMs = Date.now() - (Number(atRaw) || 0);
+    if ((raw !== '1' && raw !== '0') || ageMs < 0 || ageMs >= BAN_STATUS_CACHE_TRUST_MS) return 'unknown';
+    return raw === '1' ? 'banned' : 'clear';
+  } catch (error: unknown) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'profile_ban_check', source: 'cache', result: 'read_failed', message: error instanceof Error ? error.message.slice(0, 80) : String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return 'unknown';
+  }
+}
+
 function publicProfileProjectionCallable() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getApp } = require('@react-native-firebase/app');
@@ -243,12 +260,26 @@ async function syncPublicProfileSnapshotUnsafe(
   const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(stableId);
   if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== stableId || !isCurrent()) return;
 
-  try {
-    const banDoc = await db.collection('banned_users').doc(stableId).get();
-    if (banDoc.exists || !isCurrent()) return;
-  } catch (e) {
+  // зачем (владелец 21.10, №45 шаг 6; Ревизор п.6): каждая публикация профиля читала banned_users — почти всегда
+  // «нет документа». Ответ уже знает проверка бана на старте (_layout, кэш 30 мин, стирается при смене аккаунта):
+  // свежий кэш < 6 ч решает без сети, иначе читаем как раньше.
+  const cachedBan = await readFreshBanStatusCache();
+  if (cachedBan === 'banned') {
+    console.log('[READ-TTL]', JSON.stringify({ area: 'profile_ban_check', source: 'cache', result: 'banned' })); // guard-ok: ранний выход, без uid
+    return;
+  }
+  if (cachedBan === 'clear') {
+    console.log('[READ-TTL]', JSON.stringify({ area: 'profile_ban_check', source: 'cache', result: 'clear' })); // guard-ok: ветка решения, без uid
+  } else {
+    try {
+      const banDoc = await db.collection('banned_users').doc(stableId).get();
+      console.log('[READ-TTL]', JSON.stringify({ area: 'profile_ban_check', source: 'network', result: banDoc.exists ? 'banned' : 'clear' })); // guard-ok: ветка решения, без uid
+      if (banDoc.exists || !isCurrent()) return;
+    } catch (e) {
       DebugLogger.error('public_profile_snapshot:banDoc', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  }
+  if (!isCurrent()) return;
 
   // nameLower ДОЛЖЕН обновляться вместе с name. Иначе при merge:true профиль
   // получает новое name, но старый nameLower (напр. name="Дладуд" +

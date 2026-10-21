@@ -86,6 +86,9 @@ export interface DailyPhrase {
 const DAILY_PHRASE_KEY = 'daily_phrase_v3';
 const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v3';
 const REMOTE_DAILY_PHRASE_CACHE_KEY = 'daily_phrase_remote_cache_v1';
+// зачем (владелец 21.10, №45 шаг 6; Ревизор п.6): в дни без серверной фразы запрос daily_phrases уходил на каждом старте и
+// в каждом планировании пушей и возвращал пусто. Пустой ответ помним до конца дня.
+const REMOTE_DAILY_PHRASE_MISS_KEY = 'daily_phrase_remote_miss_v1';
 const DAILY_PHRASES_COLLECTION = 'daily_phrases';
 const FUNCTIONS_REGION = 'us-central1';
 const REMOTE_DAILY_PHRASE_QUERY_LIMIT = 10;
@@ -448,11 +451,24 @@ async function readRemoteTodayPhrase(date: string): Promise<DailyPhrase | null> 
     });
     if (phrase) {
       await AsyncStorage.setItem(REMOTE_DAILY_PHRASE_CACHE_KEY, JSON.stringify({ date, phrase }));
+    } else {
+      // Сервер ответил «на сегодня фразы нет» — запоминаем до конца дня (сбой сети сюда не попадает).
+      await AsyncStorage.setItem(REMOTE_DAILY_PHRASE_MISS_KEY, date)
+        .catch(noteSwallowedHandler('daily_phrase_system:remote_miss_write'));
+      console.log('[READ-TTL]', JSON.stringify({ area: 'daily_phrase_remote', source: 'network', result: 'miss', date }));
     }
     return phrase;
-  } catch {
+  } catch (error) {
+    console.warn(`[DAILY-PHRASE] remote read failed — ${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)}`);
     return null;
   }
+}
+
+/** Сегодня сервер уже ответил «фразы нет» — до конца дня сеть не трогаем. */
+async function remoteMissKnownForDay(date: string): Promise<boolean> {
+  const raw = await AsyncStorage.getItem(REMOTE_DAILY_PHRASE_MISS_KEY)
+    .catch(noteSwallowedAs('daily_phrase_system:remote_miss_read', null));
+  return raw === date;
 }
 
 async function readCachedRemotePhrase(date: string): Promise<DailyPhrase | null> {
@@ -648,7 +664,11 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
       rememberPeekPhrases(dayCached);
       return dayCached;
     }
-    const remote = await readRemoteTodayPhrase(today);
+    const missKnown = await remoteMissKnownForDay(today);
+    if (missKnown) {
+      console.log('[READ-TTL]', JSON.stringify({ area: 'daily_phrase_remote', source: 'cache', result: 'miss', date: today }));
+    }
+    const remote = missKnown ? null : await readRemoteTodayPhrase(today);
     if (remote) {
       await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(remote));
       await AsyncStorage.setItem(LAST_PHRASE_DATE_KEY, today);

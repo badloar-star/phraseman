@@ -59,9 +59,9 @@ const S = {
   offlineBold: { ru: "Нет сети.", uk: "Немає мережі.", en: "No connection.", es: "Sin conexión.", "pt-BR": "Sem conexão.", vi: "Không có mạng.", id: "Tidak ada koneksi.", tr: "Bağlantı yok.", pl: "Brak sieci." },
   offlineRest: {
     ru: "Слова и тренировка работают, сохранения отправим позже.", uk: "Слова й тренування працюють, збереження надішлемо пізніше.",
-    en: "Words and training still work; we'll sync saves later.", es: "Las palabras y el entrenamiento funcionan; los guardados se enviarán después.",
-    "pt-BR": "Palavras e treino funcionam; os salvos serão enviados depois.", vi: "Từ và luyện tập vẫn dùng được, phần đã lưu sẽ gửi sau.",
-    id: "Kata dan latihan tetap jalan; simpanan dikirim nanti.", tr: "Kelimeler ve çalışma çalışıyor, kayıtları sonra göndeririz.",
+    en: "Words and training still work; we'll sync saves later.", es: "Las palabras y el entrenamiento funcionan; lo que guardes se enviará después.",
+    "pt-BR": "Palavras e treino funcionam; o que você salvar será enviado depois.", vi: "Từ và luyện tập vẫn dùng được, phần đã lưu sẽ gửi sau.",
+    id: "Kata dan latihan tetap jalan; yang disimpan akan dikirim nanti.", tr: "Kelimeler ve alıştırma açık; kayıtları sonra göndeririz.",
     pl: "Słowa i trening działają, zapisy wyślemy później.",
   },
   close: { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" },
@@ -110,8 +110,8 @@ export function learningV2DictionaryV2Copy(lang: Lang) {
     saveMany: (n: number) => pick({ ru: "В карточки", uk: "У картки", en: "To cards", es: "A tarjetas", "pt-BR": "Para cartões", vi: "Vào thẻ", id: "Ke kartu", tr: "Kartlara", pl: "Do kart" }, lang) + ` · ${n}`,
     showWords: (n: number) => pick({ ru: "Показать", uk: "Показати", en: "Show", es: "Mostrar", "pt-BR": "Mostrar", vi: "Hiện", id: "Tampilkan", tr: "Göster:", pl: "Pokaż" }, lang) + ` ${words(lang, n)}`,
     toastOne: (word: string) => pick({ ru: `${word} теперь в «Карточках»`, uk: `${word} тепер у «Картках»`, en: `${word} is now in Cards`, es: `${word} ya está en Tarjetas`, "pt-BR": `${word} agora está nos Cartões`, vi: `${word} đã vào Thẻ`, id: `${word} sekarang ada di Kartu`, tr: `${word} artık Kartlar'da`, pl: `${word} jest teraz w Kartach` }, lang),
-    toastMany: (n: number) => pick({ ru: `${words(lang, n)} теперь в «Карточках»`, uk: `${words(lang, n)} тепер у «Картках»`, en: `${words(lang, n)} now in Cards`, es: `${words(lang, n)} ya en Tarjetas`, "pt-BR": `${words(lang, n)} agora nos Cartões`, vi: `${words(lang, n)} đã vào Thẻ`, id: `${words(lang, n)} sekarang di Kartu`, tr: `${words(lang, n)} artık Kartlar'da`, pl: `${words(lang, n)} jest teraz w Kartach` }, lang),
-    listen: (word: string) => pick({ ru: `Прослушать ${word}`, uk: `Прослухати ${word}`, en: `Listen to ${word}`, es: `Escuchar ${word}`, "pt-BR": `Ouvir ${word}`, vi: `Nghe ${word}`, id: `Dengarkan ${word}`, tr: `${word} dinle`, pl: `Odsłuchaj ${word}` }, lang),
-    saveWord: (word: string) => pick({ ru: `Сохранить ${word} в карточки`, uk: `Зберегти ${word} у картки`, en: `Save ${word} to cards`, es: `Guardar ${word} en tarjetas`, "pt-BR": `Salvar ${word} nos cartões`, vi: `Lưu ${word} vào thẻ`, id: `Simpan ${word} ke kartu`, tr: `${word} kartlara kaydet`, pl: `Zapisz ${word} w kartach` }, lang),
+    toastMany: (n: number) => pick({ ru: `${words(lang, n)} теперь в «Карточках»`, uk: `${words(lang, n)} тепер у «Картках»`, en: `${words(lang, n)} now in Cards`, es: `${words(lang, n)} ya en Tarjetas`, "pt-BR": `${words(lang, n)} agora nos Cartões`, vi: `${words(lang, n)} đã vào Thẻ`, id: `${words(lang, n)} sekarang di Kartu`, tr: `${words(lang, n)} artık Kartlar'da`, pl: `W Kartach: ${words(lang, n)}` }, lang),
+    listen: (word: string) => pick({ ru: `Прослушать ${word}`, uk: `Прослухати ${word}`, en: `Listen to ${word}`, es: `Escuchar ${word}`, "pt-BR": `Ouvir ${word}`, vi: `Nghe ${word}`, id: `Dengarkan ${word}`, tr: `Dinle: ${word}`, pl: `Odsłuchaj ${word}` }, lang),
+    saveWord: (word: string) => pick({ ru: `Сохранить ${word} в карточки`, uk: `Зберегти ${word} у картки`, en: `Save ${word} to cards`, es: `Guardar ${word} en tarjetas`, "pt-BR": `Salvar ${word} nos cartões`, vi: `Lưu ${word} vào thẻ`, id: `Simpan ${word} ke kartu`, tr: `Kartlara kaydet: ${word}`, pl: `Zapisz ${word} w kartach` }, lang),
   };
 }

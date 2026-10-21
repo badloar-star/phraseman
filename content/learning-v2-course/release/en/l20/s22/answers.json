@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-22:word:reuse",
+    "correctText": "reuse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i01",
+    "correctText": "You should reuse this bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i02",
+    "correctText": "You should reuse this bag.",
+    "correctResponseId": "en:lesson-20:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:word:use-up",
+    "correctText": "use up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i04",
+    "correctText": "We should use up the milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i05",
+    "correctText": "We should use up the milk.",
+    "correctResponseId": "en:lesson-20:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:word:throw-out",
+    "correctText": "throw out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i07",
+    "correctText": "She should throw out the broken cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i08",
+    "correctText": "She should throw out the broken cup.",
+    "correctResponseId": "en:lesson-20:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:word:hold-onto",
+    "correctText": "hold onto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i10",
+    "correctText": "He should hold onto the receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i11",
+    "correctText": "He should hold onto the receipt.",
+    "correctResponseId": "en:lesson-20:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i13",
+    "correctText": "en:lesson-20:session-22:i13:p1=reuse\nen:lesson-20:session-22:i13:p2=use up\nen:lesson-20:session-22:i13:p3=throw out\nen:lesson-20:session-22:i13:p4=hold onto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i16",
+    "correctText": "You should reuse this bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-22:i17",
+    "correctText": "He should hold onto the receipt.",
+    "correctResponseId": null
+  }
+]

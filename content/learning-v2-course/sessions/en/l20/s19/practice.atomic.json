@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-19:word:sleep-on-it",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sleep on it",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:sleep-on-it:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sleep on it",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:sleep-on-it:audio",
+            "transcript": "sleep on it"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:sleep-on-it:r1",
+              "targetText": "sleep on it",
+              "meaningByLocale": {
+                "ru": "отложить решение до утра, подумать до завтра.",
+                "uk": "відкласти рішення до ранку, подумати до завтра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleep on it",
+            "definitionByLocale": {
+              "ru": "отложить решение до утра, подумать до завтра.",
+              "uk": "відкласти рішення до ранку, подумати до завтра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Тебе стоит подумать об этом до завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Тебе стоит подумать об этом до завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You should sleep on it.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Тебе стоит подумать об этом до завтра».",
+            "uk": "Дайте пораду із should: «Тобі варто подумати про це до завтра»."
+          },
+          "orderedTokens": [
+            "You",
+            "should",
+            "sleep",
+            "on",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i02:r1",
+            "text": "You should sleep on it."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i02:r2",
+            "text": "You can sleep on it."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i02:r3",
+            "text": "You could sleep on it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i02:audio",
+            "transcript": "You should sleep on it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i02:r1",
+              "targetText": "You should sleep on it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r2",
+              "targetText": "You can sleep on it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r3",
+              "targetText": "You could sleep on it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should sleep on it.",
+                "uk": "У записі звучить You should sleep on it."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should sleep on it.",
+                "uk": "У записі звучить You should sleep on it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ sleep on it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i03:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:talk-it-over",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — talk it over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:talk-it-over:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — talk it over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:talk-it-over:audio",
+            "transcript": "talk it over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:talk-it-over:r1",
+              "targetText": "talk it over",
+              "meaningByLocale": {
+                "ru": "обсудить это подробно.",
+                "uk": "обговорити це докладно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talk it over",
+            "definitionByLocale": {
+              "ru": "обсудить это подробно.",
+              "uk": "обговорити це докладно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Нам стоит подробно это обсудить».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Нам стоит подробно это обсудить».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We should talk it over.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Нам стоит подробно это обсудить».",
+            "uk": "Дайте пораду із should: «Нам варто докладно це обговорити»."
+          },
+          "orderedTokens": [
+            "We",
+            "should",
+            "talk",
+            "it",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i05:r1",
+            "text": "We should talk it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i05:r2",
+            "text": "We can talk it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i05:r3",
+            "text": "We could talk it over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i05:audio",
+            "transcript": "We should talk it over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i05:r1",
+              "targetText": "We should talk it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r2",
+              "targetText": "We can talk it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r3",
+              "targetText": "We could talk it over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should talk it over.",
+                "uk": "У записі звучить We should talk it over."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should talk it over.",
+                "uk": "У записі звучить We should talk it over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ talk it over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i06:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:think-it-over",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — think it over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:think-it-over:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — think it over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:think-it-over:audio",
+            "transcript": "think it over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:think-it-over:r1",
+              "targetText": "think it over",
+              "meaningByLocale": {
+                "ru": "обдумать это.",
+                "uk": "обміркувати це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "think it over",
+            "definitionByLocale": {
+              "ru": "обдумать это.",
+              "uk": "обміркувати це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Ей стоит это обдумать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Ей стоит это обдумать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She should think it over.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ей стоит это обдумать».",
+            "uk": "Дайте пораду із should: «Їй варто це обміркувати»."
+          },
+          "orderedTokens": [
+            "She",
+            "should",
+            "think",
+            "it",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i08:r1",
+            "text": "She should think it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i08:r2",
+            "text": "She can think it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i08:r3",
+            "text": "She could think it over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i08:audio",
+            "transcript": "She should think it over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i08:r1",
+              "targetText": "She should think it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r2",
+              "targetText": "She can think it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r3",
+              "targetText": "She could think it over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should think it over.",
+                "uk": "У записі звучить She should think it over."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should think it over.",
+                "uk": "У записі звучить She should think it over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ think it over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i09:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:get-some-rest",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get some rest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:get-some-rest:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get some rest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:get-some-rest:audio",
+            "transcript": "get some rest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:get-some-rest:r1",
+              "targetText": "get some rest",
+              "meaningByLocale": {
+                "ru": "немного отдохнуть.",
+                "uk": "трохи відпочити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get some rest",
+            "definitionByLocale": {
+              "ru": "немного отдохнуть.",
+              "uk": "трохи відпочити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Ему стоит немного отдохнуть».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Ему стоит немного отдохнуть».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He should get some rest.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ему стоит немного отдохнуть».",
+            "uk": "Дайте пораду із should: «Йому варто трохи відпочити»."
+          },
+          "orderedTokens": [
+            "He",
+            "should",
+            "get",
+            "some",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i11:r1",
+            "text": "He should get some rest."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i11:r2",
+            "text": "He can get some rest."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i11:r3",
+            "text": "He could get some rest."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i11:audio",
+            "transcript": "He should get some rest."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i11:r1",
+              "targetText": "He should get some rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r2",
+              "targetText": "He can get some rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r3",
+              "targetText": "He could get some rest.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should get some rest.",
+                "uk": "У записі звучить He should get some rest."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should get some rest.",
+                "uk": "У записі звучить He should get some rest."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ get some rest.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i12:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-19:i13:p1",
+              "target": "sleep on it",
+              "meaningByLocale": {
+                "ru": "отложить решение до утра, подумать до завтра",
+                "uk": "відкласти рішення до ранку, подумати до завтра"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p2",
+              "target": "talk it over",
+              "meaningByLocale": {
+                "ru": "обсудить это подробно",
+                "uk": "обговорити це докладно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p3",
+              "target": "think it over",
+              "meaningByLocale": {
+                "ru": "обдумать это",
+                "uk": "обміркувати це"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p4",
+              "target": "get some rest",
+              "meaningByLocale": {
+                "ru": "немного отдохнуть",
+                "uk": "трохи відпочити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleep on it",
+            "talk it over",
+            "think it over",
+            "get some rest"
+          ],
+          "rightColumn": [
+            "отложить решение до утра, подумать до завтра",
+            "обсудить это подробно",
+            "обдумать это",
+            "немного отдохнуть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите вернуться к решению завтра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите вернуться к решению завтра",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i16:audio",
+            "transcript": "You should sleep on it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You should sleep on it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите подробно обсудить вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Предложите подробно обсудить вопрос",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i17:audio",
+            "transcript": "We should talk it over."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We should talk it over.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-19:word:sleep-on-it",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sleep on it",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:sleep-on-it:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sleep on it",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:sleep-on-it:audio",
+            "transcript": "sleep on it"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:sleep-on-it:r1",
+              "targetText": "sleep on it",
+              "meaningByLocale": {
+                "ru": "отложить решение до утра, подумать до завтра.",
+                "uk": "відкласти рішення до ранку, подумати до завтра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleep on it",
+            "definitionByLocale": {
+              "ru": "отложить решение до утра, подумать до завтра.",
+              "uk": "відкласти рішення до ранку, подумати до завтра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Тобі варто подумати про це до завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Тобі варто подумати про це до завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You should sleep on it.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Тебе стоит подумать об этом до завтра».",
+            "uk": "Дайте пораду із should: «Тобі варто подумати про це до завтра»."
+          },
+          "orderedTokens": [
+            "You",
+            "should",
+            "sleep",
+            "on",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i02:r1",
+            "text": "You should sleep on it."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i02:r2",
+            "text": "You can sleep on it."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i02:r3",
+            "text": "You could sleep on it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i02:audio",
+            "transcript": "You should sleep on it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i02:r1",
+              "targetText": "You should sleep on it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r2",
+              "targetText": "You can sleep on it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r3",
+              "targetText": "You could sleep on it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should sleep on it.",
+                "uk": "У записі звучить You should sleep on it."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should sleep on it.",
+                "uk": "У записі звучить You should sleep on it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ sleep on it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i03:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:talk-it-over",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — talk it over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:talk-it-over:audio"
+        ],
+        "accessibilityLabel": "Картка слова — talk it over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:talk-it-over:audio",
+            "transcript": "talk it over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:talk-it-over:r1",
+              "targetText": "talk it over",
+              "meaningByLocale": {
+                "ru": "обсудить это подробно.",
+                "uk": "обговорити це докладно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talk it over",
+            "definitionByLocale": {
+              "ru": "обсудить это подробно.",
+              "uk": "обговорити це докладно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Нам варто докладно це обговорити».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Нам варто докладно це обговорити».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We should talk it over.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Нам стоит подробно это обсудить».",
+            "uk": "Дайте пораду із should: «Нам варто докладно це обговорити»."
+          },
+          "orderedTokens": [
+            "We",
+            "should",
+            "talk",
+            "it",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i05:r1",
+            "text": "We should talk it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i05:r2",
+            "text": "We can talk it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i05:r3",
+            "text": "We could talk it over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i05:audio",
+            "transcript": "We should talk it over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i05:r1",
+              "targetText": "We should talk it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r2",
+              "targetText": "We can talk it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r3",
+              "targetText": "We could talk it over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should talk it over.",
+                "uk": "У записі звучить We should talk it over."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should talk it over.",
+                "uk": "У записі звучить We should talk it over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ talk it over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i06:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:think-it-over",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — think it over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:think-it-over:audio"
+        ],
+        "accessibilityLabel": "Картка слова — think it over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:think-it-over:audio",
+            "transcript": "think it over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:think-it-over:r1",
+              "targetText": "think it over",
+              "meaningByLocale": {
+                "ru": "обдумать это.",
+                "uk": "обміркувати це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "think it over",
+            "definitionByLocale": {
+              "ru": "обдумать это.",
+              "uk": "обміркувати це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Їй варто це обміркувати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Їй варто це обміркувати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She should think it over.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ей стоит это обдумать».",
+            "uk": "Дайте пораду із should: «Їй варто це обміркувати»."
+          },
+          "orderedTokens": [
+            "She",
+            "should",
+            "think",
+            "it",
+            "over"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i08:r1",
+            "text": "She should think it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i08:r2",
+            "text": "She can think it over."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i08:r3",
+            "text": "She could think it over."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i08:audio",
+            "transcript": "She should think it over."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i08:r1",
+              "targetText": "She should think it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r2",
+              "targetText": "She can think it over.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r3",
+              "targetText": "She could think it over.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should think it over.",
+                "uk": "У записі звучить She should think it over."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should think it over.",
+                "uk": "У записі звучить She should think it over."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ think it over.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i09:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:word:get-some-rest",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get some rest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:word:get-some-rest:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get some rest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:word:get-some-rest:audio",
+            "transcript": "get some rest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:word:get-some-rest:r1",
+              "targetText": "get some rest",
+              "meaningByLocale": {
+                "ru": "немного отдохнуть.",
+                "uk": "трохи відпочити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get some rest",
+            "definitionByLocale": {
+              "ru": "немного отдохнуть.",
+              "uk": "трохи відпочити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Йому варто трохи відпочити».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Йому варто трохи відпочити».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He should get some rest.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ему стоит немного отдохнуть».",
+            "uk": "Дайте пораду із should: «Йому варто трохи відпочити»."
+          },
+          "orderedTokens": [
+            "He",
+            "should",
+            "get",
+            "some",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i11:r1",
+            "text": "He should get some rest."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i11:r2",
+            "text": "He can get some rest."
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i11:r3",
+            "text": "He could get some rest."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i11:audio",
+            "transcript": "He should get some rest."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-19:i11:r1",
+              "targetText": "He should get some rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r2",
+              "targetText": "He can get some rest.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r3",
+              "targetText": "He could get some rest.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should get some rest.",
+                "uk": "У записі звучить He should get some rest."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should get some rest.",
+                "uk": "У записі звучить He should get some rest."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-19:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-19:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ get some rest.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-19:i12:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-19:i13:p1",
+              "target": "sleep on it",
+              "meaningByLocale": {
+                "ru": "отложить решение до утра, подумать до завтра",
+                "uk": "відкласти рішення до ранку, подумати до завтра"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p2",
+              "target": "talk it over",
+              "meaningByLocale": {
+                "ru": "обсудить это подробно",
+                "uk": "обговорити це докладно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p3",
+              "target": "think it over",
+              "meaningByLocale": {
+                "ru": "обдумать это",
+                "uk": "обміркувати це"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-19:i13:p4",
+              "target": "get some rest",
+              "meaningByLocale": {
+                "ru": "немного отдохнуть",
+                "uk": "трохи відпочити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleep on it",
+            "talk it over",
+            "think it over",
+            "get some rest"
+          ],
+          "rightColumn": [
+            "відкласти рішення до ранку, подумати до завтра",
+            "обговорити це докладно",
+            "обміркувати це",
+            "трохи відпочити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте повернутися до рішення завтра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте повернутися до рішення завтра",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i16:audio",
+            "transcript": "You should sleep on it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You should sleep on it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте докладно обговорити питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте докладно обговорити питання",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-19:i17:audio",
+            "transcript": "We should talk it over."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We should talk it over.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-19:word:sleep-on-it",
+      "correctText": "sleep on it",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i01",
+      "correctText": "You should sleep on it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i02",
+      "correctText": "You should sleep on it.",
+      "correctResponseId": "en:lesson-20:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i03",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:word:talk-it-over",
+      "correctText": "talk it over",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i04",
+      "correctText": "We should talk it over.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i05",
+      "correctText": "We should talk it over.",
+      "correctResponseId": "en:lesson-20:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i06",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:word:think-it-over",
+      "correctText": "think it over",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i07",
+      "correctText": "She should think it over.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i08",
+      "correctText": "She should think it over.",
+      "correctResponseId": "en:lesson-20:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i09",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:word:get-some-rest",
+      "correctText": "get some rest",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i10",
+      "correctText": "He should get some rest.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i11",
+      "correctText": "He should get some rest.",
+      "correctResponseId": "en:lesson-20:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i12",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i16",
+      "correctText": "You should sleep on it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-19:i17",
+      "correctText": "We should talk it over.",
+      "correctResponseId": null
+    }
+  ]
+}

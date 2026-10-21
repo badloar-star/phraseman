@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вернуться к решению завтра",
+        "uk": "Повернутися до рішення завтра"
+      },
+      "bodyByLocale": {
+        "ru": "Sleep on it — не принимать решение сразу, а вернуться к нему после ночи. Друг колеблется между двумя курсами, и вы предлагаете подумать до завтра. Это выражение не означает буквально спать на предмете. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Sleep on it — не ухвалювати рішення відразу, а повернутися до нього після ночі. Друг вагається між двома курсами, і ви пропонуєте подумати до завтра. Цей вираз не означає буквально спати на предметі. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r1",
+              "text": "You should sleep on it."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r2",
+              "text": "You shoulds sleep on it."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r3",
+              "text": "You should to sleep on it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r1",
+              "text": "You should sleep on it."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r2",
+              "text": "You shoulds sleep on it."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro1:r3",
+              "text": "You should to sleep on it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обсудить вместе",
+        "uk": "Обговорити разом"
+      },
+      "bodyByLocale": {
+        "ru": "Talk it over — подробно обсудить вопрос с кем-то. Think it over — обдумать его, можно и самому. В этих выражениях it стоит между глаголом и over: talk it over, think it over. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Talk it over — докладно обговорити питання з кимось. Think it over — обміркувати його, можна й самому. У цих виразах it стоїть між дієсловом та over: talk it over, think it over. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r1",
+              "text": "We should talk it over."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r2",
+              "text": "We shoulds talk it over."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r3",
+              "text": "We should to talk it over."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r1",
+              "text": "We should talk it over."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r2",
+              "text": "We shoulds talk it over."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro2:r3",
+              "text": "We should to talk it over."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Немного отдохнуть",
+        "uk": "Трохи відпочити"
+      },
+      "bodyByLocale": {
+        "ru": "Get some rest — немного отдохнуть. Знакомый весь день занимался, устал, и вы советуете ему сделать паузу. Выражение может означать сон или спокойный отдых — по ситуации. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Get some rest — трохи відпочити. Знайомий увесь день навчався, втомився, і ви радите йому зробити паузу. Вираз може означати сон або спокійний відпочинок — за ситуацією. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r1",
+              "text": "He should get some rest."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r2",
+              "text": "He shoulds get some rest."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r3",
+              "text": "He should to get some rest."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r1",
+              "text": "He should get some rest."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r2",
+              "text": "He shoulds get some rest."
+            },
+            {
+              "responseId": "en:lesson-20:session-19:intro3:r3",
+              "text": "He should to get some rest."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ce5edd59a37ea3dff35a3cd314f09b9d7a126e55d8059886abac6cac2caf0fe1"
+}

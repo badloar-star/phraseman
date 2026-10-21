@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Использовать снова",
+        "uk": "Використати знову"
+      },
+      "bodyByLocale": {
+        "ru": "Reuse — использовать снова. Пакет целый, и вы предлагаете взять его на следующую прогулку в магазин. Вы уже знаете reusable — многоразовый; теперь учим глагол reuse. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Reuse — використати знову. Пакет цілий, і ви пропонуєте взяти його наступного разу до магазину. Ви вже знаєте reusable — багаторазовий; тепер вчимо дієслово reuse. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r1",
+              "text": "You should reuse this bag."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r2",
+              "text": "You shoulds reuse this bag."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r3",
+              "text": "You should to reuse this bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r1",
+              "text": "You should reuse this bag."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r2",
+              "text": "You shoulds reuse this bag."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro1:r3",
+              "text": "You should to reuse this bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Использовать остаток",
+        "uk": "Використати залишок"
+      },
+      "bodyByLocale": {
+        "ru": "Use up — использовать весь остаток. Молока немного, и вы собираетесь добавить его в кашу. Throw out — выбросить ненужное: чашка разбита. Это обычный вариант знакомого throw away. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Use up — використати весь залишок. Молока небагато, і ви збираєтеся додати його до каші. Throw out — викинути непотрібне: чашка розбита. Це звичний варіант знайомого throw away. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r1",
+              "text": "We should use up the milk."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r2",
+              "text": "We shoulds use up the milk."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r3",
+              "text": "We should to use up the milk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r1",
+              "text": "We should use up the milk."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r2",
+              "text": "We shoulds use up the milk."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro2:r3",
+              "text": "We should to use up the milk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сохранить чек",
+        "uk": "Зберегти чек"
+      },
+      "bodyByLocale": {
+        "ru": "Hold onto здесь — сохранить у себя. Вы советуете оставить чек от покупки. Это новое значение знакомого выражения: не буквально держаться за поручень, а не выбрасывать и не отдавать нужную вещь. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Hold onto тут — зберегти в себе. Ви радите залишити чек від покупки. Це нове значення знайомого виразу: не буквально триматися за поручень, а не викидати й не віддавати потрібну річ. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r1",
+              "text": "He should hold onto the receipt."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r2",
+              "text": "He shoulds hold onto the receipt."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r3",
+              "text": "He should to hold onto the receipt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r1",
+              "text": "He should hold onto the receipt."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r2",
+              "text": "He shoulds hold onto the receipt."
+            },
+            {
+              "responseId": "en:lesson-20:session-22:intro3:r3",
+              "text": "He should to hold onto the receipt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "898bf067f72b9b0e8ea41116e70003a20ed188f9767706b9d1ca218dcb9d68ad"
+}

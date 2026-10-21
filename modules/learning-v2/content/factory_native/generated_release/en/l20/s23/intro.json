@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить у владельца",
+        "uk": "Уточнити у власника"
+      },
+      "bodyByLocale": {
+        "ru": "Check with — уточнить информацию у человека. В сообщениях указано разное время просмотра квартиры, и вы предлагаете переспросить владельца. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Check with — уточнити інформацію в людини. У повідомленнях указано різний час перегляду квартири, і ви пропонуєте перепитати власника. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r1",
+              "text": "You should check with the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r2",
+              "text": "You shoulds check with the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r3",
+              "text": "You should to check with the owner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r1",
+              "text": "You should check with the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r2",
+              "text": "You shoulds check with the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro1:r3",
+              "text": "You should to check with the owner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сократить расходы",
+        "uk": "Скоротити витрати"
+      },
+      "bodyByLocale": {
+        "ru": "Cut back — сократить; с расходами говорим cut back on spending. Вы пересматриваете свои траты. Let go — отпустить: сумку уже поставили на стол, и подруга может отпустить ручку. Перед предметом добавляем of. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Cut back — скоротити; з витратами кажемо cut back on spending. Ви переглядаєте свої витрати. Let go — відпустити: сумку вже поставили на стіл, і подруга може відпустити ручку. Перед предметом додаємо of. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r1",
+              "text": "We should cut back on spending."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r2",
+              "text": "We shoulds cut back on spending."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r3",
+              "text": "We should to cut back on spending."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r1",
+              "text": "We should cut back on spending."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r2",
+              "text": "We shoulds cut back on spending."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro2:r3",
+              "text": "We should to cut back on spending."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Зарядить батарею",
+        "uk": "Зарядити батарею"
+      },
+      "bodyByLocale": {
+        "ru": "Recharge — зарядить снова. Телефон почти разрядился, а знакомый собирается в дорогу. Вы советуете зарядить батарею перед выходом. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Recharge — зарядити знову. Телефон майже розрядився, а знайомий збирається в дорогу. Ви радите зарядити батарею перед виходом. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r1",
+              "text": "He should recharge the battery."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r2",
+              "text": "He shoulds recharge the battery."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r3",
+              "text": "He should to recharge the battery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r1",
+              "text": "He should recharge the battery."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r2",
+              "text": "He shoulds recharge the battery."
+            },
+            {
+              "responseId": "en:lesson-20:session-23:intro3:r3",
+              "text": "He should to recharge the battery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9f608f50c6a9c5d3980218b4c381ef8760c04fd2b00aee03f25823465a4b2f62"
+}

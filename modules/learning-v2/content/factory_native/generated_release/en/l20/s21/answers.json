@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-21:word:efficient",
+    "correctText": "efficient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i01",
+    "correctText": "You should choose an efficient heater.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i02",
+    "correctText": "You should choose an efficient heater.",
+    "correctResponseId": "en:lesson-20:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:word:recyclable",
+    "correctText": "recyclable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i04",
+    "correctText": "We should use recyclable packaging.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i05",
+    "correctText": "We should use recyclable packaging.",
+    "correctResponseId": "en:lesson-20:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:word:secure",
+    "correctText": "secure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i07",
+    "correctText": "He should choose a secure lock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i08",
+    "correctText": "He should choose a secure lock.",
+    "correctResponseId": "en:lesson-20:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:word:protective",
+    "correctText": "protective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i10",
+    "correctText": "She should wear protective gloves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i11",
+    "correctText": "She should wear protective gloves.",
+    "correctResponseId": "en:lesson-20:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i13",
+    "correctText": "en:lesson-20:session-21:i13:p1=efficient\nen:lesson-20:session-21:i13:p2=recyclable\nen:lesson-20:session-21:i13:p3=secure\nen:lesson-20:session-21:i13:p4=protective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i16",
+    "correctText": "You should choose an efficient heater.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-21:i17",
+    "correctText": "He should choose a secure lock.",
+    "correctResponseId": null
+  }
+]

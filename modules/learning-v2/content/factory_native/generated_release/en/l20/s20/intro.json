@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поговорить откровенно",
+        "uk": "Поговорити відверто"
+      },
+      "bodyByLocale": {
+        "ru": "Open up здесь — открыто рассказать о своих мыслях или переживаниях. Друг переживает из-за выбора курса, и вы предлагаете поговорить с человеком, которому он доверяет. Если называем собеседника, используем to: open up to a friend. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Open up тут — відкрито розповісти про свої думки чи переживання. Друг хвилюється через вибір курсу, і ви пропонуєте поговорити з людиною, якій він довіряє. Якщо називаємо співрозмовника, використовуємо to: open up to a friend. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r1",
+              "text": "You should open up to a friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r2",
+              "text": "You shoulds open up to a friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r3",
+              "text": "You should to open up to a friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r1",
+              "text": "You should open up to a friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r2",
+              "text": "You shoulds open up to a friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro1:r3",
+              "text": "You should to open up to a friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Связаться с соседом",
+        "uk": "Звʼязатися із сусідом"
+      },
+      "bodyByLocale": {
+        "ru": "Reach out — связаться с человеком, часто чтобы попросить помощь. Знакомой нужна помощь с переездом, и сосед предлагал помочь. Ask around — поспрашивать нескольких людей: вы ищете человека с подходящей машиной. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Reach out — звʼязатися з людиною, часто щоб попросити допомогу. Знайомій потрібна допомога з переїздом, і сусід пропонував допомогти. Ask around — порозпитувати кількох людей: ви шукаєте людину з відповідною машиною. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r1",
+              "text": "She should reach out to her neighbour."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r2",
+              "text": "She shoulds reach out to her neighbour."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r3",
+              "text": "She should to reach out to her neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r1",
+              "text": "She should reach out to her neighbour."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r2",
+              "text": "She shoulds reach out to her neighbour."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro2:r3",
+              "text": "She should to reach out to her neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поддержать друга",
+        "uk": "Підтримати друга"
+      },
+      "bodyByLocale": {
+        "ru": "Stand up for — заступиться за человека или поддержать его позицию. В разговоре друга несправедливо обвиняют в опоздании, и знакомый знает, что произошло. Здесь выражение о поддержке словами. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Stand up for — заступитися за людину або підтримати її позицію. У розмові друга несправедливо звинувачують у запізненні, і знайомий знає, що сталося. Тут вираз про підтримку словами. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r1",
+              "text": "He should stand up for his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r2",
+              "text": "He shoulds stand up for his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r3",
+              "text": "He should to stand up for his friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r1",
+              "text": "He should stand up for his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r2",
+              "text": "He shoulds stand up for his friend."
+            },
+            {
+              "responseId": "en:lesson-20:session-20:intro3:r3",
+              "text": "He should to stand up for his friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "acd86544e87c58bb16331aa56965db2ca5204dac95d54d0a793a622d7374b932"
+}

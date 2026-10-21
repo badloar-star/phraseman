@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-18:word:realistic",
+    "correctText": "realistic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i01",
+    "correctText": "You should set a realistic goal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i02",
+    "correctText": "You should set a realistic goal.",
+    "correctResponseId": "en:lesson-20:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:word:positive",
+    "correctText": "positive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i04",
+    "correctText": "She should stay positive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i05",
+    "correctText": "She should stay positive.",
+    "correctResponseId": "en:lesson-20:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:word:negative",
+    "correctText": "negative",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i07",
+    "correctText": "We should avoid negative comments.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i08",
+    "correctText": "We should avoid negative comments.",
+    "correctResponseId": "en:lesson-20:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:word:determined",
+    "correctText": "determined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i10",
+    "correctText": "He should stay determined.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i11",
+    "correctText": "He should stay determined.",
+    "correctResponseId": "en:lesson-20:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i13",
+    "correctText": "en:lesson-20:session-18:i13:p1=realistic\nen:lesson-20:session-18:i13:p2=positive\nen:lesson-20:session-18:i13:p3=negative\nen:lesson-20:session-18:i13:p4=determined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i16",
+    "correctText": "You should set a realistic goal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-18:i17",
+    "correctText": "He should stay determined.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Достижимая цель",
+        "uk": "Досяжна мета"
+      },
+      "bodyByLocale": {
+        "ru": "Realistic — реалистичный: цель подходит вашим возможностям и времени. Друг собирается выучить слишком много за один вечер, и вы предлагаете выбрать достижимую цель. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Realistic — реалістичний: мета відповідає вашим можливостям і часу. Друг збирається вивчити забагато за один вечір, і ви пропонуєте вибрати досяжну мету. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r1",
+              "text": "You should set a realistic goal."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r2",
+              "text": "You shoulds set a realistic goal."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r3",
+              "text": "You should to set a realistic goal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r1",
+              "text": "You should set a realistic goal."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r2",
+              "text": "You shoulds set a realistic goal."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro1:r3",
+              "text": "You should to set a realistic goal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сохранить настрой",
+        "uk": "Зберегти настрій"
+      },
+      "bodyByLocale": {
+        "ru": "Positive здесь — с позитивным настроем. Negative — негативный: резкий комментарий может мешать человеку учиться. Вы предлагаете поддерживать друг друга. Эти слова могут иметь и другие значения; здесь говорим об отношении и комментариях. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Positive тут — із позитивним настроєм. Negative — негативний: різкий коментар може заважати людині вчитися. Ви пропонуєте підтримувати одне одного. Ці слова можуть мати й інші значення; тут говоримо про ставлення та коментарі. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r1",
+              "text": "She should stay positive."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r2",
+              "text": "She shoulds stay positive."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r3",
+              "text": "She should to stay positive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r1",
+              "text": "She should stay positive."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r2",
+              "text": "She shoulds stay positive."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro2:r3",
+              "text": "She should to stay positive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Продолжать стараться",
+        "uk": "Продовжувати старатися"
+      },
+      "bodyByLocale": {
+        "ru": "Determined — решительно настроенный, готовый продолжать ради цели. Знакомый выбрал посильную цель, но столкнулся с трудным упражнением. Вы поддерживаете его решимость продолжать. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Determined — рішуче налаштований, готовий продовжувати заради мети. Знайомий вибрав посильну мету, але зіткнувся зі складною вправою. Ви підтримуєте його рішучість продовжувати. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r1",
+              "text": "He should stay determined."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r2",
+              "text": "He shoulds stay determined."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r3",
+              "text": "He should to stay determined."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r1",
+              "text": "He should stay determined."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r2",
+              "text": "He shoulds stay determined."
+            },
+            {
+              "responseId": "en:lesson-20:session-18:intro3:r3",
+              "text": "He should to stay determined."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fb16da02a3c1d38e21c57ef7e47095af0dcb5693b6111323136812f51a34f697"
+}

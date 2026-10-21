@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-18:word:realistic",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — realistic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:word:realistic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — realistic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:word:realistic:audio",
+          "transcript": "realistic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:word:realistic:r1",
+            "targetText": "realistic",
+            "meaningByLocale": {
+              "ru": "реалистичный, достижимый.",
+              "uk": "реалістичний, досяжний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "realistic",
+          "definitionByLocale": {
+            "ru": "реалистичный, достижимый.",
+            "uk": "реалістичний, досяжний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто поставити досяжну мету».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто поставити досяжну мету».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should set a realistic goal.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит поставить достижимую цель».",
+          "uk": "Дайте пораду із should: «Тобі варто поставити досяжну мету»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "set",
+          "a",
+          "realistic",
+          "goal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i02:r1",
+          "text": "You should set a realistic goal."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i02:r2",
+          "text": "You can set a realistic goal."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i02:r3",
+          "text": "You could set a realistic goal."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i02:audio",
+          "transcript": "You should set a realistic goal."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:i02:r1",
+            "targetText": "You should set a realistic goal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i02:r2",
+            "targetText": "You can set a realistic goal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i02:r3",
+            "targetText": "You could set a realistic goal.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should set a realistic goal.",
+              "uk": "У записі звучить You should set a realistic goal."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should set a realistic goal.",
+              "uk": "У записі звучить You should set a realistic goal."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ set a realistic goal.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-18:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:word:positive",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — positive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:word:positive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — positive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:word:positive:audio",
+          "transcript": "positive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:word:positive:r1",
+            "targetText": "positive",
+            "meaningByLocale": {
+              "ru": "позитивный, положительный.",
+              "uk": "позитивний, позитивно налаштований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "positive",
+          "definitionByLocale": {
+            "ru": "позитивный, положительный.",
+            "uk": "позитивний, позитивно налаштований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Їй варто зберігати позитивний настрій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Їй варто зберігати позитивний настрій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should stay positive.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит сохранять позитивный настрой».",
+          "uk": "Дайте пораду із should: «Їй варто зберігати позитивний настрій»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "stay",
+          "positive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i05:r1",
+          "text": "She should stay positive."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i05:r2",
+          "text": "She can stay positive."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i05:r3",
+          "text": "She could stay positive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i05:audio",
+          "transcript": "She should stay positive."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:i05:r1",
+            "targetText": "She should stay positive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i05:r2",
+            "targetText": "She can stay positive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i05:r3",
+            "targetText": "She could stay positive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should stay positive.",
+              "uk": "У записі звучить She should stay positive."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should stay positive.",
+              "uk": "У записі звучить She should stay positive."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ stay positive.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-18:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:word:negative",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — negative",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:word:negative:audio"
+      ],
+      "accessibilityLabel": "Картка слова — negative",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:word:negative:audio",
+          "transcript": "negative"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:word:negative:r1",
+            "targetText": "negative",
+            "meaningByLocale": {
+              "ru": "негативный, отрицательный.",
+              "uk": "негативний, негативно забарвлений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "negative",
+          "definitionByLocale": {
+            "ru": "негативный, отрицательный.",
+            "uk": "негативний, негативно забарвлений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Нам варто уникати негативних коментарів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Нам варто уникати негативних коментарів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should avoid negative comments.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит избегать негативных комментариев».",
+          "uk": "Дайте пораду із should: «Нам варто уникати негативних коментарів»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "avoid",
+          "negative",
+          "comments"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i08:r1",
+          "text": "We should avoid negative comments."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i08:r2",
+          "text": "We can avoid negative comments."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i08:r3",
+          "text": "We could avoid negative comments."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i08:audio",
+          "transcript": "We should avoid negative comments."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:i08:r1",
+            "targetText": "We should avoid negative comments.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i08:r2",
+            "targetText": "We can avoid negative comments.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i08:r3",
+            "targetText": "We could avoid negative comments.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should avoid negative comments.",
+              "uk": "У записі звучить We should avoid negative comments."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should avoid negative comments.",
+              "uk": "У записі звучить We should avoid negative comments."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ avoid negative comments.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-18:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:word:determined",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — determined",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:word:determined:audio"
+      ],
+      "accessibilityLabel": "Картка слова — determined",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:word:determined:audio",
+          "transcript": "determined"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:word:determined:r1",
+            "targetText": "determined",
+            "meaningByLocale": {
+              "ru": "решительно настроенный.",
+              "uk": "рішуче налаштований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "determined",
+          "definitionByLocale": {
+            "ru": "решительно настроенный.",
+            "uk": "рішуче налаштований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Йому варто зберігати рішучість».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Йому варто зберігати рішучість».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He should stay determined.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ему стоит сохранять решимость».",
+          "uk": "Дайте пораду із should: «Йому варто зберігати рішучість»."
+        },
+        "orderedTokens": [
+          "He",
+          "should",
+          "stay",
+          "determined"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i11:r1",
+          "text": "He should stay determined."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i11:r2",
+          "text": "He can stay determined."
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i11:r3",
+          "text": "He could stay determined."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i11:audio",
+          "transcript": "He should stay determined."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-18:i11:r1",
+            "targetText": "He should stay determined.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i11:r2",
+            "targetText": "He can stay determined.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i11:r3",
+            "targetText": "He could stay determined.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should stay determined.",
+              "uk": "У записі звучить He should stay determined."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should stay determined.",
+              "uk": "У записі звучить He should stay determined."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-18:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-18:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ stay determined.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-18:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-18:i13:p1",
+            "target": "realistic",
+            "meaningByLocale": {
+              "ru": "реалистичный, достижимый",
+              "uk": "реалістичний, досяжний"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-18:i13:p2",
+            "target": "positive",
+            "meaningByLocale": {
+              "ru": "позитивный, положительный",
+              "uk": "позитивний, позитивно налаштований"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-18:i13:p3",
+            "target": "negative",
+            "meaningByLocale": {
+              "ru": "негативный, отрицательный",
+              "uk": "негативний, негативно забарвлений"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-18:i13:p4",
+            "target": "determined",
+            "meaningByLocale": {
+              "ru": "решительно настроенный",
+              "uk": "рішуче налаштований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "realistic",
+          "positive",
+          "negative",
+          "determined"
+        ],
+        "rightColumn": [
+          "реалістичний, досяжний",
+          "позитивний, позитивно налаштований",
+          "негативний, негативно забарвлений",
+          "рішуче налаштований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте вибрати досяжну мету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Порадьте вибрати досяжну мету",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i16:audio",
+          "transcript": "You should set a realistic goal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should set a realistic goal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підтримайте його рішучість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Підтримайте його рішучість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-18:i17:audio",
+          "transcript": "He should stay determined."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He should stay determined.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c86a03db41a7eef8f824fbdccfcf4acf5e7153b955aad9d8d651b0cd80f8ca9d"
+}

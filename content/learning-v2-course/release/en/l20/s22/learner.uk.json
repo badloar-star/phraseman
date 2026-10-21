@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-22:word:reuse",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reuse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:word:reuse:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reuse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:word:reuse:audio",
+          "transcript": "reuse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:word:reuse:r1",
+            "targetText": "reuse",
+            "meaningByLocale": {
+              "ru": "использовать повторно.",
+              "uk": "використовувати повторно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reuse",
+          "definitionByLocale": {
+            "ru": "использовать повторно.",
+            "uk": "використовувати повторно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто використати цей пакет повторно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто використати цей пакет повторно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should reuse this bag.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит использовать этот пакет повторно».",
+          "uk": "Дайте пораду із should: «Тобі варто використати цей пакет повторно»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "reuse",
+          "this",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i02:r1",
+          "text": "You should reuse this bag."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i02:r2",
+          "text": "You can reuse this bag."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i02:r3",
+          "text": "You could reuse this bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i02:audio",
+          "transcript": "You should reuse this bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:i02:r1",
+            "targetText": "You should reuse this bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i02:r2",
+            "targetText": "You can reuse this bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i02:r3",
+            "targetText": "You could reuse this bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should reuse this bag.",
+              "uk": "У записі звучить You should reuse this bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should reuse this bag.",
+              "uk": "У записі звучить You should reuse this bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ reuse this bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-22:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:word:use-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — use up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:word:use-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — use up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:word:use-up:audio",
+          "transcript": "use up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:word:use-up:r1",
+            "targetText": "use up",
+            "meaningByLocale": {
+              "ru": "использовать до конца.",
+              "uk": "використати до кінця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "use up",
+          "definitionByLocale": {
+            "ru": "использовать до конца.",
+            "uk": "використати до кінця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Нам варто використати решту молока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Нам варто використати решту молока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should use up the milk.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит использовать оставшееся молоко».",
+          "uk": "Дайте пораду із should: «Нам варто використати решту молока»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "use",
+          "up",
+          "the",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i05:r1",
+          "text": "We should use up the milk."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i05:r2",
+          "text": "We can use up the milk."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i05:r3",
+          "text": "We could use up the milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i05:audio",
+          "transcript": "We should use up the milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:i05:r1",
+            "targetText": "We should use up the milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i05:r2",
+            "targetText": "We can use up the milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i05:r3",
+            "targetText": "We could use up the milk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should use up the milk.",
+              "uk": "У записі звучить We should use up the milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should use up the milk.",
+              "uk": "У записі звучить We should use up the milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ use up the milk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-22:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:word:throw-out",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — throw out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:word:throw-out:audio"
+      ],
+      "accessibilityLabel": "Картка слова — throw out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:word:throw-out:audio",
+          "transcript": "throw out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:word:throw-out:r1",
+            "targetText": "throw out",
+            "meaningByLocale": {
+              "ru": "выбросить.",
+              "uk": "викинути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "throw out",
+          "definitionByLocale": {
+            "ru": "выбросить.",
+            "uk": "викинути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Їй варто викинути розбиту чашку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Їй варто викинути розбиту чашку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should throw out the broken cup.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит выбросить разбитую чашку».",
+          "uk": "Дайте пораду із should: «Їй варто викинути розбиту чашку»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "throw",
+          "out",
+          "the",
+          "broken",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i08:r1",
+          "text": "She should throw out the broken cup."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i08:r2",
+          "text": "She can throw out the broken cup."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i08:r3",
+          "text": "She could throw out the broken cup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i08:audio",
+          "transcript": "She should throw out the broken cup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:i08:r1",
+            "targetText": "She should throw out the broken cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i08:r2",
+            "targetText": "She can throw out the broken cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i08:r3",
+            "targetText": "She could throw out the broken cup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should throw out the broken cup.",
+              "uk": "У записі звучить She should throw out the broken cup."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should throw out the broken cup.",
+              "uk": "У записі звучить She should throw out the broken cup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ throw out the broken cup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-22:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:word:hold-onto",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hold onto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:word:hold-onto:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hold onto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:word:hold-onto:audio",
+          "transcript": "hold onto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:word:hold-onto:r1",
+            "targetText": "hold onto",
+            "meaningByLocale": {
+              "ru": "сохранить у себя, не отдавать.",
+              "uk": "зберегти в себе, не віддавати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hold onto",
+          "definitionByLocale": {
+            "ru": "сохранить у себя, не отдавать.",
+            "uk": "зберегти в себе, не віддавати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Йому варто зберегти чек».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Йому варто зберегти чек».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He should hold onto the receipt.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ему стоит сохранить чек».",
+          "uk": "Дайте пораду із should: «Йому варто зберегти чек»."
+        },
+        "orderedTokens": [
+          "He",
+          "should",
+          "hold",
+          "onto",
+          "the",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i11:r1",
+          "text": "He should hold onto the receipt."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i11:r2",
+          "text": "He can hold onto the receipt."
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i11:r3",
+          "text": "He could hold onto the receipt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i11:audio",
+          "transcript": "He should hold onto the receipt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-22:i11:r1",
+            "targetText": "He should hold onto the receipt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i11:r2",
+            "targetText": "He can hold onto the receipt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i11:r3",
+            "targetText": "He could hold onto the receipt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should hold onto the receipt.",
+              "uk": "У записі звучить He should hold onto the receipt."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should hold onto the receipt.",
+              "uk": "У записі звучить He should hold onto the receipt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-22:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-22:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ hold onto the receipt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-22:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-22:i13:p1",
+            "target": "reuse",
+            "meaningByLocale": {
+              "ru": "использовать повторно",
+              "uk": "використовувати повторно"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-22:i13:p2",
+            "target": "use up",
+            "meaningByLocale": {
+              "ru": "использовать до конца",
+              "uk": "використати до кінця"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-22:i13:p3",
+            "target": "throw out",
+            "meaningByLocale": {
+              "ru": "выбросить",
+              "uk": "викинути"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-22:i13:p4",
+            "target": "hold onto",
+            "meaningByLocale": {
+              "ru": "сохранить у себя, не отдавать",
+              "uk": "зберегти в себе, не віддавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reuse",
+          "use up",
+          "throw out",
+          "hold onto"
+        ],
+        "rightColumn": [
+          "використовувати повторно",
+          "використати до кінця",
+          "викинути",
+          "зберегти в себе, не віддавати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте використати пакет повторно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i16:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте використати пакет повторно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i16:audio",
+          "transcript": "You should reuse this bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should reuse this bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-22:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте зберегти чек",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Порадьте зберегти чек",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-22:i17:audio",
+          "transcript": "He should hold onto the receipt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He should hold onto the receipt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8970add7f2fa281c4daed7f8246d462ca51be33e355cde8e3755fc359e334339"
+}

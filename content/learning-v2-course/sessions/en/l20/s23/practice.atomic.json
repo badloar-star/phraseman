@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-23:word:check-with",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check with",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:check-with:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check with",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:check-with:audio",
+            "transcript": "check with"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:check-with:r1",
+              "targetText": "check with",
+              "meaningByLocale": {
+                "ru": "уточнить у, свериться с.",
+                "uk": "уточнити в, звіритися з."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check with",
+            "definitionByLocale": {
+              "ru": "уточнить у, свериться с.",
+              "uk": "уточнити в, звіритися з."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Тебе стоит уточнить у владельца».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Тебе стоит уточнить у владельца».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You should check with the owner.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Тебе стоит уточнить у владельца».",
+            "uk": "Дайте пораду із should: «Тобі варто уточнити у власника»."
+          },
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "with",
+            "the",
+            "owner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i02:r1",
+            "text": "You should check with the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i02:r2",
+            "text": "You can check with the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i02:r3",
+            "text": "You could check with the owner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i02:audio",
+            "transcript": "You should check with the owner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i02:r1",
+              "targetText": "You should check with the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r2",
+              "targetText": "You can check with the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r3",
+              "targetText": "You could check with the owner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should check with the owner.",
+                "uk": "У записі звучить You should check with the owner."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should check with the owner.",
+                "uk": "У записі звучить You should check with the owner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ check with the owner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i03:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:cut-back",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cut back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:cut-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cut back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:cut-back:audio",
+            "transcript": "cut back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:cut-back:r1",
+              "targetText": "cut back",
+              "meaningByLocale": {
+                "ru": "сократить.",
+                "uk": "скоротити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cut back",
+            "definitionByLocale": {
+              "ru": "сократить.",
+              "uk": "скоротити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Нам стоит сократить расходы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Нам стоит сократить расходы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We should cut back on spending.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Нам стоит сократить расходы».",
+            "uk": "Дайте пораду із should: «Нам варто скоротити витрати»."
+          },
+          "orderedTokens": [
+            "We",
+            "should",
+            "cut",
+            "back",
+            "on",
+            "spending"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i05:r1",
+            "text": "We should cut back on spending."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i05:r2",
+            "text": "We can cut back on spending."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i05:r3",
+            "text": "We could cut back on spending."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i05:audio",
+            "transcript": "We should cut back on spending."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i05:r1",
+              "targetText": "We should cut back on spending.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r2",
+              "targetText": "We can cut back on spending.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r3",
+              "targetText": "We could cut back on spending.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should cut back on spending.",
+                "uk": "У записі звучить We should cut back on spending."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should cut back on spending.",
+                "uk": "У записі звучить We should cut back on spending."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ cut back on spending.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i06:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:let-go",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — let go",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:let-go:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — let go",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:let-go:audio",
+            "transcript": "let go"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:let-go:r1",
+              "targetText": "let go",
+              "meaningByLocale": {
+                "ru": "отпустить.",
+                "uk": "відпустити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let go",
+            "definitionByLocale": {
+              "ru": "отпустить.",
+              "uk": "відпустити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Ей стоит отпустить ручку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Ей стоит отпустить ручку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She should let go of the handle.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ей стоит отпустить ручку».",
+            "uk": "Дайте пораду із should: «Їй варто відпустити ручку»."
+          },
+          "orderedTokens": [
+            "She",
+            "should",
+            "let",
+            "go",
+            "of",
+            "the",
+            "handle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i08:r1",
+            "text": "She should let go of the handle."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i08:r2",
+            "text": "She can let go of the handle."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i08:r3",
+            "text": "She could let go of the handle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i08:audio",
+            "transcript": "She should let go of the handle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i08:r1",
+              "targetText": "She should let go of the handle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r2",
+              "targetText": "She can let go of the handle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r3",
+              "targetText": "She could let go of the handle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should let go of the handle.",
+                "uk": "У записі звучить She should let go of the handle."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should let go of the handle.",
+                "uk": "У записі звучить She should let go of the handle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ let go of the handle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i09:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:recharge",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recharge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:recharge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recharge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:recharge:audio",
+            "transcript": "recharge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:recharge:r1",
+              "targetText": "recharge",
+              "meaningByLocale": {
+                "ru": "зарядить снова.",
+                "uk": "зарядити знову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recharge",
+            "definitionByLocale": {
+              "ru": "зарядить снова.",
+              "uk": "зарядити знову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте совет с should: «Ему стоит зарядить батарею».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте совет с should: «Ему стоит зарядить батарею».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He should recharge the battery.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ему стоит зарядить батарею».",
+            "uk": "Дайте пораду із should: «Йому варто зарядити батарею»."
+          },
+          "orderedTokens": [
+            "He",
+            "should",
+            "recharge",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i11:r1",
+            "text": "He should recharge the battery."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i11:r2",
+            "text": "He can recharge the battery."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i11:r3",
+            "text": "He could recharge the battery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i11:audio",
+            "transcript": "He should recharge the battery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i11:r1",
+              "targetText": "He should recharge the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r2",
+              "targetText": "He can recharge the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r3",
+              "targetText": "He could recharge the battery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should recharge the battery.",
+                "uk": "У записі звучить He should recharge the battery."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should recharge the battery.",
+                "uk": "У записі звучить He should recharge the battery."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните совет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните совет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ recharge the battery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i12:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Дополните совет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните совет.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-23:i13:p1",
+              "target": "check with",
+              "meaningByLocale": {
+                "ru": "уточнить у, свериться с",
+                "uk": "уточнити в, звіритися з"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p2",
+              "target": "cut back",
+              "meaningByLocale": {
+                "ru": "сократить",
+                "uk": "скоротити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p3",
+              "target": "let go",
+              "meaningByLocale": {
+                "ru": "отпустить",
+                "uk": "відпустити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p4",
+              "target": "recharge",
+              "meaningByLocale": {
+                "ru": "зарядить снова",
+                "uk": "зарядити знову"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check with",
+            "cut back",
+            "let go",
+            "recharge"
+          ],
+          "rightColumn": [
+            "уточнить у, свериться с",
+            "сократить",
+            "отпустить",
+            "зарядить снова"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: необходимость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: необходимость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте уточнить у владельца",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте уточнить у владельца",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i16:audio",
+            "transcript": "You should check with the owner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You should check with the owner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посоветуйте зарядить батарею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Посоветуйте зарядить батарею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i17:audio",
+            "transcript": "He should recharge the battery."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He should recharge the battery.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-23:word:check-with",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check with",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:check-with:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check with",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:check-with:audio",
+            "transcript": "check with"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:check-with:r1",
+              "targetText": "check with",
+              "meaningByLocale": {
+                "ru": "уточнить у, свериться с.",
+                "uk": "уточнити в, звіритися з."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check with",
+            "definitionByLocale": {
+              "ru": "уточнить у, свериться с.",
+              "uk": "уточнити в, звіритися з."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Тобі варто уточнити у власника».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Тобі варто уточнити у власника».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You should check with the owner.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Тебе стоит уточнить у владельца».",
+            "uk": "Дайте пораду із should: «Тобі варто уточнити у власника»."
+          },
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "with",
+            "the",
+            "owner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i02:r1",
+            "text": "You should check with the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i02:r2",
+            "text": "You can check with the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i02:r3",
+            "text": "You could check with the owner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i02:audio",
+            "transcript": "You should check with the owner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i02:r1",
+              "targetText": "You should check with the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r2",
+              "targetText": "You can check with the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r3",
+              "targetText": "You could check with the owner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should check with the owner.",
+                "uk": "У записі звучить You should check with the owner."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You should check with the owner.",
+                "uk": "У записі звучить You should check with the owner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "You ___ check with the owner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i03:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:cut-back",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cut back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:cut-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cut back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:cut-back:audio",
+            "transcript": "cut back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:cut-back:r1",
+              "targetText": "cut back",
+              "meaningByLocale": {
+                "ru": "сократить.",
+                "uk": "скоротити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cut back",
+            "definitionByLocale": {
+              "ru": "сократить.",
+              "uk": "скоротити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Нам варто скоротити витрати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Нам варто скоротити витрати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We should cut back on spending.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Нам стоит сократить расходы».",
+            "uk": "Дайте пораду із should: «Нам варто скоротити витрати»."
+          },
+          "orderedTokens": [
+            "We",
+            "should",
+            "cut",
+            "back",
+            "on",
+            "spending"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i05:r1",
+            "text": "We should cut back on spending."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i05:r2",
+            "text": "We can cut back on spending."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i05:r3",
+            "text": "We could cut back on spending."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i05:audio",
+            "transcript": "We should cut back on spending."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i05:r1",
+              "targetText": "We should cut back on spending.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r2",
+              "targetText": "We can cut back on spending.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r3",
+              "targetText": "We could cut back on spending.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should cut back on spending.",
+                "uk": "У записі звучить We should cut back on spending."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We should cut back on spending.",
+                "uk": "У записі звучить We should cut back on spending."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "We ___ cut back on spending.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i06:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:let-go",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — let go",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:let-go:audio"
+        ],
+        "accessibilityLabel": "Картка слова — let go",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:let-go:audio",
+            "transcript": "let go"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:let-go:r1",
+              "targetText": "let go",
+              "meaningByLocale": {
+                "ru": "отпустить.",
+                "uk": "відпустити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let go",
+            "definitionByLocale": {
+              "ru": "отпустить.",
+              "uk": "відпустити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Їй варто відпустити ручку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Їй варто відпустити ручку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She should let go of the handle.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ей стоит отпустить ручку».",
+            "uk": "Дайте пораду із should: «Їй варто відпустити ручку»."
+          },
+          "orderedTokens": [
+            "She",
+            "should",
+            "let",
+            "go",
+            "of",
+            "the",
+            "handle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i08:r1",
+            "text": "She should let go of the handle."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i08:r2",
+            "text": "She can let go of the handle."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i08:r3",
+            "text": "She could let go of the handle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i08:audio",
+            "transcript": "She should let go of the handle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i08:r1",
+              "targetText": "She should let go of the handle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r2",
+              "targetText": "She can let go of the handle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r3",
+              "targetText": "She could let go of the handle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should let go of the handle.",
+                "uk": "У записі звучить She should let go of the handle."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She should let go of the handle.",
+                "uk": "У записі звучить She should let go of the handle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "She ___ let go of the handle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i09:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:word:recharge",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recharge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:word:recharge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recharge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:word:recharge:audio",
+            "transcript": "recharge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:word:recharge:r1",
+              "targetText": "recharge",
+              "meaningByLocale": {
+                "ru": "зарядить снова.",
+                "uk": "зарядити знову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recharge",
+            "definitionByLocale": {
+              "ru": "зарядить снова.",
+              "uk": "зарядити знову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте пораду із should: «Йому варто зарядити батарею».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте пораду із should: «Йому варто зарядити батарею».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He should recharge the battery.",
+          "localizedMeaning": {
+            "ru": "Дайте совет с should: «Ему стоит зарядить батарею».",
+            "uk": "Дайте пораду із should: «Йому варто зарядити батарею»."
+          },
+          "orderedTokens": [
+            "He",
+            "should",
+            "recharge",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i11:r1",
+            "text": "He should recharge the battery."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i11:r2",
+            "text": "He can recharge the battery."
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i11:r3",
+            "text": "He could recharge the battery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i11:audio",
+            "transcript": "He should recharge the battery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-23:i11:r1",
+              "targetText": "He should recharge the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r2",
+              "targetText": "He can recharge the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r3",
+              "targetText": "He could recharge the battery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should recharge the battery.",
+                "uk": "У записі звучить He should recharge the battery."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He should recharge the battery.",
+                "uk": "У записі звучить He should recharge the battery."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть пораду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-23:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-23:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть пораду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните совет.",
+            "uk": "Доповніть пораду."
+          },
+          "gappedTargetPhrase": "He ___ recharge the battery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-23:i12:r1",
+              "text": "should"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r2",
+              "text": "shoulds"
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r3",
+              "text": "should to"
+            }
+          ],
+          "testedDimension": "Доповніть пораду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "Should не получает окончания -s.",
+                "uk": "Should не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть пораду.",
+              "feedbackByLocale": {
+                "ru": "После should не нужно to.",
+                "uk": "Після should не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-23:i13:p1",
+              "target": "check with",
+              "meaningByLocale": {
+                "ru": "уточнить у, свериться с",
+                "uk": "уточнити в, звіритися з"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p2",
+              "target": "cut back",
+              "meaningByLocale": {
+                "ru": "сократить",
+                "uk": "скоротити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p3",
+              "target": "let go",
+              "meaningByLocale": {
+                "ru": "отпустить",
+                "uk": "відпустити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-23:i13:p4",
+              "target": "recharge",
+              "meaningByLocale": {
+                "ru": "зарядить снова",
+                "uk": "зарядити знову"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check with",
+            "cut back",
+            "let go",
+            "recharge"
+          ],
+          "rightColumn": [
+            "уточнити в, звіритися з",
+            "скоротити",
+            "відпустити",
+            "зарядити знову"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: необхідність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: необхідність",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i15:audio",
+            "transcript": "We have to leave now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have to leave now.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "leave",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте уточнити у власника",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Порадьте уточнити у власника",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i16:audio",
+            "transcript": "You should check with the owner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You should check with the owner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порадьте зарядити батарею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Порадьте зарядити батарею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-23:i17:audio",
+            "transcript": "He should recharge the battery."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He should recharge the battery.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-23:word:check-with",
+      "correctText": "check with",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i01",
+      "correctText": "You should check with the owner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i02",
+      "correctText": "You should check with the owner.",
+      "correctResponseId": "en:lesson-20:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i03",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:word:cut-back",
+      "correctText": "cut back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i04",
+      "correctText": "We should cut back on spending.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i05",
+      "correctText": "We should cut back on spending.",
+      "correctResponseId": "en:lesson-20:session-23:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i06",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:word:let-go",
+      "correctText": "let go",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i07",
+      "correctText": "She should let go of the handle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i08",
+      "correctText": "She should let go of the handle.",
+      "correctResponseId": "en:lesson-20:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i09",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:word:recharge",
+      "correctText": "recharge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i10",
+      "correctText": "He should recharge the battery.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i11",
+      "correctText": "He should recharge the battery.",
+      "correctResponseId": "en:lesson-20:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i12",
+      "correctText": "should",
+      "correctResponseId": "en:lesson-20:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i15",
+      "correctText": "We have to leave now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i16",
+      "correctText": "You should check with the owner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:i17",
+      "correctText": "He should recharge the battery.",
+      "correctResponseId": null
+    }
+  ]
+}

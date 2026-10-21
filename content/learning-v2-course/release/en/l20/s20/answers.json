@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-20:word:open-up",
+    "correctText": "open up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i01",
+    "correctText": "You should open up to a friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i02",
+    "correctText": "You should open up to a friend.",
+    "correctResponseId": "en:lesson-20:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:word:reach-out",
+    "correctText": "reach out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i04",
+    "correctText": "She should reach out to her neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i05",
+    "correctText": "She should reach out to her neighbour.",
+    "correctResponseId": "en:lesson-20:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:word:ask-around",
+    "correctText": "ask around",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i07",
+    "correctText": "We should ask around.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i08",
+    "correctText": "We should ask around.",
+    "correctResponseId": "en:lesson-20:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:word:stand-up-for",
+    "correctText": "stand up for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i10",
+    "correctText": "He should stand up for his friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i11",
+    "correctText": "He should stand up for his friend.",
+    "correctResponseId": "en:lesson-20:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i13",
+    "correctText": "en:lesson-20:session-20:i13:p1=open up\nen:lesson-20:session-20:i13:p2=reach out\nen:lesson-20:session-20:i13:p3=ask around\nen:lesson-20:session-20:i13:p4=stand up for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i16",
+    "correctText": "We should ask around.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-20:i17",
+    "correctText": "He should stand up for his friend.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-23:intro1:r2": {
+          "ru": "Should не получает окончания -s.",
+          "uk": "Should не отримує закінчення -s."
+        },
+        "en:lesson-20:session-23:intro1:r3": {
+          "ru": "После should не нужно to.",
+          "uk": "Після should не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-23:intro2:r2": {
+          "ru": "Should не получает окончания -s.",
+          "uk": "Should не отримує закінчення -s."
+        },
+        "en:lesson-20:session-23:intro2:r3": {
+          "ru": "После should не нужно to.",
+          "uk": "Після should не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-23:intro3:r2": {
+          "ru": "Should не получает окончания -s.",
+          "uk": "Should не отримує закінчення -s."
+        },
+        "en:lesson-20:session-23:intro3:r3": {
+          "ru": "После should не нужно to.",
+          "uk": "Після should не потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d5cb0baff8c9d88ddb2da7a5ab4b7d9b289a5854a35f8a00a1f3c2cbc7b240c5"
+}

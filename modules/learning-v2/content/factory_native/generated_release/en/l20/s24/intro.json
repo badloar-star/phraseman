@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Говорить открыто",
+        "uk": "Говорити відкрито"
+      },
+      "bodyByLocale": {
+        "ru": "Openly — открыто, не скрывая своих мыслей. Вы обсуждаете общий план и предлагаете другу прямо сказать, что ему не подходит. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Openly — відкрито, не приховуючи своїх думок. Ви обговорюєте спільний план і пропонуєте другові прямо сказати, що йому не підходить. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r1",
+              "text": "You should speak openly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r2",
+              "text": "You shoulds speak openly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r3",
+              "text": "You should to speak openly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r1",
+              "text": "You should speak openly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r2",
+              "text": "You shoulds speak openly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro1:r3",
+              "text": "You should to speak openly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тратить разумно",
+        "uk": "Витрачати розумно"
+      },
+      "bodyByLocale": {
+        "ru": "Sensibly — разумно. Знакомая планирует покупки, и вы советуете учитывать её бюджет. Gradually — постепенно: вы обсуждаете прогулки и предлагаете увеличивать расстояние понемногу. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Sensibly — розумно. Знайома планує покупки, і ви радите враховувати її бюджет. Gradually — поступово: ви обговорюєте прогулянки й пропонуєте збільшувати відстань потроху. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r1",
+              "text": "She should spend sensibly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r2",
+              "text": "She shoulds spend sensibly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r3",
+              "text": "She should to spend sensibly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r1",
+              "text": "She should spend sensibly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r2",
+              "text": "She shoulds spend sensibly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro2:r3",
+              "text": "She should to spend sensibly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Относиться справедливо",
+        "uk": "Ставитися справедливо"
+      },
+      "bodyByLocale": {
+        "ru": "Fairly здесь — справедливо. Знакомый распределяет задачи между участниками, и вы советуете одинаково учитывать интересы всех. В других фразах fairly может означать «довольно», но здесь речь о справедливости. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Fairly тут — справедливо. Знайомий розподіляє завдання між учасниками, і ви радите однаково враховувати інтереси всіх. В інших фразах fairly може означати «доволі», але тут ідеться про справедливість. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r1",
+              "text": "He should treat everyone fairly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r2",
+              "text": "He shoulds treat everyone fairly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r3",
+              "text": "He should to treat everyone fairly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r1",
+              "text": "He should treat everyone fairly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r2",
+              "text": "He shoulds treat everyone fairly."
+            },
+            {
+              "responseId": "en:lesson-20:session-24:intro3:r3",
+              "text": "He should to treat everyone fairly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e22743123795e2bbb60b79c7743dbe55bbf4d5697bc5808352fa007c1147e769"
+}

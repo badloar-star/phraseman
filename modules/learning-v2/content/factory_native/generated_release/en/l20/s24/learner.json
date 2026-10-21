@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-24:word:openly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — openly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:word:openly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — openly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:word:openly:audio",
+          "transcript": "openly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:word:openly:r1",
+            "targetText": "openly",
+            "meaningByLocale": {
+              "ru": "открыто, не скрывая.",
+              "uk": "відкрито, не приховуючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "openly",
+          "definitionByLocale": {
+            "ru": "открыто, не скрывая.",
+            "uk": "відкрито, не приховуючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Тебе стоит говорить открыто».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Тебе стоит говорить открыто».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should speak openly.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит говорить открыто».",
+          "uk": "Дайте пораду із should: «Тобі варто говорити відкрито»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "speak",
+          "openly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i02:r1",
+          "text": "You should speak openly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i02:r2",
+          "text": "You can speak openly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i02:r3",
+          "text": "You could speak openly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i02:audio",
+          "transcript": "You should speak openly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:i02:r1",
+            "targetText": "You should speak openly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i02:r2",
+            "targetText": "You can speak openly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i02:r3",
+            "targetText": "You could speak openly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should speak openly.",
+              "uk": "У записі звучить You should speak openly."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should speak openly.",
+              "uk": "У записі звучить You should speak openly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ speak openly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-24:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:word:sensibly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sensibly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:word:sensibly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sensibly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:word:sensibly:audio",
+          "transcript": "sensibly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:word:sensibly:r1",
+            "targetText": "sensibly",
+            "meaningByLocale": {
+              "ru": "разумно, благоразумно.",
+              "uk": "розумно, розсудливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sensibly",
+          "definitionByLocale": {
+            "ru": "разумно, благоразумно.",
+            "uk": "розумно, розсудливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ей стоит тратить деньги разумно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ей стоит тратить деньги разумно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should spend sensibly.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит тратить деньги разумно».",
+          "uk": "Дайте пораду із should: «Їй варто витрачати гроші розумно»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "spend",
+          "sensibly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i05:r1",
+          "text": "She should spend sensibly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i05:r2",
+          "text": "She can spend sensibly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i05:r3",
+          "text": "She could spend sensibly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i05:audio",
+          "transcript": "She should spend sensibly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:i05:r1",
+            "targetText": "She should spend sensibly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i05:r2",
+            "targetText": "She can spend sensibly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i05:r3",
+            "targetText": "She could spend sensibly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should spend sensibly.",
+              "uk": "У записі звучить She should spend sensibly."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should spend sensibly.",
+              "uk": "У записі звучить She should spend sensibly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ spend sensibly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-24:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:word:gradually",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gradually",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:word:gradually:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gradually",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:word:gradually:audio",
+          "transcript": "gradually"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:word:gradually:r1",
+            "targetText": "gradually",
+            "meaningByLocale": {
+              "ru": "постепенно.",
+              "uk": "поступово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gradually",
+          "definitionByLocale": {
+            "ru": "постепенно.",
+            "uk": "поступово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Нам стоит увеличивать расстояние постепенно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Нам стоит увеличивать расстояние постепенно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should increase the distance gradually.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит увеличивать расстояние постепенно».",
+          "uk": "Дайте пораду із should: «Нам варто збільшувати відстань поступово»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "increase",
+          "the",
+          "distance",
+          "gradually"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i08:r1",
+          "text": "We should increase the distance gradually."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i08:r2",
+          "text": "We can increase the distance gradually."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i08:r3",
+          "text": "We could increase the distance gradually."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i08:audio",
+          "transcript": "We should increase the distance gradually."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:i08:r1",
+            "targetText": "We should increase the distance gradually.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i08:r2",
+            "targetText": "We can increase the distance gradually.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i08:r3",
+            "targetText": "We could increase the distance gradually.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should increase the distance gradually.",
+              "uk": "У записі звучить We should increase the distance gradually."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should increase the distance gradually.",
+              "uk": "У записі звучить We should increase the distance gradually."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ increase the distance gradually.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-24:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:word:fairly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fairly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:word:fairly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fairly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:word:fairly:audio",
+          "transcript": "fairly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:word:fairly:r1",
+            "targetText": "fairly",
+            "meaningByLocale": {
+              "ru": "справедливо.",
+              "uk": "справедливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fairly",
+          "definitionByLocale": {
+            "ru": "справедливо.",
+            "uk": "справедливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ему стоит относиться ко всем справедливо».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ему стоит относиться ко всем справедливо».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He should treat everyone fairly.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ему стоит относиться ко всем справедливо».",
+          "uk": "Дайте пораду із should: «Йому варто ставитися до всіх справедливо»."
+        },
+        "orderedTokens": [
+          "He",
+          "should",
+          "treat",
+          "everyone",
+          "fairly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i11:r1",
+          "text": "He should treat everyone fairly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i11:r2",
+          "text": "He can treat everyone fairly."
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i11:r3",
+          "text": "He could treat everyone fairly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i11:audio",
+          "transcript": "He should treat everyone fairly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-24:i11:r1",
+            "targetText": "He should treat everyone fairly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i11:r2",
+            "targetText": "He can treat everyone fairly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i11:r3",
+            "targetText": "He could treat everyone fairly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should treat everyone fairly.",
+              "uk": "У записі звучить He should treat everyone fairly."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should treat everyone fairly.",
+              "uk": "У записі звучить He should treat everyone fairly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-24:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-24:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ treat everyone fairly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-24:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-24:i13:p1",
+            "target": "openly",
+            "meaningByLocale": {
+              "ru": "открыто, не скрывая",
+              "uk": "відкрито, не приховуючи"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-24:i13:p2",
+            "target": "sensibly",
+            "meaningByLocale": {
+              "ru": "разумно, благоразумно",
+              "uk": "розумно, розсудливо"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-24:i13:p3",
+            "target": "gradually",
+            "meaningByLocale": {
+              "ru": "постепенно",
+              "uk": "поступово"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-24:i13:p4",
+            "target": "fairly",
+            "meaningByLocale": {
+              "ru": "справедливо",
+              "uk": "справедливо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "openly",
+          "sensibly",
+          "gradually",
+          "fairly"
+        ],
+        "rightColumn": [
+          "открыто, не скрывая",
+          "разумно, благоразумно",
+          "постепенно",
+          "справедливо"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите говорить открыто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите говорить открыто",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i16:audio",
+          "transcript": "You should speak openly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should speak openly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте относиться ко всем справедливо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте относиться ко всем справедливо",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-24:i17:audio",
+          "transcript": "He should treat everyone fairly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He should treat everyone fairly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b4b6128a5ffcc064fd12b7f81c78ddb04fc123f3ba39f2446afa8a499bb13492"
+}

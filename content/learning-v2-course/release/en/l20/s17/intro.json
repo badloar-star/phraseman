@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посоветоваться с учителем",
+        "uk": "Порадитися з учителем"
+      },
+      "bodyByLocale": {
+        "ru": "Consult — посоветоваться с человеком, который может помочь разобраться. Друг выбирает курс, и вы советуете поговорить с учителем. Consult a teacher — без to перед a teacher. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Consult — порадитися з людиною, яка може допомогти розібратися. Друг вибирає курс, і ви радите поговорити з учителем. Consult a teacher — без to перед a teacher. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r1",
+              "text": "You should consult a teacher."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r2",
+              "text": "You shoulds consult a teacher."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r3",
+              "text": "You should to consult a teacher."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r1",
+              "text": "You should consult a teacher."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r2",
+              "text": "You shoulds consult a teacher."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro1:r3",
+              "text": "You should to consult a teacher."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассмотреть другой вариант",
+        "uk": "Розглянути інший варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Consider — рассмотреть вариант, подумать о нём, ещё не принимая решения. Simplify — упростить: в вашем плане слишком много шагов, и вы предлагаете сделать его проще. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Consider — розглянути варіант, подумати про нього, ще не ухвалюючи рішення. Simplify — спростити: у вашому плані забагато кроків, і ви пропонуєте зробити його простішим. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r1",
+              "text": "You should consider another option."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r2",
+              "text": "You shoulds consider another option."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r3",
+              "text": "You should to consider another option."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r1",
+              "text": "You should consider another option."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r2",
+              "text": "You shoulds consider another option."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro2:r3",
+              "text": "You should to consider another option."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Расслабиться после работы",
+        "uk": "Розслабитися після роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Unwind — расслабиться после напряжённого дня. Знакомая устала после работы, и вы предлагаете ей спокойно провести вечер. Это дружеский совет. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Unwind — розслабитися після напруженого дня. Знайома втомилася після роботи, і ви пропонуєте їй спокійно провести вечір. Це дружня порада. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r1",
+              "text": "She should unwind after work."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r2",
+              "text": "She shoulds unwind after work."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r3",
+              "text": "She should to unwind after work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r1",
+              "text": "She should unwind after work."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r2",
+              "text": "She shoulds unwind after work."
+            },
+            {
+              "responseId": "en:lesson-20:session-17:intro3:r3",
+              "text": "She should to unwind after work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73583c250599fb776c2fdb4f014b815abad67a0814faa7a9aa9d0c9ddf976354"
+}

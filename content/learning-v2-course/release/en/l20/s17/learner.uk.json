@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-17:word:consult",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — consult",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:word:consult:audio"
+      ],
+      "accessibilityLabel": "Картка слова — consult",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:word:consult:audio",
+          "transcript": "consult"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:word:consult:r1",
+            "targetText": "consult",
+            "meaningByLocale": {
+              "ru": "советоваться, обращаться за советом.",
+              "uk": "радитися, звертатися по пораду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "consult",
+          "definitionByLocale": {
+            "ru": "советоваться, обращаться за советом.",
+            "uk": "радитися, звертатися по пораду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто порадитися з учителем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто порадитися з учителем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should consult a teacher.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит посоветоваться с учителем».",
+          "uk": "Дайте пораду із should: «Тобі варто порадитися з учителем»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "consult",
+          "a",
+          "teacher"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i02:r1",
+          "text": "You should consult a teacher."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i02:r2",
+          "text": "You can consult a teacher."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i02:r3",
+          "text": "You could consult a teacher."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i02:audio",
+          "transcript": "You should consult a teacher."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:i02:r1",
+            "targetText": "You should consult a teacher.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i02:r2",
+            "targetText": "You can consult a teacher.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i02:r3",
+            "targetText": "You could consult a teacher.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should consult a teacher.",
+              "uk": "У записі звучить You should consult a teacher."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should consult a teacher.",
+              "uk": "У записі звучить You should consult a teacher."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ consult a teacher.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-17:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:word:consider",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — consider",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:word:consider:audio"
+      ],
+      "accessibilityLabel": "Картка слова — consider",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:word:consider:audio",
+          "transcript": "consider"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:word:consider:r1",
+            "targetText": "consider",
+            "meaningByLocale": {
+              "ru": "рассмотреть, обдумать.",
+              "uk": "розглянути, обміркувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "consider",
+          "definitionByLocale": {
+            "ru": "рассмотреть, обдумать.",
+            "uk": "розглянути, обміркувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто розглянути інший варіант».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто розглянути інший варіант».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should consider another option.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит рассмотреть другой вариант».",
+          "uk": "Дайте пораду із should: «Тобі варто розглянути інший варіант»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "consider",
+          "another",
+          "option"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i05:r1",
+          "text": "You should consider another option."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i05:r2",
+          "text": "You can consider another option."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i05:r3",
+          "text": "You could consider another option."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i05:audio",
+          "transcript": "You should consider another option."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:i05:r1",
+            "targetText": "You should consider another option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i05:r2",
+            "targetText": "You can consider another option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i05:r3",
+            "targetText": "You could consider another option.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should consider another option.",
+              "uk": "У записі звучить You should consider another option."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should consider another option.",
+              "uk": "У записі звучить You should consider another option."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ consider another option.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-17:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:word:simplify",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — simplify",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:word:simplify:audio"
+      ],
+      "accessibilityLabel": "Картка слова — simplify",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:word:simplify:audio",
+          "transcript": "simplify"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:word:simplify:r1",
+            "targetText": "simplify",
+            "meaningByLocale": {
+              "ru": "упростить.",
+              "uk": "спростити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "simplify",
+          "definitionByLocale": {
+            "ru": "упростить.",
+            "uk": "спростити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Нам варто спростити цей план».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Нам варто спростити цей план».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should simplify this plan.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит упростить этот план».",
+          "uk": "Дайте пораду із should: «Нам варто спростити цей план»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "simplify",
+          "this",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i08:r1",
+          "text": "We should simplify this plan."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i08:r2",
+          "text": "We can simplify this plan."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i08:r3",
+          "text": "We could simplify this plan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i08:audio",
+          "transcript": "We should simplify this plan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:i08:r1",
+            "targetText": "We should simplify this plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i08:r2",
+            "targetText": "We can simplify this plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i08:r3",
+            "targetText": "We could simplify this plan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should simplify this plan.",
+              "uk": "У записі звучить We should simplify this plan."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should simplify this plan.",
+              "uk": "У записі звучить We should simplify this plan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ simplify this plan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-17:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:word:unwind",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unwind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:word:unwind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unwind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:word:unwind:audio",
+          "transcript": "unwind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:word:unwind:r1",
+            "targetText": "unwind",
+            "meaningByLocale": {
+              "ru": "расслабиться, снять напряжение.",
+              "uk": "розслабитися, зняти напруження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unwind",
+          "definitionByLocale": {
+            "ru": "расслабиться, снять напряжение.",
+            "uk": "розслабитися, зняти напруження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Їй варто розслабитися після роботи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Їй варто розслабитися після роботи».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should unwind after work.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит расслабиться после работы».",
+          "uk": "Дайте пораду із should: «Їй варто розслабитися після роботи»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "unwind",
+          "after",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i11:r1",
+          "text": "She should unwind after work."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i11:r2",
+          "text": "She can unwind after work."
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i11:r3",
+          "text": "She could unwind after work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i11:audio",
+          "transcript": "She should unwind after work."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-17:i11:r1",
+            "targetText": "She should unwind after work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i11:r2",
+            "targetText": "She can unwind after work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i11:r3",
+            "targetText": "She could unwind after work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should unwind after work.",
+              "uk": "У записі звучить She should unwind after work."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should unwind after work.",
+              "uk": "У записі звучить She should unwind after work."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-17:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-17:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ unwind after work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-17:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-17:i13:p1",
+            "target": "consult",
+            "meaningByLocale": {
+              "ru": "советоваться, обращаться за советом",
+              "uk": "радитися, звертатися по пораду"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-17:i13:p2",
+            "target": "consider",
+            "meaningByLocale": {
+              "ru": "рассмотреть, обдумать",
+              "uk": "розглянути, обміркувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-17:i13:p3",
+            "target": "simplify",
+            "meaningByLocale": {
+              "ru": "упростить",
+              "uk": "спростити"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-17:i13:p4",
+            "target": "unwind",
+            "meaningByLocale": {
+              "ru": "расслабиться, снять напряжение",
+              "uk": "розслабитися, зняти напруження"
+            }
+          }
+        ],
+        "leftColumn": [
+          "consult",
+          "consider",
+          "simplify",
+          "unwind"
+        ],
+        "rightColumn": [
+          "радитися, звертатися по пораду",
+          "розглянути, обміркувати",
+          "спростити",
+          "розслабитися, зняти напруження"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте розглянути інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Порадьте розглянути інший варіант",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i16:audio",
+          "transcript": "You should consider another option."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should consider another option.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-17:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте спростити план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте спростити план",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-17:i17:audio",
+          "transcript": "We should simplify this plan."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We should simplify this plan.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b9ad268330bb578abd9a66794d2ebac5ccb14ac195bbca40a34bce18fde864f2"
+}

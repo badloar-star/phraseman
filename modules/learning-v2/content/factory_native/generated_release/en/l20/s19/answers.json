@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-19:word:sleep-on-it",
+    "correctText": "sleep on it",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i01",
+    "correctText": "You should sleep on it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i02",
+    "correctText": "You should sleep on it.",
+    "correctResponseId": "en:lesson-20:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:word:talk-it-over",
+    "correctText": "talk it over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i04",
+    "correctText": "We should talk it over.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i05",
+    "correctText": "We should talk it over.",
+    "correctResponseId": "en:lesson-20:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:word:think-it-over",
+    "correctText": "think it over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i07",
+    "correctText": "She should think it over.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i08",
+    "correctText": "She should think it over.",
+    "correctResponseId": "en:lesson-20:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:word:get-some-rest",
+    "correctText": "get some rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i10",
+    "correctText": "He should get some rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i11",
+    "correctText": "He should get some rest.",
+    "correctResponseId": "en:lesson-20:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i13",
+    "correctText": "en:lesson-20:session-19:i13:p1=sleep on it\nen:lesson-20:session-19:i13:p2=talk it over\nen:lesson-20:session-19:i13:p3=think it over\nen:lesson-20:session-19:i13:p4=get some rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i16",
+    "correctText": "You should sleep on it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-19:i17",
+    "correctText": "We should talk it over.",
+    "correctResponseId": null
+  }
+]

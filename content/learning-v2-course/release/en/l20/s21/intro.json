@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "should + base verb",
+    "uk": "should + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Эффективный прибор",
+        "uk": "Ефективний прилад"
+      },
+      "bodyByLocale": {
+        "ru": "Efficient — хорошо выполняющий задачу без лишней траты ресурсов. При выборе обогревателя вы сравниваете приборы, которым для одинаковой работы нужно разное количество энергии. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Efficient — такий, що добре виконує завдання без зайвої витрати ресурсів. Вибираючи обігрівач, ви порівнюєте прилади, яким для однакової роботи потрібна різна кількість енергії. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r1",
+              "text": "You should choose an efficient heater."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r2",
+              "text": "You shoulds choose an efficient heater."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r3",
+              "text": "You should to choose an efficient heater."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r1",
+              "text": "You should choose an efficient heater."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r2",
+              "text": "You shoulds choose an efficient heater."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro1:r3",
+              "text": "You should to choose an efficient heater."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Упаковка для переработки",
+        "uk": "Паковання для перероблення"
+      },
+      "bodyByLocale": {
+        "ru": "Recyclable — пригодный для переработки; это не то же самое, что reusable — пригодный для повторного использования. Secure — надёжный в смысле защиты: вы советуете выбрать хороший замок для велосипеда. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Recyclable — придатний до перероблення; це не те саме, що reusable — придатний до повторного використання. Secure — надійний у сенсі захисту: ви радите вибрати добрий замок для велосипеда. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r1",
+              "text": "We should use recyclable packaging."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r2",
+              "text": "We shoulds use recyclable packaging."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r3",
+              "text": "We should to use recyclable packaging."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r1",
+              "text": "We should use recyclable packaging."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r2",
+              "text": "We shoulds use recyclable packaging."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro2:r3",
+              "text": "We should to use recyclable packaging."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Защитные перчатки",
+        "uk": "Захисні рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "Protective — защитный. Подруга собирается переносить доски и нашла рабочие перчатки. Вы советуете их надеть. Знакомое protect — глагол «защищать», а protective описывает назначение вещи. Should + начальная форма глагола помогает дать совет: «стоит». Это рекомендация, а не обязательное требование. Should не меняется с she и we; после него не ставим to и не добавляем -s к глаголу.",
+        "uk": "Protective — захисний. Подруга збирається переносити дошки й знайшла робочі рукавички. Ви радите їх вдягнути. Знайоме protect — дієслово «захищати», а protective описує призначення речі. Should + початкова форма дієслова допомагає дати пораду: «варто». Це рекомендація, а не обовʼязкова вимога. Should не змінюється із she та we; після нього не ставимо to й не додаємо -s до дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r1",
+              "text": "She should wear protective gloves."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r2",
+              "text": "She shoulds wear protective gloves."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r3",
+              "text": "She should to wear protective gloves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r1",
+              "text": "She should wear protective gloves."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r2",
+              "text": "She shoulds wear protective gloves."
+            },
+            {
+              "responseId": "en:lesson-20:session-21:intro3:r3",
+              "text": "She should to wear protective gloves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ad0a9095d3f2e36315cb8c48573c6df230db06cbe067d74759cf0c32357a1bf2"
+}

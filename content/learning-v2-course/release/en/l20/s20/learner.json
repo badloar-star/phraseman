@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-20:word:open-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — open up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:word:open-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — open up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:word:open-up:audio",
+          "transcript": "open up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:word:open-up:r1",
+            "targetText": "open up",
+            "meaningByLocale": {
+              "ru": "открыться, говорить откровенно.",
+              "uk": "відкритися, говорити відверто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "open up",
+          "definitionByLocale": {
+            "ru": "открыться, говорить откровенно.",
+            "uk": "відкритися, говорити відверто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Тебе стоит откровенно поговорить с другом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Тебе стоит откровенно поговорить с другом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should open up to a friend.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит откровенно поговорить с другом».",
+          "uk": "Дайте пораду із should: «Тобі варто відверто поговорити з другом»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "open",
+          "up",
+          "to",
+          "a",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i02:r1",
+          "text": "You should open up to a friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i02:r2",
+          "text": "You can open up to a friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i02:r3",
+          "text": "You could open up to a friend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i02:audio",
+          "transcript": "You should open up to a friend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:i02:r1",
+            "targetText": "You should open up to a friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i02:r2",
+            "targetText": "You can open up to a friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i02:r3",
+            "targetText": "You could open up to a friend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should open up to a friend.",
+              "uk": "У записі звучить You should open up to a friend."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should open up to a friend.",
+              "uk": "У записі звучить You should open up to a friend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ open up to a friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-20:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:word:reach-out",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reach out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:word:reach-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reach out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:word:reach-out:audio",
+          "transcript": "reach out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:word:reach-out:r1",
+            "targetText": "reach out",
+            "meaningByLocale": {
+              "ru": "связаться, обратиться за помощью.",
+              "uk": "звʼязатися, звернутися по допомогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reach out",
+          "definitionByLocale": {
+            "ru": "связаться, обратиться за помощью.",
+            "uk": "звʼязатися, звернутися по допомогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ей стоит обратиться к своему соседу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ей стоит обратиться к своему соседу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should reach out to her neighbour.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит обратиться к своему соседу».",
+          "uk": "Дайте пораду із should: «Їй варто звернутися до свого сусіда»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "reach",
+          "out",
+          "to",
+          "her",
+          "neighbour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i05:r1",
+          "text": "She should reach out to her neighbour."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i05:r2",
+          "text": "She can reach out to her neighbour."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i05:r3",
+          "text": "She could reach out to her neighbour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i05:audio",
+          "transcript": "She should reach out to her neighbour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:i05:r1",
+            "targetText": "She should reach out to her neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i05:r2",
+            "targetText": "She can reach out to her neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i05:r3",
+            "targetText": "She could reach out to her neighbour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should reach out to her neighbour.",
+              "uk": "У записі звучить She should reach out to her neighbour."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should reach out to her neighbour.",
+              "uk": "У записі звучить She should reach out to her neighbour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ reach out to her neighbour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-20:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:word:ask-around",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ask around",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:word:ask-around:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ask around",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:word:ask-around:audio",
+          "transcript": "ask around"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:word:ask-around:r1",
+            "targetText": "ask around",
+            "meaningByLocale": {
+              "ru": "поспрашивать у разных людей.",
+              "uk": "порозпитувати різних людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ask around",
+          "definitionByLocale": {
+            "ru": "поспрашивать у разных людей.",
+            "uk": "порозпитувати різних людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Нам стоит поспрашивать у разных людей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Нам стоит поспрашивать у разных людей».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should ask around.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит поспрашивать у разных людей».",
+          "uk": "Дайте пораду із should: «Нам варто порозпитувати різних людей»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "ask",
+          "around"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i08:r1",
+          "text": "We should ask around."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i08:r2",
+          "text": "We can ask around."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i08:r3",
+          "text": "We could ask around."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i08:audio",
+          "transcript": "We should ask around."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:i08:r1",
+            "targetText": "We should ask around.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i08:r2",
+            "targetText": "We can ask around.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i08:r3",
+            "targetText": "We could ask around.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should ask around.",
+              "uk": "У записі звучить We should ask around."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should ask around.",
+              "uk": "У записі звучить We should ask around."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ ask around.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-20:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:word:stand-up-for",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stand up for",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:word:stand-up-for:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stand up for",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:word:stand-up-for:audio",
+          "transcript": "stand up for"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:word:stand-up-for:r1",
+            "targetText": "stand up for",
+            "meaningByLocale": {
+              "ru": "заступиться за, поддержать.",
+              "uk": "заступитися за, підтримати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stand up for",
+          "definitionByLocale": {
+            "ru": "заступиться за, поддержать.",
+            "uk": "заступитися за, підтримати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ему стоит заступиться за своего друга».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ему стоит заступиться за своего друга».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He should stand up for his friend.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ему стоит заступиться за своего друга».",
+          "uk": "Дайте пораду із should: «Йому варто заступитися за свого друга»."
+        },
+        "orderedTokens": [
+          "He",
+          "should",
+          "stand",
+          "up",
+          "for",
+          "his",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i11:r1",
+          "text": "He should stand up for his friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i11:r2",
+          "text": "He can stand up for his friend."
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i11:r3",
+          "text": "He could stand up for his friend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i11:audio",
+          "transcript": "He should stand up for his friend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-20:i11:r1",
+            "targetText": "He should stand up for his friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i11:r2",
+            "targetText": "He can stand up for his friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i11:r3",
+            "targetText": "He could stand up for his friend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should stand up for his friend.",
+              "uk": "У записі звучить He should stand up for his friend."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should stand up for his friend.",
+              "uk": "У записі звучить He should stand up for his friend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-20:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-20:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ stand up for his friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-20:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-20:i13:p1",
+            "target": "open up",
+            "meaningByLocale": {
+              "ru": "открыться, говорить откровенно",
+              "uk": "відкритися, говорити відверто"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-20:i13:p2",
+            "target": "reach out",
+            "meaningByLocale": {
+              "ru": "связаться, обратиться за помощью",
+              "uk": "звʼязатися, звернутися по допомогу"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-20:i13:p3",
+            "target": "ask around",
+            "meaningByLocale": {
+              "ru": "поспрашивать у разных людей",
+              "uk": "порозпитувати різних людей"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-20:i13:p4",
+            "target": "stand up for",
+            "meaningByLocale": {
+              "ru": "заступиться за, поддержать",
+              "uk": "заступитися за, підтримати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "open up",
+          "reach out",
+          "ask around",
+          "stand up for"
+        ],
+        "rightColumn": [
+          "открыться, говорить откровенно",
+          "связаться, обратиться за помощью",
+          "поспрашивать у разных людей",
+          "заступиться за, поддержать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите поспрашивать у разных людей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите поспрашивать у разных людей",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i16:audio",
+          "transcript": "We should ask around."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We should ask around.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте ему заступиться за друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте ему заступиться за друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-20:i17:audio",
+          "transcript": "He should stand up for his friend."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He should stand up for his friend.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "47842ff423eecd806a8bfd139e375a8c2ae97689a1283a66ed2ebf277e33eaf1"
+}

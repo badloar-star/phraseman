@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-17:word:consult",
+    "correctText": "consult",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i01",
+    "correctText": "You should consult a teacher.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i02",
+    "correctText": "You should consult a teacher.",
+    "correctResponseId": "en:lesson-20:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:word:consider",
+    "correctText": "consider",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i04",
+    "correctText": "You should consider another option.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i05",
+    "correctText": "You should consider another option.",
+    "correctResponseId": "en:lesson-20:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:word:simplify",
+    "correctText": "simplify",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i07",
+    "correctText": "We should simplify this plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i08",
+    "correctText": "We should simplify this plan.",
+    "correctResponseId": "en:lesson-20:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:word:unwind",
+    "correctText": "unwind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i10",
+    "correctText": "She should unwind after work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i11",
+    "correctText": "She should unwind after work.",
+    "correctResponseId": "en:lesson-20:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i13",
+    "correctText": "en:lesson-20:session-17:i13:p1=consult\nen:lesson-20:session-17:i13:p2=consider\nen:lesson-20:session-17:i13:p3=simplify\nen:lesson-20:session-17:i13:p4=unwind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i16",
+    "correctText": "You should consider another option.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-17:i17",
+    "correctText": "We should simplify this plan.",
+    "correctResponseId": null
+  }
+]

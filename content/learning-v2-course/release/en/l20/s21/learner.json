@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-21:word:efficient",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — efficient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:word:efficient:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — efficient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:word:efficient:audio",
+          "transcript": "efficient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:word:efficient:r1",
+            "targetText": "efficient",
+            "meaningByLocale": {
+              "ru": "эффективный, экономно использующий ресурсы.",
+              "uk": "ефективний, ощадливий у використанні ресурсів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "efficient",
+          "definitionByLocale": {
+            "ru": "эффективный, экономно использующий ресурсы.",
+            "uk": "ефективний, ощадливий у використанні ресурсів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Тебе стоит выбрать эффективный обогреватель».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Тебе стоит выбрать эффективный обогреватель».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should choose an efficient heater.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит выбрать эффективный обогреватель».",
+          "uk": "Дайте пораду із should: «Тобі варто вибрати ефективний обігрівач»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "choose",
+          "an",
+          "efficient",
+          "heater"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i02:r1",
+          "text": "You should choose an efficient heater."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i02:r2",
+          "text": "You can choose an efficient heater."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i02:r3",
+          "text": "You could choose an efficient heater."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i02:audio",
+          "transcript": "You should choose an efficient heater."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:i02:r1",
+            "targetText": "You should choose an efficient heater.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i02:r2",
+            "targetText": "You can choose an efficient heater.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i02:r3",
+            "targetText": "You could choose an efficient heater.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should choose an efficient heater.",
+              "uk": "У записі звучить You should choose an efficient heater."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should choose an efficient heater.",
+              "uk": "У записі звучить You should choose an efficient heater."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ choose an efficient heater.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-21:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:word:recyclable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — recyclable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:word:recyclable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — recyclable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:word:recyclable:audio",
+          "transcript": "recyclable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:word:recyclable:r1",
+            "targetText": "recyclable",
+            "meaningByLocale": {
+              "ru": "пригодный для переработки.",
+              "uk": "придатний до перероблення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recyclable",
+          "definitionByLocale": {
+            "ru": "пригодный для переработки.",
+            "uk": "придатний до перероблення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Нам стоит использовать упаковку, пригодную для переработки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Нам стоит использовать упаковку, пригодную для переработки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should use recyclable packaging.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит использовать упаковку, пригодную для переработки».",
+          "uk": "Дайте пораду із should: «Нам варто використовувати паковання, придатне до перероблення»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "use",
+          "recyclable",
+          "packaging"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i05:r1",
+          "text": "We should use recyclable packaging."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i05:r2",
+          "text": "We can use recyclable packaging."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i05:r3",
+          "text": "We could use recyclable packaging."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i05:audio",
+          "transcript": "We should use recyclable packaging."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:i05:r1",
+            "targetText": "We should use recyclable packaging.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i05:r2",
+            "targetText": "We can use recyclable packaging.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i05:r3",
+            "targetText": "We could use recyclable packaging.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should use recyclable packaging.",
+              "uk": "У записі звучить We should use recyclable packaging."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should use recyclable packaging.",
+              "uk": "У записі звучить We should use recyclable packaging."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ use recyclable packaging.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-21:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:word:secure",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — secure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:word:secure:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — secure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:word:secure:audio",
+          "transcript": "secure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:word:secure:r1",
+            "targetText": "secure",
+            "meaningByLocale": {
+              "ru": "надёжно защищённый, безопасный.",
+              "uk": "надійно захищений, безпечний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "secure",
+          "definitionByLocale": {
+            "ru": "надёжно защищённый, безопасный.",
+            "uk": "надійно захищений, безпечний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ему стоит выбрать надёжный замок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ему стоит выбрать надёжный замок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He should choose a secure lock.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ему стоит выбрать надёжный замок».",
+          "uk": "Дайте пораду із should: «Йому варто вибрати надійний замок»."
+        },
+        "orderedTokens": [
+          "He",
+          "should",
+          "choose",
+          "a",
+          "secure",
+          "lock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i08:r1",
+          "text": "He should choose a secure lock."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i08:r2",
+          "text": "He can choose a secure lock."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i08:r3",
+          "text": "He could choose a secure lock."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i08:audio",
+          "transcript": "He should choose a secure lock."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:i08:r1",
+            "targetText": "He should choose a secure lock.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i08:r2",
+            "targetText": "He can choose a secure lock.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i08:r3",
+            "targetText": "He could choose a secure lock.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should choose a secure lock.",
+              "uk": "У записі звучить He should choose a secure lock."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He should choose a secure lock.",
+              "uk": "У записі звучить He should choose a secure lock."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "He ___ choose a secure lock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-21:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:word:protective",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — protective",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:word:protective:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — protective",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:word:protective:audio",
+          "transcript": "protective"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:word:protective:r1",
+            "targetText": "protective",
+            "meaningByLocale": {
+              "ru": "защитный.",
+              "uk": "захисний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "protective",
+          "definitionByLocale": {
+            "ru": "защитный.",
+            "uk": "захисний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с should: «Ей стоит надеть защитные перчатки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с should: «Ей стоит надеть защитные перчатки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She should wear protective gloves.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Ей стоит надеть защитные перчатки».",
+          "uk": "Дайте пораду із should: «Їй варто вдягнути захисні рукавички»."
+        },
+        "orderedTokens": [
+          "She",
+          "should",
+          "wear",
+          "protective",
+          "gloves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i11:r1",
+          "text": "She should wear protective gloves."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i11:r2",
+          "text": "She can wear protective gloves."
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i11:r3",
+          "text": "She could wear protective gloves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i11:audio",
+          "transcript": "She should wear protective gloves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-21:i11:r1",
+            "targetText": "She should wear protective gloves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i11:r2",
+            "targetText": "She can wear protective gloves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i11:r3",
+            "targetText": "She could wear protective gloves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should wear protective gloves.",
+              "uk": "У записі звучить She should wear protective gloves."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She should wear protective gloves.",
+              "uk": "У записі звучить She should wear protective gloves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-21:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-21:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "She ___ wear protective gloves.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-21:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-21:i13:p1",
+            "target": "efficient",
+            "meaningByLocale": {
+              "ru": "эффективный, экономно использующий ресурсы",
+              "uk": "ефективний, ощадливий у використанні ресурсів"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-21:i13:p2",
+            "target": "recyclable",
+            "meaningByLocale": {
+              "ru": "пригодный для переработки",
+              "uk": "придатний до перероблення"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-21:i13:p3",
+            "target": "secure",
+            "meaningByLocale": {
+              "ru": "надёжно защищённый, безопасный",
+              "uk": "надійно захищений, безпечний"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-21:i13:p4",
+            "target": "protective",
+            "meaningByLocale": {
+              "ru": "защитный",
+              "uk": "захисний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "efficient",
+          "recyclable",
+          "secure",
+          "protective"
+        ],
+        "rightColumn": [
+          "эффективный, экономно использующий ресурсы",
+          "пригодный для переработки",
+          "надёжно защищённый, безопасный",
+          "защитный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте выбрать эффективный прибор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте выбрать эффективный прибор",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i16:audio",
+          "transcript": "You should choose an efficient heater."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should choose an efficient heater.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посоветуйте выбрать надёжный замок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Посоветуйте выбрать надёжный замок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-21:i17:audio",
+          "transcript": "He should choose a secure lock."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He should choose a secure lock.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "18ab4b25ccc30e01850eb1814644b2bd33a69898ba429ecfa3bd640432e17981"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. take apart — разобрать вещь на части. Для переезда стол нужно разобрать. Предложите сделать это сами. I'll take apart the table. — Я разберу стол",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. take apart — розібрати річ на частини. Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі. I'll take apart the table. — Я розберу стіл"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r1",
+              "text": "I'll take apart the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r2",
+              "text": "I'll to take apart the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r3",
+              "text": "I will will take apart the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r1",
+              "text": "I'll take apart the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r2",
+              "text": "I'll to take apart the table."
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro1:r3",
+              "text": "I will will take apart the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. put together — собрать вещь из отдельных частей. put up — прикрепить или установить на стене. Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её. Shall I put up the shelf? — Мне установить полку?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. put together — зібрати річ з окремих частин. put up — прикріпити або встановити на стіні. Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її. Shall I put up the shelf? — Мені встановити полицю?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r1",
+              "text": "Shall I put up the shelf?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r2",
+              "text": "Shall I to put up the shelf?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r3",
+              "text": "Shall I will put up the shelf?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r1",
+              "text": "Shall I put up the shelf?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r2",
+              "text": "Shall I to put up the shelf?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro2:r3",
+              "text": "Shall I will put up the shelf?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "take down — снять то, что висит или закреплено наверху. Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза. Shall I take down the curtains? — Мне снять шторы?",
+        "uk": "take down — зняти те, що висить або закріплене вгорі. Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза. Shall I take down the curtains? — Мені зняти штори?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r1",
+              "text": "Shall I take down the curtains?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r2",
+              "text": "Shall I to take down the curtains?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r3",
+              "text": "Shall I will take down the curtains?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r1",
+              "text": "Shall I take down the curtains?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r2",
+              "text": "Shall I to take down the curtains?"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:intro3:r3",
+              "text": "Shall I will take down the curtains?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b566956aeec1a64bd7937e6dbb67d484ed009900a8c1764d619e735198b3bf80"
+}

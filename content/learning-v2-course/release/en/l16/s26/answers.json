@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-26:word:chop-up",
+    "correctText": "chop up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i01",
+    "correctText": "I'll chop up the onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i02",
+    "correctText": "I'll chop up the onions.",
+    "correctResponseId": "en:lesson-16:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i03",
+    "correctText": "I'll chop up",
+    "correctResponseId": "en:lesson-16:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:word:peel-off",
+    "correctText": "peel off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i04",
+    "correctText": "I'll peel off the label.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i05",
+    "correctText": "I'll peel off the label.",
+    "correctResponseId": "en:lesson-16:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i06",
+    "correctText": "I'll peel off",
+    "correctResponseId": "en:lesson-16:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:word:pour-out",
+    "correctText": "pour out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i07",
+    "correctText": "Shall I pour out the water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i08",
+    "correctText": "Shall I pour out the water?",
+    "correctResponseId": "en:lesson-16:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i09",
+    "correctText": "Shall I pour out",
+    "correctResponseId": "en:lesson-16:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:word:clear-away",
+    "correctText": "clear away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i10",
+    "correctText": "Shall I clear away the plates?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i11",
+    "correctText": "Shall I clear away the plates?",
+    "correctResponseId": "en:lesson-16:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i12",
+    "correctText": "Shall I clear away",
+    "correctResponseId": "en:lesson-16:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i13",
+    "correctText": "en:lesson-16:session-26:i13:p1=chop up\nen:lesson-16:session-26:i13:p2=peel off\nen:lesson-16:session-26:i13:p3=pour out\nen:lesson-16:session-26:i13:p4=clear away",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i14",
+    "correctText": "I'll chop up the onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i15",
+    "correctText": "Shall I pour out the water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i16",
+    "correctText": "I'll peel off the label.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-26:i17",
+    "correctText": "Shall I clear away the plates?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-26:word:chop-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chop up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:word:chop-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chop up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:word:chop-up:audio",
+          "transcript": "chop up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:word:chop-up:r1",
+            "targetText": "chop up",
+            "meaningByLocale": {
+              "ru": "нарубить на небольшие кусочки.",
+              "uk": "нарубати на невеликі шматочки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chop up",
+          "definitionByLocale": {
+            "ru": "нарубить на небольшие кусочки.",
+            "uk": "нарубати на невеликі шматочки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками. Скажіть: «Я наріжу цибулю невеликими шматочками».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками. Скажіть: «Я наріжу цибулю невеликими шматочками».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll chop up the onions.",
+        "localizedMeaning": {
+          "ru": "Друг готовит суп, а лук ещё целый. Предложите нарезать его небольшими кусочками. Скажите: «Я нарежу лук небольшими кусочками».",
+          "uk": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками. Скажіть: «Я наріжу цибулю невеликими шматочками»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "chop",
+          "up",
+          "the",
+          "onions"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i02:r1",
+          "text": "I'll chop up the onions."
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i02:r2",
+          "text": "I'll to chop up the onions."
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i02:r3",
+          "text": "I will will chop up the onions."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i02:audio",
+          "transcript": "I'll chop up the onions."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:i02:r1",
+            "targetText": "I'll chop up the onions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i02:r2",
+            "targetText": "I'll to chop up the onions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i02:r3",
+            "targetText": "I will will chop up the onions.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll chop up the onions.",
+              "uk": "У записі звучить I'll chop up the onions."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll chop up the onions.",
+              "uk": "У записі звучить I'll chop up the onions."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i03:r1",
+          "text": "I'll chop up"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i03:r2",
+          "text": "I'll to chop up"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i03:r3",
+          "text": "I will will chop up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг готовит суп, а лук ещё целый. Предложите нарезать его небольшими кусочками.",
+          "uk": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками."
+        },
+        "gappedTargetPhrase": "___ the onions.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-26:i03:r1",
+            "text": "I'll chop up"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i03:r2",
+            "text": "I'll to chop up"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i03:r3",
+            "text": "I will will chop up"
+          }
+        ],
+        "testedDimension": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:word:peel-off",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peel off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:word:peel-off:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peel off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:word:peel-off:audio",
+          "transcript": "peel off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:word:peel-off:r1",
+            "targetText": "peel off",
+            "meaningByLocale": {
+              "ru": "снять тонкий слой, отделяя его от поверхности.",
+              "uk": "зняти тонкий шар, відділяючи його від поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peel off",
+          "definitionByLocale": {
+            "ru": "снять тонкий слой, отделяя его от поверхности.",
+            "uk": "зняти тонкий шар, відділяючи його від поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її. Скажіть: «Я зніму наліпку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її. Скажіть: «Я зніму наліпку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll peel off the label.",
+        "localizedMeaning": {
+          "ru": "На новой миске осталась бумажная наклейка. Предложите снять её. Скажите: «Я сниму наклейку».",
+          "uk": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її. Скажіть: «Я зніму наліпку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "peel",
+          "off",
+          "the",
+          "label"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i05:r1",
+          "text": "I'll peel off the label."
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i05:r2",
+          "text": "I'll to peel off the label."
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i05:r3",
+          "text": "I will will peel off the label."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i05:audio",
+          "transcript": "I'll peel off the label."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:i05:r1",
+            "targetText": "I'll peel off the label.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i05:r2",
+            "targetText": "I'll to peel off the label.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i05:r3",
+            "targetText": "I will will peel off the label.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll peel off the label.",
+              "uk": "У записі звучить I'll peel off the label."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll peel off the label.",
+              "uk": "У записі звучить I'll peel off the label."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i06:r1",
+          "text": "I'll peel off"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i06:r2",
+          "text": "I'll to peel off"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i06:r3",
+          "text": "I will will peel off"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На новой миске осталась бумажная наклейка. Предложите снять её.",
+          "uk": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її."
+        },
+        "gappedTargetPhrase": "___ the label.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-26:i06:r1",
+            "text": "I'll peel off"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i06:r2",
+            "text": "I'll to peel off"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i06:r3",
+            "text": "I will will peel off"
+          }
+        ],
+        "testedDimension": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:word:pour-out",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pour out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:word:pour-out:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pour out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:word:pour-out:audio",
+          "transcript": "pour out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:word:pour-out:r1",
+            "targetText": "pour out",
+            "meaningByLocale": {
+              "ru": "вылить жидкость из ёмкости.",
+              "uk": "вилити рідину з місткості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pour out",
+          "definitionByLocale": {
+            "ru": "вылить жидкость из ёмкости.",
+            "uk": "вилити рідину з місткості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її. Скажіть: «Мені вилити воду?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її. Скажіть: «Мені вилити воду?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I pour out the water?",
+        "localizedMeaning": {
+          "ru": "В тазу осталась грязная вода после мытья овощей. Спросите, нужно ли вам вылить её. Скажите: «Мне вылить воду?».",
+          "uk": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її. Скажіть: «Мені вилити воду?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "pour",
+          "out",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i08:r1",
+          "text": "Shall I pour out the water?"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i08:r2",
+          "text": "Shall I to pour out the water?"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i08:r3",
+          "text": "Shall I will pour out the water?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i08:audio",
+          "transcript": "Shall I pour out the water?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:i08:r1",
+            "targetText": "Shall I pour out the water?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i08:r2",
+            "targetText": "Shall I to pour out the water?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i08:r3",
+            "targetText": "Shall I will pour out the water?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I pour out the water?",
+              "uk": "У записі звучить Shall I pour out the water?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I pour out the water?",
+              "uk": "У записі звучить Shall I pour out the water?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i09:r1",
+          "text": "Shall I pour out"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i09:r2",
+          "text": "Shall I to pour out"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i09:r3",
+          "text": "Shall I will pour out"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тазу осталась грязная вода после мытья овощей. Спросите, нужно ли вам вылить её.",
+          "uk": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її."
+        },
+        "gappedTargetPhrase": "___ the water?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-26:i09:r1",
+            "text": "Shall I pour out"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i09:r2",
+            "text": "Shall I to pour out"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i09:r3",
+            "text": "Shall I will pour out"
+          }
+        ],
+        "testedDimension": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:word:clear-away",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clear away",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:word:clear-away:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clear away",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:word:clear-away:audio",
+          "transcript": "clear away"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:word:clear-away:r1",
+            "targetText": "clear away",
+            "meaningByLocale": {
+              "ru": "убрать вещи с поверхности, освободив её.",
+              "uk": "прибрати речі з поверхні, звільнивши її."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clear away",
+          "definitionByLocale": {
+            "ru": "убрать вещи с поверхности, освободив её.",
+            "uk": "прибрати речі з поверхні, звільнивши її."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу. Скажіть: «Мені прибрати тарілки?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу. Скажіть: «Мені прибрати тарілки?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I clear away the plates?",
+        "localizedMeaning": {
+          "ru": "Все закончили есть. Спросите хозяина, нужно ли вам убрать тарелки со стола. Скажите: «Мне убрать тарелки?».",
+          "uk": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу. Скажіть: «Мені прибрати тарілки?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "clear",
+          "away",
+          "the",
+          "plates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i11:r1",
+          "text": "Shall I clear away the plates?"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i11:r2",
+          "text": "Shall I to clear away the plates?"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i11:r3",
+          "text": "Shall I will clear away the plates?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i11:audio",
+          "transcript": "Shall I clear away the plates?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-26:i11:r1",
+            "targetText": "Shall I clear away the plates?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i11:r2",
+            "targetText": "Shall I to clear away the plates?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i11:r3",
+            "targetText": "Shall I will clear away the plates?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I clear away the plates?",
+              "uk": "У записі звучить Shall I clear away the plates?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I clear away the plates?",
+              "uk": "У записі звучить Shall I clear away the plates?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-26:i12:r1",
+          "text": "Shall I clear away"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i12:r2",
+          "text": "Shall I to clear away"
+        },
+        {
+          "responseId": "en:lesson-16:session-26:i12:r3",
+          "text": "Shall I will clear away"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Все закончили есть. Спросите хозяина, нужно ли вам убрать тарелки со стола.",
+          "uk": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу."
+        },
+        "gappedTargetPhrase": "___ the plates?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-26:i12:r1",
+            "text": "Shall I clear away"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i12:r2",
+            "text": "Shall I to clear away"
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i12:r3",
+            "text": "Shall I will clear away"
+          }
+        ],
+        "testedDimension": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-26:i13:p1",
+            "target": "chop up",
+            "meaningByLocale": {
+              "ru": "нарубить на небольшие кусочки",
+              "uk": "нарубати на невеликі шматочки"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-26:i13:p2",
+            "target": "peel off",
+            "meaningByLocale": {
+              "ru": "снять тонкий слой, отделяя его от поверхности",
+              "uk": "зняти тонкий шар, відділяючи його від поверхні"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-26:i13:p3",
+            "target": "pour out",
+            "meaningByLocale": {
+              "ru": "вылить жидкость из ёмкости",
+              "uk": "вилити рідину з місткості"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-26:i13:p4",
+            "target": "clear away",
+            "meaningByLocale": {
+              "ru": "убрать вещи с поверхности, освободив её",
+              "uk": "прибрати речі з поверхні, звільнивши її"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chop up",
+          "peel off",
+          "pour out",
+          "clear away"
+        ],
+        "rightColumn": [
+          "нарубати на невеликі шматочки",
+          "зняти тонкий шар, відділяючи його від поверхні",
+          "вилити рідину з місткості",
+          "прибрати речі з поверхні, звільнивши її"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту пропозицію допомоги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i14:audio",
+          "transcript": "I'll chop up the onions."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll chop up the onions.",
+        "orderedTokens": [
+          "I'll",
+          "chop",
+          "up",
+          "the",
+          "onions"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i15:audio",
+          "transcript": "Shall I pour out the water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I pour out the water?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "pour",
+          "out",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i16:audio"
+      ],
+      "accessibilityLabel": "На новій мисці залишилася паперова наліпка. Запропонуйте зняти її.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i16:audio",
+          "transcript": "I'll peel off the label."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll peel off the label.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-26:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-26:i17:audio",
+          "transcript": "Shall I clear away the plates?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I clear away the plates?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fef73f02d9d72bef5b84f4dd6fa36d922a18fe8dee53e17e4abf18b11e4f89c1"
+}

@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-27",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-27:word:take-apart",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take apart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:take-apart:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take apart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:take-apart:audio",
+            "transcript": "take apart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:take-apart:r1",
+              "targetText": "take apart",
+              "meaningByLocale": {
+                "ru": "разобрать вещь на части.",
+                "uk": "розібрати річ на частини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take apart",
+            "definitionByLocale": {
+              "ru": "разобрать вещь на части.",
+              "uk": "розібрати річ на частини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для переезда стол нужно разобрать. Предложите сделать это сами. Скажите: «Я разберу стол».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для переезда стол нужно разобрать. Предложите сделать это сами. Скажите: «Я разберу стол».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll take apart the table.",
+          "localizedMeaning": {
+            "ru": "Для переезда стол нужно разобрать. Предложите сделать это сами. Скажите: «Я разберу стол».",
+            "uk": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі. Скажіть: «Я розберу стіл»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "apart",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i02:r1",
+            "text": "I'll take apart the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i02:r2",
+            "text": "I'll to take apart the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i02:r3",
+            "text": "I will will take apart the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i02:audio",
+            "transcript": "I'll take apart the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i02:r1",
+              "targetText": "I'll take apart the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r2",
+              "targetText": "I'll to take apart the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r3",
+              "targetText": "I will will take apart the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take apart the table.",
+                "uk": "У записі звучить I'll take apart the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take apart the table.",
+                "uk": "У записі звучить I'll take apart the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i03:r1",
+            "text": "I'll take apart"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i03:r2",
+            "text": "I'll to take apart"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i03:r3",
+            "text": "I will will take apart"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+            "uk": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі."
+          },
+          "gappedTargetPhrase": "___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i03:r1",
+              "text": "I'll take apart"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r2",
+              "text": "I'll to take apart"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r3",
+              "text": "I will will take apart"
+            }
+          ],
+          "testedDimension": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:put-together",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — put together",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:put-together:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — put together",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:put-together:audio",
+            "transcript": "put together"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:put-together:r1",
+              "targetText": "put together",
+              "meaningByLocale": {
+                "ru": "собрать вещь из отдельных частей.",
+                "uk": "зібрати річ з окремих частин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put together",
+            "definitionByLocale": {
+              "ru": "собрать вещь из отдельных частей.",
+              "uk": "зібрати річ з окремих частин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой. Скажите: «Я соберу стул».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой. Скажите: «Я соберу стул».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll put together the chair.",
+          "localizedMeaning": {
+            "ru": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой. Скажите: «Я соберу стул».",
+            "uk": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням. Скажіть: «Я зберу стілець»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "together",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i05:r1",
+            "text": "I'll put together the chair."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i05:r2",
+            "text": "I'll to put together the chair."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i05:r3",
+            "text": "I will will put together the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i05:audio",
+            "transcript": "I'll put together the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i05:r1",
+              "targetText": "I'll put together the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r2",
+              "targetText": "I'll to put together the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r3",
+              "targetText": "I will will put together the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put together the chair.",
+                "uk": "У записі звучить I'll put together the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put together the chair.",
+                "uk": "У записі звучить I'll put together the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i06:r1",
+            "text": "I'll put together"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i06:r2",
+            "text": "I'll to put together"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i06:r3",
+            "text": "I will will put together"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+            "uk": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням."
+          },
+          "gappedTargetPhrase": "___ the chair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i06:r1",
+              "text": "I'll put together"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r2",
+              "text": "I'll to put together"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r3",
+              "text": "I will will put together"
+            }
+          ],
+          "testedDimension": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:put-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — put up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:put-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — put up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:put-up:audio",
+            "transcript": "put up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:put-up:r1",
+              "targetText": "put up",
+              "meaningByLocale": {
+                "ru": "прикрепить или установить на стене.",
+                "uk": "прикріпити або встановити на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put up",
+            "definitionByLocale": {
+              "ru": "прикрепить или установить на стене.",
+              "uk": "прикріпити або встановити на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её. Скажите: «Мне установить полку?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её. Скажите: «Мне установить полку?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I put up the shelf?",
+          "localizedMeaning": {
+            "ru": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её. Скажите: «Мне установить полку?».",
+            "uk": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її. Скажіть: «Мені встановити полицю?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "put",
+            "up",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i08:r1",
+            "text": "Shall I put up the shelf?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i08:r2",
+            "text": "Shall I to put up the shelf?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i08:r3",
+            "text": "Shall I will put up the shelf?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i08:audio",
+            "transcript": "Shall I put up the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i08:r1",
+              "targetText": "Shall I put up the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r2",
+              "targetText": "Shall I to put up the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r3",
+              "targetText": "Shall I will put up the shelf?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I put up the shelf?",
+                "uk": "У записі звучить Shall I put up the shelf?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I put up the shelf?",
+                "uk": "У записі звучить Shall I put up the shelf?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i09:r1",
+            "text": "Shall I put up"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i09:r2",
+            "text": "Shall I to put up"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i09:r3",
+            "text": "Shall I will put up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+            "uk": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її."
+          },
+          "gappedTargetPhrase": "___ the shelf?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i09:r1",
+              "text": "Shall I put up"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r2",
+              "text": "Shall I to put up"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r3",
+              "text": "Shall I will put up"
+            }
+          ],
+          "testedDimension": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:take-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:take-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:take-down:audio",
+            "transcript": "take down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:take-down:r1",
+              "targetText": "take down",
+              "meaningByLocale": {
+                "ru": "снять то, что висит или закреплено наверху.",
+                "uk": "зняти те, що висить або закріплене вгорі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take down",
+            "definitionByLocale": {
+              "ru": "снять то, что висит или закреплено наверху.",
+              "uk": "зняти те, що висить або закріплене вгорі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза. Скажите: «Мне снять шторы?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза. Скажите: «Мне снять шторы?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I take down the curtains?",
+          "localizedMeaning": {
+            "ru": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза. Скажите: «Мне снять шторы?».",
+            "uk": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза. Скажіть: «Мені зняти штори?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "take",
+            "down",
+            "the",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i11:r1",
+            "text": "Shall I take down the curtains?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i11:r2",
+            "text": "Shall I to take down the curtains?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i11:r3",
+            "text": "Shall I will take down the curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i11:audio",
+            "transcript": "Shall I take down the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i11:r1",
+              "targetText": "Shall I take down the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r2",
+              "targetText": "Shall I to take down the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r3",
+              "targetText": "Shall I will take down the curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I take down the curtains?",
+                "uk": "У записі звучить Shall I take down the curtains?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I take down the curtains?",
+                "uk": "У записі звучить Shall I take down the curtains?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i12:r1",
+            "text": "Shall I take down"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i12:r2",
+            "text": "Shall I to take down"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i12:r3",
+            "text": "Shall I will take down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+            "uk": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза."
+          },
+          "gappedTargetPhrase": "___ the curtains?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i12:r1",
+              "text": "Shall I take down"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r2",
+              "text": "Shall I to take down"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r3",
+              "text": "Shall I will take down"
+            }
+          ],
+          "testedDimension": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-27:i13:p1",
+              "target": "take apart",
+              "meaningByLocale": {
+                "ru": "разобрать вещь на части",
+                "uk": "розібрати річ на частини"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p2",
+              "target": "put together",
+              "meaningByLocale": {
+                "ru": "собрать вещь из отдельных частей",
+                "uk": "зібрати річ з окремих частин"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p3",
+              "target": "put up",
+              "meaningByLocale": {
+                "ru": "прикрепить или установить на стене",
+                "uk": "прикріпити або встановити на стіні"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p4",
+              "target": "take down",
+              "meaningByLocale": {
+                "ru": "снять то, что висит или закреплено наверху",
+                "uk": "зняти те, що висить або закріплене вгорі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take apart",
+            "put together",
+            "put up",
+            "take down"
+          ],
+          "rightColumn": [
+            "разобрать вещь на части",
+            "собрать вещь из отдельных частей",
+            "прикрепить или установить на стене",
+            "снять то, что висит или закреплено наверху"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное предложение помощи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное предложение помощи",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i14:audio",
+            "transcript": "I'll take apart the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll take apart the table.",
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "apart",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i15:audio",
+            "transcript": "Shall I put up the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I put up the shelf?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "put",
+            "up",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i16:audio",
+            "transcript": "I'll put together the chair."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll put together the chair.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i17:audio",
+            "transcript": "Shall I take down the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I take down the curtains?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-27:word:take-apart",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take apart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:take-apart:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take apart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:take-apart:audio",
+            "transcript": "take apart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:take-apart:r1",
+              "targetText": "take apart",
+              "meaningByLocale": {
+                "ru": "разобрать вещь на части.",
+                "uk": "розібрати річ на частини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take apart",
+            "definitionByLocale": {
+              "ru": "разобрать вещь на части.",
+              "uk": "розібрати річ на частини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі. Скажіть: «Я розберу стіл».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі. Скажіть: «Я розберу стіл».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll take apart the table.",
+          "localizedMeaning": {
+            "ru": "Для переезда стол нужно разобрать. Предложите сделать это сами. Скажите: «Я разберу стол».",
+            "uk": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі. Скажіть: «Я розберу стіл»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "apart",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i02:r1",
+            "text": "I'll take apart the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i02:r2",
+            "text": "I'll to take apart the table."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i02:r3",
+            "text": "I will will take apart the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i02:audio",
+            "transcript": "I'll take apart the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i02:r1",
+              "targetText": "I'll take apart the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r2",
+              "targetText": "I'll to take apart the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r3",
+              "targetText": "I will will take apart the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take apart the table.",
+                "uk": "У записі звучить I'll take apart the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll take apart the table.",
+                "uk": "У записі звучить I'll take apart the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i03:r1",
+            "text": "I'll take apart"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i03:r2",
+            "text": "I'll to take apart"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i03:r3",
+            "text": "I will will take apart"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для переезда стол нужно разобрать. Предложите сделать это сами.",
+            "uk": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі."
+          },
+          "gappedTargetPhrase": "___ the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i03:r1",
+              "text": "I'll take apart"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r2",
+              "text": "I'll to take apart"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r3",
+              "text": "I will will take apart"
+            }
+          ],
+          "testedDimension": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Для переїзду стіл потрібно розібрати. Запропонуйте зробити це самі.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:put-together",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — put together",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:put-together:audio"
+        ],
+        "accessibilityLabel": "Картка слова — put together",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:put-together:audio",
+            "transcript": "put together"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:put-together:r1",
+              "targetText": "put together",
+              "meaningByLocale": {
+                "ru": "собрать вещь из отдельных частей.",
+                "uk": "зібрати річ з окремих частин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put together",
+            "definitionByLocale": {
+              "ru": "собрать вещь из отдельных частей.",
+              "uk": "зібрати річ з окремих частин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням. Скажіть: «Я зберу стілець».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням. Скажіть: «Я зберу стілець».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll put together the chair.",
+          "localizedMeaning": {
+            "ru": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой. Скажите: «Я соберу стул».",
+            "uk": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням. Скажіть: «Я зберу стілець»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "put",
+            "together",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i05:r1",
+            "text": "I'll put together the chair."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i05:r2",
+            "text": "I'll to put together the chair."
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i05:r3",
+            "text": "I will will put together the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i05:audio",
+            "transcript": "I'll put together the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i05:r1",
+              "targetText": "I'll put together the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r2",
+              "targetText": "I'll to put together the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r3",
+              "targetText": "I will will put together the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put together the chair.",
+                "uk": "У записі звучить I'll put together the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll put together the chair.",
+                "uk": "У записі звучить I'll put together the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i06:r1",
+            "text": "I'll put together"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i06:r2",
+            "text": "I'll to put together"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i06:r3",
+            "text": "I will will put together"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг купил стул, который нужно собрать. Предложите помощь со сборкой.",
+            "uk": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням."
+          },
+          "gappedTargetPhrase": "___ the chair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i06:r1",
+              "text": "I'll put together"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r2",
+              "text": "I'll to put together"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r3",
+              "text": "I will will put together"
+            }
+          ],
+          "testedDimension": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:put-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — put up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:put-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — put up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:put-up:audio",
+            "transcript": "put up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:put-up:r1",
+              "targetText": "put up",
+              "meaningByLocale": {
+                "ru": "прикрепить или установить на стене.",
+                "uk": "прикріпити або встановити на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put up",
+            "definitionByLocale": {
+              "ru": "прикрепить или установить на стене.",
+              "uk": "прикріпити або встановити на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її. Скажіть: «Мені встановити полицю?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її. Скажіть: «Мені встановити полицю?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I put up the shelf?",
+          "localizedMeaning": {
+            "ru": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её. Скажите: «Мне установить полку?».",
+            "uk": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її. Скажіть: «Мені встановити полицю?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "put",
+            "up",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i08:r1",
+            "text": "Shall I put up the shelf?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i08:r2",
+            "text": "Shall I to put up the shelf?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i08:r3",
+            "text": "Shall I will put up the shelf?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i08:audio",
+            "transcript": "Shall I put up the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i08:r1",
+              "targetText": "Shall I put up the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r2",
+              "targetText": "Shall I to put up the shelf?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r3",
+              "targetText": "Shall I will put up the shelf?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I put up the shelf?",
+                "uk": "У записі звучить Shall I put up the shelf?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I put up the shelf?",
+                "uk": "У записі звучить Shall I put up the shelf?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i09:r1",
+            "text": "Shall I put up"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i09:r2",
+            "text": "Shall I to put up"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i09:r3",
+            "text": "Shall I will put up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Полка готова, но её ещё нужно прикрепить к стене. Предложите установить её.",
+            "uk": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її."
+          },
+          "gappedTargetPhrase": "___ the shelf?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i09:r1",
+              "text": "Shall I put up"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r2",
+              "text": "Shall I to put up"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r3",
+              "text": "Shall I will put up"
+            }
+          ],
+          "testedDimension": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Полиця готова, але її ще потрібно прикріпити до стіни. Запропонуйте встановити її.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:word:take-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:word:take-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:word:take-down:audio",
+            "transcript": "take down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:word:take-down:r1",
+              "targetText": "take down",
+              "meaningByLocale": {
+                "ru": "снять то, что висит или закреплено наверху.",
+                "uk": "зняти те, що висить або закріплене вгорі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take down",
+            "definitionByLocale": {
+              "ru": "снять то, что висит или закреплено наверху.",
+              "uk": "зняти те, що висить або закріплене вгорі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза. Скажіть: «Мені зняти штори?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза. Скажіть: «Мені зняти штори?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I take down the curtains?",
+          "localizedMeaning": {
+            "ru": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза. Скажите: «Мне снять шторы?».",
+            "uk": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза. Скажіть: «Мені зняти штори?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "take",
+            "down",
+            "the",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i11:r1",
+            "text": "Shall I take down the curtains?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i11:r2",
+            "text": "Shall I to take down the curtains?"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i11:r3",
+            "text": "Shall I will take down the curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i11:audio",
+            "transcript": "Shall I take down the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-27:i11:r1",
+              "targetText": "Shall I take down the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r2",
+              "targetText": "Shall I to take down the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r3",
+              "targetText": "Shall I will take down the curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I take down the curtains?",
+                "uk": "У записі звучить Shall I take down the curtains?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I take down the curtains?",
+                "uk": "У записі звучить Shall I take down the curtains?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-27:i12:r1",
+            "text": "Shall I take down"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i12:r2",
+            "text": "Shall I to take down"
+          },
+          {
+            "responseId": "en:lesson-16:session-27:i12:r3",
+            "text": "Shall I will take down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг хочет постирать шторы. Спросите, нужно ли вам снять их с карниза.",
+            "uk": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза."
+          },
+          "gappedTargetPhrase": "___ the curtains?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-27:i12:r1",
+              "text": "Shall I take down"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r2",
+              "text": "Shall I to take down"
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r3",
+              "text": "Shall I will take down"
+            }
+          ],
+          "testedDimension": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-27:i13:p1",
+              "target": "take apart",
+              "meaningByLocale": {
+                "ru": "разобрать вещь на части",
+                "uk": "розібрати річ на частини"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p2",
+              "target": "put together",
+              "meaningByLocale": {
+                "ru": "собрать вещь из отдельных частей",
+                "uk": "зібрати річ з окремих частин"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p3",
+              "target": "put up",
+              "meaningByLocale": {
+                "ru": "прикрепить или установить на стене",
+                "uk": "прикріпити або встановити на стіні"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-27:i13:p4",
+              "target": "take down",
+              "meaningByLocale": {
+                "ru": "снять то, что висит или закреплено наверху",
+                "uk": "зняти те, що висить або закріплене вгорі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take apart",
+            "put together",
+            "put up",
+            "take down"
+          ],
+          "rightColumn": [
+            "розібрати річ на частини",
+            "зібрати річ з окремих частин",
+            "прикріпити або встановити на стіні",
+            "зняти те, що висить або закріплене вгорі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту пропозицію допомоги",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i14:audio",
+            "transcript": "I'll take apart the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll take apart the table.",
+          "orderedTokens": [
+            "I'll",
+            "take",
+            "apart",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i15:audio",
+            "transcript": "Shall I put up the shelf?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I put up the shelf?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "put",
+            "up",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i16:audio"
+        ],
+        "accessibilityLabel": "Друг купив стілець, який потрібно зібрати. Запропонуйте допомогу зі складанням.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i16:audio",
+            "transcript": "I'll put together the chair."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll put together the chair.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-27:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Друг хоче випрати штори. Запитайте, чи потрібно вам зняти їх із карниза.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-27:i17:audio",
+            "transcript": "Shall I take down the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I take down the curtains?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-27:word:take-apart",
+      "correctText": "take apart",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i01",
+      "correctText": "I'll take apart the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i02",
+      "correctText": "I'll take apart the table.",
+      "correctResponseId": "en:lesson-16:session-27:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i03",
+      "correctText": "I'll take apart",
+      "correctResponseId": "en:lesson-16:session-27:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:word:put-together",
+      "correctText": "put together",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i04",
+      "correctText": "I'll put together the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i05",
+      "correctText": "I'll put together the chair.",
+      "correctResponseId": "en:lesson-16:session-27:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i06",
+      "correctText": "I'll put together",
+      "correctResponseId": "en:lesson-16:session-27:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:word:put-up",
+      "correctText": "put up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i07",
+      "correctText": "Shall I put up the shelf?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i08",
+      "correctText": "Shall I put up the shelf?",
+      "correctResponseId": "en:lesson-16:session-27:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i09",
+      "correctText": "Shall I put up",
+      "correctResponseId": "en:lesson-16:session-27:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:word:take-down",
+      "correctText": "take down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i10",
+      "correctText": "Shall I take down the curtains?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i11",
+      "correctText": "Shall I take down the curtains?",
+      "correctResponseId": "en:lesson-16:session-27:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i12",
+      "correctText": "Shall I take down",
+      "correctResponseId": "en:lesson-16:session-27:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i14",
+      "correctText": "I'll take apart the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i15",
+      "correctText": "Shall I put up the shelf?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i16",
+      "correctText": "I'll put together the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-27:i17",
+      "correctText": "Shall I take down the curtains?",
+      "correctResponseId": null
+    }
+  ]
+}

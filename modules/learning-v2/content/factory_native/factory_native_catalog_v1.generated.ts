@@ -6062,4 +6062,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + offer; Shall I + base verb?","uk":"I'll + offer; Shall I + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 26,
+    sourceFingerprint: "c4045bfa6e9484fae3f0652b019a9bc7423a55b5c5c47b485d47ccb2eac42a0b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + offer; Shall I + base verb?","uk":"I'll + offer; Shall I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 27,
+    sourceFingerprint: "4776ed6757e9fe52cd8614c8a22184ce206ad00fdfb4700636dcdc358c9e9c17",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I'll + offer; Shall I + base verb?","uk":"I'll + offer; Shall I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
 ]);

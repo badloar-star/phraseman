@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-27:word:take-apart",
+    "correctText": "take apart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i01",
+    "correctText": "I'll take apart the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i02",
+    "correctText": "I'll take apart the table.",
+    "correctResponseId": "en:lesson-16:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i03",
+    "correctText": "I'll take apart",
+    "correctResponseId": "en:lesson-16:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:word:put-together",
+    "correctText": "put together",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i04",
+    "correctText": "I'll put together the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i05",
+    "correctText": "I'll put together the chair.",
+    "correctResponseId": "en:lesson-16:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i06",
+    "correctText": "I'll put together",
+    "correctResponseId": "en:lesson-16:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:word:put-up",
+    "correctText": "put up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i07",
+    "correctText": "Shall I put up the shelf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i08",
+    "correctText": "Shall I put up the shelf?",
+    "correctResponseId": "en:lesson-16:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i09",
+    "correctText": "Shall I put up",
+    "correctResponseId": "en:lesson-16:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:word:take-down",
+    "correctText": "take down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i10",
+    "correctText": "Shall I take down the curtains?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i11",
+    "correctText": "Shall I take down the curtains?",
+    "correctResponseId": "en:lesson-16:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i12",
+    "correctText": "Shall I take down",
+    "correctResponseId": "en:lesson-16:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i13",
+    "correctText": "en:lesson-16:session-27:i13:p1=take apart\nen:lesson-16:session-27:i13:p2=put together\nen:lesson-16:session-27:i13:p3=put up\nen:lesson-16:session-27:i13:p4=take down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i14",
+    "correctText": "I'll take apart the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i15",
+    "correctText": "Shall I put up the shelf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i16",
+    "correctText": "I'll put together the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-27:i17",
+    "correctText": "Shall I take down the curtains?",
+    "correctResponseId": null
+  }
+]

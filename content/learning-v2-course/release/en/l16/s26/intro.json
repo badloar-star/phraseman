@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. chop up — нарубить на небольшие кусочки. Друг готовит суп, а лук ещё целый. Предложите нарезать его небольшими кусочками. I'll chop up the onions. — Я нарежу лук небольшими кусочками",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. chop up — нарубати на невеликі шматочки. Друг готує суп, а цибуля ще ціла. Запропонуйте нарізати її невеликими шматочками. I'll chop up the onions. — Я наріжу цибулю невеликими шматочками"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r1",
+              "text": "I'll chop up the onions."
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r2",
+              "text": "I'll to chop up the onions."
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r3",
+              "text": "I will will chop up the onions."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r1",
+              "text": "I'll chop up the onions."
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r2",
+              "text": "I'll to chop up the onions."
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro1:r3",
+              "text": "I will will chop up the onions."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. peel off — снять тонкий слой, отделяя его от поверхности. pour out — вылить жидкость из ёмкости. В тазу осталась грязная вода после мытья овощей. Спросите, нужно ли вам вылить её. Shall I pour out the water? — Мне вылить воду?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. peel off — зняти тонкий шар, відділяючи його від поверхні. pour out — вилити рідину з місткості. У мисці залишилася брудна вода після миття овочів. Запитайте, чи потрібно вам вилити її. Shall I pour out the water? — Мені вилити воду?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r1",
+              "text": "Shall I pour out the water?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r2",
+              "text": "Shall I to pour out the water?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r3",
+              "text": "Shall I will pour out the water?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r1",
+              "text": "Shall I pour out the water?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r2",
+              "text": "Shall I to pour out the water?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro2:r3",
+              "text": "Shall I will pour out the water?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "clear away — убрать вещи с поверхности, освободив её. Все закончили есть. Спросите хозяина, нужно ли вам убрать тарелки со стола. Shall I clear away the plates? — Мне убрать тарелки?",
+        "uk": "clear away — прибрати речі з поверхні, звільнивши її. Усі закінчили їсти. Запитайте господаря, чи потрібно вам прибрати тарілки зі столу. Shall I clear away the plates? — Мені прибрати тарілки?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r1",
+              "text": "Shall I clear away the plates?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r2",
+              "text": "Shall I to clear away the plates?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r3",
+              "text": "Shall I will clear away the plates?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r1",
+              "text": "Shall I clear away the plates?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r2",
+              "text": "Shall I to clear away the plates?"
+            },
+            {
+              "responseId": "en:lesson-16:session-26:intro3:r3",
+              "text": "Shall I will clear away the plates?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed7276ac4492ed5165680a7ab02def9559af5ba1f3a1909823d5903001562e6e"
+}

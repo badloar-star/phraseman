@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "Past Simple: regular verb + -ed; final -e + -d",
+    "uk": "Past Simple: regular verb + -ed; final -e + -d"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подставка под тарелку",
+        "uk": "Підставка під тарілку"
+      },
+      "bodyByLocale": {
+        "ru": "Placemat — «подставка или салфетка под тарелку», отдельное покрытие места за столом. Вчера вы её почистили: I cleaned the placemat. Clean → cleaned. Выберите рассказ о завершённой уборке вчера.",
+        "uk": "Placemat — «підставка або серветка під тарілку», окреме покриття місця за столом. Учора ви її почистили: I cleaned the placemat. Clean → cleaned. Виберіть розповідь про завершене прибирання вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r1",
+              "text": "I cleaned the placemat yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r2",
+              "text": "I clean the placemat yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r3",
+              "text": "I cleans the placemat yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r1",
+              "text": "I cleaned the placemat yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r2",
+              "text": "I clean the placemat yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro1:r3",
+              "text": "I cleans the placemat yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поднос и большая ложка",
+        "uk": "Таця й велика ложка"
+      },
+      "bodyByLocale": {
+        "ru": "Tea tray — «чайный поднос», serving spoon — «ложка для раскладывания еды», большая ложка для общей посуды. Вчера он передвинул поднос: He moved the tea tray. Move уже заканчивается на e, поэтому добавляем d: moved. Выберите эту фразу.",
+        "uk": "Tea tray — «чайна таця», serving spoon — «ложка для розкладання їжі», велика ложка для спільного посуду. Учора він пересунув тацю: He moved the tea tray. Move вже закінчується на e, тому додаємо d: moved. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r1",
+              "text": "He moved the tea tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r2",
+              "text": "He moves the tea tray yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r3",
+              "text": "He move the tea tray yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r1",
+              "text": "He moved the tea tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r2",
+              "text": "He moves the tea tray yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro2:r3",
+              "text": "He move the tea tray yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Салатница",
+        "uk": "Салатниця"
+      },
+      "bodyByLocale": {
+        "ru": "Salad bowl — «салатница», миска для салата. Вчера вы пользовались салатницей: I used the salad bowl yesterday. Use → used. О её вчерашнем месте: The salad bowl was on the table. Выберите действие, а не местоположение.",
+        "uk": "Salad bowl — «салатниця», миска для салату. Учора ви користувалися салатницею: I used the salad bowl yesterday. Use → used. Про її вчорашнє місце: The salad bowl was on the table. Виберіть дію, а не розташування."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r1",
+              "text": "I used the salad bowl yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r2",
+              "text": "The salad bowl was on the table."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r3",
+              "text": "I use the salad bowl yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r1",
+              "text": "I used the salad bowl yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r2",
+              "text": "The salad bowl was on the table."
+            },
+            {
+              "responseId": "en:lesson-12:session-03:intro3:r3",
+              "text": "I use the salad bowl yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6914724c79ffd970fe89bc7304ed526f7e6bdcb0655dfd43a9a8cbc56b1e8b62"
+}

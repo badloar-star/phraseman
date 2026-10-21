@@ -4319,4 +4319,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"polite expressions; was/were; now / yesterday","uk":"polite expressions; was/were; now / yesterday"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 1,
+    sourceFingerprint: "1e587010262267af10bbc8409a79976abaffb65e478aa4df681de265c94277c9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Simple: regular verb + -ed; final -e + -d","uk":"Past Simple: regular verb + -ed; final -e + -d"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 2,
+    sourceFingerprint: "3482b822a9516cd60e91badc3f6e1b07c9bf7c3a2a217476f1f6c8d42d866a70",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Simple: regular verb + -ed; final -e + -d","uk":"Past Simple: regular verb + -ed; final -e + -d"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 3,
+    sourceFingerprint: "0bb874ff6a525ab6032acdb0d50cf58cfea8f79a4457a29f39447a223942fc48",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Simple: regular verb + -ed; final -e + -d","uk":"Past Simple: regular verb + -ed; final -e + -d"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 4,
+    sourceFingerprint: "17385c6366723916baf221afc5ed35d241baef9979ca205a8f263e27bcb7cf91",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Past Simple: regular verb + -ed; final -e + -d","uk":"Past Simple: regular verb + -ed; final -e + -d"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
 ]);

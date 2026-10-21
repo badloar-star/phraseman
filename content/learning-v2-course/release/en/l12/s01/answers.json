@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-01:word:undress",
+    "correctText": "undress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i01",
+    "correctText": "I undress before bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i02",
+    "correctText": "I undressed before bed.",
+    "correctResponseId": "en:lesson-12:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i03",
+    "correctText": "undressed",
+    "correctResponseId": "en:lesson-12:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:word:unbutton",
+    "correctText": "unbutton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i04",
+    "correctText": "Please unbutton your coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i05",
+    "correctText": "He unbuttoned his coat.",
+    "correctResponseId": "en:lesson-12:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i06",
+    "correctText": "unbuttoned",
+    "correctResponseId": "en:lesson-12:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:word:untie",
+    "correctText": "untie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i07",
+    "correctText": "Please untie your shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i08",
+    "correctText": "I untied my shoes.",
+    "correctResponseId": "en:lesson-12:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i09",
+    "correctText": "untied",
+    "correctResponseId": "en:lesson-12:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:word:unfold",
+    "correctText": "unfold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i10",
+    "correctText": "Please unfold the blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i11",
+    "correctText": "They unfolded the blanket.",
+    "correctResponseId": "en:lesson-12:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i12",
+    "correctText": "unfolded",
+    "correctResponseId": "en:lesson-12:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i13",
+    "correctText": "en:lesson-12:session-01:i13:p1=undress\nen:lesson-12:session-01:i13:p2=unbutton\nen:lesson-12:session-01:i13:p3=untie\nen:lesson-12:session-01:i13:p4=unfold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i14",
+    "correctText": "I unbuttoned my shirt yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i15",
+    "correctText": "She unfolded the blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i16",
+    "correctText": "I untied my shoes yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-01:i17",
+    "correctText": "I undressed before bed yesterday.",
+    "correctResponseId": null
+  }
+]

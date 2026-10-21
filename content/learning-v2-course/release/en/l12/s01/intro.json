@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "Past Simple: regular verb + -ed; final -e + -d",
+    "uk": "Past Simple: regular verb + -ed; final -e + -d"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Завершённое действие вчера",
+        "uk": "Завершена дія вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Раньше was/were помогали описать состояние: I was tired yesterday. Теперь расскажем о действии. Undress — «раздеваться». О привычке: I undress before bed. О завершённом действии вчера: I undressed before bed yesterday. У правильного глагола для такого прошлого добавляем -ed: undress → undressed. Дополнительное was перед глаголом здесь не нужно. Выберите рассказ о вчерашнем действии.",
+        "uk": "Раніше was/were допомагали описати стан: I was tired yesterday. Тепер розповімо про дію. Undress — «роздягатися». Про звичку: I undress before bed. Про завершену дію вчора: I undressed before bed yesterday. У правильного дієслова для такого минулого додаємо -ed: undress → undressed. Додаткове was перед дієсловом тут не потрібне. Виберіть розповідь про вчорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r1",
+              "text": "I undressed before bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r2",
+              "text": "I undress before bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r3",
+              "text": "I undresses before bed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r1",
+              "text": "I undressed before bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r2",
+              "text": "I undress before bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro1:r3",
+              "text": "I undresses before bed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пуговицы и шнурки",
+        "uk": "Ґудзики й шнурки"
+      },
+      "bodyByLocale": {
+        "ru": "Unbutton — «расстегнуть пуговицы»: I unbuttoned my coat. Untie — «развязать»: I untied my shoes. Здесь развязывают шнурки на обуви. Если глагол уже заканчивается на e, добавляем только d: untie → untied. Вчера вы развязали шнурки. Выберите эту фразу.",
+        "uk": "Unbutton — «розстебнути ґудзики»: I unbuttoned my coat. Untie — «розв’язати»: I untied my shoes. Тут розв’язують шнурки на взутті. Якщо дієслово вже закінчується на e, додаємо тільки d: untie → untied. Учора ви розв’язали шнурки. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r1",
+              "text": "I untied my shoes yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r2",
+              "text": "I untie my shoes yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r3",
+              "text": "I unties my shoes yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r1",
+              "text": "I untied my shoes yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r2",
+              "text": "I untie my shoes yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro2:r3",
+              "text": "I unties my shoes yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Развернуть плед",
+        "uk": "Розгорнути плед"
+      },
+      "bodyByLocale": {
+        "ru": "Unfold — «развернуть, расправить сложенную вещь». I unfolded the blanket. — «Я развернул плед». Форма прошлого одинакова с I, she и they: I unfolded; she unfolded; they unfolded. Не добавляем -s после she в прошлом времени. Вчера она развернула плед. Выберите эту фразу.",
+        "uk": "Unfold — «розгорнути, розправити складену річ». I unfolded the blanket. — «Я розгорнув плед». Форма минулого однакова з I, she і they: I unfolded; she unfolded; they unfolded. Не додаємо -s після she в минулому часі. Учора вона розгорнула плед. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r1",
+              "text": "She unfolded the blanket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r2",
+              "text": "She unfolds the blanket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r3",
+              "text": "She unfold the blanket yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r1",
+              "text": "She unfolded the blanket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r2",
+              "text": "She unfolds the blanket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-01:intro3:r3",
+              "text": "She unfold the blanket yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b61cca68d3ed90f9717348d403f3c610edccdfb76bc98acf63b8d7ab7efd0404"
+}

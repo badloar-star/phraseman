@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-01:word:undress",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:word:undress:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:word:undress:audio",
+          "transcript": "undress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:word:undress:r1",
+            "targetText": "undress",
+            "meaningByLocale": {
+              "ru": "раздеваться.",
+              "uk": "роздягатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undress",
+          "definitionByLocale": {
+            "ru": "раздеваться.",
+            "uk": "роздягатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о привычке: я раздеваюсь перед сном",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о привычке: я раздеваюсь перед сном",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I undress before bed.",
+        "localizedMeaning": {
+          "ru": "Скажите о привычке: я раздеваюсь перед сном",
+          "uk": "Скажіть про звичку: я роздягаюся перед сном"
+        },
+        "orderedTokens": [
+          "I",
+          "undress",
+          "before",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i02:r1",
+          "text": "I undressed before bed."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i02:r2",
+          "text": "I undress before bed."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i02:r3",
+          "text": "She undressed before bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i02:audio",
+          "transcript": "I undressed before bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:i02:r1",
+            "targetText": "I undressed before bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i02:r2",
+            "targetText": "I undress before bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i02:r3",
+            "targetText": "She undressed before bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I undressed before bed.",
+              "uk": "У записі звучить I undressed before bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I undressed before bed.",
+              "uk": "У записі звучить I undressed before bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера я разделся перед сном. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i03:r1",
+          "text": "undressed"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i03:r2",
+          "text": "undress"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i03:r3",
+          "text": "undresses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера я разделся перед сном. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера я разделся перед сном. Выберите форму",
+          "uk": "Учора я роздягнувся перед сном. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ before bed yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-01:i03:r1",
+            "text": "undressed"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i03:r2",
+            "text": "undress"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i03:r3",
+            "text": "undresses"
+          }
+        ],
+        "testedDimension": "Вчера я разделся перед сном. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера я разделся перед сном. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Нужна форма прошлого с -ed: undressed.",
+              "uk": "Потрібна форма минулого з -ed: undressed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера я разделся перед сном. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Undresses — не прошлое и не форма с I.",
+              "uk": "Undresses — не минуле й не форма з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:word:unbutton",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unbutton",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:word:unbutton:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unbutton",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:word:unbutton:audio",
+          "transcript": "unbutton"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:word:unbutton:r1",
+            "targetText": "unbutton",
+            "meaningByLocale": {
+              "ru": "расстегнуть пуговицы.",
+              "uk": "розстебнути ґудзики."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unbutton",
+          "definitionByLocale": {
+            "ru": "расстегнуть пуговицы.",
+            "uk": "розстебнути ґудзики."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите расстегнуть пуговицы на пальто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите расстегнуть пуговицы на пальто",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please unbutton your coat.",
+        "localizedMeaning": {
+          "ru": "Попросите расстегнуть пуговицы на пальто",
+          "uk": "Попросіть розстебнути ґудзики на пальті"
+        },
+        "orderedTokens": [
+          "Please",
+          "unbutton",
+          "your",
+          "coat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i05:r1",
+          "text": "He unbuttoned his coat."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i05:r2",
+          "text": "He unbuttons his coat."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i05:r3",
+          "text": "He unbuttoned his shirt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i05:audio",
+          "transcript": "He unbuttoned his coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:i05:r1",
+            "targetText": "He unbuttoned his coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i05:r2",
+            "targetText": "He unbuttons his coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i05:r3",
+            "targetText": "He unbuttoned his shirt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He unbuttoned his coat.",
+              "uk": "У записі звучить He unbuttoned his coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He unbuttoned his coat.",
+              "uk": "У записі звучить He unbuttoned his coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера она расстегнула рубашку. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i06:r1",
+          "text": "unbuttoned"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i06:r2",
+          "text": "unbuttons"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i06:r3",
+          "text": "unbutton"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера она расстегнула рубашку. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она расстегнула рубашку. Выберите форму",
+          "uk": "Учора вона розстебнула сорочку. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ her shirt yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-01:i06:r1",
+            "text": "unbuttoned"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i06:r2",
+            "text": "unbuttons"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i06:r3",
+            "text": "unbutton"
+          }
+        ],
+        "testedDimension": "Вчера она расстегнула рубашку. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Вчера она расстегнула рубашку. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Unbuttons — настоящее; нужна unbuttoned.",
+              "uk": "Unbuttons — теперішній час; потрібна unbuttoned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Вчера она расстегнула рубашку. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого добавляем -ed: unbuttoned.",
+              "uk": "Для минулого додаємо -ed: unbuttoned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:word:untie",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — untie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:word:untie:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — untie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:word:untie:audio",
+          "transcript": "untie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:word:untie:r1",
+            "targetText": "untie",
+            "meaningByLocale": {
+              "ru": "развязать узел или шнурки.",
+              "uk": "розв’язати вузол або шнурки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "untie",
+          "definitionByLocale": {
+            "ru": "развязать узел или шнурки.",
+            "uk": "розв’язати вузол або шнурки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите развязать шнурки на обуви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите развязать шнурки на обуви",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please untie your shoes.",
+        "localizedMeaning": {
+          "ru": "Попросите развязать шнурки на обуви",
+          "uk": "Попросіть розв’язати шнурки на взутті"
+        },
+        "orderedTokens": [
+          "Please",
+          "untie",
+          "your",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i08:r1",
+          "text": "I untied my shoes."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i08:r2",
+          "text": "I untie my shoes."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i08:r3",
+          "text": "She untied her shoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i08:audio",
+          "transcript": "I untied my shoes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:i08:r1",
+            "targetText": "I untied my shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i08:r2",
+            "targetText": "I untie my shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i08:r3",
+            "targetText": "She untied her shoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I untied my shoes.",
+              "uk": "У записі звучить I untied my shoes."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I untied my shoes.",
+              "uk": "У записі звучить I untied my shoes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера он развязал шнурки. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i09:r1",
+          "text": "untied"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i09:r2",
+          "text": "unties"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i09:r3",
+          "text": "untie"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера он развязал шнурки. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера он развязал шнурки. Выберите форму",
+          "uk": "Учора він розв’язав шнурки. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ his shoes yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-01:i09:r1",
+            "text": "untied"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i09:r2",
+            "text": "unties"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i09:r3",
+            "text": "untie"
+          }
+        ],
+        "testedDimension": "Вчера он развязал шнурки. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера он развязал шнурки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Unties — настоящее; нужна untied.",
+              "uk": "Unties — теперішній час; потрібна untied."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера он развязал шнурки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "После e добавляем d: untied.",
+              "uk": "Після e додаємо d: untied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:word:unfold",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unfold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:word:unfold:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unfold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:word:unfold:audio",
+          "transcript": "unfold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:word:unfold:r1",
+            "targetText": "unfold",
+            "meaningByLocale": {
+              "ru": "развернуть, расправить сложенную вещь.",
+              "uk": "розгорнути, розправити складену річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unfold",
+          "definitionByLocale": {
+            "ru": "развернуть, расправить сложенную вещь.",
+            "uk": "розгорнути, розправити складену річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите развернуть плед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите развернуть плед",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please unfold the blanket.",
+        "localizedMeaning": {
+          "ru": "Попросите развернуть плед",
+          "uk": "Попросіть розгорнути плед"
+        },
+        "orderedTokens": [
+          "Please",
+          "unfold",
+          "the",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i11:r1",
+          "text": "They unfolded the blanket."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i11:r2",
+          "text": "They unfold the blanket."
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i11:r3",
+          "text": "She unfolded the blanket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i11:audio",
+          "transcript": "They unfolded the blanket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-01:i11:r1",
+            "targetText": "They unfolded the blanket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i11:r2",
+            "targetText": "They unfold the blanket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i11:r3",
+            "targetText": "She unfolded the blanket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They unfolded the blanket.",
+              "uk": "У записі звучить They unfolded the blanket."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They unfolded the blanket.",
+              "uk": "У записі звучить They unfolded the blanket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера мы развернули плед. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-01:i12:r1",
+          "text": "unfolded"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i12:r2",
+          "text": "unfold"
+        },
+        {
+          "responseId": "en:lesson-12:session-01:i12:r3",
+          "text": "unfolds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера мы развернули плед. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы развернули плед. Выберите форму",
+          "uk": "Учора ми розгорнули плед. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the blanket yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-01:i12:r1",
+            "text": "unfolded"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i12:r2",
+            "text": "unfold"
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i12:r3",
+            "text": "unfolds"
+          }
+        ],
+        "testedDimension": "Вчера мы развернули плед. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера мы развернули плед. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна unfolded.",
+              "uk": "Для минулого потрібна unfolded."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера мы развернули плед. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Unfolds — не прошлое и не форма с we.",
+              "uk": "Unfolds — не минуле й не форма з we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините глаголы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините глаголы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-01:i13:p1",
+            "target": "undress",
+            "meaningByLocale": {
+              "ru": "раздеваться",
+              "uk": "роздягатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-01:i13:p2",
+            "target": "unbutton",
+            "meaningByLocale": {
+              "ru": "расстегнуть пуговицы",
+              "uk": "розстебнути ґудзики"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-01:i13:p3",
+            "target": "untie",
+            "meaningByLocale": {
+              "ru": "развязать",
+              "uk": "розв’язати"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-01:i13:p4",
+            "target": "unfold",
+            "meaningByLocale": {
+              "ru": "развернуть сложенную вещь",
+              "uk": "розгорнути складену річ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "undress",
+          "unbutton",
+          "untie",
+          "unfold"
+        ],
+        "rightColumn": [
+          "раздеваться",
+          "расстегнуть пуговицы",
+          "развязать",
+          "развернуть сложенную вещь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный рассказ о прошлом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный рассказ о прошлом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i14:audio",
+          "transcript": "I unbuttoned my shirt yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I unbuttoned my shirt yesterday.",
+        "orderedTokens": [
+          "I",
+          "unbuttoned",
+          "my",
+          "shirt",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i15:audio",
+          "transcript": "She unfolded the blanket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She unfolded the blanket.",
+        "orderedTokens": [
+          "She",
+          "unfolded",
+          "the",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вчера вы развязали шнурки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вчера вы развязали шнурки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i16:audio",
+          "transcript": "I untied my shoes yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I untied my shoes yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вчера вы разделись перед сном",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вчера вы разделись перед сном",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-01:i17:audio",
+          "transcript": "I undressed before bed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I undressed before bed yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "85059c210124374c53a82912ba5fb745062a75b89d2732b7812584778e53ac4c"
+}

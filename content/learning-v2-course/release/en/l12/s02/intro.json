@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "Past Simple: regular verb + -ed; final -e + -d",
+    "uk": "Past Simple: regular verb + -ed; final -e + -d"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Велодорожка",
+        "uk": "Велодоріжка"
+      },
+      "bodyByLocale": {
+        "ru": "Cycle path — «велодорожка». Знакомый глагол cycle в прошлом получает d: cycle → cycled. Вчера вы ехали по велодорожке: I cycled along the cycle path yesterday. Выберите завершённое действие вчера.",
+        "uk": "Cycle path — «велодоріжка». Знайоме дієслово cycle в минулому отримує d: cycle → cycled. Учора ви їхали велодоріжкою: I cycled along the cycle path yesterday. Виберіть завершену дію вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r1",
+              "text": "I cycled along the cycle path yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r2",
+              "text": "I cycle along the cycle path yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r3",
+              "text": "I cycles along the cycle path yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r1",
+              "text": "I cycled along the cycle path yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r2",
+              "text": "I cycle along the cycle path yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro1:r3",
+              "text": "I cycles along the cycle path yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Угол улицы и пробка",
+        "uk": "Ріг вулиці й затор"
+      },
+      "bodyByLocale": {
+        "ru": "Street corner — «угол улицы», traffic jam — «дорожная пробка». Вчера мы ждали на углу: We waited at the street corner. Позже были в пробке: We were in a traffic jam. Waited рассказывает о действии, were — о месте. Выберите действие ожидания на углу.",
+        "uk": "Street corner — «ріг вулиці», traffic jam — «дорожній затор». Учора ми чекали на розі: We waited at the street corner. Пізніше були в заторі: We were in a traffic jam. Waited розповідає про дію, were — про місце. Виберіть дію очікування на розі."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r1",
+              "text": "We waited at the street corner."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r2",
+              "text": "We were in a traffic jam."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r3",
+              "text": "We wait at the street corner yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r1",
+              "text": "We waited at the street corner."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r2",
+              "text": "We were in a traffic jam."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro2:r3",
+              "text": "We wait at the street corner yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дорожный знак",
+        "uk": "Дорожній знак"
+      },
+      "bodyByLocale": {
+        "ru": "Road sign — «дорожный знак». Вчера вы проверили знак: I checked the road sign. Check → checked. С she форма та же: She checked the road sign. Выберите рассказ о её вчерашнем действии.",
+        "uk": "Road sign — «дорожній знак». Учора ви перевірили знак: I checked the road sign. Check → checked. З she форма та сама: She checked the road sign. Виберіть розповідь про її вчорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r1",
+              "text": "She checked the road sign yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r2",
+              "text": "She checks the road sign yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r3",
+              "text": "She check the road sign yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r1",
+              "text": "She checked the road sign yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r2",
+              "text": "She checks the road sign yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-02:intro3:r3",
+              "text": "She check the road sign yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c08cd19047acfe1c035a2faba35b318d3c269cb9969ce0908a7e8247c0f5eaaa"
+}

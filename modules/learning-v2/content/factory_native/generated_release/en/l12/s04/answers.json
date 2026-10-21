@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-04:word:garden-gate",
+    "correctText": "garden gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i01",
+    "correctText": "I painted the garden gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i02",
+    "correctText": "She painted the garden gate.",
+    "correctResponseId": "en:lesson-12:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i03",
+    "correctText": "painted",
+    "correctResponseId": "en:lesson-12:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:word:front-step",
+    "correctText": "front step",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i04",
+    "correctText": "She cleaned the front step.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i05",
+    "correctText": "I cleaned the front step.",
+    "correctResponseId": "en:lesson-12:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:word:door-handle",
+    "correctText": "door handle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i07",
+    "correctText": "I checked the door handle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i08",
+    "correctText": "They checked the door handle.",
+    "correctResponseId": "en:lesson-12:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i09",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:word:garden-chair",
+    "correctText": "garden chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i10",
+    "correctText": "We moved the garden chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i11",
+    "correctText": "He moved the garden chair.",
+    "correctResponseId": "en:lesson-12:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i12",
+    "correctText": "moved",
+    "correctResponseId": "en:lesson-12:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i13",
+    "correctText": "en:lesson-12:session-04:i13:p1=garden gate\nen:lesson-12:session-04:i13:p2=front step\nen:lesson-12:session-04:i13:p3=door handle\nen:lesson-12:session-04:i13:p4=garden chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i14",
+    "correctText": "I worked in the garden yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i15",
+    "correctText": "She painted the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i16",
+    "correctText": "I painted the garden chair yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-04:i17",
+    "correctText": "We cleaned the front step yesterday.",
+    "correctResponseId": null
+  }
+]

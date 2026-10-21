@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-02:intro1:r2": {
+          "ru": "Для прошлого нужна cycled.",
+          "uk": "Для минулого потрібна cycled."
+        },
+        "en:lesson-12:session-02:intro1:r3": {
+          "ru": "Cycles — не прошлое и не форма с I.",
+          "uk": "Cycles — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-02:intro2:r2": {
+          "ru": "Это о месте в пробке, не об ожидании на углу.",
+          "uk": "Це про місце в заторі, не про очікування на розі."
+        },
+        "en:lesson-12:session-02:intro2:r3": {
+          "ru": "Для вчерашнего действия нужна waited.",
+          "uk": "Для вчорашньої дії потрібна waited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-02:intro3:r2": {
+          "ru": "Checks — настоящее; нужна checked.",
+          "uk": "Checks — теперішній час; потрібна checked."
+        },
+        "en:lesson-12:session-02:intro3:r3": {
+          "ru": "Для прошлого добавляем -ed.",
+          "uk": "Для минулого додаємо -ed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3131ef84340d71914afb31318fbc635be988eaf48adc7dee4439904bb2940337"
+}

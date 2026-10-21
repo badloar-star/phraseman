@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-02:word:cycle-path",
+    "correctText": "cycle path",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i01",
+    "correctText": "I cycled along the cycle path yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i02",
+    "correctText": "She cycled along the cycle path.",
+    "correctResponseId": "en:lesson-12:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i03",
+    "correctText": "cycled",
+    "correctResponseId": "en:lesson-12:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:word:street-corner",
+    "correctText": "street corner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i04",
+    "correctText": "We waited at the street corner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i05",
+    "correctText": "They waited at the street corner.",
+    "correctResponseId": "en:lesson-12:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i06",
+    "correctText": "waited",
+    "correctResponseId": "en:lesson-12:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:word:traffic-jam",
+    "correctText": "traffic jam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i07",
+    "correctText": "I waited in a traffic jam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i08",
+    "correctText": "We waited in a traffic jam.",
+    "correctResponseId": "en:lesson-12:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i09",
+    "correctText": "waited",
+    "correctResponseId": "en:lesson-12:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:word:road-sign",
+    "correctText": "road sign",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i10",
+    "correctText": "I checked the road sign.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i11",
+    "correctText": "He checked the road sign.",
+    "correctResponseId": "en:lesson-12:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i13",
+    "correctText": "en:lesson-12:session-02:i13:p1=cycle path\nen:lesson-12:session-02:i13:p2=street corner\nen:lesson-12:session-02:i13:p3=traffic jam\nen:lesson-12:session-02:i13:p4=road sign",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i14",
+    "correctText": "I waited near the station yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i15",
+    "correctText": "We checked the map.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i16",
+    "correctText": "We cycled along the cycle path yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-02:i17",
+    "correctText": "I checked the road sign yesterday.",
+    "correctResponseId": null
+  }
+]

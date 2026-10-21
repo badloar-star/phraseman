@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-03:word:placemat",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — placemat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:word:placemat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — placemat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:word:placemat:audio",
+          "transcript": "placemat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:word:placemat:r1",
+            "targetText": "placemat",
+            "meaningByLocale": {
+              "ru": "подставка или салфетка под тарелку.",
+              "uk": "підставка або серветка під тарілку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "placemat",
+          "definitionByLocale": {
+            "ru": "подставка или салфетка под тарелку.",
+            "uk": "підставка або серветка під тарілку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: я почистил подставку под тарелку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: я почистил подставку под тарелку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the placemat.",
+        "localizedMeaning": {
+          "ru": "Скажите: я почистил подставку под тарелку",
+          "uk": "Скажіть: я почистив підставку під тарілку"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "placemat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i02:r1",
+          "text": "She cleaned the placemat."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i02:r2",
+          "text": "She cleans the placemat."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i02:r3",
+          "text": "They cleaned the placemat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i02:audio",
+          "transcript": "She cleaned the placemat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:i02:r1",
+            "targetText": "She cleaned the placemat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i02:r2",
+            "targetText": "She cleans the placemat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i02:r3",
+            "targetText": "They cleaned the placemat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the placemat.",
+              "uk": "У записі звучить She cleaned the placemat."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the placemat.",
+              "uk": "У записі звучить She cleaned the placemat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера я почистил подставку под тарелку. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i03:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i03:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i03:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера я почистил подставку под тарелку. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера я почистил подставку под тарелку. Выберите форму",
+          "uk": "Учора я почистив підставку під тарілку. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the placemat yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-03:i03:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i03:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Вчера я почистил подставку под тарелку. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера я почистил подставку под тарелку. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера я почистил подставку под тарелку. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна cleaned.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:word:tea-tray",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tea tray",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:word:tea-tray:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tea tray",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:word:tea-tray:audio",
+          "transcript": "tea tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:word:tea-tray:r1",
+            "targetText": "tea tray",
+            "meaningByLocale": {
+              "ru": "чайный поднос.",
+              "uk": "чайна таця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tea tray",
+          "definitionByLocale": {
+            "ru": "чайный поднос.",
+            "uk": "чайна таця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: он передвинул чайный поднос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: он передвинул чайный поднос",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He moved the tea tray.",
+        "localizedMeaning": {
+          "ru": "Скажите: он передвинул чайный поднос",
+          "uk": "Скажіть: він пересунув чайну тацю"
+        },
+        "orderedTokens": [
+          "He",
+          "moved",
+          "the",
+          "tea",
+          "tray"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i05:r1",
+          "text": "I moved the tea tray."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i05:r2",
+          "text": "I move the tea tray."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i05:r3",
+          "text": "She moved the tea tray."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i05:audio",
+          "transcript": "I moved the tea tray."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:i05:r1",
+            "targetText": "I moved the tea tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i05:r2",
+            "targetText": "I move the tea tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i05:r3",
+            "targetText": "She moved the tea tray.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the tea tray.",
+              "uk": "У записі звучить I moved the tea tray."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the tea tray.",
+              "uk": "У записі звучить I moved the tea tray."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера она передвинула чайный поднос. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i06:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i06:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i06:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера она передвинула чайный поднос. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она передвинула чайный поднос. Выберите форму",
+          "uk": "Учора вона пересунула чайну тацю. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the tea tray yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-03:i06:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i06:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i06:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Вчера она передвинула чайный поднос. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Вчера она передвинула чайный поднос. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма moved.",
+              "uk": "Для минулого потрібна форма moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Вчера она передвинула чайный поднос. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна moved.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:word:serving-spoon",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — serving spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:word:serving-spoon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — serving spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:word:serving-spoon:audio",
+          "transcript": "serving spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:word:serving-spoon:r1",
+            "targetText": "serving spoon",
+            "meaningByLocale": {
+              "ru": "ложка для раскладывания еды из общей посуды.",
+              "uk": "ложка для розкладання їжі зі спільного посуду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serving spoon",
+          "definitionByLocale": {
+            "ru": "ложка для раскладывания еды из общей посуды.",
+            "uk": "ложка для розкладання їжі зі спільного посуду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: мы вымыли ложку для раскладывания еды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: мы вымыли ложку для раскладывания еды",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We washed the serving spoon.",
+        "localizedMeaning": {
+          "ru": "Скажите: мы вымыли ложку для раскладывания еды",
+          "uk": "Скажіть: ми вимили ложку для розкладання їжі"
+        },
+        "orderedTokens": [
+          "We",
+          "washed",
+          "the",
+          "serving",
+          "spoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i08:r1",
+          "text": "I washed the serving spoon."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i08:r2",
+          "text": "I wash the serving spoon."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i08:r3",
+          "text": "She washed the serving spoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i08:audio",
+          "transcript": "I washed the serving spoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:i08:r1",
+            "targetText": "I washed the serving spoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i08:r2",
+            "targetText": "I wash the serving spoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i08:r3",
+            "targetText": "She washed the serving spoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the serving spoon.",
+              "uk": "У записі звучить I washed the serving spoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the serving spoon.",
+              "uk": "У записі звучить I washed the serving spoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i09:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i09:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i09:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+          "uk": "Учора вони вимили ложки для розкладання їжі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the serving spoons yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-03:i09:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i09:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i09:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма washed.",
+              "uk": "Для минулого потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера они вымыли ложки для раскладывания еды. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна washed.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:word:salad-bowl",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — salad bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:word:salad-bowl:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — salad bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:word:salad-bowl:audio",
+          "transcript": "salad bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:word:salad-bowl:r1",
+            "targetText": "salad bowl",
+            "meaningByLocale": {
+              "ru": "салатница.",
+              "uk": "салатниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salad bowl",
+          "definitionByLocale": {
+            "ru": "салатница.",
+            "uk": "салатниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: я пользовался салатницей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: я пользовался салатницей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used the salad bowl.",
+        "localizedMeaning": {
+          "ru": "Скажите: я пользовался салатницей",
+          "uk": "Скажіть: я користувався салатницею"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "the",
+          "salad",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i11:r1",
+          "text": "He used the salad bowl."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i11:r2",
+          "text": "He uses the salad bowl."
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i11:r3",
+          "text": "They used the salad bowl."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i11:audio",
+          "transcript": "He used the salad bowl."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-03:i11:r1",
+            "targetText": "He used the salad bowl.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i11:r2",
+            "targetText": "He uses the salad bowl.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i11:r3",
+            "targetText": "They used the salad bowl.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used the salad bowl.",
+              "uk": "У записі звучить He used the salad bowl."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used the salad bowl.",
+              "uk": "У записі звучить He used the salad bowl."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера она пользовалась салатницей. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-03:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-03:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера она пользовалась салатницей. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она пользовалась салатницей. Выберите форму",
+          "uk": "Учора вона користувалася салатницею. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the salad bowl yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-03:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Вчера она пользовалась салатницей. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера она пользовалась салатницей. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера она пользовалась салатницей. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна used.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-03:i13:p1",
+            "target": "placemat",
+            "meaningByLocale": {
+              "ru": "подставка или салфетка под тарелку",
+              "uk": "підставка або серветка під тарілку"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-03:i13:p2",
+            "target": "tea tray",
+            "meaningByLocale": {
+              "ru": "чайный поднос",
+              "uk": "чайна таця"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-03:i13:p3",
+            "target": "serving spoon",
+            "meaningByLocale": {
+              "ru": "ложка для раскладывания еды из общей посуды",
+              "uk": "ложка для розкладання їжі зі спільного посуду"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-03:i13:p4",
+            "target": "salad bowl",
+            "meaningByLocale": {
+              "ru": "салатница",
+              "uk": "салатниця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "placemat",
+          "tea tray",
+          "serving spoon",
+          "salad bowl"
+        ],
+        "rightColumn": [
+          "подставка или салфетка под тарелку",
+          "чайный поднос",
+          "ложка для раскладывания еды из общей посуды",
+          "салатница"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i14:audio",
+          "transcript": "I washed the plates yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I washed the plates yesterday.",
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "plates",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i15:audio",
+          "transcript": "She cleaned the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She cleaned the table.",
+        "orderedTokens": [
+          "She",
+          "cleaned",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера я вымыл салатницу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера я вымыл салатницу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i16:audio",
+          "transcript": "I washed the salad bowl yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I washed the salad bowl yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера мы передвинули чайный поднос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера мы передвинули чайный поднос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-03:i17:audio",
+          "transcript": "We moved the tea tray yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We moved the tea tray yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "19750768b5006cdd8038019dce16576edc1a1cf7877aa4d058a048ba3bab17af"
+}

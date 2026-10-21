@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-01:intro1:r2": {
+          "ru": "Для завершённого действия вчера нужна форма undressed.",
+          "uk": "Для завершеної дії вчора потрібна форма undressed."
+        },
+        "en:lesson-12:session-01:intro1:r3": {
+          "ru": "Окончание -s не обозначает прошлое; нужна undressed.",
+          "uk": "Закінчення -s не позначає минуле; потрібна undressed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-01:intro2:r2": {
+          "ru": "После конечной e добавляем d: untied.",
+          "uk": "Після кінцевої e додаємо d: untied."
+        },
+        "en:lesson-12:session-01:intro2:r3": {
+          "ru": "Unties — не форма прошедшего времени; нужна untied.",
+          "uk": "Unties — не форма минулого часу; потрібна untied."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-01:intro3:r2": {
+          "ru": "Unfolds — настоящее; в прошлом нужна unfolded.",
+          "uk": "Unfolds — теперішній час; у минулому потрібна unfolded."
+        },
+        "en:lesson-12:session-01:intro3:r3": {
+          "ru": "Для завершённого действия вчера добавляем -ed: unfolded.",
+          "uk": "Для завершеної дії вчора додаємо -ed: unfolded."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "145cf5e30e105d81c8cbca26ad0e07dd3be14524a3d7a6ad746373ec28baf13c"
+}

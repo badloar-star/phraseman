@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-04:intro1:r2": {
+          "ru": "Для прошлого нужна painted.",
+          "uk": "Для минулого потрібна painted."
+        },
+        "en:lesson-12:session-04:intro1:r3": {
+          "ru": "Paints — не прошлое и не форма с I.",
+          "uk": "Paints — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-04:intro2:r2": {
+          "ru": "Эта фраза о ступеньке, не о ручке.",
+          "uk": "Ця фраза про сходинку, не про ручку."
+        },
+        "en:lesson-12:session-04:intro2:r3": {
+          "ru": "В прошлом нужна checked.",
+          "uk": "У минулому потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-04:intro3:r2": {
+          "ru": "Для прошлого нужна moved.",
+          "uk": "Для минулого потрібна moved."
+        },
+        "en:lesson-12:session-04:intro3:r3": {
+          "ru": "Moves — не прошлое и не форма с they.",
+          "uk": "Moves — не минуле й не форма з they."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4213d95e87f27a49b5817a79dbe2cba8f9cda3aa6376ba8b2e3f018af243ffca"
+}

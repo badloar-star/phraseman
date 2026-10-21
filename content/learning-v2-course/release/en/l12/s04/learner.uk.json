@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-04:word:garden-gate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:word:garden-gate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:word:garden-gate:audio",
+          "transcript": "garden gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:word:garden-gate:r1",
+            "targetText": "garden gate",
+            "meaningByLocale": {
+              "ru": "садовая калитка.",
+              "uk": "садова хвіртка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden gate",
+          "definitionByLocale": {
+            "ru": "садовая калитка.",
+            "uk": "садова хвіртка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я пофарбував садову хвіртку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я пофарбував садову хвіртку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I painted the garden gate.",
+        "localizedMeaning": {
+          "ru": "Скажите: я покрасил садовую калитку",
+          "uk": "Скажіть: я пофарбував садову хвіртку"
+        },
+        "orderedTokens": [
+          "I",
+          "painted",
+          "the",
+          "garden",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i02:r1",
+          "text": "She painted the garden gate."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i02:r2",
+          "text": "She paints the garden gate."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i02:r3",
+          "text": "They painted the garden gate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i02:audio",
+          "transcript": "She painted the garden gate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:i02:r1",
+            "targetText": "She painted the garden gate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i02:r2",
+            "targetText": "She paints the garden gate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i02:r3",
+            "targetText": "They painted the garden gate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She painted the garden gate.",
+              "uk": "У записі звучить She painted the garden gate."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She painted the garden gate.",
+              "uk": "У записі звучить She painted the garden gate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ми пофарбували садову хвіртку. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i03:r1",
+          "text": "painted"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i03:r2",
+          "text": "paint"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i03:r3",
+          "text": "paints"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ми пофарбували садову хвіртку. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы покрасили садовую калитку. Выберите форму",
+          "uk": "Учора ми пофарбували садову хвіртку. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the garden gate yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-04:i03:r1",
+            "text": "painted"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i03:r2",
+            "text": "paint"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i03:r3",
+            "text": "paints"
+          }
+        ],
+        "testedDimension": "Учора ми пофарбували садову хвіртку. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора ми пофарбували садову хвіртку. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма painted.",
+              "uk": "Для минулого потрібна форма painted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора ми пофарбували садову хвіртку. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна painted.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна painted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:word:front-step",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — front step",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:word:front-step:audio"
+      ],
+      "accessibilityLabel": "Картка слова — front step",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:word:front-step:audio",
+          "transcript": "front step"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:word:front-step:r1",
+            "targetText": "front step",
+            "meaningByLocale": {
+              "ru": "ступенька перед входом.",
+              "uk": "сходинка перед входом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "front step",
+          "definitionByLocale": {
+            "ru": "ступенька перед входом.",
+            "uk": "сходинка перед входом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: вона почистила сходинку перед входом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: вона почистила сходинку перед входом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She cleaned the front step.",
+        "localizedMeaning": {
+          "ru": "Скажите: она почистила ступеньку перед входом",
+          "uk": "Скажіть: вона почистила сходинку перед входом"
+        },
+        "orderedTokens": [
+          "She",
+          "cleaned",
+          "the",
+          "front",
+          "step"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i05:r1",
+          "text": "I cleaned the front step."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i05:r2",
+          "text": "I clean the front step."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i05:r3",
+          "text": "They cleaned the front step."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i05:audio",
+          "transcript": "I cleaned the front step."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:i05:r1",
+            "targetText": "I cleaned the front step.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i05:r2",
+            "targetText": "I clean the front step.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i05:r3",
+            "targetText": "They cleaned the front step.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the front step.",
+              "uk": "У записі звучить I cleaned the front step."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the front step.",
+              "uk": "У записі звучить I cleaned the front step."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора він почистив сходинку перед входом. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i06:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i06:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i06:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора він почистив сходинку перед входом. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера он почистил ступеньку перед входом. Выберите форму",
+          "uk": "Учора він почистив сходинку перед входом. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the front step yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-04:i06:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i06:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Учора він почистив сходинку перед входом. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Учора він почистив сходинку перед входом. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Учора він почистив сходинку перед входом. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна cleaned.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:word:door-handle",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — door handle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:word:door-handle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — door handle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:word:door-handle:audio",
+          "transcript": "door handle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:word:door-handle:r1",
+            "targetText": "door handle",
+            "meaningByLocale": {
+              "ru": "дверная ручка.",
+              "uk": "дверна ручка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door handle",
+          "definitionByLocale": {
+            "ru": "дверная ручка.",
+            "uk": "дверна ручка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: я перевірив дверну ручку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: я перевірив дверну ручку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the door handle.",
+        "localizedMeaning": {
+          "ru": "Скажите: я проверил дверную ручку",
+          "uk": "Скажіть: я перевірив дверну ручку"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "door",
+          "handle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i08:r1",
+          "text": "They checked the door handle."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i08:r2",
+          "text": "They check the door handle."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i08:r3",
+          "text": "She checked the door handle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i08:audio",
+          "transcript": "They checked the door handle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:i08:r1",
+            "targetText": "They checked the door handle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i08:r2",
+            "targetText": "They check the door handle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i08:r3",
+            "targetText": "She checked the door handle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They checked the door handle.",
+              "uk": "У записі звучить They checked the door handle."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They checked the door handle.",
+              "uk": "У записі звучить They checked the door handle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора вона перевірила дверну ручку. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i09:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i09:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i09:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора вона перевірила дверну ручку. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она проверила дверную ручку. Выберите форму",
+          "uk": "Учора вона перевірила дверну ручку. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the door handle yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-04:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Учора вона перевірила дверну ручку. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора вона перевірила дверну ручку. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора вона перевірила дверну ручку. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна checked.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:word:garden-chair",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:word:garden-chair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:word:garden-chair:audio",
+          "transcript": "garden chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:word:garden-chair:r1",
+            "targetText": "garden chair",
+            "meaningByLocale": {
+              "ru": "садовый стул.",
+              "uk": "садовий стілець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden chair",
+          "definitionByLocale": {
+            "ru": "садовый стул.",
+            "uk": "садовий стілець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: ми пересунули садовий стілець",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: ми пересунули садовий стілець",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We moved the garden chair.",
+        "localizedMeaning": {
+          "ru": "Скажите: мы передвинули садовый стул",
+          "uk": "Скажіть: ми пересунули садовий стілець"
+        },
+        "orderedTokens": [
+          "We",
+          "moved",
+          "the",
+          "garden",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i11:r1",
+          "text": "He moved the garden chair."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i11:r2",
+          "text": "He moves the garden chair."
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i11:r3",
+          "text": "They moved the garden chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i11:audio",
+          "transcript": "He moved the garden chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-04:i11:r1",
+            "targetText": "He moved the garden chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i11:r2",
+            "targetText": "He moves the garden chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i11:r3",
+            "targetText": "They moved the garden chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He moved the garden chair.",
+              "uk": "У записі звучить He moved the garden chair."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He moved the garden chair.",
+              "uk": "У записі звучить He moved the garden chair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора вони пересунули садовий стілець. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-04:i12:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i12:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-12:session-04:i12:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора вони пересунули садовий стілець. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера они передвинули садовый стул. Выберите форму",
+          "uk": "Учора вони пересунули садовий стілець. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the garden chair yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-04:i12:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i12:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i12:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Учора вони пересунули садовий стілець. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора вони пересунули садовий стілець. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма moved.",
+              "uk": "Для минулого потрібна форма moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора вони пересунули садовий стілець. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна moved.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-04:i13:p1",
+            "target": "garden gate",
+            "meaningByLocale": {
+              "ru": "садовая калитка",
+              "uk": "садова хвіртка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-04:i13:p2",
+            "target": "front step",
+            "meaningByLocale": {
+              "ru": "ступенька перед входом",
+              "uk": "сходинка перед входом"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-04:i13:p3",
+            "target": "door handle",
+            "meaningByLocale": {
+              "ru": "дверная ручка",
+              "uk": "дверна ручка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-04:i13:p4",
+            "target": "garden chair",
+            "meaningByLocale": {
+              "ru": "садовый стул",
+              "uk": "садовий стілець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "garden gate",
+          "front step",
+          "door handle",
+          "garden chair"
+        ],
+        "rightColumn": [
+          "садова хвіртка",
+          "сходинка перед входом",
+          "дверна ручка",
+          "садовий стілець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i14:audio",
+          "transcript": "I worked in the garden yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I worked in the garden yesterday.",
+        "orderedTokens": [
+          "I",
+          "worked",
+          "in",
+          "the",
+          "garden",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i15:audio",
+          "transcript": "She painted the chair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She painted the chair.",
+        "orderedTokens": [
+          "She",
+          "painted",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора я пофарбував садовий стілець",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора я пофарбував садовий стілець",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i16:audio",
+          "transcript": "I painted the garden chair yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I painted the garden chair yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-04:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора ми почистили сходинку перед входом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора ми почистили сходинку перед входом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-04:i17:audio",
+          "transcript": "We cleaned the front step yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We cleaned the front step yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ffcd3d295a8302ed600e4cce552f96ecc277cc6c6a960e44766259a040fed10"
+}

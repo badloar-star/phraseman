@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-02:word:cycle-path",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cycle path",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:word:cycle-path:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cycle path",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:word:cycle-path:audio",
+          "transcript": "cycle path"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:word:cycle-path:r1",
+            "targetText": "cycle path",
+            "meaningByLocale": {
+              "ru": "велодорожка.",
+              "uk": "велодоріжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cycle path",
+          "definitionByLocale": {
+            "ru": "велодорожка.",
+            "uk": "велодоріжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: вчера я ехал по велодорожке. Начните с I",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: вчера я ехал по велодорожке. Начните с I",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cycled along the cycle path yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: вчера я ехал по велодорожке. Начните с I",
+          "uk": "Скажіть: учора я їхав велодоріжкою. Почніть із I"
+        },
+        "orderedTokens": [
+          "I",
+          "cycled",
+          "along",
+          "the",
+          "cycle",
+          "path",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i02:r1",
+          "text": "She cycled along the cycle path."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i02:r2",
+          "text": "She cycles along the cycle path."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i02:r3",
+          "text": "They cycled along the cycle path."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i02:audio",
+          "transcript": "She cycled along the cycle path."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:i02:r1",
+            "targetText": "She cycled along the cycle path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i02:r2",
+            "targetText": "She cycles along the cycle path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i02:r3",
+            "targetText": "They cycled along the cycle path.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cycled along the cycle path.",
+              "uk": "У записі звучить She cycled along the cycle path."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cycled along the cycle path.",
+              "uk": "У записі звучить She cycled along the cycle path."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера она ехала по велодорожке. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i03:r1",
+          "text": "cycled"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i03:r2",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i03:r3",
+          "text": "cycles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера она ехала по велодорожке. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера она ехала по велодорожке. Выберите форму",
+          "uk": "Учора вона їхала велодоріжкою. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ along the cycle path yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-02:i03:r1",
+            "text": "cycled"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i03:r2",
+            "text": "cycle"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i03:r3",
+            "text": "cycles"
+          }
+        ],
+        "testedDimension": "Вчера она ехала по велодорожке. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера она ехала по велодорожке. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cycled.",
+              "uk": "Для минулого потрібна форма cycled."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера она ехала по велодорожке. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна cycled.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна cycled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:word:street-corner",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — street corner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:word:street-corner:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — street corner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:word:street-corner:audio",
+          "transcript": "street corner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:word:street-corner:r1",
+            "targetText": "street corner",
+            "meaningByLocale": {
+              "ru": "угол улицы.",
+              "uk": "ріг вулиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "street corner",
+          "definitionByLocale": {
+            "ru": "угол улицы.",
+            "uk": "ріг вулиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: мы ждали на углу улицы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: мы ждали на углу улицы",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We waited at the street corner.",
+        "localizedMeaning": {
+          "ru": "Скажите: мы ждали на углу улицы",
+          "uk": "Скажіть: ми чекали на розі вулиці"
+        },
+        "orderedTokens": [
+          "We",
+          "waited",
+          "at",
+          "the",
+          "street",
+          "corner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i05:r1",
+          "text": "They waited at the street corner."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i05:r2",
+          "text": "They wait at the street corner."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i05:r3",
+          "text": "I waited at the street corner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i05:audio",
+          "transcript": "They waited at the street corner."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:i05:r1",
+            "targetText": "They waited at the street corner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i05:r2",
+            "targetText": "They wait at the street corner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i05:r3",
+            "targetText": "I waited at the street corner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They waited at the street corner.",
+              "uk": "У записі звучить They waited at the street corner."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They waited at the street corner.",
+              "uk": "У записі звучить They waited at the street corner."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера мы ждали на углу улицы. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i06:r1",
+          "text": "waited"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i06:r2",
+          "text": "wait"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i06:r3",
+          "text": "waits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера мы ждали на углу улицы. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы ждали на углу улицы. Выберите форму",
+          "uk": "Учора ми чекали на розі вулиці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ at the street corner yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-02:i06:r1",
+            "text": "waited"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i06:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i06:r3",
+            "text": "waits"
+          }
+        ],
+        "testedDimension": "Вчера мы ждали на углу улицы. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Вчера мы ждали на углу улицы. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма waited.",
+              "uk": "Для минулого потрібна форма waited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Вчера мы ждали на углу улицы. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна waited.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна waited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:word:traffic-jam",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — traffic jam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:word:traffic-jam:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — traffic jam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:word:traffic-jam:audio",
+          "transcript": "traffic jam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:word:traffic-jam:r1",
+            "targetText": "traffic jam",
+            "meaningByLocale": {
+              "ru": "дорожная пробка.",
+              "uk": "дорожній затор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "traffic jam",
+          "definitionByLocale": {
+            "ru": "дорожная пробка.",
+            "uk": "дорожній затор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: я ждал в дорожной пробке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: я ждал в дорожной пробке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I waited in a traffic jam.",
+        "localizedMeaning": {
+          "ru": "Скажите: я ждал в дорожной пробке",
+          "uk": "Скажіть: я чекав у дорожньому заторі"
+        },
+        "orderedTokens": [
+          "I",
+          "waited",
+          "in",
+          "a",
+          "traffic",
+          "jam"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i08:r1",
+          "text": "We waited in a traffic jam."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i08:r2",
+          "text": "We wait in a traffic jam."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i08:r3",
+          "text": "They waited in a traffic jam."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i08:audio",
+          "transcript": "We waited in a traffic jam."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:i08:r1",
+            "targetText": "We waited in a traffic jam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i08:r2",
+            "targetText": "We wait in a traffic jam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i08:r3",
+            "targetText": "They waited in a traffic jam.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We waited in a traffic jam.",
+              "uk": "У записі звучить We waited in a traffic jam."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We waited in a traffic jam.",
+              "uk": "У записі звучить We waited in a traffic jam."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера он ждал в дорожной пробке. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i09:r1",
+          "text": "waited"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i09:r2",
+          "text": "wait"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i09:r3",
+          "text": "waits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера он ждал в дорожной пробке. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера он ждал в дорожной пробке. Выберите форму",
+          "uk": "Учора він чекав у дорожньому заторі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ in a traffic jam yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-02:i09:r1",
+            "text": "waited"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i09:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i09:r3",
+            "text": "waits"
+          }
+        ],
+        "testedDimension": "Вчера он ждал в дорожной пробке. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера он ждал в дорожной пробке. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма waited.",
+              "uk": "Для минулого потрібна форма waited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера он ждал в дорожной пробке. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна waited.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна waited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:word:road-sign",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — road sign",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:word:road-sign:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — road sign",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:word:road-sign:audio",
+          "transcript": "road sign"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:word:road-sign:r1",
+            "targetText": "road sign",
+            "meaningByLocale": {
+              "ru": "дорожный знак.",
+              "uk": "дорожній знак."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "road sign",
+          "definitionByLocale": {
+            "ru": "дорожный знак.",
+            "uk": "дорожній знак."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: я проверил дорожный знак",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: я проверил дорожный знак",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the road sign.",
+        "localizedMeaning": {
+          "ru": "Скажите: я проверил дорожный знак",
+          "uk": "Скажіть: я перевірив дорожній знак"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "road",
+          "sign"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i11:r1",
+          "text": "He checked the road sign."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i11:r2",
+          "text": "He checks the road sign."
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i11:r3",
+          "text": "We checked the road sign."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i11:audio",
+          "transcript": "He checked the road sign."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-02:i11:r1",
+            "targetText": "He checked the road sign.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i11:r2",
+            "targetText": "He checks the road sign.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i11:r3",
+            "targetText": "We checked the road sign.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the road sign.",
+              "uk": "У записі звучить He checked the road sign."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the road sign.",
+              "uk": "У записі звучить He checked the road sign."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера они проверили дорожный знак. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-02:i12:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i12:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-02:i12:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера они проверили дорожный знак. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера они проверили дорожный знак. Выберите форму",
+          "uk": "Учора вони перевірили дорожній знак. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the road sign yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-02:i12:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i12:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i12:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Вчера они проверили дорожный знак. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера они проверили дорожный знак. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера они проверили дорожный знак. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Окончание -s/-es не обозначает прошлое; нужна checked.",
+              "uk": "Закінчення -s/-es не позначає минуле; потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-02:i13:p1",
+            "target": "cycle path",
+            "meaningByLocale": {
+              "ru": "велодорожка",
+              "uk": "велодоріжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-02:i13:p2",
+            "target": "street corner",
+            "meaningByLocale": {
+              "ru": "угол улицы",
+              "uk": "ріг вулиці"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-02:i13:p3",
+            "target": "traffic jam",
+            "meaningByLocale": {
+              "ru": "дорожная пробка",
+              "uk": "дорожній затор"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-02:i13:p4",
+            "target": "road sign",
+            "meaningByLocale": {
+              "ru": "дорожный знак",
+              "uk": "дорожній знак"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cycle path",
+          "street corner",
+          "traffic jam",
+          "road sign"
+        ],
+        "rightColumn": [
+          "велодорожка",
+          "угол улицы",
+          "дорожная пробка",
+          "дорожный знак"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i14:audio",
+          "transcript": "I waited near the station yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I waited near the station yesterday.",
+        "orderedTokens": [
+          "I",
+          "waited",
+          "near",
+          "the",
+          "station",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i15:audio",
+          "transcript": "We checked the map."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We checked the map.",
+        "orderedTokens": [
+          "We",
+          "checked",
+          "the",
+          "map"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера мы ехали по велодорожке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера мы ехали по велодорожке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i16:audio",
+          "transcript": "We cycled along the cycle path yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We cycled along the cycle path yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера я проверил дорожный знак",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера я проверил дорожный знак",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-02:i17:audio",
+          "transcript": "I checked the road sign yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I checked the road sign yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e6147f1f5c4c9ea8f5bddc7c1f6388de38608b883940984d0f907484d78dcfa9"
+}

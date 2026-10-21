@@ -7483,4 +7483,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"must + base verb","uk":"must + base verb"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 20, sessionOrdinal: 5,
+    sourceFingerprint: "1d10b76a98ad3ab571e5abc4404c454aec034beb8f10bbb58e23f3025ef8bfdb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"must + base verb","uk":"must + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 20, sessionOrdinal: 6,
+    sourceFingerprint: "42bfafb97b9edbc810160b3bf47d312255048e61fdbd944ac0d001d9f965a86f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"must + base verb","uk":"must + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 20, sessionOrdinal: 7,
+    sourceFingerprint: "57bfa2dfd29391dcb125f859fc5b16cb30544bbe89bff9088a9acc14b9a4c528",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"must + base verb","uk":"must + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 20, sessionOrdinal: 8,
+    sourceFingerprint: "b7836747390d7190f4b850ac18264731a46e4ae0ba11e180bd624c63b0519069",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"must + base verb","uk":"must + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 20","uk":"Англійська · Урок 20"}),
+  }),
 ]);

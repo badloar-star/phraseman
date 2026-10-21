@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-06:word:thoroughly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thoroughly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:thoroughly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thoroughly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:thoroughly:audio",
+            "transcript": "thoroughly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:thoroughly:r1",
+              "targetText": "thoroughly",
+              "meaningByLocale": {
+                "ru": "тщательно.",
+                "uk": "ретельно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thoroughly",
+            "definitionByLocale": {
+              "ru": "тщательно.",
+              "uk": "ретельно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны тщательно это почистить».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны тщательно это почистить».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must clean this thoroughly.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны тщательно это почистить».",
+            "uk": "Скажіть із must: «Ми маємо ретельно це почистити»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "clean",
+            "this",
+            "thoroughly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i02:r1",
+            "text": "We must clean this thoroughly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i02:r2",
+            "text": "We can clean this thoroughly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i02:r3",
+            "text": "We could clean this thoroughly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i02:audio",
+            "transcript": "We must clean this thoroughly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i02:r1",
+              "targetText": "We must clean this thoroughly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r2",
+              "targetText": "We can clean this thoroughly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r3",
+              "targetText": "We could clean this thoroughly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must clean this thoroughly.",
+                "uk": "У записі звучить We must clean this thoroughly."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must clean this thoroughly.",
+                "uk": "У записі звучить We must clean this thoroughly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ clean this thoroughly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:frequently",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frequently",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:frequently:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frequently",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:frequently:audio",
+            "transcript": "frequently"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:frequently:r1",
+              "targetText": "frequently",
+              "meaningByLocale": {
+                "ru": "часто.",
+                "uk": "часто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frequently",
+            "definitionByLocale": {
+              "ru": "часто.",
+              "uk": "часто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Я должен часто проверять сообщения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Я должен часто проверять сообщения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I must check my messages frequently.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Я должен часто проверять сообщения».",
+            "uk": "Скажіть із must: «Я маю часто перевіряти повідомлення»."
+          },
+          "orderedTokens": [
+            "I",
+            "must",
+            "check",
+            "my",
+            "messages",
+            "frequently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i05:r1",
+            "text": "I must check my messages frequently."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i05:r2",
+            "text": "I can check my messages frequently."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i05:r3",
+            "text": "I could check my messages frequently."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i05:audio",
+            "transcript": "I must check my messages frequently."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i05:r1",
+              "targetText": "I must check my messages frequently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r2",
+              "targetText": "I can check my messages frequently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r3",
+              "targetText": "I could check my messages frequently.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must check my messages frequently.",
+                "uk": "У записі звучить I must check my messages frequently."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must check my messages frequently.",
+                "uk": "У записі звучить I must check my messages frequently."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ check my messages frequently.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:firmly",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — firmly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:firmly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — firmly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:firmly:audio",
+            "transcript": "firmly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:firmly:r1",
+              "targetText": "firmly",
+              "meaningByLocale": {
+                "ru": "крепко, твёрдо.",
+                "uk": "міцно, твердо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "firmly",
+            "definitionByLocale": {
+              "ru": "крепко, твёрдо.",
+              "uk": "міцно, твердо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Ты должен крепко держать ручку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Ты должен крепко держать ручку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must hold the handle firmly.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен крепко держать ручку».",
+            "uk": "Скажіть із must: «Ти маєш міцно тримати ручку»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "hold",
+            "the",
+            "handle",
+            "firmly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i08:r1",
+            "text": "You must hold the handle firmly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i08:r2",
+            "text": "You can hold the handle firmly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i08:r3",
+            "text": "You could hold the handle firmly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i08:audio",
+            "transcript": "You must hold the handle firmly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i08:r1",
+              "targetText": "You must hold the handle firmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r2",
+              "targetText": "You can hold the handle firmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r3",
+              "targetText": "You could hold the handle firmly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must hold the handle firmly.",
+                "uk": "У записі звучить You must hold the handle firmly."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must hold the handle firmly.",
+                "uk": "У записі звучить You must hold the handle firmly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ hold the handle firmly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:simply",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — simply",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:simply:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — simply",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:simply:audio",
+            "transcript": "simply"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:simply:r1",
+              "targetText": "simply",
+              "meaningByLocale": {
+                "ru": "просто, понятными словами.",
+                "uk": "просто, зрозумілими словами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "simply",
+            "definitionByLocale": {
+              "ru": "просто, понятными словами.",
+              "uk": "просто, зрозумілими словами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны объяснить это просто».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны объяснить это просто».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must explain it simply.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны объяснить это просто».",
+            "uk": "Скажіть із must: «Ми маємо пояснити це просто»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "explain",
+            "it",
+            "simply"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i11:r1",
+            "text": "We must explain it simply."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i11:r2",
+            "text": "We can explain it simply."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i11:r3",
+            "text": "We could explain it simply."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i11:audio",
+            "transcript": "We must explain it simply."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i11:r1",
+              "targetText": "We must explain it simply.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r2",
+              "targetText": "We can explain it simply.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r3",
+              "targetText": "We could explain it simply.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must explain it simply.",
+                "uk": "У записі звучить We must explain it simply."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must explain it simply.",
+                "uk": "У записі звучить We must explain it simply."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ explain it simply.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-06:i13:p1",
+              "target": "thoroughly",
+              "meaningByLocale": {
+                "ru": "тщательно",
+                "uk": "ретельно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p2",
+              "target": "frequently",
+              "meaningByLocale": {
+                "ru": "часто",
+                "uk": "часто"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p3",
+              "target": "firmly",
+              "meaningByLocale": {
+                "ru": "крепко, твёрдо",
+                "uk": "міцно, твердо"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p4",
+              "target": "simply",
+              "meaningByLocale": {
+                "ru": "просто, понятными словами",
+                "uk": "просто, зрозумілими словами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thoroughly",
+            "frequently",
+            "firmly",
+            "simply"
+          ],
+          "rightColumn": [
+            "тщательно",
+            "часто",
+            "крепко, твёрдо",
+            "просто, понятными словами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество и ёмкость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество и ёмкость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Напомните тщательно почистить коробку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Напомните тщательно почистить коробку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i16:audio",
+            "transcript": "We must clean this thoroughly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must clean this thoroughly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно объяснить простыми словами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно объяснить простыми словами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i17:audio",
+            "transcript": "We must explain it simply."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must explain it simply.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-06:word:thoroughly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thoroughly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:thoroughly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thoroughly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:thoroughly:audio",
+            "transcript": "thoroughly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:thoroughly:r1",
+              "targetText": "thoroughly",
+              "meaningByLocale": {
+                "ru": "тщательно.",
+                "uk": "ретельно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thoroughly",
+            "definitionByLocale": {
+              "ru": "тщательно.",
+              "uk": "ретельно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо ретельно це почистити».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо ретельно це почистити».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must clean this thoroughly.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны тщательно это почистить».",
+            "uk": "Скажіть із must: «Ми маємо ретельно це почистити»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "clean",
+            "this",
+            "thoroughly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i02:r1",
+            "text": "We must clean this thoroughly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i02:r2",
+            "text": "We can clean this thoroughly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i02:r3",
+            "text": "We could clean this thoroughly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i02:audio",
+            "transcript": "We must clean this thoroughly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i02:r1",
+              "targetText": "We must clean this thoroughly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r2",
+              "targetText": "We can clean this thoroughly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r3",
+              "targetText": "We could clean this thoroughly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must clean this thoroughly.",
+                "uk": "У записі звучить We must clean this thoroughly."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must clean this thoroughly.",
+                "uk": "У записі звучить We must clean this thoroughly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ clean this thoroughly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:frequently",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frequently",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:frequently:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frequently",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:frequently:audio",
+            "transcript": "frequently"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:frequently:r1",
+              "targetText": "frequently",
+              "meaningByLocale": {
+                "ru": "часто.",
+                "uk": "часто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frequently",
+            "definitionByLocale": {
+              "ru": "часто.",
+              "uk": "часто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Я маю часто перевіряти повідомлення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Я маю часто перевіряти повідомлення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I must check my messages frequently.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Я должен часто проверять сообщения».",
+            "uk": "Скажіть із must: «Я маю часто перевіряти повідомлення»."
+          },
+          "orderedTokens": [
+            "I",
+            "must",
+            "check",
+            "my",
+            "messages",
+            "frequently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i05:r1",
+            "text": "I must check my messages frequently."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i05:r2",
+            "text": "I can check my messages frequently."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i05:r3",
+            "text": "I could check my messages frequently."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i05:audio",
+            "transcript": "I must check my messages frequently."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i05:r1",
+              "targetText": "I must check my messages frequently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r2",
+              "targetText": "I can check my messages frequently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r3",
+              "targetText": "I could check my messages frequently.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must check my messages frequently.",
+                "uk": "У записі звучить I must check my messages frequently."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must check my messages frequently.",
+                "uk": "У записі звучить I must check my messages frequently."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ check my messages frequently.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:firmly",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — firmly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:firmly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — firmly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:firmly:audio",
+            "transcript": "firmly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:firmly:r1",
+              "targetText": "firmly",
+              "meaningByLocale": {
+                "ru": "крепко, твёрдо.",
+                "uk": "міцно, твердо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "firmly",
+            "definitionByLocale": {
+              "ru": "крепко, твёрдо.",
+              "uk": "міцно, твердо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ти маєш міцно тримати ручку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ти маєш міцно тримати ручку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must hold the handle firmly.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен крепко держать ручку».",
+            "uk": "Скажіть із must: «Ти маєш міцно тримати ручку»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "hold",
+            "the",
+            "handle",
+            "firmly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i08:r1",
+            "text": "You must hold the handle firmly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i08:r2",
+            "text": "You can hold the handle firmly."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i08:r3",
+            "text": "You could hold the handle firmly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i08:audio",
+            "transcript": "You must hold the handle firmly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i08:r1",
+              "targetText": "You must hold the handle firmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r2",
+              "targetText": "You can hold the handle firmly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r3",
+              "targetText": "You could hold the handle firmly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must hold the handle firmly.",
+                "uk": "У записі звучить You must hold the handle firmly."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must hold the handle firmly.",
+                "uk": "У записі звучить You must hold the handle firmly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ hold the handle firmly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:word:simply",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — simply",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:word:simply:audio"
+        ],
+        "accessibilityLabel": "Картка слова — simply",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:word:simply:audio",
+            "transcript": "simply"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:word:simply:r1",
+              "targetText": "simply",
+              "meaningByLocale": {
+                "ru": "просто, понятными словами.",
+                "uk": "просто, зрозумілими словами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "simply",
+            "definitionByLocale": {
+              "ru": "просто, понятными словами.",
+              "uk": "просто, зрозумілими словами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо пояснити це просто».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо пояснити це просто».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must explain it simply.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны объяснить это просто».",
+            "uk": "Скажіть із must: «Ми маємо пояснити це просто»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "explain",
+            "it",
+            "simply"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i11:r1",
+            "text": "We must explain it simply."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i11:r2",
+            "text": "We can explain it simply."
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i11:r3",
+            "text": "We could explain it simply."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i11:audio",
+            "transcript": "We must explain it simply."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-06:i11:r1",
+              "targetText": "We must explain it simply.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r2",
+              "targetText": "We can explain it simply.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r3",
+              "targetText": "We could explain it simply.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must explain it simply.",
+                "uk": "У записі звучить We must explain it simply."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must explain it simply.",
+                "uk": "У записі звучить We must explain it simply."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-06:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-06:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ explain it simply.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-06:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-06:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-06:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-06:i13:p1",
+              "target": "thoroughly",
+              "meaningByLocale": {
+                "ru": "тщательно",
+                "uk": "ретельно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p2",
+              "target": "frequently",
+              "meaningByLocale": {
+                "ru": "часто",
+                "uk": "часто"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p3",
+              "target": "firmly",
+              "meaningByLocale": {
+                "ru": "крепко, твёрдо",
+                "uk": "міцно, твердо"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-06:i13:p4",
+              "target": "simply",
+              "meaningByLocale": {
+                "ru": "просто, понятными словами",
+                "uk": "просто, зрозумілими словами"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thoroughly",
+            "frequently",
+            "firmly",
+            "simply"
+          ],
+          "rightColumn": [
+            "ретельно",
+            "часто",
+            "міцно, твердо",
+            "просто, зрозумілими словами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість і місткість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість і місткість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нагадайте ретельно почистити коробку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Нагадайте ретельно почистити коробку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i16:audio",
+            "transcript": "We must clean this thoroughly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must clean this thoroughly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-06:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно пояснити простими словами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно пояснити простими словами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-06:i17:audio",
+            "transcript": "We must explain it simply."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must explain it simply.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-06:word:thoroughly",
+      "correctText": "thoroughly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i01",
+      "correctText": "We must clean this thoroughly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i02",
+      "correctText": "We must clean this thoroughly.",
+      "correctResponseId": "en:lesson-20:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i03",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:word:frequently",
+      "correctText": "frequently",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i04",
+      "correctText": "I must check my messages frequently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i05",
+      "correctText": "I must check my messages frequently.",
+      "correctResponseId": "en:lesson-20:session-06:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i06",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-06:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:word:firmly",
+      "correctText": "firmly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i07",
+      "correctText": "You must hold the handle firmly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i08",
+      "correctText": "You must hold the handle firmly.",
+      "correctResponseId": "en:lesson-20:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i09",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:word:simply",
+      "correctText": "simply",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i10",
+      "correctText": "We must explain it simply.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i11",
+      "correctText": "We must explain it simply.",
+      "correctResponseId": "en:lesson-20:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i12",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-06:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i16",
+      "correctText": "We must clean this thoroughly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-06:i17",
+      "correctText": "We must explain it simply.",
+      "correctResponseId": null
+    }
+  ]
+}

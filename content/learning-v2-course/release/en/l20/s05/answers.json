@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-05:word:essential",
+    "correctText": "essential",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i01",
+    "correctText": "We must pack the essential items.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i02",
+    "correctText": "We must pack the essential items.",
+    "correctResponseId": "en:lesson-20:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:word:sufficient",
+    "correctText": "sufficient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i04",
+    "correctText": "We must bring sufficient water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i05",
+    "correctText": "We must bring sufficient water.",
+    "correctResponseId": "en:lesson-20:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:word:appropriate",
+    "correctText": "appropriate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i07",
+    "correctText": "You must wear appropriate clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i08",
+    "correctText": "You must wear appropriate clothes.",
+    "correctResponseId": "en:lesson-20:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:word:acceptable",
+    "correctText": "acceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i10",
+    "correctText": "We must find an acceptable solution.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i11",
+    "correctText": "We must find an acceptable solution.",
+    "correctResponseId": "en:lesson-20:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i13",
+    "correctText": "en:lesson-20:session-05:i13:p1=essential\nen:lesson-20:session-05:i13:p2=sufficient\nen:lesson-20:session-05:i13:p3=appropriate\nen:lesson-20:session-05:i13:p4=acceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i16",
+    "correctText": "We must pack the essential items.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-05:i17",
+    "correctText": "We must find an acceptable solution.",
+    "correctResponseId": null
+  }
+]

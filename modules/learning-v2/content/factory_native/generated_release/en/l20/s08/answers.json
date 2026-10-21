@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-08:word:look-into",
+    "correctText": "look into",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i01",
+    "correctText": "We must look into this problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i02",
+    "correctText": "We must look into this problem.",
+    "correctResponseId": "en:lesson-20:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:word:go-through",
+    "correctText": "go through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i04",
+    "correctText": "We must go through the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i05",
+    "correctText": "We must go through the list.",
+    "correctResponseId": "en:lesson-20:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:word:get-through",
+    "correctText": "get through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i07",
+    "correctText": "I must get through this work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i08",
+    "correctText": "I must get through this work.",
+    "correctResponseId": "en:lesson-20:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:word:put-aside",
+    "correctText": "put aside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i10",
+    "correctText": "We must put aside some money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i11",
+    "correctText": "We must put aside some money.",
+    "correctResponseId": "en:lesson-20:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i13",
+    "correctText": "en:lesson-20:session-08:i13:p1=look into\nen:lesson-20:session-08:i13:p2=go through\nen:lesson-20:session-08:i13:p3=get through\nen:lesson-20:session-08:i13:p4=put aside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i16",
+    "correctText": "We must go through the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-08:i17",
+    "correctText": "We must put aside some money.",
+    "correctResponseId": null
+  }
+]

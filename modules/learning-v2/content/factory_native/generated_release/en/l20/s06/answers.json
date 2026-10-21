@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-06:word:thoroughly",
+    "correctText": "thoroughly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i01",
+    "correctText": "We must clean this thoroughly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i02",
+    "correctText": "We must clean this thoroughly.",
+    "correctResponseId": "en:lesson-20:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:word:frequently",
+    "correctText": "frequently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i04",
+    "correctText": "I must check my messages frequently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i05",
+    "correctText": "I must check my messages frequently.",
+    "correctResponseId": "en:lesson-20:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:word:firmly",
+    "correctText": "firmly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i07",
+    "correctText": "You must hold the handle firmly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i08",
+    "correctText": "You must hold the handle firmly.",
+    "correctResponseId": "en:lesson-20:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:word:simply",
+    "correctText": "simply",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i10",
+    "correctText": "We must explain it simply.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i11",
+    "correctText": "We must explain it simply.",
+    "correctResponseId": "en:lesson-20:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i13",
+    "correctText": "en:lesson-20:session-06:i13:p1=thoroughly\nen:lesson-20:session-06:i13:p2=frequently\nen:lesson-20:session-06:i13:p3=firmly\nen:lesson-20:session-06:i13:p4=simply",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i16",
+    "correctText": "We must clean this thoroughly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-06:i17",
+    "correctText": "We must explain it simply.",
+    "correctResponseId": null
+  }
+]

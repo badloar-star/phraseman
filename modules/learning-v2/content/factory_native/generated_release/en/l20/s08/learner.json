@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-08:word:look-into",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — look into",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:word:look-into:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — look into",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:word:look-into:audio",
+          "transcript": "look into"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:word:look-into:r1",
+            "targetText": "look into",
+            "meaningByLocale": {
+              "ru": "изучить, разобраться в.",
+              "uk": "вивчити, розібратися в."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "look into",
+          "definitionByLocale": {
+            "ru": "изучить, разобраться в.",
+            "uk": "вивчити, розібратися в."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Мы должны разобраться в этой проблеме».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Мы должны разобраться в этой проблеме».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must look into this problem.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны разобраться в этой проблеме».",
+          "uk": "Скажіть із must: «Ми маємо розібратися в цій проблемі»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "look",
+          "into",
+          "this",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i02:r1",
+          "text": "We must look into this problem."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i02:r2",
+          "text": "We can look into this problem."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i02:r3",
+          "text": "We could look into this problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i02:audio",
+          "transcript": "We must look into this problem."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:i02:r1",
+            "targetText": "We must look into this problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i02:r2",
+            "targetText": "We can look into this problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i02:r3",
+            "targetText": "We could look into this problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must look into this problem.",
+              "uk": "У записі звучить We must look into this problem."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must look into this problem.",
+              "uk": "У записі звучить We must look into this problem."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i03:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i03:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i03:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ look into this problem.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-08:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:word:go-through",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go through",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:word:go-through:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go through",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:word:go-through:audio",
+          "transcript": "go through"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:word:go-through:r1",
+            "targetText": "go through",
+            "meaningByLocale": {
+              "ru": "просмотреть, пройти по пунктам.",
+              "uk": "переглянути, пройти за пунктами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go through",
+          "definitionByLocale": {
+            "ru": "просмотреть, пройти по пунктам.",
+            "uk": "переглянути, пройти за пунктами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Мы должны просмотреть список по пунктам».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Мы должны просмотреть список по пунктам».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must go through the list.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны просмотреть список по пунктам».",
+          "uk": "Скажіть із must: «Ми маємо переглянути список за пунктами»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "go",
+          "through",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i05:r1",
+          "text": "We must go through the list."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i05:r2",
+          "text": "We can go through the list."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i05:r3",
+          "text": "We could go through the list."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i05:audio",
+          "transcript": "We must go through the list."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:i05:r1",
+            "targetText": "We must go through the list.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i05:r2",
+            "targetText": "We can go through the list.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i05:r3",
+            "targetText": "We could go through the list.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must go through the list.",
+              "uk": "У записі звучить We must go through the list."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must go through the list.",
+              "uk": "У записі звучить We must go through the list."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i06:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i06:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i06:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ go through the list.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-08:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:word:get-through",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get through",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:word:get-through:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get through",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:word:get-through:audio",
+          "transcript": "get through"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:word:get-through:r1",
+            "targetText": "get through",
+            "meaningByLocale": {
+              "ru": "закончить, справиться с.",
+              "uk": "закінчити, впоратися з."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get through",
+          "definitionByLocale": {
+            "ru": "закончить, справиться с.",
+            "uk": "закінчити, впоратися з."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Я должен закончить эту работу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Я должен закончить эту работу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must get through this work.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Я должен закончить эту работу».",
+          "uk": "Скажіть із must: «Я маю закінчити цю роботу»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "get",
+          "through",
+          "this",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i08:r1",
+          "text": "I must get through this work."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i08:r2",
+          "text": "I can get through this work."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i08:r3",
+          "text": "I could get through this work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i08:audio",
+          "transcript": "I must get through this work."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:i08:r1",
+            "targetText": "I must get through this work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i08:r2",
+            "targetText": "I can get through this work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i08:r3",
+            "targetText": "I could get through this work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must get through this work.",
+              "uk": "У записі звучить I must get through this work."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must get through this work.",
+              "uk": "У записі звучить I must get through this work."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i09:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i09:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i09:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ get through this work.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-08:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:word:put-aside",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — put aside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:word:put-aside:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — put aside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:word:put-aside:audio",
+          "transcript": "put aside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:word:put-aside:r1",
+            "targetText": "put aside",
+            "meaningByLocale": {
+              "ru": "отложить, сохранить на потом.",
+              "uk": "відкласти, зберегти на потім."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put aside",
+          "definitionByLocale": {
+            "ru": "отложить, сохранить на потом.",
+            "uk": "відкласти, зберегти на потім."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Мы должны отложить немного денег».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Мы должны отложить немного денег».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must put aside some money.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны отложить немного денег».",
+          "uk": "Скажіть із must: «Ми маємо відкласти трохи грошей»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "put",
+          "aside",
+          "some",
+          "money"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i11:r1",
+          "text": "We must put aside some money."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i11:r2",
+          "text": "We can put aside some money."
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i11:r3",
+          "text": "We could put aside some money."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i11:audio",
+          "transcript": "We must put aside some money."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-08:i11:r1",
+            "targetText": "We must put aside some money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i11:r2",
+            "targetText": "We can put aside some money.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i11:r3",
+            "targetText": "We could put aside some money.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must put aside some money.",
+              "uk": "У записі звучить We must put aside some money."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must put aside some money.",
+              "uk": "У записі звучить We must put aside some money."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-08:i12:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i12:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-08:i12:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ put aside some money.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-08:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-08:i13:p1",
+            "target": "look into",
+            "meaningByLocale": {
+              "ru": "изучить, разобраться в",
+              "uk": "вивчити, розібратися в"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-08:i13:p2",
+            "target": "go through",
+            "meaningByLocale": {
+              "ru": "просмотреть, пройти по пунктам",
+              "uk": "переглянути, пройти за пунктами"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-08:i13:p3",
+            "target": "get through",
+            "meaningByLocale": {
+              "ru": "закончить, справиться с",
+              "uk": "закінчити, впоратися з"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-08:i13:p4",
+            "target": "put aside",
+            "meaningByLocale": {
+              "ru": "отложить, сохранить на потом",
+              "uk": "відкласти, зберегти на потім"
+            }
+          }
+        ],
+        "leftColumn": [
+          "look into",
+          "go through",
+          "get through",
+          "put aside"
+        ],
+        "rightColumn": [
+          "изучить, разобраться в",
+          "просмотреть, пройти по пунктам",
+          "закончить, справиться с",
+          "отложить, сохранить на потом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: количество и ёмкость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: количество и ёмкость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужно просмотреть список",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужно просмотреть список",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i16:audio",
+          "transcript": "We must go through the list."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We must go through the list.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужно отложить деньги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужно отложить деньги",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-08:i17:audio",
+          "transcript": "We must put aside some money."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We must put aside some money.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "604613245d386891068eb7dccf8f4a3abc5619a916f31a22a3b9f4e02f0bb0b7"
+}

@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-05:word:essential",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — essential",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:essential:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — essential",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:essential:audio",
+            "transcript": "essential"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:essential:r1",
+              "targetText": "essential",
+              "meaningByLocale": {
+                "ru": "необходимый, крайне важный.",
+                "uk": "необхідний, вкрай важливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "essential",
+            "definitionByLocale": {
+              "ru": "необходимый, крайне важный.",
+              "uk": "необхідний, вкрай важливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны упаковать необходимые вещи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны упаковать необходимые вещи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must pack the essential items.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны упаковать необходимые вещи».",
+            "uk": "Скажіть із must: «Ми маємо спакувати необхідні речі»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "pack",
+            "the",
+            "essential",
+            "items"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i02:r1",
+            "text": "We must pack the essential items."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i02:r2",
+            "text": "We can pack the essential items."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i02:r3",
+            "text": "We could pack the essential items."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i02:audio",
+            "transcript": "We must pack the essential items."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i02:r1",
+              "targetText": "We must pack the essential items.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r2",
+              "targetText": "We can pack the essential items.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r3",
+              "targetText": "We could pack the essential items.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must pack the essential items.",
+                "uk": "У записі звучить We must pack the essential items."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must pack the essential items.",
+                "uk": "У записі звучить We must pack the essential items."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ pack the essential items.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:sufficient",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sufficient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:sufficient:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sufficient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:sufficient:audio",
+            "transcript": "sufficient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:sufficient:r1",
+              "targetText": "sufficient",
+              "meaningByLocale": {
+                "ru": "достаточный.",
+                "uk": "достатній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sufficient",
+            "definitionByLocale": {
+              "ru": "достаточный.",
+              "uk": "достатній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны принести достаточно воды».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны принести достаточно воды».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must bring sufficient water.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны принести достаточно воды».",
+            "uk": "Скажіть із must: «Ми маємо принести достатньо води»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "bring",
+            "sufficient",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i05:r1",
+            "text": "We must bring sufficient water."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i05:r2",
+            "text": "We can bring sufficient water."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i05:r3",
+            "text": "We could bring sufficient water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i05:audio",
+            "transcript": "We must bring sufficient water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i05:r1",
+              "targetText": "We must bring sufficient water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r2",
+              "targetText": "We can bring sufficient water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r3",
+              "targetText": "We could bring sufficient water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must bring sufficient water.",
+                "uk": "У записі звучить We must bring sufficient water."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must bring sufficient water.",
+                "uk": "У записі звучить We must bring sufficient water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ bring sufficient water.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:appropriate",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — appropriate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:appropriate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — appropriate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:appropriate:audio",
+            "transcript": "appropriate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:appropriate:r1",
+              "targetText": "appropriate",
+              "meaningByLocale": {
+                "ru": "подходящий, уместный.",
+                "uk": "відповідний, доречний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "appropriate",
+            "definitionByLocale": {
+              "ru": "подходящий, уместный.",
+              "uk": "відповідний, доречний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Ты должен надеть подходящую одежду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Ты должен надеть подходящую одежду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must wear appropriate clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен надеть подходящую одежду».",
+            "uk": "Скажіть із must: «Ти маєш вдягнути відповідний одяг»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "wear",
+            "appropriate",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i08:r1",
+            "text": "You must wear appropriate clothes."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i08:r2",
+            "text": "You can wear appropriate clothes."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i08:r3",
+            "text": "You could wear appropriate clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i08:audio",
+            "transcript": "You must wear appropriate clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i08:r1",
+              "targetText": "You must wear appropriate clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r2",
+              "targetText": "You can wear appropriate clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r3",
+              "targetText": "You could wear appropriate clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must wear appropriate clothes.",
+                "uk": "У записі звучить You must wear appropriate clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must wear appropriate clothes.",
+                "uk": "У записі звучить You must wear appropriate clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ wear appropriate clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:acceptable",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — acceptable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:acceptable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — acceptable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:acceptable:audio",
+            "transcript": "acceptable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:acceptable:r1",
+              "targetText": "acceptable",
+              "meaningByLocale": {
+                "ru": "приемлемый.",
+                "uk": "прийнятний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "acceptable",
+            "definitionByLocale": {
+              "ru": "приемлемый.",
+              "uk": "прийнятний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны найти приемлемое решение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны найти приемлемое решение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must find an acceptable solution.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны найти приемлемое решение».",
+            "uk": "Скажіть із must: «Ми маємо знайти прийнятне рішення»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "find",
+            "an",
+            "acceptable",
+            "solution"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i11:r1",
+            "text": "We must find an acceptable solution."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i11:r2",
+            "text": "We can find an acceptable solution."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i11:r3",
+            "text": "We could find an acceptable solution."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i11:audio",
+            "transcript": "We must find an acceptable solution."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i11:r1",
+              "targetText": "We must find an acceptable solution.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r2",
+              "targetText": "We can find an acceptable solution.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r3",
+              "targetText": "We could find an acceptable solution.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must find an acceptable solution.",
+                "uk": "У записі звучить We must find an acceptable solution."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must find an acceptable solution.",
+                "uk": "У записі звучить We must find an acceptable solution."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ find an acceptable solution.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-05:i13:p1",
+              "target": "essential",
+              "meaningByLocale": {
+                "ru": "необходимый, крайне важный",
+                "uk": "необхідний, вкрай важливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p2",
+              "target": "sufficient",
+              "meaningByLocale": {
+                "ru": "достаточный",
+                "uk": "достатній"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p3",
+              "target": "appropriate",
+              "meaningByLocale": {
+                "ru": "подходящий, уместный",
+                "uk": "відповідний, доречний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p4",
+              "target": "acceptable",
+              "meaningByLocale": {
+                "ru": "приемлемый",
+                "uk": "прийнятний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "essential",
+            "sufficient",
+            "appropriate",
+            "acceptable"
+          ],
+          "rightColumn": [
+            "необходимый, крайне важный",
+            "достаточный",
+            "подходящий, уместный",
+            "приемлемый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество и ёмкость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество и ёмкость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Напомните взять необходимые вещи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Напомните взять необходимые вещи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i16:audio",
+            "transcript": "We must pack the essential items."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must pack the essential items.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно найти приемлемое решение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно найти приемлемое решение",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i17:audio",
+            "transcript": "We must find an acceptable solution."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must find an acceptable solution.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-05:word:essential",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — essential",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:essential:audio"
+        ],
+        "accessibilityLabel": "Картка слова — essential",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:essential:audio",
+            "transcript": "essential"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:essential:r1",
+              "targetText": "essential",
+              "meaningByLocale": {
+                "ru": "необходимый, крайне важный.",
+                "uk": "необхідний, вкрай важливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "essential",
+            "definitionByLocale": {
+              "ru": "необходимый, крайне важный.",
+              "uk": "необхідний, вкрай важливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо спакувати необхідні речі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо спакувати необхідні речі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must pack the essential items.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны упаковать необходимые вещи».",
+            "uk": "Скажіть із must: «Ми маємо спакувати необхідні речі»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "pack",
+            "the",
+            "essential",
+            "items"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i02:r1",
+            "text": "We must pack the essential items."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i02:r2",
+            "text": "We can pack the essential items."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i02:r3",
+            "text": "We could pack the essential items."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i02:audio",
+            "transcript": "We must pack the essential items."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i02:r1",
+              "targetText": "We must pack the essential items.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r2",
+              "targetText": "We can pack the essential items.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r3",
+              "targetText": "We could pack the essential items.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must pack the essential items.",
+                "uk": "У записі звучить We must pack the essential items."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must pack the essential items.",
+                "uk": "У записі звучить We must pack the essential items."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ pack the essential items.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:sufficient",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sufficient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:sufficient:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sufficient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:sufficient:audio",
+            "transcript": "sufficient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:sufficient:r1",
+              "targetText": "sufficient",
+              "meaningByLocale": {
+                "ru": "достаточный.",
+                "uk": "достатній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sufficient",
+            "definitionByLocale": {
+              "ru": "достаточный.",
+              "uk": "достатній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо принести достатньо води».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо принести достатньо води».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must bring sufficient water.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны принести достаточно воды».",
+            "uk": "Скажіть із must: «Ми маємо принести достатньо води»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "bring",
+            "sufficient",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i05:r1",
+            "text": "We must bring sufficient water."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i05:r2",
+            "text": "We can bring sufficient water."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i05:r3",
+            "text": "We could bring sufficient water."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i05:audio",
+            "transcript": "We must bring sufficient water."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i05:r1",
+              "targetText": "We must bring sufficient water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r2",
+              "targetText": "We can bring sufficient water.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r3",
+              "targetText": "We could bring sufficient water.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must bring sufficient water.",
+                "uk": "У записі звучить We must bring sufficient water."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must bring sufficient water.",
+                "uk": "У записі звучить We must bring sufficient water."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ bring sufficient water.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:appropriate",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — appropriate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:appropriate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — appropriate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:appropriate:audio",
+            "transcript": "appropriate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:appropriate:r1",
+              "targetText": "appropriate",
+              "meaningByLocale": {
+                "ru": "подходящий, уместный.",
+                "uk": "відповідний, доречний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "appropriate",
+            "definitionByLocale": {
+              "ru": "подходящий, уместный.",
+              "uk": "відповідний, доречний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ти маєш вдягнути відповідний одяг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ти маєш вдягнути відповідний одяг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must wear appropriate clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен надеть подходящую одежду».",
+            "uk": "Скажіть із must: «Ти маєш вдягнути відповідний одяг»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "wear",
+            "appropriate",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i08:r1",
+            "text": "You must wear appropriate clothes."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i08:r2",
+            "text": "You can wear appropriate clothes."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i08:r3",
+            "text": "You could wear appropriate clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i08:audio",
+            "transcript": "You must wear appropriate clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i08:r1",
+              "targetText": "You must wear appropriate clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r2",
+              "targetText": "You can wear appropriate clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r3",
+              "targetText": "You could wear appropriate clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must wear appropriate clothes.",
+                "uk": "У записі звучить You must wear appropriate clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must wear appropriate clothes.",
+                "uk": "У записі звучить You must wear appropriate clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ wear appropriate clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:word:acceptable",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — acceptable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:word:acceptable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — acceptable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:word:acceptable:audio",
+            "transcript": "acceptable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:word:acceptable:r1",
+              "targetText": "acceptable",
+              "meaningByLocale": {
+                "ru": "приемлемый.",
+                "uk": "прийнятний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "acceptable",
+            "definitionByLocale": {
+              "ru": "приемлемый.",
+              "uk": "прийнятний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо знайти прийнятне рішення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо знайти прийнятне рішення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must find an acceptable solution.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны найти приемлемое решение».",
+            "uk": "Скажіть із must: «Ми маємо знайти прийнятне рішення»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "find",
+            "an",
+            "acceptable",
+            "solution"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i11:r1",
+            "text": "We must find an acceptable solution."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i11:r2",
+            "text": "We can find an acceptable solution."
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i11:r3",
+            "text": "We could find an acceptable solution."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i11:audio",
+            "transcript": "We must find an acceptable solution."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-05:i11:r1",
+              "targetText": "We must find an acceptable solution.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r2",
+              "targetText": "We can find an acceptable solution.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r3",
+              "targetText": "We could find an acceptable solution.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must find an acceptable solution.",
+                "uk": "У записі звучить We must find an acceptable solution."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must find an acceptable solution.",
+                "uk": "У записі звучить We must find an acceptable solution."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-05:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-05:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ find an acceptable solution.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-05:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-05:i13:p1",
+              "target": "essential",
+              "meaningByLocale": {
+                "ru": "необходимый, крайне важный",
+                "uk": "необхідний, вкрай важливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p2",
+              "target": "sufficient",
+              "meaningByLocale": {
+                "ru": "достаточный",
+                "uk": "достатній"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p3",
+              "target": "appropriate",
+              "meaningByLocale": {
+                "ru": "подходящий, уместный",
+                "uk": "відповідний, доречний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-05:i13:p4",
+              "target": "acceptable",
+              "meaningByLocale": {
+                "ru": "приемлемый",
+                "uk": "прийнятний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "essential",
+            "sufficient",
+            "appropriate",
+            "acceptable"
+          ],
+          "rightColumn": [
+            "необхідний, вкрай важливий",
+            "достатній",
+            "відповідний, доречний",
+            "прийнятний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість і місткість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість і місткість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нагадайте взяти необхідні речі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Нагадайте взяти необхідні речі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i16:audio",
+            "transcript": "We must pack the essential items."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must pack the essential items.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно знайти прийнятне рішення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно знайти прийнятне рішення",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-05:i17:audio",
+            "transcript": "We must find an acceptable solution."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must find an acceptable solution.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-05:word:essential",
+      "correctText": "essential",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i01",
+      "correctText": "We must pack the essential items.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i02",
+      "correctText": "We must pack the essential items.",
+      "correctResponseId": "en:lesson-20:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i03",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:word:sufficient",
+      "correctText": "sufficient",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i04",
+      "correctText": "We must bring sufficient water.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i05",
+      "correctText": "We must bring sufficient water.",
+      "correctResponseId": "en:lesson-20:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i06",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:word:appropriate",
+      "correctText": "appropriate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i07",
+      "correctText": "You must wear appropriate clothes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i08",
+      "correctText": "You must wear appropriate clothes.",
+      "correctResponseId": "en:lesson-20:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i09",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:word:acceptable",
+      "correctText": "acceptable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i10",
+      "correctText": "We must find an acceptable solution.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i11",
+      "correctText": "We must find an acceptable solution.",
+      "correctResponseId": "en:lesson-20:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i12",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i16",
+      "correctText": "We must pack the essential items.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:i17",
+      "correctText": "We must find an acceptable solution.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Взять необходимое",
+        "uk": "Взяти необхідне"
+      },
+      "bodyByLocale": {
+        "ru": "Essential — необходимый, такой, без которого трудно обойтись. Вы собираете вещи в поездку и сначала кладёте самое нужное. Essential items — необходимые вещи, а не всё, что хочется взять. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Essential — необхідний, такий, без якого важко обійтися. Ви збираєте речі в поїздку й спочатку кладете найпотрібніше. Essential items — необхідні речі, а не все, що хочеться взяти. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r1",
+              "text": "We must pack the essential items."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r2",
+              "text": "We musts pack the essential items."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r3",
+              "text": "We must to pack the essential items."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r1",
+              "text": "We must pack the essential items."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r2",
+              "text": "We musts pack the essential items."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro1:r3",
+              "text": "We must to pack the essential items."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Достаточно воды",
+        "uk": "Достатньо води"
+      },
+      "bodyByLocale": {
+        "ru": "Sufficient — достаточный. Для поездки нужна вода в достаточном количестве: sufficient water. Это более формальный способ сказать enough water. Appropriate — подходящий для ситуации: на встречу просят надеть подходящую одежду. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Sufficient — достатній. Для поїздки потрібна вода в достатній кількості: sufficient water. Це формальніший спосіб сказати enough water. Appropriate — відповідний до ситуації: на зустріч просять вдягнути відповідний одяг. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r1",
+              "text": "We must bring sufficient water."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r2",
+              "text": "We musts bring sufficient water."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r3",
+              "text": "We must to bring sufficient water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r1",
+              "text": "We must bring sufficient water."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r2",
+              "text": "We musts bring sufficient water."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro2:r3",
+              "text": "We must to bring sufficient water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти приемлемый вариант",
+        "uk": "Знайти прийнятний варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Acceptable — приемлемый, такой, с которым можно согласиться. У друзей разные планы, и нужно найти решение, которое их устроит. Приемлемое решение не обязательно идеальное. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Acceptable — прийнятний, такий, із яким можна погодитися. У друзів різні плани, і потрібно знайти рішення, яке їх влаштує. Прийнятне рішення не обовʼязково ідеальне. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r1",
+              "text": "We must find an acceptable solution."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r2",
+              "text": "We musts find an acceptable solution."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r3",
+              "text": "We must to find an acceptable solution."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r1",
+              "text": "We must find an acceptable solution."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r2",
+              "text": "We musts find an acceptable solution."
+            },
+            {
+              "responseId": "en:lesson-20:session-05:intro3:r3",
+              "text": "We must to find an acceptable solution."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7574aa5a3db530a16029b4bc64f5f53b97a46236761538af1129954997342255"
+}

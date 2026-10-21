@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выяснить причину проблемы",
+        "uk": "Зʼясувати причину проблеми"
+      },
+      "bodyByLocale": {
+        "ru": "Look into здесь — изучить проблему, чтобы понять её причину. В счёте ошибка, и вы хотите разобраться. Это новое значение: не буквально заглянуть внутрь, как в looking into a pool, а выяснить обстоятельства. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Look into тут — вивчити проблему, щоб зрозуміти її причину. У рахунку помилка, і ви хочете розібратися. Це нове значення: не буквально зазирнути всередину, як у looking into a pool, а зʼясувати обставини. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r1",
+              "text": "We must look into this problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r2",
+              "text": "We musts look into this problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r3",
+              "text": "We must to look into this problem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r1",
+              "text": "We must look into this problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r2",
+              "text": "We musts look into this problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro1:r3",
+              "text": "We must to look into this problem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Просмотреть список",
+        "uk": "Переглянути список"
+      },
+      "bodyByLocale": {
+        "ru": "Go through — пройти по пунктам, внимательно просмотреть список. Get through — справиться с объёмом работы, закончить её. Похожее through не делает выражения одинаковыми: одно о просмотре, другое здесь о завершении. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Go through — пройти за пунктами, уважно переглянути список. Get through — впоратися з обсягом роботи, закінчити її. Схоже through не робить вирази однаковими: один про перегляд, інший тут про завершення. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r1",
+              "text": "We must go through the list."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r2",
+              "text": "We musts go through the list."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r3",
+              "text": "We must to go through the list."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r1",
+              "text": "We must go through the list."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r2",
+              "text": "We musts go through the list."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro2:r3",
+              "text": "We must to go through the list."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отложить деньги",
+        "uk": "Відкласти гроші"
+      },
+      "bodyByLocale": {
+        "ru": "Put aside — отложить на потом. Вы хотите поехать к друзьям и решили сохранить немного денег на дорогу. Выражение может относиться и к вещам, но здесь речь о деньгах. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Put aside — відкласти на потім. Ви хочете поїхати до друзів і вирішили зберегти трохи грошей на дорогу. Вираз може стосуватися й речей, але тут ідеться про гроші. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r1",
+              "text": "We must put aside some money."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r2",
+              "text": "We musts put aside some money."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r3",
+              "text": "We must to put aside some money."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r1",
+              "text": "We must put aside some money."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r2",
+              "text": "We musts put aside some money."
+            },
+            {
+              "responseId": "en:lesson-20:session-08:intro3:r3",
+              "text": "We must to put aside some money."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d794b0909e38f160b34273138932005a32b62fb5cdf7efdb8994a0665742649c"
+}

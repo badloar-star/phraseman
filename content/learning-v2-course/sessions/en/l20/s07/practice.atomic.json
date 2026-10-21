@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-07:word:make-sure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make sure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:make-sure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make sure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:make-sure:audio",
+            "transcript": "make sure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:make-sure:r1",
+              "targetText": "make sure",
+              "meaningByLocale": {
+                "ru": "убедиться, проверить.",
+                "uk": "переконатися, перевірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make sure",
+            "definitionByLocale": {
+              "ru": "убедиться, проверить.",
+              "uk": "переконатися, перевірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны проверить, верно ли указан адрес».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны проверить, верно ли указан адрес».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must make sure of the address.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны проверить, верно ли указан адрес».",
+            "uk": "Скажіть із must: «Ми маємо перевірити, чи правильно вказано адресу»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "make",
+            "sure",
+            "of",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i02:r1",
+            "text": "We must make sure of the address."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i02:r2",
+            "text": "We can make sure of the address."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i02:r3",
+            "text": "We could make sure of the address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i02:audio",
+            "transcript": "We must make sure of the address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i02:r1",
+              "targetText": "We must make sure of the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r2",
+              "targetText": "We can make sure of the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r3",
+              "targetText": "We could make sure of the address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must make sure of the address.",
+                "uk": "У записі звучить We must make sure of the address."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must make sure of the address.",
+                "uk": "У записі звучить We must make sure of the address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ make sure of the address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:get-rid-of",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get rid of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:get-rid-of:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get rid of",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:get-rid-of:audio",
+            "transcript": "get rid of"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:get-rid-of:r1",
+              "targetText": "get rid of",
+              "meaningByLocale": {
+                "ru": "избавиться от.",
+                "uk": "позбутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get rid of",
+            "definitionByLocale": {
+              "ru": "избавиться от.",
+              "uk": "позбутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны избавиться от этого мусора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны избавиться от этого мусора».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must get rid of this rubbish.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны избавиться от этого мусора».",
+            "uk": "Скажіть із must: «Ми маємо позбутися цього сміття»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "get",
+            "rid",
+            "of",
+            "this",
+            "rubbish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i05:r1",
+            "text": "We must get rid of this rubbish."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i05:r2",
+            "text": "We can get rid of this rubbish."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i05:r3",
+            "text": "We could get rid of this rubbish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i05:audio",
+            "transcript": "We must get rid of this rubbish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i05:r1",
+              "targetText": "We must get rid of this rubbish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r2",
+              "targetText": "We can get rid of this rubbish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r3",
+              "targetText": "We could get rid of this rubbish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must get rid of this rubbish.",
+                "uk": "У записі звучить We must get rid of this rubbish."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must get rid of this rubbish.",
+                "uk": "У записі звучить We must get rid of this rubbish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ get rid of this rubbish.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:watch-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — watch out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:watch-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — watch out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:watch-out:audio",
+            "transcript": "watch out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:watch-out:r1",
+              "targetText": "watch out",
+              "meaningByLocale": {
+                "ru": "быть осторожным, смотреть в оба.",
+                "uk": "бути обережним, пильнувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "watch out",
+            "definitionByLocale": {
+              "ru": "быть осторожным, смотреть в оба.",
+              "uk": "бути обережним, пильнувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Ты должен внимательно следить за машинами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Ты должен внимательно следить за машинами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must watch out for cars.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен внимательно следить за машинами».",
+            "uk": "Скажіть із must: «Ти маєш уважно стежити за машинами»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "watch",
+            "out",
+            "for",
+            "cars"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i08:r1",
+            "text": "You must watch out for cars."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i08:r2",
+            "text": "You can watch out for cars."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i08:r3",
+            "text": "You could watch out for cars."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i08:audio",
+            "transcript": "You must watch out for cars."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i08:r1",
+              "targetText": "You must watch out for cars.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r2",
+              "targetText": "You can watch out for cars.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r3",
+              "targetText": "You could watch out for cars.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must watch out for cars.",
+                "uk": "У записі звучить You must watch out for cars."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must watch out for cars.",
+                "uk": "У записі звучить You must watch out for cars."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ watch out for cars.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:turn-back",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — turn back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:turn-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — turn back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:turn-back:audio",
+            "transcript": "turn back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:turn-back:r1",
+              "targetText": "turn back",
+              "meaningByLocale": {
+                "ru": "повернуть назад.",
+                "uk": "повернути назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn back",
+            "definitionByLocale": {
+              "ru": "повернуть назад.",
+              "uk": "повернути назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны сейчас повернуть назад».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны сейчас повернуть назад».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must turn back now.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны сейчас повернуть назад».",
+            "uk": "Скажіть із must: «Ми маємо зараз повернути назад»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "turn",
+            "back",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i11:r1",
+            "text": "We must turn back now."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i11:r2",
+            "text": "We can turn back now."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i11:r3",
+            "text": "We could turn back now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i11:audio",
+            "transcript": "We must turn back now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i11:r1",
+              "targetText": "We must turn back now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r2",
+              "targetText": "We can turn back now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r3",
+              "targetText": "We could turn back now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must turn back now.",
+                "uk": "У записі звучить We must turn back now."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must turn back now.",
+                "uk": "У записі звучить We must turn back now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ turn back now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-07:i13:p1",
+              "target": "make sure",
+              "meaningByLocale": {
+                "ru": "убедиться, проверить",
+                "uk": "переконатися, перевірити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p2",
+              "target": "get rid of",
+              "meaningByLocale": {
+                "ru": "избавиться от",
+                "uk": "позбутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p3",
+              "target": "watch out",
+              "meaningByLocale": {
+                "ru": "быть осторожным, смотреть в оба",
+                "uk": "бути обережним, пильнувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p4",
+              "target": "turn back",
+              "meaningByLocale": {
+                "ru": "повернуть назад",
+                "uk": "повернути назад"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make sure",
+            "get rid of",
+            "watch out",
+            "turn back"
+          ],
+          "rightColumn": [
+            "убедиться, проверить",
+            "избавиться от",
+            "быть осторожным, смотреть в оба",
+            "повернуть назад"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество и ёмкость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество и ёмкость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Напомните проверить адрес",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Напомните проверить адрес",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i16:audio",
+            "transcript": "We must make sure of the address."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must make sure of the address.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что пора повернуть назад",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что пора повернуть назад",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i17:audio",
+            "transcript": "We must turn back now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must turn back now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-07:word:make-sure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make sure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:make-sure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make sure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:make-sure:audio",
+            "transcript": "make sure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:make-sure:r1",
+              "targetText": "make sure",
+              "meaningByLocale": {
+                "ru": "убедиться, проверить.",
+                "uk": "переконатися, перевірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make sure",
+            "definitionByLocale": {
+              "ru": "убедиться, проверить.",
+              "uk": "переконатися, перевірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо перевірити, чи правильно вказано адресу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо перевірити, чи правильно вказано адресу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must make sure of the address.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны проверить, верно ли указан адрес».",
+            "uk": "Скажіть із must: «Ми маємо перевірити, чи правильно вказано адресу»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "make",
+            "sure",
+            "of",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i02:r1",
+            "text": "We must make sure of the address."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i02:r2",
+            "text": "We can make sure of the address."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i02:r3",
+            "text": "We could make sure of the address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i02:audio",
+            "transcript": "We must make sure of the address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i02:r1",
+              "targetText": "We must make sure of the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r2",
+              "targetText": "We can make sure of the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r3",
+              "targetText": "We could make sure of the address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must make sure of the address.",
+                "uk": "У записі звучить We must make sure of the address."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must make sure of the address.",
+                "uk": "У записі звучить We must make sure of the address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ make sure of the address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:get-rid-of",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get rid of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:get-rid-of:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get rid of",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:get-rid-of:audio",
+            "transcript": "get rid of"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:get-rid-of:r1",
+              "targetText": "get rid of",
+              "meaningByLocale": {
+                "ru": "избавиться от.",
+                "uk": "позбутися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get rid of",
+            "definitionByLocale": {
+              "ru": "избавиться от.",
+              "uk": "позбутися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо позбутися цього сміття».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо позбутися цього сміття».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must get rid of this rubbish.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны избавиться от этого мусора».",
+            "uk": "Скажіть із must: «Ми маємо позбутися цього сміття»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "get",
+            "rid",
+            "of",
+            "this",
+            "rubbish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i05:r1",
+            "text": "We must get rid of this rubbish."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i05:r2",
+            "text": "We can get rid of this rubbish."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i05:r3",
+            "text": "We could get rid of this rubbish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i05:audio",
+            "transcript": "We must get rid of this rubbish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i05:r1",
+              "targetText": "We must get rid of this rubbish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r2",
+              "targetText": "We can get rid of this rubbish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r3",
+              "targetText": "We could get rid of this rubbish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must get rid of this rubbish.",
+                "uk": "У записі звучить We must get rid of this rubbish."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must get rid of this rubbish.",
+                "uk": "У записі звучить We must get rid of this rubbish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ get rid of this rubbish.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:watch-out",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — watch out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:watch-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — watch out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:watch-out:audio",
+            "transcript": "watch out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:watch-out:r1",
+              "targetText": "watch out",
+              "meaningByLocale": {
+                "ru": "быть осторожным, смотреть в оба.",
+                "uk": "бути обережним, пильнувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "watch out",
+            "definitionByLocale": {
+              "ru": "быть осторожным, смотреть в оба.",
+              "uk": "бути обережним, пильнувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ти маєш уважно стежити за машинами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ти маєш уважно стежити за машинами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must watch out for cars.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен внимательно следить за машинами».",
+            "uk": "Скажіть із must: «Ти маєш уважно стежити за машинами»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "watch",
+            "out",
+            "for",
+            "cars"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i08:r1",
+            "text": "You must watch out for cars."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i08:r2",
+            "text": "You can watch out for cars."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i08:r3",
+            "text": "You could watch out for cars."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i08:audio",
+            "transcript": "You must watch out for cars."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i08:r1",
+              "targetText": "You must watch out for cars.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r2",
+              "targetText": "You can watch out for cars.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r3",
+              "targetText": "You could watch out for cars.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must watch out for cars.",
+                "uk": "У записі звучить You must watch out for cars."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must watch out for cars.",
+                "uk": "У записі звучить You must watch out for cars."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ watch out for cars.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:word:turn-back",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — turn back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:word:turn-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — turn back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:word:turn-back:audio",
+            "transcript": "turn back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:word:turn-back:r1",
+              "targetText": "turn back",
+              "meaningByLocale": {
+                "ru": "повернуть назад.",
+                "uk": "повернути назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn back",
+            "definitionByLocale": {
+              "ru": "повернуть назад.",
+              "uk": "повернути назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо зараз повернути назад».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо зараз повернути назад».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must turn back now.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны сейчас повернуть назад».",
+            "uk": "Скажіть із must: «Ми маємо зараз повернути назад»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "turn",
+            "back",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i11:r1",
+            "text": "We must turn back now."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i11:r2",
+            "text": "We can turn back now."
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i11:r3",
+            "text": "We could turn back now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i11:audio",
+            "transcript": "We must turn back now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-07:i11:r1",
+              "targetText": "We must turn back now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r2",
+              "targetText": "We can turn back now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r3",
+              "targetText": "We could turn back now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must turn back now.",
+                "uk": "У записі звучить We must turn back now."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must turn back now.",
+                "uk": "У записі звучить We must turn back now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-07:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-07:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ turn back now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-07:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-07:i13:p1",
+              "target": "make sure",
+              "meaningByLocale": {
+                "ru": "убедиться, проверить",
+                "uk": "переконатися, перевірити"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p2",
+              "target": "get rid of",
+              "meaningByLocale": {
+                "ru": "избавиться от",
+                "uk": "позбутися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p3",
+              "target": "watch out",
+              "meaningByLocale": {
+                "ru": "быть осторожным, смотреть в оба",
+                "uk": "бути обережним, пильнувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-07:i13:p4",
+              "target": "turn back",
+              "meaningByLocale": {
+                "ru": "повернуть назад",
+                "uk": "повернути назад"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make sure",
+            "get rid of",
+            "watch out",
+            "turn back"
+          ],
+          "rightColumn": [
+            "переконатися, перевірити",
+            "позбутися",
+            "бути обережним, пильнувати",
+            "повернути назад"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість і місткість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість і місткість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нагадайте перевірити адресу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Нагадайте перевірити адресу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i16:audio",
+            "transcript": "We must make sure of the address."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must make sure of the address.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що час повернути назад",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що час повернути назад",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-07:i17:audio",
+            "transcript": "We must turn back now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We must turn back now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-07:word:make-sure",
+      "correctText": "make sure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i01",
+      "correctText": "We must make sure of the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i02",
+      "correctText": "We must make sure of the address.",
+      "correctResponseId": "en:lesson-20:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i03",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:word:get-rid-of",
+      "correctText": "get rid of",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i04",
+      "correctText": "We must get rid of this rubbish.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i05",
+      "correctText": "We must get rid of this rubbish.",
+      "correctResponseId": "en:lesson-20:session-07:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i06",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:word:watch-out",
+      "correctText": "watch out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i07",
+      "correctText": "You must watch out for cars.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i08",
+      "correctText": "You must watch out for cars.",
+      "correctResponseId": "en:lesson-20:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i09",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:word:turn-back",
+      "correctText": "turn back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i10",
+      "correctText": "We must turn back now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i11",
+      "correctText": "We must turn back now.",
+      "correctResponseId": "en:lesson-20:session-07:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i12",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i16",
+      "correctText": "We must make sure of the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-07:i17",
+      "correctText": "We must turn back now.",
+      "correctResponseId": null
+    }
+  ]
+}

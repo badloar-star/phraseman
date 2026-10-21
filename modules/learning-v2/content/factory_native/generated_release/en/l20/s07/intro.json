@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить адрес",
+        "uk": "Уточнити адресу"
+      },
+      "bodyByLocale": {
+        "ru": "Make sure — убедиться, что всё верно. Перед выходом вы проверяете адрес встречи. Если после выражения стоит существительное, можно сказать make sure of the address — убедиться в правильности адреса. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Make sure — переконатися, що все правильно. Перед виходом ви перевіряєте адресу зустрічі. Якщо після виразу стоїть іменник, можна сказати make sure of the address — переконатися в правильності адреси. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r1",
+              "text": "We must make sure of the address."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r2",
+              "text": "We musts make sure of the address."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r3",
+              "text": "We must to make sure of the address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r1",
+              "text": "We must make sure of the address."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r2",
+              "text": "We musts make sure of the address."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro1:r3",
+              "text": "We must to make sure of the address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Избавиться от мусора",
+        "uk": "Позбутися сміття"
+      },
+      "bodyByLocale": {
+        "ru": "Get rid of — избавиться от ненужного. После уборки остался мусор, который вы собираетесь вынести. Watch out — быть осторожным; watch out for cars — следить за машинами, чтобы их вовремя заметить. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Get rid of — позбутися непотрібного. Після прибирання залишилося сміття, яке ви збираєтеся винести. Watch out — бути обережним; watch out for cars — стежити за машинами, щоб їх вчасно помітити. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r1",
+              "text": "We must get rid of this rubbish."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r2",
+              "text": "We musts get rid of this rubbish."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r3",
+              "text": "We must to get rid of this rubbish."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r1",
+              "text": "We must get rid of this rubbish."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r2",
+              "text": "We musts get rid of this rubbish."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro2:r3",
+              "text": "We must to get rid of this rubbish."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Повернуть назад",
+        "uk": "Повернути назад"
+      },
+      "bodyByLocale": {
+        "ru": "Turn back — повернуть назад. Во время прогулки вы увидели закрытую тропинку и решили возвращаться. Back показывает направление назад, к месту, откуда вы пришли. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Turn back — повернути назад. Під час прогулянки ви побачили закриту стежку й вирішили повертатися. Back показує напрямок назад, до місця, звідки ви прийшли. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r1",
+              "text": "We must turn back now."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r2",
+              "text": "We musts turn back now."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r3",
+              "text": "We must to turn back now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r1",
+              "text": "We must turn back now."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r2",
+              "text": "We musts turn back now."
+            },
+            {
+              "responseId": "en:lesson-20:session-07:intro3:r3",
+              "text": "We must to turn back now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eb27dae09c4feef4286b3c5376793bd8fe0af69105c673d56e7d87722f2af8d1"
+}

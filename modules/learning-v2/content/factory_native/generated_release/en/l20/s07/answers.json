@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-07:word:make-sure",
+    "correctText": "make sure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i01",
+    "correctText": "We must make sure of the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i02",
+    "correctText": "We must make sure of the address.",
+    "correctResponseId": "en:lesson-20:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:word:get-rid-of",
+    "correctText": "get rid of",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i04",
+    "correctText": "We must get rid of this rubbish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i05",
+    "correctText": "We must get rid of this rubbish.",
+    "correctResponseId": "en:lesson-20:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:word:watch-out",
+    "correctText": "watch out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i07",
+    "correctText": "You must watch out for cars.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i08",
+    "correctText": "You must watch out for cars.",
+    "correctResponseId": "en:lesson-20:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:word:turn-back",
+    "correctText": "turn back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i10",
+    "correctText": "We must turn back now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i11",
+    "correctText": "We must turn back now.",
+    "correctResponseId": "en:lesson-20:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i13",
+    "correctText": "en:lesson-20:session-07:i13:p1=make sure\nen:lesson-20:session-07:i13:p2=get rid of\nen:lesson-20:session-07:i13:p3=watch out\nen:lesson-20:session-07:i13:p4=turn back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i16",
+    "correctText": "We must make sure of the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-07:i17",
+    "correctText": "We must turn back now.",
+    "correctResponseId": null
+  }
+]

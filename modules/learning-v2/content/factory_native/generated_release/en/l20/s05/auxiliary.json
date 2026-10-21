@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-05:intro1:r2": {
+          "ru": "Must не получает окончания -s.",
+          "uk": "Must не отримує закінчення -s."
+        },
+        "en:lesson-20:session-05:intro1:r3": {
+          "ru": "После must не нужно to.",
+          "uk": "Після must не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-05:intro2:r2": {
+          "ru": "Must не получает окончания -s.",
+          "uk": "Must не отримує закінчення -s."
+        },
+        "en:lesson-20:session-05:intro2:r3": {
+          "ru": "После must не нужно to.",
+          "uk": "Після must не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-05:intro3:r2": {
+          "ru": "Must не получает окончания -s.",
+          "uk": "Must не отримує закінчення -s."
+        },
+        "en:lesson-20:session-05:intro3:r3": {
+          "ru": "После must не нужно to.",
+          "uk": "Після must не потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ecfdec7d2330e98fe0edb7775323313849c83a0369e2a06963146994b427a09b"
+}

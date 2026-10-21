@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почистить тщательно",
+        "uk": "Почистити ретельно"
+      },
+      "bodyByLocale": {
+        "ru": "Thoroughly — тщательно, не пропуская важные детали. Вы чистите коробку после переезда и хотите убрать всю грязь. Слово объясняет, как выполнить действие, а не как быстро. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Thoroughly — ретельно, не пропускаючи важливих деталей. Ви чистите коробку після переїзду й хочете прибрати весь бруд. Слово пояснює, як виконати дію, а не як швидко. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r1",
+              "text": "We must clean this thoroughly."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r2",
+              "text": "We musts clean this thoroughly."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r3",
+              "text": "We must to clean this thoroughly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r1",
+              "text": "We must clean this thoroughly."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r2",
+              "text": "We musts clean this thoroughly."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro1:r3",
+              "text": "We must to clean this thoroughly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Часто и крепко",
+        "uk": "Часто й міцно"
+      },
+      "bodyByLocale": {
+        "ru": "Frequently — часто. Вы ждёте уточнений о встрече и решили часто проверять сообщения. Это ваше решение на сегодня. Firmly — крепко: тяжёлую сумку нужно удерживать за ручку уверенно. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Frequently — часто. Ви чекаєте уточнень щодо зустрічі й вирішили часто перевіряти повідомлення. Це ваше рішення на сьогодні. Firmly — міцно: важку сумку потрібно впевнено тримати за ручку. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r1",
+              "text": "I must check my messages frequently."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r2",
+              "text": "I musts check my messages frequently."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r3",
+              "text": "I must to check my messages frequently."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r1",
+              "text": "I must check my messages frequently."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r2",
+              "text": "I musts check my messages frequently."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro2:r3",
+              "text": "I must to check my messages frequently."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Объяснить понятно",
+        "uk": "Пояснити зрозуміло"
+      },
+      "bodyByLocale": {
+        "ru": "Simply — просто. Вы объясняете правила игры новичку и выбираете понятные слова. В этой фразе simply относится к способу объяснения. В других ситуациях simply также может означать «просто-напросто». Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Simply — просто. Ви пояснюєте правила гри новачкові й вибираєте зрозумілі слова. У цій фразі simply стосується способу пояснення. В інших ситуаціях simply також може означати «просто-напросто». Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r1",
+              "text": "We must explain it simply."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r2",
+              "text": "We musts explain it simply."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r3",
+              "text": "We must to explain it simply."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r1",
+              "text": "We must explain it simply."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r2",
+              "text": "We musts explain it simply."
+            },
+            {
+              "responseId": "en:lesson-20:session-06:intro3:r3",
+              "text": "We must to explain it simply."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0d61d78fe91dbf933deeb7c14638afa45c6ebfa9533a296fb0bea88aa92b2580"
+}

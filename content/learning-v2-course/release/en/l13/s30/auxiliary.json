@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-30:intro1:r2": {
+          "ru": "После did нужна thank.",
+          "uk": "Після did потрібна thank."
+        },
+        "en:lesson-13:session-30:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-30:intro2:r2": {
+          "ru": "Здесь спрашивают об ожидании на досмотре.",
+          "uk": "Тут запитують про очікування на огляді."
+        },
+        "en:lesson-13:session-30:intro2:r3": {
+          "ru": "После did нужна find.",
+          "uk": "Після did потрібна find."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-30:intro3:r2": {
+          "ru": "После did нужна wait.",
+          "uk": "Після did потрібна wait."
+        },
+        "en:lesson-13:session-30:intro3:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a89435b681cc26b8639ee8830d93d8c01efb0678e30351b814d9ed112bb6e7dd"
+}

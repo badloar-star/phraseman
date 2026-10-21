@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-35:intro1:r2": {
+          "ru": "Здесь убрали магазин.",
+          "uk": "Тут прибрали крамницю."
+        },
+        "en:lesson-13:session-35:intro1:r3": {
+          "ru": "Для прошлого нужна looked.",
+          "uk": "Для минулого потрібна looked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-35:intro2:r2": {
+          "ru": "После did нужна head.",
+          "uk": "Після did потрібна head."
+        },
+        "en:lesson-13:session-35:intro2:r3": {
+          "ru": "Здесь спрашивают об ожидании.",
+          "uk": "Тут запитують про очікування."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-35:intro3:r2": {
+          "ru": "Это возвращение к вокзалу.",
+          "uk": "Це повернення до вокзалу."
+        },
+        "en:lesson-13:session-35:intro3:r3": {
+          "ru": "После did нужна call.",
+          "uk": "Після did потрібна call."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4e5b664bf808ec9f92f1f11ef31456fe344fae96fe3a0e4401a85129c3c66527"
+}

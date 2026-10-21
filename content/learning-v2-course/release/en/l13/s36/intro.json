@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Въехать",
+        "uk": "В’їхати"
+      },
+      "bodyByLocale": {
+        "ru": "Move in — въехать в жильё и начать там жить. We moved in last week — мы въехали на прошлой неделе. Выберите вопрос о въезде.",
+        "uk": "Move in — в’їхати в житло й почати там жити. We moved in last week — ми в’їхали минулого тижня. Виберіть запитання про в’їзд."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r1",
+              "text": "Did you move in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r2",
+              "text": "Did you moved in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r3",
+              "text": "Do you move in every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r1",
+              "text": "Did you move in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r2",
+              "text": "Did you moved in last week?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro1:r3",
+              "text": "Do you move in every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Съехать",
+        "uk": "Виїхати"
+      },
+      "bodyByLocale": {
+        "ru": "Move out — съехать, перестать жить в прежнем жилье. First of all, we moved out of the old flat. Then we moved in here. Сначала съехали со старой квартиры, потом въехали сюда. Выберите первое действие.",
+        "uk": "Move out — виїхати, перестати жити в попередньому житлі. First of all, we moved out of the old flat. Then we moved in here. Спершу виїхали зі старої квартири, потім в’їхали сюди. Виберіть першу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r1",
+              "text": "First of all, we moved out of the old flat."
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r2",
+              "text": "Then we moved in here."
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r3",
+              "text": "First of all, we move out yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r1",
+              "text": "First of all, we moved out of the old flat."
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r2",
+              "text": "Then we moved in here."
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro2:r3",
+              "text": "First of all, we move out yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обжиться и переночевать",
+        "uk": "Обжитися й переночувати"
+      },
+      "bodyByLocale": {
+        "ru": "Settle in — обжиться, привыкнуть к новому месту. Stay over — остаться ночевать у кого-то. Did you stay over at your sister’s house? — Ты остался ночевать у сестры? Выберите ночёвку.",
+        "uk": "Settle in — обжитися, звикнути до нового місця. Stay over — залишитися ночувати в когось. Did you stay over at your sister’s house? — Ти залишився ночувати в сестри? Виберіть ночівлю."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r1",
+              "text": "Did you stay over at your sister’s house?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r2",
+              "text": "Did you settle in quickly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r3",
+              "text": "Did you stayed over at your sister’s house?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r1",
+              "text": "Did you stay over at your sister’s house?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r2",
+              "text": "Did you settle in quickly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:intro3:r3",
+              "text": "Did you stayed over at your sister’s house?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f110c98117e56f1684ca326e1ea530201ace33aa1f0fa62ea280f347176eea45"
+}

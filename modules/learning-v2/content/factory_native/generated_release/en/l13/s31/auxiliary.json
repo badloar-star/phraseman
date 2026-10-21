@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-31:intro1:r2": {
+          "ru": "После did нужна break.",
+          "uk": "Після did потрібна break."
+        },
+        "en:lesson-13:session-31:intro1:r3": {
+          "ru": "Здесь спрашивают о мытье.",
+          "uk": "Тут запитують про миття."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-31:intro2:r2": {
+          "ru": "Accidentally — случайно.",
+          "uk": "Accidentally — випадково."
+        },
+        "en:lesson-13:session-31:intro2:r3": {
+          "ru": "После did нужна leave.",
+          "uk": "Після did потрібна leave."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-31:intro3:r2": {
+          "ru": "Это вопрос о бутылке.",
+          "uk": "Це запитання про пляшку."
+        },
+        "en:lesson-13:session-31:intro3:r3": {
+          "ru": "После did нужна close.",
+          "uk": "Після did потрібна close."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0b17b42b27b545b3658275acb70b8f5923a8991fddae723104b0a52402eb74f0"
+}

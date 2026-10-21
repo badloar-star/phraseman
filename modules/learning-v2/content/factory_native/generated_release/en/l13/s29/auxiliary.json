@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-29:intro1:r2": {
+          "ru": "После did нужна feel.",
+          "uk": "Після did потрібна feel."
+        },
+        "en:lesson-13:session-29:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-29:intro2:r2": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        },
+        "en:lesson-13:session-29:intro2:r3": {
+          "ru": "Перед last week здесь не нужна in.",
+          "uk": "Перед last week тут не потрібна in."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-29:intro3:r2": {
+          "ru": "Miserable — очень несчастный.",
+          "uk": "Miserable — дуже нещасний."
+        },
+        "en:lesson-13:session-29:intro3:r3": {
+          "ru": "После did нужна feel.",
+          "uk": "Після did потрібна feel."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "62169109e3f39c5ecf3b22b77ed7c688371fda26624b85f8db9862cb4df5becd"
+}

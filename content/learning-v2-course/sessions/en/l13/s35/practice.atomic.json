@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-35:word:look-around",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — look around",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:look-around:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — look around",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:look-around:audio",
+            "transcript": "look around"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:look-around:r1",
+              "targetText": "look around",
+              "meaningByLocale": {
+                "ru": "осмотреться, посмотреть вокруг.",
+                "uk": "роздивитися навколо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look around",
+            "definitionByLocale": {
+              "ru": "осмотреться, посмотреть вокруг.",
+              "uk": "роздивитися навколо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты осмотрел магазин?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты осмотрел магазин?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you look around the shop?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты осмотрел магазин?",
+            "uk": "Скажіть: Ти роздивився крамницю?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "look",
+            "around",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i02:r1",
+            "text": "Did she look around the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i02:r2",
+            "text": "Did you look around the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i02:r3",
+            "text": "Did they look around the shop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i02:audio",
+            "transcript": "Did she look around the shop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i02:r1",
+              "targetText": "Did she look around the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r2",
+              "targetText": "Did you look around the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r3",
+              "targetText": "Did they look around the shop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she look around the shop?",
+                "uk": "У записі звучить Did she look around the shop?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she look around the shop?",
+                "uk": "У записі звучить Did she look around the shop?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you look around the shop?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:head-for",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — head for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:head-for:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — head for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:head-for:audio",
+            "transcript": "head for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:head-for:r1",
+              "targetText": "head for",
+              "meaningByLocale": {
+                "ru": "направиться к месту.",
+                "uk": "попрямувати до місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "head for",
+            "definitionByLocale": {
+              "ru": "направиться к месту.",
+              "uk": "попрямувати до місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты направился к вокзалу?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты направился к вокзалу?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you head for the station?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты направился к вокзалу?",
+            "uk": "Скажіть: Ти попрямував до вокзалу?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "head",
+            "for",
+            "the",
+            "station"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i05:r1",
+            "text": "Did she head for the station?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i05:r2",
+            "text": "Did you head for the station?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i05:r3",
+            "text": "Did they head for the station?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i05:audio",
+            "transcript": "Did she head for the station?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i05:r1",
+              "targetText": "Did she head for the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r2",
+              "targetText": "Did you head for the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r3",
+              "targetText": "Did they head for the station?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she head for the station?",
+                "uk": "У записі звучить Did she head for the station?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she head for the station?",
+                "uk": "У записі звучить Did she head for the station?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you head for the station?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:go-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — go back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:go-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — go back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:go-back:audio",
+            "transcript": "go back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:go-back:r1",
+              "targetText": "go back",
+              "meaningByLocale": {
+                "ru": "вернуться в прежнее место.",
+                "uk": "повернутися в попереднє місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "go back",
+            "definitionByLocale": {
+              "ru": "вернуться в прежнее место.",
+              "uk": "повернутися в попереднє місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты вернулся в магазин?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты вернулся в магазин?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you go back to the shop?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вернулся в магазин?",
+            "uk": "Скажіть: Ти повернувся до крамниці?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "go",
+            "back",
+            "to",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i08:r1",
+            "text": "Did she go back to the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i08:r2",
+            "text": "Did you go back to the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i08:r3",
+            "text": "Did they go back to the shop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i08:audio",
+            "transcript": "Did she go back to the shop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i08:r1",
+              "targetText": "Did she go back to the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r2",
+              "targetText": "Did you go back to the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r3",
+              "targetText": "Did they go back to the shop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go back to the shop?",
+                "uk": "У записі звучить Did she go back to the shop?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go back to the shop?",
+                "uk": "У записі звучить Did she go back to the shop?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you go back to the shop?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:call-in",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — call in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:call-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — call in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:call-in:audio",
+            "transcript": "call in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:call-in:r1",
+              "targetText": "call in",
+              "meaningByLocale": {
+                "ru": "ненадолго зайти куда-то.",
+                "uk": "ненадовго зайти кудись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call in",
+            "definitionByLocale": {
+              "ru": "ненадолго зайти куда-то.",
+              "uk": "ненадовго зайти кудись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты ненадолго зашёл в пекарню?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты ненадолго зашёл в пекарню?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you call in at the bakery?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ненадолго зашёл в пекарню?",
+            "uk": "Скажіть: Ти ненадовго зайшов до пекарні?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "call",
+            "in",
+            "at",
+            "the",
+            "bakery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i11:r1",
+            "text": "Did she call in at the bakery?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i11:r2",
+            "text": "Did you call in at the bakery?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i11:r3",
+            "text": "Did they call in at the bakery?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i11:audio",
+            "transcript": "Did she call in at the bakery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i11:r1",
+              "targetText": "Did she call in at the bakery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r2",
+              "targetText": "Did you call in at the bakery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r3",
+              "targetText": "Did they call in at the bakery?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she call in at the bakery?",
+                "uk": "У записі звучить Did she call in at the bakery?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she call in at the bakery?",
+                "uk": "У записі звучить Did she call in at the bakery?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you call in at the bakery?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-35:i13:p1",
+              "target": "look around",
+              "meaningByLocale": {
+                "ru": "осмотреться, посмотреть вокруг",
+                "uk": "роздивитися навколо"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p2",
+              "target": "head for",
+              "meaningByLocale": {
+                "ru": "направиться к месту",
+                "uk": "попрямувати до місця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p3",
+              "target": "go back",
+              "meaningByLocale": {
+                "ru": "вернуться в прежнее место",
+                "uk": "повернутися в попереднє місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p4",
+              "target": "call in",
+              "meaningByLocale": {
+                "ru": "ненадолго зайти куда-то",
+                "uk": "ненадовго зайти кудись"
+              }
+            }
+          ],
+          "leftColumn": [
+            "look around",
+            "head for",
+            "go back",
+            "call in"
+          ],
+          "rightColumn": [
+            "осмотреться, посмотреть вокруг",
+            "направиться к месту",
+            "вернуться в прежнее место",
+            "ненадолго зайти куда-то"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i14:audio",
+            "transcript": "Then I went back to the shop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I went back to the shop.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "went",
+            "back",
+            "to",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i15:audio",
+            "transcript": "I didn't buy anything in the end."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I didn't buy anything in the end.",
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "buy",
+            "anything",
+            "in",
+            "the",
+            "end"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: первым делом она осмотрела магазин",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: первым делом она осмотрела магазин",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i16:audio",
+            "transcript": "First of all, she looked around the shop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "First of all, she looked around the shop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: затем я направился к вокзалу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: затем я направился к вокзалу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i17:audio",
+            "transcript": "Then I headed for the station."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then I headed for the station.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-35:word:look-around",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — look around",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:look-around:audio"
+        ],
+        "accessibilityLabel": "Картка слова — look around",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:look-around:audio",
+            "transcript": "look around"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:look-around:r1",
+              "targetText": "look around",
+              "meaningByLocale": {
+                "ru": "осмотреться, посмотреть вокруг.",
+                "uk": "роздивитися навколо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look around",
+            "definitionByLocale": {
+              "ru": "осмотреться, посмотреть вокруг.",
+              "uk": "роздивитися навколо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти роздивився крамницю?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти роздивився крамницю?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you look around the shop?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты осмотрел магазин?",
+            "uk": "Скажіть: Ти роздивився крамницю?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "look",
+            "around",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i02:r1",
+            "text": "Did she look around the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i02:r2",
+            "text": "Did you look around the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i02:r3",
+            "text": "Did they look around the shop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i02:audio",
+            "transcript": "Did she look around the shop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i02:r1",
+              "targetText": "Did she look around the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r2",
+              "targetText": "Did you look around the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r3",
+              "targetText": "Did they look around the shop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she look around the shop?",
+                "uk": "У записі звучить Did she look around the shop?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she look around the shop?",
+                "uk": "У записі звучить Did she look around the shop?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you look around the shop?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:head-for",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — head for",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:head-for:audio"
+        ],
+        "accessibilityLabel": "Картка слова — head for",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:head-for:audio",
+            "transcript": "head for"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:head-for:r1",
+              "targetText": "head for",
+              "meaningByLocale": {
+                "ru": "направиться к месту.",
+                "uk": "попрямувати до місця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "head for",
+            "definitionByLocale": {
+              "ru": "направиться к месту.",
+              "uk": "попрямувати до місця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти попрямував до вокзалу?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти попрямував до вокзалу?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you head for the station?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты направился к вокзалу?",
+            "uk": "Скажіть: Ти попрямував до вокзалу?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "head",
+            "for",
+            "the",
+            "station"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i05:r1",
+            "text": "Did she head for the station?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i05:r2",
+            "text": "Did you head for the station?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i05:r3",
+            "text": "Did they head for the station?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i05:audio",
+            "transcript": "Did she head for the station?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i05:r1",
+              "targetText": "Did she head for the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r2",
+              "targetText": "Did you head for the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r3",
+              "targetText": "Did they head for the station?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she head for the station?",
+                "uk": "У записі звучить Did she head for the station?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she head for the station?",
+                "uk": "У записі звучить Did she head for the station?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you head for the station?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:go-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — go back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:go-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — go back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:go-back:audio",
+            "transcript": "go back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:go-back:r1",
+              "targetText": "go back",
+              "meaningByLocale": {
+                "ru": "вернуться в прежнее место.",
+                "uk": "повернутися в попереднє місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "go back",
+            "definitionByLocale": {
+              "ru": "вернуться в прежнее место.",
+              "uk": "повернутися в попереднє місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти повернувся до крамниці?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти повернувся до крамниці?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you go back to the shop?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты вернулся в магазин?",
+            "uk": "Скажіть: Ти повернувся до крамниці?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "go",
+            "back",
+            "to",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i08:r1",
+            "text": "Did she go back to the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i08:r2",
+            "text": "Did you go back to the shop?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i08:r3",
+            "text": "Did they go back to the shop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i08:audio",
+            "transcript": "Did she go back to the shop?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i08:r1",
+              "targetText": "Did she go back to the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r2",
+              "targetText": "Did you go back to the shop?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r3",
+              "targetText": "Did they go back to the shop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go back to the shop?",
+                "uk": "У записі звучить Did she go back to the shop?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she go back to the shop?",
+                "uk": "У записі звучить Did she go back to the shop?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you go back to the shop?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:word:call-in",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — call in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:word:call-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — call in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:word:call-in:audio",
+            "transcript": "call in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:word:call-in:r1",
+              "targetText": "call in",
+              "meaningByLocale": {
+                "ru": "ненадолго зайти куда-то.",
+                "uk": "ненадовго зайти кудись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call in",
+            "definitionByLocale": {
+              "ru": "ненадолго зайти куда-то.",
+              "uk": "ненадовго зайти кудись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти ненадовго зайшов до пекарні?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти ненадовго зайшов до пекарні?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you call in at the bakery?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты ненадолго зашёл в пекарню?",
+            "uk": "Скажіть: Ти ненадовго зайшов до пекарні?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "call",
+            "in",
+            "at",
+            "the",
+            "bakery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i11:r1",
+            "text": "Did she call in at the bakery?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i11:r2",
+            "text": "Did you call in at the bakery?"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i11:r3",
+            "text": "Did they call in at the bakery?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i11:audio",
+            "transcript": "Did she call in at the bakery?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-35:i11:r1",
+              "targetText": "Did she call in at the bakery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r2",
+              "targetText": "Did you call in at the bakery?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r3",
+              "targetText": "Did they call in at the bakery?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she call in at the bakery?",
+                "uk": "У записі звучить Did she call in at the bakery?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she call in at the bakery?",
+                "uk": "У записі звучить Did she call in at the bakery?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-35:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-35:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you call in at the bakery?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-35:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-35:i13:p1",
+              "target": "look around",
+              "meaningByLocale": {
+                "ru": "осмотреться, посмотреть вокруг",
+                "uk": "роздивитися навколо"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p2",
+              "target": "head for",
+              "meaningByLocale": {
+                "ru": "направиться к месту",
+                "uk": "попрямувати до місця"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p3",
+              "target": "go back",
+              "meaningByLocale": {
+                "ru": "вернуться в прежнее место",
+                "uk": "повернутися в попереднє місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-35:i13:p4",
+              "target": "call in",
+              "meaningByLocale": {
+                "ru": "ненадолго зайти куда-то",
+                "uk": "ненадовго зайти кудись"
+              }
+            }
+          ],
+          "leftColumn": [
+            "look around",
+            "head for",
+            "go back",
+            "call in"
+          ],
+          "rightColumn": [
+            "роздивитися навколо",
+            "попрямувати до місця",
+            "повернутися в попереднє місце",
+            "ненадовго зайти кудись"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i14:audio",
+            "transcript": "Then I went back to the shop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I went back to the shop.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "went",
+            "back",
+            "to",
+            "the",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i15:audio",
+            "transcript": "I didn't buy anything in the end."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I didn't buy anything in the end.",
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "buy",
+            "anything",
+            "in",
+            "the",
+            "end"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: насамперед вона роздивилася крамницю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: насамперед вона роздивилася крамницю",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i16:audio",
+            "transcript": "First of all, she looked around the shop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "First of all, she looked around the shop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: потім я попрямував до вокзалу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: потім я попрямував до вокзалу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-35:i17:audio",
+            "transcript": "Then I headed for the station."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then I headed for the station.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-35:word:look-around",
+      "correctText": "look around",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i01",
+      "correctText": "Did you look around the shop?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i02",
+      "correctText": "Did she look around the shop?",
+      "correctResponseId": "en:lesson-13:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:word:head-for",
+      "correctText": "head for",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i04",
+      "correctText": "Did you head for the station?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i05",
+      "correctText": "Did she head for the station?",
+      "correctResponseId": "en:lesson-13:session-35:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-35:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:word:go-back",
+      "correctText": "go back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i07",
+      "correctText": "Did you go back to the shop?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i08",
+      "correctText": "Did she go back to the shop?",
+      "correctResponseId": "en:lesson-13:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:word:call-in",
+      "correctText": "call in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i10",
+      "correctText": "Did you call in at the bakery?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i11",
+      "correctText": "Did she call in at the bakery?",
+      "correctResponseId": "en:lesson-13:session-35:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-35:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i14",
+      "correctText": "Then I went back to the shop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i15",
+      "correctText": "I didn't buy anything in the end.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i16",
+      "correctText": "First of all, she looked around the shop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-35:i17",
+      "correctText": "Then I headed for the station.",
+      "correctResponseId": null
+    }
+  ]
+}

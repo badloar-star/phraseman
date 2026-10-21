@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-36:intro1:r2": {
+          "ru": "После did нужна move.",
+          "uk": "Після did потрібна move."
+        },
+        "en:lesson-13:session-36:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-36:intro2:r2": {
+          "ru": "Это уже въезд сюда.",
+          "uk": "Це вже в’їзд сюди."
+        },
+        "en:lesson-13:session-36:intro2:r3": {
+          "ru": "Для прошлого нужна moved.",
+          "uk": "Для минулого потрібна moved."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-36:intro3:r2": {
+          "ru": "Это вопрос о том, быстро ли обжились.",
+          "uk": "Це запитання про те, чи швидко обжилися."
+        },
+        "en:lesson-13:session-36:intro3:r3": {
+          "ru": "После did нужна stay.",
+          "uk": "Після did потрібна stay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aea37de9c0f2e058c5b94620f9370e123b8d0b05fce4792f77a9d407f3f1105e"
+}

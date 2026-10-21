@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-29:word:hopeful",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hopeful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:word:hopeful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hopeful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:word:hopeful:audio",
+          "transcript": "hopeful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:word:hopeful:r1",
+            "targetText": "hopeful",
+            "meaningByLocale": {
+              "ru": "полный надежды.",
+              "uk": "сповнений надії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hopeful",
+          "definitionByLocale": {
+            "ru": "полный надежды.",
+            "uk": "сповнений надії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора відчував надію?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора відчував надію?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you feel hopeful yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера чувствовал надежду?",
+          "uk": "Скажіть: Ти вчора відчував надію?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "feel",
+          "hopeful",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i02:r1",
+          "text": "Did she feel hopeful yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i02:r2",
+          "text": "Did you feel hopeful yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i02:r3",
+          "text": "Did they feel hopeful yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i02:audio",
+          "transcript": "Did she feel hopeful yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:i02:r1",
+            "targetText": "Did she feel hopeful yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i02:r2",
+            "targetText": "Did you feel hopeful yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i02:r3",
+            "targetText": "Did they feel hopeful yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel hopeful yesterday?",
+              "uk": "У записі звучить Did she feel hopeful yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel hopeful yesterday?",
+              "uk": "У записі звучить Did she feel hopeful yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you feel hopeful yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-29:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:word:thoughtful",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thoughtful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:word:thoughtful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thoughtful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:word:thoughtful:audio",
+          "transcript": "thoughtful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:word:thoughtful:r1",
+            "targetText": "thoughtful",
+            "meaningByLocale": {
+              "ru": "заботливый, внимательный к другим.",
+              "uk": "турботливий, уважний до інших."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thoughtful",
+          "definitionByLocale": {
+            "ru": "заботливый, внимательный к другим.",
+            "uk": "турботливий, уважний до інших."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив подарунок із турботою про людину минулого тижня?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив подарунок із турботою про людину минулого тижня?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy a thoughtful gift last week?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил подарок с заботой о человеке на прошлой неделе?",
+          "uk": "Скажіть: Ти купив подарунок із турботою про людину минулого тижня?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "a",
+          "thoughtful",
+          "gift",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i05:r1",
+          "text": "Did she buy a thoughtful gift last week?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i05:r2",
+          "text": "Did you buy a thoughtful gift last week?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i05:r3",
+          "text": "Did they buy a thoughtful gift last week?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i05:audio",
+          "transcript": "Did she buy a thoughtful gift last week?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:i05:r1",
+            "targetText": "Did she buy a thoughtful gift last week?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i05:r2",
+            "targetText": "Did you buy a thoughtful gift last week?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i05:r3",
+            "targetText": "Did they buy a thoughtful gift last week?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a thoughtful gift last week?",
+              "uk": "У записі звучить Did she buy a thoughtful gift last week?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a thoughtful gift last week?",
+              "uk": "У записі звучить Did she buy a thoughtful gift last week?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy a thoughtful gift last week?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-29:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:word:miserable",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — miserable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:word:miserable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — miserable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:word:miserable:audio",
+          "transcript": "miserable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:word:miserable:r1",
+            "targetText": "miserable",
+            "meaningByLocale": {
+              "ru": "очень несчастный.",
+              "uk": "дуже нещасний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "miserable",
+          "definitionByLocale": {
+            "ru": "очень несчастный.",
+            "uk": "дуже нещасний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора почувався дуже нещасним?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора почувався дуже нещасним?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you feel miserable yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера чувствовал себя очень несчастным?",
+          "uk": "Скажіть: Ти вчора почувався дуже нещасним?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "feel",
+          "miserable",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i08:r1",
+          "text": "Did she feel miserable yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i08:r2",
+          "text": "Did you feel miserable yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i08:r3",
+          "text": "Did they feel miserable yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i08:audio",
+          "transcript": "Did she feel miserable yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:i08:r1",
+            "targetText": "Did she feel miserable yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i08:r2",
+            "targetText": "Did you feel miserable yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i08:r3",
+            "targetText": "Did they feel miserable yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel miserable yesterday?",
+              "uk": "У записі звучить Did she feel miserable yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel miserable yesterday?",
+              "uk": "У записі звучить Did she feel miserable yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you feel miserable yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-29:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:word:frightened",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frightened",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:word:frightened:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frightened",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:word:frightened:audio",
+          "transcript": "frightened"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:word:frightened:r1",
+            "targetText": "frightened",
+            "meaningByLocale": {
+              "ru": "испуганный.",
+              "uk": "наляканий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frightened",
+          "definitionByLocale": {
+            "ru": "испуганный.",
+            "uk": "наляканий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти був наляканий минулої ночі?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти був наляканий минулої ночі?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you feel frightened last night?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты был испуган прошлой ночью?",
+          "uk": "Скажіть: Ти був наляканий минулої ночі?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "feel",
+          "frightened",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i11:r1",
+          "text": "Did she feel frightened last night?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i11:r2",
+          "text": "Did you feel frightened last night?"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i11:r3",
+          "text": "Did they feel frightened last night?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i11:audio",
+          "transcript": "Did she feel frightened last night?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-29:i11:r1",
+            "targetText": "Did she feel frightened last night?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i11:r2",
+            "targetText": "Did you feel frightened last night?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i11:r3",
+            "targetText": "Did they feel frightened last night?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel frightened last night?",
+              "uk": "У записі звучить Did she feel frightened last night?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she feel frightened last night?",
+              "uk": "У записі звучить Did she feel frightened last night?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-29:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-29:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you feel frightened last night?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-29:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-29:i13:p1",
+            "target": "hopeful",
+            "meaningByLocale": {
+              "ru": "полный надежды",
+              "uk": "сповнений надії"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-29:i13:p2",
+            "target": "thoughtful",
+            "meaningByLocale": {
+              "ru": "заботливый, внимательный к другим",
+              "uk": "турботливий, уважний до інших"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-29:i13:p3",
+            "target": "miserable",
+            "meaningByLocale": {
+              "ru": "очень несчастный",
+              "uk": "дуже нещасний"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-29:i13:p4",
+            "target": "frightened",
+            "meaningByLocale": {
+              "ru": "испуганный",
+              "uk": "наляканий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hopeful",
+          "thoughtful",
+          "miserable",
+          "frightened"
+        ],
+        "rightColumn": [
+          "сповнений надії",
+          "турботливий, уважний до інших",
+          "дуже нещасний",
+          "наляканий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i14:audio",
+          "transcript": "We didn't feel worried yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't feel worried yesterday.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "feel",
+          "worried",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i15:audio",
+          "transcript": "Did he call last night?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he call last night?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "call",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти відчував надію минулого тижня?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти відчував надію минулого тижня?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i16:audio",
+          "transcript": "Did you feel hopeful last week?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you feel hopeful last week?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона не була налякана минулої ночі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона не була налякана минулої ночі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-29:i17:audio",
+          "transcript": "She didn't feel frightened last night."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't feel frightened last night.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2a4d93a7cf5dee2f3c7865f36de13a2583fd8639f485240d7cd5b4bfaa4604ec"
+}

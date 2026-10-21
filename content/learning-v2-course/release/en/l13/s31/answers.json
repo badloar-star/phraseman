@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-31:word:accidentally",
+    "correctText": "accidentally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i01",
+    "correctText": "Did you accidentally break the cup yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i02",
+    "correctText": "Did she accidentally break the cup yesterday?",
+    "correctResponseId": "en:lesson-13:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:word:deliberately",
+    "correctText": "deliberately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i04",
+    "correctText": "Did you deliberately leave the window open yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i05",
+    "correctText": "Did she deliberately leave the window open yesterday?",
+    "correctResponseId": "en:lesson-13:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:word:properly",
+    "correctText": "properly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i07",
+    "correctText": "Did you close the door properly yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i08",
+    "correctText": "Did she close the door properly yesterday?",
+    "correctResponseId": "en:lesson-13:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:word:completely",
+    "correctText": "completely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i10",
+    "correctText": "Did you fill the bottle completely yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i11",
+    "correctText": "Did she fill the bottle completely yesterday?",
+    "correctResponseId": "en:lesson-13:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i13",
+    "correctText": "en:lesson-13:session-31:i13:p1=accidentally\nen:lesson-13:session-31:i13:p2=deliberately\nen:lesson-13:session-31:i13:p3=properly\nen:lesson-13:session-31:i13:p4=completely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i14",
+    "correctText": "We didn't break the plate yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i15",
+    "correctText": "Did he open the window last night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i16",
+    "correctText": "Did you close the window properly last night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-31:i17",
+    "correctText": "She didn't accidentally break the cup yesterday.",
+    "correctResponseId": null
+  }
+]

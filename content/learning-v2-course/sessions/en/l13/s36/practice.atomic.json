@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-36:word:move-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — move in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:move-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — move in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:move-in:audio",
+            "transcript": "move in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:move-in:r1",
+              "targetText": "move in",
+              "meaningByLocale": {
+                "ru": "въехать в жильё.",
+                "uk": "в’їхати в житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "move in",
+            "definitionByLocale": {
+              "ru": "въехать в жильё.",
+              "uk": "в’їхати в житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты въехал на прошлой неделе?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты въехал на прошлой неделе?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you move in last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты въехал на прошлой неделе?",
+            "uk": "Скажіть: Ти в’їхав минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "move",
+            "in",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i02:r1",
+            "text": "Did she move in last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i02:r2",
+            "text": "Did you move in last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i02:r3",
+            "text": "Did they move in last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i02:audio",
+            "transcript": "Did she move in last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i02:r1",
+              "targetText": "Did she move in last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r2",
+              "targetText": "Did you move in last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r3",
+              "targetText": "Did they move in last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move in last week?",
+                "uk": "У записі звучить Did she move in last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move in last week?",
+                "uk": "У записі звучить Did she move in last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you move in last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:move-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — move out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:move-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — move out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:move-out:audio",
+            "transcript": "move out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:move-out:r1",
+              "targetText": "move out",
+              "meaningByLocale": {
+                "ru": "съехать из жилья.",
+                "uk": "виїхати з житла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "move out",
+            "definitionByLocale": {
+              "ru": "съехать из жилья.",
+              "uk": "виїхати з житла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты съехал на прошлой неделе?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты съехал на прошлой неделе?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you move out last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты съехал на прошлой неделе?",
+            "uk": "Скажіть: Ти виїхав минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "move",
+            "out",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i05:r1",
+            "text": "Did she move out last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i05:r2",
+            "text": "Did you move out last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i05:r3",
+            "text": "Did they move out last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i05:audio",
+            "transcript": "Did she move out last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i05:r1",
+              "targetText": "Did she move out last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r2",
+              "targetText": "Did you move out last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r3",
+              "targetText": "Did they move out last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move out last week?",
+                "uk": "У записі звучить Did she move out last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move out last week?",
+                "uk": "У записі звучить Did she move out last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you move out last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:settle-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — settle in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:settle-in:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — settle in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:settle-in:audio",
+            "transcript": "settle in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:settle-in:r1",
+              "targetText": "settle in",
+              "meaningByLocale": {
+                "ru": "обжиться в новом месте.",
+                "uk": "обжитися на новому місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "settle in",
+            "definitionByLocale": {
+              "ru": "обжиться в новом месте.",
+              "uk": "обжитися на новому місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты быстро обжился?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты быстро обжился?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you settle in quickly?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты быстро обжился?",
+            "uk": "Скажіть: Ти швидко обжився?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "settle",
+            "in",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i08:r1",
+            "text": "Did she settle in quickly?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i08:r2",
+            "text": "Did you settle in quickly?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i08:r3",
+            "text": "Did they settle in quickly?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i08:audio",
+            "transcript": "Did she settle in quickly?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i08:r1",
+              "targetText": "Did she settle in quickly?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r2",
+              "targetText": "Did you settle in quickly?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r3",
+              "targetText": "Did they settle in quickly?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she settle in quickly?",
+                "uk": "У записі звучить Did she settle in quickly?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she settle in quickly?",
+                "uk": "У записі звучить Did she settle in quickly?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you settle in quickly?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:stay-over",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stay over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:stay-over:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stay over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:stay-over:audio",
+            "transcript": "stay over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:stay-over:r1",
+              "targetText": "stay over",
+              "meaningByLocale": {
+                "ru": "остаться ночевать у кого-то.",
+                "uk": "залишитися ночувати в когось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stay over",
+            "definitionByLocale": {
+              "ru": "остаться ночевать у кого-то.",
+              "uk": "залишитися ночувати в когось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты остался ночевать у сестры?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты остался ночевать у сестры?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you stay over at your sister’s house?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты остался ночевать у сестры?",
+            "uk": "Скажіть: Ти залишився ночувати в сестри?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "stay",
+            "over",
+            "at",
+            "your",
+            "sister’s",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i11:r1",
+            "text": "Did she stay over at your sister’s house?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i11:r2",
+            "text": "Did you stay over at your sister’s house?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i11:r3",
+            "text": "Did they stay over at your sister’s house?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i11:audio",
+            "transcript": "Did she stay over at your sister’s house?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i11:r1",
+              "targetText": "Did she stay over at your sister’s house?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r2",
+              "targetText": "Did you stay over at your sister’s house?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r3",
+              "targetText": "Did they stay over at your sister’s house?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she stay over at your sister’s house?",
+                "uk": "У записі звучить Did she stay over at your sister’s house?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she stay over at your sister’s house?",
+                "uk": "У записі звучить Did she stay over at your sister’s house?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you stay over at your sister’s house?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-36:i13:p1",
+              "target": "move in",
+              "meaningByLocale": {
+                "ru": "въехать в жильё",
+                "uk": "в’їхати в житло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p2",
+              "target": "move out",
+              "meaningByLocale": {
+                "ru": "съехать из жилья",
+                "uk": "виїхати з житла"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p3",
+              "target": "settle in",
+              "meaningByLocale": {
+                "ru": "обжиться в новом месте",
+                "uk": "обжитися на новому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p4",
+              "target": "stay over",
+              "meaningByLocale": {
+                "ru": "остаться ночевать у кого-то",
+                "uk": "залишитися ночувати в когось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "move in",
+            "move out",
+            "settle in",
+            "stay over"
+          ],
+          "rightColumn": [
+            "въехать в жильё",
+            "съехать из жилья",
+            "обжиться в новом месте",
+            "остаться ночевать у кого-то"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i14:audio",
+            "transcript": "Then we packed the boxes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then we packed the boxes.",
+          "orderedTokens": [
+            "Then",
+            "we",
+            "packed",
+            "the",
+            "boxes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i15:audio",
+            "transcript": "We didn't move in immediately."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't move in immediately.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "move",
+            "in",
+            "immediately"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: в итоге мы обжились быстро",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: в итоге мы обжились быстро",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i16:audio",
+            "transcript": "In the end, we settled in quickly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, we settled in quickly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она осталась ночевать у сестры прошлой ночью",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: она осталась ночевать у сестры прошлой ночью",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i17:audio",
+            "transcript": "She stayed over at her sister’s house last night."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stayed over at her sister’s house last night.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-36:word:move-in",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — move in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:move-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — move in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:move-in:audio",
+            "transcript": "move in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:move-in:r1",
+              "targetText": "move in",
+              "meaningByLocale": {
+                "ru": "въехать в жильё.",
+                "uk": "в’їхати в житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "move in",
+            "definitionByLocale": {
+              "ru": "въехать в жильё.",
+              "uk": "в’їхати в житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти в’їхав минулого тижня?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти в’їхав минулого тижня?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you move in last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты въехал на прошлой неделе?",
+            "uk": "Скажіть: Ти в’їхав минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "move",
+            "in",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i02:r1",
+            "text": "Did she move in last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i02:r2",
+            "text": "Did you move in last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i02:r3",
+            "text": "Did they move in last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i02:audio",
+            "transcript": "Did she move in last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i02:r1",
+              "targetText": "Did she move in last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r2",
+              "targetText": "Did you move in last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r3",
+              "targetText": "Did they move in last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move in last week?",
+                "uk": "У записі звучить Did she move in last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move in last week?",
+                "uk": "У записі звучить Did she move in last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you move in last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:move-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — move out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:move-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — move out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:move-out:audio",
+            "transcript": "move out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:move-out:r1",
+              "targetText": "move out",
+              "meaningByLocale": {
+                "ru": "съехать из жилья.",
+                "uk": "виїхати з житла."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "move out",
+            "definitionByLocale": {
+              "ru": "съехать из жилья.",
+              "uk": "виїхати з житла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти виїхав минулого тижня?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти виїхав минулого тижня?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you move out last week?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты съехал на прошлой неделе?",
+            "uk": "Скажіть: Ти виїхав минулого тижня?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "move",
+            "out",
+            "last",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i05:r1",
+            "text": "Did she move out last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i05:r2",
+            "text": "Did you move out last week?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i05:r3",
+            "text": "Did they move out last week?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i05:audio",
+            "transcript": "Did she move out last week?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i05:r1",
+              "targetText": "Did she move out last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r2",
+              "targetText": "Did you move out last week?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r3",
+              "targetText": "Did they move out last week?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move out last week?",
+                "uk": "У записі звучить Did she move out last week?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she move out last week?",
+                "uk": "У записі звучить Did she move out last week?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you move out last week?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:settle-in",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — settle in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:settle-in:audio"
+        ],
+        "accessibilityLabel": "Картка слова — settle in",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:settle-in:audio",
+            "transcript": "settle in"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:settle-in:r1",
+              "targetText": "settle in",
+              "meaningByLocale": {
+                "ru": "обжиться в новом месте.",
+                "uk": "обжитися на новому місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "settle in",
+            "definitionByLocale": {
+              "ru": "обжиться в новом месте.",
+              "uk": "обжитися на новому місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти швидко обжився?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти швидко обжився?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you settle in quickly?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты быстро обжился?",
+            "uk": "Скажіть: Ти швидко обжився?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "settle",
+            "in",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i08:r1",
+            "text": "Did she settle in quickly?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i08:r2",
+            "text": "Did you settle in quickly?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i08:r3",
+            "text": "Did they settle in quickly?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i08:audio",
+            "transcript": "Did she settle in quickly?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i08:r1",
+              "targetText": "Did she settle in quickly?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r2",
+              "targetText": "Did you settle in quickly?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r3",
+              "targetText": "Did they settle in quickly?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she settle in quickly?",
+                "uk": "У записі звучить Did she settle in quickly?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she settle in quickly?",
+                "uk": "У записі звучить Did she settle in quickly?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you settle in quickly?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:word:stay-over",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stay over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:word:stay-over:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stay over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:word:stay-over:audio",
+            "transcript": "stay over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:word:stay-over:r1",
+              "targetText": "stay over",
+              "meaningByLocale": {
+                "ru": "остаться ночевать у кого-то.",
+                "uk": "залишитися ночувати в когось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stay over",
+            "definitionByLocale": {
+              "ru": "остаться ночевать у кого-то.",
+              "uk": "залишитися ночувати в когось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти залишився ночувати в сестри?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти залишився ночувати в сестри?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you stay over at your sister’s house?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты остался ночевать у сестры?",
+            "uk": "Скажіть: Ти залишився ночувати в сестри?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "stay",
+            "over",
+            "at",
+            "your",
+            "sister’s",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i11:r1",
+            "text": "Did she stay over at your sister’s house?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i11:r2",
+            "text": "Did you stay over at your sister’s house?"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i11:r3",
+            "text": "Did they stay over at your sister’s house?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i11:audio",
+            "transcript": "Did she stay over at your sister’s house?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-36:i11:r1",
+              "targetText": "Did she stay over at your sister’s house?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r2",
+              "targetText": "Did you stay over at your sister’s house?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r3",
+              "targetText": "Did they stay over at your sister’s house?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she stay over at your sister’s house?",
+                "uk": "У записі звучить Did she stay over at your sister’s house?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she stay over at your sister’s house?",
+                "uk": "У записі звучить Did she stay over at your sister’s house?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-36:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-36:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you stay over at your sister’s house?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-36:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-36:i13:p1",
+              "target": "move in",
+              "meaningByLocale": {
+                "ru": "въехать в жильё",
+                "uk": "в’їхати в житло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p2",
+              "target": "move out",
+              "meaningByLocale": {
+                "ru": "съехать из жилья",
+                "uk": "виїхати з житла"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p3",
+              "target": "settle in",
+              "meaningByLocale": {
+                "ru": "обжиться в новом месте",
+                "uk": "обжитися на новому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-36:i13:p4",
+              "target": "stay over",
+              "meaningByLocale": {
+                "ru": "остаться ночевать у кого-то",
+                "uk": "залишитися ночувати в когось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "move in",
+            "move out",
+            "settle in",
+            "stay over"
+          ],
+          "rightColumn": [
+            "в’їхати в житло",
+            "виїхати з житла",
+            "обжитися на новому місці",
+            "залишитися ночувати в когось"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i14:audio",
+            "transcript": "Then we packed the boxes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then we packed the boxes.",
+          "orderedTokens": [
+            "Then",
+            "we",
+            "packed",
+            "the",
+            "boxes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i15:audio",
+            "transcript": "We didn't move in immediately."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't move in immediately.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "move",
+            "in",
+            "immediately"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: зрештою ми обжилися швидко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: зрештою ми обжилися швидко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i16:audio",
+            "transcript": "In the end, we settled in quickly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, we settled in quickly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона залишилася ночувати в сестри минулої ночі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона залишилася ночувати в сестри минулої ночі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-36:i17:audio",
+            "transcript": "She stayed over at her sister’s house last night."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stayed over at her sister’s house last night.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-36:word:move-in",
+      "correctText": "move in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i01",
+      "correctText": "Did you move in last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i02",
+      "correctText": "Did she move in last week?",
+      "correctResponseId": "en:lesson-13:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:word:move-out",
+      "correctText": "move out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i04",
+      "correctText": "Did you move out last week?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i05",
+      "correctText": "Did she move out last week?",
+      "correctResponseId": "en:lesson-13:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:word:settle-in",
+      "correctText": "settle in",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i07",
+      "correctText": "Did you settle in quickly?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i08",
+      "correctText": "Did she settle in quickly?",
+      "correctResponseId": "en:lesson-13:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:word:stay-over",
+      "correctText": "stay over",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i10",
+      "correctText": "Did you stay over at your sister’s house?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i11",
+      "correctText": "Did she stay over at your sister’s house?",
+      "correctResponseId": "en:lesson-13:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i14",
+      "correctText": "Then we packed the boxes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i15",
+      "correctText": "We didn't move in immediately.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i16",
+      "correctText": "In the end, we settled in quickly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-36:i17",
+      "correctText": "She stayed over at her sister’s house last night.",
+      "correctResponseId": null
+    }
+  ]
+}

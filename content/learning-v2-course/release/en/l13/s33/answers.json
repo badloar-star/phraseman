@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-33:word:first-of-all",
+    "correctText": "first of all",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i01",
+    "correctText": "First of all, I checked the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i02",
+    "correctText": "First of all, she checked the address.",
+    "correctResponseId": "en:lesson-13:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:word:at-first",
+    "correctText": "at first",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i04",
+    "correctText": "At first, I waited outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i05",
+    "correctText": "At first, she waited outside.",
+    "correctResponseId": "en:lesson-13:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:word:finally",
+    "correctText": "finally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i07",
+    "correctText": "Finally, I found the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i08",
+    "correctText": "Finally, she found the house.",
+    "correctResponseId": "en:lesson-13:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:word:in-the-end",
+    "correctText": "in the end",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i10",
+    "correctText": "In the end, I took the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i11",
+    "correctText": "In the end, she took the bus.",
+    "correctResponseId": "en:lesson-13:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i13",
+    "correctText": "en:lesson-13:session-33:i13:p1=first of all\nen:lesson-13:session-33:i13:p2=at first\nen:lesson-13:session-33:i13:p3=finally\nen:lesson-13:session-33:i13:p4=in the end",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i14",
+    "correctText": "Then I called my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i15",
+    "correctText": "We didn't walk home in the end.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i16",
+    "correctText": "First of all, she checked the ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i17",
+    "correctText": "In the end, I called my friend.",
+    "correctResponseId": null
+  }
+]

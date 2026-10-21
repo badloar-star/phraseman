@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-31:word:accidentally",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — accidentally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:word:accidentally:audio"
+      ],
+      "accessibilityLabel": "Картка слова — accidentally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:word:accidentally:audio",
+          "transcript": "accidentally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:word:accidentally:r1",
+            "targetText": "accidentally",
+            "meaningByLocale": {
+              "ru": "случайно, не намереваясь.",
+              "uk": "випадково, не маючи наміру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accidentally",
+          "definitionByLocale": {
+            "ru": "случайно, не намереваясь.",
+            "uk": "випадково, не маючи наміру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора випадково розбив чашку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора випадково розбив чашку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you accidentally break the cup yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера случайно разбил чашку?",
+          "uk": "Скажіть: Ти вчора випадково розбив чашку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "accidentally",
+          "break",
+          "the",
+          "cup",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i02:r1",
+          "text": "Did she accidentally break the cup yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i02:r2",
+          "text": "Did you accidentally break the cup yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i02:r3",
+          "text": "Did they accidentally break the cup yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i02:audio",
+          "transcript": "Did she accidentally break the cup yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:i02:r1",
+            "targetText": "Did she accidentally break the cup yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i02:r2",
+            "targetText": "Did you accidentally break the cup yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i02:r3",
+            "targetText": "Did they accidentally break the cup yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she accidentally break the cup yesterday?",
+              "uk": "У записі звучить Did she accidentally break the cup yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she accidentally break the cup yesterday?",
+              "uk": "У записі звучить Did she accidentally break the cup yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you accidentally break the cup yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-31:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:word:deliberately",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deliberately",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:word:deliberately:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deliberately",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:word:deliberately:audio",
+          "transcript": "deliberately"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:word:deliberately:r1",
+            "targetText": "deliberately",
+            "meaningByLocale": {
+              "ru": "нарочно, намеренно.",
+              "uk": "навмисно, з наміром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deliberately",
+          "definitionByLocale": {
+            "ru": "нарочно, намеренно.",
+            "uk": "навмисно, з наміром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора навмисно залишив вікно відчиненим?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора навмисно залишив вікно відчиненим?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you deliberately leave the window open yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера нарочно оставил окно открытым?",
+          "uk": "Скажіть: Ти вчора навмисно залишив вікно відчиненим?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "deliberately",
+          "leave",
+          "the",
+          "window",
+          "open",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i05:r1",
+          "text": "Did she deliberately leave the window open yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i05:r2",
+          "text": "Did you deliberately leave the window open yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i05:r3",
+          "text": "Did they deliberately leave the window open yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i05:audio",
+          "transcript": "Did she deliberately leave the window open yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:i05:r1",
+            "targetText": "Did she deliberately leave the window open yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i05:r2",
+            "targetText": "Did you deliberately leave the window open yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i05:r3",
+            "targetText": "Did they deliberately leave the window open yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she deliberately leave the window open yesterday?",
+              "uk": "У записі звучить Did she deliberately leave the window open yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she deliberately leave the window open yesterday?",
+              "uk": "У записі звучить Did she deliberately leave the window open yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you deliberately leave the window open yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-31:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:word:properly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — properly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:word:properly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — properly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:word:properly:audio",
+          "transcript": "properly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:word:properly:r1",
+            "targetText": "properly",
+            "meaningByLocale": {
+              "ru": "как следует, правильно.",
+              "uk": "як слід, правильно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "properly",
+          "definitionByLocale": {
+            "ru": "как следует, правильно.",
+            "uk": "як слід, правильно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора як слід зачинив двері?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора як слід зачинив двері?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you close the door properly yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера как следует закрыл дверь?",
+          "uk": "Скажіть: Ти вчора як слід зачинив двері?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "close",
+          "the",
+          "door",
+          "properly",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i08:r1",
+          "text": "Did she close the door properly yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i08:r2",
+          "text": "Did you close the door properly yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i08:r3",
+          "text": "Did they close the door properly yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i08:audio",
+          "transcript": "Did she close the door properly yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:i08:r1",
+            "targetText": "Did she close the door properly yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i08:r2",
+            "targetText": "Did you close the door properly yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i08:r3",
+            "targetText": "Did they close the door properly yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she close the door properly yesterday?",
+              "uk": "У записі звучить Did she close the door properly yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she close the door properly yesterday?",
+              "uk": "У записі звучить Did she close the door properly yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you close the door properly yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-31:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:word:completely",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — completely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:word:completely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — completely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:word:completely:audio",
+          "transcript": "completely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:word:completely:r1",
+            "targetText": "completely",
+            "meaningByLocale": {
+              "ru": "полностью.",
+              "uk": "повністю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "completely",
+          "definitionByLocale": {
+            "ru": "полностью.",
+            "uk": "повністю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора наповнив пляшку повністю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора наповнив пляшку повністю?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you fill the bottle completely yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера наполнил бутылку полностью?",
+          "uk": "Скажіть: Ти вчора наповнив пляшку повністю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "fill",
+          "the",
+          "bottle",
+          "completely",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i11:r1",
+          "text": "Did she fill the bottle completely yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i11:r2",
+          "text": "Did you fill the bottle completely yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i11:r3",
+          "text": "Did they fill the bottle completely yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i11:audio",
+          "transcript": "Did she fill the bottle completely yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-31:i11:r1",
+            "targetText": "Did she fill the bottle completely yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i11:r2",
+            "targetText": "Did you fill the bottle completely yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i11:r3",
+            "targetText": "Did they fill the bottle completely yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she fill the bottle completely yesterday?",
+              "uk": "У записі звучить Did she fill the bottle completely yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she fill the bottle completely yesterday?",
+              "uk": "У записі звучить Did she fill the bottle completely yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-31:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-31:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you fill the bottle completely yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-31:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-31:i13:p1",
+            "target": "accidentally",
+            "meaningByLocale": {
+              "ru": "случайно, не намереваясь",
+              "uk": "випадково, не маючи наміру"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-31:i13:p2",
+            "target": "deliberately",
+            "meaningByLocale": {
+              "ru": "нарочно, намеренно",
+              "uk": "навмисно, з наміром"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-31:i13:p3",
+            "target": "properly",
+            "meaningByLocale": {
+              "ru": "как следует, правильно",
+              "uk": "як слід, правильно"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-31:i13:p4",
+            "target": "completely",
+            "meaningByLocale": {
+              "ru": "полностью",
+              "uk": "повністю"
+            }
+          }
+        ],
+        "leftColumn": [
+          "accidentally",
+          "deliberately",
+          "properly",
+          "completely"
+        ],
+        "rightColumn": [
+          "випадково, не маючи наміру",
+          "навмисно, з наміром",
+          "як слід, правильно",
+          "повністю"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i14:audio",
+          "transcript": "We didn't break the plate yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't break the plate yesterday.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "break",
+          "the",
+          "plate",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i15:audio",
+          "transcript": "Did he open the window last night?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he open the window last night?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "open",
+          "the",
+          "window",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти як слід зачинив вікно минулої ночі?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти як слід зачинив вікно минулої ночі?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i16:audio",
+          "transcript": "Did you close the window properly last night?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you close the window properly last night?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона не розбила чашку випадково вчора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона не розбила чашку випадково вчора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-31:i17:audio",
+          "transcript": "She didn't accidentally break the cup yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't accidentally break the cup yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0003ae0a9a18ae33c6d67c73d7bc8960ffb2da1ab291120861d6897362334e41"
+}

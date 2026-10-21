@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-36:word:move-in",
+    "correctText": "move in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i01",
+    "correctText": "Did you move in last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i02",
+    "correctText": "Did she move in last week?",
+    "correctResponseId": "en:lesson-13:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:word:move-out",
+    "correctText": "move out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i04",
+    "correctText": "Did you move out last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i05",
+    "correctText": "Did she move out last week?",
+    "correctResponseId": "en:lesson-13:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:word:settle-in",
+    "correctText": "settle in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i07",
+    "correctText": "Did you settle in quickly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i08",
+    "correctText": "Did she settle in quickly?",
+    "correctResponseId": "en:lesson-13:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:word:stay-over",
+    "correctText": "stay over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i10",
+    "correctText": "Did you stay over at your sister’s house?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i11",
+    "correctText": "Did she stay over at your sister’s house?",
+    "correctResponseId": "en:lesson-13:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i13",
+    "correctText": "en:lesson-13:session-36:i13:p1=move in\nen:lesson-13:session-36:i13:p2=move out\nen:lesson-13:session-36:i13:p3=settle in\nen:lesson-13:session-36:i13:p4=stay over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i14",
+    "correctText": "Then we packed the boxes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i15",
+    "correctText": "We didn't move in immediately.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i16",
+    "correctText": "In the end, we settled in quickly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-36:i17",
+    "correctText": "She stayed over at her sister’s house last night.",
+    "correctResponseId": null
+  }
+]

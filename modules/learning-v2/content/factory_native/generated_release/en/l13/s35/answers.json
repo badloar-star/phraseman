@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-35:word:look-around",
+    "correctText": "look around",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i01",
+    "correctText": "Did you look around the shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i02",
+    "correctText": "Did she look around the shop?",
+    "correctResponseId": "en:lesson-13:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:word:head-for",
+    "correctText": "head for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i04",
+    "correctText": "Did you head for the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i05",
+    "correctText": "Did she head for the station?",
+    "correctResponseId": "en:lesson-13:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:word:go-back",
+    "correctText": "go back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i07",
+    "correctText": "Did you go back to the shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i08",
+    "correctText": "Did she go back to the shop?",
+    "correctResponseId": "en:lesson-13:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:word:call-in",
+    "correctText": "call in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i10",
+    "correctText": "Did you call in at the bakery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i11",
+    "correctText": "Did she call in at the bakery?",
+    "correctResponseId": "en:lesson-13:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i13",
+    "correctText": "en:lesson-13:session-35:i13:p1=look around\nen:lesson-13:session-35:i13:p2=head for\nen:lesson-13:session-35:i13:p3=go back\nen:lesson-13:session-35:i13:p4=call in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i14",
+    "correctText": "Then I went back to the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i15",
+    "correctText": "I didn't buy anything in the end.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i16",
+    "correctText": "First of all, she looked around the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-35:i17",
+    "correctText": "Then I headed for the station.",
+    "correctResponseId": null
+  }
+]

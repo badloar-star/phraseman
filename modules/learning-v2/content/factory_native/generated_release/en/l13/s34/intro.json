@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отправиться в путь",
+        "uk": "Вирушити в дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Set off — отправиться в путь. First of all, we set off at eight — первым делом мы отправились в восемь. Did you set off early? — Ты отправился рано? Выберите вопрос.",
+        "uk": "Set off — вирушити в дорогу. First of all, we set off at eight — насамперед ми вирушили о восьмій. Did you set off early? — Ти вирушив рано? Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r1",
+              "text": "Did you set off early?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r2",
+              "text": "You set off early."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r3",
+              "text": "Do you set off early every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r1",
+              "text": "Did you set off early?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r2",
+              "text": "You set off early."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro1:r3",
+              "text": "Do you set off early every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Остановиться по пути",
+        "uk": "Зупинитися дорогою"
+      },
+      "bodyByLocale": {
+        "ru": "Stop off — ненадолго остановиться по пути. Then we stopped off at a café — затем мы ненадолго остановились в кафе. Выберите остановку по пути.",
+        "uk": "Stop off — ненадовго зупинитися дорогою. Then we stopped off at a café — потім ми ненадовго зупинилися в кафе. Виберіть зупинку дорогою."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r1",
+              "text": "Then we stopped off at a café."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r2",
+              "text": "First of all, we set off at eight."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r3",
+              "text": "Then we stop off at a café yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r1",
+              "text": "Then we stopped off at a café."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r2",
+              "text": "First of all, we set off at eight."
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro2:r3",
+              "text": "Then we stop off at a café yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Завезти и случайно встретить",
+        "uk": "Завезти й випадково зустріти"
+      },
+      "bodyByLocale": {
+        "ru": "Drop off здесь — завезти и оставить вещь или человека в нужном месте. Run into здесь — случайно встретить знакомого. Did you run into your neighbour? — Ты случайно встретил соседа? Выберите встречу.",
+        "uk": "Drop off тут — завезти й залишити річ або людину в потрібному місці. Run into тут — випадково зустріти знайомого. Did you run into your neighbour? — Ти випадково зустрів сусіда? Виберіть зустріч."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r1",
+              "text": "Did you run into your neighbour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r2",
+              "text": "Did you drop off the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r3",
+              "text": "Did you ran into your neighbour?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r1",
+              "text": "Did you run into your neighbour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r2",
+              "text": "Did you drop off the parcel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-34:intro3:r3",
+              "text": "Did you ran into your neighbour?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a0210ef7ebf3b3306b5d85ebbe069b50a5511120b2b67e021f061edb04912862"
+}

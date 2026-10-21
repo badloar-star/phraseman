@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions with finished time anchors",
+    "uk": "review: past questions with finished time anchors"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чёрная смородина",
+        "uk": "Чорна смородина"
+      },
+      "bodyByLocale": {
+        "ru": "Blackcurrant — чёрная смородина; blackcurrants — ягоды чёрной смородины. Did you buy blackcurrants yesterday? — Ты вчера купил чёрную смородину? Выберите вчерашнюю покупку.",
+        "uk": "Blackcurrant — чорна смородина; blackcurrants — ягоди чорної смородини. Did you buy blackcurrants yesterday? — Ти вчора купив чорну смородину? Виберіть учорашню купівлю."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r1",
+              "text": "Did you buy blackcurrants yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r2",
+              "text": "Did you bought blackcurrants yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r3",
+              "text": "Do you buy blackcurrants every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r1",
+              "text": "Did you buy blackcurrants yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r2",
+              "text": "Did you bought blackcurrants yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro1:r3",
+              "text": "Do you buy blackcurrants every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Красная смородина",
+        "uk": "Червона смородина"
+      },
+      "bodyByLocale": {
+        "ru": "Redcurrant — красная смородина; redcurrants — её ягоды. Did you wash the redcurrants? — Ты помыл красную смородину? Выберите красную, не чёрную.",
+        "uk": "Redcurrant — червона смородина; redcurrants — її ягоди. Did you wash the redcurrants? — Ти помив червону смородину? Виберіть червону, не чорну."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r1",
+              "text": "Did you wash the redcurrants?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r2",
+              "text": "Did you wash the blackcurrants?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r3",
+              "text": "Did you washed the redcurrants?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r1",
+              "text": "Did you wash the redcurrants?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r2",
+              "text": "Did you wash the blackcurrants?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro2:r3",
+              "text": "Did you washed the redcurrants?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Крыжовник и клюква",
+        "uk": "Аґрус і журавлина"
+      },
+      "bodyByLocale": {
+        "ru": "Gooseberry — крыжовник; cranberry — клюква. Во множественном числе: gooseberries, cranberries. Выберите: ты вчера купил клюкву?",
+        "uk": "Gooseberry — аґрус; cranberry — журавлина. У множині: gooseberries, cranberries. Виберіть: ти вчора купив журавлину?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r1",
+              "text": "Did you buy cranberries yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r2",
+              "text": "Did you buy gooseberries yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r3",
+              "text": "Did you bought cranberries yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r1",
+              "text": "Did you buy cranberries yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r2",
+              "text": "Did you buy gooseberries yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-32:intro3:r3",
+              "text": "Did you bought cranberries yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e798e2658875770aae67889560dab348e9cdfba6bd5b2e12d045dad6c7f316f"
+}

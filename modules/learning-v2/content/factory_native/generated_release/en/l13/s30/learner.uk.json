@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-30:word:flight-attendant",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flight attendant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:word:flight-attendant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flight attendant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:word:flight-attendant:audio",
+          "transcript": "flight attendant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:word:flight-attendant:r1",
+            "targetText": "flight attendant",
+            "meaningByLocale": {
+              "ru": "бортпроводник или бортпроводница.",
+              "uk": "бортпровідник або бортпровідниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flight attendant",
+          "definitionByLocale": {
+            "ru": "бортпроводник или бортпроводница.",
+            "uk": "бортпровідник або бортпровідниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора подякував бортпровідникові?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора подякував бортпровідникові?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you thank the flight attendant yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера поблагодарил бортпроводника?",
+          "uk": "Скажіть: Ти вчора подякував бортпровідникові?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "thank",
+          "the",
+          "flight",
+          "attendant",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i02:r1",
+          "text": "Did she thank the flight attendant yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i02:r2",
+          "text": "Did you thank the flight attendant yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i02:r3",
+          "text": "Did they thank the flight attendant yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i02:audio",
+          "transcript": "Did she thank the flight attendant yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:i02:r1",
+            "targetText": "Did she thank the flight attendant yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i02:r2",
+            "targetText": "Did you thank the flight attendant yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i02:r3",
+            "targetText": "Did they thank the flight attendant yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she thank the flight attendant yesterday?",
+              "uk": "У записі звучить Did she thank the flight attendant yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she thank the flight attendant yesterday?",
+              "uk": "У записі звучить Did she thank the flight attendant yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you thank the flight attendant yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-30:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:word:security-check",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — security check",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:word:security-check:audio"
+      ],
+      "accessibilityLabel": "Картка слова — security check",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:word:security-check:audio",
+          "transcript": "security check"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:word:security-check:r1",
+            "targetText": "security check",
+            "meaningByLocale": {
+              "ru": "досмотр безопасности.",
+              "uk": "огляд безпеки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "security check",
+          "definitionByLocale": {
+            "ru": "досмотр безопасности.",
+            "uk": "огляд безпеки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора чекав на огляді безпеки?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора чекав на огляді безпеки?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wait at the security check yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера ждал на досмотре безопасности?",
+          "uk": "Скажіть: Ти вчора чекав на огляді безпеки?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wait",
+          "at",
+          "the",
+          "security",
+          "check",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i05:r1",
+          "text": "Did she wait at the security check yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i05:r2",
+          "text": "Did you wait at the security check yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i05:r3",
+          "text": "Did they wait at the security check yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i05:audio",
+          "transcript": "Did she wait at the security check yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:i05:r1",
+            "targetText": "Did she wait at the security check yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i05:r2",
+            "targetText": "Did you wait at the security check yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i05:r3",
+            "targetText": "Did they wait at the security check yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wait at the security check yesterday?",
+              "uk": "У записі звучить Did she wait at the security check yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wait at the security check yesterday?",
+              "uk": "У записі звучить Did she wait at the security check yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wait at the security check yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-30:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:word:check-in-desk",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — check-in desk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:word:check-in-desk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — check-in desk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:word:check-in-desk:audio",
+          "transcript": "check-in desk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:word:check-in-desk:r1",
+            "targetText": "check-in desk",
+            "meaningByLocale": {
+              "ru": "стойка регистрации.",
+              "uk": "стійка реєстрації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check-in desk",
+          "definitionByLocale": {
+            "ru": "стойка регистрации.",
+            "uk": "стійка реєстрації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора знайшов стійку реєстрації?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора знайшов стійку реєстрації?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you find the check-in desk yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера нашёл стойку регистрации?",
+          "uk": "Скажіть: Ти вчора знайшов стійку реєстрації?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "find",
+          "the",
+          "check-in",
+          "desk",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i08:r1",
+          "text": "Did she find the check-in desk yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i08:r2",
+          "text": "Did you find the check-in desk yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i08:r3",
+          "text": "Did they find the check-in desk yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i08:audio",
+          "transcript": "Did she find the check-in desk yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:i08:r1",
+            "targetText": "Did she find the check-in desk yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i08:r2",
+            "targetText": "Did you find the check-in desk yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i08:r3",
+            "targetText": "Did they find the check-in desk yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find the check-in desk yesterday?",
+              "uk": "У записі звучить Did she find the check-in desk yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find the check-in desk yesterday?",
+              "uk": "У записі звучить Did she find the check-in desk yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you find the check-in desk yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-30:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:word:departure-lounge",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — departure lounge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:word:departure-lounge:audio"
+      ],
+      "accessibilityLabel": "Картка слова — departure lounge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:word:departure-lounge:audio",
+          "transcript": "departure lounge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:word:departure-lounge:r1",
+            "targetText": "departure lounge",
+            "meaningByLocale": {
+              "ru": "зал ожидания вылета.",
+              "uk": "зал очікування вильоту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "departure lounge",
+          "definitionByLocale": {
+            "ru": "зал ожидания вылета.",
+            "uk": "зал очікування вильоту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти вчора чекав у залі очікування вильоту?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти вчора чекав у залі очікування вильоту?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wait in the departure lounge yesterday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вчера ждал в зале ожидания вылета?",
+          "uk": "Скажіть: Ти вчора чекав у залі очікування вильоту?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wait",
+          "in",
+          "the",
+          "departure",
+          "lounge",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i11:r1",
+          "text": "Did she wait in the departure lounge yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i11:r2",
+          "text": "Did you wait in the departure lounge yesterday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i11:r3",
+          "text": "Did they wait in the departure lounge yesterday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i11:audio",
+          "transcript": "Did she wait in the departure lounge yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-30:i11:r1",
+            "targetText": "Did she wait in the departure lounge yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i11:r2",
+            "targetText": "Did you wait in the departure lounge yesterday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i11:r3",
+            "targetText": "Did they wait in the departure lounge yesterday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wait in the departure lounge yesterday?",
+              "uk": "У записі звучить Did she wait in the departure lounge yesterday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wait in the departure lounge yesterday?",
+              "uk": "У записі звучить Did she wait in the departure lounge yesterday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-30:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-30:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wait in the departure lounge yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-30:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-30:i13:p1",
+            "target": "flight attendant",
+            "meaningByLocale": {
+              "ru": "бортпроводник или бортпроводница",
+              "uk": "бортпровідник або бортпровідниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-30:i13:p2",
+            "target": "security check",
+            "meaningByLocale": {
+              "ru": "досмотр безопасности",
+              "uk": "огляд безпеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-30:i13:p3",
+            "target": "check-in desk",
+            "meaningByLocale": {
+              "ru": "стойка регистрации",
+              "uk": "стійка реєстрації"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-30:i13:p4",
+            "target": "departure lounge",
+            "meaningByLocale": {
+              "ru": "зал ожидания вылета",
+              "uk": "зал очікування вильоту"
+            }
+          }
+        ],
+        "leftColumn": [
+          "flight attendant",
+          "security check",
+          "check-in desk",
+          "departure lounge"
+        ],
+        "rightColumn": [
+          "бортпровідник або бортпровідниця",
+          "огляд безпеки",
+          "стійка реєстрації",
+          "зал очікування вильоту"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i14:audio",
+          "transcript": "We didn't miss the flight yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't miss the flight yesterday.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "miss",
+          "the",
+          "flight",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i15:audio",
+          "transcript": "Did he fly last week?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he fly last week?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "fly",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти чекав на огляді безпеки минулого тижня?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти чекав на огляді безпеки минулого тижня?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i16:audio",
+          "transcript": "Did you wait at the security check last week?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you wait at the security check last week?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона не знайшла стійку реєстрації вчора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона не знайшла стійку реєстрації вчора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-30:i17:audio",
+          "transcript": "She didn't find the check-in desk yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't find the check-in desk yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "21111c0b6f94c8cd3a895634f171eb8749d02c999d1794b6a155d9e34a30776e"
+}

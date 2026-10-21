@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions with finished time anchors",
+    "uk": "review: past questions with finished time anchors"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Случайно",
+        "uk": "Випадково"
+      },
+      "bodyByLocale": {
+        "ru": "Accidentally — случайно, не намереваясь. Did you accidentally break the cup yesterday? — Ты вчера случайно разбил чашку? Выберите случайное действие.",
+        "uk": "Accidentally — випадково, не маючи наміру. Did you accidentally break the cup yesterday? — Ти вчора випадково розбив чашку? Виберіть випадкову дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r1",
+              "text": "Did you accidentally break the cup yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r2",
+              "text": "Did you accidentally broke the cup yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r3",
+              "text": "Did you wash the cup yesterday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r1",
+              "text": "Did you accidentally break the cup yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r2",
+              "text": "Did you accidentally broke the cup yesterday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro1:r3",
+              "text": "Did you wash the cup yesterday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нарочно",
+        "uk": "Навмисно"
+      },
+      "bodyByLocale": {
+        "ru": "Deliberately — нарочно, намеренно. Did you deliberately leave the window open? — Ты нарочно оставил окно открытым? Выберите намерение, не случайность.",
+        "uk": "Deliberately — навмисно, з наміром. Did you deliberately leave the window open? — Ти навмисно залишив вікно відчиненим? Виберіть намір, не випадковість."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r1",
+              "text": "Did you deliberately leave the window open?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r2",
+              "text": "Did you accidentally leave the window open?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r3",
+              "text": "Did you deliberately left the window open?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r1",
+              "text": "Did you deliberately leave the window open?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r2",
+              "text": "Did you accidentally leave the window open?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro2:r3",
+              "text": "Did you deliberately left the window open?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как следует и полностью",
+        "uk": "Як слід і повністю"
+      },
+      "bodyByLocale": {
+        "ru": "Properly — как следует, правильно; completely — полностью. Did you close the door properly? — Ты как следует закрыл дверь? Выберите дверь, не наполнение бутылки.",
+        "uk": "Properly — як слід, правильно; completely — повністю. Did you close the door properly? — Ти як слід зачинив двері? Виберіть двері, не наповнення пляшки."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r1",
+              "text": "Did you close the door properly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r2",
+              "text": "Did you fill the bottle completely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r3",
+              "text": "Did you closed the door properly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r1",
+              "text": "Did you close the door properly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r2",
+              "text": "Did you fill the bottle completely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-31:intro3:r3",
+              "text": "Did you closed the door properly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6817748004bfa18c87ccfa8db8a99c875eb7d4ec4a3eb5fc13ed9a15b7916734"
+}

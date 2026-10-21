@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-32:intro1:r2": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        },
+        "en:lesson-13:session-32:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-32:intro2:r2": {
+          "ru": "Это чёрная смородина.",
+          "uk": "Це чорна смородина."
+        },
+        "en:lesson-13:session-32:intro2:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-32:intro3:r2": {
+          "ru": "Это крыжовник.",
+          "uk": "Це аґрус."
+        },
+        "en:lesson-13:session-32:intro3:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "24735f82cc8236e9a4ef9861d3e7e41a0fe3e8ea31b6c5b3029d97c4ae6d7996"
+}

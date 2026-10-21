@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-30:word:flight-attendant",
+    "correctText": "flight attendant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i01",
+    "correctText": "Did you thank the flight attendant yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i02",
+    "correctText": "Did she thank the flight attendant yesterday?",
+    "correctResponseId": "en:lesson-13:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:word:security-check",
+    "correctText": "security check",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i04",
+    "correctText": "Did you wait at the security check yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i05",
+    "correctText": "Did she wait at the security check yesterday?",
+    "correctResponseId": "en:lesson-13:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:word:check-in-desk",
+    "correctText": "check-in desk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i07",
+    "correctText": "Did you find the check-in desk yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i08",
+    "correctText": "Did she find the check-in desk yesterday?",
+    "correctResponseId": "en:lesson-13:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:word:departure-lounge",
+    "correctText": "departure lounge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i10",
+    "correctText": "Did you wait in the departure lounge yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i11",
+    "correctText": "Did she wait in the departure lounge yesterday?",
+    "correctResponseId": "en:lesson-13:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i13",
+    "correctText": "en:lesson-13:session-30:i13:p1=flight attendant\nen:lesson-13:session-30:i13:p2=security check\nen:lesson-13:session-30:i13:p3=check-in desk\nen:lesson-13:session-30:i13:p4=departure lounge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i14",
+    "correctText": "We didn't miss the flight yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i15",
+    "correctText": "Did he fly last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i16",
+    "correctText": "Did you wait at the security check last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-30:i17",
+    "correctText": "She didn't find the check-in desk yesterday.",
+    "correctResponseId": null
+  }
+]

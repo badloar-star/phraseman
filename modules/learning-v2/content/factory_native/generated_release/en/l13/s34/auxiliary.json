@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-34:intro1:r2": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        },
+        "en:lesson-13:session-34:intro1:r3": {
+          "ru": "Это вопрос о привычке.",
+          "uk": "Це запитання про звичку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-34:intro2:r2": {
+          "ru": "Это отправление, а нужно остановиться по пути.",
+          "uk": "Це відправлення, а потрібно зупинитися дорогою."
+        },
+        "en:lesson-13:session-34:intro2:r3": {
+          "ru": "Для прошлого нужна stopped.",
+          "uk": "Для минулого потрібна stopped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-34:intro3:r2": {
+          "ru": "Это доставка посылки.",
+          "uk": "Це доставляння посилки."
+        },
+        "en:lesson-13:session-34:intro3:r3": {
+          "ru": "После did нужна run.",
+          "uk": "Після did потрібна run."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "377c323da95886d45568905e69a7f31f372f91ad7eff784b48602ce73f767f71"
+}

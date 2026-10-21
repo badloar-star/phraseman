@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-29:word:hopeful",
+    "correctText": "hopeful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i01",
+    "correctText": "Did you feel hopeful yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i02",
+    "correctText": "Did she feel hopeful yesterday?",
+    "correctResponseId": "en:lesson-13:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:word:thoughtful",
+    "correctText": "thoughtful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i04",
+    "correctText": "Did you buy a thoughtful gift last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i05",
+    "correctText": "Did she buy a thoughtful gift last week?",
+    "correctResponseId": "en:lesson-13:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:word:miserable",
+    "correctText": "miserable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i07",
+    "correctText": "Did you feel miserable yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i08",
+    "correctText": "Did she feel miserable yesterday?",
+    "correctResponseId": "en:lesson-13:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:word:frightened",
+    "correctText": "frightened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i10",
+    "correctText": "Did you feel frightened last night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i11",
+    "correctText": "Did she feel frightened last night?",
+    "correctResponseId": "en:lesson-13:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i13",
+    "correctText": "en:lesson-13:session-29:i13:p1=hopeful\nen:lesson-13:session-29:i13:p2=thoughtful\nen:lesson-13:session-29:i13:p3=miserable\nen:lesson-13:session-29:i13:p4=frightened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i14",
+    "correctText": "We didn't feel worried yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i15",
+    "correctText": "Did he call last night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i16",
+    "correctText": "Did you feel hopeful last week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-29:i17",
+    "correctText": "She didn't feel frightened last night.",
+    "correctResponseId": null
+  }
+]

@@ -30,7 +30,7 @@ import { resolvePremiumPackages, syncRevenueCatIdentity } from '../app/revenueca
 import { PREMIUM_IDENTITY_WAIT_MS, waitForIdentitySyncBounded } from '../app/premium_identity_wait';
 import { markVipGrantSeenWithoutCelebration, processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
-import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, lastCloudRestoreCompletedAt, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
 import { getAppSnapshot } from '../app/app_snapshot_store';
@@ -80,6 +80,9 @@ interface PremiumContextValue {
 // Экспоненциальный отступ по образцу app/net_status.ts (OFFLINE_BACKOFF_MS);
 // счётчик сбрасывается живым снапшотом — рабочий слушатель отступ не чувствует.
 const PREMIUM_LISTENER_RETRY_BACKOFF_MS = [2_500, 10_000, 30_000, 60_000, 120_000, 300_000] as const;
+
+/** Возврат из фона читает облако не чаще, чем раз в 6 ч после последнего восстановления этого владельца (№45 шаг 6). */
+const FOREGROUND_CLOUD_RESTORE_TTL_MS = 6 * 60 * 60 * 1000;
 
 const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
@@ -748,7 +751,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         if (resumeTimer) clearTimeout(resumeTimer);
         resumeTask?.cancel?.();
 
-        if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud') {
+        // зачем (владелец 21.10, №45 шаг 6; Ревизор п.3): возврат из фона ≥ 5 мин каждый раз заново читал облако
+        // (users/{uid} + страницы карточек + журнал ошибок) без срока. Облако этого владельца уже читали < 6 ч назад
+        // (старт, вход) — только лёгкое обновление; премиум и так приходит слушателем access_projection.
+        const lastRestoreAt = lastCloudRestoreCompletedAt();
+        const restoreAgeMs = lastRestoreAt > 0 ? Date.now() - lastRestoreAt : null;
+        const restoreFresh = restoreAgeMs !== null && restoreAgeMs >= 0 && restoreAgeMs < FOREGROUND_CLOUD_RESTORE_TTL_MS;
+        if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud' && restoreFresh) {
+          console.log('[READ-TTL]', JSON.stringify({ area: 'foreground_cloud_restore', source: 'cache', restoreAgeMs, backgroundDurationMs })); // guard-ok: ветка решения
+        } else if (getForegroundRefreshKind(backgroundDurationMs) === 'cloud') {
+          console.log('[READ-TTL]', JSON.stringify({ area: 'foreground_cloud_restore', source: 'network', restoreAgeMs, backgroundDurationMs })); // guard-ok: ветка решения
           invalidatePremiumCache();
           resumeTimer = setTimeout(() => {
             resumeTimer = null;

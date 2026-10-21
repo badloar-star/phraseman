@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обсудить трудность",
+        "uk": "Обговорити трудність"
+      },
+      "bodyByLocale": {
+        "ru": "Difficulty — трудность. Вы с другом собираете шкаф, но один шаг непонятен; вы можете обсудить эту трудность. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Difficulty — трудність. Ви з другом збираєте шафу, але один крок незрозумілий; ви можете обговорити цю трудність. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r1",
+              "text": "We can discuss this difficulty."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r2",
+              "text": "We can to discuss this difficulty."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r3",
+              "text": "We cans discuss this difficulty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r1",
+              "text": "We can discuss this difficulty."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r2",
+              "text": "We can to discuss this difficulty."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro1:r3",
+              "text": "We cans discuss this difficulty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассмотреть вариант",
+        "uk": "Розглянути варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Possibility — возможный вариант. Есть другой способ собрать шкаф; вы можете обсудить этот вариант. Это не обещание, что он обязательно подойдёт. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Possibility — можливий варіант. Є інший спосіб зібрати шафу; ви можете обговорити цей варіант. Це не обіцянка, що він обов’язково підійде. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r1",
+              "text": "We can discuss this possibility."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r2",
+              "text": "We can to discuss this possibility."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r3",
+              "text": "We cans discuss this possibility."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r1",
+              "text": "We can discuss this possibility."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r2",
+              "text": "We can to discuss this possibility."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro2:r3",
+              "text": "We cans discuss this possibility."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Способ и сложная задача",
+        "uk": "Спосіб і складне завдання"
+      },
+      "bodyByLocale": {
+        "ru": "Method — способ выполнения: вы можете объяснить, как действовать. Challenge — сложная задача, за которую нужно взяться. Подруга готова принять этот вызов. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Method — спосіб виконання: ви можете пояснити, як діяти. Challenge — складне завдання, за яке потрібно взятися. Подруга готова прийняти цей виклик. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r1",
+              "text": "She can accept this challenge."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r2",
+              "text": "She can to accept this challenge."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r3",
+              "text": "She cans accept this challenge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r1",
+              "text": "She can accept this challenge."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r2",
+              "text": "She can to accept this challenge."
+            },
+            {
+              "responseId": "en:lesson-19:session-05:intro3:r3",
+              "text": "She cans accept this challenge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b2d0f6ee3d85d59684e56b295deecd7fed1675d8b37f50a0a3293b30c81883a0"
+}

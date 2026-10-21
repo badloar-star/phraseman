@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-08:word:happiness",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — happiness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:happiness:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — happiness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:happiness:audio",
+            "transcript": "happiness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:happiness:r1",
+              "targetText": "happiness",
+              "meaningByLocale": {
+                "ru": "счастье.",
+                "uk": "щастя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "happiness",
+            "definitionByLocale": {
+              "ru": "счастье.",
+              "uk": "щастя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем разделить это счастье».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем разделить это счастье».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can share this happiness.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем разделить это счастье».",
+            "uk": "Скажіть: «Ми можемо розділити це щастя»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "share",
+            "this",
+            "happiness"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i02:r1",
+            "text": "We can share this happiness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i02:r2",
+            "text": "We cannot share this happiness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i02:r3",
+            "text": "We can already share this happiness."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i02:audio",
+            "transcript": "We can share this happiness."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i02:r1",
+              "targetText": "We can share this happiness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r2",
+              "targetText": "We cannot share this happiness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r3",
+              "targetText": "We can already share this happiness.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can share this happiness.",
+                "uk": "У записі звучить We can share this happiness."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can share this happiness.",
+                "uk": "У записі звучить We can share this happiness."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i03:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i03:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "We ___ share this happiness.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:sadness",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sadness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:sadness:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sadness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:sadness:audio",
+            "transcript": "sadness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:sadness:r1",
+              "targetText": "sadness",
+              "meaningByLocale": {
+                "ru": "грусть.",
+                "uk": "смуток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sadness",
+            "definitionByLocale": {
+              "ru": "грусть.",
+              "uk": "смуток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я могу понять её грусть».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я могу понять её грусть».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can understand her sadness.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу понять её грусть».",
+            "uk": "Скажіть: «Я можу зрозуміти її смуток»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "understand",
+            "her",
+            "sadness"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i05:r1",
+            "text": "I can understand her sadness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i05:r2",
+            "text": "I cannot understand her sadness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i05:r3",
+            "text": "I can already understand her sadness."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i05:audio",
+            "transcript": "I can understand her sadness."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i05:r1",
+              "targetText": "I can understand her sadness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r2",
+              "targetText": "I cannot understand her sadness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r3",
+              "targetText": "I can already understand her sadness.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can understand her sadness.",
+                "uk": "У записі звучить I can understand her sadness."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can understand her sadness.",
+                "uk": "У записі звучить I can understand her sadness."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i06:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i06:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "I ___ understand her sadness.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:joy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — joy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:joy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — joy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:joy:audio",
+            "transcript": "joy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:joy:r1",
+              "targetText": "joy",
+              "meaningByLocale": {
+                "ru": "радость.",
+                "uk": "радість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "joy",
+            "definitionByLocale": {
+              "ru": "радость.",
+              "uk": "радість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я могу видеть радость на её лице».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я могу видеть радость на её лице».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the joy in her face.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу видеть радость на её лице».",
+            "uk": "Скажіть: «Я можу бачити радість на її обличчі»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "joy",
+            "in",
+            "her",
+            "face"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i08:r1",
+            "text": "I can see the joy in her face."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i08:r2",
+            "text": "I cannot see the joy in her face."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i08:r3",
+            "text": "I can already see the joy in her face."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i08:audio",
+            "transcript": "I can see the joy in her face."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i08:r1",
+              "targetText": "I can see the joy in her face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r2",
+              "targetText": "I cannot see the joy in her face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r3",
+              "targetText": "I can already see the joy in her face.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see the joy in her face.",
+                "uk": "У записі звучить I can see the joy in her face."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see the joy in her face.",
+                "uk": "У записі звучить I can see the joy in her face."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i09:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i09:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "I ___ see the joy in her face.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:fear",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:fear:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:fear:audio",
+            "transcript": "fear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:fear:r1",
+              "targetText": "fear",
+              "meaningByLocale": {
+                "ru": "страх.",
+                "uk": "страх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fear",
+            "definitionByLocale": {
+              "ru": "страх.",
+              "uk": "страх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем обсудить этот страх».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем обсудить этот страх».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can discuss this fear.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем обсудить этот страх».",
+            "uk": "Скажіть: «Ми можемо обговорити цей страх»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "discuss",
+            "this",
+            "fear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i11:r1",
+            "text": "We can discuss this fear."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i11:r2",
+            "text": "We cannot discuss this fear."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i11:r3",
+            "text": "We can already discuss this fear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i11:audio",
+            "transcript": "We can discuss this fear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i11:r1",
+              "targetText": "We can discuss this fear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r2",
+              "targetText": "We cannot discuss this fear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r3",
+              "targetText": "We can already discuss this fear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can discuss this fear.",
+                "uk": "У записі звучить We can discuss this fear."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can discuss this fear.",
+                "uk": "У записі звучить We can discuss this fear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i12:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i12:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "We ___ discuss this fear.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-08:i13:p1",
+              "target": "happiness",
+              "meaningByLocale": {
+                "ru": "счастье",
+                "uk": "щастя"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p2",
+              "target": "sadness",
+              "meaningByLocale": {
+                "ru": "грусть",
+                "uk": "смуток"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p3",
+              "target": "joy",
+              "meaningByLocale": {
+                "ru": "радость",
+                "uk": "радість"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p4",
+              "target": "fear",
+              "meaningByLocale": {
+                "ru": "страх",
+                "uk": "страх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "happiness",
+            "sadness",
+            "joy",
+            "fear"
+          ],
+          "rightColumn": [
+            "счастье",
+            "грусть",
+            "радость",
+            "страх"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i14:audio",
+            "transcript": "We are going to discuss the film."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the film.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "film"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i15:audio",
+            "transcript": "We are meeting at the cinema tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the cinema tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "cinema",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните качество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните качество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i16:audio",
+            "transcript": "This film is so sad."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This film is so sad.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: предложите помочь прямо сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: предложите помочь прямо сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i17:audio",
+            "transcript": "I will help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-08:word:happiness",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — happiness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:happiness:audio"
+        ],
+        "accessibilityLabel": "Картка слова — happiness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:happiness:audio",
+            "transcript": "happiness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:happiness:r1",
+              "targetText": "happiness",
+              "meaningByLocale": {
+                "ru": "счастье.",
+                "uk": "щастя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "happiness",
+            "definitionByLocale": {
+              "ru": "счастье.",
+              "uk": "щастя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо розділити це щастя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо розділити це щастя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can share this happiness.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем разделить это счастье».",
+            "uk": "Скажіть: «Ми можемо розділити це щастя»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "share",
+            "this",
+            "happiness"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i02:r1",
+            "text": "We can share this happiness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i02:r2",
+            "text": "We cannot share this happiness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i02:r3",
+            "text": "We can already share this happiness."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i02:audio",
+            "transcript": "We can share this happiness."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i02:r1",
+              "targetText": "We can share this happiness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r2",
+              "targetText": "We cannot share this happiness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r3",
+              "targetText": "We can already share this happiness.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can share this happiness.",
+                "uk": "У записі звучить We can share this happiness."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can share this happiness.",
+                "uk": "У записі звучить We can share this happiness."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i03:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i03:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "We ___ share this happiness.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i03:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:sadness",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sadness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:sadness:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sadness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:sadness:audio",
+            "transcript": "sadness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:sadness:r1",
+              "targetText": "sadness",
+              "meaningByLocale": {
+                "ru": "грусть.",
+                "uk": "смуток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sadness",
+            "definitionByLocale": {
+              "ru": "грусть.",
+              "uk": "смуток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я можу зрозуміти її смуток».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я можу зрозуміти її смуток».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can understand her sadness.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу понять её грусть».",
+            "uk": "Скажіть: «Я можу зрозуміти її смуток»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "understand",
+            "her",
+            "sadness"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i05:r1",
+            "text": "I can understand her sadness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i05:r2",
+            "text": "I cannot understand her sadness."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i05:r3",
+            "text": "I can already understand her sadness."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i05:audio",
+            "transcript": "I can understand her sadness."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i05:r1",
+              "targetText": "I can understand her sadness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r2",
+              "targetText": "I cannot understand her sadness.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r3",
+              "targetText": "I can already understand her sadness.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can understand her sadness.",
+                "uk": "У записі звучить I can understand her sadness."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can understand her sadness.",
+                "uk": "У записі звучить I can understand her sadness."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i06:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i06:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "I ___ understand her sadness.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i06:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:joy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — joy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:joy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — joy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:joy:audio",
+            "transcript": "joy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:joy:r1",
+              "targetText": "joy",
+              "meaningByLocale": {
+                "ru": "радость.",
+                "uk": "радість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "joy",
+            "definitionByLocale": {
+              "ru": "радость.",
+              "uk": "радість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я можу бачити радість на її обличчі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я можу бачити радість на її обличчі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the joy in her face.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу видеть радость на её лице».",
+            "uk": "Скажіть: «Я можу бачити радість на її обличчі»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "joy",
+            "in",
+            "her",
+            "face"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i08:r1",
+            "text": "I can see the joy in her face."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i08:r2",
+            "text": "I cannot see the joy in her face."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i08:r3",
+            "text": "I can already see the joy in her face."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i08:audio",
+            "transcript": "I can see the joy in her face."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i08:r1",
+              "targetText": "I can see the joy in her face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r2",
+              "targetText": "I cannot see the joy in her face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r3",
+              "targetText": "I can already see the joy in her face.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see the joy in her face.",
+                "uk": "У записі звучить I can see the joy in her face."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see the joy in her face.",
+                "uk": "У записі звучить I can see the joy in her face."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i09:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i09:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "I ___ see the joy in her face.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i09:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:word:fear",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:word:fear:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:word:fear:audio",
+            "transcript": "fear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:word:fear:r1",
+              "targetText": "fear",
+              "meaningByLocale": {
+                "ru": "страх.",
+                "uk": "страх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fear",
+            "definitionByLocale": {
+              "ru": "страх.",
+              "uk": "страх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо обговорити цей страх».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо обговорити цей страх».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can discuss this fear.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем обсудить этот страх».",
+            "uk": "Скажіть: «Ми можемо обговорити цей страх»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "discuss",
+            "this",
+            "fear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i11:r1",
+            "text": "We can discuss this fear."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i11:r2",
+            "text": "We cannot discuss this fear."
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i11:r3",
+            "text": "We can already discuss this fear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i11:audio",
+            "transcript": "We can discuss this fear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-08:i11:r1",
+              "targetText": "We can discuss this fear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r2",
+              "targetText": "We cannot discuss this fear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r3",
+              "targetText": "We can already discuss this fear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can discuss this fear.",
+                "uk": "У записі звучить We can discuss this fear."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can discuss this fear.",
+                "uk": "У записі звучить We can discuss this fear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-08:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i12:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-08:i12:r3",
+            "text": "cans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму со значением «можем / могу / может».",
+            "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+          },
+          "gappedTargetPhrase": "We ___ discuss this fear.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-08:i12:r1",
+              "text": "can"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r2",
+              "text": "can to"
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r3",
+              "text": "cans"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму зі значенням «можемо / можу / може».",
+              "feedbackByLocale": {
+                "ru": "У can нет окончания -s.",
+                "uk": "Can не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-08:i13:p1",
+              "target": "happiness",
+              "meaningByLocale": {
+                "ru": "счастье",
+                "uk": "щастя"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p2",
+              "target": "sadness",
+              "meaningByLocale": {
+                "ru": "грусть",
+                "uk": "смуток"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p3",
+              "target": "joy",
+              "meaningByLocale": {
+                "ru": "радость",
+                "uk": "радість"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-08:i13:p4",
+              "target": "fear",
+              "meaningByLocale": {
+                "ru": "страх",
+                "uk": "страх"
+              }
+            }
+          ],
+          "leftColumn": [
+            "happiness",
+            "sadness",
+            "joy",
+            "fear"
+          ],
+          "rightColumn": [
+            "щастя",
+            "смуток",
+            "радість",
+            "страх"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i14:audio",
+            "transcript": "We are going to discuss the film."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the film.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "film"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i15:audio",
+            "transcript": "We are meeting at the cinema tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the cinema tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "cinema",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть якість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть якість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i16:audio",
+            "transcript": "This film is so sad."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This film is so sad.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: запропонуйте допомогти просто зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: запропонуйте допомогти просто зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-08:i17:audio",
+            "transcript": "I will help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-08:word:happiness",
+      "correctText": "happiness",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i01",
+      "correctText": "We can share this happiness.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i02",
+      "correctText": "We can share this happiness.",
+      "correctResponseId": "en:lesson-19:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i03",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:word:sadness",
+      "correctText": "sadness",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i04",
+      "correctText": "I can understand her sadness.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i05",
+      "correctText": "I can understand her sadness.",
+      "correctResponseId": "en:lesson-19:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i06",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:word:joy",
+      "correctText": "joy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i07",
+      "correctText": "I can see the joy in her face.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i08",
+      "correctText": "I can see the joy in her face.",
+      "correctResponseId": "en:lesson-19:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i09",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:word:fear",
+      "correctText": "fear",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i10",
+      "correctText": "We can discuss this fear.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i11",
+      "correctText": "We can discuss this fear.",
+      "correctResponseId": "en:lesson-19:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i12",
+      "correctText": "can",
+      "correctResponseId": "en:lesson-19:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i14",
+      "correctText": "We are going to discuss the film.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i15",
+      "correctText": "We are meeting at the cinema tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i16",
+      "correctText": "This film is so sad.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-08:i17",
+      "correctText": "I will help you.",
+      "correctResponseId": null
+    }
+  ]
+}

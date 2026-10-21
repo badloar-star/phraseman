@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-02:word:remove",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — remove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:remove:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — remove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:remove:audio",
+            "transcript": "remove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:remove:r1",
+              "targetText": "remove",
+              "meaningByLocale": {
+                "ru": "удалять, убирать.",
+                "uk": "видаляти, прибирати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "remove",
+            "definitionByLocale": {
+              "ru": "удалять, убирать.",
+              "uk": "видаляти, прибирати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я могу удалить это пятно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я могу удалить это пятно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can remove this stain.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу удалить это пятно».",
+            "uk": "Скажіть: «Я можу видалити цю пляму»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "remove",
+            "this",
+            "stain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i02:r1",
+            "text": "I can remove this stain."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i02:r2",
+            "text": "I cannot remove this stain."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i02:r3",
+            "text": "I can already remove this stain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i02:audio",
+            "transcript": "I can remove this stain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i02:r1",
+              "targetText": "I can remove this stain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r2",
+              "targetText": "I cannot remove this stain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r3",
+              "targetText": "I can already remove this stain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can remove this stain.",
+                "uk": "У записі звучить I can remove this stain."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can remove this stain.",
+                "uk": "У записі звучить I can remove this stain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i03:r1",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i03:r2",
+            "text": "to remove"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i03:r3",
+            "text": "removes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ this stain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i03:r1",
+              "text": "remove"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r2",
+              "text": "to remove"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r3",
+              "text": "removes"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:replace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — replace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:replace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — replace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:replace:audio",
+            "transcript": "replace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:replace:r1",
+              "targetText": "replace",
+              "meaningByLocale": {
+                "ru": "заменять.",
+                "uk": "замінювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "replace",
+            "definitionByLocale": {
+              "ru": "заменять.",
+              "uk": "замінювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она может заменить батарейку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она может заменить батарейку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can replace the battery.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может заменить батарейку».",
+            "uk": "Скажіть: «Вона може замінити батарейку»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "replace",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i05:r1",
+            "text": "She can replace the battery."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i05:r2",
+            "text": "She cannot replace the battery."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i05:r3",
+            "text": "She can already replace the battery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i05:audio",
+            "transcript": "She can replace the battery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i05:r1",
+              "targetText": "She can replace the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r2",
+              "targetText": "She cannot replace the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r3",
+              "targetText": "She can already replace the battery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can replace the battery.",
+                "uk": "У записі звучить She can replace the battery."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can replace the battery.",
+                "uk": "У записі звучить She can replace the battery."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i06:r1",
+            "text": "replace"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i06:r2",
+            "text": "to replace"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i06:r3",
+            "text": "replaces"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ the battery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i06:r1",
+              "text": "replace"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r2",
+              "text": "to replace"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r3",
+              "text": "replaces"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:combine",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — combine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:combine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — combine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:combine:audio",
+            "transcript": "combine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:combine:r1",
+              "targetText": "combine",
+              "meaningByLocale": {
+                "ru": "сочетать, объединять.",
+                "uk": "поєднувати, об’єднувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "combine",
+            "definitionByLocale": {
+              "ru": "сочетать, объединять.",
+              "uk": "поєднувати, об’єднувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем сочетать эти цвета».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем сочетать эти цвета».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can combine these colours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем сочетать эти цвета».",
+            "uk": "Скажіть: «Ми можемо поєднати ці кольори»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "combine",
+            "these",
+            "colours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i08:r1",
+            "text": "We can combine these colours."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i08:r2",
+            "text": "We cannot combine these colours."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i08:r3",
+            "text": "We can already combine these colours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i08:audio",
+            "transcript": "We can combine these colours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i08:r1",
+              "targetText": "We can combine these colours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r2",
+              "targetText": "We cannot combine these colours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r3",
+              "targetText": "We can already combine these colours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can combine these colours.",
+                "uk": "У записі звучить We can combine these colours."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can combine these colours.",
+                "uk": "У записі звучить We can combine these colours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i09:r1",
+            "text": "combine"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i09:r2",
+            "text": "to combine"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i09:r3",
+            "text": "combines"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ these colours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i09:r1",
+              "text": "combine"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r2",
+              "text": "to combine"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r3",
+              "text": "combines"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:connect",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — connect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:connect:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — connect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:connect:audio",
+            "transcript": "connect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:connect:r1",
+              "targetText": "connect",
+              "meaningByLocale": {
+                "ru": "подсоединять, соединять.",
+                "uk": "під’єднувати, з’єднувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "connect",
+            "definitionByLocale": {
+              "ru": "подсоединять, соединять.",
+              "uk": "під’єднувати, з’єднувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он может подсоединить шланг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он может подсоединить шланг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He can connect the hose.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он может подсоединить шланг».",
+            "uk": "Скажіть: «Він може під’єднати шланг»."
+          },
+          "orderedTokens": [
+            "He",
+            "can",
+            "connect",
+            "the",
+            "hose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i11:r1",
+            "text": "He can connect the hose."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i11:r2",
+            "text": "He cannot connect the hose."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i11:r3",
+            "text": "He can already connect the hose."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i11:audio",
+            "transcript": "He can connect the hose."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i11:r1",
+              "targetText": "He can connect the hose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r2",
+              "targetText": "He cannot connect the hose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r3",
+              "targetText": "He can already connect the hose.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can connect the hose.",
+                "uk": "У записі звучить He can connect the hose."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can connect the hose.",
+                "uk": "У записі звучить He can connect the hose."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i12:r1",
+            "text": "connect"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i12:r2",
+            "text": "to connect"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i12:r3",
+            "text": "connects"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "He can ___ the hose.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i12:r1",
+              "text": "connect"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r2",
+              "text": "to connect"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r3",
+              "text": "connects"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-02:i13:p1",
+              "target": "remove",
+              "meaningByLocale": {
+                "ru": "удалять, убирать",
+                "uk": "видаляти, прибирати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p2",
+              "target": "replace",
+              "meaningByLocale": {
+                "ru": "заменять",
+                "uk": "замінювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p3",
+              "target": "combine",
+              "meaningByLocale": {
+                "ru": "сочетать, объединять",
+                "uk": "поєднувати, об’єднувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p4",
+              "target": "connect",
+              "meaningByLocale": {
+                "ru": "подсоединять, соединять",
+                "uk": "під’єднувати, з’єднувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remove",
+            "replace",
+            "combine",
+            "connect"
+          ],
+          "rightColumn": [
+            "удалять, убирать",
+            "заменять",
+            "сочетать, объединять",
+            "подсоединять, соединять"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i14:audio",
+            "transcript": "We are going to replace the battery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to replace the battery.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "replace",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i15:audio",
+            "transcript": "We are meeting at the house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the house tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "house",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните качество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните качество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i16:audio",
+            "transcript": "This is such a useful tool."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful tool.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: предложите помочь прямо сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: предложите помочь прямо сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i17:audio",
+            "transcript": "I will help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-02:word:remove",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — remove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:remove:audio"
+        ],
+        "accessibilityLabel": "Картка слова — remove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:remove:audio",
+            "transcript": "remove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:remove:r1",
+              "targetText": "remove",
+              "meaningByLocale": {
+                "ru": "удалять, убирать.",
+                "uk": "видаляти, прибирати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "remove",
+            "definitionByLocale": {
+              "ru": "удалять, убирать.",
+              "uk": "видаляти, прибирати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я можу видалити цю пляму».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я можу видалити цю пляму».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can remove this stain.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу удалить это пятно».",
+            "uk": "Скажіть: «Я можу видалити цю пляму»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "remove",
+            "this",
+            "stain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i02:r1",
+            "text": "I can remove this stain."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i02:r2",
+            "text": "I cannot remove this stain."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i02:r3",
+            "text": "I can already remove this stain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i02:audio",
+            "transcript": "I can remove this stain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i02:r1",
+              "targetText": "I can remove this stain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r2",
+              "targetText": "I cannot remove this stain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r3",
+              "targetText": "I can already remove this stain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can remove this stain.",
+                "uk": "У записі звучить I can remove this stain."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can remove this stain.",
+                "uk": "У записі звучить I can remove this stain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i03:r1",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i03:r2",
+            "text": "to remove"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i03:r3",
+            "text": "removes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ this stain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i03:r1",
+              "text": "remove"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r2",
+              "text": "to remove"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r3",
+              "text": "removes"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:replace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — replace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:replace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — replace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:replace:audio",
+            "transcript": "replace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:replace:r1",
+              "targetText": "replace",
+              "meaningByLocale": {
+                "ru": "заменять.",
+                "uk": "замінювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "replace",
+            "definitionByLocale": {
+              "ru": "заменять.",
+              "uk": "замінювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона може замінити батарейку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона може замінити батарейку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can replace the battery.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может заменить батарейку».",
+            "uk": "Скажіть: «Вона може замінити батарейку»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "replace",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i05:r1",
+            "text": "She can replace the battery."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i05:r2",
+            "text": "She cannot replace the battery."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i05:r3",
+            "text": "She can already replace the battery."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i05:audio",
+            "transcript": "She can replace the battery."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i05:r1",
+              "targetText": "She can replace the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r2",
+              "targetText": "She cannot replace the battery.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r3",
+              "targetText": "She can already replace the battery.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can replace the battery.",
+                "uk": "У записі звучить She can replace the battery."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can replace the battery.",
+                "uk": "У записі звучить She can replace the battery."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i06:r1",
+            "text": "replace"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i06:r2",
+            "text": "to replace"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i06:r3",
+            "text": "replaces"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ the battery.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i06:r1",
+              "text": "replace"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r2",
+              "text": "to replace"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r3",
+              "text": "replaces"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:combine",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — combine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:combine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — combine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:combine:audio",
+            "transcript": "combine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:combine:r1",
+              "targetText": "combine",
+              "meaningByLocale": {
+                "ru": "сочетать, объединять.",
+                "uk": "поєднувати, об’єднувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "combine",
+            "definitionByLocale": {
+              "ru": "сочетать, объединять.",
+              "uk": "поєднувати, об’єднувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо поєднати ці кольори».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо поєднати ці кольори».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can combine these colours.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем сочетать эти цвета».",
+            "uk": "Скажіть: «Ми можемо поєднати ці кольори»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "combine",
+            "these",
+            "colours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i08:r1",
+            "text": "We can combine these colours."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i08:r2",
+            "text": "We cannot combine these colours."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i08:r3",
+            "text": "We can already combine these colours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i08:audio",
+            "transcript": "We can combine these colours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i08:r1",
+              "targetText": "We can combine these colours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r2",
+              "targetText": "We cannot combine these colours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r3",
+              "targetText": "We can already combine these colours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can combine these colours.",
+                "uk": "У записі звучить We can combine these colours."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can combine these colours.",
+                "uk": "У записі звучить We can combine these colours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i09:r1",
+            "text": "combine"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i09:r2",
+            "text": "to combine"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i09:r3",
+            "text": "combines"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ these colours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i09:r1",
+              "text": "combine"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r2",
+              "text": "to combine"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r3",
+              "text": "combines"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:word:connect",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — connect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:word:connect:audio"
+        ],
+        "accessibilityLabel": "Картка слова — connect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:word:connect:audio",
+            "transcript": "connect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:word:connect:r1",
+              "targetText": "connect",
+              "meaningByLocale": {
+                "ru": "подсоединять, соединять.",
+                "uk": "під’єднувати, з’єднувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "connect",
+            "definitionByLocale": {
+              "ru": "подсоединять, соединять.",
+              "uk": "під’єднувати, з’єднувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він може під’єднати шланг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він може під’єднати шланг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He can connect the hose.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он может подсоединить шланг».",
+            "uk": "Скажіть: «Він може під’єднати шланг»."
+          },
+          "orderedTokens": [
+            "He",
+            "can",
+            "connect",
+            "the",
+            "hose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i11:r1",
+            "text": "He can connect the hose."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i11:r2",
+            "text": "He cannot connect the hose."
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i11:r3",
+            "text": "He can already connect the hose."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i11:audio",
+            "transcript": "He can connect the hose."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-02:i11:r1",
+              "targetText": "He can connect the hose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r2",
+              "targetText": "He cannot connect the hose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r3",
+              "targetText": "He can already connect the hose.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can connect the hose.",
+                "uk": "У записі звучить He can connect the hose."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can connect the hose.",
+                "uk": "У записі звучить He can connect the hose."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-02:i12:r1",
+            "text": "connect"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i12:r2",
+            "text": "to connect"
+          },
+          {
+            "responseId": "en:lesson-19:session-02:i12:r3",
+            "text": "connects"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "He can ___ the hose.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-02:i12:r1",
+              "text": "connect"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r2",
+              "text": "to connect"
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r3",
+              "text": "connects"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-02:i13:p1",
+              "target": "remove",
+              "meaningByLocale": {
+                "ru": "удалять, убирать",
+                "uk": "видаляти, прибирати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p2",
+              "target": "replace",
+              "meaningByLocale": {
+                "ru": "заменять",
+                "uk": "замінювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p3",
+              "target": "combine",
+              "meaningByLocale": {
+                "ru": "сочетать, объединять",
+                "uk": "поєднувати, об’єднувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-02:i13:p4",
+              "target": "connect",
+              "meaningByLocale": {
+                "ru": "подсоединять, соединять",
+                "uk": "під’єднувати, з’єднувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remove",
+            "replace",
+            "combine",
+            "connect"
+          ],
+          "rightColumn": [
+            "видаляти, прибирати",
+            "замінювати",
+            "поєднувати, об’єднувати",
+            "під’єднувати, з’єднувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i14:audio",
+            "transcript": "We are going to replace the battery."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to replace the battery.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "replace",
+            "the",
+            "battery"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i15:audio",
+            "transcript": "We are meeting at the house tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the house tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "house",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть якість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть якість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i16:audio",
+            "transcript": "This is such a useful tool."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a useful tool.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: запропонуйте допомогти просто зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: запропонуйте допомогти просто зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-02:i17:audio",
+            "transcript": "I will help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-02:word:remove",
+      "correctText": "remove",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i01",
+      "correctText": "I can remove this stain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i02",
+      "correctText": "I can remove this stain.",
+      "correctResponseId": "en:lesson-19:session-02:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i03",
+      "correctText": "remove",
+      "correctResponseId": "en:lesson-19:session-02:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:word:replace",
+      "correctText": "replace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i04",
+      "correctText": "She can replace the battery.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i05",
+      "correctText": "She can replace the battery.",
+      "correctResponseId": "en:lesson-19:session-02:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i06",
+      "correctText": "replace",
+      "correctResponseId": "en:lesson-19:session-02:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:word:combine",
+      "correctText": "combine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i07",
+      "correctText": "We can combine these colours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i08",
+      "correctText": "We can combine these colours.",
+      "correctResponseId": "en:lesson-19:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i09",
+      "correctText": "combine",
+      "correctResponseId": "en:lesson-19:session-02:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:word:connect",
+      "correctText": "connect",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i10",
+      "correctText": "He can connect the hose.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i11",
+      "correctText": "He can connect the hose.",
+      "correctResponseId": "en:lesson-19:session-02:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i12",
+      "correctText": "connect",
+      "correctResponseId": "en:lesson-19:session-02:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i14",
+      "correctText": "We are going to replace the battery.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i15",
+      "correctText": "We are meeting at the house tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i16",
+      "correctText": "This is such a useful tool.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:i17",
+      "correctText": "I will help you.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-07:word:concern",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — concern",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:word:concern:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — concern",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:word:concern:audio",
+          "transcript": "concern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:word:concern:r1",
+            "targetText": "concern",
+            "meaningByLocale": {
+              "ru": "беспокойство, то, что тревожит.",
+              "uk": "занепокоєння, те, що тривожить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "concern",
+          "definitionByLocale": {
+            "ru": "беспокойство, то, что тревожит.",
+            "uk": "занепокоєння, те, що тривожить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы можем обсудить твоё беспокойство».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы можем обсудить твоё беспокойство».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can discuss your concern.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы можем обсудить твоё беспокойство».",
+          "uk": "Скажіть: «Ми можемо обговорити твоє занепокоєння»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "discuss",
+          "your",
+          "concern"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i02:r1",
+          "text": "We can discuss your concern."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i02:r2",
+          "text": "We cannot discuss your concern."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i02:r3",
+          "text": "We can already discuss your concern."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i02:audio",
+          "transcript": "We can discuss your concern."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:i02:r1",
+            "targetText": "We can discuss your concern.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i02:r2",
+            "targetText": "We cannot discuss your concern.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i02:r3",
+            "targetText": "We can already discuss your concern.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can discuss your concern.",
+              "uk": "У записі звучить We can discuss your concern."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can discuss your concern.",
+              "uk": "У записі звучить We can discuss your concern."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i03:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i03:r2",
+          "text": "can to"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i03:r3",
+          "text": "cans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму со значением «можем / могу / может».",
+          "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+        },
+        "gappedTargetPhrase": "We ___ discuss your concern.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-07:i03:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i03:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i03:r3",
+            "text": "cans"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "У can нет окончания -s.",
+              "uk": "Can не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:word:emotion",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — emotion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:word:emotion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — emotion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:word:emotion:audio",
+          "transcript": "emotion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:word:emotion:r1",
+            "targetText": "emotion",
+            "meaningByLocale": {
+              "ru": "эмоция, чувство.",
+              "uk": "емоція, почуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "emotion",
+          "definitionByLocale": {
+            "ru": "эмоция, чувство.",
+            "uk": "емоція, почуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы можем описать эту эмоцию».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы можем описать эту эмоцию».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can describe this emotion.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы можем описать эту эмоцию».",
+          "uk": "Скажіть: «Ми можемо описати цю емоцію»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "describe",
+          "this",
+          "emotion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i05:r1",
+          "text": "We can describe this emotion."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i05:r2",
+          "text": "We cannot describe this emotion."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i05:r3",
+          "text": "We can already describe this emotion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i05:audio",
+          "transcript": "We can describe this emotion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:i05:r1",
+            "targetText": "We can describe this emotion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i05:r2",
+            "targetText": "We cannot describe this emotion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i05:r3",
+            "targetText": "We can already describe this emotion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can describe this emotion.",
+              "uk": "У записі звучить We can describe this emotion."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can describe this emotion.",
+              "uk": "У записі звучить We can describe this emotion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i06:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i06:r2",
+          "text": "can to"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i06:r3",
+          "text": "cans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму со значением «можем / могу / может».",
+          "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+        },
+        "gappedTargetPhrase": "We ___ describe this emotion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-07:i06:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i06:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i06:r3",
+            "text": "cans"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "У can нет окончания -s.",
+              "uk": "Can не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:word:reaction",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reaction",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:word:reaction:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reaction",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:word:reaction:audio",
+          "transcript": "reaction"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:word:reaction:r1",
+            "targetText": "reaction",
+            "meaningByLocale": {
+              "ru": "реакция.",
+              "uk": "реакція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reaction",
+          "definitionByLocale": {
+            "ru": "реакция.",
+            "uk": "реакція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я могу понять твою реакцию».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я могу понять твою реакцию».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can understand your reaction.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я могу понять твою реакцию».",
+          "uk": "Скажіть: «Я можу зрозуміти твою реакцію»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "understand",
+          "your",
+          "reaction"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i08:r1",
+          "text": "I can understand your reaction."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i08:r2",
+          "text": "I cannot understand your reaction."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i08:r3",
+          "text": "I can already understand your reaction."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i08:audio",
+          "transcript": "I can understand your reaction."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:i08:r1",
+            "targetText": "I can understand your reaction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i08:r2",
+            "targetText": "I cannot understand your reaction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i08:r3",
+            "targetText": "I can already understand your reaction.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand your reaction.",
+              "uk": "У записі звучить I can understand your reaction."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand your reaction.",
+              "uk": "У записі звучить I can understand your reaction."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i09:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i09:r2",
+          "text": "can to"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i09:r3",
+          "text": "cans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму со значением «можем / могу / может».",
+          "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+        },
+        "gappedTargetPhrase": "I ___ understand your reaction.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-07:i09:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i09:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i09:r3",
+            "text": "cans"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "У can нет окончания -s.",
+              "uk": "Can не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:word:anger",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:word:anger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:word:anger:audio",
+          "transcript": "anger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:word:anger:r1",
+            "targetText": "anger",
+            "meaningByLocale": {
+              "ru": "злость, гнев.",
+              "uk": "злість, гнів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anger",
+          "definitionByLocale": {
+            "ru": "злость, гнев.",
+            "uk": "злість, гнів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я могу понять твою злость».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я могу понять твою злость».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can understand your anger.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я могу понять твою злость».",
+          "uk": "Скажіть: «Я можу зрозуміти твою злість»."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "understand",
+          "your",
+          "anger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i11:r1",
+          "text": "I can understand your anger."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i11:r2",
+          "text": "I cannot understand your anger."
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i11:r3",
+          "text": "I can already understand your anger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i11:audio",
+          "transcript": "I can understand your anger."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-07:i11:r1",
+            "targetText": "I can understand your anger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i11:r2",
+            "targetText": "I cannot understand your anger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i11:r3",
+            "targetText": "I can already understand your anger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand your anger.",
+              "uk": "У записі звучить I can understand your anger."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can understand your anger.",
+              "uk": "У записі звучить I can understand your anger."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму со значением «можем / могу / может».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-07:i12:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i12:r2",
+          "text": "can to"
+        },
+        {
+          "responseId": "en:lesson-19:session-07:i12:r3",
+          "text": "cans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму со значением «можем / могу / может».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму со значением «можем / могу / может».",
+          "uk": "Виберіть правильну форму зі значенням «можемо / можу / може»."
+        },
+        "gappedTargetPhrase": "I ___ understand your anger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-07:i12:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i12:r2",
+            "text": "can to"
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i12:r3",
+            "text": "cans"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму со значением «можем / могу / может».",
+            "feedbackByLocale": {
+              "ru": "У can нет окончания -s.",
+              "uk": "Can не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-07:i13:p1",
+            "target": "concern",
+            "meaningByLocale": {
+              "ru": "беспокойство, то, что тревожит",
+              "uk": "занепокоєння, те, що тривожить"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-07:i13:p2",
+            "target": "emotion",
+            "meaningByLocale": {
+              "ru": "эмоция, чувство",
+              "uk": "емоція, почуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-07:i13:p3",
+            "target": "reaction",
+            "meaningByLocale": {
+              "ru": "реакция",
+              "uk": "реакція"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-07:i13:p4",
+            "target": "anger",
+            "meaningByLocale": {
+              "ru": "злость, гнев",
+              "uk": "злість, гнів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "concern",
+          "emotion",
+          "reaction",
+          "anger"
+        ],
+        "rightColumn": [
+          "беспокойство, то, что тревожит",
+          "эмоция, чувство",
+          "реакция",
+          "злость, гнев"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i14:audio",
+          "transcript": "We are going to discuss this concern."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to discuss this concern.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "discuss",
+          "this",
+          "concern"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i15:audio",
+          "transcript": "We are meeting our friend tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting our friend tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "our",
+          "friend",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните качество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните качество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i16:audio",
+          "transcript": "This is such a strong emotion."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a strong emotion.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: предложите помочь прямо сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: предложите помочь прямо сейчас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-07:i17:audio",
+          "transcript": "I will help you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will help you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "27f07154081d4c5f802965c2e919e2be4335e4c2527af7bdf79fca3b15b98aff"
+}

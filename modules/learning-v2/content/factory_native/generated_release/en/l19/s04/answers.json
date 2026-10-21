@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-04:word:confirm",
+    "correctText": "confirm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i01",
+    "correctText": "I can confirm the time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i02",
+    "correctText": "I can confirm the time.",
+    "correctResponseId": "en:lesson-19:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i03",
+    "correctText": "confirm",
+    "correctResponseId": "en:lesson-19:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:word:postpone",
+    "correctText": "postpone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i04",
+    "correctText": "We can postpone the meeting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i05",
+    "correctText": "We can postpone the meeting.",
+    "correctResponseId": "en:lesson-19:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i06",
+    "correctText": "postpone",
+    "correctResponseId": "en:lesson-19:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:word:reschedule",
+    "correctText": "reschedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i07",
+    "correctText": "She can reschedule the appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i08",
+    "correctText": "She can reschedule the appointment.",
+    "correctResponseId": "en:lesson-19:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i09",
+    "correctText": "reschedule",
+    "correctResponseId": "en:lesson-19:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:word:include",
+    "correctText": "include",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i10",
+    "correctText": "We can include lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i11",
+    "correctText": "We can include lunch.",
+    "correctResponseId": "en:lesson-19:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i12",
+    "correctText": "include",
+    "correctResponseId": "en:lesson-19:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i13",
+    "correctText": "en:lesson-19:session-04:i13:p1=confirm\nen:lesson-19:session-04:i13:p2=postpone\nen:lesson-19:session-04:i13:p3=reschedule\nen:lesson-19:session-04:i13:p4=include",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i14",
+    "correctText": "We are going to confirm the time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i15",
+    "correctText": "We are meeting at the restaurant tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i16",
+    "correctText": "This is such a good plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-04:i17",
+    "correctText": "I will call her.",
+    "correctResponseId": null
+  }
+]

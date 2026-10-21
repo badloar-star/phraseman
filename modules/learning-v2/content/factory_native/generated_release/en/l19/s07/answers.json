@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-07:word:concern",
+    "correctText": "concern",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i01",
+    "correctText": "We can discuss your concern.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i02",
+    "correctText": "We can discuss your concern.",
+    "correctResponseId": "en:lesson-19:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:word:emotion",
+    "correctText": "emotion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i04",
+    "correctText": "We can describe this emotion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i05",
+    "correctText": "We can describe this emotion.",
+    "correctResponseId": "en:lesson-19:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:word:reaction",
+    "correctText": "reaction",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i07",
+    "correctText": "I can understand your reaction.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i08",
+    "correctText": "I can understand your reaction.",
+    "correctResponseId": "en:lesson-19:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:word:anger",
+    "correctText": "anger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i10",
+    "correctText": "I can understand your anger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i11",
+    "correctText": "I can understand your anger.",
+    "correctResponseId": "en:lesson-19:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i13",
+    "correctText": "en:lesson-19:session-07:i13:p1=concern\nen:lesson-19:session-07:i13:p2=emotion\nen:lesson-19:session-07:i13:p3=reaction\nen:lesson-19:session-07:i13:p4=anger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i14",
+    "correctText": "We are going to discuss this concern.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i15",
+    "correctText": "We are meeting our friend tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i16",
+    "correctText": "This is such a strong emotion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-07:i17",
+    "correctText": "I will help you.",
+    "correctResponseId": null
+  }
+]

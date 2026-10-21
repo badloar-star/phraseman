@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-01",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-01:word:describe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — describe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:describe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — describe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:describe:audio",
+            "transcript": "describe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:describe:r1",
+              "targetText": "describe",
+              "meaningByLocale": {
+                "ru": "описывать.",
+                "uk": "описувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "describe",
+            "definitionByLocale": {
+              "ru": "описывать.",
+              "uk": "описувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я могу описать это место».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я могу описать это место».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can describe the place.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу описать это место».",
+            "uk": "Скажіть: «Я можу описати це місце»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "describe",
+            "the",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i02:r1",
+            "text": "I can describe the place."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i02:r2",
+            "text": "I cannot describe the place."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i02:r3",
+            "text": "I can already describe the place."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i02:audio",
+            "transcript": "I can describe the place."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i02:r1",
+              "targetText": "I can describe the place.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r2",
+              "targetText": "I cannot describe the place.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r3",
+              "targetText": "I can already describe the place.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can describe the place.",
+                "uk": "У записі звучить I can describe the place."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can describe the place.",
+                "uk": "У записі звучить I can describe the place."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i03:r1",
+            "text": "describe"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i03:r2",
+            "text": "to describe"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i03:r3",
+            "text": "describes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ the place.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i03:r1",
+              "text": "describe"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r2",
+              "text": "to describe"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r3",
+              "text": "describes"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:suggest",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — suggest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:suggest:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — suggest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:suggest:audio",
+            "transcript": "suggest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:suggest:r1",
+              "targetText": "suggest",
+              "meaningByLocale": {
+                "ru": "предлагать идею или вариант.",
+                "uk": "пропонувати ідею або варіант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suggest",
+            "definitionByLocale": {
+              "ru": "предлагать идею или вариант.",
+              "uk": "пропонувати ідею або варіант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она может предложить ресторан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она может предложить ресторан».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can suggest a restaurant.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может предложить ресторан».",
+            "uk": "Скажіть: «Вона може запропонувати ресторан»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "suggest",
+            "a",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i05:r1",
+            "text": "She can suggest a restaurant."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i05:r2",
+            "text": "She cannot suggest a restaurant."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i05:r3",
+            "text": "She can already suggest a restaurant."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i05:audio",
+            "transcript": "She can suggest a restaurant."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i05:r1",
+              "targetText": "She can suggest a restaurant.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r2",
+              "targetText": "She cannot suggest a restaurant.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r3",
+              "targetText": "She can already suggest a restaurant.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can suggest a restaurant.",
+                "uk": "У записі звучить She can suggest a restaurant."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can suggest a restaurant.",
+                "uk": "У записі звучить She can suggest a restaurant."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i06:r1",
+            "text": "suggest"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i06:r2",
+            "text": "to suggest"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i06:r3",
+            "text": "suggests"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ a restaurant.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i06:r1",
+              "text": "suggest"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r2",
+              "text": "to suggest"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r3",
+              "text": "suggests"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:recommend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recommend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:recommend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recommend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:recommend:audio",
+            "transcript": "recommend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:recommend:r1",
+              "targetText": "recommend",
+              "meaningByLocale": {
+                "ru": "рекомендовать, советовать как хороший вариант.",
+                "uk": "рекомендувати, радити як добрий варіант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recommend",
+            "definitionByLocale": {
+              "ru": "рекомендовать, советовать как хороший вариант.",
+              "uk": "рекомендувати, радити як добрий варіант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он может посоветовать отель».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он может посоветовать отель».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He can recommend a hotel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он может посоветовать отель».",
+            "uk": "Скажіть: «Він може порадити готель»."
+          },
+          "orderedTokens": [
+            "He",
+            "can",
+            "recommend",
+            "a",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i08:r1",
+            "text": "He can recommend a hotel."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i08:r2",
+            "text": "He cannot recommend a hotel."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i08:r3",
+            "text": "He can already recommend a hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i08:audio",
+            "transcript": "He can recommend a hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i08:r1",
+              "targetText": "He can recommend a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r2",
+              "targetText": "He cannot recommend a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r3",
+              "targetText": "He can already recommend a hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can recommend a hotel.",
+                "uk": "У записі звучить He can recommend a hotel."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can recommend a hotel.",
+                "uk": "У записі звучить He can recommend a hotel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i09:r1",
+            "text": "recommend"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i09:r2",
+            "text": "to recommend"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i09:r3",
+            "text": "recommends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "He can ___ a hotel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i09:r1",
+              "text": "recommend"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r2",
+              "text": "to recommend"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r3",
+              "text": "recommends"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:arrange",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — arrange",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:arrange:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — arrange",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:arrange:audio",
+            "transcript": "arrange"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:arrange:r1",
+              "targetText": "arrange",
+              "meaningByLocale": {
+                "ru": "организовать, договориться о чём-либо.",
+                "uk": "організувати, домовитися про щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrange",
+            "definitionByLocale": {
+              "ru": "организовать, договориться о чём-либо.",
+              "uk": "організувати, домовитися про щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем организовать встречу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем организовать встречу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can arrange a meeting.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем организовать встречу».",
+            "uk": "Скажіть: «Ми можемо організувати зустріч»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "arrange",
+            "a",
+            "meeting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i11:r1",
+            "text": "We can arrange a meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i11:r2",
+            "text": "We cannot arrange a meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i11:r3",
+            "text": "We can already arrange a meeting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i11:audio",
+            "transcript": "We can arrange a meeting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i11:r1",
+              "targetText": "We can arrange a meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r2",
+              "targetText": "We cannot arrange a meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r3",
+              "targetText": "We can already arrange a meeting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can arrange a meeting.",
+                "uk": "У записі звучить We can arrange a meeting."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can arrange a meeting.",
+                "uk": "У записі звучить We can arrange a meeting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i12:r1",
+            "text": "arrange"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i12:r2",
+            "text": "to arrange"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i12:r3",
+            "text": "arranges"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ a meeting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i12:r1",
+              "text": "arrange"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r2",
+              "text": "to arrange"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r3",
+              "text": "arranges"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-01:i13:p1",
+              "target": "describe",
+              "meaningByLocale": {
+                "ru": "описывать",
+                "uk": "описувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p2",
+              "target": "suggest",
+              "meaningByLocale": {
+                "ru": "предлагать идею или вариант",
+                "uk": "пропонувати ідею або варіант"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p3",
+              "target": "recommend",
+              "meaningByLocale": {
+                "ru": "рекомендовать, советовать как хороший вариант",
+                "uk": "рекомендувати, радити як добрий варіант"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p4",
+              "target": "arrange",
+              "meaningByLocale": {
+                "ru": "организовать, договориться о чём-либо",
+                "uk": "організувати, домовитися про щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "describe",
+            "suggest",
+            "recommend",
+            "arrange"
+          ],
+          "rightColumn": [
+            "описывать",
+            "предлагать идею или вариант",
+            "рекомендовать, советовать как хороший вариант",
+            "организовать, договориться о чём-либо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i14:audio",
+            "transcript": "I can describe the place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can describe the place.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "describe",
+            "the",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i15:audio",
+            "transcript": "She can suggest a restaurant."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can suggest a restaurant.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "suggest",
+            "a",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что он может посоветовать отель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что он может посоветовать отель",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i16:audio",
+            "transcript": "He can recommend a hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He can recommend a hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите организовать встречу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Предложите организовать встречу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i17:audio",
+            "transcript": "We can arrange a meeting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can arrange a meeting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-01:word:describe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — describe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:describe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — describe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:describe:audio",
+            "transcript": "describe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:describe:r1",
+              "targetText": "describe",
+              "meaningByLocale": {
+                "ru": "описывать.",
+                "uk": "описувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "describe",
+            "definitionByLocale": {
+              "ru": "описывать.",
+              "uk": "описувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я можу описати це місце».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я можу описати це місце».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can describe the place.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу описать это место».",
+            "uk": "Скажіть: «Я можу описати це місце»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "describe",
+            "the",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i02:r1",
+            "text": "I can describe the place."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i02:r2",
+            "text": "I cannot describe the place."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i02:r3",
+            "text": "I can already describe the place."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i02:audio",
+            "transcript": "I can describe the place."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i02:r1",
+              "targetText": "I can describe the place.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r2",
+              "targetText": "I cannot describe the place.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r3",
+              "targetText": "I can already describe the place.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can describe the place.",
+                "uk": "У записі звучить I can describe the place."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can describe the place.",
+                "uk": "У записі звучить I can describe the place."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i03:r1",
+            "text": "describe"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i03:r2",
+            "text": "to describe"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i03:r3",
+            "text": "describes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ the place.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i03:r1",
+              "text": "describe"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r2",
+              "text": "to describe"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r3",
+              "text": "describes"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:suggest",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — suggest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:suggest:audio"
+        ],
+        "accessibilityLabel": "Картка слова — suggest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:suggest:audio",
+            "transcript": "suggest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:suggest:r1",
+              "targetText": "suggest",
+              "meaningByLocale": {
+                "ru": "предлагать идею или вариант.",
+                "uk": "пропонувати ідею або варіант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suggest",
+            "definitionByLocale": {
+              "ru": "предлагать идею или вариант.",
+              "uk": "пропонувати ідею або варіант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона може запропонувати ресторан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона може запропонувати ресторан».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can suggest a restaurant.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может предложить ресторан».",
+            "uk": "Скажіть: «Вона може запропонувати ресторан»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "suggest",
+            "a",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i05:r1",
+            "text": "She can suggest a restaurant."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i05:r2",
+            "text": "She cannot suggest a restaurant."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i05:r3",
+            "text": "She can already suggest a restaurant."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i05:audio",
+            "transcript": "She can suggest a restaurant."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i05:r1",
+              "targetText": "She can suggest a restaurant.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r2",
+              "targetText": "She cannot suggest a restaurant.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r3",
+              "targetText": "She can already suggest a restaurant.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can suggest a restaurant.",
+                "uk": "У записі звучить She can suggest a restaurant."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can suggest a restaurant.",
+                "uk": "У записі звучить She can suggest a restaurant."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i06:r1",
+            "text": "suggest"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i06:r2",
+            "text": "to suggest"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i06:r3",
+            "text": "suggests"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ a restaurant.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i06:r1",
+              "text": "suggest"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r2",
+              "text": "to suggest"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r3",
+              "text": "suggests"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:recommend",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recommend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:recommend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recommend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:recommend:audio",
+            "transcript": "recommend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:recommend:r1",
+              "targetText": "recommend",
+              "meaningByLocale": {
+                "ru": "рекомендовать, советовать как хороший вариант.",
+                "uk": "рекомендувати, радити як добрий варіант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recommend",
+            "definitionByLocale": {
+              "ru": "рекомендовать, советовать как хороший вариант.",
+              "uk": "рекомендувати, радити як добрий варіант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він може порадити готель».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він може порадити готель».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He can recommend a hotel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он может посоветовать отель».",
+            "uk": "Скажіть: «Він може порадити готель»."
+          },
+          "orderedTokens": [
+            "He",
+            "can",
+            "recommend",
+            "a",
+            "hotel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i08:r1",
+            "text": "He can recommend a hotel."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i08:r2",
+            "text": "He cannot recommend a hotel."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i08:r3",
+            "text": "He can already recommend a hotel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i08:audio",
+            "transcript": "He can recommend a hotel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i08:r1",
+              "targetText": "He can recommend a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r2",
+              "targetText": "He cannot recommend a hotel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r3",
+              "targetText": "He can already recommend a hotel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can recommend a hotel.",
+                "uk": "У записі звучить He can recommend a hotel."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He can recommend a hotel.",
+                "uk": "У записі звучить He can recommend a hotel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i09:r1",
+            "text": "recommend"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i09:r2",
+            "text": "to recommend"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i09:r3",
+            "text": "recommends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "He can ___ a hotel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i09:r1",
+              "text": "recommend"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r2",
+              "text": "to recommend"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r3",
+              "text": "recommends"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:word:arrange",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — arrange",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:word:arrange:audio"
+        ],
+        "accessibilityLabel": "Картка слова — arrange",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:word:arrange:audio",
+            "transcript": "arrange"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:word:arrange:r1",
+              "targetText": "arrange",
+              "meaningByLocale": {
+                "ru": "организовать, договориться о чём-либо.",
+                "uk": "організувати, домовитися про щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrange",
+            "definitionByLocale": {
+              "ru": "организовать, договориться о чём-либо.",
+              "uk": "організувати, домовитися про щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо організувати зустріч».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо організувати зустріч».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can arrange a meeting.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем организовать встречу».",
+            "uk": "Скажіть: «Ми можемо організувати зустріч»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "arrange",
+            "a",
+            "meeting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i11:r1",
+            "text": "We can arrange a meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i11:r2",
+            "text": "We cannot arrange a meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i11:r3",
+            "text": "We can already arrange a meeting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i11:audio",
+            "transcript": "We can arrange a meeting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-01:i11:r1",
+              "targetText": "We can arrange a meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r2",
+              "targetText": "We cannot arrange a meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r3",
+              "targetText": "We can already arrange a meeting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can arrange a meeting.",
+                "uk": "У записі звучить We can arrange a meeting."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can arrange a meeting.",
+                "uk": "У записі звучить We can arrange a meeting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-01:i12:r1",
+            "text": "arrange"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i12:r2",
+            "text": "to arrange"
+          },
+          {
+            "responseId": "en:lesson-19:session-01:i12:r3",
+            "text": "arranges"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ a meeting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-01:i12:r1",
+              "text": "arrange"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r2",
+              "text": "to arrange"
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r3",
+              "text": "arranges"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без to.",
+                "uk": "Після can дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can начальная форма без -s.",
+                "uk": "Після can початкова форма без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-01:i13:p1",
+              "target": "describe",
+              "meaningByLocale": {
+                "ru": "описывать",
+                "uk": "описувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p2",
+              "target": "suggest",
+              "meaningByLocale": {
+                "ru": "предлагать идею или вариант",
+                "uk": "пропонувати ідею або варіант"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p3",
+              "target": "recommend",
+              "meaningByLocale": {
+                "ru": "рекомендовать, советовать как хороший вариант",
+                "uk": "рекомендувати, радити як добрий варіант"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-01:i13:p4",
+              "target": "arrange",
+              "meaningByLocale": {
+                "ru": "организовать, договориться о чём-либо",
+                "uk": "організувати, домовитися про щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "describe",
+            "suggest",
+            "recommend",
+            "arrange"
+          ],
+          "rightColumn": [
+            "описувати",
+            "пропонувати ідею або варіант",
+            "рекомендувати, радити як добрий варіант",
+            "організувати, домовитися про щось"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i14:audio",
+            "transcript": "I can describe the place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can describe the place.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "describe",
+            "the",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i15:audio",
+            "transcript": "She can suggest a restaurant."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can suggest a restaurant.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "suggest",
+            "a",
+            "restaurant"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що він може порадити готель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що він може порадити готель",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i16:audio",
+            "transcript": "He can recommend a hotel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He can recommend a hotel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте організувати зустріч",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте організувати зустріч",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-01:i17:audio",
+            "transcript": "We can arrange a meeting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We can arrange a meeting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-01:word:describe",
+      "correctText": "describe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i01",
+      "correctText": "I can describe the place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i02",
+      "correctText": "I can describe the place.",
+      "correctResponseId": "en:lesson-19:session-01:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i03",
+      "correctText": "describe",
+      "correctResponseId": "en:lesson-19:session-01:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:word:suggest",
+      "correctText": "suggest",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i04",
+      "correctText": "She can suggest a restaurant.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i05",
+      "correctText": "She can suggest a restaurant.",
+      "correctResponseId": "en:lesson-19:session-01:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i06",
+      "correctText": "suggest",
+      "correctResponseId": "en:lesson-19:session-01:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:word:recommend",
+      "correctText": "recommend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i07",
+      "correctText": "He can recommend a hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i08",
+      "correctText": "He can recommend a hotel.",
+      "correctResponseId": "en:lesson-19:session-01:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i09",
+      "correctText": "recommend",
+      "correctResponseId": "en:lesson-19:session-01:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:word:arrange",
+      "correctText": "arrange",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i10",
+      "correctText": "We can arrange a meeting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i11",
+      "correctText": "We can arrange a meeting.",
+      "correctResponseId": "en:lesson-19:session-01:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i12",
+      "correctText": "arrange",
+      "correctResponseId": "en:lesson-19:session-01:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i14",
+      "correctText": "I can describe the place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i15",
+      "correctText": "She can suggest a restaurant.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i16",
+      "correctText": "He can recommend a hotel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:i17",
+      "correctText": "We can arrange a meeting.",
+      "correctResponseId": null
+    }
+  ]
+}

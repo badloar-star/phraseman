@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удалить пятно",
+        "uk": "Видалити пляму"
+      },
+      "bodyByLocale": {
+        "ru": "На скатерти пятно. Remove — удалить: вы знаете, как его убрать. После can используем начальную форму глагола без to и без -s.",
+        "uk": "На скатертині пляма. Remove — видалити: ви знаєте, як її прибрати. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r1",
+              "text": "I can remove this stain."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r2",
+              "text": "I can to remove this stain."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r3",
+              "text": "I can removes this stain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r1",
+              "text": "I can remove this stain."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r2",
+              "text": "I can to remove this stain."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro1:r3",
+              "text": "I can removes this stain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заменить батарейку",
+        "uk": "Замінити батарейку"
+      },
+      "bodyByLocale": {
+        "ru": "Часы остановились. Replace — заменить: подруга умеет поставить другую батарейку. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Годинник зупинився. Replace — замінити: подруга вміє поставити іншу батарейку. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r1",
+              "text": "She can replace the battery."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r2",
+              "text": "She can to replace the battery."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r3",
+              "text": "She can replaces the battery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r1",
+              "text": "She can replace the battery."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r2",
+              "text": "She can to replace the battery."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro2:r3",
+              "text": "She can replaces the battery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сочетать и соединять",
+        "uk": "Поєднати й під’єднати"
+      },
+      "bodyByLocale": {
+        "ru": "Combine — сочетать, например цвета в комнате. Connect — подсоединить, например шланг к крану. Друг умеет подсоединить шланг. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Combine — поєднувати, наприклад кольори в кімнаті. Connect — під’єднати, наприклад шланг до крана. Друг уміє під’єднати шланг. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r1",
+              "text": "He can connect the hose."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r2",
+              "text": "He can to connect the hose."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r3",
+              "text": "He can connects the hose."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r1",
+              "text": "He can connect the hose."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r2",
+              "text": "He can to connect the hose."
+            },
+            {
+              "responseId": "en:lesson-19:session-02:intro3:r3",
+              "text": "He can connects the hose."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d31978183a60cadccd333b6ba419e75e4ab6d2cf7f1165428dd9218620c731aa"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-08:word:happiness",
+    "correctText": "happiness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i01",
+    "correctText": "We can share this happiness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i02",
+    "correctText": "We can share this happiness.",
+    "correctResponseId": "en:lesson-19:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:word:sadness",
+    "correctText": "sadness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i04",
+    "correctText": "I can understand her sadness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i05",
+    "correctText": "I can understand her sadness.",
+    "correctResponseId": "en:lesson-19:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:word:joy",
+    "correctText": "joy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i07",
+    "correctText": "I can see the joy in her face.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i08",
+    "correctText": "I can see the joy in her face.",
+    "correctResponseId": "en:lesson-19:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:word:fear",
+    "correctText": "fear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i10",
+    "correctText": "We can discuss this fear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i11",
+    "correctText": "We can discuss this fear.",
+    "correctResponseId": "en:lesson-19:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i13",
+    "correctText": "en:lesson-19:session-08:i13:p1=happiness\nen:lesson-19:session-08:i13:p2=sadness\nen:lesson-19:session-08:i13:p3=joy\nen:lesson-19:session-08:i13:p4=fear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i14",
+    "correctText": "We are going to discuss the film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i15",
+    "correctText": "We are meeting at the cinema tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i16",
+    "correctText": "This film is so sad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-08:i17",
+    "correctText": "I will help you.",
+    "correctResponseId": null
+  }
+]

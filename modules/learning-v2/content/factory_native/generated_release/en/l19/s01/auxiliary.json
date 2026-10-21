@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-01:intro1:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-01:intro1:r3": {
+          "ru": "После can нужна начальная форма describe.",
+          "uk": "Після can потрібна початкова форма describe."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-01:intro2:r2": {
+          "ru": "Can одинаково с I, she и другими подлежащими.",
+          "uk": "Can однакове з I, she та іншими підметами."
+        },
+        "en:lesson-19:session-01:intro2:r3": {
+          "ru": "После can — suggest без -s.",
+          "uk": "Після can — suggest без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-01:intro3:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-01:intro3:r3": {
+          "ru": "После can — arrange, не arranging.",
+          "uk": "Після can — arrange, не arranging."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "23bb39ac967dfe045ccab54d727a158c72ae1aad6eb92f89fdc984d31d6c3320"
+}

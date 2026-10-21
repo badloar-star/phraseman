@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-02:intro1:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-02:intro1:r3": {
+          "ru": "После can у глагола нет -s.",
+          "uk": "Після can дієслово не має -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-02:intro2:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-02:intro2:r3": {
+          "ru": "После can у глагола нет -s.",
+          "uk": "Після can дієслово не має -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-02:intro3:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-02:intro3:r3": {
+          "ru": "После can у глагола нет -s.",
+          "uk": "Після can дієслово не має -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f433cc5a015c88a18990864a19695ad6b2e5beeef03ef212e3e78cc8e377041b"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-07:intro1:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-07:intro1:r3": {
+          "ru": "Форма can не меняется по лицам.",
+          "uk": "Форма can не змінюється за особами."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-07:intro2:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-07:intro2:r3": {
+          "ru": "Форма can не меняется по лицам.",
+          "uk": "Форма can не змінюється за особами."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-07:intro3:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-07:intro3:r3": {
+          "ru": "Форма can не меняется по лицам.",
+          "uk": "Форма can не змінюється за особами."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dec92e627f621c0570acba23e75a441b2f29d8e2836ba155b07f646a10668b07"
+}

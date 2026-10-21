@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-03:intro1:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-03:intro1:r3": {
+          "ru": "После can начальная форма глагола.",
+          "uk": "Після can початкова форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-03:intro2:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-03:intro2:r3": {
+          "ru": "После can начальная форма глагола.",
+          "uk": "Після can початкова форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-03:intro3:r2": {
+          "ru": "После can нет to.",
+          "uk": "Після can немає to."
+        },
+        "en:lesson-19:session-03:intro3:r3": {
+          "ru": "После can начальная форма глагола.",
+          "uk": "Після can початкова форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc12cebbfee21cb22b0a271806024386fca64085b1a1cfe2fed7abd97d19fcf4"
+}

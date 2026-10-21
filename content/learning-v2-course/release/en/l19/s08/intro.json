@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать чувство",
+        "uk": "Назвати почуття"
+      },
+      "bodyByLocale": {
+        "ru": "Happiness — счастье, ощущение, что вам хорошо. После хорошей новости вы можете разделить это чувство с другом. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Happiness — щастя, відчуття, що вам добре. Після доброї новини ви можете розділити це почуття з другом. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r1",
+              "text": "We can share this happiness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r2",
+              "text": "We can to share this happiness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r3",
+              "text": "We cans share this happiness."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r1",
+              "text": "We can share this happiness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r2",
+              "text": "We can to share this happiness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro1:r3",
+              "text": "We cans share this happiness."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Понять человека",
+        "uk": "Зрозуміти людину"
+      },
+      "bodyByLocale": {
+        "ru": "Sadness — грусть. Героиня фильма прощается с другом; вы понимаете её чувство. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Sadness — смуток. Героїня фільму прощається з другом; ви розумієте її почуття. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r1",
+              "text": "I can understand her sadness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r2",
+              "text": "I can to understand her sadness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r3",
+              "text": "I cans understand her sadness."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r1",
+              "text": "I can understand her sadness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r2",
+              "text": "I can to understand her sadness."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro2:r3",
+              "text": "I cans understand her sadness."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсудить переживания",
+        "uk": "Обговорити переживання"
+      },
+      "bodyByLocale": {
+        "ru": "Joy — радость; happiness тоже может обозначать радость и счастье, жёсткой границы между ними нет. Fear — страх. Вы можете обсудить страх героя, а не оставлять его без внимания. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Joy — радість; happiness також може означати радість і щастя, чіткої межі між ними немає. Fear — страх. Ви можете обговорити страх героя, а не залишати його поза увагою. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r1",
+              "text": "We can discuss this fear."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r2",
+              "text": "We can to discuss this fear."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r3",
+              "text": "We cans discuss this fear."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r1",
+              "text": "We can discuss this fear."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r2",
+              "text": "We can to discuss this fear."
+            },
+            {
+              "responseId": "en:lesson-19:session-08:intro3:r3",
+              "text": "We cans discuss this fear."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "583318b8d4f9dd31aee824a1507a470758870bdf6ad267db6aae6862d1fe7bea"
+}

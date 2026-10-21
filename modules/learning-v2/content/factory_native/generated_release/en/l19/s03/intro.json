@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Защитить растения",
+        "uk": "Захистити рослини"
+      },
+      "bodyByLocale": {
+        "ru": "Ожидается холодная ночь. Protect — защищать: можно перенести горшки с растениями в дом. Can + начальная форма глагола: говорим, что можем сделать. После can нет to и окончания -s.",
+        "uk": "Очікується холодна ніч. Protect — захищати: можна перенести горщики з рослинами до будинку. Can + початкова форма дієслова: говоримо, що можемо зробити. Після can немає to й закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r1",
+              "text": "We can protect the plants."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r2",
+              "text": "We can to protect the plants."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r3",
+              "text": "We can protects the plants."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r1",
+              "text": "We can protect the plants."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r2",
+              "text": "We can to protect the plants."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro1:r3",
+              "text": "We can protects the plants."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предотвратить повреждения",
+        "uk": "Запобігти пошкодженням"
+      },
+      "bodyByLocale": {
+        "ru": "Prevent — предотвратить: сделать так, чтобы плохое не случилось. Вы можете убрать вещи от открытого окна до дождя и предотвратить повреждения. Can + начальная форма глагола: говорим, что можем сделать. После can нет to и окончания -s.",
+        "uk": "Prevent — запобігти: зробити так, щоб погане не сталося. Ви можете прибрати речі від відкритого вікна до дощу й запобігти пошкодженням. Can + початкова форма дієслова: говоримо, що можемо зробити. Після can немає to й закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r1",
+              "text": "We can prevent damage."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r2",
+              "text": "We can to prevent damage."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r3",
+              "text": "We can prevents damage."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r1",
+              "text": "We can prevent damage."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r2",
+              "text": "We can to prevent damage."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro2:r3",
+              "text": "We can prevents damage."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сократить отходы и найти проблему",
+        "uk": "Скоротити відходи й знайти проблему"
+      },
+      "bodyByLocale": {
+        "ru": "Reduce — уменьшить: например, выбрасывать меньше еды. Identify — определить, что именно не так. Подруга умеет находить причину, почему растения плохо растут. Can + начальная форма глагола: говорим, что можем сделать. После can нет to и окончания -s.",
+        "uk": "Reduce — зменшити: наприклад, викидати менше їжі. Identify — визначити, що саме не так. Подруга вміє знаходити причину, чому рослини погано ростуть. Can + початкова форма дієслова: говоримо, що можемо зробити. Після can немає to й закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r1",
+              "text": "She can identify the problem."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r2",
+              "text": "She can to identify the problem."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r3",
+              "text": "She can identifies the problem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r1",
+              "text": "She can identify the problem."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r2",
+              "text": "She can to identify the problem."
+            },
+            {
+              "responseId": "en:lesson-19:session-03:intro3:r3",
+              "text": "She can identifies the problem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79e2c1f9c550d4b5d19329165238046d420348d1398de9e1bebf3a01c30d9efd"
+}

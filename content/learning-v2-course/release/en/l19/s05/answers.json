@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-05:word:difficulty",
+    "correctText": "difficulty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i01",
+    "correctText": "We can discuss this difficulty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i02",
+    "correctText": "We can discuss this difficulty.",
+    "correctResponseId": "en:lesson-19:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i03",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:word:possibility",
+    "correctText": "possibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i04",
+    "correctText": "We can discuss this possibility.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i05",
+    "correctText": "We can discuss this possibility.",
+    "correctResponseId": "en:lesson-19:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i06",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:word:method",
+    "correctText": "method",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i07",
+    "correctText": "I can explain this method.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i08",
+    "correctText": "I can explain this method.",
+    "correctResponseId": "en:lesson-19:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i09",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:word:challenge",
+    "correctText": "challenge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i10",
+    "correctText": "She can accept this challenge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i11",
+    "correctText": "She can accept this challenge.",
+    "correctResponseId": "en:lesson-19:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i12",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-19:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i13",
+    "correctText": "en:lesson-19:session-05:i13:p1=difficulty\nen:lesson-19:session-05:i13:p2=possibility\nen:lesson-19:session-05:i13:p3=method\nen:lesson-19:session-05:i13:p4=challenge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i14",
+    "correctText": "We are going to discuss this method.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i15",
+    "correctText": "We are meeting at my house tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i16",
+    "correctText": "This method is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-05:i17",
+    "correctText": "I will help you.",
+    "correctResponseId": null
+  }
+]

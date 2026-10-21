@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-06:word:encourage",
+    "correctText": "encourage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i01",
+    "correctText": "I can encourage my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i02",
+    "correctText": "I can encourage my friend.",
+    "correctResponseId": "en:lesson-19:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i03",
+    "correctText": "encourage",
+    "correctResponseId": "en:lesson-19:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:word:inspire",
+    "correctText": "inspire",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i04",
+    "correctText": "Music can inspire us.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i05",
+    "correctText": "Music can inspire us.",
+    "correctResponseId": "en:lesson-19:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i06",
+    "correctText": "inspire",
+    "correctResponseId": "en:lesson-19:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:word:influence",
+    "correctText": "influence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i07",
+    "correctText": "Friends can influence your choice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i08",
+    "correctText": "Friends can influence your choice.",
+    "correctResponseId": "en:lesson-19:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i09",
+    "correctText": "influence",
+    "correctResponseId": "en:lesson-19:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:word:affect",
+    "correctText": "affect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i10",
+    "correctText": "Noise can affect your sleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i11",
+    "correctText": "Noise can affect your sleep.",
+    "correctResponseId": "en:lesson-19:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i12",
+    "correctText": "affect",
+    "correctResponseId": "en:lesson-19:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i13",
+    "correctText": "en:lesson-19:session-06:i13:p1=encourage\nen:lesson-19:session-06:i13:p2=inspire\nen:lesson-19:session-06:i13:p3=influence\nen:lesson-19:session-06:i13:p4=affect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i14",
+    "correctText": "We are going to encourage our friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i15",
+    "correctText": "We are meeting our friend tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i16",
+    "correctText": "This is such a lovely song.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-06:i17",
+    "correctText": "I will call him.",
+    "correctResponseId": null
+  }
+]

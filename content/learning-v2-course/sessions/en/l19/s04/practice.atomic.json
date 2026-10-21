@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-04:word:confirm",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — confirm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:confirm:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — confirm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:confirm:audio",
+            "transcript": "confirm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:confirm:r1",
+              "targetText": "confirm",
+              "meaningByLocale": {
+                "ru": "подтверждать.",
+                "uk": "підтверджувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirm",
+            "definitionByLocale": {
+              "ru": "подтверждать.",
+              "uk": "підтверджувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я могу подтвердить время».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я могу подтвердить время».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can confirm the time.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу подтвердить время».",
+            "uk": "Скажіть: «Я можу підтвердити час»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i02:r1",
+            "text": "I can confirm the time."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i02:r2",
+            "text": "I cannot confirm the time."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i02:r3",
+            "text": "I can already confirm the time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i02:audio",
+            "transcript": "I can confirm the time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i02:r1",
+              "targetText": "I can confirm the time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r2",
+              "targetText": "I cannot confirm the time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r3",
+              "targetText": "I can already confirm the time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can confirm the time.",
+                "uk": "У записі звучить I can confirm the time."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can confirm the time.",
+                "uk": "У записі звучить I can confirm the time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i03:r1",
+            "text": "confirm"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i03:r2",
+            "text": "to confirm"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i03:r3",
+            "text": "confirms"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ the time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i03:r1",
+              "text": "confirm"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r2",
+              "text": "to confirm"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r3",
+              "text": "confirms"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:postpone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — postpone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:postpone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — postpone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:postpone:audio",
+            "transcript": "postpone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:postpone:r1",
+              "targetText": "postpone",
+              "meaningByLocale": {
+                "ru": "откладывать на более позднее время.",
+                "uk": "відкладати на пізніший час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postpone",
+            "definitionByLocale": {
+              "ru": "откладывать на более позднее время.",
+              "uk": "відкладати на пізніший час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем отложить встречу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем отложить встречу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can postpone the meeting.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем отложить встречу».",
+            "uk": "Скажіть: «Ми можемо відкласти зустріч»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "postpone",
+            "the",
+            "meeting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i05:r1",
+            "text": "We can postpone the meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i05:r2",
+            "text": "We cannot postpone the meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i05:r3",
+            "text": "We can already postpone the meeting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i05:audio",
+            "transcript": "We can postpone the meeting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i05:r1",
+              "targetText": "We can postpone the meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r2",
+              "targetText": "We cannot postpone the meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r3",
+              "targetText": "We can already postpone the meeting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can postpone the meeting.",
+                "uk": "У записі звучить We can postpone the meeting."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can postpone the meeting.",
+                "uk": "У записі звучить We can postpone the meeting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i06:r1",
+            "text": "postpone"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i06:r2",
+            "text": "to postpone"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i06:r3",
+            "text": "postpones"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ the meeting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i06:r1",
+              "text": "postpone"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r2",
+              "text": "to postpone"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r3",
+              "text": "postpones"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:reschedule",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reschedule",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:reschedule:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reschedule",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:reschedule:audio",
+            "transcript": "reschedule"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:reschedule:r1",
+              "targetText": "reschedule",
+              "meaningByLocale": {
+                "ru": "назначить другое время или дату.",
+                "uk": "призначити інший час або дату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reschedule",
+            "definitionByLocale": {
+              "ru": "назначить другое время или дату.",
+              "uk": "призначити інший час або дату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она может перенести запись на другое время».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она может перенести запись на другое время».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can reschedule the appointment.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может перенести запись на другое время».",
+            "uk": "Скажіть: «Вона може перенести запис на інший час»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "reschedule",
+            "the",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i08:r1",
+            "text": "She can reschedule the appointment."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i08:r2",
+            "text": "She cannot reschedule the appointment."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i08:r3",
+            "text": "She can already reschedule the appointment."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i08:audio",
+            "transcript": "She can reschedule the appointment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i08:r1",
+              "targetText": "She can reschedule the appointment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r2",
+              "targetText": "She cannot reschedule the appointment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r3",
+              "targetText": "She can already reschedule the appointment.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can reschedule the appointment.",
+                "uk": "У записі звучить She can reschedule the appointment."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can reschedule the appointment.",
+                "uk": "У записі звучить She can reschedule the appointment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i09:r1",
+            "text": "reschedule"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i09:r2",
+            "text": "to reschedule"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i09:r3",
+            "text": "reschedules"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ the appointment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i09:r1",
+              "text": "reschedule"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r2",
+              "text": "to reschedule"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r3",
+              "text": "reschedules"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:include",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — include",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:include:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — include",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:include:audio",
+            "transcript": "include"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:include:r1",
+              "targetText": "include",
+              "meaningByLocale": {
+                "ru": "включать в состав или план.",
+                "uk": "включати до складу або плану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "include",
+            "definitionByLocale": {
+              "ru": "включать в состав или план.",
+              "uk": "включати до складу або плану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы можем включить обед».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы можем включить обед».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can include lunch.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем включить обед».",
+            "uk": "Скажіть: «Ми можемо включити обід»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "include",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i11:r1",
+            "text": "We can include lunch."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i11:r2",
+            "text": "We cannot include lunch."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i11:r3",
+            "text": "We can already include lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i11:audio",
+            "transcript": "We can include lunch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i11:r1",
+              "targetText": "We can include lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r2",
+              "targetText": "We cannot include lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r3",
+              "targetText": "We can already include lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can include lunch.",
+                "uk": "У записі звучить We can include lunch."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can include lunch.",
+                "uk": "У записі звучить We can include lunch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i12:r1",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i12:r2",
+            "text": "to include"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i12:r3",
+            "text": "includes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ lunch.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i12:r1",
+              "text": "include"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r2",
+              "text": "to include"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r3",
+              "text": "includes"
+            }
+          ],
+          "testedDimension": "Выберите форму после can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-04:i13:p1",
+              "target": "confirm",
+              "meaningByLocale": {
+                "ru": "подтверждать",
+                "uk": "підтверджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p2",
+              "target": "postpone",
+              "meaningByLocale": {
+                "ru": "откладывать на более позднее время",
+                "uk": "відкладати на пізніший час"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p3",
+              "target": "reschedule",
+              "meaningByLocale": {
+                "ru": "назначить другое время или дату",
+                "uk": "призначити інший час або дату"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p4",
+              "target": "include",
+              "meaningByLocale": {
+                "ru": "включать в состав или план",
+                "uk": "включати до складу або плану"
+              }
+            }
+          ],
+          "leftColumn": [
+            "confirm",
+            "postpone",
+            "reschedule",
+            "include"
+          ],
+          "rightColumn": [
+            "подтверждать",
+            "откладывать на более позднее время",
+            "назначить другое время или дату",
+            "включать в состав или план"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i14:audio",
+            "transcript": "We are going to confirm the time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to confirm the time.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i15:audio",
+            "transcript": "We are meeting at the restaurant tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the restaurant tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "restaurant",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните качество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните качество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i16:audio",
+            "transcript": "This is such a good plan."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a good plan.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: предложите помочь прямо сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: предложите помочь прямо сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i17:audio",
+            "transcript": "I will call her."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will call her.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-04:word:confirm",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — confirm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:confirm:audio"
+        ],
+        "accessibilityLabel": "Картка слова — confirm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:confirm:audio",
+            "transcript": "confirm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:confirm:r1",
+              "targetText": "confirm",
+              "meaningByLocale": {
+                "ru": "подтверждать.",
+                "uk": "підтверджувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirm",
+            "definitionByLocale": {
+              "ru": "подтверждать.",
+              "uk": "підтверджувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я можу підтвердити час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я можу підтвердити час».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can confirm the time.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я могу подтвердить время».",
+            "uk": "Скажіть: «Я можу підтвердити час»."
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i02:r1",
+            "text": "I can confirm the time."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i02:r2",
+            "text": "I cannot confirm the time."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i02:r3",
+            "text": "I can already confirm the time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i02:audio",
+            "transcript": "I can confirm the time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i02:r1",
+              "targetText": "I can confirm the time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r2",
+              "targetText": "I cannot confirm the time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r3",
+              "targetText": "I can already confirm the time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can confirm the time.",
+                "uk": "У записі звучить I can confirm the time."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can confirm the time.",
+                "uk": "У записі звучить I can confirm the time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i03:r1",
+            "text": "confirm"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i03:r2",
+            "text": "to confirm"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i03:r3",
+            "text": "confirms"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "I can ___ the time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i03:r1",
+              "text": "confirm"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r2",
+              "text": "to confirm"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r3",
+              "text": "confirms"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:postpone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — postpone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:postpone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — postpone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:postpone:audio",
+            "transcript": "postpone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:postpone:r1",
+              "targetText": "postpone",
+              "meaningByLocale": {
+                "ru": "откладывать на более позднее время.",
+                "uk": "відкладати на пізніший час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postpone",
+            "definitionByLocale": {
+              "ru": "откладывать на более позднее время.",
+              "uk": "відкладати на пізніший час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо відкласти зустріч».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо відкласти зустріч».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can postpone the meeting.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем отложить встречу».",
+            "uk": "Скажіть: «Ми можемо відкласти зустріч»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "postpone",
+            "the",
+            "meeting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i05:r1",
+            "text": "We can postpone the meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i05:r2",
+            "text": "We cannot postpone the meeting."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i05:r3",
+            "text": "We can already postpone the meeting."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i05:audio",
+            "transcript": "We can postpone the meeting."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i05:r1",
+              "targetText": "We can postpone the meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r2",
+              "targetText": "We cannot postpone the meeting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r3",
+              "targetText": "We can already postpone the meeting.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can postpone the meeting.",
+                "uk": "У записі звучить We can postpone the meeting."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can postpone the meeting.",
+                "uk": "У записі звучить We can postpone the meeting."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i06:r1",
+            "text": "postpone"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i06:r2",
+            "text": "to postpone"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i06:r3",
+            "text": "postpones"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ the meeting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i06:r1",
+              "text": "postpone"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r2",
+              "text": "to postpone"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r3",
+              "text": "postpones"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:reschedule",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reschedule",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:reschedule:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reschedule",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:reschedule:audio",
+            "transcript": "reschedule"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:reschedule:r1",
+              "targetText": "reschedule",
+              "meaningByLocale": {
+                "ru": "назначить другое время или дату.",
+                "uk": "призначити інший час або дату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reschedule",
+            "definitionByLocale": {
+              "ru": "назначить другое время или дату.",
+              "uk": "призначити інший час або дату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона може перенести запис на інший час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона може перенести запис на інший час».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can reschedule the appointment.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она может перенести запись на другое время».",
+            "uk": "Скажіть: «Вона може перенести запис на інший час»."
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "reschedule",
+            "the",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i08:r1",
+            "text": "She can reschedule the appointment."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i08:r2",
+            "text": "She cannot reschedule the appointment."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i08:r3",
+            "text": "She can already reschedule the appointment."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i08:audio",
+            "transcript": "She can reschedule the appointment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i08:r1",
+              "targetText": "She can reschedule the appointment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r2",
+              "targetText": "She cannot reschedule the appointment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r3",
+              "targetText": "She can already reschedule the appointment.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can reschedule the appointment.",
+                "uk": "У записі звучить She can reschedule the appointment."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She can reschedule the appointment.",
+                "uk": "У записі звучить She can reschedule the appointment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i09:r1",
+            "text": "reschedule"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i09:r2",
+            "text": "to reschedule"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i09:r3",
+            "text": "reschedules"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "She can ___ the appointment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i09:r1",
+              "text": "reschedule"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r2",
+              "text": "to reschedule"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r3",
+              "text": "reschedules"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:word:include",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — include",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:word:include:audio"
+        ],
+        "accessibilityLabel": "Картка слова — include",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:word:include:audio",
+            "transcript": "include"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:word:include:r1",
+              "targetText": "include",
+              "meaningByLocale": {
+                "ru": "включать в состав или план.",
+                "uk": "включати до складу або плану."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "include",
+            "definitionByLocale": {
+              "ru": "включать в состав или план.",
+              "uk": "включати до складу або плану."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми можемо включити обід».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми можемо включити обід».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can include lunch.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы можем включить обед».",
+            "uk": "Скажіть: «Ми можемо включити обід»."
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "include",
+            "lunch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i11:r1",
+            "text": "We can include lunch."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i11:r2",
+            "text": "We cannot include lunch."
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i11:r3",
+            "text": "We can already include lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i11:audio",
+            "transcript": "We can include lunch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-04:i11:r1",
+              "targetText": "We can include lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r2",
+              "targetText": "We cannot include lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r3",
+              "targetText": "We can already include lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can include lunch.",
+                "uk": "У записі звучить We can include lunch."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can include lunch.",
+                "uk": "У записі звучить We can include lunch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-04:i12:r1",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i12:r2",
+            "text": "to include"
+          },
+          {
+            "responseId": "en:lesson-19:session-04:i12:r3",
+            "text": "includes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can.",
+            "uk": "Виберіть форму після can."
+          },
+          "gappedTargetPhrase": "We can ___ lunch.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-04:i12:r1",
+              "text": "include"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r2",
+              "text": "to include"
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r3",
+              "text": "includes"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can нет to.",
+                "uk": "Після can немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can.",
+              "feedbackByLocale": {
+                "ru": "После can глагол без -s.",
+                "uk": "Після can дієслово без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-04:i13:p1",
+              "target": "confirm",
+              "meaningByLocale": {
+                "ru": "подтверждать",
+                "uk": "підтверджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p2",
+              "target": "postpone",
+              "meaningByLocale": {
+                "ru": "откладывать на более позднее время",
+                "uk": "відкладати на пізніший час"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p3",
+              "target": "reschedule",
+              "meaningByLocale": {
+                "ru": "назначить другое время или дату",
+                "uk": "призначити інший час або дату"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-04:i13:p4",
+              "target": "include",
+              "meaningByLocale": {
+                "ru": "включать в состав или план",
+                "uk": "включати до складу або плану"
+              }
+            }
+          ],
+          "leftColumn": [
+            "confirm",
+            "postpone",
+            "reschedule",
+            "include"
+          ],
+          "rightColumn": [
+            "підтверджувати",
+            "відкладати на пізніший час",
+            "призначити інший час або дату",
+            "включати до складу або плану"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i14:audio",
+            "transcript": "We are going to confirm the time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to confirm the time.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i15:audio",
+            "transcript": "We are meeting at the restaurant tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the restaurant tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "restaurant",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть якість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть якість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i16:audio",
+            "transcript": "This is such a good plan."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a good plan.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: запропонуйте допомогти просто зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: запропонуйте допомогти просто зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-04:i17:audio",
+            "transcript": "I will call her."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will call her.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-04:word:confirm",
+      "correctText": "confirm",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i01",
+      "correctText": "I can confirm the time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i02",
+      "correctText": "I can confirm the time.",
+      "correctResponseId": "en:lesson-19:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i03",
+      "correctText": "confirm",
+      "correctResponseId": "en:lesson-19:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:word:postpone",
+      "correctText": "postpone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i04",
+      "correctText": "We can postpone the meeting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i05",
+      "correctText": "We can postpone the meeting.",
+      "correctResponseId": "en:lesson-19:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i06",
+      "correctText": "postpone",
+      "correctResponseId": "en:lesson-19:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:word:reschedule",
+      "correctText": "reschedule",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i07",
+      "correctText": "She can reschedule the appointment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i08",
+      "correctText": "She can reschedule the appointment.",
+      "correctResponseId": "en:lesson-19:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i09",
+      "correctText": "reschedule",
+      "correctResponseId": "en:lesson-19:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:word:include",
+      "correctText": "include",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i10",
+      "correctText": "We can include lunch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i11",
+      "correctText": "We can include lunch.",
+      "correctResponseId": "en:lesson-19:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i12",
+      "correctText": "include",
+      "correctResponseId": "en:lesson-19:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i14",
+      "correctText": "We are going to confirm the time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i15",
+      "correctText": "We are meeting at the restaurant tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i16",
+      "correctText": "This is such a good plan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-04:i17",
+      "correctText": "I will call her.",
+      "correctResponseId": null
+    }
+  ]
+}

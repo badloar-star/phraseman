@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что я могу сделать",
+        "uk": "Що я можу зробити"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается в знакомый вам город. Describe — описывать: вы можете рассказать, как выглядит место. Can показывает, что человек умеет или может что-то сделать. После can идёт начальная форма глагола без to. С he и she форма can не меняется, а у следующего глагола нет окончания -s.",
+        "uk": "Друг збирається до знайомого вам міста. Describe — описувати: ви можете розповісти, який вигляд має місце. Can показує, що людина вміє або може щось зробити. Після can стоїть початкова форма дієслова без to. З he і she форма can не змінюється, а наступне дієслово не має закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r1",
+              "text": "I can describe the place."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r2",
+              "text": "I can to describe the place."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r3",
+              "text": "I can describes the place."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r1",
+              "text": "I can describe the place."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r2",
+              "text": "I can to describe the place."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro1:r3",
+              "text": "I can describes the place."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предложить или посоветовать",
+        "uk": "Запропонувати або порадити"
+      },
+      "bodyByLocale": {
+        "ru": "Suggest — предложить вариант для обсуждения. Recommend — посоветовать хороший вариант, например знакомый отель. Подруга знает местные рестораны и может предложить один. Can показывает, что человек умеет или может что-то сделать. После can идёт начальная форма глагола без to. С he и she форма can не меняется, а у следующего глагола нет окончания -s.",
+        "uk": "Suggest — запропонувати варіант для обговорення. Recommend — порадити добрий варіант, наприклад знайомий готель. Подруга знає місцеві ресторани й може запропонувати один. Can показує, що людина вміє або може щось зробити. Після can стоїть початкова форма дієслова без to. З he і she форма can не змінюється, а наступне дієслово не має закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r1",
+              "text": "She can suggest a restaurant."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r2",
+              "text": "She cans suggest a restaurant."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r3",
+              "text": "She can suggests a restaurant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r1",
+              "text": "She can suggest a restaurant."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r2",
+              "text": "She cans suggest a restaurant."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro2:r3",
+              "text": "She can suggests a restaurant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Организовать встречу",
+        "uk": "Організувати зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "Arrange — организовать или договориться. Вы с другом можете согласовать место и время встречи. Can показывает, что человек умеет или может что-то сделать. После can идёт начальная форма глагола без to. С he и she форма can не меняется, а у следующего глагола нет окончания -s.",
+        "uk": "Arrange — організувати або домовитися. Ви з другом можете узгодити місце й час зустрічі. Can показує, що людина вміє або може щось зробити. Після can стоїть початкова форма дієслова без to. З he і she форма can не змінюється, а наступне дієслово не має закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r1",
+              "text": "We can arrange a meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r2",
+              "text": "We can to arrange a meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r3",
+              "text": "We can arranging a meeting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r1",
+              "text": "We can arrange a meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r2",
+              "text": "We can to arrange a meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-01:intro3:r3",
+              "text": "We can arranging a meeting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "30a6526a3490aeecd2b2f887c82fd6d15d6dc31e8217b8d78fe3973d9082e7dd"
+}

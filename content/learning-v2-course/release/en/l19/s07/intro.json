@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать чувство",
+        "uk": "Назвати почуття"
+      },
+      "bodyByLocale": {
+        "ru": "Concern — беспокойство или вопрос, который тревожит. Друг беспокоится о завтрашней поездке; вы можете обсудить, что именно его тревожит. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Concern — занепокоєння або питання, яке тривожить. Друг непокоїться через завтрашню поїздку; ви можете обговорити, що саме його тривожить. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r1",
+              "text": "We can discuss your concern."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r2",
+              "text": "We can to discuss your concern."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r3",
+              "text": "We cans discuss your concern."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r1",
+              "text": "We can discuss your concern."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r2",
+              "text": "We can to discuss your concern."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro1:r3",
+              "text": "We cans discuss your concern."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Понять человека",
+        "uk": "Зрозуміти людину"
+      },
+      "bodyByLocale": {
+        "ru": "Emotion — эмоция, чувство. Вы можете описать чувство словами, даже если пока не знаете, что с ним делать. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Emotion — емоція, почуття. Ви можете описати почуття словами, навіть якщо поки не знаєте, що з ним робити. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r1",
+              "text": "We can describe this emotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r2",
+              "text": "We can to describe this emotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r3",
+              "text": "We cans describe this emotion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r1",
+              "text": "We can describe this emotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r2",
+              "text": "We can to describe this emotion."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro2:r3",
+              "text": "We cans describe this emotion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсудить переживания",
+        "uk": "Обговорити переживання"
+      },
+      "bodyByLocale": {
+        "ru": "Reaction — реакция на событие или слова. Anger — злость. Вы понимаете, почему друг злится; это не означает, что вы одобряете любой его поступок. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Reaction — реакція на подію або слова. Anger — злість. Ви розумієте, чому друг злиться; це не означає, що ви схвалюєте будь-який його вчинок. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r1",
+              "text": "I can understand your anger."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r2",
+              "text": "I can to understand your anger."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r3",
+              "text": "I cans understand your anger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r1",
+              "text": "I can understand your anger."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r2",
+              "text": "I can to understand your anger."
+            },
+            {
+              "responseId": "en:lesson-19:session-07:intro3:r3",
+              "text": "I cans understand your anger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "68358c058c699869158093dee5b163d0e14f6f04a3652dbf8b724f1e1521a07e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подтвердить время",
+        "uk": "Підтвердити час"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже договорились о встрече и уточнили время. Confirm — подтвердить, что договорённость остаётся в силе. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Ви вже домовилися про зустріч і уточнили час. Confirm — підтвердити, що домовленість залишається чинною. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r1",
+              "text": "I can confirm the time."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r2",
+              "text": "I can to confirm the time."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r3",
+              "text": "I can confirms the time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r1",
+              "text": "I can confirm the time."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r2",
+              "text": "I can to confirm the time."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro1:r3",
+              "text": "I can confirms the time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Отложить встречу",
+        "uk": "Відкласти зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "Сегодня встретиться не получится. Postpone — отложить на более позднее время; новую дату можно выбрать позже. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Сьогодні зустрітися не вдасться. Postpone — відкласти на пізніший час; нову дату можна вибрати згодом. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r1",
+              "text": "We can postpone the meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r2",
+              "text": "We can to postpone the meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r3",
+              "text": "We can postpones the meeting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r1",
+              "text": "We can postpone the meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r2",
+              "text": "We can to postpone the meeting."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro2:r3",
+              "text": "We can postpones the meeting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменить программу",
+        "uk": "Змінити програму"
+      },
+      "bodyByLocale": {
+        "ru": "Reschedule — назначить другое время или дату: это может быть и раньше, и позже. Include — включить в план; вы можете включить обед в программу встречи. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Reschedule — призначити інший час або дату: це може бути й раніше, й пізніше. Include — включити до плану; ви можете включити обід до програми зустрічі. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r1",
+              "text": "We can include lunch."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r2",
+              "text": "We can to include lunch."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r3",
+              "text": "We can includes lunch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r1",
+              "text": "We can include lunch."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r2",
+              "text": "We can to include lunch."
+            },
+            {
+              "responseId": "en:lesson-19:session-04:intro3:r3",
+              "text": "We can includes lunch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "60813c06ed68ae6f2d8c07a550ff15acf9e62b2739b710d26dbccfa7ac88abe2"
+}

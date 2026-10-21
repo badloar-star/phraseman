@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-02:word:remove",
+    "correctText": "remove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i01",
+    "correctText": "I can remove this stain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i02",
+    "correctText": "I can remove this stain.",
+    "correctResponseId": "en:lesson-19:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i03",
+    "correctText": "remove",
+    "correctResponseId": "en:lesson-19:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:word:replace",
+    "correctText": "replace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i04",
+    "correctText": "She can replace the battery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i05",
+    "correctText": "She can replace the battery.",
+    "correctResponseId": "en:lesson-19:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i06",
+    "correctText": "replace",
+    "correctResponseId": "en:lesson-19:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:word:combine",
+    "correctText": "combine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i07",
+    "correctText": "We can combine these colours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i08",
+    "correctText": "We can combine these colours.",
+    "correctResponseId": "en:lesson-19:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i09",
+    "correctText": "combine",
+    "correctResponseId": "en:lesson-19:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:word:connect",
+    "correctText": "connect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i10",
+    "correctText": "He can connect the hose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i11",
+    "correctText": "He can connect the hose.",
+    "correctResponseId": "en:lesson-19:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i12",
+    "correctText": "connect",
+    "correctResponseId": "en:lesson-19:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i13",
+    "correctText": "en:lesson-19:session-02:i13:p1=remove\nen:lesson-19:session-02:i13:p2=replace\nen:lesson-19:session-02:i13:p3=combine\nen:lesson-19:session-02:i13:p4=connect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i14",
+    "correctText": "We are going to replace the battery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i15",
+    "correctText": "We are meeting at the house tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i16",
+    "correctText": "This is such a useful tool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-02:i17",
+    "correctText": "I will help you.",
+    "correctResponseId": null
+  }
+]

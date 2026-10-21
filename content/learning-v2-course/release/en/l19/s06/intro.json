@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "can + base verb",
+    "uk": "can + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подбодрить друга",
+        "uk": "Підбадьорити друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг волнуется перед первым занятием. Encourage — подбодрить, помочь не сдаваться. Вы можете поддержать его добрыми словами. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Друг хвилюється перед першим заняттям. Encourage — підбадьорити, допомогти не здаватися. Ви можете підтримати його добрими словами. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r1",
+              "text": "I can encourage my friend."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r2",
+              "text": "I can to encourage my friend."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r3",
+              "text": "I can encourages my friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r1",
+              "text": "I can encourage my friend."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r2",
+              "text": "I can to encourage my friend."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro1:r3",
+              "text": "I can encourages my friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти вдохновение",
+        "uk": "Знайти натхнення"
+      },
+      "bodyByLocale": {
+        "ru": "Inspire — вдохновлять: после любимой песни хочется что-то придумать или сделать. Вы говорите о том, как музыка действует на вас. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Inspire — надихати: після улюбленої пісні хочеться щось вигадати або зробити. Ви говорите про те, як музика діє на вас. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r1",
+              "text": "Music can inspire us."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r2",
+              "text": "Music can to inspire us."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r3",
+              "text": "Music can inspires us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r1",
+              "text": "Music can inspire us."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r2",
+              "text": "Music can to inspire us."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro2:r3",
+              "text": "Music can inspires us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Повлиять на выбор и состояние",
+        "uk": "Вплинути на вибір і стан"
+      },
+      "bodyByLocale": {
+        "ru": "Influence — влиять, например на выбор друга. Affect — влиять на состояние или результат, например шум влияет на сон. Значения иногда пересекаются; здесь учимся употреблять каждое слово в своей фразе. После can используем начальную форму глагола без to и без -s.",
+        "uk": "Influence — впливати, наприклад на вибір друга. Affect — впливати на стан або результат, наприклад шум впливає на сон. Значення іноді перетинаються; тут учимося вживати кожне слово у своїй фразі. Після can використовуємо початкову форму дієслова без to і без -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r1",
+              "text": "Noise can affect your sleep."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r2",
+              "text": "Noise can to affect your sleep."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r3",
+              "text": "Noise can affects your sleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r1",
+              "text": "Noise can affect your sleep."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r2",
+              "text": "Noise can to affect your sleep."
+            },
+            {
+              "responseId": "en:lesson-19:session-06:intro3:r3",
+              "text": "Noise can affects your sleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fb571195f366f8407752226ece9ff41d5d6ceb513091979685844b1b6eb0b340"
+}

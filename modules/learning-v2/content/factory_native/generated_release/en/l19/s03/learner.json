@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-03:word:protect",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — protect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:word:protect:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — protect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:word:protect:audio",
+          "transcript": "protect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:word:protect:r1",
+            "targetText": "protect",
+            "meaningByLocale": {
+              "ru": "защищать.",
+              "uk": "захищати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "protect",
+          "definitionByLocale": {
+            "ru": "защищать.",
+            "uk": "захищати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы можем защитить растения».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы можем защитить растения».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can protect the plants.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы можем защитить растения».",
+          "uk": "Скажіть: «Ми можемо захистити рослини»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "protect",
+          "the",
+          "plants"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i02:r1",
+          "text": "We can protect the plants."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i02:r2",
+          "text": "We cannot protect the plants."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i02:r3",
+          "text": "We can already protect the plants."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i02:audio",
+          "transcript": "We can protect the plants."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:i02:r1",
+            "targetText": "We can protect the plants.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i02:r2",
+            "targetText": "We cannot protect the plants.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i02:r3",
+            "targetText": "We can already protect the plants.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can protect the plants.",
+              "uk": "У записі звучить We can protect the plants."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can protect the plants.",
+              "uk": "У записі звучить We can protect the plants."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после can.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i03:r1",
+          "text": "protect"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i03:r2",
+          "text": "to protect"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i03:r3",
+          "text": "protects"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после can.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can.",
+          "uk": "Виберіть форму після can."
+        },
+        "gappedTargetPhrase": "We can ___ the plants.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-03:i03:r1",
+            "text": "protect"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i03:r2",
+            "text": "to protect"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i03:r3",
+            "text": "protects"
+          }
+        ],
+        "testedDimension": "Выберите форму после can.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can начальная форма глагола.",
+              "uk": "Після can початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:word:prevent",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prevent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:word:prevent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prevent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:word:prevent:audio",
+          "transcript": "prevent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:word:prevent:r1",
+            "targetText": "prevent",
+            "meaningByLocale": {
+              "ru": "предотвращать, не давать случиться.",
+              "uk": "запобігати, не давати статися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prevent",
+          "definitionByLocale": {
+            "ru": "предотвращать, не давать случиться.",
+            "uk": "запобігати, не давати статися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы можем предотвратить повреждения».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы можем предотвратить повреждения».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can prevent damage.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы можем предотвратить повреждения».",
+          "uk": "Скажіть: «Ми можемо запобігти пошкодженням»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "prevent",
+          "damage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i05:r1",
+          "text": "We can prevent damage."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i05:r2",
+          "text": "We cannot prevent damage."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i05:r3",
+          "text": "We can already prevent damage."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i05:audio",
+          "transcript": "We can prevent damage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:i05:r1",
+            "targetText": "We can prevent damage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i05:r2",
+            "targetText": "We cannot prevent damage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i05:r3",
+            "targetText": "We can already prevent damage.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can prevent damage.",
+              "uk": "У записі звучить We can prevent damage."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can prevent damage.",
+              "uk": "У записі звучить We can prevent damage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после can.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i06:r1",
+          "text": "prevent"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i06:r2",
+          "text": "to prevent"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i06:r3",
+          "text": "prevents"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после can.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can.",
+          "uk": "Виберіть форму після can."
+        },
+        "gappedTargetPhrase": "We can ___ damage.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-03:i06:r1",
+            "text": "prevent"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i06:r2",
+            "text": "to prevent"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i06:r3",
+            "text": "prevents"
+          }
+        ],
+        "testedDimension": "Выберите форму после can.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can начальная форма глагола.",
+              "uk": "Після can початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:word:reduce",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reduce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:word:reduce:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reduce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:word:reduce:audio",
+          "transcript": "reduce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:word:reduce:r1",
+            "targetText": "reduce",
+            "meaningByLocale": {
+              "ru": "уменьшать, сокращать.",
+              "uk": "зменшувати, скорочувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reduce",
+          "definitionByLocale": {
+            "ru": "уменьшать, сокращать.",
+            "uk": "зменшувати, скорочувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы можем сократить отходы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы можем сократить отходы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can reduce waste.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы можем сократить отходы».",
+          "uk": "Скажіть: «Ми можемо скоротити відходи»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "reduce",
+          "waste"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i08:r1",
+          "text": "We can reduce waste."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i08:r2",
+          "text": "We cannot reduce waste."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i08:r3",
+          "text": "We can already reduce waste."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i08:audio",
+          "transcript": "We can reduce waste."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:i08:r1",
+            "targetText": "We can reduce waste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i08:r2",
+            "targetText": "We cannot reduce waste.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i08:r3",
+            "targetText": "We can already reduce waste.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can reduce waste.",
+              "uk": "У записі звучить We can reduce waste."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can reduce waste.",
+              "uk": "У записі звучить We can reduce waste."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после can.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i09:r1",
+          "text": "reduce"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i09:r2",
+          "text": "to reduce"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i09:r3",
+          "text": "reduces"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после can.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can.",
+          "uk": "Виберіть форму після can."
+        },
+        "gappedTargetPhrase": "We can ___ waste.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-03:i09:r1",
+            "text": "reduce"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i09:r2",
+            "text": "to reduce"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i09:r3",
+            "text": "reduces"
+          }
+        ],
+        "testedDimension": "Выберите форму после can.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can начальная форма глагола.",
+              "uk": "Після can початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:word:identify",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — identify",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:word:identify:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — identify",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:word:identify:audio",
+          "transcript": "identify"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:word:identify:r1",
+            "targetText": "identify",
+            "meaningByLocale": {
+              "ru": "определить, установить, что именно это.",
+              "uk": "визначити, встановити, що саме це."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "identify",
+          "definitionByLocale": {
+            "ru": "определить, установить, что именно это.",
+            "uk": "визначити, встановити, що саме це."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Она может определить проблему».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Она может определить проблему».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can identify the problem.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она может определить проблему».",
+          "uk": "Скажіть: «Вона може визначити проблему»."
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "identify",
+          "the",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i11:r1",
+          "text": "She can identify the problem."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i11:r2",
+          "text": "She cannot identify the problem."
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i11:r3",
+          "text": "She can already identify the problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i11:audio",
+          "transcript": "She can identify the problem."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-03:i11:r1",
+            "targetText": "She can identify the problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i11:r2",
+            "targetText": "She cannot identify the problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i11:r3",
+            "targetText": "She can already identify the problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can identify the problem.",
+              "uk": "У записі звучить She can identify the problem."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She can identify the problem.",
+              "uk": "У записі звучить She can identify the problem."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после can.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-03:i12:r1",
+          "text": "identify"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i12:r2",
+          "text": "to identify"
+        },
+        {
+          "responseId": "en:lesson-19:session-03:i12:r3",
+          "text": "identifies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после can.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can.",
+          "uk": "Виберіть форму після can."
+        },
+        "gappedTargetPhrase": "She can ___ the problem.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-03:i12:r1",
+            "text": "identify"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i12:r2",
+            "text": "to identify"
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i12:r3",
+            "text": "identifies"
+          }
+        ],
+        "testedDimension": "Выберите форму после can.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can нет to.",
+              "uk": "Після can немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после can.",
+            "feedbackByLocale": {
+              "ru": "После can начальная форма глагола.",
+              "uk": "Після can початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-03:i13:p1",
+            "target": "protect",
+            "meaningByLocale": {
+              "ru": "защищать",
+              "uk": "захищати"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-03:i13:p2",
+            "target": "prevent",
+            "meaningByLocale": {
+              "ru": "предотвращать, не давать случиться",
+              "uk": "запобігати, не давати статися"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-03:i13:p3",
+            "target": "reduce",
+            "meaningByLocale": {
+              "ru": "уменьшать, сокращать",
+              "uk": "зменшувати, скорочувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-03:i13:p4",
+            "target": "identify",
+            "meaningByLocale": {
+              "ru": "определить, установить, что именно это",
+              "uk": "визначити, встановити, що саме це"
+            }
+          }
+        ],
+        "leftColumn": [
+          "protect",
+          "prevent",
+          "reduce",
+          "identify"
+        ],
+        "rightColumn": [
+          "защищать",
+          "предотвращать, не давать случиться",
+          "уменьшать, сокращать",
+          "определить, установить, что именно это"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i14:audio",
+          "transcript": "We are going to protect the plants."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to protect the plants.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "protect",
+          "the",
+          "plants"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i15:audio",
+          "transcript": "We are meeting in the garden tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting in the garden tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "in",
+          "the",
+          "garden",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните качество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните качество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i16:audio",
+          "transcript": "This idea is so useful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This idea is so useful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: предложите помочь прямо сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: предложите помочь прямо сейчас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-03:i17:audio",
+          "transcript": "I will close the window."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will close the window.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ada1a417375c40455639345a0b6ae5cf44f506cf3ac47f66b402624e6961f92f"
+}

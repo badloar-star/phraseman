@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-01:word:describe",
+    "correctText": "describe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i01",
+    "correctText": "I can describe the place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i02",
+    "correctText": "I can describe the place.",
+    "correctResponseId": "en:lesson-19:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i03",
+    "correctText": "describe",
+    "correctResponseId": "en:lesson-19:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:word:suggest",
+    "correctText": "suggest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i04",
+    "correctText": "She can suggest a restaurant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i05",
+    "correctText": "She can suggest a restaurant.",
+    "correctResponseId": "en:lesson-19:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i06",
+    "correctText": "suggest",
+    "correctResponseId": "en:lesson-19:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:word:recommend",
+    "correctText": "recommend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i07",
+    "correctText": "He can recommend a hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i08",
+    "correctText": "He can recommend a hotel.",
+    "correctResponseId": "en:lesson-19:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i09",
+    "correctText": "recommend",
+    "correctResponseId": "en:lesson-19:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:word:arrange",
+    "correctText": "arrange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i10",
+    "correctText": "We can arrange a meeting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i11",
+    "correctText": "We can arrange a meeting.",
+    "correctResponseId": "en:lesson-19:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i12",
+    "correctText": "arrange",
+    "correctResponseId": "en:lesson-19:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i13",
+    "correctText": "en:lesson-19:session-01:i13:p1=describe\nen:lesson-19:session-01:i13:p2=suggest\nen:lesson-19:session-01:i13:p3=recommend\nen:lesson-19:session-01:i13:p4=arrange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i14",
+    "correctText": "I can describe the place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i15",
+    "correctText": "She can suggest a restaurant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i16",
+    "correctText": "He can recommend a hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-01:i17",
+    "correctText": "We can arrange a meeting.",
+    "correctResponseId": null
+  }
+]

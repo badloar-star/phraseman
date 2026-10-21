@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-52:word:phase",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — phase",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:word:phase:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — phase",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:word:phase:audio",
+          "transcript": "phase"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:word:phase:r1",
+            "targetText": "phase",
+            "meaningByLocale": {
+              "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
+              "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "phase",
+          "definitionByLocale": {
+            "ru": "«этап». This phase lasts a week. — «Этот этап длится неделю». Часть процесса или проекта.",
+            "uk": "«етап». This phase lasts a week. — «Цей етап триває тиждень». Частина процесу або проєкту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните длительность по плану: «Этот этап длится неделю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните длительность по плану: «Этот этап длится неделю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This phase lasts a week.",
+        "localizedMeaning": {
+          "ru": "Объясните длительность по плану: «Этот этап длится неделю»",
+          "uk": "Поясніть тривалість за планом: «Цей етап триває тиждень»"
+        },
+        "orderedTokens": [
+          "This",
+          "phase",
+          "lasts",
+          "a",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i02:r1",
+          "text": "The next phase starts tomorrow."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i02:r2",
+          "text": "The next phase starts today."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i02:r3",
+          "text": "The next meeting starts tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i02:audio",
+          "transcript": "The next phase starts tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:i02:r1",
+            "targetText": "The next phase starts tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i02:r2",
+            "targetText": "The next phase starts today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i02:r3",
+            "targetText": "The next meeting starts tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The next phase starts tomorrow.",
+              "uk": "У записі звучить The next phase starts tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The next phase starts tomorrow.",
+              "uk": "У записі звучить The next phase starts tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это установленная длительность. Выберите форму last",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i03:r1",
+          "text": "lasts"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i03:r2",
+          "text": "last"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i03:r3",
+          "text": "lasting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это установленная длительность. Выберите форму last",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это установленная длительность. Выберите форму last",
+          "uk": "Це встановлена тривалість. Виберіть форму last"
+        },
+        "gappedTargetPhrase": "This phase ___ a week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-52:i03:r1",
+            "text": "lasts"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i03:r2",
+            "text": "last"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i03:r3",
+            "text": "lasting"
+          }
+        ],
+        "testedDimension": "Это установленная длительность. Выберите форму last",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Это установленная длительность. Выберите форму last",
+            "feedbackByLocale": {
+              "ru": "Один этап: lasts с s.",
+              "uk": "Один етап: lasts із s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Это установленная длительность. Выберите форму last",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна lasts.",
+              "uk": "Тут потрібна lasts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:word:checkpoint",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — checkpoint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:word:checkpoint:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — checkpoint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:word:checkpoint:audio",
+          "transcript": "checkpoint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:word:checkpoint:r1",
+            "targetText": "checkpoint",
+            "meaningByLocale": {
+              "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
+              "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "checkpoint",
+          "definitionByLocale": {
+            "ru": "«контрольная точка». The next checkpoint is on Friday. — «Следующая контрольная точка — в пятницу». Здесь момент проверки хода проекта.",
+            "uk": "«контрольна точка». The next checkpoint is on Friday. — «Наступна контрольна точка — у п’ятницю». Тут момент перевірки перебігу проєкту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The next checkpoint is on Friday.",
+        "localizedMeaning": {
+          "ru": "Команда проверит ход проекта в пятницу. Скажите: «Следующая контрольная точка — в пятницу»",
+          "uk": "Команда перевірить перебіг проєкту в п’ятницю. Скажіть: «Наступна контрольна точка — у п’ятницю»"
+        },
+        "orderedTokens": [
+          "The",
+          "next",
+          "checkpoint",
+          "is",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i05:r1",
+          "text": "The checkpoint is tomorrow."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i05:r2",
+          "text": "The checkpoint is today."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i05:r3",
+          "text": "The handover is tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i05:audio",
+          "transcript": "The checkpoint is tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:i05:r1",
+            "targetText": "The checkpoint is tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i05:r2",
+            "targetText": "The checkpoint is today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i05:r3",
+            "targetText": "The handover is tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The checkpoint is tomorrow.",
+              "uk": "У записі звучить The checkpoint is tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The checkpoint is tomorrow.",
+              "uk": "У записі звучить The checkpoint is tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите предлог перед днём недели",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i06:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i06:r2",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i06:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите предлог перед днём недели",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог перед днём недели",
+          "uk": "Виберіть прийменник перед днем тижня"
+        },
+        "gappedTargetPhrase": "The next checkpoint is ___ Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-52:i06:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i06:r2",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i06:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Выберите предлог перед днём недели",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите предлог перед днём недели",
+            "feedbackByLocale": {
+              "ru": "Перед Friday нужен on.",
+              "uk": "Перед Friday потрібен on."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите предлог перед днём недели",
+            "feedbackByLocale": {
+              "ru": "Перед днём недели нужен on, не at.",
+              "uk": "Перед днем тижня потрібен on, не at."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:word:roadmap",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — roadmap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:word:roadmap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — roadmap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:word:roadmap:audio",
+          "transcript": "roadmap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:word:roadmap:r1",
+            "targetText": "roadmap",
+            "meaningByLocale": {
+              "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
+              "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roadmap",
+          "definitionByLocale": {
+            "ru": "«план развития». We review the roadmap every month. — «Мы пересматриваем план развития каждый месяц». Общий план основных этапов и целей проекта.",
+            "uk": "«план розвитку». We review the roadmap every month. — «Ми переглядаємо план розвитку щомісяця». Загальний план основних етапів і цілей проєкту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We review the roadmap every month.",
+        "localizedMeaning": {
+          "ru": "Скажите о регулярной работе команды: «Мы пересматриваем план развития каждый месяц». Поставьте every month в конце",
+          "uk": "Скажіть про регулярну роботу команди: «Ми переглядаємо план розвитку щомісяця». Поставте every month у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "review",
+          "the",
+          "roadmap",
+          "every",
+          "month"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i08:r1",
+          "text": "The roadmap is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i08:r2",
+          "text": "The roadmap is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i08:r3",
+          "text": "The forecast is on the website."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i08:audio",
+          "transcript": "The roadmap is on the website."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:i08:r1",
+            "targetText": "The roadmap is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i08:r2",
+            "targetText": "The roadmap is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i08:r3",
+            "targetText": "The forecast is on the website.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The roadmap is on the website.",
+              "uk": "У записі звучить The roadmap is on the website."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The roadmap is on the website.",
+              "uk": "У записі звучить The roadmap is on the website."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это ежемесячная работа. Выберите форму review",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i09:r1",
+          "text": "review"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i09:r2",
+          "text": "reviews"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i09:r3",
+          "text": "reviewing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это ежемесячная работа. Выберите форму review",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это ежемесячная работа. Выберите форму review",
+          "uk": "Це щомісячна робота. Виберіть форму review"
+        },
+        "gappedTargetPhrase": "We ___ the roadmap every month.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-52:i09:r1",
+            "text": "review"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i09:r2",
+            "text": "reviews"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i09:r3",
+            "text": "reviewing"
+          }
+        ],
+        "testedDimension": "Это ежемесячная работа. Выберите форму review",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Это ежемесячная работа. Выберите форму review",
+            "feedbackByLocale": {
+              "ru": "С we нужна review без s.",
+              "uk": "З we потрібна review без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Это ежемесячная работа. Выберите форму review",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна review.",
+              "uk": "Тут потрібна review."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:word:bottleneck",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bottleneck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:word:bottleneck:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bottleneck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:word:bottleneck:audio",
+          "transcript": "bottleneck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:word:bottleneck:r1",
+            "targetText": "bottleneck",
+            "meaningByLocale": {
+              "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
+              "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottleneck",
+          "definitionByLocale": {
+            "ru": "«узкое место». We are investigating a bottleneck. — «Мы изучаем узкое место». Участок процесса, который замедляет всю работу.",
+            "uk": "«вузьке місце». We are investigating a bottleneck. — «Ми досліджуємо вузьке місце». Ділянка процесу, яка сповільнює всю роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are investigating a bottleneck.",
+        "localizedMeaning": {
+          "ru": "Сейчас команда изучает участок процесса, задерживающий работу. Скажите: «Мы изучаем узкое место»",
+          "uk": "Зараз команда досліджує ділянку процесу, що затримує роботу. Скажіть: «Ми досліджуємо вузьке місце»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "investigating",
+          "a",
+          "bottleneck"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i11:r1",
+          "text": "The bottleneck is in production."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i11:r2",
+          "text": "The bottleneck is in delivery."
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i11:r3",
+          "text": "The problem is in production."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i11:audio",
+          "transcript": "The bottleneck is in production."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-52:i11:r1",
+            "targetText": "The bottleneck is in production.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i11:r2",
+            "targetText": "The bottleneck is in delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i11:r3",
+            "targetText": "The problem is in production.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bottleneck is in production.",
+              "uk": "У записі звучить The bottleneck is in production."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bottleneck is in production.",
+              "uk": "У записі звучить The bottleneck is in production."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы investigate",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-52:i12:r1",
+          "text": "investigating"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i12:r2",
+          "text": "investigateing"
+        },
+        {
+          "responseId": "en:lesson-10:session-52:i12:r3",
+          "text": "investigate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы investigate",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы investigate",
+          "uk": "Виберіть правильне написання форми investigate"
+        },
+        "gappedTargetPhrase": "We are ___ a bottleneck.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-52:i12:r1",
+            "text": "investigating"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i12:r2",
+            "text": "investigateing"
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i12:r3",
+            "text": "investigate"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы investigate",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы investigate",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: investigating.",
+              "uk": "Перед ing прибираємо e: investigating."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы investigate",
+            "feedbackByLocale": {
+              "ru": "После are для текущей работы нужна investigating.",
+              "uk": "Після are для поточної роботи потрібна investigating."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-52:i13:p1",
+            "target": "phase",
+            "meaningByLocale": {
+              "ru": "этап",
+              "uk": "етап"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-52:i13:p2",
+            "target": "checkpoint",
+            "meaningByLocale": {
+              "ru": "контрольная точка",
+              "uk": "контрольна точка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-52:i13:p3",
+            "target": "roadmap",
+            "meaningByLocale": {
+              "ru": "план развития",
+              "uk": "план розвитку"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-52:i13:p4",
+            "target": "bottleneck",
+            "meaningByLocale": {
+              "ru": "узкое место",
+              "uk": "вузьке місце"
+            }
+          }
+        ],
+        "leftColumn": [
+          "phase",
+          "checkpoint",
+          "roadmap",
+          "bottleneck"
+        ],
+        "rightColumn": [
+          "этап",
+          "контрольная точка",
+          "план развития",
+          "узкое место"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i14:audio",
+          "transcript": "We are investigating a bottleneck."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are investigating a bottleneck.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "investigating",
+          "a",
+          "bottleneck"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как часто команда пересматривает общий план проекта. Скажите: «Мы пересматриваем план развития каждый месяц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как часто команда пересматривает общий план проекта. Скажите: «Мы пересматриваем план развития каждый месяц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i15:audio",
+          "transcript": "We review the roadmap every month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We review the roadmap every month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This phase lasts a week.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает о длительности текущего этапа. Скажите: «Этот этап длится неделю»",
+          "uk": "Колега запитує про тривалість поточного етапу. Скажіть: «Цей етап триває тиждень»"
+        },
+        "orderedTokens": [
+          "This",
+          "phase",
+          "lasts",
+          "a",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с коллегами выясняете причину задержек на одном участке процесса. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы изучаем узкое место»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с коллегами выясняете причину задержек на одном участке процесса. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы изучаем узкое место»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-52:i17:audio",
+          "transcript": "We are investigating a bottleneck."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are investigating a bottleneck.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6b89a37f41c24038ab909af131b2b0fdd5c68a8ad7974c8c0667a4d06b35e099"
+}

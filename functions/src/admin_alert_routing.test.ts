@@ -78,12 +78,12 @@ describe('admin alert routing (владелец 21.10, №48)', () => {
 
 // ── Ревизор 21.10 (на «да» владельца): деньги и безопасность ИИ не теряются в сводке ──────────────
 describe('money and AI safety are never delayed to the digest', () => {
-  test('money from a 1.x build still comes instantly; AI safety from 1.x stays in the digest', () => {
+  test('money and AI safety from a 1.x build still come instantly (Ревизор 22.10, вопрос 19)', () => {
     for (const eventType of ['premiumPurchase', 'refund', 'paymentWebhookFailure'] as const) {
       expect(routeAdminAlert({ eventType, occurredAtMs: NOW, payload: { appVersion: '1.6.24' } }, NOW)).toEqual({ kind: 'instant' });
     }
-    expect(routeAdminAlert({ eventType: 'safetyFlag', occurredAtMs: NOW, payload: { appVersion: '1.6.24' } }, NOW))
-      .toEqual({ kind: 'weekly', reason: 'legacy_1x' });
+    expect(routeAdminAlert({ eventType: 'safetyFlag', occurredAtMs: NOW, payload: { appVersion: '1.6.24' } }, NOW)).toEqual({ kind: 'instant' });
+
   });
 
   test('late money and AI safety come instantly with the delay; other late events go to the digest', () => {

@@ -78,7 +78,8 @@ export function routeAdminAlert(
   }
   if (!INSTANT_ADMIN_ALERT_TYPES.has(event.eventType)) return { kind: 'weekly', reason: 'not_urgent' };
   if (ROUTING_EXEMPT.has(event.eventType)) return { kind: 'instant' };
-  if (isLegacyAppVersion(event.payload.appVersion) && !MONEY_ALERT_TYPES.has(event.eventType)) return { kind: 'weekly', reason: 'legacy_1x' };
+  // зачем (Ревизор 22.10, вопрос 19 владельца): безопасность ИИ, как и деньги, от версии не зависит — с 1.x тоже сразу.
+  if (isLegacyAppVersion(event.payload.appVersion) && !LATE_BUT_INSTANT_TYPES.has(event.eventType)) return { kind: 'weekly', reason: 'legacy_1x' };
   const lateMs = adminAlertLateMs(event, nowMs);
   if (lateMs > 0) {
     return LATE_BUT_INSTANT_TYPES.has(event.eventType) ? { kind: 'instant', lateMs } : { kind: 'weekly', reason: 'stale' };

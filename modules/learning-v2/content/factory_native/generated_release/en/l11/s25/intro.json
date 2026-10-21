@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "yesterday + was/were; now + is/are",
+    "uk": "yesterday + was/were; now + is/are"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Состояние вчера и сейчас",
+        "uk": "Стан учора й зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Beach towel — «пляжное полотенце». Вчера после купания оно было мокрым, а теперь высохло: Yesterday my beach towel was wet. Now it is dry. — «Вчера моё пляжное полотенце было мокрым. Сейчас оно сухое». Слово yesterday указывает на прошлое, поэтому was. С now говорим о настоящем: is. Выберите фразу о вчерашнем полотенце.",
+        "uk": "Beach towel — «пляжний рушник». Учора після купання він був мокрий, а тепер висох: Yesterday my beach towel was wet. Now it is dry. — «Учора мій пляжний рушник був мокрий. Зараз він сухий». Слово yesterday вказує на минуле, тому was. Із now говоримо про теперішнє: is. Виберіть фразу про вчорашній рушник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r1",
+              "text": "Yesterday my beach towel was wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r2",
+              "text": "Yesterday my beach towel is wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r3",
+              "text": "Yesterday my beach towel were wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r1",
+              "text": "Yesterday my beach towel was wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r2",
+              "text": "Yesterday my beach towel is wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro1:r3",
+              "text": "Yesterday my beach towel were wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где были вещи",
+        "uk": "Де були речі"
+      },
+      "bodyByLocale": {
+        "ru": "Sun cream — «солнцезащитный крем», sun hat — «шляпа от солнца». Вчера крем лежал в сумке: Yesterday the sun cream was in my bag. Здесь описываем место в прошлом, поэтому тоже was. Сейчас крем на столе: Now it is on the table. Выберите вчерашнее место крема.",
+        "uk": "Sun cream — «сонцезахисний крем», sun hat — «капелюх від сонця». Учора крем лежав у сумці: Yesterday the sun cream was in my bag. Тут описуємо місце в минулому, тому теж was. Зараз крем на столі: Now it is on the table. Виберіть учорашнє місце крему."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r1",
+              "text": "Yesterday the sun cream was in my bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r2",
+              "text": "Yesterday the sun cream is in my bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r3",
+              "text": "Yesterday the sun cream were in my bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r1",
+              "text": "Yesterday the sun cream was in my bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r2",
+              "text": "Yesterday the sun cream is in my bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro2:r3",
+              "text": "Yesterday the sun cream were in my bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шлёпанцы",
+        "uk": "В’єтнамки"
+      },
+      "bodyByLocale": {
+        "ru": "Flip-flops — «вьетнамки», шлёпанцы с перемычкой между пальцами. Это множественное число: Yesterday my flip-flops were dirty — «Вчера мои вьетнамки были грязными». Сейчас они чистые: Now they are clean. С yesterday используем were, с now — are. Выберите фразу о вчерашнем состоянии обуви.",
+        "uk": "Flip-flops — «в’єтнамки», капці з перемичкою між пальцями. Це множина: Yesterday my flip-flops were dirty — «Учора мої в’єтнамки були брудні». Зараз вони чисті: Now they are clean. Із yesterday використовуємо were, із now — are. Виберіть фразу про вчорашній стан взуття."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r1",
+              "text": "Yesterday my flip-flops were dirty."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r2",
+              "text": "Yesterday my flip-flops was dirty."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r3",
+              "text": "Yesterday my flip-flops are dirty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r1",
+              "text": "Yesterday my flip-flops were dirty."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r2",
+              "text": "Yesterday my flip-flops was dirty."
+            },
+            {
+              "responseId": "en:lesson-11:session-25:intro3:r3",
+              "text": "Yesterday my flip-flops are dirty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6816fee5ba9261aedec356f3433ae0e810f89a1444c44f767cd21751d969e600"
+}

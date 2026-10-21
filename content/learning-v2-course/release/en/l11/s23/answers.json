@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-23:word:take-a-seat",
+    "correctText": "take a seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i01",
+    "correctText": "Please take a seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i02",
+    "correctText": "Take a seat, please.",
+    "correctResponseId": "en:lesson-11:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i03",
+    "correctText": "Take",
+    "correctResponseId": "en:lesson-11:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:word:have-a-look",
+    "correctText": "have a look",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i04",
+    "correctText": "Have a look at this photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i05",
+    "correctText": "Have a look at this bag.",
+    "correctResponseId": "en:lesson-11:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i06",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-11:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:word:hurry-up",
+    "correctText": "hurry up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i07",
+    "correctText": "Please hurry up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i08",
+    "correctText": "Hurry up, please.",
+    "correctResponseId": "en:lesson-11:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i09",
+    "correctText": "up",
+    "correctResponseId": "en:lesson-11:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:word:wait-a-moment",
+    "correctText": "wait a moment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i10",
+    "correctText": "Please wait a moment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i11",
+    "correctText": "Wait a moment, please.",
+    "correctResponseId": "en:lesson-11:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i12",
+    "correctText": "wait",
+    "correctResponseId": "en:lesson-11:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i13",
+    "correctText": "en:lesson-11:session-23:i13:p1=take a seat\nen:lesson-11:session-23:i13:p2=have a look\nen:lesson-11:session-23:i13:p3=hurry up\nen:lesson-11:session-23:i13:p4=wait a moment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i14",
+    "correctText": "There were two chairs near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i15",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i16",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-23:i17",
+    "correctText": "Were you ready?",
+    "correctResponseId": null
+  }
+]

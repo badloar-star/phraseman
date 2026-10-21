@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-21:intro1:r2": {
+          "ru": "Один котёнок: was.",
+          "uk": "Одне кошеня: was."
+        },
+        "en:lesson-11:session-21:intro1:r3": {
+          "ru": "Вопрос с was строится без did.",
+          "uk": "Запитання з was будується без did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-21:intro2:r2": {
+          "ru": "С неисчисляемым food нужна was.",
+          "uk": "Із незлічуваним food потрібна was."
+        },
+        "en:lesson-11:session-21:intro2:r3": {
+          "ru": "Здесь food не требует a.",
+          "uk": "Тут food не потребує a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-21:intro3:r2": {
+          "ru": "Говорим о прошлом: was.",
+          "uk": "Говоримо про минуле: was."
+        },
+        "en:lesson-11:session-21:intro3:r3": {
+          "ru": "Один поводок: was.",
+          "uk": "Один повідець: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "418f2f5f2da2eac2c57d8aa090c306835f68ab88e2c63e8c6f3db0a5516f4b56"
+}

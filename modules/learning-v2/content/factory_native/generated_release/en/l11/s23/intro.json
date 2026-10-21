@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "повседневные выражения; повтор was/were и there was/there were",
+    "uk": "повсякденні вислови; повторення was/were та there was/there were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложите сесть",
+        "uk": "Запропонуйте сісти"
+      },
+      "bodyByLocale": {
+        "ru": "Take a seat — «присаживайся / присаживайтесь». Это готовое приглашение сесть, а не просьба взять стул в руки. С please звучит вежливее: Please take a seat. Гость вошёл и стоит у двери. Выберите приглашение присесть.",
+        "uk": "Take a seat — «сідай / сідайте». Це готове запрошення сісти, а не прохання взяти стілець у руки. Із please звучить ввічливіше: Please take a seat. Гість увійшов і стоїть біля дверей. Виберіть запрошення сісти."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r1",
+              "text": "Please take a seat."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r2",
+              "text": "Please taking a seat."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r3",
+              "text": "Please takes a seat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r1",
+              "text": "Please take a seat."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r2",
+              "text": "Please taking a seat."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro1:r3",
+              "text": "Please takes a seat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посмотрите",
+        "uk": "Подивіться"
+      },
+      "bodyByLocale": {
+        "ru": "Have a look — «взгляни / посмотри». Можно предложить посмотреть вместе: Have a look at this photo — «Посмотри на это фото». Запомните сочетание have a look at: после at называем то, на что смотрим. Покажите другу фото и выберите эту просьбу.",
+        "uk": "Have a look — «поглянь / подивись». Можна запропонувати подивитися разом: Have a look at this photo — «Подивись на це фото». Запам’ятайте сполуку have a look at: після at називаємо те, на що дивимося. Покажіть другові фото й виберіть це прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r1",
+              "text": "Have a look at this photo."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r2",
+              "text": "Have look at this photo."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r3",
+              "text": "Has a look at this photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r1",
+              "text": "Have a look at this photo."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r2",
+              "text": "Have look at this photo."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro2:r3",
+              "text": "Has a look at this photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поторопиться или подождать",
+        "uk": "Поквапитися чи зачекати"
+      },
+      "bodyByLocale": {
+        "ru": "Hurry up — «поторопись», wait a moment — «подожди минутку». Hurry up звучит прямо, поэтому в обычной просьбе полезно добавить please. Вы ещё надеваете куртку и просите друга немного подождать: Please wait a moment. Выберите просьбу подождать.",
+        "uk": "Hurry up — «поквапся», wait a moment — «зачекай хвилинку». Hurry up звучить прямо, тому у звичайному проханні корисно додати please. Ви ще вдягаєте куртку й просите друга трохи зачекати: Please wait a moment. Виберіть прохання зачекати."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r1",
+              "text": "Please wait a moment."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r2",
+              "text": "Please hurry up."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r3",
+              "text": "Please waits a moment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r1",
+              "text": "Please wait a moment."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r2",
+              "text": "Please hurry up."
+            },
+            {
+              "responseId": "en:lesson-11:session-23:intro3:r3",
+              "text": "Please waits a moment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3b3ebc4d92a56e1da6189dc5d74b45cbe83d92a901a4a02f3d4e3dbb9a6436d"
+}

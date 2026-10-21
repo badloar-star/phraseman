@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "повседневные выражения; повтор was/were и there was/there were",
+    "uk": "повсякденні вислови; повторення was/were та there was/there were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Похвалите друга",
+        "uk": "Похваліть друга"
+      },
+      "bodyByLocale": {
+        "ru": "Well done — «молодец / отлично сделано». Друг сам приготовил вкусный обед, и вы хвалите результат: Well done! Это готовая похвала; слова идут именно в таком порядке. Выберите её.",
+        "uk": "Well done — «молодець / чудово зроблено». Друг сам приготував смачний обід, і ви хвалите результат: Well done! Це готова похвала; слова йдуть саме в такому порядку. Виберіть її."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r1",
+              "text": "Well done!"
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r2",
+              "text": "Done well!"
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r3",
+              "text": "Well do!"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r1",
+              "text": "Well done!"
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r2",
+              "text": "Done well!"
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro1:r3",
+              "text": "Well do!"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ничего страшного",
+        "uk": "Нічого страшного"
+      },
+      "bodyByLocale": {
+        "ru": "Never mind — «ничего страшного / неважно». Друг случайно принёс не ту ложку и извиняется. Вас это не беспокоит: Never mind. Здесь выражение успокаивает собеседника. Не стоит использовать его, чтобы отмахнуться от серьёзной проблемы. Выберите добрый ответ на эту мелкую ошибку.",
+        "uk": "Never mind — «нічого страшного / неважливо». Друг випадково приніс не ту ложку й перепрошує. Вас це не турбує: Never mind. Тут вислів заспокоює співрозмовника. Не варто використовувати його, щоб відмахнутися від серйозної проблеми. Виберіть добру відповідь на цю дрібну помилку."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r1",
+              "text": "Never mind."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r2",
+              "text": "Mind never."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r3",
+              "text": "Never minds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r1",
+              "text": "Never mind."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r2",
+              "text": "Mind never."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro2:r3",
+              "text": "Never minds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приятного аппетита и хорошего дня",
+        "uk": "Смачного й гарного дня"
+      },
+      "bodyByLocale": {
+        "ru": "Enjoy your meal — «приятного аппетита». Have a nice day — «хорошего дня». Это разные пожелания: первое говорят перед едой, второе — при прощании днём. Официант принёс вам обед. Выберите его пожелание перед едой.",
+        "uk": "Enjoy your meal — «смачного». Have a nice day — «гарного дня». Це різні побажання: перше кажуть перед їжею, друге — прощаючись удень. Офіціант приніс вам обід. Виберіть його побажання перед їжею."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r1",
+              "text": "Enjoy your meal."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r2",
+              "text": "Have a nice day."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r3",
+              "text": "Enjoys your meal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r1",
+              "text": "Enjoy your meal."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r2",
+              "text": "Have a nice day."
+            },
+            {
+              "responseId": "en:lesson-11:session-24:intro3:r3",
+              "text": "Enjoys your meal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "38118f3d4448462320b74e60e2835b81c02d21af064f12d214a57f6dc47bc355"
+}

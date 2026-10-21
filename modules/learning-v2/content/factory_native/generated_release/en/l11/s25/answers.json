@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-25:word:beach-towel",
+    "correctText": "beach towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i01",
+    "correctText": "Yesterday my beach towel was wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i02",
+    "correctText": "My beach towel is dry now.",
+    "correctResponseId": "en:lesson-11:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:word:sun-cream",
+    "correctText": "sun cream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i04",
+    "correctText": "Yesterday the sun cream was on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i05",
+    "correctText": "The sun cream is in my bag now.",
+    "correctResponseId": "en:lesson-11:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:word:sun-hat",
+    "correctText": "sun hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i07",
+    "correctText": "Yesterday my sun hat was on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i08",
+    "correctText": "My sun hat was wet yesterday.",
+    "correctResponseId": "en:lesson-11:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:word:flip-flops",
+    "correctText": "flip-flops",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i10",
+    "correctText": "Yesterday my flip-flops were wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i11",
+    "correctText": "My flip-flops are clean now.",
+    "correctResponseId": "en:lesson-11:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i13",
+    "correctText": "en:lesson-11:session-25:i13:p1=beach towel\nen:lesson-11:session-25:i13:p2=sun cream\nen:lesson-11:session-25:i13:p3=sun hat\nen:lesson-11:session-25:i13:p4=flip-flops",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i14",
+    "correctText": "My beach towel was on the chair yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i15",
+    "correctText": "My flip-flops are next to the door now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i16",
+    "correctText": "My sun hat was dirty yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-25:i17",
+    "correctText": "The sun cream is in my bag now.",
+    "correctResponseId": null
+  }
+]

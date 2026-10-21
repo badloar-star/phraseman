@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-23:intro1:r2": {
+          "ru": "В просьбе нужна начальная форма take.",
+          "uk": "У проханні потрібна початкова форма take."
+        },
+        "en:lesson-11:session-23:intro1:r3": {
+          "ru": "В просьбе не добавляем -s.",
+          "uk": "У проханні не додаємо -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-23:intro2:r2": {
+          "ru": "В выражении нужен a: have a look.",
+          "uk": "У вислові потрібне a: have a look."
+        },
+        "en:lesson-11:session-23:intro2:r3": {
+          "ru": "В просьбе используем have, не has.",
+          "uk": "У проханні використовуємо have, не has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-23:intro3:r2": {
+          "ru": "Hurry up просит поторопиться, а вам нужно время.",
+          "uk": "Hurry up просить поквапитися, а вам потрібен час."
+        },
+        "en:lesson-11:session-23:intro3:r3": {
+          "ru": "В просьбе нужна форма wait без -s.",
+          "uk": "У проханні потрібна форма wait без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1cdaaecf4024ef448b7332f83831a82f54579df9cc82b5225143c1c79962a281"
+}

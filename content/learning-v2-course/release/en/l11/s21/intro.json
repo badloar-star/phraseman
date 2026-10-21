@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "there was / there were; was / were",
+    "uk": "there was / there were; was / were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Котёнок",
+        "uk": "Кошеня"
+      },
+      "bodyByLocale": {
+        "ru": "Kitten — «котёнок». Вчера у подруги на кухне был котёнок: There was a kitten in the kitchen. Если котят два: There were two kittens. Когда спрашиваем о знакомом котёнке: Was the kitten hungry? — «Котёнок был голодным?» Выберите вопрос о котёнке.",
+        "uk": "Kitten — «кошеня». Учора в подруги на кухні було кошеня: There was a kitten in the kitchen. Якщо кошенят двоє: There were two kittens. Коли запитуємо про знайоме кошеня: Was the kitten hungry? — «Кошеня було голодне?» Виберіть запитання про кошеня."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r1",
+              "text": "Was the kitten hungry?"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r2",
+              "text": "Were the kitten hungry?"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r3",
+              "text": "Did the kitten was hungry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r1",
+              "text": "Was the kitten hungry?"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r2",
+              "text": "Were the kitten hungry?"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro1:r3",
+              "text": "Did the kitten was hungry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Зоомагазин и корм",
+        "uk": "Зоомагазин і корм"
+      },
+      "bodyByLocale": {
+        "ru": "Pet shop — «зоомагазин», pet food — «корм для домашних животных». Вспоминая прежний район: There was a pet shop near our house — «Рядом с нашим домом был зоомагазин». Корм не считаем по штукам: There was pet food in the bowl — «В миске был корм». Перед pet food здесь нет a. Выберите фразу о корме в миске.",
+        "uk": "Pet shop — «зоомагазин», pet food — «корм для домашніх тварин». Згадуючи колишній район: There was a pet shop near our house — «Поруч із нашим будинком був зоомагазин». Корм не рахуємо по штуках: There was pet food in the bowl — «У мисці був корм». Перед pet food тут немає a. Виберіть фразу про корм у мисці."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r1",
+              "text": "There was pet food in the bowl."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r2",
+              "text": "There were pet food in the bowl."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r3",
+              "text": "There was a pet food in the bowl."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r1",
+              "text": "There was pet food in the bowl."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r2",
+              "text": "There were pet food in the bowl."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro2:r3",
+              "text": "There was a pet food in the bowl."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поводок",
+        "uk": "Повідець"
+      },
+      "bodyByLocale": {
+        "ru": "Dog lead — «поводок для собаки», обычное британское название. Вчера рядом с дверью лежал поводок: There was a dog lead next to the door. Сейчас вы ищете его: I am looking for it right now. Выберите фразу о том, что было рядом с дверью вчера.",
+        "uk": "Dog lead — «повідець для собаки», звичайна британська назва. Учора поруч із дверима лежав повідець: There was a dog lead next to the door. Зараз ви шукаєте його: I am looking for it right now. Виберіть фразу про те, що було поруч із дверима вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r1",
+              "text": "There was a dog lead next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r2",
+              "text": "There is a dog lead next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r3",
+              "text": "There were a dog lead next to the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r1",
+              "text": "There was a dog lead next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r2",
+              "text": "There is a dog lead next to the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-21:intro3:r3",
+              "text": "There were a dog lead next to the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a0a255a31968b3cb3a804bd03830ed3750356ff27f901f6b9ebebbe468a14aab"
+}

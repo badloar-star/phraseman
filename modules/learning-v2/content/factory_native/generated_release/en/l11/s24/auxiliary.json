@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-24:intro1:r2": {
+          "ru": "Для самостоятельной похвалы используем Well done!",
+          "uk": "Для окремої похвали використовуємо Well done!"
+        },
+        "en:lesson-11:session-24:intro1:r3": {
+          "ru": "В готовом выражении нужно done.",
+          "uk": "У готовому вислові потрібне done."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-24:intro2:r2": {
+          "ru": "В выражении сначала never, затем mind.",
+          "uk": "У вислові спочатку never, потім mind."
+        },
+        "en:lesson-11:session-24:intro2:r3": {
+          "ru": "В готовом выражении нет окончания -s.",
+          "uk": "У готовому вислові немає закінчення -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-24:intro3:r2": {
+          "ru": "Это пожелание при прощании, а сейчас подают еду.",
+          "uk": "Це побажання під час прощання, а зараз подають їжу."
+        },
+        "en:lesson-11:session-24:intro3:r3": {
+          "ru": "В пожелании нужна форма enjoy без -s.",
+          "uk": "У побажанні потрібна форма enjoy без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e1de083da15c6a1e6c218115dbb7fefa07bffe1f9aa6ec02748a2e8ea25c61c5"
+}

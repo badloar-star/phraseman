@@ -1,0 +1,1140 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-24:word:well-done",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — well done",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:word:well-done:audio"
+      ],
+      "accessibilityLabel": "Картка слова — well done",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:word:well-done:audio",
+          "transcript": "well done"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:word:well-done:r1",
+            "targetText": "well done",
+            "meaningByLocale": {
+              "ru": "молодец, отлично сделано. Готовая похвала.",
+              "uk": "молодець, чудово зроблено. Готова похвала."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "well done",
+          "definitionByLocale": {
+            "ru": "молодец, отлично сделано. Готовая похвала.",
+            "uk": "молодець, чудово зроблено. Готова похвала."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Похваліть друга: молодець",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похваліть друга: молодець",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Well done.",
+        "localizedMeaning": {
+          "ru": "Похвалите друга: молодец",
+          "uk": "Похваліть друга: молодець"
+        },
+        "orderedTokens": [
+          "Well",
+          "done"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i02:r1",
+          "text": "Well done."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i02:r2",
+          "text": "Thank you."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i02:r3",
+          "text": "Good morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i02:audio",
+          "transcript": "Well done."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:i02:r1",
+            "targetText": "Well done.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i02:r2",
+            "targetText": "Thank you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i02:r3",
+            "targetText": "Good morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Well done.",
+              "uk": "У записі звучить Well done."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Well done.",
+              "uk": "У записі звучить Well done."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сам приготував обід. Похваліть його",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i03:r1",
+          "text": "done"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i03:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i03:r3",
+          "text": "doing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сам приготував обід. Похваліть його",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сам приготовил обед. Похвалите его",
+          "uk": "Друг сам приготував обід. Похваліть його"
+        },
+        "gappedTargetPhrase": "Well ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-24:i03:r1",
+            "text": "done"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i03:r3",
+            "text": "doing"
+          }
+        ],
+        "testedDimension": "Друг сам приготував обід. Похваліть його",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг сам приготував обід. Похваліть його",
+            "feedbackByLocale": {
+              "ru": "Готовая похвала: well done.",
+              "uk": "Готова похвала: well done."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг сам приготував обід. Похваліть його",
+            "feedbackByLocale": {
+              "ru": "В этом выражении нужно done.",
+              "uk": "У цьому вислові потрібно done."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:word:never-mind",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — never mind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:word:never-mind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — never mind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:word:never-mind:audio",
+          "transcript": "never mind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:word:never-mind:r1",
+            "targetText": "never mind",
+            "meaningByLocale": {
+              "ru": "ничего страшного, неважно. Ответ на небольшую неприятность.",
+              "uk": "нічого страшного, неважливо. Відповідь на невелику прикрість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "never mind",
+          "definitionByLocale": {
+            "ru": "ничего страшного, неважно. Ответ на небольшую неприятность.",
+            "uk": "нічого страшного, неважливо. Відповідь на невелику прикрість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг перепрошує за невелику помилку. Відповідайте: нічого страшного",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг перепрошує за невелику помилку. Відповідайте: нічого страшного",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Never mind.",
+        "localizedMeaning": {
+          "ru": "Друг извиняется за небольшую ошибку. Ответьте: ничего страшного",
+          "uk": "Друг перепрошує за невелику помилку. Відповідайте: нічого страшного"
+        },
+        "orderedTokens": [
+          "Never",
+          "mind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i05:r1",
+          "text": "Never mind."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i05:r2",
+          "text": "Well done."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i05:r3",
+          "text": "Thank you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i05:audio",
+          "transcript": "Never mind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:i05:r1",
+            "targetText": "Never mind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i05:r2",
+            "targetText": "Well done.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i05:r3",
+            "targetText": "Thank you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Never mind.",
+              "uk": "У записі звучить Never mind."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Never mind.",
+              "uk": "У записі звучить Never mind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Чужа дрібна помилка вас не турбує. Завершіть відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i06:r1",
+          "text": "mind"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i06:r2",
+          "text": "minds"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i06:r3",
+          "text": "minding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чужа дрібна помилка вас не турбує. Завершіть відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Чужая мелкая ошибка вас не беспокоит. Завершите ответ",
+          "uk": "Чужа дрібна помилка вас не турбує. Завершіть відповідь"
+        },
+        "gappedTargetPhrase": "Never ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-24:i06:r1",
+            "text": "mind"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i06:r2",
+            "text": "minds"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i06:r3",
+            "text": "minding"
+          }
+        ],
+        "testedDimension": "Чужа дрібна помилка вас не турбує. Завершіть відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Чужа дрібна помилка вас не турбує. Завершіть відповідь",
+            "feedbackByLocale": {
+              "ru": "В выражении mind без -s.",
+              "uk": "У вислові mind без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Чужа дрібна помилка вас не турбує. Завершіть відповідь",
+            "feedbackByLocale": {
+              "ru": "Готовое выражение: never mind.",
+              "uk": "Готовий вислів: never mind."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:word:enjoy-your-meal",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — enjoy your meal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:word:enjoy-your-meal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — enjoy your meal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:word:enjoy-your-meal:audio",
+          "transcript": "enjoy your meal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:word:enjoy-your-meal:r1",
+            "targetText": "enjoy your meal",
+            "meaningByLocale": {
+              "ru": "приятного аппетита. Пожелание перед едой.",
+              "uk": "смачного. Побажання перед їжею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enjoy your meal",
+          "definitionByLocale": {
+            "ru": "приятного аппетита. Пожелание перед едой.",
+            "uk": "смачного. Побажання перед їжею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Побажайте смачного",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Побажайте смачного",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Enjoy your meal.",
+        "localizedMeaning": {
+          "ru": "Пожелайте приятного аппетита",
+          "uk": "Побажайте смачного"
+        },
+        "orderedTokens": [
+          "Enjoy",
+          "your",
+          "meal"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i08:r1",
+          "text": "Enjoy your meal."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i08:r2",
+          "text": "Never mind."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i08:r3",
+          "text": "Well done."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i08:audio",
+          "transcript": "Enjoy your meal."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:i08:r1",
+            "targetText": "Enjoy your meal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i08:r2",
+            "targetText": "Never mind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i08:r3",
+            "targetText": "Well done.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Enjoy your meal.",
+              "uk": "У записі звучить Enjoy your meal."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Enjoy your meal.",
+              "uk": "У записі звучить Enjoy your meal."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви подаєте другові обід. Побажайте смачного",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i09:r1",
+          "text": "Enjoy"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i09:r2",
+          "text": "Enjoys"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i09:r3",
+          "text": "Enjoying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви подаєте другові обід. Побажайте смачного",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы подаёте другу обед. Пожелайте приятного аппетита",
+          "uk": "Ви подаєте другові обід. Побажайте смачного"
+        },
+        "gappedTargetPhrase": "___ your meal.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-24:i09:r1",
+            "text": "Enjoy"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i09:r2",
+            "text": "Enjoys"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i09:r3",
+            "text": "Enjoying"
+          }
+        ],
+        "testedDimension": "Ви подаєте другові обід. Побажайте смачного",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви подаєте другові обід. Побажайте смачного",
+            "feedbackByLocale": {
+              "ru": "В пожелании нужна форма enjoy без -s.",
+              "uk": "У побажанні потрібна форма enjoy без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви подаєте другові обід. Побажайте смачного",
+            "feedbackByLocale": {
+              "ru": "Начинаем пожелание с Enjoy.",
+              "uk": "Починаємо побажання з Enjoy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:word:have-a-nice-day",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — have a nice day",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:word:have-a-nice-day:audio"
+      ],
+      "accessibilityLabel": "Картка слова — have a nice day",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:word:have-a-nice-day:audio",
+          "transcript": "have a nice day"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:word:have-a-nice-day:r1",
+            "targetText": "have a nice day",
+            "meaningByLocale": {
+              "ru": "хорошего дня. Пожелание при прощании.",
+              "uk": "гарного дня. Побажання під час прощання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "have a nice day",
+          "definitionByLocale": {
+            "ru": "хорошего дня. Пожелание при прощании.",
+            "uk": "гарного дня. Побажання під час прощання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Побажайте гарного дня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Побажайте гарного дня",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have a nice day.",
+        "localizedMeaning": {
+          "ru": "Пожелайте хорошего дня",
+          "uk": "Побажайте гарного дня"
+        },
+        "orderedTokens": [
+          "Have",
+          "a",
+          "nice",
+          "day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i11:r1",
+          "text": "Have a nice day."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i11:r2",
+          "text": "Enjoy your meal."
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i11:r3",
+          "text": "Never mind."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i11:audio",
+          "transcript": "Have a nice day."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-24:i11:r1",
+            "targetText": "Have a nice day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i11:r2",
+            "targetText": "Enjoy your meal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i11:r3",
+            "targetText": "Never mind.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have a nice day.",
+              "uk": "У записі звучить Have a nice day."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have a nice day.",
+              "uk": "У записі звучить Have a nice day."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попрощайтеся з покупцем і побажайте гарного дня",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i12:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i12:r3",
+          "text": "two"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попрощайтеся з покупцем і побажайте гарного дня",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попрощайтесь с покупателем и пожелайте хорошего дня",
+          "uk": "Попрощайтеся з покупцем і побажайте гарного дня"
+        },
+        "gappedTargetPhrase": "Have ___ nice day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-24:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i12:r3",
+            "text": "two"
+          }
+        ],
+        "testedDimension": "Попрощайтеся з покупцем і побажайте гарного дня",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Попрощайтеся з покупцем і побажайте гарного дня",
+            "feedbackByLocale": {
+              "ru": "Перед nice нужен a, не an.",
+              "uk": "Перед nice потрібне a, не an."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Попрощайтеся з покупцем і побажайте гарного дня",
+            "feedbackByLocale": {
+              "ru": "В выражении have a nice day нужен a.",
+              "uk": "У вислові have a nice day потрібне a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-24:i13:p1",
+            "target": "well done",
+            "meaningByLocale": {
+              "ru": "молодец",
+              "uk": "молодець"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-24:i13:p2",
+            "target": "never mind",
+            "meaningByLocale": {
+              "ru": "ничего страшного",
+              "uk": "нічого страшного"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-24:i13:p3",
+            "target": "enjoy your meal",
+            "meaningByLocale": {
+              "ru": "приятного аппетита",
+              "uk": "смачного"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-24:i13:p4",
+            "target": "have a nice day",
+            "meaningByLocale": {
+              "ru": "хорошего дня",
+              "uk": "гарного дня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "well done",
+          "never mind",
+          "enjoy your meal",
+          "have a nice day"
+        ],
+        "rightColumn": [
+          "молодець",
+          "нічого страшного",
+          "смачного",
+          "гарного дня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i14:audio",
+          "transcript": "There was a cake on the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There was a cake on the table.",
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "cake",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора друзі були раді. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-24:i15:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i15:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-24:i15:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора друзі були раді. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера друзья были рады. Выберите форму",
+          "uk": "Учора друзі були раді. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My friends ___ happy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-24:i15:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i15:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i15:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Учора друзі були раді. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Учора друзі були раді. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько друзей: were.",
+              "uk": "Кілька друзів: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Учора друзі були раді. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Прошлое и множественное число: were.",
+              "uk": "Минулий час і множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що обід був смачний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що обід був смачний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i16:audio",
+          "transcript": "The lunch was delicious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lunch was delicious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-24:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга, чи був він радий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга, чи був він радий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-24:i17:audio",
+          "transcript": "Were you happy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were you happy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5774cff9691c22ed06e84a3ed21b50630b4580f413b4182e46c0599a3560d842"
+}

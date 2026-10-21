@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-22:word:mum",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:mum:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:mum:audio",
+            "transcript": "mum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:mum:r1",
+              "targetText": "mum",
+              "meaningByLocale": {
+                "ru": "мама. Разговорное семейное слово.",
+                "uk": "мама. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mum",
+            "definitionByLocale": {
+              "ru": "мама. Разговорное семейное слово.",
+              "uk": "мама. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что ваша мама была в саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что ваша мама была в саду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My mum was in the garden.",
+          "localizedMeaning": {
+            "ru": "Скажите, что ваша мама была в саду",
+            "uk": "Скажіть, що ваша мама була в саду"
+          },
+          "orderedTokens": [
+            "My",
+            "mum",
+            "was",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i02:r1",
+            "text": "Was your mum at home?"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i02:r2",
+            "text": "Your mum was at home."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i02:r3",
+            "text": "Was your mum in the garden?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i02:audio",
+            "transcript": "Was your mum at home?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i02:r1",
+              "targetText": "Was your mum at home?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r2",
+              "targetText": "Your mum was at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r3",
+              "targetText": "Was your mum in the garden?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your mum at home?",
+                "uk": "У записі звучить Was your mum at home?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your mum at home?",
+                "uk": "У записі звучить Was your mum at home?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша мама вчера была уставшей. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша мама вчера была уставшей. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша мама вчера была уставшей. Выберите форму",
+            "uk": "Ваша мама вчора була втомлена. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My mum ___ tired.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ваша мама вчера была уставшей. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Ваша мама вчера была уставшей. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один человек: was.",
+                "uk": "Одна людина: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Ваша мама вчера была уставшей. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Здесь прошлое и один человек: was.",
+                "uk": "Тут минулий час і одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:dad",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:dad:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:dad:audio",
+            "transcript": "dad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:dad:r1",
+              "targetText": "dad",
+              "meaningByLocale": {
+                "ru": "папа. Разговорное семейное слово.",
+                "uk": "тато. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dad",
+            "definitionByLocale": {
+              "ru": "папа. Разговорное семейное слово.",
+              "uk": "тато. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите друга, был ли его папа дома",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга, был ли его папа дома",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your dad at home?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли его папа дома",
+            "uk": "Запитайте друга, чи був його тато вдома"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "dad",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i05:r1",
+            "text": "My dad was not in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i05:r2",
+            "text": "My dad was in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i05:r3",
+            "text": "My dad was not in the garden."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i05:audio",
+            "transcript": "My dad was not in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i05:r1",
+              "targetText": "My dad was not in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r2",
+              "targetText": "My dad was in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r3",
+              "targetText": "My dad was not in the garden.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My dad was not in the kitchen.",
+                "uk": "У записі звучить My dad was not in the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My dad was not in the kitchen.",
+                "uk": "У записі звучить My dad was not in the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама и папа были в саду. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама и папа были в саду. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама и папа были в саду. Выберите форму",
+            "uk": "Мама й тато були в саду. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My mum and dad ___ in the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Мама и папа были в саду. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Мама и папа были в саду. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два человека: were.",
+                "uk": "Дві людини: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Мама и папа были в саду. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом о двух людях: were.",
+                "uk": "У минулому про двох людей: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:grandma",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grandma",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:grandma:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grandma",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:grandma:audio",
+            "transcript": "grandma"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:grandma:r1",
+              "targetText": "grandma",
+              "meaningByLocale": {
+                "ru": "бабушка. Разговорное семейное слово.",
+                "uk": "бабуся. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grandma",
+            "definitionByLocale": {
+              "ru": "бабушка. Разговорное семейное слово.",
+              "uk": "бабуся. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что ваша бабушка была на кухне",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что ваша бабушка была на кухне",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandma was in the kitchen.",
+          "localizedMeaning": {
+            "ru": "Скажите, что ваша бабушка была на кухне",
+            "uk": "Скажіть, що ваша бабуся була на кухні"
+          },
+          "orderedTokens": [
+            "My",
+            "grandma",
+            "was",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i08:r1",
+            "text": "Was your grandma tired?"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i08:r2",
+            "text": "Your grandma was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i08:r3",
+            "text": "Was your grandma hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i08:audio",
+            "transcript": "Was your grandma tired?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i08:r1",
+              "targetText": "Was your grandma tired?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r2",
+              "targetText": "Your grandma was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r3",
+              "targetText": "Was your grandma hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your grandma tired?",
+                "uk": "У записі звучить Was your grandma tired?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your grandma tired?",
+                "uk": "У записі звучить Was your grandma tired?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i09:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+            "uk": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь"
+          },
+          "gappedTargetPhrase": "Yes, she ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+              "feedbackByLocale": {
+                "ru": "С she нужна was.",
+                "uk": "Із she потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+              "feedbackByLocale": {
+                "ru": "Ответ на вопрос с was: was.",
+                "uk": "Відповідь на запитання з was: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:grandpa",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grandpa",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:grandpa:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grandpa",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:grandpa:audio",
+            "transcript": "grandpa"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:grandpa:r1",
+              "targetText": "grandpa",
+              "meaningByLocale": {
+                "ru": "дедушка. Разговорное семейное слово.",
+                "uk": "дідусь. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grandpa",
+            "definitionByLocale": {
+              "ru": "дедушка. Разговорное семейное слово.",
+              "uk": "дідусь. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите друга, был ли его дедушка в саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга, был ли его дедушка в саду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your grandpa in the garden?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли его дедушка в саду",
+            "uk": "Запитайте друга, чи був його дідусь у саду"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "grandpa",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i11:r1",
+            "text": "My grandma and grandpa were at home."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i11:r2",
+            "text": "My grandma and grandpa were in the garden."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i11:r3",
+            "text": "My grandma was at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i11:audio",
+            "transcript": "My grandma and grandpa were at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i11:r1",
+              "targetText": "My grandma and grandpa were at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r2",
+              "targetText": "My grandma and grandpa were in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r3",
+              "targetText": "My grandma was at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My grandma and grandpa were at home.",
+                "uk": "У записі звучить My grandma and grandpa were at home."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My grandma and grandpa were at home.",
+                "uk": "У записі звучить My grandma and grandpa were at home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+            "uk": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "С he нужна wasn’t.",
+                "uk": "Із he потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-22:i13:p1",
+              "target": "mum",
+              "meaningByLocale": {
+                "ru": "мама",
+                "uk": "мама"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p2",
+              "target": "dad",
+              "meaningByLocale": {
+                "ru": "папа",
+                "uk": "тато"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p3",
+              "target": "grandma",
+              "meaningByLocale": {
+                "ru": "бабушка",
+                "uk": "бабуся"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p4",
+              "target": "grandpa",
+              "meaningByLocale": {
+                "ru": "дедушка",
+                "uk": "дідусь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mum",
+            "dad",
+            "grandma",
+            "grandpa"
+          ],
+          "rightColumn": [
+            "мама",
+            "папа",
+            "бабушка",
+            "дедушка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i14:audio",
+            "transcript": "Please don't wake my dad."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't wake my dad.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "wake",
+            "my",
+            "dad"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i15:audio",
+            "transcript": "My mum is cooking right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My mum is cooking right now.",
+          "orderedTokens": [
+            "My",
+            "mum",
+            "is",
+            "cooking",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что на столе был торт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что на столе был торт",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i16:audio",
+            "transcript": "There was a cake on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was a cake on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что ваш дедушка был не на кухне",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что ваш дедушка был не на кухне",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i17:audio",
+            "transcript": "My grandpa was not in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My grandpa was not in the kitchen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-22:word:mum",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:mum:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:mum:audio",
+            "transcript": "mum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:mum:r1",
+              "targetText": "mum",
+              "meaningByLocale": {
+                "ru": "мама. Разговорное семейное слово.",
+                "uk": "мама. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mum",
+            "definitionByLocale": {
+              "ru": "мама. Разговорное семейное слово.",
+              "uk": "мама. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що ваша мама була в саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що ваша мама була в саду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My mum was in the garden.",
+          "localizedMeaning": {
+            "ru": "Скажите, что ваша мама была в саду",
+            "uk": "Скажіть, що ваша мама була в саду"
+          },
+          "orderedTokens": [
+            "My",
+            "mum",
+            "was",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i02:r1",
+            "text": "Was your mum at home?"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i02:r2",
+            "text": "Your mum was at home."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i02:r3",
+            "text": "Was your mum in the garden?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i02:audio",
+            "transcript": "Was your mum at home?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i02:r1",
+              "targetText": "Was your mum at home?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r2",
+              "targetText": "Your mum was at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r3",
+              "targetText": "Was your mum in the garden?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your mum at home?",
+                "uk": "У записі звучить Was your mum at home?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your mum at home?",
+                "uk": "У записі звучить Was your mum at home?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша мама вчора була втомлена. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша мама вчора була втомлена. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша мама вчера была уставшей. Выберите форму",
+            "uk": "Ваша мама вчора була втомлена. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My mum ___ tired.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ваша мама вчора була втомлена. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Ваша мама вчора була втомлена. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один человек: was.",
+                "uk": "Одна людина: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Ваша мама вчора була втомлена. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Здесь прошлое и один человек: was.",
+                "uk": "Тут минулий час і одна людина: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:dad",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:dad:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:dad:audio",
+            "transcript": "dad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:dad:r1",
+              "targetText": "dad",
+              "meaningByLocale": {
+                "ru": "папа. Разговорное семейное слово.",
+                "uk": "тато. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dad",
+            "definitionByLocale": {
+              "ru": "папа. Разговорное семейное слово.",
+              "uk": "тато. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте друга, чи був його тато вдома",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте друга, чи був його тато вдома",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your dad at home?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли его папа дома",
+            "uk": "Запитайте друга, чи був його тато вдома"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "dad",
+            "at",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i05:r1",
+            "text": "My dad was not in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i05:r2",
+            "text": "My dad was in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i05:r3",
+            "text": "My dad was not in the garden."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i05:audio",
+            "transcript": "My dad was not in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i05:r1",
+              "targetText": "My dad was not in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r2",
+              "targetText": "My dad was in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r3",
+              "targetText": "My dad was not in the garden.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My dad was not in the kitchen.",
+                "uk": "У записі звучить My dad was not in the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My dad was not in the kitchen.",
+                "uk": "У записі звучить My dad was not in the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама й тато були в саду. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама й тато були в саду. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама и папа были в саду. Выберите форму",
+            "uk": "Мама й тато були в саду. Виберіть форму"
+          },
+          "gappedTargetPhrase": "My mum and dad ___ in the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Мама й тато були в саду. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Мама й тато були в саду. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два человека: were.",
+                "uk": "Дві людини: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Мама й тато були в саду. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом о двух людях: were.",
+                "uk": "У минулому про двох людей: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:grandma",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grandma",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:grandma:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grandma",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:grandma:audio",
+            "transcript": "grandma"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:grandma:r1",
+              "targetText": "grandma",
+              "meaningByLocale": {
+                "ru": "бабушка. Разговорное семейное слово.",
+                "uk": "бабуся. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grandma",
+            "definitionByLocale": {
+              "ru": "бабушка. Разговорное семейное слово.",
+              "uk": "бабуся. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що ваша бабуся була на кухні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що ваша бабуся була на кухні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandma was in the kitchen.",
+          "localizedMeaning": {
+            "ru": "Скажите, что ваша бабушка была на кухне",
+            "uk": "Скажіть, що ваша бабуся була на кухні"
+          },
+          "orderedTokens": [
+            "My",
+            "grandma",
+            "was",
+            "in",
+            "the",
+            "kitchen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i08:r1",
+            "text": "Was your grandma tired?"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i08:r2",
+            "text": "Your grandma was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i08:r3",
+            "text": "Was your grandma hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i08:audio",
+            "transcript": "Was your grandma tired?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i08:r1",
+              "targetText": "Was your grandma tired?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r2",
+              "targetText": "Your grandma was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r3",
+              "targetText": "Was your grandma hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your grandma tired?",
+                "uk": "У записі звучить Was your grandma tired?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was your grandma tired?",
+                "uk": "У записі звучить Was your grandma tired?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i09:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was your grandma at home? Она была дома. Ответьте утвердительно",
+            "uk": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь"
+          },
+          "gappedTargetPhrase": "Yes, she ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь",
+              "feedbackByLocale": {
+                "ru": "С she нужна was.",
+                "uk": "Із she потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was your grandma at home? Вона була вдома. Дайте ствердну відповідь",
+              "feedbackByLocale": {
+                "ru": "Ответ на вопрос с was: was.",
+                "uk": "Відповідь на запитання з was: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:word:grandpa",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grandpa",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:word:grandpa:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grandpa",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:word:grandpa:audio",
+            "transcript": "grandpa"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:word:grandpa:r1",
+              "targetText": "grandpa",
+              "meaningByLocale": {
+                "ru": "дедушка. Разговорное семейное слово.",
+                "uk": "дідусь. Розмовне сімейне слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grandpa",
+            "definitionByLocale": {
+              "ru": "дедушка. Разговорное семейное слово.",
+              "uk": "дідусь. Розмовне сімейне слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте друга, чи був його дідусь у саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте друга, чи був його дідусь у саду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was your grandpa in the garden?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли его дедушка в саду",
+            "uk": "Запитайте друга, чи був його дідусь у саду"
+          },
+          "orderedTokens": [
+            "Was",
+            "your",
+            "grandpa",
+            "in",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i11:r1",
+            "text": "My grandma and grandpa were at home."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i11:r2",
+            "text": "My grandma and grandpa were in the garden."
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i11:r3",
+            "text": "My grandma was at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i11:audio",
+            "transcript": "My grandma and grandpa were at home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-22:i11:r1",
+              "targetText": "My grandma and grandpa were at home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r2",
+              "targetText": "My grandma and grandpa were in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r3",
+              "targetText": "My grandma was at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My grandma and grandpa were at home.",
+                "uk": "У записі звучить My grandma and grandpa were at home."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My grandma and grandpa were at home.",
+                "uk": "У записі звучить My grandma and grandpa were at home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-22:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-22:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was your grandpa hungry? Он только что поел и голодным не был. Ответьте отрицательно",
+            "uk": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-22:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "С he нужна wasn’t.",
+                "uk": "Із he потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was your grandpa hungry? Він щойно поїв і не був голодний. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-22:i13:p1",
+              "target": "mum",
+              "meaningByLocale": {
+                "ru": "мама",
+                "uk": "мама"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p2",
+              "target": "dad",
+              "meaningByLocale": {
+                "ru": "папа",
+                "uk": "тато"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p3",
+              "target": "grandma",
+              "meaningByLocale": {
+                "ru": "бабушка",
+                "uk": "бабуся"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-22:i13:p4",
+              "target": "grandpa",
+              "meaningByLocale": {
+                "ru": "дедушка",
+                "uk": "дідусь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mum",
+            "dad",
+            "grandma",
+            "grandpa"
+          ],
+          "rightColumn": [
+            "мама",
+            "тато",
+            "бабуся",
+            "дідусь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i14:audio",
+            "transcript": "Please don't wake my dad."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't wake my dad.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "wake",
+            "my",
+            "dad"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i15:audio",
+            "transcript": "My mum is cooking right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My mum is cooking right now.",
+          "orderedTokens": [
+            "My",
+            "mum",
+            "is",
+            "cooking",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що на столі був торт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що на столі був торт",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i16:audio",
+            "transcript": "There was a cake on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was a cake on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ваш дідусь був не на кухні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ваш дідусь був не на кухні",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-22:i17:audio",
+            "transcript": "My grandpa was not in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My grandpa was not in the kitchen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-22:word:mum",
+      "correctText": "mum",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i01",
+      "correctText": "My mum was in the garden.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i02",
+      "correctText": "Was your mum at home?",
+      "correctResponseId": "en:lesson-11:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:word:dad",
+      "correctText": "dad",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i04",
+      "correctText": "Was your dad at home?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i05",
+      "correctText": "My dad was not in the kitchen.",
+      "correctResponseId": "en:lesson-11:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:word:grandma",
+      "correctText": "grandma",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i07",
+      "correctText": "My grandma was in the kitchen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i08",
+      "correctText": "Was your grandma tired?",
+      "correctResponseId": "en:lesson-11:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:word:grandpa",
+      "correctText": "grandpa",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i10",
+      "correctText": "Was your grandpa in the garden?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i11",
+      "correctText": "My grandma and grandpa were at home.",
+      "correctResponseId": "en:lesson-11:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i12",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i14",
+      "correctText": "Please don't wake my dad.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i15",
+      "correctText": "My mum is cooking right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i16",
+      "correctText": "There was a cake on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:i17",
+      "correctText": "My grandpa was not in the kitchen.",
+      "correctResponseId": null
+    }
+  ]
+}

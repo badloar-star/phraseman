@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-24:word:well-done",
+    "correctText": "well done",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i01",
+    "correctText": "Well done.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i02",
+    "correctText": "Well done.",
+    "correctResponseId": "en:lesson-11:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i03",
+    "correctText": "done",
+    "correctResponseId": "en:lesson-11:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:word:never-mind",
+    "correctText": "never mind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i04",
+    "correctText": "Never mind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i05",
+    "correctText": "Never mind.",
+    "correctResponseId": "en:lesson-11:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i06",
+    "correctText": "mind",
+    "correctResponseId": "en:lesson-11:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:word:enjoy-your-meal",
+    "correctText": "enjoy your meal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i07",
+    "correctText": "Enjoy your meal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i08",
+    "correctText": "Enjoy your meal.",
+    "correctResponseId": "en:lesson-11:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i09",
+    "correctText": "Enjoy",
+    "correctResponseId": "en:lesson-11:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:word:have-a-nice-day",
+    "correctText": "have a nice day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i10",
+    "correctText": "Have a nice day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i11",
+    "correctText": "Have a nice day.",
+    "correctResponseId": "en:lesson-11:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i12",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-11:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i13",
+    "correctText": "en:lesson-11:session-24:i13:p1=well done\nen:lesson-11:session-24:i13:p2=never mind\nen:lesson-11:session-24:i13:p3=enjoy your meal\nen:lesson-11:session-24:i13:p4=have a nice day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i14",
+    "correctText": "There was a cake on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i15",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i16",
+    "correctText": "The lunch was delicious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-24:i17",
+    "correctText": "Were you happy?",
+    "correctResponseId": null
+  }
+]

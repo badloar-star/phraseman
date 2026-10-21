@@ -1,0 +1,2381 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-23:word:take-a-seat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take a seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:take-a-seat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take a seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:take-a-seat:audio",
+            "transcript": "take a seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:take-a-seat:r1",
+              "targetText": "take a seat",
+              "meaningByLocale": {
+                "ru": "присаживайся или присаживайтесь. Готовое приглашение сесть.",
+                "uk": "сідай або сідайте. Готове запрошення сісти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a seat",
+            "definitionByLocale": {
+              "ru": "присаживайся или присаживайтесь. Готовое приглашение сесть.",
+              "uk": "сідай або сідайте. Готове запрошення сісти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо предложите гостю сесть. Начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо предложите гостю сесть. Начните с Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please take a seat.",
+          "localizedMeaning": {
+            "ru": "Вежливо предложите гостю сесть. Начните с Please",
+            "uk": "Ввічливо запропонуйте гостеві сісти. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "take",
+            "a",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i02:r1",
+            "text": "Take a seat, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i02:r2",
+            "text": "Please take your bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i02:r3",
+            "text": "Please take your coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i02:audio",
+            "transcript": "Take a seat, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i02:r1",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r2",
+              "targetText": "Please take your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r3",
+              "targetText": "Please take your coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Take a seat, please.",
+                "uk": "У записі звучить Take a seat, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Take a seat, please.",
+                "uk": "У записі звучить Take a seat, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригласите друга присесть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i03:r1",
+            "text": "Take"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i03:r2",
+            "text": "Takes"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i03:r3",
+            "text": "Taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригласите друга присесть",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пригласите друга присесть",
+            "uk": "Запросіть друга сісти"
+          },
+          "gappedTargetPhrase": "___ a seat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i03:r1",
+              "text": "Take"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r2",
+              "text": "Takes"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r3",
+              "text": "Taking"
+            }
+          ],
+          "testedDimension": "Пригласите друга присесть",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Пригласите друга присесть",
+              "feedbackByLocale": {
+                "ru": "В приглашении не нужно -s.",
+                "uk": "У запрошенні не потрібне -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Пригласите друга присесть",
+              "feedbackByLocale": {
+                "ru": "Нужна начальная форма take.",
+                "uk": "Потрібна початкова форма take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:have-a-look",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — have a look",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:have-a-look:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — have a look",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:have-a-look:audio",
+            "transcript": "have a look"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:have-a-look:r1",
+              "targetText": "have a look",
+              "meaningByLocale": {
+                "ru": "взгляни, посмотри.",
+                "uk": "поглянь, подивись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a look",
+            "definitionByLocale": {
+              "ru": "взгляни, посмотри.",
+              "uk": "поглянь, подивись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите посмотреть на фото",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите посмотреть на фото",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have a look at this photo.",
+          "localizedMeaning": {
+            "ru": "Попросите посмотреть на фото",
+            "uk": "Попросіть подивитися на фото"
+          },
+          "orderedTokens": [
+            "Have",
+            "a",
+            "look",
+            "at",
+            "this",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i05:r1",
+            "text": "Have a look at this bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i05:r2",
+            "text": "Have a look at this coat."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i05:r3",
+            "text": "Have a look at this photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i05:audio",
+            "transcript": "Have a look at this bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i05:r1",
+              "targetText": "Have a look at this bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r2",
+              "targetText": "Have a look at this coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r3",
+              "targetText": "Have a look at this photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a look at this bag.",
+                "uk": "У записі звучить Have a look at this bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a look at this bag.",
+                "uk": "У записі звучить Have a look at this bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Предложите другу взглянуть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i06:r3",
+            "text": "two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите другу взглянуть",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Предложите другу взглянуть",
+            "uk": "Запропонуйте другові поглянути"
+          },
+          "gappedTargetPhrase": "Have ___ look.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r3",
+              "text": "two"
+            }
+          ],
+          "testedDimension": "Предложите другу взглянуть",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Предложите другу взглянуть",
+              "feedbackByLocale": {
+                "ru": "Перед звуком l нужен a, не an.",
+                "uk": "Перед звуком l потрібне a, не an."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Предложите другу взглянуть",
+              "feedbackByLocale": {
+                "ru": "В готовом выражении have a look нужен a.",
+                "uk": "У готовому вислові have a look потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:hurry-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hurry up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:hurry-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hurry up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:hurry-up:audio",
+            "transcript": "hurry up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:hurry-up:r1",
+              "targetText": "hurry up",
+              "meaningByLocale": {
+                "ru": "поторопись или поторопитесь. Прямая просьба ускориться.",
+                "uk": "поквапся або покваптеся. Пряме прохання прискоритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hurry up",
+            "definitionByLocale": {
+              "ru": "поторопись или поторопитесь. Прямая просьба ускориться.",
+              "uk": "поквапся або покваптеся. Пряме прохання прискоритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите друга поторопиться. Начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите друга поторопиться. Начните с Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please hurry up.",
+          "localizedMeaning": {
+            "ru": "Попросите друга поторопиться. Начните с Please",
+            "uk": "Попросіть друга поквапитися. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "hurry",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i08:r1",
+            "text": "Hurry up, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i08:r2",
+            "text": "Take a seat, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i08:r3",
+            "text": "Have a look, please."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i08:audio",
+            "transcript": "Hurry up, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i08:r1",
+              "targetText": "Hurry up, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r2",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r3",
+              "targetText": "Have a look, please.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Hurry up, please.",
+                "uk": "У записі звучить Hurry up, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Hurry up, please.",
+                "uk": "У записі звучить Hurry up, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Попросите поторопиться",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i09:r1",
+            "text": "up"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i09:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите поторопиться",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Попросите поторопиться",
+            "uk": "Попросіть поквапитися"
+          },
+          "gappedTargetPhrase": "Hurry ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i09:r1",
+              "text": "up"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r2",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Попросите поторопиться",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Попросите поторопиться",
+              "feedbackByLocale": {
+                "ru": "Выражение hurry up, без at.",
+                "uk": "Вислів hurry up, без at."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Попросите поторопиться",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно up.",
+                "uk": "Тут потрібно up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:wait-a-moment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wait a moment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:wait-a-moment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wait a moment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:wait-a-moment:audio",
+            "transcript": "wait a moment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:wait-a-moment:r1",
+              "targetText": "wait a moment",
+              "meaningByLocale": {
+                "ru": "подожди минутку или подождите минутку.",
+                "uk": "зачекай хвилинку або зачекайте хвилинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wait a moment",
+            "definitionByLocale": {
+              "ru": "подожди минутку или подождите минутку.",
+              "uk": "зачекай хвилинку або зачекайте хвилинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо попросите подождать минутку. Начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо попросите подождать минутку. Начните с Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please wait a moment.",
+          "localizedMeaning": {
+            "ru": "Вежливо попросите подождать минутку. Начните с Please",
+            "uk": "Ввічливо попросіть зачекати хвилинку. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "wait",
+            "a",
+            "moment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i11:r1",
+            "text": "Wait a moment, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i11:r2",
+            "text": "Hurry up, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i11:r3",
+            "text": "Take a seat, please."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i11:audio",
+            "transcript": "Wait a moment, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i11:r1",
+              "targetText": "Wait a moment, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r2",
+              "targetText": "Hurry up, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r3",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Wait a moment, please.",
+                "uk": "У записі звучить Wait a moment, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Wait a moment, please.",
+                "uk": "У записі звучить Wait a moment, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i12:r1",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i12:r2",
+            "text": "waits"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i12:r3",
+            "text": "waiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+            "uk": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання"
+          },
+          "gappedTargetPhrase": "Please ___ a moment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i12:r1",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r2",
+              "text": "waits"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r3",
+              "text": "waiting"
+            }
+          ],
+          "testedDimension": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+              "feedbackByLocale": {
+                "ru": "В просьбе wait без -s.",
+                "uk": "У проханні wait без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+              "feedbackByLocale": {
+                "ru": "Нужна начальная форма wait.",
+                "uk": "Потрібна початкова форма wait."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-23:i13:p1",
+              "target": "take a seat",
+              "meaningByLocale": {
+                "ru": "присаживайся",
+                "uk": "сідай"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p2",
+              "target": "have a look",
+              "meaningByLocale": {
+                "ru": "взгляни",
+                "uk": "поглянь"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p3",
+              "target": "hurry up",
+              "meaningByLocale": {
+                "ru": "поторопись",
+                "uk": "поквапся"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p4",
+              "target": "wait a moment",
+              "meaningByLocale": {
+                "ru": "подожди минутку",
+                "uk": "зачекай хвилинку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a seat",
+            "have a look",
+            "hurry up",
+            "wait a moment"
+          ],
+          "rightColumn": [
+            "присаживайся",
+            "взгляни",
+            "поторопись",
+            "подожди минутку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное сообщение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное сообщение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i14:audio",
+            "transcript": "There were two chairs near the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There were two chairs near the door.",
+          "orderedTokens": [
+            "There",
+            "were",
+            "two",
+            "chairs",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера друг был готов к выходу. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i15:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i15:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i15:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера друг был готов к выходу. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера друг был готов к выходу. Выберите форму",
+            "uk": "Учора друг був готовий виходити. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i15:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера друг был готов к выходу. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Вчера друг был готов к выходу. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С he нужна was.",
+                "uk": "Із he потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Вчера друг был готов к выходу. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом с he используем was.",
+                "uk": "У минулому з he використовуємо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вежливо попросите не торопить вас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Вежливо попросите не торопить вас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i16:audio",
+            "transcript": "Please don't hurry me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't hurry me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга, был ли он готов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите друга, был ли он готов",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i17:audio",
+            "transcript": "Were you ready?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you ready?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-23:word:take-a-seat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take a seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:take-a-seat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take a seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:take-a-seat:audio",
+            "transcript": "take a seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:take-a-seat:r1",
+              "targetText": "take a seat",
+              "meaningByLocale": {
+                "ru": "присаживайся или присаживайтесь. Готовое приглашение сесть.",
+                "uk": "сідай або сідайте. Готове запрошення сісти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a seat",
+            "definitionByLocale": {
+              "ru": "присаживайся или присаживайтесь. Готовое приглашение сесть.",
+              "uk": "сідай або сідайте. Готове запрошення сісти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запропонуйте гостеві сісти. Почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запропонуйте гостеві сісти. Почніть із Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please take a seat.",
+          "localizedMeaning": {
+            "ru": "Вежливо предложите гостю сесть. Начните с Please",
+            "uk": "Ввічливо запропонуйте гостеві сісти. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "take",
+            "a",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i02:r1",
+            "text": "Take a seat, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i02:r2",
+            "text": "Please take your bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i02:r3",
+            "text": "Please take your coat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i02:audio",
+            "transcript": "Take a seat, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i02:r1",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r2",
+              "targetText": "Please take your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r3",
+              "targetText": "Please take your coat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Take a seat, please.",
+                "uk": "У записі звучить Take a seat, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Take a seat, please.",
+                "uk": "У записі звучить Take a seat, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запросіть друга сісти",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i03:r1",
+            "text": "Take"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i03:r2",
+            "text": "Takes"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i03:r3",
+            "text": "Taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запросіть друга сісти",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пригласите друга присесть",
+            "uk": "Запросіть друга сісти"
+          },
+          "gappedTargetPhrase": "___ a seat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i03:r1",
+              "text": "Take"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r2",
+              "text": "Takes"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r3",
+              "text": "Taking"
+            }
+          ],
+          "testedDimension": "Запросіть друга сісти",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Запросіть друга сісти",
+              "feedbackByLocale": {
+                "ru": "В приглашении не нужно -s.",
+                "uk": "У запрошенні не потрібне -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Запросіть друга сісти",
+              "feedbackByLocale": {
+                "ru": "Нужна начальная форма take.",
+                "uk": "Потрібна початкова форма take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:have-a-look",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — have a look",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:have-a-look:audio"
+        ],
+        "accessibilityLabel": "Картка слова — have a look",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:have-a-look:audio",
+            "transcript": "have a look"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:have-a-look:r1",
+              "targetText": "have a look",
+              "meaningByLocale": {
+                "ru": "взгляни, посмотри.",
+                "uk": "поглянь, подивись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a look",
+            "definitionByLocale": {
+              "ru": "взгляни, посмотри.",
+              "uk": "поглянь, подивись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть подивитися на фото",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть подивитися на фото",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have a look at this photo.",
+          "localizedMeaning": {
+            "ru": "Попросите посмотреть на фото",
+            "uk": "Попросіть подивитися на фото"
+          },
+          "orderedTokens": [
+            "Have",
+            "a",
+            "look",
+            "at",
+            "this",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i05:r1",
+            "text": "Have a look at this bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i05:r2",
+            "text": "Have a look at this coat."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i05:r3",
+            "text": "Have a look at this photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i05:audio",
+            "transcript": "Have a look at this bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i05:r1",
+              "targetText": "Have a look at this bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r2",
+              "targetText": "Have a look at this coat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r3",
+              "targetText": "Have a look at this photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a look at this bag.",
+                "uk": "У записі звучить Have a look at this bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have a look at this bag.",
+                "uk": "У записі звучить Have a look at this bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запропонуйте другові поглянути",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i06:r3",
+            "text": "two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте другові поглянути",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Предложите другу взглянуть",
+            "uk": "Запропонуйте другові поглянути"
+          },
+          "gappedTargetPhrase": "Have ___ look.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r3",
+              "text": "two"
+            }
+          ],
+          "testedDimension": "Запропонуйте другові поглянути",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Запропонуйте другові поглянути",
+              "feedbackByLocale": {
+                "ru": "Перед звуком l нужен a, не an.",
+                "uk": "Перед звуком l потрібне a, не an."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Запропонуйте другові поглянути",
+              "feedbackByLocale": {
+                "ru": "В готовом выражении have a look нужен a.",
+                "uk": "У готовому вислові have a look потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:hurry-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hurry up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:hurry-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hurry up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:hurry-up:audio",
+            "transcript": "hurry up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:hurry-up:r1",
+              "targetText": "hurry up",
+              "meaningByLocale": {
+                "ru": "поторопись или поторопитесь. Прямая просьба ускориться.",
+                "uk": "поквапся або покваптеся. Пряме прохання прискоритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hurry up",
+            "definitionByLocale": {
+              "ru": "поторопись или поторопитесь. Прямая просьба ускориться.",
+              "uk": "поквапся або покваптеся. Пряме прохання прискоритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть друга поквапитися. Почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть друга поквапитися. Почніть із Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please hurry up.",
+          "localizedMeaning": {
+            "ru": "Попросите друга поторопиться. Начните с Please",
+            "uk": "Попросіть друга поквапитися. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "hurry",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i08:r1",
+            "text": "Hurry up, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i08:r2",
+            "text": "Take a seat, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i08:r3",
+            "text": "Have a look, please."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i08:audio",
+            "transcript": "Hurry up, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i08:r1",
+              "targetText": "Hurry up, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r2",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r3",
+              "targetText": "Have a look, please.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Hurry up, please.",
+                "uk": "У записі звучить Hurry up, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Hurry up, please.",
+                "uk": "У записі звучить Hurry up, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Попросіть поквапитися",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i09:r1",
+            "text": "up"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i09:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть поквапитися",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Попросите поторопиться",
+            "uk": "Попросіть поквапитися"
+          },
+          "gappedTargetPhrase": "Hurry ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i09:r1",
+              "text": "up"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r2",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Попросіть поквапитися",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Попросіть поквапитися",
+              "feedbackByLocale": {
+                "ru": "Выражение hurry up, без at.",
+                "uk": "Вислів hurry up, без at."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Попросіть поквапитися",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно up.",
+                "uk": "Тут потрібно up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:word:wait-a-moment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wait a moment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:word:wait-a-moment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wait a moment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:word:wait-a-moment:audio",
+            "transcript": "wait a moment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:word:wait-a-moment:r1",
+              "targetText": "wait a moment",
+              "meaningByLocale": {
+                "ru": "подожди минутку или подождите минутку.",
+                "uk": "зачекай хвилинку або зачекайте хвилинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wait a moment",
+            "definitionByLocale": {
+              "ru": "подожди минутку или подождите минутку.",
+              "uk": "зачекай хвилинку або зачекайте хвилинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо попросіть зачекати хвилинку. Почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо попросіть зачекати хвилинку. Почніть із Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please wait a moment.",
+          "localizedMeaning": {
+            "ru": "Вежливо попросите подождать минутку. Начните с Please",
+            "uk": "Ввічливо попросіть зачекати хвилинку. Почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "wait",
+            "a",
+            "moment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i11:r1",
+            "text": "Wait a moment, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i11:r2",
+            "text": "Hurry up, please."
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i11:r3",
+            "text": "Take a seat, please."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i11:audio",
+            "transcript": "Wait a moment, please."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-23:i11:r1",
+              "targetText": "Wait a moment, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r2",
+              "targetText": "Hurry up, please.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r3",
+              "targetText": "Take a seat, please.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Wait a moment, please.",
+                "uk": "У записі звучить Wait a moment, please."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Wait a moment, please.",
+                "uk": "У записі звучить Wait a moment, please."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i12:r1",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i12:r2",
+            "text": "waits"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i12:r3",
+            "text": "waiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Другу нужна минутка, чтобы надеть куртку. Завершите его просьбу",
+            "uk": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання"
+          },
+          "gappedTargetPhrase": "Please ___ a moment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i12:r1",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r2",
+              "text": "waits"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r3",
+              "text": "waiting"
+            }
+          ],
+          "testedDimension": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання",
+              "feedbackByLocale": {
+                "ru": "В просьбе wait без -s.",
+                "uk": "У проханні wait без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Другові потрібна хвилинка, щоб вдягнути куртку. Завершіть його прохання",
+              "feedbackByLocale": {
+                "ru": "Нужна начальная форма wait.",
+                "uk": "Потрібна початкова форма wait."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-23:i13:p1",
+              "target": "take a seat",
+              "meaningByLocale": {
+                "ru": "присаживайся",
+                "uk": "сідай"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p2",
+              "target": "have a look",
+              "meaningByLocale": {
+                "ru": "взгляни",
+                "uk": "поглянь"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p3",
+              "target": "hurry up",
+              "meaningByLocale": {
+                "ru": "поторопись",
+                "uk": "поквапся"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-23:i13:p4",
+              "target": "wait a moment",
+              "meaningByLocale": {
+                "ru": "подожди минутку",
+                "uk": "зачекай хвилинку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a seat",
+            "have a look",
+            "hurry up",
+            "wait a moment"
+          ],
+          "rightColumn": [
+            "сідай",
+            "поглянь",
+            "поквапся",
+            "зачекай хвилинку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте повідомлення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте повідомлення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i14:audio",
+            "transcript": "There were two chairs near the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There were two chairs near the door.",
+          "orderedTokens": [
+            "There",
+            "were",
+            "two",
+            "chairs",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора друг був готовий виходити. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-23:i15:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i15:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-23:i15:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора друг був готовий виходити. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера друг был готов к выходу. Выберите форму",
+            "uk": "Учора друг був готовий виходити. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-23:i15:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора друг був готовий виходити. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Учора друг був готовий виходити. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С he нужна was.",
+                "uk": "Із he потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Учора друг був готовий виходити. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом с he используем was.",
+                "uk": "У минулому з he використовуємо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ввічливо попросіть не квапити вас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Ввічливо попросіть не квапити вас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i16:audio",
+            "transcript": "Please don't hurry me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't hurry me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга, чи був він готовий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга, чи був він готовий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-23:i17:audio",
+            "transcript": "Were you ready?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were you ready?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-23:word:take-a-seat",
+      "correctText": "take a seat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i01",
+      "correctText": "Please take a seat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i02",
+      "correctText": "Take a seat, please.",
+      "correctResponseId": "en:lesson-11:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i03",
+      "correctText": "Take",
+      "correctResponseId": "en:lesson-11:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:word:have-a-look",
+      "correctText": "have a look",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i04",
+      "correctText": "Have a look at this photo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i05",
+      "correctText": "Have a look at this bag.",
+      "correctResponseId": "en:lesson-11:session-23:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i06",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-11:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:word:hurry-up",
+      "correctText": "hurry up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i07",
+      "correctText": "Please hurry up.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i08",
+      "correctText": "Hurry up, please.",
+      "correctResponseId": "en:lesson-11:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i09",
+      "correctText": "up",
+      "correctResponseId": "en:lesson-11:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:word:wait-a-moment",
+      "correctText": "wait a moment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i10",
+      "correctText": "Please wait a moment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i11",
+      "correctText": "Wait a moment, please.",
+      "correctResponseId": "en:lesson-11:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i12",
+      "correctText": "wait",
+      "correctResponseId": "en:lesson-11:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i14",
+      "correctText": "There were two chairs near the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i15",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i16",
+      "correctText": "Please don't hurry me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-23:i17",
+      "correctText": "Were you ready?",
+      "correctResponseId": null
+    }
+  ]
+}

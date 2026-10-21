@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-21:word:kitten",
+    "correctText": "kitten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i01",
+    "correctText": "There was a kitten on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i02",
+    "correctText": "The kitten was hungry.",
+    "correctResponseId": "en:lesson-11:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:word:pet-shop",
+    "correctText": "pet shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i04",
+    "correctText": "Was the pet shop open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i05",
+    "correctText": "There was a pet shop near the station.",
+    "correctResponseId": "en:lesson-11:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:word:pet-food",
+    "correctText": "pet food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i07",
+    "correctText": "There was pet food in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i08",
+    "correctText": "The pet food was in the cupboard.",
+    "correctResponseId": "en:lesson-11:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:word:dog-lead",
+    "correctText": "dog lead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i10",
+    "correctText": "There was a dog lead on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i11",
+    "correctText": "The dog lead was in my bag.",
+    "correctResponseId": "en:lesson-11:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i13",
+    "correctText": "en:lesson-11:session-21:i13:p1=kitten\nen:lesson-11:session-21:i13:p2=pet shop\nen:lesson-11:session-21:i13:p3=pet food\nen:lesson-11:session-21:i13:p4=dog lead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i14",
+    "correctText": "Please don't close the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i15",
+    "correctText": "I am looking for it right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i16",
+    "correctText": "Was the kitten on the bed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-21:i17",
+    "correctText": "There was pet food in the bowl.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "there was / there were; was / were",
+    "uk": "there was / there were; was / were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мама и папа",
+        "uk": "Мама й тато"
+      },
+      "bodyByLocale": {
+        "ru": "Mum — «мама», dad — «папа». Это повседневные семейные слова вместо более нейтральных mother и father. Mum — обычный британский вариант. My mum was at home — «Моя мама была дома». О двух людях: My mum and dad were at home. Выберите фразу о маме и папе вместе.",
+        "uk": "Mum — «мама», dad — «тато». Це повсякденні сімейні слова замість більш нейтральних mother і father. Mum — звичайний британський варіант. My mum was at home — «Моя мама була вдома». Про двох людей: My mum and dad were at home. Виберіть фразу про маму й тата разом."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r1",
+              "text": "My mum and dad were at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r2",
+              "text": "My mum and dad was at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r3",
+              "text": "My mum and dad is at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r1",
+              "text": "My mum and dad were at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r2",
+              "text": "My mum and dad was at home."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro1:r3",
+              "text": "My mum and dad is at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бабушка",
+        "uk": "Бабуся"
+      },
+      "bodyByLocale": {
+        "ru": "Grandma — «бабушка», домашнее слово вместо grandmother. Вопрос: Was your grandma in the garden? — «Твоя бабушка была в саду?» Коротко отвечаем: Yes, she was или No, she wasn’t. Вчера бабушка была в саду. Выберите утвердительный ответ.",
+        "uk": "Grandma — «бабуся», домашнє слово замість grandmother. Запитання: Was your grandma in the garden? — «Твоя бабуся була в саду?» Коротко відповідаємо: Yes, she was або No, she wasn’t. Учора бабуся була в саду. Виберіть ствердну відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r1",
+              "text": "Yes, she was."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r2",
+              "text": "Yes, she were."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r3",
+              "text": "Yes, she did."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r1",
+              "text": "Yes, she was."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r2",
+              "text": "Yes, she were."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro2:r3",
+              "text": "Yes, she did."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дедушка",
+        "uk": "Дідусь"
+      },
+      "bodyByLocale": {
+        "ru": "Grandpa — «дедушка», домашнее слово вместо grandfather. My grandpa was not tired — «Мой дедушка не был уставшим». Not ставим после was. Оба родных: My grandma and grandpa were in the garden. Выберите фразу о дедушке, который не был уставшим.",
+        "uk": "Grandpa — «дідусь», домашнє слово замість grandfather. My grandpa was not tired — «Мій дідусь не був утомлений». Not ставимо після was. Обоє рідних: My grandma and grandpa were in the garden. Виберіть фразу про дідуся, який не був утомлений."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r1",
+              "text": "My grandpa was not tired."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r2",
+              "text": "My grandpa not was tired."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r3",
+              "text": "My grandpa were not tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r1",
+              "text": "My grandpa was not tired."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r2",
+              "text": "My grandpa not was tired."
+            },
+            {
+              "responseId": "en:lesson-11:session-22:intro3:r3",
+              "text": "My grandpa were not tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "39f248abd25a41d3f74d54f7bbd2d592cbfb0f9f54afdeffa3b1e3ef29efa263"
+}

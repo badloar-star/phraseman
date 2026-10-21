@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-21:word:kitten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kitten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:kitten:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kitten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:kitten:audio",
+            "transcript": "kitten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:kitten:r1",
+              "targetText": "kitten",
+              "meaningByLocale": {
+                "ru": "котёнок.",
+                "uk": "кошеня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kitten",
+            "definitionByLocale": {
+              "ru": "котёнок.",
+              "uk": "кошеня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на стуле был котёнок. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на стуле был котёнок. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a kitten on the chair.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на стуле был котёнок. Начните с There",
+            "uk": "Повідомте: на стільці було кошеня. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "kitten",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i02:r1",
+            "text": "The kitten was hungry."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i02:r2",
+            "text": "The kitten was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i02:r3",
+            "text": "Was the kitten hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i02:audio",
+            "transcript": "The kitten was hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i02:r1",
+              "targetText": "The kitten was hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r2",
+              "targetText": "The kitten was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r3",
+              "targetText": "Was the kitten hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The kitten was hungry.",
+                "uk": "У записі звучить The kitten was hungry."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The kitten was hungry.",
+                "uk": "У записі звучить The kitten was hungry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В саду были два котёнка. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В саду были два котёнка. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В саду были два котёнка. Выберите форму",
+            "uk": "У саду було двоє кошенят. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two kittens in the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В саду были два котёнка. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "В саду были два котёнка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два котёнка: were.",
+                "uk": "Двоє кошенят: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "В саду были два котёнка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое и множественное число: were.",
+                "uk": "Минулий час і множина: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:pet-shop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pet shop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:pet-shop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pet shop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:pet-shop:audio",
+            "transcript": "pet shop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:pet-shop:r1",
+              "targetText": "pet shop",
+              "meaningByLocale": {
+                "ru": "зоомагазин.",
+                "uk": "зоомагазин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pet shop",
+            "definitionByLocale": {
+              "ru": "зоомагазин.",
+              "uk": "зоомагазин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли зоомагазин открыт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли зоомагазин открыт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the pet shop open?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли зоомагазин открыт",
+            "uk": "Запитайте, чи був зоомагазин відчинений"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "pet",
+            "shop",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i05:r1",
+            "text": "There was a pet shop near the station."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i05:r2",
+            "text": "There were two pet shops near the station."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i05:r3",
+            "text": "There was a pet shop near the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i05:audio",
+            "transcript": "There was a pet shop near the station."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i05:r1",
+              "targetText": "There was a pet shop near the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r2",
+              "targetText": "There were two pet shops near the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r3",
+              "targetText": "There was a pet shop near the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a pet shop near the station.",
+                "uk": "У записі звучить There was a pet shop near the station."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a pet shop near the station.",
+                "uk": "У записі звучить There was a pet shop near the station."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рядом со школой был один зоомагазин. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рядом со школой был один зоомагазин. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рядом со школой был один зоомагазин. Выберите форму",
+            "uk": "Поруч зі школою був один зоомагазин. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a pet shop near the school.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Рядом со школой был один зоомагазин. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Рядом со школой был один зоомагазин. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один магазин: was.",
+                "uk": "Один магазин: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Рядом со школой был один зоомагазин. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом об одном месте: was.",
+                "uk": "У минулому про одне місце: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:pet-food",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pet food",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:pet-food:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pet food",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:pet-food:audio",
+            "transcript": "pet food"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:pet-food:r1",
+              "targetText": "pet food",
+              "meaningByLocale": {
+                "ru": "корм для домашних животных.",
+                "uk": "корм для домашніх тварин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pet food",
+            "definitionByLocale": {
+              "ru": "корм для домашних животных.",
+              "uk": "корм для домашніх тварин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в сумке был корм. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в сумке был корм. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was pet food in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке был корм. Начните с There",
+            "uk": "Повідомте: у сумці був корм. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "pet",
+            "food",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i08:r1",
+            "text": "The pet food was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i08:r2",
+            "text": "The pet food was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i08:r3",
+            "text": "The pet food was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i08:audio",
+            "transcript": "The pet food was in the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i08:r1",
+              "targetText": "The pet food was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r2",
+              "targetText": "The pet food was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r3",
+              "targetText": "The pet food was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pet food was in the cupboard.",
+                "uk": "У записі звучить The pet food was in the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pet food was in the cupboard.",
+                "uk": "У записі звучить The pet food was in the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+            "uk": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "На вопрос с was отвечаем wasn’t.",
+                "uk": "На запитання з was відповідаємо wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:dog-lead",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dog lead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:dog-lead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dog lead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:dog-lead:audio",
+            "transcript": "dog lead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:dog-lead:r1",
+              "targetText": "dog lead",
+              "meaningByLocale": {
+                "ru": "поводок для собаки.",
+                "uk": "повідець для собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dog lead",
+            "definitionByLocale": {
+              "ru": "поводок для собаки.",
+              "uk": "повідець для собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на столе был поводок. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на столе был поводок. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a dog lead on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был поводок. Начните с There",
+            "uk": "Повідомте: на столі був повідець. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "dog",
+            "lead",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i11:r1",
+            "text": "The dog lead was in my bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i11:r2",
+            "text": "The dog lead was in your bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i11:r3",
+            "text": "The dog lead was on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i11:audio",
+            "transcript": "The dog lead was in my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i11:r1",
+              "targetText": "The dog lead was in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r2",
+              "targetText": "The dog lead was in your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r3",
+              "targetText": "The dog lead was on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog lead was in my bag.",
+                "uk": "У записі звучить The dog lead was in my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog lead was in my bag.",
+                "uk": "У записі звучить The dog lead was in my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рядом с дверью лежали два поводка. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рядом с дверью лежали два поводка. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рядом с дверью лежали два поводка. Выберите форму",
+            "uk": "Поруч із дверима лежали два повідці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two dog leads next to the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Рядом с дверью лежали два поводка. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Рядом с дверью лежали два поводка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два поводка: were.",
+                "uk": "Два повідці: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Рядом с дверью лежали два поводка. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое и несколько предметов: were.",
+                "uk": "Минулий час і кілька предметів: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-21:i13:p1",
+              "target": "kitten",
+              "meaningByLocale": {
+                "ru": "котёнок",
+                "uk": "кошеня"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p2",
+              "target": "pet shop",
+              "meaningByLocale": {
+                "ru": "зоомагазин",
+                "uk": "зоомагазин"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p3",
+              "target": "pet food",
+              "meaningByLocale": {
+                "ru": "корм для животных",
+                "uk": "корм для тварин"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p4",
+              "target": "dog lead",
+              "meaningByLocale": {
+                "ru": "поводок для собаки",
+                "uk": "повідець для собаки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kitten",
+            "pet shop",
+            "pet food",
+            "dog lead"
+          ],
+          "rightColumn": [
+            "котёнок",
+            "зоомагазин",
+            "корм для животных",
+            "поводок для собаки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i15:audio",
+            "transcript": "I am looking for it right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for it right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "it",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, был ли котёнок на кровати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите, был ли котёнок на кровати",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i16:audio",
+            "transcript": "Was the kitten on the bed?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the kitten on the bed?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что в миске был корм",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что в миске был корм",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i17:audio",
+            "transcript": "There was pet food in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was pet food in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-21:word:kitten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kitten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:kitten:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kitten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:kitten:audio",
+            "transcript": "kitten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:kitten:r1",
+              "targetText": "kitten",
+              "meaningByLocale": {
+                "ru": "котёнок.",
+                "uk": "кошеня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kitten",
+            "definitionByLocale": {
+              "ru": "котёнок.",
+              "uk": "кошеня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на стільці було кошеня. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на стільці було кошеня. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a kitten on the chair.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на стуле был котёнок. Начните с There",
+            "uk": "Повідомте: на стільці було кошеня. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "kitten",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i02:r1",
+            "text": "The kitten was hungry."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i02:r2",
+            "text": "The kitten was tired."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i02:r3",
+            "text": "Was the kitten hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i02:audio",
+            "transcript": "The kitten was hungry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i02:r1",
+              "targetText": "The kitten was hungry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r2",
+              "targetText": "The kitten was tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r3",
+              "targetText": "Was the kitten hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The kitten was hungry.",
+                "uk": "У записі звучить The kitten was hungry."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The kitten was hungry.",
+                "uk": "У записі звучить The kitten was hungry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У саду було двоє кошенят. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У саду було двоє кошенят. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В саду были два котёнка. Выберите форму",
+            "uk": "У саду було двоє кошенят. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two kittens in the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У саду було двоє кошенят. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "У саду було двоє кошенят. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два котёнка: were.",
+                "uk": "Двоє кошенят: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "У саду було двоє кошенят. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое и множественное число: were.",
+                "uk": "Минулий час і множина: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:pet-shop",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pet shop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:pet-shop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pet shop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:pet-shop:audio",
+            "transcript": "pet shop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:pet-shop:r1",
+              "targetText": "pet shop",
+              "meaningByLocale": {
+                "ru": "зоомагазин.",
+                "uk": "зоомагазин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pet shop",
+            "definitionByLocale": {
+              "ru": "зоомагазин.",
+              "uk": "зоомагазин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був зоомагазин відчинений",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був зоомагазин відчинений",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the pet shop open?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли зоомагазин открыт",
+            "uk": "Запитайте, чи був зоомагазин відчинений"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "pet",
+            "shop",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i05:r1",
+            "text": "There was a pet shop near the station."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i05:r2",
+            "text": "There were two pet shops near the station."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i05:r3",
+            "text": "There was a pet shop near the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i05:audio",
+            "transcript": "There was a pet shop near the station."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i05:r1",
+              "targetText": "There was a pet shop near the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r2",
+              "targetText": "There were two pet shops near the station.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r3",
+              "targetText": "There was a pet shop near the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a pet shop near the station.",
+                "uk": "У записі звучить There was a pet shop near the station."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There was a pet shop near the station.",
+                "uk": "У записі звучить There was a pet shop near the station."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поруч зі школою був один зоомагазин. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поруч зі школою був один зоомагазин. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рядом со школой был один зоомагазин. Выберите форму",
+            "uk": "Поруч зі школою був один зоомагазин. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a pet shop near the school.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Поруч зі школою був один зоомагазин. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Поруч зі школою був один зоомагазин. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один магазин: was.",
+                "uk": "Один магазин: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Поруч зі школою був один зоомагазин. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом об одном месте: was.",
+                "uk": "У минулому про одне місце: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:pet-food",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pet food",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:pet-food:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pet food",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:pet-food:audio",
+            "transcript": "pet food"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:pet-food:r1",
+              "targetText": "pet food",
+              "meaningByLocale": {
+                "ru": "корм для домашних животных.",
+                "uk": "корм для домашніх тварин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pet food",
+            "definitionByLocale": {
+              "ru": "корм для домашних животных.",
+              "uk": "корм для домашніх тварин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у сумці був корм. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у сумці був корм. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was pet food in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке был корм. Начните с There",
+            "uk": "Повідомте: у сумці був корм. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "pet",
+            "food",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i08:r1",
+            "text": "The pet food was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i08:r2",
+            "text": "The pet food was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i08:r3",
+            "text": "The pet food was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i08:audio",
+            "transcript": "The pet food was in the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i08:r1",
+              "targetText": "The pet food was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r2",
+              "targetText": "The pet food was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r3",
+              "targetText": "The pet food was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pet food was in the cupboard.",
+                "uk": "У записі звучить The pet food was in the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pet food was in the cupboard.",
+                "uk": "У записі звучить The pet food was in the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the pet food expensive? Корм был дешёвым. Ответьте отрицательно",
+            "uk": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the pet food expensive? Корм був дешевий. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "На вопрос с was отвечаем wasn’t.",
+                "uk": "На запитання з was відповідаємо wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:word:dog-lead",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dog lead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:word:dog-lead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dog lead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:word:dog-lead:audio",
+            "transcript": "dog lead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:word:dog-lead:r1",
+              "targetText": "dog lead",
+              "meaningByLocale": {
+                "ru": "поводок для собаки.",
+                "uk": "повідець для собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dog lead",
+            "definitionByLocale": {
+              "ru": "поводок для собаки.",
+              "uk": "повідець для собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на столі був повідець. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на столі був повідець. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a dog lead on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был поводок. Начните с There",
+            "uk": "Повідомте: на столі був повідець. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "dog",
+            "lead",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i11:r1",
+            "text": "The dog lead was in my bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i11:r2",
+            "text": "The dog lead was in your bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i11:r3",
+            "text": "The dog lead was on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i11:audio",
+            "transcript": "The dog lead was in my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-21:i11:r1",
+              "targetText": "The dog lead was in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r2",
+              "targetText": "The dog lead was in your bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r3",
+              "targetText": "The dog lead was on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog lead was in my bag.",
+                "uk": "У записі звучить The dog lead was in my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog lead was in my bag.",
+                "uk": "У записі звучить The dog lead was in my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поруч із дверима лежали два повідці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-21:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-21:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поруч із дверима лежали два повідці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рядом с дверью лежали два поводка. Выберите форму",
+            "uk": "Поруч із дверима лежали два повідці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two dog leads next to the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-21:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Поруч із дверима лежали два повідці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Поруч із дверима лежали два повідці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два поводка: were.",
+                "uk": "Два повідці: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Поруч із дверима лежали два повідці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое и несколько предметов: were.",
+                "uk": "Минулий час і кілька предметів: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-21:i13:p1",
+              "target": "kitten",
+              "meaningByLocale": {
+                "ru": "котёнок",
+                "uk": "кошеня"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p2",
+              "target": "pet shop",
+              "meaningByLocale": {
+                "ru": "зоомагазин",
+                "uk": "зоомагазин"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p3",
+              "target": "pet food",
+              "meaningByLocale": {
+                "ru": "корм для животных",
+                "uk": "корм для тварин"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-21:i13:p4",
+              "target": "dog lead",
+              "meaningByLocale": {
+                "ru": "поводок для собаки",
+                "uk": "повідець для собаки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kitten",
+            "pet shop",
+            "pet food",
+            "dog lead"
+          ],
+          "rightColumn": [
+            "кошеня",
+            "зоомагазин",
+            "корм для тварин",
+            "повідець для собаки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i14:audio",
+            "transcript": "Please don't close the door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't close the door.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "close",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i15:audio",
+            "transcript": "I am looking for it right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for it right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "it",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи було кошеня на ліжку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи було кошеня на ліжку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i16:audio",
+            "transcript": "Was the kitten on the bed?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the kitten on the bed?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що в мисці був корм",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що в мисці був корм",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-21:i17:audio",
+            "transcript": "There was pet food in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was pet food in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-21:word:kitten",
+      "correctText": "kitten",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i01",
+      "correctText": "There was a kitten on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i02",
+      "correctText": "The kitten was hungry.",
+      "correctResponseId": "en:lesson-11:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i03",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:word:pet-shop",
+      "correctText": "pet shop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i04",
+      "correctText": "Was the pet shop open?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i05",
+      "correctText": "There was a pet shop near the station.",
+      "correctResponseId": "en:lesson-11:session-21:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-21:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:word:pet-food",
+      "correctText": "pet food",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i07",
+      "correctText": "There was pet food in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i08",
+      "correctText": "The pet food was in the cupboard.",
+      "correctResponseId": "en:lesson-11:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i09",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:word:dog-lead",
+      "correctText": "dog lead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i10",
+      "correctText": "There was a dog lead on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i11",
+      "correctText": "The dog lead was in my bag.",
+      "correctResponseId": "en:lesson-11:session-21:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-21:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i14",
+      "correctText": "Please don't close the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i15",
+      "correctText": "I am looking for it right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i16",
+      "correctText": "Was the kitten on the bed?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-21:i17",
+      "correctText": "There was pet food in the bowl.",
+      "correctResponseId": null
+    }
+  ]
+}

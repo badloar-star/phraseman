@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-22:intro1:r2": {
+          "ru": "Два человека: were.",
+          "uk": "Дві людини: were."
+        },
+        "en:lesson-11:session-22:intro1:r3": {
+          "ru": "Нужно прошлое и множественное число: were.",
+          "uk": "Потрібен минулий час і множина: were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-22:intro2:r2": {
+          "ru": "С she нужна was.",
+          "uk": "Із she потрібна was."
+        },
+        "en:lesson-11:session-22:intro2:r3": {
+          "ru": "На вопрос с was отвечаем was.",
+          "uk": "На запитання з was відповідаємо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-22:intro3:r2": {
+          "ru": "Not идёт после was.",
+          "uk": "Not іде після was."
+        },
+        "en:lesson-11:session-22:intro3:r3": {
+          "ru": "Один человек: was.",
+          "uk": "Одна людина: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df3a26ac79eacac8f7fd1937032f7b19a0940217f03bc174b2486853b1a3dbf1"
+}

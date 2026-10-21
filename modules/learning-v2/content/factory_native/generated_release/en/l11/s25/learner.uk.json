@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-25:word:beach-towel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beach towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:word:beach-towel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beach towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:word:beach-towel:audio",
+          "transcript": "beach towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:word:beach-towel:r1",
+            "targetText": "beach towel",
+            "meaningByLocale": {
+              "ru": "пляжное полотенце.",
+              "uk": "пляжний рушник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beach towel",
+          "definitionByLocale": {
+            "ru": "пляжное полотенце.",
+            "uk": "пляжний рушник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вчора ваш пляжний рушник був мокрий. Почніть із Yesterday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вчора ваш пляжний рушник був мокрий. Почніть із Yesterday",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yesterday my beach towel was wet.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вчера ваше пляжное полотенце было мокрым. Начните с Yesterday",
+          "uk": "Скажіть, що вчора ваш пляжний рушник був мокрий. Почніть із Yesterday"
+        },
+        "orderedTokens": [
+          "Yesterday",
+          "my",
+          "beach",
+          "towel",
+          "was",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i02:r1",
+          "text": "My beach towel is dry now."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i02:r2",
+          "text": "My beach towel was dry yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i02:r3",
+          "text": "My beach towel is wet now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i02:audio",
+          "transcript": "My beach towel is dry now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:i02:r1",
+            "targetText": "My beach towel is dry now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i02:r2",
+            "targetText": "My beach towel was dry yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i02:r3",
+            "targetText": "My beach towel is wet now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My beach towel is dry now.",
+              "uk": "У записі звучить My beach towel is dry now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My beach towel is dry now.",
+              "uk": "У записі звучить My beach towel is dry now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора рушник був у сумці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора рушник був у сумці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера полотенце было в сумке. Выберите форму",
+          "uk": "Учора рушник був у сумці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Yesterday my beach towel ___ in my bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-25:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора рушник був у сумці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора рушник був у сумці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Yesterday указывает на прошлое: was.",
+              "uk": "Yesterday вказує на минуле: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора рушник був у сумці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одно полотенце: was.",
+              "uk": "Один рушник: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:word:sun-cream",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sun cream",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:word:sun-cream:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sun cream",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:word:sun-cream:audio",
+          "transcript": "sun cream"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:word:sun-cream:r1",
+            "targetText": "sun cream",
+            "meaningByLocale": {
+              "ru": "солнцезащитный крем.",
+              "uk": "сонцезахисний крем."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sun cream",
+          "definitionByLocale": {
+            "ru": "солнцезащитный крем.",
+            "uk": "сонцезахисний крем."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вчора крем був на столі. Почніть із Yesterday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вчора крем був на столі. Почніть із Yesterday",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yesterday the sun cream was on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вчера крем был на столе. Начните с Yesterday",
+          "uk": "Скажіть, що вчора крем був на столі. Почніть із Yesterday"
+        },
+        "orderedTokens": [
+          "Yesterday",
+          "the",
+          "sun",
+          "cream",
+          "was",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i05:r1",
+          "text": "The sun cream is in my bag now."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i05:r2",
+          "text": "The sun cream was in my bag yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i05:r3",
+          "text": "The sun cream is on the table now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i05:audio",
+          "transcript": "The sun cream is in my bag now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:i05:r1",
+            "targetText": "The sun cream is in my bag now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i05:r2",
+            "targetText": "The sun cream was in my bag yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i05:r3",
+            "targetText": "The sun cream is on the table now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sun cream is in my bag now.",
+              "uk": "У записі звучить The sun cream is in my bag now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sun cream is in my bag now.",
+              "uk": "У записі звучить The sun cream is in my bag now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз крем на столі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз крем на столі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас крем на столе. Выберите форму",
+          "uk": "Зараз крем на столі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The sun cream ___ on the table now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-25:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Зараз крем на столі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Зараз крем на столі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас, нужна is.",
+              "uk": "Now — зараз, потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Зараз крем на столі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Sun cream неисчисляемое: is.",
+              "uk": "Sun cream незлічуване: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:word:sun-hat",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sun hat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:word:sun-hat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sun hat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:word:sun-hat:audio",
+          "transcript": "sun hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:word:sun-hat:r1",
+            "targetText": "sun hat",
+            "meaningByLocale": {
+              "ru": "шляпа от солнца.",
+              "uk": "капелюх від сонця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sun hat",
+          "definitionByLocale": {
+            "ru": "шляпа от солнца.",
+            "uk": "капелюх від сонця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вчора ваш капелюх був на стільці. Почніть із Yesterday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вчора ваш капелюх був на стільці. Почніть із Yesterday",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yesterday my sun hat was on the chair.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вчера ваша шляпа была на стуле. Начните с Yesterday",
+          "uk": "Скажіть, що вчора ваш капелюх був на стільці. Почніть із Yesterday"
+        },
+        "orderedTokens": [
+          "Yesterday",
+          "my",
+          "sun",
+          "hat",
+          "was",
+          "on",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i08:r1",
+          "text": "My sun hat was wet yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i08:r2",
+          "text": "My sun hat is wet now."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i08:r3",
+          "text": "My sun hat was dry yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i08:audio",
+          "transcript": "My sun hat was wet yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:i08:r1",
+            "targetText": "My sun hat was wet yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i08:r2",
+            "targetText": "My sun hat is wet now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i08:r3",
+            "targetText": "My sun hat was dry yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sun hat was wet yesterday.",
+              "uk": "У записі звучить My sun hat was wet yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sun hat was wet yesterday.",
+              "uk": "У записі звучить My sun hat was wet yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз капелюх сухий. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз капелюх сухий. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас шляпа сухая. Выберите форму",
+          "uk": "Зараз капелюх сухий. Виберіть форму"
+        },
+        "gappedTargetPhrase": "My sun hat ___ dry now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-25:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Зараз капелюх сухий. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Зараз капелюх сухий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Сейчас: is.",
+              "uk": "Зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Зараз капелюх сухий. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Сейчас, один предмет: is.",
+              "uk": "Зараз, один предмет: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:word:flip-flops",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flip-flops",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:word:flip-flops:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flip-flops",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:word:flip-flops:audio",
+          "transcript": "flip-flops"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:word:flip-flops:r1",
+            "targetText": "flip-flops",
+            "meaningByLocale": {
+              "ru": "вьетнамки, шлёпанцы с перемычкой между пальцами. Множественное число.",
+              "uk": "в’єтнамки, капці з перемичкою між пальцями. Множина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flip-flops",
+          "definitionByLocale": {
+            "ru": "вьетнамки, шлёпанцы с перемычкой между пальцами. Множественное число.",
+            "uk": "в’єтнамки, капці з перемичкою між пальцями. Множина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вчора ваші в’єтнамки були мокрі. Почніть із Yesterday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вчора ваші в’єтнамки були мокрі. Почніть із Yesterday",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yesterday my flip-flops were wet.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вчера ваши вьетнамки были мокрыми. Начните с Yesterday",
+          "uk": "Скажіть, що вчора ваші в’єтнамки були мокрі. Почніть із Yesterday"
+        },
+        "orderedTokens": [
+          "Yesterday",
+          "my",
+          "flip-flops",
+          "were",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i11:r1",
+          "text": "My flip-flops are clean now."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i11:r2",
+          "text": "My flip-flops were clean yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i11:r3",
+          "text": "My flip-flops are dirty now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i11:audio",
+          "transcript": "My flip-flops are clean now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-25:i11:r1",
+            "targetText": "My flip-flops are clean now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i11:r2",
+            "targetText": "My flip-flops were clean yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i11:r3",
+            "targetText": "My flip-flops are dirty now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My flip-flops are clean now.",
+              "uk": "У записі звучить My flip-flops are clean now."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My flip-flops are clean now.",
+              "uk": "У записі звучить My flip-flops are clean now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора в’єтнамки були в сумці. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-25:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-11:session-25:i12:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора в’єтнамки були в сумці. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вьетнамки были в сумке. Выберите форму",
+          "uk": "Учора в’єтнамки були в сумці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Yesterday my flip-flops ___ in my bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-25:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i12:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Учора в’єтнамки були в сумці. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора в’єтнамки були в сумці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were, не are.",
+              "uk": "Учора: were, не are."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора в’єтнамки були в сумці. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Множественное число: were.",
+              "uk": "Множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-25:i13:p1",
+            "target": "beach towel",
+            "meaningByLocale": {
+              "ru": "пляжное полотенце",
+              "uk": "пляжний рушник"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-25:i13:p2",
+            "target": "sun cream",
+            "meaningByLocale": {
+              "ru": "солнцезащитный крем",
+              "uk": "сонцезахисний крем"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-25:i13:p3",
+            "target": "sun hat",
+            "meaningByLocale": {
+              "ru": "шляпа от солнца",
+              "uk": "капелюх від сонця"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-25:i13:p4",
+            "target": "flip-flops",
+            "meaningByLocale": {
+              "ru": "вьетнамки",
+              "uk": "в’єтнамки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "beach towel",
+          "sun cream",
+          "sun hat",
+          "flip-flops"
+        ],
+        "rightColumn": [
+          "пляжний рушник",
+          "сонцезахисний крем",
+          "капелюх від сонця",
+          "в’єтнамки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i14:audio",
+          "transcript": "My beach towel was on the chair yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My beach towel was on the chair yesterday.",
+        "orderedTokens": [
+          "My",
+          "beach",
+          "towel",
+          "was",
+          "on",
+          "the",
+          "chair",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i15:audio",
+          "transcript": "My flip-flops are next to the door now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My flip-flops are next to the door now.",
+        "orderedTokens": [
+          "My",
+          "flip-flops",
+          "are",
+          "next",
+          "to",
+          "the",
+          "door",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора капелюх був брудний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора капелюх був брудний",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i16:audio",
+          "transcript": "My sun hat was dirty yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My sun hat was dirty yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що крем зараз у сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що крем зараз у сумці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-25:i17:audio",
+          "transcript": "The sun cream is in my bag now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sun cream is in my bag now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2703ede9f063feeab39b5a329a80a21a671f061dd3505073704be05f826bedda"
+}

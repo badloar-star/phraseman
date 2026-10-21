@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-25:intro1:r2": {
+          "ru": "Yesterday требует здесь was, не is.",
+          "uk": "Yesterday потребує тут was, не is."
+        },
+        "en:lesson-11:session-25:intro1:r3": {
+          "ru": "Одно полотенце: was.",
+          "uk": "Один рушник: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-25:intro2:r2": {
+          "ru": "Говорим о вчера: was.",
+          "uk": "Говоримо про вчора: was."
+        },
+        "en:lesson-11:session-25:intro2:r3": {
+          "ru": "Sun cream здесь неисчисляемое: was.",
+          "uk": "Sun cream тут незлічуване: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-25:intro3:r2": {
+          "ru": "Flip-flops — множественное число: were.",
+          "uk": "Flip-flops — множина: were."
+        },
+        "en:lesson-11:session-25:intro3:r3": {
+          "ru": "Yesterday — прошлое, поэтому were.",
+          "uk": "Yesterday — минуле, тому were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ae9118dbfa846f0dcc8884611436d4148f6362a9b322b94f5f00d92f6cdd35a1"
+}

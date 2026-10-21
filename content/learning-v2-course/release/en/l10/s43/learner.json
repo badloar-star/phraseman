@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-43:word:circular",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — circular",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:word:circular:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — circular",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:word:circular:audio",
+          "transcript": "circular"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:word:circular:r1",
+            "targetText": "circular",
+            "meaningByLocale": {
+              "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
+              "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "circular",
+          "definitionByLocale": {
+            "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
+            "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am reading the circular.",
+        "localizedMeaning": {
+          "ru": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
+          "uk": "Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "reading",
+          "the",
+          "circular"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i02:r1",
+          "text": "The circular is on the desk."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i02:r2",
+          "text": "The circular is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i02:r3",
+          "text": "The report is on the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i02:audio",
+          "transcript": "The circular is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:i02:r1",
+            "targetText": "The circular is on the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i02:r2",
+            "targetText": "The circular is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i02:r3",
+            "targetText": "The report is on the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The circular is on the desk.",
+              "uk": "У записі звучить The circular is on the desk."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The circular is on the desk.",
+              "uk": "У записі звучить The circular is on the desk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Команда собирается каждое утро. Выберите форму have",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i03:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i03:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i03:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда собирается каждое утро. Выберите форму have",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Команда собирается каждое утро. Выберите форму have",
+          "uk": "Команда збирається щоранку. Виберіть форму have"
+        },
+        "gappedTargetPhrase": "We ___ a briefing every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-43:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i03:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+            "feedbackByLocale": {
+              "ru": "С we нужна have.",
+              "uk": "З we потрібна have."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+            "feedbackByLocale": {
+              "ru": "Для регулярной ситуации здесь нужна have.",
+              "uk": "Для регулярної ситуації тут потрібна have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:word:directive",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — directive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:word:directive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — directive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:word:directive:audio",
+          "transcript": "directive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:word:directive:r1",
+            "targetText": "directive",
+            "meaningByLocale": {
+              "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
+              "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "directive",
+          "definitionByLocale": {
+            "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
+            "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand the directive.",
+        "localizedMeaning": {
+          "ru": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
+          "uk": "Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»"
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "the",
+          "directive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i05:r1",
+          "text": "The directive is clear."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i05:r2",
+          "text": "The directive is new."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i05:r3",
+          "text": "The message is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i05:audio",
+          "transcript": "The directive is clear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:i05:r1",
+            "targetText": "The directive is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i05:r2",
+            "targetText": "The directive is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i05:r3",
+            "targetText": "The message is clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The directive is clear.",
+              "uk": "У записі звучить The directive is clear."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The directive is clear.",
+              "uk": "У записі звучить The directive is clear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму understand с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i06:r1",
+          "text": "understand"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i06:r2",
+          "text": "understands"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i06:r3",
+          "text": "am understand"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму understand с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму understand с I",
+          "uk": "Виберіть форму understand з I"
+        },
+        "gappedTargetPhrase": "I ___ the directive.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-43:i06:r1",
+            "text": "understand"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i06:r2",
+            "text": "understands"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i06:r3",
+            "text": "am understand"
+          }
+        ],
+        "testedDimension": "Выберите форму understand с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму understand с I",
+            "feedbackByLocale": {
+              "ru": "С I нужна understand без s.",
+              "uk": "З I потрібна understand без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму understand с I",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна understand без am.",
+              "uk": "Тут потрібна understand без am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:word:recap",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — recap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:word:recap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — recap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:word:recap:audio",
+          "transcript": "recap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:word:recap:r1",
+            "targetText": "recap",
+            "meaningByLocale": {
+              "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
+              "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recap",
+          "definitionByLocale": {
+            "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
+            "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The recap is helpful.",
+        "localizedMeaning": {
+          "ru": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
+          "uk": "Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»"
+        },
+        "orderedTokens": [
+          "The",
+          "recap",
+          "is",
+          "helpful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i08:r1",
+          "text": "The recap is at the end."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i08:r2",
+          "text": "The recap is at the beginning."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i08:r3",
+          "text": "The question is at the end."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i08:audio",
+          "transcript": "The recap is at the end."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:i08:r1",
+            "targetText": "The recap is at the end.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i08:r2",
+            "targetText": "The recap is at the beginning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i08:r3",
+            "targetText": "The question is at the end.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The recap is at the end.",
+              "uk": "У записі звучить The recap is at the end."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The recap is at the end.",
+              "uk": "У записі звучить The recap is at the end."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном кратком повторении. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном кратком повторении. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном кратком повторении. Выберите связку",
+          "uk": "Ідеться про одне коротке повторення. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The recap ___ helpful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-43:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "С recap в единственном числе нужна is.",
+              "uk": "З recap в однині потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:word:rundown",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rundown",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:word:rundown:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rundown",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:word:rundown:audio",
+          "transcript": "rundown"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:word:rundown:r1",
+            "targetText": "rundown",
+            "meaningByLocale": {
+              "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
+              "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rundown",
+          "definitionByLocale": {
+            "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
+            "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is giving us a rundown.",
+        "localizedMeaning": {
+          "ru": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
+          "uk": "Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "giving",
+          "us",
+          "a",
+          "rundown"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i11:r1",
+          "text": "The rundown is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i11:r2",
+          "text": "The rundown is in the report."
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i11:r3",
+          "text": "The photo is in the email."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i11:audio",
+          "transcript": "The rundown is in the email."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-43:i11:r1",
+            "targetText": "The rundown is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i11:r2",
+            "targetText": "The rundown is in the report.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i11:r3",
+            "targetText": "The photo is in the email.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rundown is in the email.",
+              "uk": "У записі звучить The rundown is in the email."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rundown is in the email.",
+              "uk": "У записі звучить The rundown is in the email."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы give",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-43:i12:r1",
+          "text": "giving"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i12:r2",
+          "text": "giveing"
+        },
+        {
+          "responseId": "en:lesson-10:session-43:i12:r3",
+          "text": "give"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы give",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы give",
+          "uk": "Виберіть правильне написання форми give"
+        },
+        "gappedTargetPhrase": "She is ___ us a rundown.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-43:i12:r1",
+            "text": "giving"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i12:r2",
+            "text": "giveing"
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i12:r3",
+            "text": "give"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы give",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы give",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: giving.",
+              "uk": "Перед ing прибираємо e: giving."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы give",
+            "feedbackByLocale": {
+              "ru": "После is для текущего действия нужна giving.",
+              "uk": "Після is для поточної дії потрібна giving."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-43:i13:p1",
+            "target": "circular",
+            "meaningByLocale": {
+              "ru": "циркулярное письмо",
+              "uk": "циркулярний лист"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-43:i13:p2",
+            "target": "directive",
+            "meaningByLocale": {
+              "ru": "официальное указание",
+              "uk": "офіційна вказівка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-43:i13:p3",
+            "target": "recap",
+            "meaningByLocale": {
+              "ru": "краткое повторение основных пунктов",
+              "uk": "коротке повторення основних пунктів"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-43:i13:p4",
+            "target": "rundown",
+            "meaningByLocale": {
+              "ru": "краткий обзор основных сведений",
+              "uk": "короткий огляд основних відомостей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "circular",
+          "directive",
+          "recap",
+          "rundown"
+        ],
+        "rightColumn": [
+          "циркулярное письмо",
+          "официальное указание",
+          "краткое повторение основных пунктов",
+          "краткий обзор основных сведений"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i14:audio",
+          "transcript": "She is giving us a rundown."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is giving us a rundown.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "giving",
+          "us",
+          "a",
+          "rundown"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, когда команда получает инструкции на день. Скажите: «У нас инструктаж каждое утро»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, когда команда получает инструкции на день. Скажите: «У нас инструктаж каждое утро»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i15:audio",
+          "transcript": "We have a briefing every morning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have a briefing every morning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand the directive.",
+        "localizedMeaning": {
+          "ru": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
+          "uk": "Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»"
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "the",
+          "directive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега присоединился к встрече и спрашивает, о чём говорит руководительница. Она сейчас перечисляет основные задачи дня. Скажите: «Она даёт нам краткий обзор»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега присоединился к встрече и спрашивает, о чём говорит руководительница. Она сейчас перечисляет основные задачи дня. Скажите: «Она даёт нам краткий обзор»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-43:i17:audio",
+          "transcript": "She is giving us a rundown."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is giving us a rundown.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e436fbd5ff5a272b4c0774f418a7fdb4744a1b2f196a35c83d9d66a8933af51c"
+}

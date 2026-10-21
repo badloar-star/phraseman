@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-43:word:circular",
+    "correctText": "circular",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i01",
+    "correctText": "I am reading the circular.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i02",
+    "correctText": "The circular is on the desk.",
+    "correctResponseId": "en:lesson-10:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i03",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-10:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:word:directive",
+    "correctText": "directive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i04",
+    "correctText": "I understand the directive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i05",
+    "correctText": "The directive is clear.",
+    "correctResponseId": "en:lesson-10:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i06",
+    "correctText": "understand",
+    "correctResponseId": "en:lesson-10:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:word:recap",
+    "correctText": "recap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i07",
+    "correctText": "The recap is helpful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i08",
+    "correctText": "The recap is at the end.",
+    "correctResponseId": "en:lesson-10:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:word:rundown",
+    "correctText": "rundown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i10",
+    "correctText": "She is giving us a rundown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i11",
+    "correctText": "The rundown is in the email.",
+    "correctResponseId": "en:lesson-10:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i12",
+    "correctText": "giving",
+    "correctResponseId": "en:lesson-10:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i13",
+    "correctText": "en:lesson-10:session-43:i13:p1=circular\nen:lesson-10:session-43:i13:p2=directive\nen:lesson-10:session-43:i13:p3=recap\nen:lesson-10:session-43:i13:p4=rundown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i14",
+    "correctText": "She is giving us a rundown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i15",
+    "correctText": "We have a briefing every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i16",
+    "correctText": "I understand the directive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-43:i17",
+    "correctText": "She is giving us a rundown.",
+    "correctResponseId": null
+  }
+]

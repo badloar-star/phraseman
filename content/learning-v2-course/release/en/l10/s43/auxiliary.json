@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-43:intro1:r2": {
+          "ru": "С we нужна have.",
+          "uk": "З we потрібна have."
+        },
+        "en:lesson-10:session-43:intro1:r3": {
+          "ru": "Для регулярной ситуации нужна have.",
+          "uk": "Для регулярної ситуації потрібна have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-43:intro2:r2": {
+          "ru": "Перед reading нужен am.",
+          "uk": "Перед reading потрібне am."
+        },
+        "en:lesson-10:session-43:intro2:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-43:intro3:r2": {
+          "ru": "Правильно giving, без e.",
+          "uk": "Правильно giving, без e."
+        },
+        "en:lesson-10:session-43:intro3:r3": {
+          "ru": "Перед giving нужен is.",
+          "uk": "Перед giving потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5620b25640b412e9d681efeef66bb41f4f767b584750bf98f182e6ae62d7d170"
+}

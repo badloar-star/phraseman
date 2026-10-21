@@ -20,7 +20,9 @@
  * поэтому карточки, записанные более старой версией, нужно перегенерировать.
  * Поднимай число при каждом изменении словаря или правил.
  */
-export const TRANSCRIPTION_ENGINE_VERSION = 2;
+// зачем (3, 21.10): словарь пополнен словами, которые версия 2 собирала неверно (feet /fɪːt/,
+// apps /æpps/) — сохранённые ею карточки нужно перегенерировать один раз.
+export const TRANSCRIPTION_ENGINE_VERSION = 3;
 
 // ─── Dictionary ───────────────────────────────────────────────────────────────
 // Common A1–B2 words + all system flashcard vocabulary
@@ -289,6 +291,24 @@ const DICT: Record<string, string> = {
   touch: 'tʌtʃ', base: 'beɪs', bear: 'beər', favor: 'ˈfeɪvər',
   slipped: 'slɪpt', reschedule: 'riːˈʃedjuːl',
   figure: 'ˈfɪɡər', follow: 'ˈfɒloʊ', apart: 'əˈpɑːrt',
+  // зачем (репорты #6 #7 #25 #26, 21.10): слова фраз дня и уроков, которые правила по буквам
+  // собирали неверно (ee→ɪː, ow→æʊ, th не читается, двойные буквы, глухая -s). Словарь стоит
+  // раньше правил, поэтому запись здесь закрывает неверную сборку. «drivers» и «isnt» —
+  // так слово выглядит после снятия апострофа в getTranscription.
+  drivers: 'ˈdraɪvərz', seat: 'siːt', lines: 'laɪnz', table: 'ˈteɪbl', uses: 'ˈjuːzɪz',
+  app: 'æp', apps: 'æps', isnt: 'ˈɪznt',
+  bills: 'bɪlz', blow: 'bloʊ', boat: 'boʊt', body: 'ˈbɒdi', bush: 'bʊʃ', calls: 'kɔːlz',
+  calm: 'kɑːm', cloud: 'klaʊd', feels: 'fiːlz', feet: 'fiːt', finds: 'faɪndz', gold: 'ɡoʊld',
+  group: 'ɡruːp', hoops: 'huːps', icing: 'ˈaɪsɪŋ', july: 'dʒuˈlaɪ', keeps: 'kiːps',
+  lazy: 'ˈleɪzi', loop: 'luːp', loud: 'laʊd', moon: 'muːn', mouth: 'maʊθ', needs: 'niːdz',
+  noisy: 'ˈnɔɪzi', noon: 'nuːn', pins: 'pɪnz', plans: 'plænz', push: 'pʊʃ', puts: 'pʊts',
+  riot: 'ˈraɪət', rooms: 'ruːmz', row: 'roʊ', runs: 'rʌnz', salt: 'sɔːlt', shoot: 'ʃuːt',
+  shout: 'ʃaʊt', slowly: 'ˈsloʊli', sold: 'soʊld', soon: 'suːn', sounds: 'saʊndz',
+  soup: 'suːp', south: 'saʊθ', street: 'striːt', study: 'ˈstʌdi', sweet: 'swiːt',
+  teeth: 'tiːθ', than: 'ðæn', thick: 'θɪk', thin: 'θɪn', things: 'θɪŋz', throw: 'θroʊ',
+  throws: 'θroʊz', tooth: 'tuːθ', trees: 'triːz', truth: 'truːθ', waking: 'ˈweɪkɪŋ',
+  walls: 'wɔːlz', wants: 'wɒnts', wasting: 'ˈweɪstɪŋ', watch: 'wɒtʃ', watching: 'ˈwɒtʃɪŋ',
+  wild: 'waɪld', wind: 'wɪnd', cooking: 'ˈkʊkɪŋ', drawing: 'ˈdrɔːɪŋ', fixing: 'ˈfɪksɪŋ',
   // Multi-word phrases (checked before word-by-word)
   'kind of': 'kaɪnd ɒv', 'sort of': 'sɔːrt ɒv',
   'you know': 'juː noʊ', 'i mean': 'aɪ miːn',

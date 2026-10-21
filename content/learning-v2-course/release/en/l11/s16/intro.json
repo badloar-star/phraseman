@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "Was…? Were…? was not; were not",
+    "uk": "Was…? Were…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два разных столика",
+        "uk": "Два різні столики"
+      },
+      "bodyByLocale": {
+        "ru": "Bedside table — «прикроватная тумбочка», coffee table — «журнальный столик». Вчера тумбочка стояла у кровати. Вопрос: Was the bedside table next to the bed? — «Тумбочка была рядом с кроватью?» У одного предмета используем was. Выберите этот вопрос.",
+        "uk": "Bedside table — «приліжкова тумбочка», coffee table — «журнальний столик». Учора тумбочка стояла біля ліжка. Запитання: Was the bedside table next to the bed? — «Тумбочка була поруч із ліжком?» Для одного предмета використовуємо was. Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r1",
+              "text": "Was the bedside table next to the bed?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r2",
+              "text": "Were the bedside table next to the bed?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r3",
+              "text": "Did the bedside table was next to the bed?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r1",
+              "text": "Was the bedside table next to the bed?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r2",
+              "text": "Were the bedside table next to the bed?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro1:r3",
+              "text": "Did the bedside table was next to the bed?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вешалка-плечики",
+        "uk": "Вішалка-плічка"
+      },
+      "bodyByLocale": {
+        "ru": "Coat hanger — «вешалка-плечики» для одежды. Это один предмет: The coat hanger was in the wardrobe. Несколько таких вешалок — coat hangers: Were the coat hangers in the wardrobe? — «Вешалки были в шкафу?» Выберите вопрос о нескольких вешалках.",
+        "uk": "Coat hanger — «вішалка-плічка» для одягу. Це один предмет: The coat hanger was in the wardrobe. Кілька таких вішалок — coat hangers: Were the coat hangers in the wardrobe? — «Вішалки були в шафі?» Виберіть запитання про кілька вішалок."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r1",
+              "text": "Were the coat hangers in the wardrobe?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r2",
+              "text": "Was the coat hangers in the wardrobe?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r3",
+              "text": "Did the coat hangers were in the wardrobe?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r1",
+              "text": "Were the coat hangers in the wardrobe?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r2",
+              "text": "Was the coat hangers in the wardrobe?"
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro2:r3",
+              "text": "Did the coat hangers were in the wardrobe?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полка для обуви",
+        "uk": "Полиця для взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Shoe rack — «полка для обуви». Вчера она стояла в коридоре, не в спальне: The shoe rack was not in the bedroom. В отрицании not идёт после was. Сейчас вы убираете: I am cleaning right now. Просьба: Please don’t move my shoes — «Пожалуйста, не двигай мою обувь». Выберите отрицание о спальне.",
+        "uk": "Shoe rack — «полиця для взуття». Учора вона стояла в коридорі, не в спальні: The shoe rack was not in the bedroom. У запереченні not іде після was. Зараз ви прибираєте: I am cleaning right now. Прохання: Please don’t move my shoes — «Будь ласка, не рухай моє взуття». Виберіть заперечення про спальню."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r1",
+              "text": "The shoe rack was not in the bedroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r2",
+              "text": "The shoe rack not was in the bedroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r3",
+              "text": "The shoe rack were not in the bedroom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r1",
+              "text": "The shoe rack was not in the bedroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r2",
+              "text": "The shoe rack not was in the bedroom."
+            },
+            {
+              "responseId": "en:lesson-11:session-16:intro3:r3",
+              "text": "The shoe rack were not in the bedroom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ac0b1c989f0ff34ceaa703c85f061d067499466fdb29c0882e6ab772396cb8b"
+}

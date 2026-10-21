@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-13:intro1:r2": {
+          "ru": "С mustard здесь нужна was.",
+          "uk": "Із mustard тут потрібна was."
+        },
+        "en:lesson-11:session-13:intro1:r3": {
+          "ru": "В вопросе с was не нужен did.",
+          "uk": "У запитанні з was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-13:intro2:r2": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        },
+        "en:lesson-11:session-13:intro2:r3": {
+          "ru": "С mayonnaise нужна was.",
+          "uk": "Із mayonnaise потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-13:intro3:r2": {
+          "ru": "С vinegar здесь нужна was.",
+          "uk": "Із vinegar тут потрібна was."
+        },
+        "en:lesson-11:session-13:intro3:r3": {
+          "ru": "Вопрос с was строится без did.",
+          "uk": "Запитання з was будується без did."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "80e279fe5d804ed5103760fb1ac560ebcdbb090b0cb1d7c53affb386c9528211"
+}

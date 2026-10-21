@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "Was…? Were…? was not; were not",
+    "uk": "Was…? Were…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чипсы",
+        "uk": "Чипси"
+      },
+      "bodyByLocale": {
+        "ru": "Crisps — «картофельные чипсы», обычное британское название. Это множественное число: Were the crisps salty? — «Чипсы были солёными?» В ответе тоже were: They were not salty. Друг спрашивает о вчерашнем перекусе. Выберите его вопрос.",
+        "uk": "Crisps — «картопляні чипси», звичайна британська назва. Це множина: Were the crisps salty? — «Чипси були солоні?» У відповіді теж were: They were not salty. Друг запитує про вчорашній перекус. Виберіть його запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r1",
+              "text": "Were the crisps salty?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r2",
+              "text": "Was the crisps salty?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r3",
+              "text": "Did the crisps were salty?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r1",
+              "text": "Were the crisps salty?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r2",
+              "text": "Was the crisps salty?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro1:r3",
+              "text": "Did the crisps were salty?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Крекер",
+        "uk": "Крекер"
+      },
+      "bodyByLocale": {
+        "ru": "Cracker — «крекер», тонкое хрустящее печенье. Один крекер: Was the cracker fresh? Несколько крекеров: Were the crackers fresh? Меняется и окончание существительного, и форма be. Друг спрашивает об одном крекере. Выберите его вопрос.",
+        "uk": "Cracker — «крекер», тонке хрустке печиво. Один крекер: Was the cracker fresh? Кілька крекерів: Were the crackers fresh? Змінюється і закінчення іменника, і форма be. Друг запитує про один крекер. Виберіть його запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r1",
+              "text": "Was the cracker fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r2",
+              "text": "Were the cracker fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r3",
+              "text": "Was the crackers fresh?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r1",
+              "text": "Was the cracker fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r2",
+              "text": "Were the cracker fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro2:r3",
+              "text": "Was the crackers fresh?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Арахис и миндаль",
+        "uk": "Арахіс і мигдаль"
+      },
+      "bodyByLocale": {
+        "ru": "Peanut — «арахисовый орешек», almond — «миндальный орех». Один peanut или almond сочетается с was; несколько peanuts или almonds — с were. Друг спрашивает, был ли миндальный орех свежим: Was the almond fresh? Пока он показывает вам орех, попросите другого друга Please don’t hurry me — «Пожалуйста, не торопи меня». Выберите вопрос об одном миндальном орехе.",
+        "uk": "Peanut — «арахісовий горішок», almond — «мигдалевий горіх». Один peanut або almond поєднується з was; кілька peanuts або almonds — із were. Друг запитує, чи був мигдалевий горіх свіжим: Was the almond fresh? Поки він показує вам горіх, попросіть іншого друга Please don’t hurry me — «Будь ласка, не квап мене». Виберіть запитання про один мигдалевий горіх."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r1",
+              "text": "Was the almond fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r2",
+              "text": "Were the almond fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r3",
+              "text": "Was the almonds fresh?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r1",
+              "text": "Was the almond fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r2",
+              "text": "Were the almond fresh?"
+            },
+            {
+              "responseId": "en:lesson-11:session-14:intro3:r3",
+              "text": "Was the almonds fresh?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b8219ef6ba2b3fe67194d21f56ca925a334889516e09bd26c6215ea3179e336b"
+}

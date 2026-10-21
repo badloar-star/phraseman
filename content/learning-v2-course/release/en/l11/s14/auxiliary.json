@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-14:intro1:r2": {
+          "ru": "Crisps — множественное число: were.",
+          "uk": "Crisps — множина: were."
+        },
+        "en:lesson-11:session-14:intro1:r3": {
+          "ru": "Вопрос с were строится без did.",
+          "uk": "Запитання з were будується без did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-14:intro2:r2": {
+          "ru": "Один cracker: was.",
+          "uk": "Один cracker: was."
+        },
+        "en:lesson-11:session-14:intro2:r3": {
+          "ru": "Для crackers нужна were. Здесь вопрос об одном cracker.",
+          "uk": "Для crackers потрібна were. Тут запитання про один cracker."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-14:intro3:r2": {
+          "ru": "Один almond: was.",
+          "uk": "Один almond: was."
+        },
+        "en:lesson-11:session-14:intro3:r3": {
+          "ru": "Для almonds нужна were. Здесь один almond.",
+          "uk": "Для almonds потрібна were. Тут один almond."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a7fb9f773373ecfcfd4be0b198b2afb5bd730480b299147591fe9009dc17a91"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-16:word:bedside-table",
+    "correctText": "bedside table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i01",
+    "correctText": "Was the bedside table clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i02",
+    "correctText": "The bedside table was not empty.",
+    "correctResponseId": "en:lesson-11:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:word:coffee-table",
+    "correctText": "coffee table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i04",
+    "correctText": "Was the coffee table next to the sofa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i05",
+    "correctText": "The coffee table was dirty.",
+    "correctResponseId": "en:lesson-11:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i06",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:word:coat-hanger",
+    "correctText": "coat hanger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i07",
+    "correctText": "Was the coat hanger on the bed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i08",
+    "correctText": "The coat hangers were in the wardrobe.",
+    "correctResponseId": "en:lesson-11:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i09",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-11:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:word:shoe-rack",
+    "correctText": "shoe rack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i10",
+    "correctText": "The shoe rack was dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i11",
+    "correctText": "Was the shoe rack next to the door?",
+    "correctResponseId": "en:lesson-11:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i13",
+    "correctText": "en:lesson-11:session-16:i13:p1=bedside table\nen:lesson-11:session-16:i13:p2=coffee table\nen:lesson-11:session-16:i13:p3=coat hanger\nen:lesson-11:session-16:i13:p4=shoe rack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i14",
+    "correctText": "Please don't move my shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i15",
+    "correctText": "I am cleaning right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i16",
+    "correctText": "The coat hangers were not on the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-16:i17",
+    "correctText": "Was the coffee table in the living room?",
+    "correctResponseId": null
+  }
+]

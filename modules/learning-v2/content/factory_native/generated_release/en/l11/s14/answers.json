@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-14:word:crisps",
+    "correctText": "crisps",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i01",
+    "correctText": "Were the crisps salty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i02",
+    "correctText": "The crisps were not salty.",
+    "correctResponseId": "en:lesson-11:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:word:cracker",
+    "correctText": "cracker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i04",
+    "correctText": "Was the cracker fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i05",
+    "correctText": "The cracker was on the plate.",
+    "correctResponseId": "en:lesson-11:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:word:peanut",
+    "correctText": "peanut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i07",
+    "correctText": "Was the peanut salty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i08",
+    "correctText": "The peanuts were salty.",
+    "correctResponseId": "en:lesson-11:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i09",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-11:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:word:almond",
+    "correctText": "almond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i10",
+    "correctText": "Was the almond fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i11",
+    "correctText": "The almonds were in the bowl.",
+    "correctResponseId": "en:lesson-11:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i12",
+    "correctText": "weren't",
+    "correctResponseId": "en:lesson-11:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i13",
+    "correctText": "en:lesson-11:session-14:i13:p1=crisps\nen:lesson-11:session-14:i13:p2=cracker\nen:lesson-11:session-14:i13:p3=peanut\nen:lesson-11:session-14:i13:p4=almond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i14",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i15",
+    "correctText": "We are eating right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i16",
+    "correctText": "The crisps were not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-14:i17",
+    "correctText": "Were the crackers in the bag?",
+    "correctResponseId": null
+  }
+]

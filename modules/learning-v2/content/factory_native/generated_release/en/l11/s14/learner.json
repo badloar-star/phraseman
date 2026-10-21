@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-14:word:crisps",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crisps",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:word:crisps:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crisps",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:word:crisps:audio",
+          "transcript": "crisps"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:word:crisps:r1",
+            "targetText": "crisps",
+            "meaningByLocale": {
+              "ru": "картофельные чипсы. Британское название во множественном числе.",
+              "uk": "картопляні чипси. Британська назва у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crisps",
+          "definitionByLocale": {
+            "ru": "картофельные чипсы. Британское название во множественном числе.",
+            "uk": "картопляні чипси. Британська назва у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, были ли чипсы солёными",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, были ли чипсы солёными",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were the crisps salty?",
+        "localizedMeaning": {
+          "ru": "Спросите, были ли чипсы солёными",
+          "uk": "Запитайте, чи були чипси солоні"
+        },
+        "orderedTokens": [
+          "Were",
+          "the",
+          "crisps",
+          "salty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i02:r1",
+          "text": "The crisps were not salty."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i02:r2",
+          "text": "The crisps were salty."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i02:r3",
+          "text": "Were the crisps salty?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i02:audio",
+          "transcript": "The crisps were not salty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:i02:r1",
+            "targetText": "The crisps were not salty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i02:r2",
+            "targetText": "The crisps were salty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i02:r3",
+            "targetText": "Were the crisps salty?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The crisps were not salty.",
+              "uk": "У записі звучить The crisps were not salty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The crisps were not salty.",
+              "uk": "У записі звучить The crisps were not salty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, где были чипсы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i03:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, где были чипсы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, где были чипсы",
+          "uk": "Згадайте, де були чипси"
+        },
+        "gappedTargetPhrase": "The crisps ___ in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-14:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i03:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Вспомните, где были чипсы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, где были чипсы",
+            "feedbackByLocale": {
+              "ru": "С crisps нужна were.",
+              "uk": "Із crisps потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, где были чипсы",
+            "feedbackByLocale": {
+              "ru": "Место в прошлом описываем were.",
+              "uk": "Місце в минулому описуємо were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:word:cracker",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cracker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:word:cracker:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cracker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:word:cracker:audio",
+          "transcript": "cracker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:word:cracker:r1",
+            "targetText": "cracker",
+            "meaningByLocale": {
+              "ru": "крекер, тонкое хрустящее печенье.",
+              "uk": "крекер, тонке хрустке печиво."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cracker",
+          "definitionByLocale": {
+            "ru": "крекер, тонкое хрустящее печенье.",
+            "uk": "крекер, тонке хрустке печиво."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, был ли один крекер свежим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, был ли один крекер свежим",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the cracker fresh?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли один крекер свежим",
+          "uk": "Запитайте, чи був один крекер свіжий"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "cracker",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i05:r1",
+          "text": "The cracker was on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i05:r2",
+          "text": "The cracker was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i05:r3",
+          "text": "The cracker was in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i05:audio",
+          "transcript": "The cracker was on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:i05:r1",
+            "targetText": "The cracker was on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i05:r2",
+            "targetText": "The cracker was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i05:r3",
+            "targetText": "The cracker was in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cracker was on the plate.",
+              "uk": "У записі звучить The cracker was on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cracker was on the plate.",
+              "uk": "У записі звучить The cracker was on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что несколько крекеров были не свежими",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что несколько крекеров были не свежими",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что несколько крекеров были не свежими",
+          "uk": "Скажіть, що кілька крекерів були не свіжі"
+        },
+        "gappedTargetPhrase": "The crackers ___ not fresh.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-14:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажите, что несколько крекеров были не свежими",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что несколько крекеров были не свежими",
+            "feedbackByLocale": {
+              "ru": "Crackers — множественное число: were.",
+              "uk": "Crackers — множина: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что несколько крекеров были не свежими",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: were not.",
+              "uk": "Заперечення з be: were not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:word:peanut",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — peanut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:word:peanut:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — peanut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:word:peanut:audio",
+          "transcript": "peanut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:word:peanut:r1",
+            "targetText": "peanut",
+            "meaningByLocale": {
+              "ru": "арахисовый орешек.",
+              "uk": "арахісовий горішок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peanut",
+          "definitionByLocale": {
+            "ru": "арахисовый орешек.",
+            "uk": "арахісовий горішок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, был ли один арахисовый орешек солёным",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, был ли один арахисовый орешек солёным",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the peanut salty?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли один арахисовый орешек солёным",
+          "uk": "Запитайте, чи був один арахісовий горішок солоний"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "peanut",
+          "salty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i08:r1",
+          "text": "The peanuts were salty."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i08:r2",
+          "text": "The peanuts were fresh."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i08:r3",
+          "text": "The peanuts were dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i08:audio",
+          "transcript": "The peanuts were salty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:i08:r1",
+            "targetText": "The peanuts were salty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i08:r2",
+            "targetText": "The peanuts were fresh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i08:r3",
+            "targetText": "The peanuts were dry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The peanuts were salty.",
+              "uk": "У записі звучить The peanuts were salty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The peanuts were salty.",
+              "uk": "У записі звучить The peanuts were salty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о нескольких арахисовых орешках",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i09:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i09:r2",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о нескольких арахисовых орешках",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о нескольких арахисовых орешках",
+          "uk": "Запитайте про кілька арахісових горішків"
+        },
+        "gappedTargetPhrase": "___ the peanuts fresh?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-14:i09:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i09:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Спросите о нескольких арахисовых орешках",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Спросите о нескольких арахисовых орешках",
+            "feedbackByLocale": {
+              "ru": "С peanuts нужна were.",
+              "uk": "Із peanuts потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Спросите о нескольких арахисовых орешках",
+            "feedbackByLocale": {
+              "ru": "Вопрос с were строится без did.",
+              "uk": "Запитання з were будується без did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:word:almond",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — almond",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:word:almond:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — almond",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:word:almond:audio",
+          "transcript": "almond"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:word:almond:r1",
+            "targetText": "almond",
+            "meaningByLocale": {
+              "ru": "миндальный орех.",
+              "uk": "мигдалевий горіх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "almond",
+          "definitionByLocale": {
+            "ru": "миндальный орех.",
+            "uk": "мигдалевий горіх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, был ли один миндальный орех свежим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, был ли один миндальный орех свежим",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the almond fresh?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли один миндальный орех свежим",
+          "uk": "Запитайте, чи був один мигдалевий горіх свіжий"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "almond",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i11:r1",
+          "text": "The almonds were in the bowl."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i11:r2",
+          "text": "The almonds were in the bag."
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i11:r3",
+          "text": "The almonds were on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i11:audio",
+          "transcript": "The almonds were in the bowl."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-14:i11:r1",
+            "targetText": "The almonds were in the bowl.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i11:r2",
+            "targetText": "The almonds were in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i11:r3",
+            "targetText": "The almonds were on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The almonds were in the bowl.",
+              "uk": "У записі звучить The almonds were in the bowl."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The almonds were in the bowl.",
+              "uk": "У записі звучить The almonds were in the bowl."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-14:i12:r1",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i12:r2",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-14:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+          "uk": "Друг запитав Were the almonds salty? Вони були без солі. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, they ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-14:i12:r1",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i12:r2",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С they нужна weren’t.",
+              "uk": "З they потрібна weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Were the almonds salty? Они были без соли. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "На вопрос с were отвечаем формой were/weren’t.",
+              "uk": "На запитання з were відповідаємо формою were/weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-14:i13:p1",
+            "target": "crisps",
+            "meaningByLocale": {
+              "ru": "чипсы",
+              "uk": "чипси"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-14:i13:p2",
+            "target": "cracker",
+            "meaningByLocale": {
+              "ru": "крекер",
+              "uk": "крекер"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-14:i13:p3",
+            "target": "peanut",
+            "meaningByLocale": {
+              "ru": "арахисовый орешек",
+              "uk": "арахісовий горішок"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-14:i13:p4",
+            "target": "almond",
+            "meaningByLocale": {
+              "ru": "миндальный орех",
+              "uk": "мигдалевий горіх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "crisps",
+          "cracker",
+          "peanut",
+          "almond"
+        ],
+        "rightColumn": [
+          "чипсы",
+          "крекер",
+          "арахисовый орешек",
+          "миндальный орех"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i14:audio",
+          "transcript": "Please don't hurry me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry me.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i15:audio",
+          "transcript": "We are eating right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are eating right now.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "eating",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что чипсы были не на столе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что чипсы были не на столе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i16:audio",
+          "transcript": "The crisps were not on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The crisps were not on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, были ли крекеры в сумке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите, были ли крекеры в сумке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-14:i17:audio",
+          "transcript": "Were the crackers in the bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the crackers in the bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9de1e57fc6de3997409cf3acc0afc6eaae3581155ca8438f8ca32f4ba046fb92"
+}

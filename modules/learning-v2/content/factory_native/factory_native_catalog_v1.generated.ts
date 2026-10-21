@@ -4011,4 +4011,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 13,
+    sourceFingerprint: "9e37f1895ef233494f67ed5b8496231f569a6388736c33054e4ff8ffe090d63c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 14,
+    sourceFingerprint: "de51fec4200645ef81ce7aa88ce8e1b63041b05af8d87cb5d0ac101a4b809632",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 15,
+    sourceFingerprint: "f66d695c3fa23b4c8e501e5e73db12bc0a09dfcf3660e57db80ca4b5c50005de",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 16,
+    sourceFingerprint: "400b44031bfc0fa13a137005eb430eb0eb4f3f9afd534563f3ecd8acdca69338",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Was…? Were…? was not; were not","uk":"Was…? Were…? was not; were not"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

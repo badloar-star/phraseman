@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-15:intro1:r2": {
+          "ru": "Здесь нужна was.",
+          "uk": "Тут потрібна was."
+        },
+        "en:lesson-11:session-15:intro1:r3": {
+          "ru": "С was не добавляем did.",
+          "uk": "Із was не додаємо did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-15:intro2:r2": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        },
+        "en:lesson-11:session-15:intro2:r3": {
+          "ru": "С peanut butter нужна was.",
+          "uk": "Із peanut butter потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-15:intro3:r2": {
+          "ru": "С it нужна was.",
+          "uk": "З it потрібна was."
+        },
+        "en:lesson-11:session-15:intro3:r3": {
+          "ru": "На вопрос с was отвечаем was.",
+          "uk": "На запитання з was відповідаємо was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4bc2d12b83f3ebb812e176e1f9ec8eeb901bd6d42d5b99dd48cb0423590f3a7f"
+}

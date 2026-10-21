@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-16:word:bedside-table",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bedside table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:word:bedside-table:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bedside table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:word:bedside-table:audio",
+          "transcript": "bedside table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:word:bedside-table:r1",
+            "targetText": "bedside table",
+            "meaningByLocale": {
+              "ru": "прикроватная тумбочка.",
+              "uk": "приліжкова тумбочка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bedside table",
+          "definitionByLocale": {
+            "ru": "прикроватная тумбочка.",
+            "uk": "приліжкова тумбочка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли тумбочка чистой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли тумбочка чистой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the bedside table clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли тумбочка чистой",
+          "uk": "Запитайте, чи була тумбочка чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "bedside",
+          "table",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i02:r1",
+          "text": "The bedside table was not empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i02:r2",
+          "text": "The bedside table was empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i02:r3",
+          "text": "Was the bedside table empty?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i02:audio",
+          "transcript": "The bedside table was not empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:i02:r1",
+            "targetText": "The bedside table was not empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i02:r2",
+            "targetText": "The bedside table was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i02:r3",
+            "targetText": "Was the bedside table empty?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bedside table was not empty.",
+              "uk": "У записі звучить The bedside table was not empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bedside table was not empty.",
+              "uk": "У записі звучить The bedside table was not empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните место тумбочки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i03:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните место тумбочки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните место тумбочки",
+          "uk": "Згадайте місце тумбочки"
+        },
+        "gappedTargetPhrase": "The bedside table ___ next to the bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-16:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i03:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Вспомните место тумбочки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Вспомните место тумбочки",
+            "feedbackByLocale": {
+              "ru": "Один предмет: was.",
+              "uk": "Один предмет: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Вспомните место тумбочки",
+            "feedbackByLocale": {
+              "ru": "Место в прошлом: was.",
+              "uk": "Місце в минулому: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:word:coffee-table",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coffee table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:word:coffee-table:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coffee table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:word:coffee-table:audio",
+          "transcript": "coffee table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:word:coffee-table:r1",
+            "targetText": "coffee table",
+            "meaningByLocale": {
+              "ru": "журнальный столик.",
+              "uk": "журнальний столик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coffee table",
+          "definitionByLocale": {
+            "ru": "журнальный столик.",
+            "uk": "журнальний столик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, был ли журнальный столик рядом с диваном",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, был ли журнальный столик рядом с диваном",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the coffee table next to the sofa?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли журнальный столик рядом с диваном",
+          "uk": "Запитайте, чи був журнальний столик поруч із диваном"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "coffee",
+          "table",
+          "next",
+          "to",
+          "the",
+          "sofa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i05:r1",
+          "text": "The coffee table was dirty."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i05:r2",
+          "text": "The coffee table was clean."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i05:r3",
+          "text": "The coffee table was empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i05:audio",
+          "transcript": "The coffee table was dirty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:i05:r1",
+            "targetText": "The coffee table was dirty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i05:r2",
+            "targetText": "The coffee table was clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i05:r3",
+            "targetText": "The coffee table was empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coffee table was dirty.",
+              "uk": "У записі звучить The coffee table was dirty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coffee table was dirty.",
+              "uk": "У записі звучить The coffee table was dirty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i06:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i06:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i06:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+          "uk": "Друг запитав Was the coffee table empty? На ньому лежала книжка. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-16:i06:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i06:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i06:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the coffee table empty? На нём лежала книга. Ответьте отрицательно",
+            "feedbackByLocale": {
+              "ru": "На вопрос с was отвечаем wasn’t.",
+              "uk": "На запитання з was відповідаємо wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:word:coat-hanger",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat hanger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:word:coat-hanger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat hanger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:word:coat-hanger:audio",
+          "transcript": "coat hanger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:word:coat-hanger:r1",
+            "targetText": "coat hanger",
+            "meaningByLocale": {
+              "ru": "вешалка-плечики для одежды. Один предмет.",
+              "uk": "вішалка-плічка для одягу. Один предмет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat hanger",
+          "definitionByLocale": {
+            "ru": "вешалка-плечики для одежды. Один предмет.",
+            "uk": "вішалка-плічка для одягу. Один предмет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли одна вешалка на кровати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли одна вешалка на кровати",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the coat hanger on the bed?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли одна вешалка на кровати",
+          "uk": "Запитайте, чи була одна вішалка на ліжку"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "coat",
+          "hanger",
+          "on",
+          "the",
+          "bed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i08:r1",
+          "text": "The coat hangers were in the wardrobe."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i08:r2",
+          "text": "The coat hangers were on the bed."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i08:r3",
+          "text": "The coat hanger was in the wardrobe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i08:audio",
+          "transcript": "The coat hangers were in the wardrobe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:i08:r1",
+            "targetText": "The coat hangers were in the wardrobe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i08:r2",
+            "targetText": "The coat hangers were on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i08:r3",
+            "targetText": "The coat hanger was in the wardrobe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coat hangers were in the wardrobe.",
+              "uk": "У записі звучить The coat hangers were in the wardrobe."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coat hangers were in the wardrobe.",
+              "uk": "У записі звучить The coat hangers were in the wardrobe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите о нескольких вешалках",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i09:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i09:r2",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о нескольких вешалках",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о нескольких вешалках",
+          "uk": "Запитайте про кілька вішалок"
+        },
+        "gappedTargetPhrase": "___ the coat hangers on the chair?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-16:i09:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i09:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Спросите о нескольких вешалках",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Спросите о нескольких вешалках",
+            "feedbackByLocale": {
+              "ru": "Несколько вешалок: were.",
+              "uk": "Кілька вішалок: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Спросите о нескольких вешалках",
+            "feedbackByLocale": {
+              "ru": "Вопрос с were строится без did.",
+              "uk": "Запитання з were будується без did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:word:shoe-rack",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoe rack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:word:shoe-rack:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoe rack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:word:shoe-rack:audio",
+          "transcript": "shoe rack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:word:shoe-rack:r1",
+            "targetText": "shoe rack",
+            "meaningByLocale": {
+              "ru": "полка для обуви.",
+              "uk": "полиця для взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoe rack",
+          "definitionByLocale": {
+            "ru": "полка для обуви.",
+            "uk": "полиця для взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что полка для обуви была грязной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что полка для обуви была грязной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shoe rack was dirty.",
+        "localizedMeaning": {
+          "ru": "Скажите, что полка для обуви была грязной",
+          "uk": "Скажіть, що полиця для взуття була брудна"
+        },
+        "orderedTokens": [
+          "The",
+          "shoe",
+          "rack",
+          "was",
+          "dirty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i11:r1",
+          "text": "Was the shoe rack next to the door?"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i11:r2",
+          "text": "The shoe rack was next to the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i11:r3",
+          "text": "Was the shoe rack in the bedroom?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i11:audio",
+          "transcript": "Was the shoe rack next to the door?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-16:i11:r1",
+            "targetText": "Was the shoe rack next to the door?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i11:r2",
+            "targetText": "The shoe rack was next to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i11:r3",
+            "targetText": "Was the shoe rack in the bedroom?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the shoe rack next to the door?",
+              "uk": "У записі звучить Was the shoe rack next to the door?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the shoe rack next to the door?",
+              "uk": "У записі звучить Was the shoe rack next to the door?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-16:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-16:i12:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+          "uk": "Друг запитав Was the shoe rack empty? На ній не було взуття. Дайте ствердну відповідь"
+        },
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-16:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i12:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+            "feedbackByLocale": {
+              "ru": "Один предмет: was.",
+              "uk": "Один предмет: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил Was the shoe rack empty? На ней не было обуви. Ответьте утвердительно",
+            "feedbackByLocale": {
+              "ru": "На вопрос с was отвечаем was.",
+              "uk": "На запитання з was відповідаємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-16:i13:p1",
+            "target": "bedside table",
+            "meaningByLocale": {
+              "ru": "прикроватная тумбочка",
+              "uk": "приліжкова тумбочка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-16:i13:p2",
+            "target": "coffee table",
+            "meaningByLocale": {
+              "ru": "журнальный столик",
+              "uk": "журнальний столик"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-16:i13:p3",
+            "target": "coat hanger",
+            "meaningByLocale": {
+              "ru": "вешалка-плечики",
+              "uk": "вішалка-плічка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-16:i13:p4",
+            "target": "shoe rack",
+            "meaningByLocale": {
+              "ru": "полка для обуви",
+              "uk": "полиця для взуття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bedside table",
+          "coffee table",
+          "coat hanger",
+          "shoe rack"
+        ],
+        "rightColumn": [
+          "прикроватная тумбочка",
+          "журнальный столик",
+          "вешалка-плечики",
+          "полка для обуви"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i14:audio",
+          "transcript": "Please don't move my shoes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my shoes.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i15:audio",
+          "transcript": "I am cleaning right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am cleaning right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "cleaning",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вешалки были не на кровати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вешалки были не на кровати",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i16:audio",
+          "transcript": "The coat hangers were not on the bed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat hangers were not on the bed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, был ли журнальный столик в гостиной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите, был ли журнальный столик в гостиной",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-16:i17:audio",
+          "transcript": "Was the coffee table in the living room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the coffee table in the living room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3cddc506d65f096e2ad2af4eca1dd2e4df1c4923a25874404189c3c40ed4542e"
+}

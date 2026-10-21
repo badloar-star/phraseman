@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "Was…? Were…? was not; were not",
+    "uk": "Was…? Were…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кетчуп и горчица",
+        "uk": "Кетчуп і гірчиця"
+      },
+      "bodyByLocale": {
+        "ru": "Ketchup — «кетчуп», mustard — «горчица». Вчера вы обедали в кафе. Друг спрашивает: Was the mustard hot? — «Горчица была острой?» Hot о приправе может означать «острый на вкус», а не горячий по температуре. В этой сцене обсуждаем остроту. Выберите вопрос друга.",
+        "uk": "Ketchup — «кетчуп», mustard — «гірчиця». Учора ви обідали в кафе. Друг запитує: Was the mustard hot? — «Гірчиця була гострою?» Hot про приправу може означати «гострий на смак», а не гарячий за температурою. У цій сцені обговорюємо гостроту. Виберіть запитання друга."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r1",
+              "text": "Was the mustard hot?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r2",
+              "text": "Were the mustard hot?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r3",
+              "text": "Did the mustard was hot?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r1",
+              "text": "Was the mustard hot?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r2",
+              "text": "Were the mustard hot?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro1:r3",
+              "text": "Did the mustard was hot?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Майонез",
+        "uk": "Майонез"
+      },
+      "bodyByLocale": {
+        "ru": "Mayonnaise — «майонез». Если он был в холодильнике, скажем: The mayonnaise was in the fridge. Если он стоял на столе, это можно уточнить отрицанием: The mayonnaise was not in the fridge. С mayonnaise здесь используем was: это неисчисляемое существительное. Вчера майонез стоял на столе. Выберите отрицание о холодильнике.",
+        "uk": "Mayonnaise — «майонез». Якщо він був у холодильнику, скажемо: The mayonnaise was in the fridge. Якщо він стояв на столі, це можна уточнити запереченням: The mayonnaise was not in the fridge. Із mayonnaise тут використовуємо was: це незлічуваний іменник. Учора майонез стояв на столі. Виберіть заперечення про холодильник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r1",
+              "text": "The mayonnaise was not in the fridge."
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r2",
+              "text": "The mayonnaise not was in the fridge."
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r3",
+              "text": "The mayonnaise were not in the fridge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r1",
+              "text": "The mayonnaise was not in the fridge."
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r2",
+              "text": "The mayonnaise not was in the fridge."
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro2:r3",
+              "text": "The mayonnaise were not in the fridge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уксус",
+        "uk": "Оцет"
+      },
+      "bodyByLocale": {
+        "ru": "Vinegar — «уксус». Вопрос о вкусе: Was the vinegar sour? — «Уксус был кислым?» Если друг спрашивает о бутылке, отвечайте о том, что было в ней. Сейчас вы заканчиваете обед: I am eating right now. Просьба за столом: Please don’t move my plate — «Пожалуйста, не двигай мою тарелку». Выберите вопрос о вкусе уксуса.",
+        "uk": "Vinegar — «оцет». Запитання про смак: Was the vinegar sour? — «Оцет був кислим?» Якщо друг запитує про пляшку, відповідайте про те, що було в ній. Зараз ви закінчуєте обід: I am eating right now. Прохання за столом: Please don’t move my plate — «Будь ласка, не рухай мою тарілку». Виберіть запитання про смак оцту."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r1",
+              "text": "Was the vinegar sour?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r2",
+              "text": "Were the vinegar sour?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r3",
+              "text": "Did the vinegar was sour?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r1",
+              "text": "Was the vinegar sour?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r2",
+              "text": "Were the vinegar sour?"
+            },
+            {
+              "responseId": "en:lesson-11:session-13:intro3:r3",
+              "text": "Did the vinegar was sour?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "75b0eb99f386824454450a106c876296f6d177c4944e687df3d05d333d06bb06"
+}

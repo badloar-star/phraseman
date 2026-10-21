@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-13:word:ketchup",
+    "correctText": "ketchup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i01",
+    "correctText": "Was the ketchup on the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i02",
+    "correctText": "The ketchup was sweet.",
+    "correctResponseId": "en:lesson-11:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:word:mustard",
+    "correctText": "mustard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i04",
+    "correctText": "Was the mustard hot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i05",
+    "correctText": "The mustard was not hot.",
+    "correctResponseId": "en:lesson-11:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:word:mayonnaise",
+    "correctText": "mayonnaise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i07",
+    "correctText": "The mayonnaise was not in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i08",
+    "correctText": "Was the mayonnaise fresh?",
+    "correctResponseId": "en:lesson-11:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i09",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:word:vinegar",
+    "correctText": "vinegar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i10",
+    "correctText": "Was the vinegar sour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i11",
+    "correctText": "The vinegar was in the cupboard.",
+    "correctResponseId": "en:lesson-11:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i12",
+    "correctText": "weren't",
+    "correctResponseId": "en:lesson-11:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i13",
+    "correctText": "en:lesson-11:session-13:i13:p1=ketchup\nen:lesson-11:session-13:i13:p2=mustard\nen:lesson-11:session-13:i13:p3=mayonnaise\nen:lesson-11:session-13:i13:p4=vinegar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i14",
+    "correctText": "Please don't move my plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i15",
+    "correctText": "I am eating right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i16",
+    "correctText": "The mustard was not on the shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-13:i17",
+    "correctText": "Was the ketchup in the fridge yesterday?",
+    "correctResponseId": null
+  }
+]

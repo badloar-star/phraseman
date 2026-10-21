@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "Was…? Were…? was not; were not",
+    "uk": "Was…? Were…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заправка для салата",
+        "uk": "Заправка для салату"
+      },
+      "bodyByLocale": {
+        "ru": "Salad dressing — «заправка для салата». Вспоминаем вчерашний ужин: Was the salad dressing in the fridge? — «Заправка для салата была в холодильнике?» Вопрос начинаем с was. Сейчас мы говорим о заправке как о продукте, поэтому используем was, а не were. Выберите вопрос о холодильнике.",
+        "uk": "Salad dressing — «заправка для салату». Згадуємо вчорашню вечерю: Was the salad dressing in the fridge? — «Заправка для салату була в холодильнику?» Запитання починаємо з was. Зараз говоримо про заправку як про продукт, тому використовуємо was, а не were. Виберіть запитання про холодильник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r1",
+              "text": "Was the salad dressing in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r2",
+              "text": "Were the salad dressing in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r3",
+              "text": "Did the salad dressing was in the fridge?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r1",
+              "text": "Was the salad dressing in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r2",
+              "text": "Were the salad dressing in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro1:r3",
+              "text": "Did the salad dressing was in the fridge?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Масло и паста",
+        "uk": "Олія та паста"
+      },
+      "bodyByLocale": {
+        "ru": "Olive oil — «оливковое масло», peanut butter — «арахисовая паста». В peanut butter слово butter не означает, что это обычное сливочное масло: это паста из арахиса. Вчера она стояла в шкафу, не на столе: The peanut butter was not on the table. Not идёт после was. Выберите эту фразу.",
+        "uk": "Olive oil — «оливкова олія», peanut butter — «арахісова паста». У peanut butter слово butter не означає, що це звичайне вершкове масло: це паста з арахісу. Учора вона стояла в шафі, не на столі: The peanut butter was not on the table. Not іде після was. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r1",
+              "text": "The peanut butter was not on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r2",
+              "text": "The peanut butter not was on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r3",
+              "text": "The peanut butter were not on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r1",
+              "text": "The peanut butter was not on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r2",
+              "text": "The peanut butter not was on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro2:r3",
+              "text": "The peanut butter were not on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сироп к блинам",
+        "uk": "Сироп до млинців"
+      },
+      "bodyByLocale": {
+        "ru": "Maple syrup — «кленовый сироп». Друг спрашивает: Was the maple syrup sweet? — «Кленовый сироп был сладким?» Короткий ответ: Yes, it was. Отрицательный ответ: No, it wasn’t. Вчера сироп был сладким. Выберите утвердительный короткий ответ.",
+        "uk": "Maple syrup — «кленовий сироп». Друг запитує: Was the maple syrup sweet? — «Кленовий сироп був солодкий?» Коротка відповідь: Yes, it was. Заперечна відповідь: No, it wasn’t. Учора сироп був солодкий. Виберіть ствердну коротку відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r1",
+              "text": "Yes, it was."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r2",
+              "text": "Yes, it were."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r3",
+              "text": "Yes, it did."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r1",
+              "text": "Yes, it was."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r2",
+              "text": "Yes, it were."
+            },
+            {
+              "responseId": "en:lesson-11:session-15:intro3:r3",
+              "text": "Yes, it did."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b854c880468cfd6cf6e923b80f6bf76136b362f201f6af31307b94e517e8bedd"
+}

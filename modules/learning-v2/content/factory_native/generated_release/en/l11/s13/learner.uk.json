@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-13:word:ketchup",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ketchup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:word:ketchup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ketchup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:word:ketchup:audio",
+          "transcript": "ketchup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:word:ketchup:r1",
+            "targetText": "ketchup",
+            "meaningByLocale": {
+              "ru": "кетчуп.",
+              "uk": "кетчуп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ketchup",
+          "definitionByLocale": {
+            "ru": "кетчуп.",
+            "uk": "кетчуп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був кетчуп на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був кетчуп на столі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the ketchup on the table?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли кетчуп на столе",
+          "uk": "Запитайте, чи був кетчуп на столі"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "ketchup",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i02:r1",
+          "text": "The ketchup was sweet."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i02:r2",
+          "text": "The ketchup was cold."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i02:r3",
+          "text": "The ketchup was sour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i02:audio",
+          "transcript": "The ketchup was sweet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:i02:r1",
+            "targetText": "The ketchup was sweet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i02:r2",
+            "targetText": "The ketchup was cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i02:r3",
+            "targetText": "The ketchup was sour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ketchup was sweet.",
+              "uk": "У записі звучить The ketchup was sweet."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ketchup was sweet.",
+              "uk": "У записі звучить The ketchup was sweet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що кетчуп був не холодний",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i03:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що кетчуп був не холодний",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что кетчуп был не холодным",
+          "uk": "Скажіть, що кетчуп був не холодний"
+        },
+        "gappedTargetPhrase": "The ketchup ___ not cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-13:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i03:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що кетчуп був не холодний",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що кетчуп був не холодний",
+            "feedbackByLocale": {
+              "ru": "С ketchup нужна was.",
+              "uk": "Із ketchup потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що кетчуп був не холодний",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: was not.",
+              "uk": "Заперечення з be: was not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:word:mustard",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mustard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:word:mustard:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mustard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:word:mustard:audio",
+          "transcript": "mustard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:word:mustard:r1",
+            "targetText": "mustard",
+            "meaningByLocale": {
+              "ru": "горчица.",
+              "uk": "гірчиця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mustard",
+          "definitionByLocale": {
+            "ru": "горчица.",
+            "uk": "гірчиця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була гірчиця гострою на смак",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була гірчиця гострою на смак",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the mustard hot?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли горчица острой на вкус",
+          "uk": "Запитайте, чи була гірчиця гострою на смак"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "mustard",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i05:r1",
+          "text": "The mustard was not hot."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i05:r2",
+          "text": "The mustard was hot."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i05:r3",
+          "text": "Was the mustard hot?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i05:audio",
+          "transcript": "The mustard was not hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:i05:r1",
+            "targetText": "The mustard was not hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i05:r2",
+            "targetText": "The mustard was hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i05:r3",
+            "targetText": "Was the mustard hot?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mustard was not hot.",
+              "uk": "У записі звучить The mustard was not hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mustard was not hot.",
+              "uk": "У записі звучить The mustard was not hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Згадайте, де стояла гірчиця",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Згадайте, де стояла гірчиця",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, где стояла горчица",
+          "uk": "Згадайте, де стояла гірчиця"
+        },
+        "gappedTargetPhrase": "The mustard ___ on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-13:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Згадайте, де стояла гірчиця",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Згадайте, де стояла гірчиця",
+            "feedbackByLocale": {
+              "ru": "С mustard здесь нужна was.",
+              "uk": "Із mustard тут потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Згадайте, де стояла гірчиця",
+            "feedbackByLocale": {
+              "ru": "Место в прошлом описываем was.",
+              "uk": "Місце в минулому описуємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:word:mayonnaise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mayonnaise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:word:mayonnaise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mayonnaise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:word:mayonnaise:audio",
+          "transcript": "mayonnaise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:word:mayonnaise:r1",
+            "targetText": "mayonnaise",
+            "meaningByLocale": {
+              "ru": "майонез.",
+              "uk": "майонез."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mayonnaise",
+          "definitionByLocale": {
+            "ru": "майонез.",
+            "uk": "майонез."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що майонез був не в холодильнику. Використайте was not",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що майонез був не в холодильнику. Використайте was not",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The mayonnaise was not in the fridge.",
+        "localizedMeaning": {
+          "ru": "Скажите, что майонез был не в холодильнике. Используйте was not",
+          "uk": "Скажіть, що майонез був не в холодильнику. Використайте was not"
+        },
+        "orderedTokens": [
+          "The",
+          "mayonnaise",
+          "was",
+          "not",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i08:r1",
+          "text": "Was the mayonnaise fresh?"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i08:r2",
+          "text": "Was the mayonnaise cold?"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i08:r3",
+          "text": "Was the mayonnaise here?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i08:audio",
+          "transcript": "Was the mayonnaise fresh?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:i08:r1",
+            "targetText": "Was the mayonnaise fresh?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i08:r2",
+            "targetText": "Was the mayonnaise cold?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i08:r3",
+            "targetText": "Was the mayonnaise here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the mayonnaise fresh?",
+              "uk": "У записі звучить Was the mayonnaise fresh?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the mayonnaise fresh?",
+              "uk": "У записі звучить Was the mayonnaise fresh?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про місце майонезу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i09:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i09:r2",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про місце майонезу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о месте майонеза",
+          "uk": "Запитайте про місце майонезу"
+        },
+        "gappedTargetPhrase": "___ the mayonnaise on the shelf?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-13:i09:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i09:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте про місце майонезу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про місце майонезу",
+            "feedbackByLocale": {
+              "ru": "С mayonnaise нужна was.",
+              "uk": "Із mayonnaise потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про місце майонезу",
+            "feedbackByLocale": {
+              "ru": "В вопросе с be не используем did.",
+              "uk": "У запитанні з be не використовуємо did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:word:vinegar",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vinegar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:word:vinegar:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vinegar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:word:vinegar:audio",
+          "transcript": "vinegar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:word:vinegar:r1",
+            "targetText": "vinegar",
+            "meaningByLocale": {
+              "ru": "уксус.",
+              "uk": "оцет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vinegar",
+          "definitionByLocale": {
+            "ru": "уксус.",
+            "uk": "оцет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був оцет кислим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був оцет кислим",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the vinegar sour?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли уксус кислым",
+          "uk": "Запитайте, чи був оцет кислим"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "vinegar",
+          "sour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i11:r1",
+          "text": "The vinegar was in the cupboard."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i11:r2",
+          "text": "The vinegar was in the fridge."
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i11:r3",
+          "text": "The vinegar was on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i11:audio",
+          "transcript": "The vinegar was in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-13:i11:r1",
+            "targetText": "The vinegar was in the cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i11:r2",
+            "targetText": "The vinegar was in the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i11:r3",
+            "targetText": "The vinegar was on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vinegar was in the cupboard.",
+              "uk": "У записі звучить The vinegar was in the cupboard."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vinegar was in the cupboard.",
+              "uk": "У записі звучить The vinegar was in the cupboard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-13:i12:r1",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i12:r2",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-13:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Were the bottles on the table? Они были в шкафу. Ответьте: нет",
+          "uk": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні"
+        },
+        "gappedTargetPhrase": "No, they ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-13:i12:r1",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i12:r2",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні",
+            "feedbackByLocale": {
+              "ru": "С they нужна weren’t.",
+              "uk": "З they потрібна weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Were the bottles on the table? Вони були у шафці. Дайте відповідь: ні",
+            "feedbackByLocale": {
+              "ru": "На вопрос с were отвечаем were/weren’t.",
+              "uk": "На запитання з were відповідаємо were/weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-13:i13:p1",
+            "target": "ketchup",
+            "meaningByLocale": {
+              "ru": "кетчуп",
+              "uk": "кетчуп"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-13:i13:p2",
+            "target": "mustard",
+            "meaningByLocale": {
+              "ru": "горчица",
+              "uk": "гірчиця"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-13:i13:p3",
+            "target": "mayonnaise",
+            "meaningByLocale": {
+              "ru": "майонез",
+              "uk": "майонез"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-13:i13:p4",
+            "target": "vinegar",
+            "meaningByLocale": {
+              "ru": "уксус",
+              "uk": "оцет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ketchup",
+          "mustard",
+          "mayonnaise",
+          "vinegar"
+        ],
+        "rightColumn": [
+          "кетчуп",
+          "гірчиця",
+          "майонез",
+          "оцет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i14:audio",
+          "transcript": "Please don't move my plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my plate.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i15:audio",
+          "transcript": "I am eating right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am eating right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "eating",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що гірчиця була не на полиці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що гірчиця була не на полиці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i16:audio",
+          "transcript": "The mustard was not on the shelf."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The mustard was not on the shelf.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був учора кетчуп у холодильнику",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був учора кетчуп у холодильнику",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-13:i17:audio",
+          "transcript": "Was the ketchup in the fridge yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the ketchup in the fridge yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dd7235e829d4aed762f99a134e3c65f220327afe743ac811ecf944df511e249b"
+}

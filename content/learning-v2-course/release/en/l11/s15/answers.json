@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-15:word:salad-dressing",
+    "correctText": "salad dressing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i01",
+    "correctText": "Was the salad dressing cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i02",
+    "correctText": "The salad dressing was on the table.",
+    "correctResponseId": "en:lesson-11:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:word:olive-oil",
+    "correctText": "olive oil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i04",
+    "correctText": "Was the olive oil in the cupboard?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i05",
+    "correctText": "The olive oil was not on the table.",
+    "correctResponseId": "en:lesson-11:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:word:peanut-butter",
+    "correctText": "peanut butter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i07",
+    "correctText": "The peanut butter was in the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i08",
+    "correctText": "Was the peanut butter on the table?",
+    "correctResponseId": "en:lesson-11:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i09",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:word:maple-syrup",
+    "correctText": "maple syrup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i10",
+    "correctText": "The maple syrup was on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i11",
+    "correctText": "Was the maple syrup in the cupboard?",
+    "correctResponseId": "en:lesson-11:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i13",
+    "correctText": "en:lesson-11:session-15:i13:p1=salad dressing\nen:lesson-11:session-15:i13:p2=olive oil\nen:lesson-11:session-15:i13:p3=peanut butter\nen:lesson-11:session-15:i13:p4=maple syrup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i14",
+    "correctText": "Please don't move my plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i15",
+    "correctText": "I am eating right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i16",
+    "correctText": "Was the salad dressing sour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-15:i17",
+    "correctText": "The olive oil was in the bag.",
+    "correctResponseId": null
+  }
+]

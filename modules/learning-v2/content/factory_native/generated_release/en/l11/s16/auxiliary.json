@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-16:intro1:r2": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        },
+        "en:lesson-11:session-16:intro1:r3": {
+          "ru": "С was не нужен did.",
+          "uk": "Із was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-16:intro2:r2": {
+          "ru": "Множественное число: were.",
+          "uk": "Множина: were."
+        },
+        "en:lesson-11:session-16:intro2:r3": {
+          "ru": "В вопросе с were не нужен did.",
+          "uk": "У запитанні з were не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-16:intro3:r2": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        },
+        "en:lesson-11:session-16:intro3:r3": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6837383bf64d9d2bcb4fa82638f4e9aa0dfa7a9972bbb04688043bde05f3a7e"
+}

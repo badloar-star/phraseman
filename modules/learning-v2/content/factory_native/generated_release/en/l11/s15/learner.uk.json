@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-15:word:salad-dressing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salad dressing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:word:salad-dressing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salad dressing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:word:salad-dressing:audio",
+          "transcript": "salad dressing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:word:salad-dressing:r1",
+            "targetText": "salad dressing",
+            "meaningByLocale": {
+              "ru": "заправка для салата.",
+              "uk": "заправка для салату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salad dressing",
+          "definitionByLocale": {
+            "ru": "заправка для салата.",
+            "uk": "заправка для салату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була заправка для салату холодна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була заправка для салату холодна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the salad dressing cold?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли заправка для салата холодной",
+          "uk": "Запитайте, чи була заправка для салату холодна"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "salad",
+          "dressing",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i02:r1",
+          "text": "The salad dressing was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i02:r2",
+          "text": "The salad dressing was in the fridge."
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i02:r3",
+          "text": "The salad dressing was in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i02:audio",
+          "transcript": "The salad dressing was on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:i02:r1",
+            "targetText": "The salad dressing was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i02:r2",
+            "targetText": "The salad dressing was in the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i02:r3",
+            "targetText": "The salad dressing was in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The salad dressing was on the table.",
+              "uk": "У записі звучить The salad dressing was on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The salad dressing was on the table.",
+              "uk": "У записі звучить The salad dressing was on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що заправка була не в холодильнику",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i03:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що заправка була не в холодильнику",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что заправка была не в холодильнике",
+          "uk": "Скажіть, що заправка була не в холодильнику"
+        },
+        "gappedTargetPhrase": "The salad dressing ___ not in the fridge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-15:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i03:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що заправка була не в холодильнику",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що заправка була не в холодильнику",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was.",
+              "uk": "Тут потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що заправка була не в холодильнику",
+            "feedbackByLocale": {
+              "ru": "Место в прошлом: was not.",
+              "uk": "Місце в минулому: was not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:word:olive-oil",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — olive oil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:word:olive-oil:audio"
+      ],
+      "accessibilityLabel": "Картка слова — olive oil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:word:olive-oil:audio",
+          "transcript": "olive oil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:word:olive-oil:r1",
+            "targetText": "olive oil",
+            "meaningByLocale": {
+              "ru": "оливковое масло.",
+              "uk": "оливкова олія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "olive oil",
+          "definitionByLocale": {
+            "ru": "оливковое масло.",
+            "uk": "оливкова олія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була оливкова олія в шафі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була оливкова олія в шафі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the olive oil in the cupboard?",
+        "localizedMeaning": {
+          "ru": "Спросите, было ли оливковое масло в шкафу",
+          "uk": "Запитайте, чи була оливкова олія в шафі"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "olive",
+          "oil",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i05:r1",
+          "text": "The olive oil was not on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i05:r2",
+          "text": "The olive oil was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i05:r3",
+          "text": "Was the olive oil on the table?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i05:audio",
+          "transcript": "The olive oil was not on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:i05:r1",
+            "targetText": "The olive oil was not on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i05:r2",
+            "targetText": "The olive oil was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i05:r3",
+            "targetText": "Was the olive oil on the table?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The olive oil was not on the table.",
+              "uk": "У записі звучить The olive oil was not on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The olive oil was not on the table.",
+              "uk": "У записі звучить The olive oil was not on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the olive oil expensive? Оно было дорогим. Ответьте",
+          "uk": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь"
+        },
+        "gappedTargetPhrase": "Yes, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-15:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь",
+            "feedbackByLocale": {
+              "ru": "С it нужна was.",
+              "uk": "З it потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the olive oil expensive? Вона була дорогою. Дайте відповідь",
+            "feedbackByLocale": {
+              "ru": "Ответ на вопрос с was: was.",
+              "uk": "Відповідь на запитання з was: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:word:peanut-butter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peanut butter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:word:peanut-butter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peanut butter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:word:peanut-butter:audio",
+          "transcript": "peanut butter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:word:peanut-butter:r1",
+            "targetText": "peanut butter",
+            "meaningByLocale": {
+              "ru": "арахисовая паста.",
+              "uk": "арахісова паста."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peanut butter",
+          "definitionByLocale": {
+            "ru": "арахисовая паста.",
+            "uk": "арахісова паста."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що арахісова паста була в шафі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що арахісова паста була в шафі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The peanut butter was in the cupboard.",
+        "localizedMeaning": {
+          "ru": "Скажите, что арахисовая паста была в шкафу",
+          "uk": "Скажіть, що арахісова паста була в шафі"
+        },
+        "orderedTokens": [
+          "The",
+          "peanut",
+          "butter",
+          "was",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i08:r1",
+          "text": "Was the peanut butter on the table?"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i08:r2",
+          "text": "The peanut butter was on the table."
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i08:r3",
+          "text": "Was the peanut butter in the fridge?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i08:audio",
+          "transcript": "Was the peanut butter on the table?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:i08:r1",
+            "targetText": "Was the peanut butter on the table?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i08:r2",
+            "targetText": "The peanut butter was on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i08:r3",
+            "targetText": "Was the peanut butter in the fridge?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the peanut butter on the table?",
+              "uk": "У записі звучить Was the peanut butter on the table?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the peanut butter on the table?",
+              "uk": "У записі звучить Was the peanut butter on the table?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи була арахісова паста солона",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i09:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i09:r2",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була арахісова паста солона",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, была ли арахисовая паста солёной",
+          "uk": "Запитайте, чи була арахісова паста солона"
+        },
+        "gappedTargetPhrase": "___ the peanut butter salty?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-15:i09:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i09:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте, чи була арахісова паста солона",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи була арахісова паста солона",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was.",
+              "uk": "Тут потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи була арахісова паста солона",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was строится без did.",
+              "uk": "Запитання з was будується без did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:word:maple-syrup",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — maple syrup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:word:maple-syrup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — maple syrup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:word:maple-syrup:audio",
+          "transcript": "maple syrup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:word:maple-syrup:r1",
+            "targetText": "maple syrup",
+            "meaningByLocale": {
+              "ru": "кленовый сироп.",
+              "uk": "кленовий сироп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "maple syrup",
+          "definitionByLocale": {
+            "ru": "кленовый сироп.",
+            "uk": "кленовий сироп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що кленовий сироп був на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що кленовий сироп був на столі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The maple syrup was on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите, что кленовый сироп был на столе",
+          "uk": "Скажіть, що кленовий сироп був на столі"
+        },
+        "orderedTokens": [
+          "The",
+          "maple",
+          "syrup",
+          "was",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i11:r1",
+          "text": "Was the maple syrup in the cupboard?"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i11:r2",
+          "text": "Was the maple syrup in the fridge?"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i11:r3",
+          "text": "The maple syrup was in the cupboard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i11:audio",
+          "transcript": "Was the maple syrup in the cupboard?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-15:i11:r1",
+            "targetText": "Was the maple syrup in the cupboard?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i11:r2",
+            "targetText": "Was the maple syrup in the fridge?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i11:r3",
+            "targetText": "The maple syrup was in the cupboard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the maple syrup in the cupboard?",
+              "uk": "У записі звучить Was the maple syrup in the cupboard?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the maple syrup in the cupboard?",
+              "uk": "У записі звучить Was the maple syrup in the cupboard?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-15:i12:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i12:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-15:i12:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the maple syrup cold? Он был тёплым. Ответьте отрицательно",
+          "uk": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-15:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i12:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "С it нужна wasn’t.",
+              "uk": "З it потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the maple syrup cold? Він був теплим. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "Ответ с was: wasn’t.",
+              "uk": "Відповідь із was: wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-15:i13:p1",
+            "target": "salad dressing",
+            "meaningByLocale": {
+              "ru": "заправка для салата",
+              "uk": "заправка для салату"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-15:i13:p2",
+            "target": "olive oil",
+            "meaningByLocale": {
+              "ru": "оливковое масло",
+              "uk": "оливкова олія"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-15:i13:p3",
+            "target": "peanut butter",
+            "meaningByLocale": {
+              "ru": "арахисовая паста",
+              "uk": "арахісова паста"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-15:i13:p4",
+            "target": "maple syrup",
+            "meaningByLocale": {
+              "ru": "кленовый сироп",
+              "uk": "кленовий сироп"
+            }
+          }
+        ],
+        "leftColumn": [
+          "salad dressing",
+          "olive oil",
+          "peanut butter",
+          "maple syrup"
+        ],
+        "rightColumn": [
+          "заправка для салату",
+          "оливкова олія",
+          "арахісова паста",
+          "кленовий сироп"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i14:audio",
+          "transcript": "Please don't move my plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move my plate.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "my",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i15:audio",
+          "transcript": "I am eating right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am eating right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "eating",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи була заправка для салату кисла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи була заправка для салату кисла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i16:audio",
+          "transcript": "Was the salad dressing sour?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the salad dressing sour?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що оливкова олія була в сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що оливкова олія була в сумці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-15:i17:audio",
+          "transcript": "The olive oil was in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The olive oil was in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89adde52c00cdaa16ca08bb5581b0e6d9f4fa6065bb00a915b1817e5a643ef15"
+}

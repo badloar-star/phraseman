@@ -119,7 +119,7 @@
 .new-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(110,200,140,.16); color: #4FB97A; font-size: 12px; font-weight: 700; vertical-align: middle; }
 </style>
 <style>
-/* зачем (владелец 21.10, реестр №8): экзамен внизу главы из 8 занятий; сдать можно сразу — откроется следующая глава.
+/* зачем (владелец 21.10, реестр №8): экзамен внизу главы из 8 эпизодов; сдать можно сразу — откроется следующая глава.
    Развёрнутая глава — как в коде LearningV2ChaptersCourse: узлы 64 в сетке 4×2, номер 13/700, подпись 13/17 под узлом. */
 .ses { display: flex; flex-wrap: wrap; row-gap: 18px; padding: 14px 6px 6px; }
 .s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -128,25 +128,26 @@
 .nd b { font-size: 13px; line-height: 16px; font-weight: 700; }
 .nd.cur { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
 .nd.lock { color: var(--sec); }
-.nd.exam { background: var(--acc); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 30%, transparent); }
-.ph.th-marine .nd.exam { color: #00151C; }
 .nd .stars { position: absolute; bottom: -10px; min-height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ctl); display: flex; align-items: center; gap: 1px; }
 .nd .stars .io { font-size: 11px; }
 .s .lb2 { width: 82px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
 .s .lb2.on { color: var(--tx); font-weight: 800; }
 .exb { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
 .exb .io { font-size: 20px; }
+.exb.wait { background: var(--ctl); color: var(--sec); }
 .exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+.exrow { display: flex; gap: 12px; }
+.exrow > div { flex: 1; }
+.exsec { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
 .exdone { margin-top: 16px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
 .exdone .io { color: var(--acc); font-size: 20px; }
 .ph.th-ink .exdone .io { color: #4A47A8; }
-.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
 .note { margin: 30px 0 0; max-width: 900px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
 .note b { color: #F2F2F4; }
 .tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 900px; width: 100%; color: #C9C9CF; }
 .tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; }
 .tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
-/* шторка перед экзаменом — как окна 2.0 */
+/* шторки перед экзаменом и после провала — как окна 2.0 */
 .xsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 22px 40px; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
 .xdim { position: absolute; inset: 0; z-index: 25; background: rgba(0,0,0,.45); }
 .ph.th-ink .xdim { background: rgba(23,24,30,.38); }
@@ -159,29 +160,35 @@
 .facts b { display: block; font-size: 22px; line-height: 26px; }
 .facts small { font-size: 13px; line-height: 17px; color: var(--sec); }
 .xsh .p { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin-top: 16px; }
-.xsh .c1 { margin-top: 20px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; }
+.xsh .c1 { margin-top: 20px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; }
+.xsh .c1 .en { display: inline-flex; align-items: center; gap: 3px; height: 28px; padding: 0 10px; border-radius: 14px; background: color-mix(in srgb, var(--card) 18%, transparent); font-size: 15px; }
 .xsh .c2 { margin-top: 12px; height: 50px; border-radius: 25px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.xsh .free { margin-top: 10px; text-align: center; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--acc); }
+.ph.th-ink .xsh .free { color: #4A47A8; }
+.score { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+.score i { width: 14px; height: 14px; border-radius: 50%; background: var(--acc); }
+.score i.x { background: var(--ctl); }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Экзамен главы — 2 варианта</h1>
-  <p class="page-lead">Реестр владельца №8: в главе 8 занятий, внизу — «Экзамен» по этой главе. Сдать можно сразу, не проходя все занятия: сдал — открывается следующая глава, пропущенные занятия засчитаны без звёзд. Экраны — карта V2 по эталону 18.10 (плитки Ionicons, плашки без узоров), развёрнутая глава — как в коде. Числа экзамена — из реестра: 12 вопросов из занятий 1–7, сдать — от 10.</p>
+  <h1 class="page-h1">Экзамен главы — эталон (решение владельца 21.10)</h1>
+  <p class="page-lead">Реестр №8, вариант 1 принят. В главе 8 эпизодов, под ними — «Экзамен главы». Сдать можно сразу: сдал — открывается следующая глава, пропущенные эпизоды просто открыты (без звёзд, не пройдены). 12 вопросов из эпизодов 1–7, сдать — от 10. Провал — разбор ошибок, повтор через час. Сердечки не тратит; Free — 1 энергия, Plus — бесплатно. Карта — по эталону 18.10, развёрнутая глава — как в коде.</p>
   <div id="root"></div>
   <table class="tb">
-    <tr><th>Правило (реестр №8)</th><th>Что видно на экране</th></tr>
-    <tr><td>12 вопросов из заданий занятий 1–7</td><td>«12 вопросов» в окне перед экзаменом</td></tr>
-    <tr><td>Порог 10 из 12</td><td>«10 чтобы сдать»; после — «Экзамен сдан · 11 из 12»</td></tr>
-    <tr><td>Сердечки не тратит</td><td>в окне нет сердечек и энергии</td></tr>
-    <tr><td>Провал → пауза</td><td>итог «9 из 12 — почти», пересдача позже (время паузы решает Learning V2)</td></tr>
-    <tr><td>Сдал → следующая глава, пропущенные засчитаны без звёзд</td><td>глава 2 открыта; узлы 5–7 с галочкой, без звёзд</td></tr>
+    <tr><th>Правило владельца</th><th>Что видно на экране</th></tr>
+    <tr><td>Кнопка под 8 эпизодами, доступна сразу</td><td>«Экзамен главы» + «Сдашь — откроется глава 2»</td></tr>
+    <tr><td>12 вопросов из эпизодов 1–7, сдать 10</td><td>в шторке: «12 вопросов · 10 чтобы сдать · ~7 минут»</td></tr>
+    <tr><td>Free — 1 энергия, Plus — бесплатно; сердечки не тратит</td><td>Free: на кнопке «⚡ 1»; Plus: «С Plus экзамен бесплатный»; сердечек нет</td></tr>
+    <tr><td>Провал → разбор ошибок, повтор через час</td><td>шторка «9 из 12 — почти», «Разбор ошибок»; на карте «Пересдать через 59 мин»</td></tr>
+    <tr><td>Сдал → следующая глава; пропущенные «просто открыты»</td><td>«Экзамен сдан · 11 из 12», глава 2 открыта; эпизоды 5–7 — открытые узлы без звёзд и галочек, счёт главы 4/8</td></tr>
   </table>
-  <p class="note"><b>Рекомендация: вариант 1.</b> Кнопка видна сразу, не ломает порядок узлов и оставляет восьмое занятие «Проверкой главы» — по реестру оно вводит новые слова, поэтому экзамен строится из занятий 1–7 и живёт отдельно. Вариант 2 компактнее, но превращает восьмое занятие в экзамен (новые слова пропадут) и даёт открытый узел после закрытых.</p>
+  <p class="note"><b>Восьмой эпизод</b> остаётся «Проверкой главы»: по реестру он вводит новые слова, поэтому экзамен собирается из эпизодов 1–7 и живёт отдельной кнопкой.</p>
 </div>
 <script src="kit.js"></script>
 <script>
 (() => {
-const { phone, block, col } = K;
+const { phone, block, col, icon } = K;
 const ION = [["briefcase-outline",["business-outline","cafe-outline","people-outline","home-outline","restaurant-outline","chatbubbles-outline","calendar-outline"]],["help-circle-outline",["bed-outline","eye-outline","navigate-outline","pricetag-outline","balloon-outline","cloudy-outline","ribbon-outline"]],["cube-outline",["archive-outline","storefront-outline","car-outline","bulb-outline","bag-handle-outline","receipt-outline","leaf-outline"]],["map-outline",["trail-sign-outline","search-outline","nutrition-outline","compass-outline","key-outline","mail-outline","gift-outline"]],["id-card-outline",["people-circle-outline","bag-outline","happy-outline","folder-open-outline","shirt-outline","images-outline","git-network-outline"]],["sunny-outline",["alarm-outline","bus-outline","laptop-outline","fast-food-outline","barbell-outline","cart-outline","moon-outline"]],["repeat-outline",["color-palette-outline","football-outline","book-outline","hourglass-outline","pizza-outline","airplane-outline","call-outline"]],["school-outline",["star-outline","bicycle-outline","hand-left-outline","list-outline","flame-outline","egg-outline","heart-outline"]]];
 const ICODE = {"briefcase-outline":61874,"business-outline":61895,"cafe-outline":61898,"people-outline":62627,"home-outline":62339,"restaurant-outline":62774,"chatbubbles-outline":61976,"calendar-outline":61910,"help-circle-outline":62334,"bed-outline":61841,"eye-outline":62186,"navigate-outline":62576,"pricetag-outline":62699,"balloon-outline":61799,"cloudy-outline":62054,"ribbon-outline":62789,"cube-outline":62105,"archive-outline":61733,"storefront-outline":62888,"car-outline":61922,"bulb-outline":61889,"bag-handle-outline":61791,"receipt-outline":62735,"leaf-outline":62387,"map-outline":62531,"trail-sign-outline":62954,"search-outline":62819,"nutrition-outline":62597,"compass-outline":62084,"key-outline":62372,"mail-outline":62516,"gift-outline":62264,"id-card-outline":62348,"people-circle-outline":62625,"bag-outline":61793,"happy-outline":62306,"folder-open-outline":62247,"shirt-outline":62849,"images-outline":62354,"git-network-outline":62279,"sunny-outline":62894,"alarm-outline":61709,"bus-outline":61892,"laptop-outline":62381,"fast-food-outline":62192,"barbell-outline":61811,"cart-outline":61955,"moon-outline":62561,"repeat-outline":62768,"color-palette-outline":62078,"football-outline":62252,"book-outline":61862,"hourglass-outline":62342,"pizza-outline":62657,"airplane-outline":61706,"call-outline":61913,"school-outline":62813,"star-outline":62873,"bicycle-outline":61847,"hand-left-outline":62300,"list-outline":62399,"flame-outline":62228,"egg-outline":62153,"heart-outline":62327};
 const io = (name) => `<i class="io" aria-hidden="true">&#x${ICODE[name].toString(16)};</i>`;
@@ -190,37 +197,47 @@ const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
 const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
 const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
 const thc = (th) => th === 'ink' ? 'th-ink' : 'th-marine';
-const IC = { check: 'f21d', play: 'f4c6', lock: 'f3c7', trophy: 'f601', star: 'f595', ok: 'f21e', chevU: 'f241' };
+const IC = { check: 'f21d', play: 'f4c6', lock: 'f3c7', trophy: 'f601', star: 'f595', ok: 'f21e', chevU: 'f241', time: 'f5de', flash: 'f316' };
 const gi = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
 const head = () => `<div class="mh"><span class="mrb">${back}</span><span class="mrb">${bookI}</span></div>
   <div class="lh"><div class="kr"><span class="lk">Урок 1</span><span class="clc">${libI}Классический курс</span></div>
   <div class="tr">${ich(ION[0][0], 'les')}<div class="ltt">Present be: утверждение + not</div></div></div>`;
+/* узел эпизода: done — пройден (галочка, звёзды), cur — текущий, open — открыт (не пройден), lock — закрыт, chk — проверка главы */
 const node = (n, st, o = {}) => {
-  const ic = { done: 'check', cur: 'play', lock: 'lock', chk: 'trophy', exam: 'trophy' }[st];
-  const cls = { done: '', cur: ' cur', lock: ' lock', chk: ' lock', exam: ' exam' }[st];
+  const ic = { done: 'check', cur: 'play', open: 'play', lock: 'lock', chk: 'trophy' }[st];
+  const cls = { done: '', cur: ' cur', open: '', lock: ' lock', chk: o.chkOpen ? '' : ' lock' }[st];
   const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => gi('star', `opacity:${i < o.stars ? 1 : .25}`)).join('')}</span>` : '';
-  const lb = o.label || `Занятие ${n}`;
-  return `<div class="s"><div class="nd${cls}">${gi(ic)}${st === 'exam' ? '' : `<b>${n}</b>`}${stars}</div><div class="lb2${st === 'cur' || st === 'exam' ? ' on' : ''}">${lb}</div></div>`;
+  return `<div class="s"><div class="nd${cls}">${gi(ic)}<b>${n}</b>${stars}</div><div class="lb2${st === 'cur' ? ' on' : ''}">${o.label || `Эпизод ${n}`}</div></div>`;
 };
-const plateOpen = (done, nodes, after = '') => `<div class="chap2"><div class="crow">${ich(ION[0][1][0])}<div class="cp"><div class="tl">Глава 1</div><div class="csub">Занятия 1–8</div></div><span class="cfr"><b>${done}</b>/8</span>${gi('chevU', 'font-size:20px;color:var(--sec)')}</div><div class="ses">${nodes}</div>${after}</div>`;
-const plateNext = (open) => `<div class="chap2${open ? '' : ' st-locked'}"><div class="crow">${ich(ION[0][1][1])}<div class="cp"><div class="tl">Глава 2</div><div class="csub">Занятия 9–16</div></div><span class="cfr"><b>0</b>/8</span></div><div class="ctrk"></div></div>`;
+const plateOpen = (done, nodes, after = '') => `<div class="chap2"><div class="crow">${ich(ION[0][1][0])}<div class="cp"><div class="tl">Глава 1</div><div class="csub">Эпизоды 1–8</div></div><span class="cfr"><b>${done}</b>/8</span>${gi('chevU', 'font-size:20px;color:var(--sec)')}</div><div class="ses">${nodes}</div>${after}</div>`;
+const plateNext = (open) => `<div class="chap2${open ? '' : ' st-locked'}"><div class="crow">${ich(ION[0][1][1])}<div class="cp"><div class="tl">Глава 2</div><div class="csub">Эпизоды 9–16</div></div><span class="cfr"><b>0</b>/8</span></div><div class="ctrk"></div></div>`;
 const base = [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 })];
-const v1 = (th, passed) => {
-  const nodes = passed
-    ? [...base, node(4, 'done', { stars: 1 }), node(5, 'done'), node(6, 'done'), node(7, 'done'), node(8, 'chk', { label: 'Проверка главы' })].join('')
-    : [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join('');
-  const after = passed ? `<div class="exdone">${gi('ok')}Экзамен сдан · 11 из 12</div>` : `<div class="exb">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div>`;
-  return phone(`${head()}${plateOpen(passed ? 7 : 3, nodes, after)}${plateNext(passed)}<div style="height:30px"></div>`, { time: '9:41' }).replace('class="ph"', `class="ph ${thc(th)}"`);
+const NODES = {
+  avail: [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })],
+  passed: [...base, node(4, 'done', { stars: 1 }), node(5, 'open'), node(6, 'open'), node(7, 'open'), node(8, 'chk', { label: 'Проверка главы', chkOpen: true })],
 };
-const v2 = (th) => phone(`${head()}${plateOpen(3, [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'exam', { label: 'Экзамен' })].join(''), '<div class="ctrk"><i style="width:37%"></i></div>')}${plateNext(false)}`, { time: '9:41' }).replace('class="ph"', `class="ph ${thc(th)}"`);
-const sheet = (th) => phone(`${head()}${plateOpen(3, [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join(''))}`, { time: '9:41',
+const AFTER = {
+  avail: `<div class="exb">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div>`,
+  failed: `<div class="exrow"><div class="exsec">Разбор ошибок</div><div class="exb wait">${gi('time')}Через 59 мин</div></div><div class="exn">Пересдать можно через час</div>`,
+  passed: `<div class="exdone">${gi('ok')}Экзамен сдан · 11 из 12</div>`,
+};
+const th = (h, t) => h.replace('class="ph"', `class="ph ${thc(t)}"`);
+const map = (t, st) => th(phone(`${head()}${plateOpen(st === 'passed' ? 4 : 3, (st === 'passed' ? NODES.passed : NODES.avail).join(''), AFTER[st])}${plateNext(st === 'passed')}<div style="height:30px"></div>`, { time: '9:41' }), t);
+const startSheet = (t, plus) => th(phone(`${head()}${plateOpen(3, NODES.avail.join(''))}`, { time: '9:41',
   overlay: `<div class="xdim"></div><div class="xsh"><div class="grab"></div><div class="ic">${gi('trophy')}</div><div class="t">Экзамен главы 1</div>
   <div class="facts"><div><b>12</b><small>вопросов</small></div><div><b>10</b><small>чтобы сдать</small></div><div><b>~7</b><small>минут</small></div></div>
-  <div class="p">По занятиям 1–7. Сдашь — сразу откроется глава 2.</div><div class="c1">Начать экзамен</div><div class="c2">Позже</div></div>` }).replace('class="ph"', `class="ph ${thc(th)}"`);
+  <div class="p">По эпизодам 1–7. Сдашь — сразу откроется глава 2.</div>
+  <div class="c1">Начать экзамен${plus ? '' : `<span class="en">${gi('flash', 'font-size:14px')}1</span>`}</div>${plus ? '<div class="free">С Plus экзамен бесплатный</div>' : ''}<div class="c2">Позже</div></div>` }), t);
+const failSheet = (t) => th(phone(`${head()}${plateOpen(3, NODES.avail.join(''))}`, { time: '9:41',
+  overlay: `<div class="xdim"></div><div class="xsh"><div class="grab"></div><div class="t" style="margin-top:22px">9 из 12 — почти</div>
+  <div class="score">${Array.from({ length: 12 }, (_, i) => `<i${i >= 9 ? ' class="x"' : ''}></i>`).join('')}</div>
+  <div class="p">Чтобы сдать, нужно 10. Разберём ошибки — пересдать можно через час.</div>
+  <div class="c1">Разбор ошибок</div><div class="c2">На карту</div></div>` }), t);
 document.getElementById('root').innerHTML =
-  block('v1', 'Вариант 1 · Кнопка «Экзамен главы» под занятиями<span class="rec">рекомендую</span>', 'Под сеткой из 8 занятий — главная кнопка «Экзамен главы» с кубком и одна строка «Сдашь — откроется глава 2». Доступна с первого дня главы. Сдан — спокойная строка «Экзамен сдан · 11 из 12», занятия 5–7 засчитаны без звёзд, глава 2 открыта.', [col('Доступен · «Сумерки»', v1('ink', false)), col('Доступен · «Океан»', v1('marine', false)), col('Сдан · «Сумерки»', v1('ink', true))]) +
-  block('v2', 'Вариант 2 · Восьмое занятие становится экзаменом', 'Последний узел — «Экзамен» цветом акцента, открыт с начала, даже когда 5–7 закрыты. Компактно, но восьмое занятие перестаёт вводить новые слова, а открытый узел после закрытых выглядит как ошибка порядка.', [col('«Сумерки»', v2('ink')), col('«Океан»', v2('marine'))]) +
-  block('vs', 'Окно перед экзаменом — общее', 'По тапу — шторка: что будет и сколько нужно. Сердечки и энергия не показываются: экзамен их не тратит.', [col('«Сумерки»', sheet('ink')), col('«Океан»', sheet('marine'))]);
+  block('avail', 'На карте: экзамен доступен', 'Под сеткой из 8 эпизодов — главная кнопка «Экзамен главы» с кубком и одна строка «Сдашь — откроется глава 2». Доступна с первого дня главы.', [col('«Сумерки»', map('ink', 'avail')), col('«Океан»', map('marine', 'avail'))]) +
+  block('start', 'Перед экзаменом', 'Шторка по тапу: сколько вопросов, сколько нужно, по каким эпизодам. Free видит цену на кнопке — 1 энергия; Plus — «С Plus экзамен бесплатный». Сердечек нет: экзамен их не тратит.', [col('Free · «Сумерки»', startSheet('ink', false)), col('Plus · «Океан»', startSheet('marine', true))]) +
+  block('fail', 'Не сдал', 'Итог без красного: «9 из 12 — почти», точки ответов, «Разбор ошибок». На карте вместо кнопки — «Разбор ошибок» и «Через 59 мин»: пересдать можно через час.', [col('Итог · «Сумерки»', failSheet('ink')), col('Карта после провала · «Океан»', map('marine', 'failed'))]) +
+  block('passed', 'Сдал', '«Экзамен сдан · 11 из 12», глава 2 открыта. Пропущенные эпизоды 5–7 просто открыты: без звёзд и галочек, не считаются пройденными — счёт главы 4/8.', [col('«Сумерки»', map('ink', 'passed')), col('«Океан»', map('marine', 'passed'))]);
 K.init();
 })();
 </script>

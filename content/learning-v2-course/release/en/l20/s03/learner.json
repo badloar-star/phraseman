@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-03:word:education",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — education",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:word:education:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — education",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:word:education:audio",
+          "transcript": "education"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:word:education:r1",
+            "targetText": "education",
+            "meaningByLocale": {
+              "ru": "образование.",
+              "uk": "освіта."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "education",
+          "definitionByLocale": {
+            "ru": "образование.",
+            "uk": "освіта."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Мы должны поговорить о твоём образовании».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Мы должны поговорить о твоём образовании».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must talk about your education.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны поговорить о твоём образовании».",
+          "uk": "Скажіть із must: «Ми маємо поговорити про твою освіту»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "talk",
+          "about",
+          "your",
+          "education"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i02:r1",
+          "text": "We must talk about your education."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i02:r2",
+          "text": "We can talk about your education."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i02:r3",
+          "text": "We could talk about your education."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i02:audio",
+          "transcript": "We must talk about your education."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:i02:r1",
+            "targetText": "We must talk about your education.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i02:r2",
+            "targetText": "We can talk about your education.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i02:r3",
+            "targetText": "We could talk about your education.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must talk about your education.",
+              "uk": "У записі звучить We must talk about your education."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must talk about your education.",
+              "uk": "У записі звучить We must talk about your education."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i03:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i03:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i03:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ talk about your education.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-03:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:word:behaviour",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — behaviour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:word:behaviour:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — behaviour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:word:behaviour:audio",
+          "transcript": "behaviour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:word:behaviour:r1",
+            "targetText": "behaviour",
+            "meaningByLocale": {
+              "ru": "поведение.",
+              "uk": "поведінка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "behaviour",
+          "definitionByLocale": {
+            "ru": "поведение.",
+            "uk": "поведінка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Ты должен улучшить своё поведение».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Ты должен улучшить своё поведение».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You must improve your behaviour.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Ты должен улучшить своё поведение».",
+          "uk": "Скажіть із must: «Ти маєш поліпшити свою поведінку»."
+        },
+        "orderedTokens": [
+          "You",
+          "must",
+          "improve",
+          "your",
+          "behaviour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i05:r1",
+          "text": "You must improve your behaviour."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i05:r2",
+          "text": "You can improve your behaviour."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i05:r3",
+          "text": "You could improve your behaviour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i05:audio",
+          "transcript": "You must improve your behaviour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:i05:r1",
+            "targetText": "You must improve your behaviour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i05:r2",
+            "targetText": "You can improve your behaviour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i05:r3",
+            "targetText": "You could improve your behaviour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must improve your behaviour.",
+              "uk": "У записі звучить You must improve your behaviour."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must improve your behaviour.",
+              "uk": "У записі звучить You must improve your behaviour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i06:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i06:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i06:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "You ___ improve your behaviour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-03:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:word:attendance",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — attendance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:word:attendance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — attendance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:word:attendance:audio",
+          "transcript": "attendance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:word:attendance:r1",
+            "targetText": "attendance",
+            "meaningByLocale": {
+              "ru": "присутствие, посещение.",
+              "uk": "присутність, відвідування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "attendance",
+          "definitionByLocale": {
+            "ru": "присутствие, посещение.",
+            "uk": "присутність, відвідування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Я должен подтвердить своё участие во встрече».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Я должен подтвердить своё участие во встрече».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must confirm my attendance.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Я должен подтвердить своё участие во встрече».",
+          "uk": "Скажіть із must: «Я маю підтвердити свою участь у зустрічі»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "confirm",
+          "my",
+          "attendance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i08:r1",
+          "text": "I must confirm my attendance."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i08:r2",
+          "text": "I can confirm my attendance."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i08:r3",
+          "text": "I could confirm my attendance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i08:audio",
+          "transcript": "I must confirm my attendance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:i08:r1",
+            "targetText": "I must confirm my attendance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i08:r2",
+            "targetText": "I can confirm my attendance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i08:r3",
+            "targetText": "I could confirm my attendance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must confirm my attendance.",
+              "uk": "У записі звучить I must confirm my attendance."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must confirm my attendance.",
+              "uk": "У записі звучить I must confirm my attendance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i09:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i09:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i09:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ confirm my attendance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-03:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:word:absence",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — absence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:word:absence:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — absence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:word:absence:audio",
+          "transcript": "absence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:word:absence:r1",
+            "targetText": "absence",
+            "meaningByLocale": {
+              "ru": "отсутствие.",
+              "uk": "відсутність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "absence",
+          "definitionByLocale": {
+            "ru": "отсутствие.",
+            "uk": "відсутність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с must: «Мы должны объяснить её отсутствие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с must: «Мы должны объяснить её отсутствие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must explain her absence.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны объяснить её отсутствие».",
+          "uk": "Скажіть із must: «Ми маємо пояснити її відсутність»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "explain",
+          "her",
+          "absence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i11:r1",
+          "text": "We must explain her absence."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i11:r2",
+          "text": "We can explain her absence."
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i11:r3",
+          "text": "We could explain her absence."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i11:audio",
+          "transcript": "We must explain her absence."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-03:i11:r1",
+            "targetText": "We must explain her absence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i11:r2",
+            "targetText": "We can explain her absence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i11:r3",
+            "targetText": "We could explain her absence.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must explain her absence.",
+              "uk": "У записі звучить We must explain her absence."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must explain her absence.",
+              "uk": "У записі звучить We must explain her absence."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-03:i12:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i12:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-03:i12:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ explain her absence.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-03:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-03:i13:p1",
+            "target": "education",
+            "meaningByLocale": {
+              "ru": "образование",
+              "uk": "освіта"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-03:i13:p2",
+            "target": "behaviour",
+            "meaningByLocale": {
+              "ru": "поведение",
+              "uk": "поведінка"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-03:i13:p3",
+            "target": "attendance",
+            "meaningByLocale": {
+              "ru": "присутствие, посещение",
+              "uk": "присутність, відвідування"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-03:i13:p4",
+            "target": "absence",
+            "meaningByLocale": {
+              "ru": "отсутствие",
+              "uk": "відсутність"
+            }
+          }
+        ],
+        "leftColumn": [
+          "education",
+          "behaviour",
+          "attendance",
+          "absence"
+        ],
+        "rightColumn": [
+          "образование",
+          "поведение",
+          "присутствие, посещение",
+          "отсутствие"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: количество и ёмкость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: количество и ёмкость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужно подтвердить участие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужно подтвердить участие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i16:audio",
+          "transcript": "I must confirm my attendance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I must confirm my attendance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужно объяснить отсутствие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужно объяснить отсутствие",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-03:i17:audio",
+          "transcript": "We must explain her absence."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We must explain her absence.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2764ad038b30e99b02ff7f364d01b6d6bd5d98f5aa430dc20a8ee13926bcf638"
+}

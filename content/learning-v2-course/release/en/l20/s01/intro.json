@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Забрать свои вещи",
+        "uk": "Забрати свої речі"
+      },
+      "bodyByLocale": {
+        "ru": "В учебной ситуации вы уходите из комнаты отдыха. Надпись напоминает: личные вещи нужно забрать. Belongings — вещи, которые принадлежат человеку; это слово употребляется во множественном числе. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "У навчальній ситуації ви виходите з кімнати відпочинку. Напис нагадує: особисті речі потрібно забрати. Belongings — речі, які належать людині; це слово вживається в множині. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r1",
+              "text": "You must take your belongings."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r2",
+              "text": "You musts take your belongings."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r3",
+              "text": "You must to take your belongings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r1",
+              "text": "You must take your belongings."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r2",
+              "text": "You musts take your belongings."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro1:r3",
+              "text": "You must to take your belongings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ценные вещи и обувь",
+        "uk": "Цінні речі та взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Valuables — ценные вещи, например деньги или украшения. В этом вымышленном месте посетителей просят запирать их. Footwear — общее название обуви; перед входом в зал здесь нужно переобуться. Это правила нашей сцены, а не всех заведений. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Valuables — цінні речі, наприклад гроші чи прикраси. У цьому вигаданому місці відвідувачів просять замикати їх. Footwear — загальна назва взуття; перед входом до зали тут потрібно перевзутися. Це правила нашої сцени, а не всіх закладів. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r1",
+              "text": "You must lock up your valuables."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r2",
+              "text": "You musts lock up your valuables."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r3",
+              "text": "You must to lock up your valuables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r1",
+              "text": "You must lock up your valuables."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r2",
+              "text": "You musts lock up your valuables."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro2:r3",
+              "text": "You must to lock up your valuables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Показать документ",
+        "uk": "Показати документ"
+      },
+      "bodyByLocale": {
+        "ru": "Identification здесь — документ, подтверждающий личность. В учебной сцене гостья должна показать его на стойке. Must одинаково выглядит с I, we, you и she. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Identification тут — документ, що підтверджує особу. У навчальній сцені гостя має показати його біля стійки. Must має однакову форму з I, we, you та she. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r1",
+              "text": "She must show identification."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r2",
+              "text": "She musts show identification."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r3",
+              "text": "She must to show identification."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r1",
+              "text": "She must show identification."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r2",
+              "text": "She musts show identification."
+            },
+            {
+              "responseId": "en:lesson-20:session-01:intro3:r3",
+              "text": "She must to show identification."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "85306c8bb6a41e1cc4c6bf96fb2d3ca41e299a2292aa2d989fa4aabfcf6f8d5f"
+}

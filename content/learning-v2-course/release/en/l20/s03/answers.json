@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-03:word:education",
+    "correctText": "education",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i01",
+    "correctText": "We must talk about your education.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i02",
+    "correctText": "We must talk about your education.",
+    "correctResponseId": "en:lesson-20:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:word:behaviour",
+    "correctText": "behaviour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i04",
+    "correctText": "You must improve your behaviour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i05",
+    "correctText": "You must improve your behaviour.",
+    "correctResponseId": "en:lesson-20:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:word:attendance",
+    "correctText": "attendance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i07",
+    "correctText": "I must confirm my attendance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i08",
+    "correctText": "I must confirm my attendance.",
+    "correctResponseId": "en:lesson-20:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:word:absence",
+    "correctText": "absence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i10",
+    "correctText": "We must explain her absence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i11",
+    "correctText": "We must explain her absence.",
+    "correctResponseId": "en:lesson-20:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i13",
+    "correctText": "en:lesson-20:session-03:i13:p1=education\nen:lesson-20:session-03:i13:p2=behaviour\nen:lesson-20:session-03:i13:p3=attendance\nen:lesson-20:session-03:i13:p4=absence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i16",
+    "correctText": "I must confirm my attendance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-03:i17",
+    "correctText": "We must explain her absence.",
+    "correctResponseId": null
+  }
+]

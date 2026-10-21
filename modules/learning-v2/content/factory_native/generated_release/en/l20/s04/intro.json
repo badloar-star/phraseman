@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Соблюдать правила",
+        "uk": "Дотримуватися правил"
+      },
+      "bodyByLocale": {
+        "ru": "Obey — подчиняться или соблюдать. Перед встречей организатор напоминает о правилах зала. После obey сразу называем правила: obey the rules, без to. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Obey — підкорятися або дотримуватися. Перед зустріччю організатор нагадує про правила зали. Після obey одразу називаємо правила: obey the rules, без to. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r1",
+              "text": "We must obey the rules."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r2",
+              "text": "We musts obey the rules."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r3",
+              "text": "We must to obey the rules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r1",
+              "text": "We must obey the rules."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r2",
+              "text": "We musts obey the rules."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro1:r3",
+              "text": "We must to obey the rules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить согласие",
+        "uk": "Запитати згоду"
+      },
+      "bodyByLocale": {
+        "ru": "Consent — согласие. Вы хотите разместить фотографию подруги и решаете сначала спросить её согласия. Cooperation — сотрудничество: чтобы подготовить встречу, нужна совместная помощь участников. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Consent — згода. Ви хочете розмістити фотографію подруги й вирішуєте спочатку запитати її згоди. Cooperation — співпраця: щоб підготувати зустріч, потрібна спільна допомога учасників. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r1",
+              "text": "I must ask for her consent."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r2",
+              "text": "I musts ask for her consent."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r3",
+              "text": "I must to ask for her consent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r1",
+              "text": "I must ask for her consent."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r2",
+              "text": "I musts ask for her consent."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro2:r3",
+              "text": "I must to ask for her consent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отнестись с уважением",
+        "uk": "Поставитися з повагою"
+      },
+      "bodyByLocale": {
+        "ru": "Respectful — уважительный. В споре можно не соглашаться с человеком и при этом говорить с уважением. После must здесь нужен be: must be respectful. Само прилагательное не заменяет глагол. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Respectful — шанобливий. У суперечці можна не погоджуватися з людиною й водночас говорити з повагою. Після must тут потрібне be: must be respectful. Сам прикметник не замінює дієслово. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r1",
+              "text": "You must be respectful."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r2",
+              "text": "You musts be respectful."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r3",
+              "text": "You must to be respectful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r1",
+              "text": "You must be respectful."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r2",
+              "text": "You musts be respectful."
+            },
+            {
+              "responseId": "en:lesson-20:session-04:intro3:r3",
+              "text": "You must to be respectful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "02aad677c1c7df959ad66abce7967a2578618e0f20a7841d7383af934c4f548f"
+}

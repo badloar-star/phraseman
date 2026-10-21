@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-01:word:belongings",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — belongings",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:word:belongings:audio"
+      ],
+      "accessibilityLabel": "Картка слова — belongings",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:word:belongings:audio",
+          "transcript": "belongings"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:word:belongings:r1",
+            "targetText": "belongings",
+            "meaningByLocale": {
+              "ru": "личные вещи.",
+              "uk": "особисті речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "belongings",
+          "definitionByLocale": {
+            "ru": "личные вещи.",
+            "uk": "особисті речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Ти маєш забрати свої речі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Ти маєш забрати свої речі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You must take your belongings.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Ты должен забрать свои вещи».",
+          "uk": "Скажіть із must: «Ти маєш забрати свої речі»."
+        },
+        "orderedTokens": [
+          "You",
+          "must",
+          "take",
+          "your",
+          "belongings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i02:r1",
+          "text": "You must take your belongings."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i02:r2",
+          "text": "You can take your belongings."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i02:r3",
+          "text": "You could take your belongings."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i02:audio",
+          "transcript": "You must take your belongings."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:i02:r1",
+            "targetText": "You must take your belongings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i02:r2",
+            "targetText": "You can take your belongings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i02:r3",
+            "targetText": "You could take your belongings.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must take your belongings.",
+              "uk": "У записі звучить You must take your belongings."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must take your belongings.",
+              "uk": "У записі звучить You must take your belongings."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i03:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i03:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i03:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "You ___ take your belongings.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-01:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:word:valuables",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — valuables",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:word:valuables:audio"
+      ],
+      "accessibilityLabel": "Картка слова — valuables",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:word:valuables:audio",
+          "transcript": "valuables"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:word:valuables:r1",
+            "targetText": "valuables",
+            "meaningByLocale": {
+              "ru": "ценные вещи.",
+              "uk": "цінні речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "valuables",
+          "definitionByLocale": {
+            "ru": "ценные вещи.",
+            "uk": "цінні речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Ти маєш замкнути свої цінні речі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Ти маєш замкнути свої цінні речі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You must lock up your valuables.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Ты должен запереть свои ценные вещи».",
+          "uk": "Скажіть із must: «Ти маєш замкнути свої цінні речі»."
+        },
+        "orderedTokens": [
+          "You",
+          "must",
+          "lock",
+          "up",
+          "your",
+          "valuables"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i05:r1",
+          "text": "You must lock up your valuables."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i05:r2",
+          "text": "You can lock up your valuables."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i05:r3",
+          "text": "You could lock up your valuables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i05:audio",
+          "transcript": "You must lock up your valuables."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:i05:r1",
+            "targetText": "You must lock up your valuables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i05:r2",
+            "targetText": "You can lock up your valuables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i05:r3",
+            "targetText": "You could lock up your valuables.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must lock up your valuables.",
+              "uk": "У записі звучить You must lock up your valuables."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You must lock up your valuables.",
+              "uk": "У записі звучить You must lock up your valuables."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i06:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i06:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i06:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "You ___ lock up your valuables.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-01:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:word:footwear",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — footwear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:word:footwear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — footwear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:word:footwear:audio",
+          "transcript": "footwear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:word:footwear:r1",
+            "targetText": "footwear",
+            "meaningByLocale": {
+              "ru": "обувь.",
+              "uk": "взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "footwear",
+          "definitionByLocale": {
+            "ru": "обувь.",
+            "uk": "взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Ми маємо змінити взуття».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Ми маємо змінити взуття».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must change our footwear.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны сменить обувь».",
+          "uk": "Скажіть із must: «Ми маємо змінити взуття»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "change",
+          "our",
+          "footwear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i08:r1",
+          "text": "We must change our footwear."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i08:r2",
+          "text": "We can change our footwear."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i08:r3",
+          "text": "We could change our footwear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i08:audio",
+          "transcript": "We must change our footwear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:i08:r1",
+            "targetText": "We must change our footwear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i08:r2",
+            "targetText": "We can change our footwear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i08:r3",
+            "targetText": "We could change our footwear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must change our footwear.",
+              "uk": "У записі звучить We must change our footwear."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must change our footwear.",
+              "uk": "У записі звучить We must change our footwear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i09:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i09:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i09:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ change our footwear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-01:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:word:identification",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — identification",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:word:identification:audio"
+      ],
+      "accessibilityLabel": "Картка слова — identification",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:word:identification:audio",
+          "transcript": "identification"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:word:identification:r1",
+            "targetText": "identification",
+            "meaningByLocale": {
+              "ru": "документ, удостоверяющий личность.",
+              "uk": "документ, що посвідчує особу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "identification",
+          "definitionByLocale": {
+            "ru": "документ, удостоверяющий личность.",
+            "uk": "документ, що посвідчує особу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Вона має показати документ, що посвідчує особу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Вона має показати документ, що посвідчує особу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She must show identification.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Она должна показать документ, удостоверяющий личность».",
+          "uk": "Скажіть із must: «Вона має показати документ, що посвідчує особу»."
+        },
+        "orderedTokens": [
+          "She",
+          "must",
+          "show",
+          "identification"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i11:r1",
+          "text": "She must show identification."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i11:r2",
+          "text": "She can show identification."
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i11:r3",
+          "text": "She could show identification."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i11:audio",
+          "transcript": "She must show identification."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-01:i11:r1",
+            "targetText": "She must show identification.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i11:r2",
+            "targetText": "She can show identification.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i11:r3",
+            "targetText": "She could show identification.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She must show identification.",
+              "uk": "У записі звучить She must show identification."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She must show identification.",
+              "uk": "У записі звучить She must show identification."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-01:i12:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i12:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-01:i12:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "She ___ show identification.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-01:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-01:i13:p1",
+            "target": "belongings",
+            "meaningByLocale": {
+              "ru": "личные вещи",
+              "uk": "особисті речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-01:i13:p2",
+            "target": "valuables",
+            "meaningByLocale": {
+              "ru": "ценные вещи",
+              "uk": "цінні речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-01:i13:p3",
+            "target": "footwear",
+            "meaningByLocale": {
+              "ru": "обувь",
+              "uk": "взуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-01:i13:p4",
+            "target": "identification",
+            "meaningByLocale": {
+              "ru": "документ, удостоверяющий личность",
+              "uk": "документ, що посвідчує особу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "belongings",
+          "valuables",
+          "footwear",
+          "identification"
+        ],
+        "rightColumn": [
+          "особисті речі",
+          "цінні речі",
+          "взуття",
+          "документ, що посвідчує особу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Нагадайте забрати свої речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Нагадайте забрати свої речі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i16:audio",
+          "transcript": "You must take your belongings."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You must take your belongings.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що потрібно змінити взуття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що потрібно змінити взуття",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-01:i17:audio",
+          "transcript": "We must change our footwear."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We must change our footwear.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9a98e6eb0bc381ba50a5a024d5f4382897f7c45f2e297613ea912e41c7ce292c"
+}

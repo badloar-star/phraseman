@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-04:word:obey",
+    "correctText": "obey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i01",
+    "correctText": "We must obey the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i02",
+    "correctText": "We must obey the rules.",
+    "correctResponseId": "en:lesson-20:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:word:consent",
+    "correctText": "consent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i04",
+    "correctText": "I must ask for her consent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i05",
+    "correctText": "I must ask for her consent.",
+    "correctResponseId": "en:lesson-20:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:word:cooperation",
+    "correctText": "cooperation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i07",
+    "correctText": "We must ask for cooperation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i08",
+    "correctText": "We must ask for cooperation.",
+    "correctResponseId": "en:lesson-20:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:word:respectful",
+    "correctText": "respectful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i10",
+    "correctText": "You must be respectful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i11",
+    "correctText": "You must be respectful.",
+    "correctResponseId": "en:lesson-20:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i13",
+    "correctText": "en:lesson-20:session-04:i13:p1=obey\nen:lesson-20:session-04:i13:p2=consent\nen:lesson-20:session-04:i13:p3=cooperation\nen:lesson-20:session-04:i13:p4=respectful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i16",
+    "correctText": "I must ask for her consent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-04:i17",
+    "correctText": "You must be respectful.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-04:word:obey",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — obey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:obey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — obey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:obey:audio",
+            "transcript": "obey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:obey:r1",
+              "targetText": "obey",
+              "meaningByLocale": {
+                "ru": "подчиняться, соблюдать.",
+                "uk": "підкорятися, дотримуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obey",
+            "definitionByLocale": {
+              "ru": "подчиняться, соблюдать.",
+              "uk": "підкорятися, дотримуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны соблюдать правила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны соблюдать правила».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must obey the rules.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны соблюдать правила».",
+            "uk": "Скажіть із must: «Ми маємо дотримуватися правил»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "obey",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i02:r1",
+            "text": "We must obey the rules."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i02:r2",
+            "text": "We can obey the rules."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i02:r3",
+            "text": "We could obey the rules."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i02:audio",
+            "transcript": "We must obey the rules."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i02:r1",
+              "targetText": "We must obey the rules.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r2",
+              "targetText": "We can obey the rules.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r3",
+              "targetText": "We could obey the rules.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must obey the rules.",
+                "uk": "У записі звучить We must obey the rules."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must obey the rules.",
+                "uk": "У записі звучить We must obey the rules."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ obey the rules.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:consent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — consent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:consent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — consent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:consent:audio",
+            "transcript": "consent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:consent:r1",
+              "targetText": "consent",
+              "meaningByLocale": {
+                "ru": "согласие, разрешение.",
+                "uk": "згода, дозвіл."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "consent",
+            "definitionByLocale": {
+              "ru": "согласие, разрешение.",
+              "uk": "згода, дозвіл."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Я должен спросить её согласия».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Я должен спросить её согласия».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I must ask for her consent.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Я должен спросить её согласия».",
+            "uk": "Скажіть із must: «Я маю запитати її згоди»."
+          },
+          "orderedTokens": [
+            "I",
+            "must",
+            "ask",
+            "for",
+            "her",
+            "consent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i05:r1",
+            "text": "I must ask for her consent."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i05:r2",
+            "text": "I can ask for her consent."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i05:r3",
+            "text": "I could ask for her consent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i05:audio",
+            "transcript": "I must ask for her consent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i05:r1",
+              "targetText": "I must ask for her consent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r2",
+              "targetText": "I can ask for her consent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r3",
+              "targetText": "I could ask for her consent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must ask for her consent.",
+                "uk": "У записі звучить I must ask for her consent."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must ask for her consent.",
+                "uk": "У записі звучить I must ask for her consent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ ask for her consent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:cooperation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cooperation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:cooperation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cooperation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:cooperation:audio",
+            "transcript": "cooperation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:cooperation:r1",
+              "targetText": "cooperation",
+              "meaningByLocale": {
+                "ru": "сотрудничество, совместная помощь.",
+                "uk": "співпраця, спільна допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cooperation",
+            "definitionByLocale": {
+              "ru": "сотрудничество, совместная помощь.",
+              "uk": "співпраця, спільна допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Мы должны попросить о сотрудничестве».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Мы должны попросить о сотрудничестве».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must ask for cooperation.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны попросить о сотрудничестве».",
+            "uk": "Скажіть із must: «Ми маємо попросити про співпрацю»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "ask",
+            "for",
+            "cooperation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i08:r1",
+            "text": "We must ask for cooperation."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i08:r2",
+            "text": "We can ask for cooperation."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i08:r3",
+            "text": "We could ask for cooperation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i08:audio",
+            "transcript": "We must ask for cooperation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i08:r1",
+              "targetText": "We must ask for cooperation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r2",
+              "targetText": "We can ask for cooperation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r3",
+              "targetText": "We could ask for cooperation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must ask for cooperation.",
+                "uk": "У записі звучить We must ask for cooperation."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must ask for cooperation.",
+                "uk": "У записі звучить We must ask for cooperation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ ask for cooperation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:respectful",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — respectful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:respectful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — respectful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:respectful:audio",
+            "transcript": "respectful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:respectful:r1",
+              "targetText": "respectful",
+              "meaningByLocale": {
+                "ru": "уважительный.",
+                "uk": "шанобливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "respectful",
+            "definitionByLocale": {
+              "ru": "уважительный.",
+              "uk": "шанобливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с must: «Ты должен вести себя уважительно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с must: «Ты должен вести себя уважительно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must be respectful.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен вести себя уважительно».",
+            "uk": "Скажіть із must: «Ти маєш поводитися шанобливо»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "be",
+            "respectful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i11:r1",
+            "text": "You must be respectful."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i11:r2",
+            "text": "You can be respectful."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i11:r3",
+            "text": "You could be respectful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i11:audio",
+            "transcript": "You must be respectful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i11:r1",
+              "targetText": "You must be respectful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r2",
+              "targetText": "You can be respectful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r3",
+              "targetText": "You could be respectful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must be respectful.",
+                "uk": "У записі звучить You must be respectful."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must be respectful.",
+                "uk": "У записі звучить You must be respectful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ be respectful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-04:i13:p1",
+              "target": "obey",
+              "meaningByLocale": {
+                "ru": "подчиняться, соблюдать",
+                "uk": "підкорятися, дотримуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p2",
+              "target": "consent",
+              "meaningByLocale": {
+                "ru": "согласие, разрешение",
+                "uk": "згода, дозвіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p3",
+              "target": "cooperation",
+              "meaningByLocale": {
+                "ru": "сотрудничество, совместная помощь",
+                "uk": "співпраця, спільна допомога"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p4",
+              "target": "respectful",
+              "meaningByLocale": {
+                "ru": "уважительный",
+                "uk": "шанобливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "obey",
+            "consent",
+            "cooperation",
+            "respectful"
+          ],
+          "rightColumn": [
+            "подчиняться, соблюдать",
+            "согласие, разрешение",
+            "сотрудничество, совместная помощь",
+            "уважительный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество и ёмкость",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество и ёмкость",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно спросить согласие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно спросить согласие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i16:audio",
+            "transcript": "I must ask for her consent."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I must ask for her consent.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Напомните говорить с уважением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Напомните говорить с уважением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i17:audio",
+            "transcript": "You must be respectful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You must be respectful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-04:word:obey",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — obey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:obey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — obey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:obey:audio",
+            "transcript": "obey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:obey:r1",
+              "targetText": "obey",
+              "meaningByLocale": {
+                "ru": "подчиняться, соблюдать.",
+                "uk": "підкорятися, дотримуватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obey",
+            "definitionByLocale": {
+              "ru": "подчиняться, соблюдать.",
+              "uk": "підкорятися, дотримуватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо дотримуватися правил».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо дотримуватися правил».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must obey the rules.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны соблюдать правила».",
+            "uk": "Скажіть із must: «Ми маємо дотримуватися правил»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "obey",
+            "the",
+            "rules"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i02:r1",
+            "text": "We must obey the rules."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i02:r2",
+            "text": "We can obey the rules."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i02:r3",
+            "text": "We could obey the rules."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i02:audio",
+            "transcript": "We must obey the rules."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i02:r1",
+              "targetText": "We must obey the rules.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r2",
+              "targetText": "We can obey the rules.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r3",
+              "targetText": "We could obey the rules.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must obey the rules.",
+                "uk": "У записі звучить We must obey the rules."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must obey the rules.",
+                "uk": "У записі звучить We must obey the rules."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ obey the rules.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i03:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:consent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — consent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:consent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — consent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:consent:audio",
+            "transcript": "consent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:consent:r1",
+              "targetText": "consent",
+              "meaningByLocale": {
+                "ru": "согласие, разрешение.",
+                "uk": "згода, дозвіл."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "consent",
+            "definitionByLocale": {
+              "ru": "согласие, разрешение.",
+              "uk": "згода, дозвіл."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Я маю запитати її згоди».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Я маю запитати її згоди».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I must ask for her consent.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Я должен спросить её согласия».",
+            "uk": "Скажіть із must: «Я маю запитати її згоди»."
+          },
+          "orderedTokens": [
+            "I",
+            "must",
+            "ask",
+            "for",
+            "her",
+            "consent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i05:r1",
+            "text": "I must ask for her consent."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i05:r2",
+            "text": "I can ask for her consent."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i05:r3",
+            "text": "I could ask for her consent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i05:audio",
+            "transcript": "I must ask for her consent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i05:r1",
+              "targetText": "I must ask for her consent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r2",
+              "targetText": "I can ask for her consent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r3",
+              "targetText": "I could ask for her consent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must ask for her consent.",
+                "uk": "У записі звучить I must ask for her consent."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I must ask for her consent.",
+                "uk": "У записі звучить I must ask for her consent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ ask for her consent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i06:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:cooperation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cooperation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:cooperation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cooperation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:cooperation:audio",
+            "transcript": "cooperation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:cooperation:r1",
+              "targetText": "cooperation",
+              "meaningByLocale": {
+                "ru": "сотрудничество, совместная помощь.",
+                "uk": "співпраця, спільна допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cooperation",
+            "definitionByLocale": {
+              "ru": "сотрудничество, совместная помощь.",
+              "uk": "співпраця, спільна допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ми маємо попросити про співпрацю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ми маємо попросити про співпрацю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We must ask for cooperation.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Мы должны попросить о сотрудничестве».",
+            "uk": "Скажіть із must: «Ми маємо попросити про співпрацю»."
+          },
+          "orderedTokens": [
+            "We",
+            "must",
+            "ask",
+            "for",
+            "cooperation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i08:r1",
+            "text": "We must ask for cooperation."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i08:r2",
+            "text": "We can ask for cooperation."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i08:r3",
+            "text": "We could ask for cooperation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i08:audio",
+            "transcript": "We must ask for cooperation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i08:r1",
+              "targetText": "We must ask for cooperation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r2",
+              "targetText": "We can ask for cooperation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r3",
+              "targetText": "We could ask for cooperation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must ask for cooperation.",
+                "uk": "У записі звучить We must ask for cooperation."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We must ask for cooperation.",
+                "uk": "У записі звучить We must ask for cooperation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ ask for cooperation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i09:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:word:respectful",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — respectful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:word:respectful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — respectful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:word:respectful:audio",
+            "transcript": "respectful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:word:respectful:r1",
+              "targetText": "respectful",
+              "meaningByLocale": {
+                "ru": "уважительный.",
+                "uk": "шанобливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "respectful",
+            "definitionByLocale": {
+              "ru": "уважительный.",
+              "uk": "шанобливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із must: «Ти маєш поводитися шанобливо».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із must: «Ти маєш поводитися шанобливо».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You must be respectful.",
+          "localizedMeaning": {
+            "ru": "Скажите с must: «Ты должен вести себя уважительно».",
+            "uk": "Скажіть із must: «Ти маєш поводитися шанобливо»."
+          },
+          "orderedTokens": [
+            "You",
+            "must",
+            "be",
+            "respectful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i11:r1",
+            "text": "You must be respectful."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i11:r2",
+            "text": "You can be respectful."
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i11:r3",
+            "text": "You could be respectful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i11:audio",
+            "transcript": "You must be respectful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-04:i11:r1",
+              "targetText": "You must be respectful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r2",
+              "targetText": "You can be respectful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r3",
+              "targetText": "You could be respectful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must be respectful.",
+                "uk": "У записі звучить You must be respectful."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You must be respectful.",
+                "uk": "У записі звучить You must be respectful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-04:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-04:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "You ___ be respectful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-04:i12:r1",
+              "text": "must"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r2",
+              "text": "musts"
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r3",
+              "text": "must to"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Must не получает окончания -s.",
+                "uk": "Must не отримує закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "После must не нужно to.",
+                "uk": "Після must не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-04:i13:p1",
+              "target": "obey",
+              "meaningByLocale": {
+                "ru": "подчиняться, соблюдать",
+                "uk": "підкорятися, дотримуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p2",
+              "target": "consent",
+              "meaningByLocale": {
+                "ru": "согласие, разрешение",
+                "uk": "згода, дозвіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p3",
+              "target": "cooperation",
+              "meaningByLocale": {
+                "ru": "сотрудничество, совместная помощь",
+                "uk": "співпраця, спільна допомога"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-04:i13:p4",
+              "target": "respectful",
+              "meaningByLocale": {
+                "ru": "уважительный",
+                "uk": "шанобливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "obey",
+            "consent",
+            "cooperation",
+            "respectful"
+          ],
+          "rightColumn": [
+            "підкорятися, дотримуватися",
+            "згода, дозвіл",
+            "співпраця, спільна допомога",
+            "шанобливий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість і місткість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість і місткість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно запитати згоду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно запитати згоду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i16:audio",
+            "transcript": "I must ask for her consent."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I must ask for her consent.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нагадайте говорити з повагою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Нагадайте говорити з повагою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-04:i17:audio",
+            "transcript": "You must be respectful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You must be respectful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-04:word:obey",
+      "correctText": "obey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i01",
+      "correctText": "We must obey the rules.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i02",
+      "correctText": "We must obey the rules.",
+      "correctResponseId": "en:lesson-20:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i03",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:word:consent",
+      "correctText": "consent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i04",
+      "correctText": "I must ask for her consent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i05",
+      "correctText": "I must ask for her consent.",
+      "correctResponseId": "en:lesson-20:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i06",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:word:cooperation",
+      "correctText": "cooperation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i07",
+      "correctText": "We must ask for cooperation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i08",
+      "correctText": "We must ask for cooperation.",
+      "correctResponseId": "en:lesson-20:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i09",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:word:respectful",
+      "correctText": "respectful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i10",
+      "correctText": "You must be respectful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i11",
+      "correctText": "You must be respectful.",
+      "correctResponseId": "en:lesson-20:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i12",
+      "correctText": "must",
+      "correctResponseId": "en:lesson-20:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i16",
+      "correctText": "I must ask for her consent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-04:i17",
+      "correctText": "You must be respectful.",
+      "correctResponseId": null
+    }
+  ]
+}

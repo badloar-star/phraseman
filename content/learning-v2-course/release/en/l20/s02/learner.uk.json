@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-02:word:expiry-date",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — expiry date",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:word:expiry-date:audio"
+      ],
+      "accessibilityLabel": "Картка слова — expiry date",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:word:expiry-date:audio",
+          "transcript": "expiry date"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:word:expiry-date:r1",
+            "targetText": "expiry date",
+            "meaningByLocale": {
+              "ru": "срок годности, дата окончания действия.",
+              "uk": "строк придатності, дата закінчення дії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expiry date",
+          "definitionByLocale": {
+            "ru": "срок годности, дата окончания действия.",
+            "uk": "строк придатності, дата закінчення дії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Ми маємо перевірити строк придатності».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Ми маємо перевірити строк придатності».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must check the expiry date.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны проверить срок годности».",
+          "uk": "Скажіть із must: «Ми маємо перевірити строк придатності»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "check",
+          "the",
+          "expiry",
+          "date"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i02:r1",
+          "text": "We must check the expiry date."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i02:r2",
+          "text": "We can check the expiry date."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i02:r3",
+          "text": "We could check the expiry date."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i02:audio",
+          "transcript": "We must check the expiry date."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:i02:r1",
+            "targetText": "We must check the expiry date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i02:r2",
+            "targetText": "We can check the expiry date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i02:r3",
+            "targetText": "We could check the expiry date.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must check the expiry date.",
+              "uk": "У записі звучить We must check the expiry date."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must check the expiry date.",
+              "uk": "У записі звучить We must check the expiry date."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i03:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i03:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i03:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ check the expiry date.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-02:i03:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i03:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i03:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:word:due-date",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — due date",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:word:due-date:audio"
+      ],
+      "accessibilityLabel": "Картка слова — due date",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:word:due-date:audio",
+          "transcript": "due date"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:word:due-date:r1",
+            "targetText": "due date",
+            "meaningByLocale": {
+              "ru": "срок, дата, к которой нужно что-то сделать.",
+              "uk": "строк, дата, до якої потрібно щось зробити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "due date",
+          "definitionByLocale": {
+            "ru": "срок, дата, к которой нужно что-то сделать.",
+            "uk": "строк, дата, до якої потрібно щось зробити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Я маю памʼятати строк повернення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Я маю памʼятати строк повернення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I must remember the due date.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Я должен помнить срок возврата».",
+          "uk": "Скажіть із must: «Я маю памʼятати строк повернення»."
+        },
+        "orderedTokens": [
+          "I",
+          "must",
+          "remember",
+          "the",
+          "due",
+          "date"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i05:r1",
+          "text": "I must remember the due date."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i05:r2",
+          "text": "I can remember the due date."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i05:r3",
+          "text": "I could remember the due date."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i05:audio",
+          "transcript": "I must remember the due date."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:i05:r1",
+            "targetText": "I must remember the due date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i05:r2",
+            "targetText": "I can remember the due date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i05:r3",
+            "targetText": "I could remember the due date.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must remember the due date.",
+              "uk": "У записі звучить I must remember the due date."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I must remember the due date.",
+              "uk": "У записі звучить I must remember the due date."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i06:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i06:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i06:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ remember the due date.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-02:i06:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i06:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i06:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:word:household",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — household",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:word:household:audio"
+      ],
+      "accessibilityLabel": "Картка слова — household",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:word:household:audio",
+          "transcript": "household"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:word:household:r1",
+            "targetText": "household",
+            "meaningByLocale": {
+              "ru": "домохозяйство, все живущие вместе люди.",
+              "uk": "домогосподарство, усі люди, що живуть разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "household",
+          "definitionByLocale": {
+            "ru": "домохозяйство, все живущие вместе люди.",
+            "uk": "домогосподарство, усі люди, що живуть разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Усі, хто живе в нашому домі, мають допомагати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Усі, хто живе в нашому домі, мають допомагати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Everyone in our household must help.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Все, кто живёт в нашем доме, должны помогать».",
+          "uk": "Скажіть із must: «Усі, хто живе в нашому домі, мають допомагати»."
+        },
+        "orderedTokens": [
+          "Everyone",
+          "in",
+          "our",
+          "household",
+          "must",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i08:r1",
+          "text": "Everyone in our household must help."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i08:r2",
+          "text": "Everyone in our household can help."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i08:r3",
+          "text": "Everyone in our household could help."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i08:audio",
+          "transcript": "Everyone in our household must help."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:i08:r1",
+            "targetText": "Everyone in our household must help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i08:r2",
+            "targetText": "Everyone in our household can help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i08:r3",
+            "targetText": "Everyone in our household could help.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone in our household must help.",
+              "uk": "У записі звучить Everyone in our household must help."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone in our household must help.",
+              "uk": "У записі звучить Everyone in our household must help."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i09:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i09:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i09:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "Everyone in our household ___ help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-02:i09:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i09:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i09:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:word:hygiene",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hygiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:word:hygiene:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hygiene",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:word:hygiene:audio",
+          "transcript": "hygiene"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:word:hygiene:r1",
+            "targetText": "hygiene",
+            "meaningByLocale": {
+              "ru": "гигиена.",
+              "uk": "гігієна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hygiene",
+          "definitionByLocale": {
+            "ru": "гигиена.",
+            "uk": "гігієна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із must: «Ми маємо поліпшити гігієну тут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із must: «Ми маємо поліпшити гігієну тут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We must improve hygiene here.",
+        "localizedMeaning": {
+          "ru": "Скажите с must: «Мы должны улучшить гигиену здесь».",
+          "uk": "Скажіть із must: «Ми маємо поліпшити гігієну тут»."
+        },
+        "orderedTokens": [
+          "We",
+          "must",
+          "improve",
+          "hygiene",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i11:r1",
+          "text": "We must improve hygiene here."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i11:r2",
+          "text": "We can improve hygiene here."
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i11:r3",
+          "text": "We could improve hygiene here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i11:audio",
+          "transcript": "We must improve hygiene here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-02:i11:r1",
+            "targetText": "We must improve hygiene here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i11:r2",
+            "targetText": "We can improve hygiene here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i11:r3",
+            "targetText": "We could improve hygiene here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must improve hygiene here.",
+              "uk": "У записі звучить We must improve hygiene here."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We must improve hygiene here.",
+              "uk": "У записі звучить We must improve hygiene here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-02:i12:r1",
+          "text": "must"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i12:r2",
+          "text": "musts"
+        },
+        {
+          "responseId": "en:lesson-20:session-02:i12:r3",
+          "text": "must to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ improve hygiene here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-02:i12:r1",
+            "text": "must"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i12:r2",
+            "text": "musts"
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i12:r3",
+            "text": "must to"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Must не получает окончания -s.",
+              "uk": "Must не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "После must не нужно to.",
+              "uk": "Після must не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-02:i13:p1",
+            "target": "expiry date",
+            "meaningByLocale": {
+              "ru": "срок годности, дата окончания действия",
+              "uk": "строк придатності, дата закінчення дії"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-02:i13:p2",
+            "target": "due date",
+            "meaningByLocale": {
+              "ru": "срок, дата, к которой нужно что-то сделать",
+              "uk": "строк, дата, до якої потрібно щось зробити"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-02:i13:p3",
+            "target": "household",
+            "meaningByLocale": {
+              "ru": "домохозяйство, все живущие вместе люди",
+              "uk": "домогосподарство, усі люди, що живуть разом"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-02:i13:p4",
+            "target": "hygiene",
+            "meaningByLocale": {
+              "ru": "гигиена",
+              "uk": "гігієна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "expiry date",
+          "due date",
+          "household",
+          "hygiene"
+        ],
+        "rightColumn": [
+          "строк придатності, дата закінчення дії",
+          "строк, дата, до якої потрібно щось зробити",
+          "домогосподарство, усі люди, що живуть разом",
+          "гігієна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i15:audio",
+          "transcript": "We will be able to help tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will be able to help tomorrow.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "be",
+          "able",
+          "to",
+          "help",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Нагадайте перевірити строк придатності",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Нагадайте перевірити строк придатності",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i16:audio",
+          "transcript": "We must check the expiry date."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We must check the expiry date.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вдома мають допомагати всі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вдома мають допомагати всі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-02:i17:audio",
+          "transcript": "Everyone in our household must help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Everyone in our household must help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "683c531a69847c6300e8502886956fe52b0020321f464d420304f88a97211e2e"
+}

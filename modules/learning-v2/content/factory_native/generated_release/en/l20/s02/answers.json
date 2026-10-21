@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-02:word:expiry-date",
+    "correctText": "expiry date",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i01",
+    "correctText": "We must check the expiry date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i02",
+    "correctText": "We must check the expiry date.",
+    "correctResponseId": "en:lesson-20:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:word:due-date",
+    "correctText": "due date",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i04",
+    "correctText": "I must remember the due date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i05",
+    "correctText": "I must remember the due date.",
+    "correctResponseId": "en:lesson-20:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:word:household",
+    "correctText": "household",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i07",
+    "correctText": "Everyone in our household must help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i08",
+    "correctText": "Everyone in our household must help.",
+    "correctResponseId": "en:lesson-20:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:word:hygiene",
+    "correctText": "hygiene",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i10",
+    "correctText": "We must improve hygiene here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i11",
+    "correctText": "We must improve hygiene here.",
+    "correctResponseId": "en:lesson-20:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i13",
+    "correctText": "en:lesson-20:session-02:i13:p1=expiry date\nen:lesson-20:session-02:i13:p2=due date\nen:lesson-20:session-02:i13:p3=household\nen:lesson-20:session-02:i13:p4=hygiene",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i16",
+    "correctText": "We must check the expiry date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-02:i17",
+    "correctText": "Everyone in our household must help.",
+    "correctResponseId": null
+  }
+]

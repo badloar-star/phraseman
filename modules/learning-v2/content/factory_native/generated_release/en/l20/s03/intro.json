@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "must + base verb",
+    "uk": "must + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поговорить об учёбе",
+        "uk": "Поговорити про навчання"
+      },
+      "bodyByLocale": {
+        "ru": "Education — образование, процесс обучения и полученные знания. Вы с близким человеком обсуждаете, где он хочет учиться дальше. Это серьёзный разговор: «Нам нужно поговорить о твоём образовании». Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Education — освіта, процес навчання й отримані знання. Ви з близькою людиною обговорюєте, де вона хоче вчитися далі. Це серйозна розмова: «Нам потрібно поговорити про твою освіту». Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r1",
+              "text": "We must talk about your education."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r2",
+              "text": "We musts talk about your education."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r3",
+              "text": "We must to talk about your education."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r1",
+              "text": "We must talk about your education."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r2",
+              "text": "We musts talk about your education."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro1:r3",
+              "text": "We must to talk about your education."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обсудить поведение",
+        "uk": "Обговорити поведінку"
+      },
+      "bodyByLocale": {
+        "ru": "Behaviour — поведение; американское написание — behavior. Учитель обращается к ученику, который мешает другим. Фраза с must звучит требовательно. Attendance — присутствие на занятии или встрече; вам нужно подтвердить организатору, что вы придёте. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Behaviour — поведінка; американське написання — behavior. Учитель звертається до учня, який заважає іншим. Фраза з must звучить вимогливо. Attendance — присутність на занятті або зустрічі; вам потрібно підтвердити організаторові, що ви прийдете. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r1",
+              "text": "You must improve your behaviour."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r2",
+              "text": "You musts improve your behaviour."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r3",
+              "text": "You must to improve your behaviour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r1",
+              "text": "You must improve your behaviour."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r2",
+              "text": "You musts improve your behaviour."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro2:r3",
+              "text": "You must to improve your behaviour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Объяснить отсутствие",
+        "uk": "Пояснити відсутність"
+      },
+      "bodyByLocale": {
+        "ru": "Absence — отсутствие, когда человека нет там, где его ожидали. Однокурсница не пришла на занятие, и вы должны объяснить причину её отсутствия. Attendance и absence описывают противоположные ситуации. Must выражает необходимость: нужно, должен. После must ставим глагол в начальной форме без to: must take, must change. Окончание -s не добавляем.",
+        "uk": "Absence — відсутність, коли людини немає там, де її очікували. Однокурсниця не прийшла на заняття, і ви маєте пояснити причину її відсутності. Attendance та absence описують протилежні ситуації. Must виражає необхідність: потрібно, маєш. Після must ставимо дієслово в початковій формі без to: must take, must change. Закінчення -s не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r1",
+              "text": "We must explain her absence."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r2",
+              "text": "We musts explain her absence."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r3",
+              "text": "We must to explain her absence."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r1",
+              "text": "We must explain her absence."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r2",
+              "text": "We musts explain her absence."
+            },
+            {
+              "responseId": "en:lesson-20:session-03:intro3:r3",
+              "text": "We must to explain her absence."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "66bba39356846daf142828b5b1595aae0e1c7d08702f880caffacd3f221a881f"
+}

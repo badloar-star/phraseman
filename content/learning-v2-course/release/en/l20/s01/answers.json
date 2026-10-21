@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-01:word:belongings",
+    "correctText": "belongings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i01",
+    "correctText": "You must take your belongings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i02",
+    "correctText": "You must take your belongings.",
+    "correctResponseId": "en:lesson-20:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i03",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:word:valuables",
+    "correctText": "valuables",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i04",
+    "correctText": "You must lock up your valuables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i05",
+    "correctText": "You must lock up your valuables.",
+    "correctResponseId": "en:lesson-20:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i06",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:word:footwear",
+    "correctText": "footwear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i07",
+    "correctText": "We must change our footwear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i08",
+    "correctText": "We must change our footwear.",
+    "correctResponseId": "en:lesson-20:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i09",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:word:identification",
+    "correctText": "identification",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i10",
+    "correctText": "She must show identification.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i11",
+    "correctText": "She must show identification.",
+    "correctResponseId": "en:lesson-20:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i12",
+    "correctText": "must",
+    "correctResponseId": "en:lesson-20:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i13",
+    "correctText": "en:lesson-20:session-01:i13:p1=belongings\nen:lesson-20:session-01:i13:p2=valuables\nen:lesson-20:session-01:i13:p3=footwear\nen:lesson-20:session-01:i13:p4=identification",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i15",
+    "correctText": "We will be able to help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i16",
+    "correctText": "You must take your belongings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-01:i17",
+    "correctText": "We must change our footwear.",
+    "correctResponseId": null
+  }
+]

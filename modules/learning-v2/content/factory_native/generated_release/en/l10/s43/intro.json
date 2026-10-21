@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "We have a briefing every morning; I am reading the circular; She is giving us a rundown",
+    "uk": "We have a briefing every morning; I am reading the circular; She is giving us a rundown"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Каждое утро",
+        "uk": "Щоранку"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим briefing — «инструктаж». Команда собирается каждое утро: We have a briefing every morning — «У нас инструктаж каждое утро». Every morning показывает повторение: используем Present Simple.",
+        "uk": "Повторімо briefing — «інструктаж». Команда збирається щоранку: We have a briefing every morning — «У нас інструктаж щоранку». Every morning показує повторення: використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r1",
+              "text": "We have a briefing every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r2",
+              "text": "We has a briefing every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r3",
+              "text": "We having a briefing every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r1",
+              "text": "We have a briefing every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r2",
+              "text": "We has a briefing every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro1:r3",
+              "text": "We having a briefing every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Читаем сообщение",
+        "uk": "Читаємо повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Circular здесь — «циркулярное письмо», одинаковое письменное сообщение, разосланное группе людей. Его прислали всем сотрудникам, и вы сейчас читаете: I am reading the circular — «Я читаю циркулярное письмо». Действие идёт сейчас: am + reading.",
+        "uk": "Circular тут — «циркулярний лист», однакове письмове повідомлення, розіслане групі людей. Його надіслали всім працівникам, і ви зараз читаєте: I am reading the circular — «Я читаю циркулярний лист». Дія триває зараз: am + reading."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r1",
+              "text": "I am reading the circular."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r2",
+              "text": "I reading the circular."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r3",
+              "text": "I is reading the circular."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r1",
+              "text": "I am reading the circular."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r2",
+              "text": "I reading the circular."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro2:r3",
+              "text": "I is reading the circular."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кратко о главном",
+        "uk": "Коротко про головне"
+      },
+      "bodyByLocale": {
+        "ru": "Rundown — «краткий обзор основных сведений». Руководительница сейчас рассказывает команде о задачах дня: She is giving us a rundown — «Она даёт нам краткий обзор». Для текущего объяснения используем is + giving. У give перед ing убираем e.",
+        "uk": "Rundown — «короткий огляд основних відомостей». Керівниця зараз розповідає команді про завдання дня: She is giving us a rundown — «Вона дає нам короткий огляд». Для поточного пояснення використовуємо is + giving. У give перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r1",
+              "text": "She is giving us a rundown."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r2",
+              "text": "She is giveing us a rundown."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r3",
+              "text": "She giving us a rundown."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r1",
+              "text": "She is giving us a rundown."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r2",
+              "text": "She is giveing us a rundown."
+            },
+            {
+              "responseId": "en:lesson-10:session-43:intro3:r3",
+              "text": "She giving us a rundown."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf9ce399079530e50214cafee4d92204b066c1e1dc8a2266ba451461ede1cbf4"
+}
